@@ -1,4 +1,4 @@
-# Virtual Processor Properties
+# Virtual Processors
 
 Each partition may have zero or more virtual processors.
 

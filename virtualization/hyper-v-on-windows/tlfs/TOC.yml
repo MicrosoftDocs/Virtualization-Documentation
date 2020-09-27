@@ -10,9 +10,9 @@
     href: hypercall-interface.md
   - name: Hypercall Reference
     href: hypercalls/overview.md
-- name: Partition Properties
+- name: Partitions
   href: partition-properties.md
-- name: Virtual Processor Properties
+- name: Virtual Processor
   href: vp-properties.md
 - name: Virtual MMU
   href: virtual-mmu.md

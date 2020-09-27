@@ -1,4 +1,4 @@
-# Partition Properties
+# Partitions
 
 ## Partition Privilege Flags
 

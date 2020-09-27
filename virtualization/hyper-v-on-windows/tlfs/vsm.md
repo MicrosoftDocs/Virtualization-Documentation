@@ -129,7 +129,8 @@ The [HvCallEnablePartitionVtl](hypercalls/HvCallEnablePartitionVtl.md) hypercall
 ### Enabling a Target VTL for Virtual Processors
 
 Once a VTL is enabled for a partition, it can be enabled on the partition’s virtual processors. The [HvCallEnableVpVtl](hypercalls/HvCallEnableVpVtl.md) hypercall can be used to enable VTLs for a virtual processor, which sets its initial context.
-Virtual processors have one “context” per VTL. If a VTL is switched, the virtual processor context is also switched. See 15.11 for details on what state is switched.
+
+Virtual processors have one “context” per VTL. If a VTL is switched, the VTL's [private state](#private-state) is also switched.
 
 ## VTL Configuration
 
@@ -166,7 +167,7 @@ This flag is write-once, meaning that once it has been set, it cannot be modifie
 
 #### Default Protection Mask
 
-By default, the system applies RWX protections to all currently mapped pages, and any future “hot-added” pages. Hot-added pages refer to any memory that is added to a partition during a resize operation. See section 15.9 for a description of memory access protections.
+By default, the system applies RWX protections to all currently mapped pages, and any future “hot-added” pages. Hot-added pages refer to any memory that is added to a partition during a resize operation.
 
 A higher VTL can set a different default memory protection policy by specifying DefaultVtlProtectionMask in HV_REGISTER_VSM_PARTITION_CONFIG. This mask must be set at the time the VTL is enabled. It cannot be changed once it is set, and is only cleared by a partition reset.
 
@@ -226,8 +227,8 @@ To unlock the TLB, the higher VTL can clear this bit. Also, once a VP returns to
 A VTL is “entered” when a VP switches from a lower VTL to a higher one. This can happen for the following reasons:
 
 1. VTL call: this is when software explicitly wishes to invoke code in a higher VTL.
-2. Secure interrupt: if an interrupt is received for a higher VTL, the VP will enter the higher VTL. See 15.12.
-3. Secure intercept: certain actions will trigger a secure interrupt (accessing certain MSRs for example). See 15.13.
+2. Secure interrupt: if an interrupt is received for a higher VTL, the VP will enter the higher VTL.
+3. Secure intercept: certain actions will trigger a secure interrupt (accessing certain MSRs for example).
 
 Once a VTL is entered, it must voluntarily exit. A higher VTL cannot be preempted by a lower VTL.
 
@@ -239,7 +240,7 @@ In order to react appropriately to an entry, a higher VTL might need to know the
 
 A “VTL call” is when a lower VTL initiates an entry into a higher VTL (for example, to protect a region of memory with the higher VTL) through the [HvCallVtlCall](hypercalls/HvCallVtlCall.md) hypercall.
 
-VTL calls preserve the state of shared registers across VTL switches. Private registers are preserved on a per-VTL level. (See 15.11.1 and 15.11.2 for which state is shared/private). The exception to these restrictions are the registers required by the VTL call sequence. The following registers are required for a VTL call:
+VTL calls preserve the state of shared registers across VTL switches. Private registers are preserved on a per-VTL level. The exception to these restrictions are the registers required by the VTL call sequence. The following registers are required for a VTL call:
 
 | x64     | x86     | Description                                                 |
 |---------|---------|-------------------------------------------------------------|
@@ -266,7 +267,7 @@ A switch to a lower VTL is known as a “return”. Once a VTL has finished proc
 
 ### VTL Return
 
-A “VTL return” is when a higher VTL initiates a switch into a lower VTL through the [HvCallVtlReturn](hypercalls/HvCallVtlReturn.md) hypercall. Similar to a VTL call, private processor state is switched out, and shared state remains in place (See 15.11.1 and 15.11.2 for which state is shared/private). If the lower VTL has explicitly called into the higher VTL, the hypervisor increments the higher VTL’s instruction pointer before the return is complete so that it may continue after a VTL call.
+A “VTL return” is when a higher VTL initiates a switch into a lower VTL through the [HvCallVtlReturn](hypercalls/HvCallVtlReturn.md) hypercall. Similar to a VTL call, private processor state is switched out, and shared state remains in place. If the lower VTL has explicitly called into the higher VTL, the hypervisor increments the higher VTL’s instruction pointer before the return is complete so that it may continue after a VTL call.
 
 A VTL Return code sequence requires the use of the following registers:
 
@@ -360,7 +361,7 @@ A conformant interface is expected to not overlay any non-RAM type over RAM.
 
 ### Memory Access Violations
 
-If a VP running at a lower VTL attempts to violate a memory protection set by a higher VTL, an intercept is generated. This intercept is received by the higher VTL which set the protection. This allows higher VTLs to deal with the violation on a case-by-case basis. For example, the higher VTL may choose to return a fault, or emulate the access (see 15.13).
+If a VP running at a lower VTL attempts to violate a memory protection set by a higher VTL, an intercept is generated. This intercept is received by the higher VTL which set the protection. This allows higher VTLs to deal with the violation on a case-by-case basis. For example, the higher VTL may choose to return a fault, or emulate the access.
 
 ### Mode Based Execute Control (MBEC)
 
