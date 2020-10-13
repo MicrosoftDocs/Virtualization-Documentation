@@ -22,7 +22,7 @@ The following table lists each type of base image, its servicing channel, and ho
 
 |Base image                       |Servicing channel|Version|OS build|Availability|Mainstream support end date|Extended support date|
 |---------------------------------|-----------------|-------|--------|------------|---------------------------|---------------------|
-|Server Core, Nano Server, Windows|Semi-Annual      |2004   |19042   |10/20/2020  |05/10/2022                 |N/A                  |
+|Server Core, Nano Server, Windows|Semi-Annual      |20H2   |19042   |10/20/2020  |05/10/2022                 |N/A                  |
 |Server Core, Nano Server, Windows|Semi-Annual      |2004   |19041   |05/27/2020  |12/14/2021                 |N/A                  |
 |Server Core, Nano Server, Windows|Semi-Annual      |1909   |18363   |11/12/2019  |05/11/2021                 |N/A                  |
 |Server Core, Nano Server, Windows|Semi-Annual      |1903   |18362   |05/21/2019  |12/08/2020                 |N/A                  |
