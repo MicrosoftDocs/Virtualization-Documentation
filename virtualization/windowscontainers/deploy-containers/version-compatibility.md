@@ -15,10 +15,22 @@ As we've been improving the Windows container features, we've had to make some c
 ## Windows Server host OS compatibility
 
 <!-- start tab view -->
+# [Windows Server, version 20H2](#tab/windows-server-20H2)
+
+|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server, version 20H2|&#10004;|&#10004;|
+|Windows Server, version 2004|&#10004;|&#10060;|
+|Windows Server, version 1909|&#10004;|&#10060;|
+|Windows Server, version 1903|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
+
 # [Windows Server, version 2004](#tab/windows-server-2004)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10004;|&#10004;|
 |Windows Server, version 1909|&#10004;|&#10060;|
 |Windows Server, version 1903|&#10004;|&#10060;|
@@ -29,6 +41,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10004;|&#10004;|
 |Windows Server, version 1903|&#10004;|&#10060;|
@@ -39,6 +52,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
 |Windows Server, version 1903|&#10004;|&#10004;|
@@ -49,6 +63,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
 |Windows Server, version 1903|&#10060;|&#10060;|
@@ -59,6 +74,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
 |Windows Server, version 1903|&#10060;|&#10060;|
@@ -72,10 +88,22 @@ As we've been improving the Windows container features, we've had to make some c
 
 <!-- start tab view -->
 
+# [Windows 10, version 20H2](#tab/windows-10-20H2)
+
+|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server, version 20H2|&#10004;|&#10004;|
+|Windows Server, version 2004|&#10004;|&#10060;|
+|Windows Server, version 1909|&#10004;|&#10060;|
+|Windows Server, version 1903|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
+
 # [Windows 10, version 2004](#tab/windows-10-2004)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10004;|&#10004;|
 |Windows Server, version 1909|&#10004;|&#10060;|
 |Windows Server, version 1903|&#10004;|&#10060;|
@@ -86,6 +114,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10004;|&#10060;|
 |Windows Server, version 1903|&#10004;|&#10060;|
@@ -96,6 +125,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
 |Windows Server, version 1903|&#10004;|&#10060;|
@@ -106,6 +136,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
 |Windows Server, version 1903|&#10060;|&#10060;|
