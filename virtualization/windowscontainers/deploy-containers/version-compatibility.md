@@ -1,6 +1,6 @@
 ---
 title: Windows Container Version Compatibility
-description: How Windows can run build and run containers across multiple versions
+description: How container compatiblity works across different versions of Windows Server and Windows containers.
 keywords: metadata, containers, version
 author: taylorb-microsoft
 ms.author: jgerend
