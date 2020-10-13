@@ -1,6 +1,6 @@
 ---
 title: Windows Container Version Compatibility
-description: How container compatiblity works across different versions of Windows Server and Windows containers.
+description: Version compatibility for containers built from different versions of Windows Server and Windows.
 keywords: metadata, containers, version
 author: taylorb-microsoft
 ms.author: jgerend
