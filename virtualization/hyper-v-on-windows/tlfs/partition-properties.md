@@ -1,5 +1,7 @@
 # Partitions
 
+The hypervisor supports isolation in terms of a partition. A partition is a logical unit of isolation, supported by the hypervisor, in which operating systems execute.
+
 ## Partition Privilege Flags
 
 Each partition has a set of privileges assigned by the hypervisor. Privileges control access to synthetic MSRs or hypercalls.
