@@ -23,7 +23,7 @@ On Intel platforms, virtualization software uses virtual machine control data st
 
 The hypervisor exposes an “enlightened VMCS” feature which can be used to control virtualization-related processor behavior using a data structure in guest physical memory. This data structure can be modified using normal memory access instructions, thus there is no need for the L1 hypervisor to execute VMREAD or VMWRITE or VMPTRLD instructions.
 
-The L1 hypervisor may choose to use enlightened VMCSs by writing 1 to the corresponding field in the [Virtual Processor Assist Page](../vp-properties.md#Virtual-Processor-Assist-Page). Another field in the VP assist page controls the currently active enlightened VMCS. Each enlightened VMCS is exactly one page (4 KB) in size and must be initially zeroed. No VMPTRLD instruction must be executed to make an enlightened VMCS active or current.
+The L1 hypervisor may choose to use enlightened VMCSs by writing 1 to the corresponding field in the [Virtual Processor Assist Page](../vp-properties.md#virtual-processor-assist-page). Another field in the VP assist page controls the currently active enlightened VMCS. Each enlightened VMCS is exactly one page (4 KB) in size and must be initially zeroed. No VMPTRLD instruction must be executed to make an enlightened VMCS active or current.
 
 After the L1 hypervisor performs a VM entry with an enlightened VMCS, the VMCS is considered active on the processor. An enlightened VMCS can only be active on a single processor at the same time. The L1 hypervisor can execute a VMCLEAR instruction to transition an enlightened VMCS from the active to the non-active state. Any VMREAD or VMWRITE instructions while an enlightened VMCS is active is unsupported and can result in unexpected behavior.
 
@@ -130,7 +130,7 @@ When enlightened VMCSs are in use, the virtual TLB tags all cached mappings with
 
 Direct handling of virtual flush hypercalls is enabled by:
 
-1. Setting the NestedEnlightenmentsControl.Features.DirectHypercall field of the [Virtual Processor Assist Page](../vp-properties.md#Virtual-Processor-Assist-Page) to 1.
+1. Setting the NestedEnlightenmentsControl.Features.DirectHypercall field of the [Virtual Processor Assist Page](../vp-properties.md#virtual-processor-assist-page) to 1.
 2. Setting the EnlightenmentsControl.NestedFlushVirtualHypercall field of an enlightened VMCS to 1.
 
 Before enabling it, the L1 hypervisor must configure the following additional fields of the enlightened VMCS:

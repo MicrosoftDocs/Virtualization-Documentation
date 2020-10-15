@@ -1,6 +1,6 @@
 # HV_VP_ASSIST_PAGE
 
- This structure defines the format of the [Virtual Processor Assist Page](../vp-properties.md#Virtual-Processor-Assist-Page).
+ This structure defines the format of the [Virtual Processor Assist Page](../vp-properties.md#virtual-processor-assist-page).
 
 ## Syntax
 

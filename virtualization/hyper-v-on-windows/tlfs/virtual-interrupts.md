@@ -75,7 +75,7 @@ A hypervisor supports hypercalls which allow to send virtual fixed interrupts to
 
 ### EOI Assist
 
-One field in the [Virtual Processor Assist Page](../vp-properties.md#Virtual-Processor-Assist-Page) is the EOI Assist field. The EOI Assist field resides at offset 0 of the overlay page and is 32-bits in size. The format of the EOI assist field is as follows:
+One field in the [Virtual Processor Assist Page](../vp-properties.md#virtual-processor-assist-page) is the EOI Assist field. The EOI Assist field resides at offset 0 of the overlay page and is 32-bits in size. The format of the EOI assist field is as follows:
 
 | Bits          | Description                         | Attributes                                                  |
 |---------------|-------------------------------------|-------------------------------------------------------------|

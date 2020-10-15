@@ -49,6 +49,7 @@ typedef struct
     UINT64 Reserved2[509];
 } HV_REFERENCE_TSC_PAGE;
  ```
+
 #### Reference Time Stamp Counter (TSC) Page MSR
 
 A guest wishing to access its reference TSC page must use the following model-specific register (MSR). A partition which possesses the AccessPartitionReferenceTsc privilege may access the MSR.
