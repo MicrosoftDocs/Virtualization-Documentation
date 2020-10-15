@@ -81,5 +81,5 @@ Each privilege controls access to a set of synthetic MSRs or hypercalls.
 |`CpuManagement`                        | The partition can invoke various hypercalls for CPU management. |
 |`AccessVSM`                            | The partition can use [VSM](../vsm.md). |
 |`AccessVpRegisters`                    | The partition can invoke the hypercalls HvCallSetVpRegisters and HvCallGetVpRegisters. |
-|`EnableExtendedHypercalls`             | The partition can use the [extended hypercall interface](../hypercall-interface.md#Extended-hypercall-interface). |
+|`EnableExtendedHypercalls`             | The partition can use the [extended hypercall interface](../hypercall-interface.md#extended-hypercall-interface). |
 |`StartVirtualProcessor`                | The partition can use [HvCallStartVirtualProcessor](../hypercalls/HvCallStartVirtualProcessor.md) to initialize virtual processors. |
