@@ -1,5 +1,7 @@
 # HV_X64_XMM_CONTROL_STATUS_REGISTER
 
+## Syntax
+
 ```c
 typedef struct
 {
