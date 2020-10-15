@@ -55,10 +55,6 @@ Each privilege controls access to a set of synthetic MSRs or hypercalls.
 | Privilege Flag                        | Meaning                                       |
 |---------------------------------------|-----------------------------------------------|
 |`AccessVpRunTimeReg`                   | The partition has access to the synthetic MSR HV_X64_MSR_VP_RUNTIME. |
-
-
-| Privilege Flag                        | Meaning                                       |
-|---------------------------------------|-----------------------------------------------|
 |`AccessPartitionReferenceCounter`      | The partition has access to the partition-wide reference count MSR, HV_X64_MSR_TIME_REF_COUNT. |
 |`AccessSynicRegs`                      | The partition has access to the synthetic MSRs associated with the Synic (HV_X64_MSR_SCONTROL through HV_X64_MSR_EOM and HV_X64_MSR_SINT0 through HV_X64_MSR_SINT15).|
 |`AccessSyntheticTimerMsrs`             | The partition has access to the synthetic MSRs associated with the Synic (HV_X64_MSR_STIMER0_CONFIG through HV_X64_MSR_STIMER3_COUNT). |
