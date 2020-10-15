@@ -19,6 +19,7 @@ The virtual MMU exposed by the hypervisor is generally compatible with the physi
 ### Legacy TLB Management Operations
 
 The x64 architecture provides several ways to manage the processor’s TLBs. The following mechanisms are virtualized by the hypervisor:
+
 - The INVLPG instruction invalidates the translation for a single page from the processor’s TLB. If the specified virtual address was originally mapped as a 4-K page, the translation for this page is removed from the TLB. If the specified virtual address was originally mapped as a “large page” (either 2 MB or 4 MB, depending on the MMU mode), the translation for the entire large page is removed from the TLB. The INVLPG instruction flushes both global and non-global translations. Global translations are defined as those which have the “global” bit set within the page table entry.
 - The MOV to CR3 instruction and task switches that modify CR3 invalidate translations for all non-global pages within the processor’s TLB.
 - A MOV to CR4 instruction that modifies the CR4.PGE (global page enable) bit, the CR4.PSE (page size extensions) bit, or CR4.PAE (page address extensions) bit invalidates all translations (global and non-global) within the processor’s TLB.

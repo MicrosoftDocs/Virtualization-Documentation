@@ -7,7 +7,8 @@ The virtualization fault information area contains the current fault code and fa
 ```c
 typedef union
 {
-    struct {
+    struct
+    {
         UINT16 Parameter0;
         UINT16 Reserved0;
         UINT32 Code;

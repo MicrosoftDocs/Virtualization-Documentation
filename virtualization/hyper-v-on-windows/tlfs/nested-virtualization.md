@@ -210,7 +210,7 @@ In a nested root partition, the following MSRs allow access to the corresponding
 
 To find the index of the underlying processor, callers should first use HV_X64_MSR_NESTED_VP_INDEX.
 
-| MSR address      | Register Name                 | Underlaying MSR                                              |
+| MSR address      | Register Name                 | Underlying MSR                                              |
 |------------------|-------------------------------|--------------------------------------------------------------|
 | 0x40001080       | HV_X64_MSR_NESTED_SCONTROL    | HV_X64_MSR_SCONTROL                                          |
 | 0x40001081       | HV_X64_MSR_NESTED_SVERSION    | HV_X64_MSR_SVERSION                                          |

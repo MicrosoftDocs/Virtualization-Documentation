@@ -190,122 +190,122 @@ typedef struct
 
 The following table maps the Intel physical VMCS encoding to its corresponding enlightened VMCS field name, as well as its corresponding clean field name. Note that some enlightened VMCS fields are synthetic, and therefore will not have a corresponding physical VMCS encoding.
 
-| VMCS Encoding  | Enlightened Name            | Size   |  Clean Field Name                                            |
-|----------------|-----------------------------|--------|--------------------------------------------------------------|
-| 0x0000681e     | GuestRip                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_NONE                          |
-| 0x0000401c     | TprThreshold                | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_NONE                          |
-| 0x0000681c     | GuestRsp                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_BASIC                   |
-| 0x00006820     | GuestRflags                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_BASIC                   |
-| 0x00004824     | GuestInterruptibility       | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_BASIC                   |
-| 0x00004002     | ProcessorControls           | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_PROC                  |
-| 0x00004004     | ExceptionBitmap             | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_EXCPN                 |
-| 0x00004012     | EntryControls               | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_ENTRY                 |
-| 0x00004016     | EntryInterruptInfo          | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_EVENT                 |
-| 0x00004018     | EntryExceptionErrorCode     | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_EVENT                 |
-| 0x0000401a     | EntryInstructionLength      | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_EVENT                 |
-| 0x00000c00     | HostEsSelector              | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00000c02     | HostCsSelector              | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00000c04     | HostSsSelector              | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00000c06     | HostDsSelector              | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00000c08     | HostFsSelector              | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00000c0a     | HostGsSelector              | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00000c0c     | HostTrSelector              | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00002c00     | HostPat                     | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00002c02     | HostEfer                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00006c00     | HostCr0                     | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00006c02     | HostCr3                     | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00006c04     | HostCr4                     | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00006c10     | HostSysenterEspMsr          | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00006c12     | HostSysenterEipMsr          | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00006c16     | HostSysenterCsMsr           | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_GRP1                     |
-| 0x00004000     | PinControls                 | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP1                  |
-| 0x0000400c     | ExitControls                | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP1                  |
-| 0x0000401e     | SecondaryProcessorControls  | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP1                  |
-| 0x00002000     | IoBitmapA                   | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_IO_BITMAP                     |
-| 0x00002002     | IoBitmapB                   | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_IO_BITMAP                     |
-| 0x00002004     | MsrBitmap                   | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_MSR_BITMAP                    |
-| 0x00000800     | GuestEsSelector             | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00000802     | GuestCsSelector             | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00000804     | GuestSsSelector             | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00000806     | GuestDsSelector             | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00000808     | GuestFsSelector             | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000080a     | GuestGsSelector             | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000080c     | GuestLdtrSelector           | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000080e     | GuestTrSelector             | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004800     | GuestEsLimit                | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004802     | GuestCsLimit                | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004804     | GuestSsLimit                | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004806     | GuestDsLimit                | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004808     | GuestFsLimit                | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000480a     | GuestGsLimit                | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000480c     | GuestLdtrLimit              | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000480e     | GuestTrLimit                | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004810     | GuestGdtrLimit              | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004812     | GuestIdtrLimit              | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004814     | GuestEsAttributes           | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004816     | GuestCsAttributes           | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004818     | GuestSsAttributes           | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000481a     | GuestDsAttributes           | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000481c     | GuestFsAttributes           | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000481e     | GuestGsAttributes           | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004820     | GuestLdtrAttributes         | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00004822     | GuestTrAttributes           | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00006806     | GuestEsBase                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00006808     | GuestCsBase                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000680a     | GuestSsBase                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000680c     | GuestDsBase                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x0000680e     | GuestFsBase                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00006810     | GuestGsBase                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00006812     | GuestLdtrBase               | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00006814     | GuestTrBase                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00006816     | GuestGdtrBase               | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00006818     | GuestIdtrBase               | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00002010     | TscOffset                   | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                  |
-| 0x00002012     | VirtualApicPage             | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                  |
-| 0x00002800     | GuestWorkingVmcsPtr         | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x00002802     | GuestIa32DebugCtl           | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x00002804     | GuestPat                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x00002806     | GuestEfer                   | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x0000280a     | GuestPdpte0                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x0000280c     | GuestPdpte1                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x0000280e     | GuestPdpte2                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x00002810     | GuestPdpte3                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x00006822     | GuestPendingDebugExceptions | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x00006824     | GuestSysenterEspMsr         | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x00006826     | GuestSysenterEipMsr         | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x00004826     | GuestSleepState             | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x0000482a     | GuestSysenterCsMsr          | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x00006000     | Cr0GuestHostMask            | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
-| 0x00006002     | Cr4GuestHostMask            | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
-| 0x00006004     | Cr0ReadShadow               | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
-| 0x00006006     | Cr4ReadShadow               | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
-| 0x00006800     | GuestCr0                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
-| 0x00006802     | GuestCr3                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
-| 0x00006804     | GuestCr4                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
-| 0x0000681a     | GuestDr7                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
-| 0x00006c06     | HostFsBase                  | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
-| 0x00006c08     | HostGsBase                  | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
-| 0x00006c0a     | HostTrBase                  | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
-| 0x00006c0c     | HostGdtrBase                | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
-| 0x00006c0e     | HostIdtrBase                | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
-| 0x00006c14     | HostRsp                     | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
-| 0x00000000     | Vpid                        | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_XLAT                  |
-| 0x0000201a     | EptRoot                     | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_XLAT                  |
-| 0x00002812     | GuestBndcfgs                | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
-| 0x0000202c     | XssExitingBitmap            | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                  |
-| 0x0000202e     | EnclsExitingBitmap          | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                  |
-| 0x00002400     | ExitEptFaultGpa             | 8      | Read only (no corresponding clean field)                     |
-| 0x00004400     | ExitInstructionError        | 4      | Read only (no corresponding clean field)                     |
-| 0x00004402     | ExitReason                  | 4      | Read only (no corresponding clean field)                     |
-| 0x00004404     | ExitInterruptionInfo        | 4      | Read only (no corresponding clean field)                     |
-| 0x00004406     | ExitExceptionErrorCode      | 4      | Read only (no corresponding clean field)                     |
-| 0x00004408     | ExitIdtVectoringInfo        | 4      | Read only (no corresponding clean field)                     |
-| 0x0000440a     | ExitIdtVectoringErrorCode   | 4      | Read only (no corresponding clean field)                     |
-| 0x0000440c     | ExitInstructionLength       | 4      | Read only (no corresponding clean field)                     |
-| 0x0000440e     | ExitInstructionInfo         | 4      | Read only (no corresponding clean field)                     |
-| 0x00006400     | ExitQualification           | 8      | Read only (no corresponding clean field)                     |
-| 0x00006402     | ExitIoInstructionEcx        | 8      | Read only (no corresponding clean field)                     |
-| 0x00006404     | ExitIoInstructionEsi        | 8      | Read only (no corresponding clean field)                     |
-| 0x00006406     | ExitIoInstructionEdi        | 8      | Read only (no corresponding clean field)                     |
-| 0x00006408     | ExitIoInstructionEip        | 8      | Read only (no corresponding clean field)                     |
-| 0x0000640a     | GuestLinearAddress          | 8      | Read only (no corresponding clean field)                     |
+| VMCS Encoding  | Enlightened Name            | Size   |  Clean Field Name             |
+|----------------|-----------------------------|--------|-------------------------------|
+| 0x0000681e     | GuestRip                    | 8      | NONE                          |
+| 0x0000401c     | TprThreshold                | 4      | NONE                          |
+| 0x0000681c     | GuestRsp                    | 8      | GUEST_BASIC                   |
+| 0x00006820     | GuestRflags                 | 8      | GUEST_BASIC                   |
+| 0x00004824     | GuestInterruptibility       | 4      | GUEST_BASIC                   |
+| 0x00004002     | ProcessorControls           | 4      | CONTROL_PROC                  |
+| 0x00004004     | ExceptionBitmap             | 4      | CONTROL_EXCPN                 |
+| 0x00004012     | EntryControls               | 4      | CONTROL_ENTRY                 |
+| 0x00004016     | EntryInterruptInfo          | 4      | CONTROL_EVENT                 |
+| 0x00004018     | EntryExceptionErrorCode     | 4      | CONTROL_EVENT                 |
+| 0x0000401a     | EntryInstructionLength      | 4      | CONTROL_EVENT                 |
+| 0x00000c00     | HostEsSelector              | 2      | HOST_GRP1                     |
+| 0x00000c02     | HostCsSelector              | 2      | HOST_GRP1                     |
+| 0x00000c04     | HostSsSelector              | 2      | HOST_GRP1                     |
+| 0x00000c06     | HostDsSelector              | 2      | HOST_GRP1                     |
+| 0x00000c08     | HostFsSelector              | 2      | HOST_GRP1                     |
+| 0x00000c0a     | HostGsSelector              | 2      | HOST_GRP1                     |
+| 0x00000c0c     | HostTrSelector              | 2      | HOST_GRP1                     |
+| 0x00002c00     | HostPat                     | 8      | HOST_GRP1                     |
+| 0x00002c02     | HostEfer                    | 8      | HOST_GRP1                     |
+| 0x00006c00     | HostCr0                     | 8      | HOST_GRP1                     |
+| 0x00006c02     | HostCr3                     | 8      | HOST_GRP1                     |
+| 0x00006c04     | HostCr4                     | 8      | HOST_GRP1                     |
+| 0x00006c10     | HostSysenterEspMsr          | 8      | HOST_GRP1                     |
+| 0x00006c12     | HostSysenterEipMsr          | 8      | HOST_GRP1                     |
+| 0x00006c16     | HostSysenterCsMsr           | 4      | HOST_GRP1                     |
+| 0x00004000     | PinControls                 | 4      | CONTROL_GRP1                  |
+| 0x0000400c     | ExitControls                | 4      | CONTROL_GRP1                  |
+| 0x0000401e     | SecondaryProcessorControls  | 4      | CONTROL_GRP1                  |
+| 0x00002000     | IoBitmapA                   | 8      | IO_BITMAP                     |
+| 0x00002002     | IoBitmapB                   | 8      | IO_BITMAP                     |
+| 0x00002004     | MsrBitmap                   | 8      | MSR_BITMAP                    |
+| 0x00000800     | GuestEsSelector             | 2      | GUEST_GRP2                    |
+| 0x00000802     | GuestCsSelector             | 2      | GUEST_GRP2                    |
+| 0x00000804     | GuestSsSelector             | 2      | GUEST_GRP2                    |
+| 0x00000806     | GuestDsSelector             | 2      | GUEST_GRP2                    |
+| 0x00000808     | GuestFsSelector             | 2      | GUEST_GRP2                    |
+| 0x0000080a     | GuestGsSelector             | 2      | GUEST_GRP2                    |
+| 0x0000080c     | GuestLdtrSelector           | 2      | GUEST_GRP2                    |
+| 0x0000080e     | GuestTrSelector             | 2      | GUEST_GRP2                    |
+| 0x00004800     | GuestEsLimit                | 4      | GUEST_GRP2                    |
+| 0x00004802     | GuestCsLimit                | 4      | GUEST_GRP2                    |
+| 0x00004804     | GuestSsLimit                | 4      | GUEST_GRP2                    |
+| 0x00004806     | GuestDsLimit                | 4      | GUEST_GRP2                    |
+| 0x00004808     | GuestFsLimit                | 4      | GUEST_GRP2                    |
+| 0x0000480a     | GuestGsLimit                | 4      | GUEST_GRP2                    |
+| 0x0000480c     | GuestLdtrLimit              | 4      | GUEST_GRP2                    |
+| 0x0000480e     | GuestTrLimit                | 4      | GUEST_GRP2                    |
+| 0x00004810     | GuestGdtrLimit              | 4      | GUEST_GRP2                    |
+| 0x00004812     | GuestIdtrLimit              | 4      | GUEST_GRP2                    |
+| 0x00004814     | GuestEsAttributes           | 4      | GUEST_GRP2                    |
+| 0x00004816     | GuestCsAttributes           | 4      | GUEST_GRP2                    |
+| 0x00004818     | GuestSsAttributes           | 4      | GUEST_GRP2                    |
+| 0x0000481a     | GuestDsAttributes           | 4      | GUEST_GRP2                    |
+| 0x0000481c     | GuestFsAttributes           | 4      | GUEST_GRP2                    |
+| 0x0000481e     | GuestGsAttributes           | 4      | GUEST_GRP2                    |
+| 0x00004820     | GuestLdtrAttributes         | 4      | GUEST_GRP2                    |
+| 0x00004822     | GuestTrAttributes           | 4      | GUEST_GRP2                    |
+| 0x00006806     | GuestEsBase                 | 8      | GUEST_GRP2                    |
+| 0x00006808     | GuestCsBase                 | 8      | GUEST_GRP2                    |
+| 0x0000680a     | GuestSsBase                 | 8      | GUEST_GRP2                    |
+| 0x0000680c     | GuestDsBase                 | 8      | GUEST_GRP2                    |
+| 0x0000680e     | GuestFsBase                 | 8      | GUEST_GRP2                    |
+| 0x00006810     | GuestGsBase                 | 8      | GUEST_GRP2                    |
+| 0x00006812     | GuestLdtrBase               | 8      | GUEST_GRP2                    |
+| 0x00006814     | GuestTrBase                 | 8      | GUEST_GRP2                    |
+| 0x00006816     | GuestGdtrBase               | 8      | GUEST_GRP2                    |
+| 0x00006818     | GuestIdtrBase               | 8      | GUEST_GRP2                    |
+| 0x00002010     | TscOffset                   | 8      | CONTROL_GRP2                  |
+| 0x00002012     | VirtualApicPage             | 8      | CONTROL_GRP2                  |
+| 0x00002800     | GuestWorkingVmcsPtr         | 8      | GUEST_GRP1                    |
+| 0x00002802     | GuestIa32DebugCtl           | 8      | GUEST_GRP1                    |
+| 0x00002804     | GuestPat                    | 8      | GUEST_GRP1                    |
+| 0x00002806     | GuestEfer                   | 8      | GUEST_GRP1                    |
+| 0x0000280a     | GuestPdpte0                 | 8      | GUEST_GRP1                    |
+| 0x0000280c     | GuestPdpte1                 | 8      | GUEST_GRP1                    |
+| 0x0000280e     | GuestPdpte2                 | 8      | GUEST_GRP1                    |
+| 0x00002810     | GuestPdpte3                 | 8      | GUEST_GRP1                    |
+| 0x00006822     | GuestPendingDebugExceptions | 8      | GUEST_GRP1                    |
+| 0x00006824     | GuestSysenterEspMsr         | 8      | GUEST_GRP1                    |
+| 0x00006826     | GuestSysenterEipMsr         | 8      | GUEST_GRP1                    |
+| 0x00004826     | GuestSleepState             | 4      | GUEST_GRP1                    |
+| 0x0000482a     | GuestSysenterCsMsr          | 4      | GUEST_GRP1                    |
+| 0x00006000     | Cr0GuestHostMask            | 8      | CRDR                          |
+| 0x00006002     | Cr4GuestHostMask            | 8      | CRDR                          |
+| 0x00006004     | Cr0ReadShadow               | 8      | CRDR                          |
+| 0x00006006     | Cr4ReadShadow               | 8      | CRDR                          |
+| 0x00006800     | GuestCr0                    | 8      | CRDR                          |
+| 0x00006802     | GuestCr3                    | 8      | CRDR                          |
+| 0x00006804     | GuestCr4                    | 8      | CRDR                          |
+| 0x0000681a     | GuestDr7                    | 8      | CRDR                          |
+| 0x00006c06     | HostFsBase                  | 8      | HOST_POINTER                  |
+| 0x00006c08     | HostGsBase                  | 8      | HOST_POINTER                  |
+| 0x00006c0a     | HostTrBase                  | 8      | HOST_POINTER                  |
+| 0x00006c0c     | HostGdtrBase                | 8      | HOST_POINTER                  |
+| 0x00006c0e     | HostIdtrBase                | 8      | HOST_POINTER                  |
+| 0x00006c14     | HostRsp                     | 8      | HOST_POINTER                  |
+| 0x00000000     | Vpid                        | 2      | CONTROL_XLAT                  |
+| 0x0000201a     | EptRoot                     | 8      | CONTROL_XLAT                  |
+| 0x00002812     | GuestBndcfgs                | 8      | GUEST_GRP1                    |
+| 0x0000202c     | XssExitingBitmap            | 8      | CONTROL_GRP2                  |
+| 0x0000202e     | EnclsExitingBitmap          | 8      | CONTROL_GRP2                  |
+| 0x00002400     | ExitEptFaultGpa             | 8      | NONE (Read only)              |
+| 0x00004400     | ExitInstructionError        | 4      | NONE (Read only)              |
+| 0x00004402     | ExitReason                  | 4      | NONE (Read only)              |
+| 0x00004404     | ExitInterruptionInfo        | 4      | NONE (Read only)              |
+| 0x00004406     | ExitExceptionErrorCode      | 4      | NONE (Read only)              |
+| 0x00004408     | ExitIdtVectoringInfo        | 4      | NONE (Read only)              |
+| 0x0000440a     | ExitIdtVectoringErrorCode   | 4      | NONE (Read only)              |
+| 0x0000440c     | ExitInstructionLength       | 4      | NONE (Read only)              |
+| 0x0000440e     | ExitInstructionInfo         | 4      | NONE (Read only)              |
+| 0x00006400     | ExitQualification           | 8      | NONE (Read only)              |
+| 0x00006402     | ExitIoInstructionEcx        | 8      | NONE (Read only)              |
+| 0x00006404     | ExitIoInstructionEsi        | 8      | NONE (Read only)              |
+| 0x00006406     | ExitIoInstructionEdi        | 8      | NONE (Read only)              |
+| 0x00006408     | ExitIoInstructionEip        | 8      | NONE (Read only)              |
+| 0x0000640a     | GuestLinearAddress          | 8      | NONE (Read only)              |
