@@ -10,6 +10,7 @@ Guest software interacts with the hypervisor through a variety of mechanisms. Ma
 In addition to these architecture-specific interfaces, the hypervisor provides a simple procedural interface implemented with [hypercalls](hypercall-interface.md).
 
 ## Hypervisor Discovery
+
 Before using any hypervisor interfaces, software should first determine whether it’s running within a virtualized environment. On x64 platforms that conform to this specification, this is done by executing the CPUID instruction with an input (EAX) value of 1. Upon execution, code should check bit 31 of register ECX (the “hypervisor present bit”). If this bit is set, a hypervisor is present. In a non-virtualized environment, the bit will be clear.
 
  ```c
@@ -825,56 +826,3 @@ The hypervisor version information is encoded in leaf `0x40000002`. Two version 
 The main version includes a major and minor version number and a build number. These correspond to Microsoft Windows release numbers. The service version describes changes made to the main version.
 
 Clients are strongly encouraged to check for hypervisor features by using CPUID leaves `0x40000003` through `0x40000005` rather than by comparing against version ranges.
-
-## Reporting the Guest OS Identity
-
-The guest OS running within the partition must identify itself to the hypervisor by writing its signature and version to an MSR (`HV_X64_MSR_GUEST_OS_ID`). This MSR is partition-wide and is shared among all virtual processors.
-
-This register’s value is initially zero. A non-zero value must be written to the Guest OS ID MSR before the hypercall code page can be enabled (see Establishing the Hypercall Interface). If this register is subsequently zeroed, the hypercall code page will be disabled.
-
- ```c
-#define HV_X64_MSR_GUEST_OS_ID 0x40000000
- ```
-
-### Guest OS Identity for proprietary Operating Systems
-
-The following is the recommended encoding for this MSR. Some fields may not apply for some guest OSs.
-
-| Bits      | Field           | Description                                                                 |
-|-----------|-----------------|-----------------------------------------------------------------------------|
-| 15:0      | Build Number    | Indicates the build number of the OS                                        |
-| 23:16     | Service Version | Indicates the service version (for example, "service pack" number)          |
-| 31:24     | Minor Version   | Indicates the minor version of the OS                                       |
-| 39:32     | Major Version   | Indicates the major version of the OS                                       |
-| 47:40     | OS ID           | Indicates the OS variant. Encoding is unique to the vendor. Microsoft operating systems are encoded as follows: 0=Undefined, 1=MS-DOS®, 2=Windows® 3.x, 3=Windows® 9x, 4=Windows® NT (and derivatives), 5=Windows® CE
-| 62:48     | Vendor ID       | Indicates the guest OS vendor. A value of 0 is reserved. See list of vendors below.
-| 63        | OS Type         | Indicates the OS types. A value of 0 indicates a proprietary, closed source OS. A value of 1 indicates an open source OS.
-
-Vendor values are allocated by Microsoft. To request a new vendor, please file an issue on the GitHub virtualization documentation repository (<https://aka.ms/VirtualizationDocumentationIssuesTLFS>).
-
-| Vendor    | Value                                                                                |
-|-----------|--------------------------------------------------------------------------------------|
-| Microsoft | 0x0001                                                                               |
-| HPE       | 0x0002                                                                               |
-| LANCOM    | 0x0200                                                                               |
-
-### Guest OS Identity MSR for Open Source Operating Systems
-
-The following encoding is offered as guidance for open source operating system vendors intending to conform to this specification. It is suggested that open source operating systems adapt the following convention.
-
-| Bits      | Field           | Description                                                                 |
-|-----------|-----------------|-----------------------------------------------------------------------------|
-| 15:0      | Build Number    | Additional Information                                                      |
-| 47:16     | Version         | Upstream kernel version information.                                        |
-| 55:48     | OS ID           | Additional vendor information                                               |
-| 62:56     | OS Type         | OS type (e.g., Linux, FreeBSD, etc.). See list of known OS types below      |
-| 63        | Open Source     | A value of 1 indicates an open source OS.                                   |
-
-OS Type values are allocated by Microsoft. To request a new OS Type, please file an issue on the GitHub virtualization documentation repository (<https://aka.ms/VirtualizationDocumentationIssuesTLFS>).
-
-| OS Type   | Value                                                                                |
-|-----------|--------------------------------------------------------------------------------------|
-| Linux     | 0x1                                                                                  |
-| FreeBSD   | 0x2                                                                                  |
-| Xen       | 0x3                                                                                  |
-| Illumos   | 0x4                                                                                  |

@@ -4,7 +4,7 @@ The hypervisor provides a calling mechanism for guests. Such calls are referred 
 
 A second hypercall calling convention can optionally be used for a subset of hypercalls – in particular, those that have two or fewer input parameters and no output parameters. When using this calling convention, the input parameters are passed in general-purpose registers.
 
-On x64 platforms, a third hypercall calling convention can optionally be used for a subset of hypercalls where the input parameter block is up to 112 bytes. When using this calling convention, the input parameters are passed in registers, including the volatile XMM registers.
+A third hypercall calling convention can optionally be used for a subset of hypercalls where the input parameter block is up to 112 bytes. When using this calling convention, the input parameters are passed in registers, including the volatile XMM registers.
 
 Input and output data structures must both be placed in memory on an 8-byte boundary and padded to a multiple of 8 bytes in size. The values within the padding regions are ignored by the hypervisor.
 
@@ -16,7 +16,7 @@ There are two classes of hypercalls: simple and rep (short for “repeat”). A 
 
 When a caller initially invokes a rep hypercall, it specifies a rep count that indicates the number of elements in the input and/or output parameter list. Callers also specify a rep start index that indicates the next input and/or output element that should be consumed. The hypervisor processes rep parameters in list order – that is, by increasing element index.
 
-For subsequent invocations of the rep hypercall, the rep start index indicates how many elements have been completed – and, in conjunction with the rep count value – how many elements are left. For example, if a caller specifies a rep count of 25, and only 20 iterations are completed within the 50μs window (described in section 3.3), the hypercall returns control back to the calling virtual processor after updating the rep start index to 20. (See section 3.7 for more information about the rep start index.) When the hypercall is re-executed, the hypervisor will resume at element 20 and complete the remaining 5 elements.
+For subsequent invocations of the rep hypercall, the rep start index indicates how many elements have been completed – and, in conjunction with the rep count value – how many elements are left. For example, if a caller specifies a rep count of 25, and only 20 iterations are completed within the time constraints, the hypercall returns control back to the calling virtual processor after updating the rep start index to 20. When the hypercall is re-executed, the hypervisor will resume at element 20 and complete the remaining 5 elements.
 
 If an error is encountered when processing an element, an appropriate status code is provided along with a reps completed count, indicating the number of elements that were successfully processed before the error was encountered. Assuming the specified hypercall control word is valid (see the following) and the input / output parameter lists are accessible, the hypervisor is guaranteed to attempt at least one rep, but it is not required to process the entire list before returning control back to the caller.
 
@@ -42,13 +42,13 @@ The guest must avoid the examination and/or manipulation of any input or output 
 
 Hypercalls can be invoked only from the most privileged guest processor mode. On x64 platfoms, this means protected mode with a current privilege level (CPL) of zero. Although real-mode code runs with an effective CPL of zero, hypercalls are not allowed in real mode. An attempt to invoke a hypercall within an illegal processor mode will generate a #UD (undefined operation) exception.
 
-All hypercalls should be invoked through the architecturally-defined hypercall interface. (See the following sections for instructions on discovering and establishing this interface.) An attempt to invoke a hypercall by any other means (for example, copying the code from the hypercall code page to an alternate location and executing it from there) might result in an undefined operation (#UD) exception. The hypervisor is not guaranteed to deliver this exception.
+All hypercalls should be invoked through the architecturally-defined hypercall interface (see below). An attempt to invoke a hypercall by any other means (for example, copying the code from the hypercall code page to an alternate location and executing it from there) might result in an undefined operation (#UD) exception. The hypervisor is not guaranteed to deliver this exception.
 
 ## Alignment Requirements
 
 Callers must specify the 64-bit guest physical address (GPA) of the input and/or output parameters. GPA pointers must by 8-byte aligned. If the hypercall involves no input or output parameters, the hypervisor ignores the corresponding GPA pointer.
 
-The input and output parameter lists cannot overlap or cross page boundaries. Hypercall input and output pages are expected to be GPA pages and not “overlay” pages (for a discussion of overlay pages, see section 5.2.1). If the virtual processor writes the input parameters to an overlay page and specifies a GPA within this page, hypervisor access to the input parameter list is undefined.
+The input and output parameter lists cannot overlap or cross page boundaries. Hypercall input and output pages are expected to be GPA pages and not “overlay” pages. If the virtual processor writes the input parameters to an overlay page and specifies a GPA within this page, hypervisor access to the input parameter list is undefined.
 
 The hypervisor will validate that the calling partition can read from the input page before executing the requested hypercall. This validation consists of two checks: the specified GPA is mapped and the GPA is marked readable. If either of these tests fails, the hypervisor generates a memory intercept message. For hypercalls that have output parameters, the hypervisor will validate that the partition can be write to the output page. This validation consists of two checks: the specified GPA is mapped and the GPA is marked writable.
 
@@ -115,9 +115,8 @@ In all other regards, hypercalls accepting variable sized input headers are othe
 
 On x64 platforms, the hypervisor supports the use of XMM fast hypercalls, which allows some hypercalls to take advantage of the improved performance of the fast hypercall interface even though they require more than two input parameters. The XMM fast hypercall interface uses six XMM registers to allow the caller to pass an input parameter block up to 112 bytes in size.
 
-#### Feature Enumeration
+Availability of the XMM fast hypercall interface is indicated via the “Hypervisor Feature Identification” CPUID Leaf (0x40000003):
 
-Availability of the XMM fast hypercall interface is indicated via the “Hypervisor Feature Identification” CPUID Leaf (0x40000003, see section 2.4.4):
 - Bit 4: support for passing hypercall input via XMM registers is available.
 
 Note that there is a separate flag to indicate support for XMM fast output. Any attempt to use this interface when the hypervisor does not indicate availability will result in a #UD fault.
@@ -161,9 +160,7 @@ The hypercall result value is passed back in registers. The register mapping dep
 
 Similar to how the hypervisor supports XMM fast hypercall inputs, the same registers can be shared to return output. This is only supported on x64 platforms.
 
-#### Feature Enumeration
-
-The ability to return output via XMM registers is indicated via the “Hypervisor Feature Identification” CPUID Leaf (0x40000003, see section 2.4.4):
+The ability to return output via XMM registers is indicated via the “Hypervisor Feature Identification” CPUID Leaf (0x40000003):
 
 - Bit 15: support for returning hypercall output via XMM registers is available.
 
@@ -190,23 +187,21 @@ For example, if the input parameter block is 20 bytes in size, the hypervisor wo
 
 Hypercalls will only modify the specified register values under the following conditions:
 
-1. RAX (x64) and EDX:EAX (x86) are always overwritten with the hypercall result value and output parameters, if any (discussed in section 3.8).
+1. RAX (x64) and EDX:EAX (x86) are always overwritten with the hypercall result value and output parameters, if any.
 1. Rep hypercalls will modify RCX (x64) and EDX:EAX (x86) with the new rep start index.
-1. HvSetVpRegisters can modify any registers that are supported with that hypercall (see section 7.10.1).
-1. RDX, R8, and XMM0 through XMM5, when used for fast hypercall input, remain unmodified. However, registers used for fast hypercall output can be modified, including RDX, R8, and XMM0 through XMM5 (see 3.8.1). Hyper-V will only modify these registers for fast hypercall output, which is limited to x64.
+1. [HvCallSetVpRegisters](./hypercalls/HvCallSetVpRegisters.md) can modify any registers that are supported with that hypercall.
+1. RDX, R8, and XMM0 through XMM5, when used for fast hypercall input, remain unmodified. However, registers used for fast hypercall output can be modified, including RDX, R8, and XMM0 through XMM5. Hyper-V will only modify these registers for fast hypercall output, which is limited to x64.
 
 ## Hypercall Restrictions
 
 Hypercalls may have restrictions associated with them for them to perform their intended function. If all restrictions are not met, the hypercall will terminate with an appropriate error. The following restrictions will be listed, if any apply:
-- The calling partition must possess a particular privilege (see 4.2.2 for information regarding privilege flags)
+
+- The calling partition must possess a particular privilege
 - The partition being acted upon must be in a particular state (e.g. “Active”)
-- The partition must be the root
-- The partition must be either a parent or child
-- The virtual processor must be in a particular state (see section 7.4 for information regarding virtual processor states).
 
 ## Hypercall Status Codes
 
-Each hypercall is documented as returning an output value that contains several fields. A status value field (of type `HV_STATUS`) is used to indicate whether the call succeeded or failed. The hypercall status value field is discussed in section 3.7.1.
+Each hypercall is documented as returning an output value that contains several fields. A status value field (of type `HV_STATUS`) is used to indicate whether the call succeeded or failed.
 
 ### Output Parameter Validity on Failed Hypercalls
 
@@ -232,6 +227,59 @@ Several result codes are common to all hypercalls and are therefore not document
 |                                    | The input or output GPA pointer is not within the bounds of the GPA space.            |
 
 The return code `HV_STATUS_SUCCESS` indicates that no error condition was detected.
+
+## Reporting the Guest OS Identity
+
+The guest OS running within the partition must identify itself to the hypervisor by writing its signature and version to an MSR (`HV_X64_MSR_GUEST_OS_ID`) before it can invoke hypercalls. This MSR is partition-wide and is shared among all virtual processors.
+
+This register’s value is initially zero. A non-zero value must be written to the Guest OS ID MSR before the hypercall code page can be enabled (see [Establishing the Hypercall Interface](#establishing-the-hypercall-interface)). If this register is subsequently zeroed, the hypercall code page will be disabled.
+
+ ```c
+#define HV_X64_MSR_GUEST_OS_ID 0x40000000
+ ```
+
+### Guest OS Identity for proprietary Operating Systems
+
+The following is the recommended encoding for this MSR. Some fields may not apply for some guest OSs.
+
+| Bits      | Field           | Description                                                                 |
+|-----------|-----------------|-----------------------------------------------------------------------------|
+| 15:0      | Build Number    | Indicates the build number of the OS                                        |
+| 23:16     | Service Version | Indicates the service version (for example, "service pack" number)          |
+| 31:24     | Minor Version   | Indicates the minor version of the OS                                       |
+| 39:32     | Major Version   | Indicates the major version of the OS                                       |
+| 47:40     | OS ID           | Indicates the OS variant. Encoding is unique to the vendor. Microsoft operating systems are encoded as follows: 0=Undefined, 1=MS-DOS®, 2=Windows® 3.x, 3=Windows® 9x, 4=Windows® NT (and derivatives), 5=Windows® CE
+| 62:48     | Vendor ID       | Indicates the guest OS vendor. A value of 0 is reserved. See list of vendors below.
+| 63        | OS Type         | Indicates the OS types. A value of 0 indicates a proprietary, closed source OS. A value of 1 indicates an open source OS.
+
+Vendor values are allocated by Microsoft. To request a new vendor, please file an issue on the GitHub virtualization documentation repository (<https://aka.ms/VirtualizationDocumentationIssuesTLFS>).
+
+| Vendor    | Value                                                                                |
+|-----------|--------------------------------------------------------------------------------------|
+| Microsoft | 0x0001                                                                               |
+| HPE       | 0x0002                                                                               |
+| LANCOM    | 0x0200                                                                               |
+
+### Guest OS Identity MSR for Open Source Operating Systems
+
+The following encoding is offered as guidance for open source operating system vendors intending to conform to this specification. It is suggested that open source operating systems adapt the following convention.
+
+| Bits      | Field           | Description                                                                 |
+|-----------|-----------------|-----------------------------------------------------------------------------|
+| 15:0      | Build Number    | Additional Information                                                      |
+| 47:16     | Version         | Upstream kernel version information.                                        |
+| 55:48     | OS ID           | Additional vendor information                                               |
+| 62:56     | OS Type         | OS type (e.g., Linux, FreeBSD, etc.). See list of known OS types below      |
+| 63        | Open Source     | A value of 1 indicates an open source OS.                                   |
+
+OS Type values are allocated by Microsoft. To request a new OS Type, please file an issue on the GitHub virtualization documentation repository (<https://aka.ms/VirtualizationDocumentationIssuesTLFS>).
+
+| OS Type   | Value                                                                                |
+|-----------|--------------------------------------------------------------------------------------|
+| Linux     | 0x1                                                                                  |
+| FreeBSD   | 0x2                                                                                  |
+| Xen       | 0x3                                                                                  |
+| Illumos   | 0x4                                                                                  |
 
 ## Establishing the Hypercall Interface
 
