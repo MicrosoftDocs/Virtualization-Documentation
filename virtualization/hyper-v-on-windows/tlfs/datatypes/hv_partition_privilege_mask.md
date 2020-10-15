@@ -71,15 +71,15 @@ Each privilege controls access to a set of synthetic MSRs or hypercalls.
 |`CreatePartitions`                     | The partition can invoke the hypercall HvCallCreatePartition. The partition also can make any other hypercall that is restricted to operating on children. |
 |`AccessPartitionId`                    | The partition can invoke the hypercall HvCallGetPartitionId to obtain its own partition ID. |
 |`AccessMemoryPool`                     | The partition can invoke the hypercalls HvCallDepositMemory, HvCallWithdrawMemory and HvCallGetMemoryBalance. |
-|`PostMessages`                         | The partition can invoke the hypercall HvCallPostMessage. |
-|`SignalEvents`                         | The partition can invoke the hypercall HvCallSignalEvent. |
+|`PostMessages`                         | The partition can invoke the hypercall [HvCallPostMessage](../hypercalls/HvCallPostMessage.md). |
+|`SignalEvents`                         | The partition can invoke the hypercall [HvCallSignalEvent](../hypercalls/HvCallSignalEvent.md). |
 |`CreatePort`                           | The partition can invoke the hypercall HvCallCreatePort.  |
 |`PostMessages`                         | The partition can invoke the hypercall HvCallPostMessage. |
 |`ConnectPort`                          | The partition can invoke the hypercall HvCallConnectPort. |
-|`AccessStats`                          | The partition can invoke the hypercalls HvCAllMapStatsPage and HvCallUnmapStatsPage. |
+|`AccessStats`                          | The partition can invoke the hypercalls HvCallMapStatsPage and HvCallUnmapStatsPage. |
 |`Debugging`                            | The partition can invoke the hypercalls HvCallPostDebugData, HvCallRetrieveDebugData and HvCallResetDebugSession. |
 |`CpuManagement`                        | The partition can invoke various hypercalls for CPU management. |
-|`AccessVSM`                            | The partition can use VSM. |
+|`AccessVSM`                            | The partition can use [VSM](../vsm.md). |
 |`AccessVpRegisters`                    | The partition can invoke the hypercalls HvCallSetVpRegisters and HvCallGetVpRegisters. |
-|`EnableExtendedHypercalls`             | The partition can use the extended hypercall interface. |
-|`StartVirtualPRocessor`                | The partition can use HvStartVirtualProcessor to initialize virtual processors. |
+|`EnableExtendedHypercalls`             | The partition can use the [extended hypercall interface](../hypercall-interface.md#Extended-hypercall-interface). |
+|`StartVirtualProcessor`                | The partition can use [HvCallStartVirtualProcessor](../hypercalls/HvCallStartVirtualProcessor.md) to initialize virtual processors. |
