@@ -35,7 +35,7 @@
   - name: Hyper-V Requirements
     href: reference/hyper-v-requirements.md
   - name: Supported Guest Operating Systems
-    href: about/supported-guest-os.md)
+    href: about/supported-guest-os.md
   - name: Hyper-V PowerShell
     href: https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps
   - name: Hyper-V Integration Services

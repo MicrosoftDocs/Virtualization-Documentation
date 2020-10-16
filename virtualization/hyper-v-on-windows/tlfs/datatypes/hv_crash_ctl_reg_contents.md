@@ -31,4 +31,4 @@ typedef union
 
 ## See also
 
- [Partition Crash Enlightenment](../partition-properties.md#Partition-Crash-Enlightenment)
+ [Partition Crash Enlightenment](../partition-properties.md#partition-crash-enlightenment)

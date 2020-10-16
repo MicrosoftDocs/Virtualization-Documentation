@@ -25,7 +25,7 @@ The hypervisor marks the message buffer “in use” and fills in the message he
 
 The hypervisor then appends the message buffer to a receiving message queue. The receiving message queue depends on the event that triggered the sending of the message. For all message types, SINTx is either implicit (in the case of intercept messages), explicit (in the case of timer messages) or specified by a port ID (in the case of guest messages). The target virtual processor is either explicitly specified or chosen by the hypervisor when the message is enqueued. Virtual processors whose SynIC or SIM page is disabled will not be considered as potential targets. If no targets are available, the hypervisor terminates the operation and returns an error to the caller.
 
-The hypervisor then determines whether the specified SINTx message slot within the [SIM page](#SIM-Page) for the target virtual processor is empty. If the message type in the message slot is equal to HvMessageTypeNone (that is, zero), the message slot is assumed to be empty. In this case, the hypervisor dequeues the message buffer and copies its contents to the message slot within the SIM page. The hypervisor may copy only the number of payload bytes associated with the message. The hypervisor also attempts to generate an edge-triggered interrupt for the specified SINTx. If the APIC is software disabled or the SINTx is masked, the interrupt is lost. The arrival of this interrupt notifies the guest that a new message has arrived. If the SIM page is disabled or the message slot within the SIM page is not empty, the message remains queued, and no interrupt is generated.
+The hypervisor then determines whether the specified SINTx message slot within the [SIM page](#sim-page) for the target virtual processor is empty. If the message type in the message slot is equal to HvMessageTypeNone (that is, zero), the message slot is assumed to be empty. In this case, the hypervisor dequeues the message buffer and copies its contents to the message slot within the SIM page. The hypervisor may copy only the number of payload bytes associated with the message. The hypervisor also attempts to generate an edge-triggered interrupt for the specified SINTx. If the APIC is software disabled or the SINTx is masked, the interrupt is lost. The arrival of this interrupt notifies the guest that a new message has arrived. If the SIM page is disabled or the message slot within the SIM page is not empty, the message remains queued, and no interrupt is generated.
 
 As with any fixed-priority interrupt, the interrupt is not acknowledged by the virtual processor until the PPR (process priority register) is less than the vector specified in the SINTx register and interrupts are not masked by the virtual processor (rFLAGS[IF] is set to 1).
 
@@ -33,7 +33,7 @@ Multiple message buffers with the same SINTx can be queued to a virtual processo
 
 - Another message buffer is queued.
 - The guest indicates the “end of interrupt” by writing to the APIC’s EOI register.
-- The guest indicates the “end of message” by writing to the SynIC’s [EOM register](#EOM-Register).
+- The guest indicates the “end of message” by writing to the SynIC’s [EOM register](#eom-register).
 
 In all three cases, the hypervisor will scan one or more message buffer queues and attempt to deliver additional messages. The hypervisor also attempts to generate an edge-triggered interrupt, indicating that a new message has arrived.
 
@@ -41,7 +41,7 @@ In all three cases, the hypervisor will scan one or more message buffer queues a
 
 The SIM page consists of a 16-element array of 256-byte messages (see [HV_MESSAGE](datatypes/HV_MESSAGE.md) data structure). Each array element (also known as a message slot) corresponds to a single synthetic interrupt source (SINTx). A message slot is said to be “empty” if the message type of the message in the slot is equal to HvMessageTypeNone.
 
-The address for the SIM page is specified in the [SIMP register](#SIMP-Register). The address of the SIM page should be unique for each virtual processor. Programming these pages to overlap other instances of the SIEF or SIM pages or any other overlay page (for example, the hypercall page) will result in undefined behavior.
+The address for the SIM page is specified in the [SIMP register](#simp-register). The address of the SIM page should be unique for each virtual processor. Programming these pages to overlap other instances of the SIEF or SIM pages or any other overlay page (for example, the hypercall page) will result in undefined behavior.
 
 Read and write accesses by a virtual processor to the SIM page behave like read and write accesses to RAM. However, the hypervisor’s SynIC implementation also writes to the pages in response to certain events.
 
@@ -94,7 +94,7 @@ Event flags are lighter-weight than messages and are therefore lower overhead. F
 
 ### Event Flag Delivery
 
-When a partition calls HvCallSignalEvent, it specifies an event flag number. The hypervisor responds by atomically setting a bit within the receiving virtual processor’s [SIEF page](#SIEF-Page). Virtual processors whose SynIC or SIEF page is disabled will not be considered as potential targets. If no targets are available, the hypervisor terminates the operation and returns an error to the caller.
+When a partition calls HvCallSignalEvent, it specifies an event flag number. The hypervisor responds by atomically setting a bit within the receiving virtual processor’s [SIEF page](#sief-page). Virtual processors whose SynIC or SIEF page is disabled will not be considered as potential targets. If no targets are available, the hypervisor terminates the operation and returns an error to the caller.
 
 If the event flag was previously cleared, the hypervisor attempts to notify the receiving partition that the flag is now set by generating an edge-triggered interrupt. The target virtual processor, along with the target SINTx, is specified as part of a port’s creation. If the SINTx is masked, HvSignalEvent returns HV_STATUS_INVALID_SYNIC_STATE.
 
@@ -104,7 +104,7 @@ As with any fixed-priority external interrupt, the interrupt is not acknowledged
 
 The SIEF page consists of a 16-element array of 256-byte event flags (see [HV_SYNIC_EVENT_FLAGS](datatypes/HV_SYNIC_EVENT_FLAGS.md)). Each array element corresponds to a single synthetic interrupt source (SINTx).
 
-The address for the SIEF page is specified in the [SIEF register](#SIEF-Register). The address of the SIEF page should be unique for each virtual processor. Programming these pages to overlap other instances of the SIEF or SIM pages or any other overlay page (for example, the hypercall page) will result in undefined behavior.
+The address for the SIEF page is specified in the [SIEF register](#sief-register). The address of the SIEF page should be unique for each virtual processor. Programming these pages to overlap other instances of the SIEF or SIM pages or any other overlay page (for example, the hypercall page) will result in undefined behavior.
 
 Read and write accesses by a virtual processor to the SIEF page behave like read and write accesses to RAM. However, the hypervisor’s SynIC implementation also writes to the pages in response to certain events.
 

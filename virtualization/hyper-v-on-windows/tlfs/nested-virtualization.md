@@ -34,7 +34,7 @@ On Intel platforms, virtualization software uses virtual machine control data st
 
 The hypervisor exposes an “enlightened VMCS” feature which can be used to control virtualization-related processor behavior using a data structure in guest physical memory. This data structure can be modified using normal memory access instructions, thus there is no need for the L1 hypervisor to execute VMREAD or VMWRITE or VMPTRLD instructions.
 
-The L1 hypervisor may choose to use enlightened VMCSs by writing 1 to the corresponding field in the [Virtual Processor Assist Page](../vp-properties.md#virtual-processor-assist-page). Another field in the VP assist page controls the currently active enlightened VMCS. Each enlightened VMCS is exactly one page (4 KB) in size and must be initially zeroed. No VMPTRLD instruction must be executed to make an enlightened VMCS active or current.
+The L1 hypervisor may choose to use enlightened VMCSs by writing 1 to the corresponding field in the [Virtual Processor Assist Page](vp-properties.md#virtual-processor-assist-page). Another field in the VP assist page controls the currently active enlightened VMCS. Each enlightened VMCS is exactly one page (4 KB) in size and must be initially zeroed. No VMPTRLD instruction must be executed to make an enlightened VMCS active or current.
 
 After the L1 hypervisor performs a VM entry with an enlightened VMCS, the VMCS is considered active on the processor. An enlightened VMCS can only be active on a single processor at the same time. The L1 hypervisor can execute a VMCLEAR instruction to transition an enlightened VMCS from the active to the non-active state. Any VMREAD or VMWRITE instructions while an enlightened VMCS is active is unsupported and can result in unexpected behavior.
 
@@ -130,7 +130,7 @@ On Intel platforms, the L0 hypervisor virtualizes the following additional ways 
 
 ### Direct Virtual Flush
 
-The hypervisor exposes hypercalls ([HvFlushVirtualAddressSpace](hypercalls/HvFlushVirtualAddressSpace.md), [HvFlushVirtualAddressSpaceEx](hypercalls/HvFlushVirtualAddressSpaceEx.md), [HvFlushVirtualAddressList](hypercalls/HvFlushVirtualAddressList.md), and [HvFlushVirtualAddressListEx](hypercalls/HvFlushVirtualAddressListEx.md)) that allow operating systems to more efficiently manage the virtual TLB. The L1 hypervisor can choose to allow its guest to use those hypercalls and delegate the responsibility of handling them to the L0 hypervisor. This requires the use of enlightened VMCSs and of a partition assist page.
+The hypervisor exposes hypercalls ([HvCallFlushVirtualAddressSpace](hypercalls/HvCallFlushVirtualAddressSpace.md), [HvCallFlushVirtualAddressSpaceEx](hypercalls/HvCallFlushVirtualAddressSpaceEx.md), [HvCallFlushVirtualAddressList](hypercalls/HvCallFlushVirtualAddressList.md), and [HvCallFlushVirtualAddressListEx](hypercalls/HvCallFlushVirtualAddressListEx.md)) that allow operating systems to more efficiently manage the virtual TLB. The L1 hypervisor can choose to allow its guest to use those hypercalls and delegate the responsibility of handling them to the L0 hypervisor. This requires the use of enlightened VMCSs and of a partition assist page.
 
 When enlightened VMCSs are in use, the virtual TLB tags all cached mappings with an identifier of the enlightened VMCS that created them. In response to a direct virtual flush hypercall from a L2 guest, the L0 hypervisor invalidates all cached mappings created by enlightened VMCSs where
 
@@ -141,7 +141,7 @@ When enlightened VMCSs are in use, the virtual TLB tags all cached mappings with
 
 Direct handling of virtual flush hypercalls is enabled by:
 
-1. Setting the NestedEnlightenmentsControl.Features.DirectHypercall field of the [Virtual Processor Assist Page](../vp-properties.md#virtual-processor-assist-page) to 1.
+1. Setting the NestedEnlightenmentsControl.Features.DirectHypercall field of the [Virtual Processor Assist Page](vp-properties.md#virtual-processor-assist-page) to 1.
 2. Setting the EnlightenmentsControl.NestedFlushVirtualHypercall field of an enlightened VMCS to 1.
 
 Before enabling it, the L1 hypervisor must configure the following additional fields of the enlightened VMCS:
