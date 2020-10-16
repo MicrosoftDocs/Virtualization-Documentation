@@ -1,13 +1,12 @@
 ---
 title: Hypervisor Specification
 description: Hypervisor Specification
-keywords: windows 10, hyper-v
-author: allenma
-ms.date: 06/26/2018
-ms.topic: article
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
-ms.assetid: aee64ad0-752f-4075-a115-2d6b983b4f49
 ---
 
 # Hypervisor Top Level Functional Specification

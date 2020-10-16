@@ -1,3 +1,14 @@
+---
+title: HvExtCallQueryCapabilities
+description: HvExtCallQueryCapabilities hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvExtCallQueryCapabilities
 
 This hypercall reports the availability of extended hypercalls.
@@ -14,6 +25,7 @@ HvExtCallQueryCapabilities(
  ```
 
 ## Call Code
+
 `0x8001` (Simple)
 
 ## Output Parameters

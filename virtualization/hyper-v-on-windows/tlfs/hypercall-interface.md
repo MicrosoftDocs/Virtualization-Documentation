@@ -1,3 +1,14 @@
+---
+title: Hypercall Interface
+description: Hypervisor Hypercall Interface
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # Hypercall Interface
 
 The hypervisor provides a calling mechanism for guests. Such calls are referred to as hypercalls. Each hypercall defines a set of input and/or output parameters. These parameters are specified in terms of a memory-based data structure. All elements of the input and output data structures are padded to natural boundaries up to 8 bytes (that is, two-byte elements must be on two-byte boundaries and so on).

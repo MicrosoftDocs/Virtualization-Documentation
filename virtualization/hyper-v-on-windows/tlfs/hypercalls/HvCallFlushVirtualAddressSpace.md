@@ -1,3 +1,14 @@
+---
+title: HvCallFlushVirtualAddressSpace
+description: HvCallFlushVirtualAddressSpace hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallFlushVirtualAddressSpace
 
 The HvCallFlushVirtualAddressSpace hypercall invalidates all virtual TLB entries that belong to a specified address space.

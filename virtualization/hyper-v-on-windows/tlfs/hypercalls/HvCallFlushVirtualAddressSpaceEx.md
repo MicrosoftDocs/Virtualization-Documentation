@@ -1,3 +1,14 @@
+---
+title: HvCallFlushVirtualAddressSpaceEx
+description: HvCallFlushVirtualAddressSpaceEx hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallFlushVirtualAddressSpaceEx
 
 The HvCallFlushVirtualAddressSpaceEx hypercall is similar to [HvCallFlushVirtualAddressSpace](HvCallFlushVirtualAddressSpace.md), but can take a variably-sized sparse VP set as an input.

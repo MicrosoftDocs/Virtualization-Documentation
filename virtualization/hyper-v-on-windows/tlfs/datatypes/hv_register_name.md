@@ -1,3 +1,14 @@
+---
+title: HV_REGISTER_NAME
+description: HV_REGISTER_NAME
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_REGISTER_NAME
 
 Virtual processor registers are uniquely identified by register names, 32-bit numbers.

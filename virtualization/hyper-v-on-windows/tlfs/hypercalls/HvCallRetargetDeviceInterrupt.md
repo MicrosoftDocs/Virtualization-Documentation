@@ -1,3 +1,14 @@
+---
+title: HvCallRetargetDeviceInterrupt
+description: HvCallRetargetDeviceInterrupt hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallRetargetDeviceInterrupt
 
 This hypercall retargets a device interrupt, which may be useful for rebalancing IRQs within a guest.

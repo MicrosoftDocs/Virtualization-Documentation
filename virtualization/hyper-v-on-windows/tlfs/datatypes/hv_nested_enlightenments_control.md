@@ -1,3 +1,14 @@
+---
+title: HV_NESTED_ENLIGHTENMENTS_CONTROL
+description: HV_NESTED_ENLIGHTENMENTS_CONTROL
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_NESTED_ENLIGHTENMENTS_CONTROL
 
 Control structure that allows a hypervisor to indicate to its parent hypervisor which nested enlightenment privileges are to be granted to the current nested guest context.

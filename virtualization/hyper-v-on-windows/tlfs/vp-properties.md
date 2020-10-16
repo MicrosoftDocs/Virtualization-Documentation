@@ -1,3 +1,14 @@
+---
+title: Virtual Processor
+description: Hypervisor Virtual Processor Interface
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # Virtual Processors
 
 Each partition may have zero or more virtual processors.

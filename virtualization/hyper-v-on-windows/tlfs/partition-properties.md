@@ -1,3 +1,14 @@
+---
+title: Partition
+description: Hypervisor Partition Interface
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # Partitions
 
 The hypervisor supports isolation in terms of a partition. A partition is a logical unit of isolation, supported by the hypervisor, in which operating systems execute.

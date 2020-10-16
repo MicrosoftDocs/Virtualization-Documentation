@@ -1,3 +1,14 @@
+---
+title: HvCallSignalEvent
+description: HvCallSignalEvent hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallSignalEvent
 
 The HvCallSignalEvent hypercall signals an event in a partition that owns the port associated with the specified connection.

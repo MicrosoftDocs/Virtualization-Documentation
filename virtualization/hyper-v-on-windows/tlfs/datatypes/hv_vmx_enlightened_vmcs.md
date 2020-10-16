@@ -1,3 +1,14 @@
+---
+title: HV_VMX_ENLIGHTENED_VMCS
+description: HV_VMX_ENLIGHTENED_VMCS
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_VMX_ENLIGHTENED_VMCS
 
 Below is the type definition for the enlightened VMCS.

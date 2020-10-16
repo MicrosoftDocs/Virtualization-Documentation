@@ -1,3 +1,14 @@
+---
+title: HV_VP_VTL_CONTROL
+description: HV_VP_VTL_CONTROL
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_VP_VTL_CONTROL
 
 The hypervisor uses part of the VP assist page to facilitate communication with code running in a VTL higher than VTL0. Each VTL has its own control structure (except VTL0).

@@ -1,3 +1,14 @@
+---
+title: HvCallSendSyntheticClusterIpi
+description: HvCallSendSyntheticClusterIpi hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallSendSyntheticClusterIpi
 
 This hypercall sends a virtual fixed interrupt to the specified virtual processor set. It does not support NMIs.

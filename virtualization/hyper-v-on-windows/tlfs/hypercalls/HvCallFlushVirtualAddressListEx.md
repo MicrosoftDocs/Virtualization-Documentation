@@ -1,3 +1,14 @@
+---
+title: HvFlushVirtualAddressListEx
+description: HvFlushVirtualAddressListEx hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvFlushVirtualAddressListEx
 
 The HvFlushVirtualAddressListEx hypercall is similar to [HvCallFlushVirtualAddressList](HvCallFlushVirtualAddressList.md), but can take a variably-sized sparse VP set as an input.

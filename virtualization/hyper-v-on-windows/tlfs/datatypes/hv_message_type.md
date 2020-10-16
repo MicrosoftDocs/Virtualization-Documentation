@@ -1,3 +1,14 @@
+---
+title: HV_MESSAGE_TYPE
+description: HV_MESSAGE_TYPE
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_MESSAGE_TYPE
 
 SynIC messages encode the message type as a 32-bit number. Any message type that has the high bit set is reserved for use by the hypervisor. Guest-initiated messages cannot send messages with a hypervisor message type.

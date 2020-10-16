@@ -1,3 +1,14 @@
+---
+title: HV_MESSAGE
+description: HV_MESSAGE
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_MESSAGE
 
 SynIC messages are of fixed size composed of a message header (which includes the message type and information about where the message originated) followed by the payload. Messages that are sent in response to [HvCallPostMessage](../hypercalls/HvCallPostMessage.md) contain the port ID. Intercept messages contain the partition ID of the partition whose virtual processor generated the intercept. Timer intercepts do not have an origination ID (that is, the specified ID is zero).

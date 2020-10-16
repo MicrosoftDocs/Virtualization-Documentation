@@ -1,3 +1,14 @@
+---
+title: Hypercall Reference
+description: List of supported hypercalls
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # Hypercall Reference
 
 The following table lists supported hypercalls by call code.

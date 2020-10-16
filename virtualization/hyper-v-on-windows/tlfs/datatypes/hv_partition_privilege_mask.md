@@ -1,3 +1,14 @@
+---
+title: HV_PARTITION_PRIVILEGE_MASK
+description: HV_PARTITION_PRIVILEGE_MASK
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_PARTITION_PRIVILEGE_MASK
 
 A partition can query its privilege mask through the “Hypervisor Feature Identification” CPUID Leaf (0x40000003).

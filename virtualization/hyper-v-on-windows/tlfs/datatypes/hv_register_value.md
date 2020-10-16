@@ -1,3 +1,14 @@
+---
+title: HV_REGISTER_VALUE
+description: HV_REGISTER_VALUE
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_REGISTER_VALUE
 
 Virtual processor register values are all 128 bits in size. Values that do not consume the full 128 bits are zero-extended to fill out the entire 128 bits.

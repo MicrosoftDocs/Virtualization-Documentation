@@ -1,3 +1,14 @@
+---
+title: Virtual MMU
+description: Hypervisor Virtual MMU Interface
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # Virtual MMU
 
 The virtual machine interface exposed by each partition includes a memory management unit (MMU). The virtual MMU exposed by hypervisor partitions is generally compatible with existing MMUs.

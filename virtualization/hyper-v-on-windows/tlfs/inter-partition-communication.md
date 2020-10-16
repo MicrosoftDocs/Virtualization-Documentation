@@ -1,3 +1,14 @@
+---
+title: Inter-Partition Communication
+description: Inter-Partition Communication
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # Inter-Partition Communication
 
 The hypervisor provides two simple mechanisms for one partition to communicate with another: messages and events. In both cases, notification is signaled by using the SynIC (synthetic interrupt controller).

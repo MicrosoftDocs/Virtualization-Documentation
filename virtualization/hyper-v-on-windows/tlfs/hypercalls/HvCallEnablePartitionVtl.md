@@ -1,3 +1,14 @@
+---
+title: HvCallEnablePartitionVtl
+description: HvCallEnablePartitionVtl hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallEnablePartitionVtl
 
 The HvCallEnablePartitionVtl hypercall enables a virtual trust level for a specified partition. It should be used in conjunction with HvCallEnableVpVtl to initiate and use a new VTL.
@@ -29,6 +40,7 @@ HvCallEnablePartitionVtl(
 - A launching VTL can enable a higher target VTL if the launching VTL is the highest VTL enabled for the partition that is lower than the target VTL.
 
 ## Call Code
+
 `0x000D` (Simple)
 
 ## Input Parameters

@@ -1,3 +1,14 @@
+---
+title: HV_VP_SET
+description: HV_VP_SET
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_VP_SET
 
 A virtual processor set represents a collection of virtual processors, and can be used as an input for some hypercalls.

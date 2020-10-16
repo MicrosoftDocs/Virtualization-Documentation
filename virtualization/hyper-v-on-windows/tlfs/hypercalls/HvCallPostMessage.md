@@ -1,3 +1,14 @@
+---
+title: HvCallPostMessage
+description: HvCallPostMessage hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallPostMessage
 
 The HvCallPostMessage hypercall attempts to post (that is, send asynchronously) a message to the specified connection, which has an associated destination port. If the message is successfully posted, then it will be queued for delivery to a virtual processor within the partition associated with the port.

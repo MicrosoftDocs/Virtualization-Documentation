@@ -1,3 +1,14 @@
+---
+title: HV_VP_ASSIST_PAGE
+description: HV_VP_ASSIST_PAGE
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HV_VP_ASSIST_PAGE
 
  This structure defines the format of the [Virtual Processor Assist Page](../vp-properties.md#virtual-processor-assist-page).

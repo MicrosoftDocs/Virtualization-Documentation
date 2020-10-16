@@ -1,3 +1,14 @@
+---
+title: HvCallFlushGuestPhysicalAddressList
+description: HvCallFlushGuestPhysicalAddressList hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallFlushGuestPhysicalAddressList
 
 The HvCallFlushGuestPhysicalAddressList hypercall invalidates cached GVA / L2 GPA to GPA mappings within a portion of a second level address space.

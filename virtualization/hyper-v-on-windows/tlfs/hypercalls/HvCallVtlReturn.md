@@ -1,3 +1,14 @@
+---
+title: HvCallVtlReturn
+description: HvCallVtlReturn hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallVtlReturn
 
 HvCallVtlReturn initiates a "[VTL Return](../vsm.md#vtl-return)" and switches into the next lowest VTL enabled on the VP.

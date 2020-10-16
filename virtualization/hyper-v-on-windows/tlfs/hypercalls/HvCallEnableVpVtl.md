@@ -1,3 +1,14 @@
+---
+title: HvCallEnableVpVtl
+description: HvCallEnableVpVtl hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallEnableVpVtl
 
 HvCallEnableVpVtl enables a VTL to run on a VP. This hypercall should be used in conjunction with HvCallEnablePartitionVtl to enable and use a VTL. To enable a VTL on a VP, it must first be enabled for the partition. This call does not change the active VTL.

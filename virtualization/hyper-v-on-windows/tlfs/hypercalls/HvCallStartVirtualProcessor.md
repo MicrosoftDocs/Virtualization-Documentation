@@ -1,3 +1,14 @@
+---
+title: HvCallStartVirtualProcessor
+description: HvCallStartVirtualProcessor hypercall
+keywords: hyper-v
+author: alexgrest
+ms.author: alegre
+ms.date: 10/15/2020
+ms.topic: reference
+ms.prod: windows-10-hyperv
+---
+
 # HvCallStartVirtualProcessor
 
 HvCallStartVirtualProcessor is an enlightened method for starting a virtual processor. It is functionally equivalent to traditional INIT-based methods, except that the VP can start with a desired register state.
