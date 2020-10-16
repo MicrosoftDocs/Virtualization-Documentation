@@ -1,0 +1,7 @@
+- name: Hypervisor Specification
+  tocHref: /virtualization/hyper-v-on-windows/tlfs/datatypes/
+  topicHref: /virtualization/hyper-v-on-windows/tlfs/tlfs
+  items:
+  - name: Data Types
+    tocHref: /virtualization/hyper-v-on-windows/tlfs/datatypes/
+    topicHref: /virtualization/hyper-v-on-windows/tlfs/datatypes/overview
