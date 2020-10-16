@@ -104,7 +104,7 @@ As with any fixed-priority external interrupt, the interrupt is not acknowledged
 
 The SIEF page consists of a 16-element array of 256-byte event flags (see [HV_SYNIC_EVENT_FLAGS](datatypes/HV_SYNIC_EVENT_FLAGS.md)). Each array element corresponds to a single synthetic interrupt source (SINTx).
 
-The address for the SIEF page is specified in the [SIEF register](#sief-register). The address of the SIEF page should be unique for each virtual processor. Programming these pages to overlap other instances of the SIEF or SIM pages or any other overlay page (for example, the hypercall page) will result in undefined behavior.
+The address for the SIEF page is specified in the [SIEF register](#siefp-register). The address of the SIEF page should be unique for each virtual processor. Programming these pages to overlap other instances of the SIEF or SIM pages or any other overlay page (for example, the hypercall page) will result in undefined behavior.
 
 Read and write accesses by a virtual processor to the SIEF page behave like read and write accesses to RAM. However, the hypervisor’s SynIC implementation also writes to the pages in response to certain events.
 
