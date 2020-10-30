@@ -1,6 +1,6 @@
 # Description:
 
-Creates an image containing Apache 2.4.38 for Windows, PHP and the required Visual Studio redistributable package. Additionally, a sample Apache configuration file (included in the repo) is copied into the Apache folder, and a sample PHP site created (to validate functionality). This dockerfile is for demonstration purposes and may require modification for production use. 
+Creates an image containing Apache 2.4.38 for Windows, PHP and the required Visual Studio redistributable package. Additionally, a sample Apache configuration file (included in the repo) is copied into the Apache folder, and a sample PHP site created (to validate functionality). This dockerfile is for demonstration purposes and may require modification for production use.
 
 # Environment:
 
@@ -14,7 +14,7 @@ Windows Server Core Base OS Image
 docker build -t apache-http-php:latest .
 ```
 
-**Docker Run** 
+**Docker Run**
 
 ```
 docker run -d -p 80:80 apache-http-php
@@ -26,7 +26,7 @@ docker run -d -p 80:80 apache-http-php
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: http://www.apache.org/licenses/, https://secure.php.net/license/
 
-FROM microsoft/windowsservercore
+FROM windows/servercore
 
 LABEL Description="Apache-PHP" Vendor1="Apache Software Foundation" Version1="2.4.38" Vendor2="The PHP Group" Version2="5.6.40"
 
