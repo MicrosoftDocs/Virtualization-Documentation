@@ -2,7 +2,7 @@
 
 Creates an image containing Python 3.7.3 and Django 2.2.
 
-This dockerfile is for demonstration purposes and may require modification for production use. 
+This dockerfile is for demonstration purposes and may require modification for production use.
 
 # Environment:
 
@@ -16,7 +16,7 @@ Windows Server Core Base OS Image
 docker build -t python-django:latest .
 ```
 
-**Docker Run** 
+**Docker Run**
 
 This will run a container, display the Django version, and then exit. Modify the Dockerfile appropriately for application use.
 
@@ -29,7 +29,7 @@ docker run -it python-django
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://docs.python.org/3/license.html, https://github.com/django/django/blob/master/LICENSE
 
-FROM microsoft/windowsservercore
+FROM mcr.microsoft.com/windows/servercore
 
 LABEL Description="Python" Vendor="Python Software Foundation" Version="3.7.3"
 

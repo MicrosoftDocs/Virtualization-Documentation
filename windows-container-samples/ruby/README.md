@@ -2,7 +2,7 @@
 
 Creates an image containing Ruby 2.2.4.
 
-This dockerfile is for demonstration purposes and may require modification for production use. 
+This dockerfile is for demonstration purposes and may require modification for production use.
 
 # Environment:
 
@@ -16,7 +16,7 @@ Windows Server Core Base OS Image
 docker build -t ruby:latest .
 ```
 
-**Docker Run** 
+**Docker Run**
 
 This will display the Ruby version and exit. Modify the Dockerfile appropriately for application use.
 
@@ -29,7 +29,7 @@ docker run -it ruby
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://www.ruby-lang.org/en/about/license.txt
 
-FROM microsoft/windowsservercore
+FROM mcr.microsoft.com/windows/servercore
 
 LABEL Description="Ruby Programming Language for Windows" Vendor="Ruby" Version="2.2.4-x64"
 
