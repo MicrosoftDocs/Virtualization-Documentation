@@ -37,7 +37,7 @@ Open a new WSL shell to ensure your group membership is reset. Launch the relay 
 
 #### Volume Mounting
 
-If you're wondering how volume mounting works with npiperelay, you'll need to use the **Windows path** when you specify your volume. See the comparison below: `#this is CORRECT docker run **-v C:/Users/crwilhit.REDMOND/tmp/** microsoft/nanoserver cmd.exe` `#this is INCORRECT docker run **-v /mnt/c/Users/crwilhit.REDMOND/tmp/** microsoft/nanoserver cmd.exe`
+If you're wondering how volume mounting works with npiperelay, you'll need to use the **Windows path** when you specify your volume. See the comparison below: `#this is CORRECT docker run **-v C:/Users/crwilhit.REDMOND/tmp/** microsoft-windows-nanoserver cmd.exe` `#this is INCORRECT docker run **-v /mnt/c/Users/crwilhit.REDMOND/tmp/** microsoft-windows-nanoserver cmd.exe`
 
 ### How Does it Work?
 

@@ -1,8 +1,8 @@
 # Description:
 
-Creates an image containing Apache 2.4.18 for Windows and the required Visual Studio redistributable package. 
+Creates an image containing Apache 2.4.18 for Windows and the required Visual Studio redistributable package.
 
-This dockerfile is for demonstration purposes and may require modification for production use. 
+This dockerfile is for demonstration purposes and may require modification for production use.
 
 # Environment:
 
@@ -16,7 +16,7 @@ Windows Server Core Base OS Image
 docker build -t apache-http:latest .
 ```
 
-**Docker Run** 
+**Docker Run**
 
 ```
 docker run -d -p 80:80 apache-http
@@ -28,7 +28,7 @@ docker run -d -p 80:80 apache-http
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: http://www.apache.org/licenses/
 
-FROM microsoft/windowsservercore
+FROM windows/servercore
 
 LABEL Description="Apache" Vendor="Apache Software Foundation" Version="2.4.18"
 
