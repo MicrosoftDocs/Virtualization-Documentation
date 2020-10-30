@@ -37,7 +37,7 @@ _**Note:** To avoid having to transfer your container image later, complete the 
 NGINX is available for [download from nginx.org](http://nginx.org/en/download.html). An NGINX container image can be built using a simple Dockerfile that installs NGINX onto a Windows base container image and configures the container to run as an NGINX executable. The content of such a Dockerfile is shown below.
 
 
-    FROM microsoft/windowsservercore
+    FROM windows/servercore
     RUN powershell Invoke-webrequest http://nginx.org/download/nginx-1.12.0.zip -UseBasicParsing -outfile c:\\nginx.zip
     RUN powershell Expand-Archive c:\\nginx.zip -Dest c:\\nginx
     WORKDIR c:\\nginx\\nginx-1.12.0
@@ -72,10 +72,10 @@ _Note: Complete the instructions in this section on one of the container hosts t
 
 ### Build a generic IIS Web Server image
 
-Below are the contents of a simple Dockerfile that can be used to create an IIS Web server image. The Dockerfile simply enables the[ Internet Information Services (IIS)](https://www.iis.net/) Web server role within a microsoft/windowsservercore container.
+Below are the contents of a simple Dockerfile that can be used to create an IIS Web server image. The Dockerfile simply enables the[Internet Information Services (IIS)](https://www.iis.net/) Web server role within a windows/servercore container.
 
 
-    FROM microsoft/windowsservercore
+    FROM windows/servercore
     RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 
 Create a Dockerfile from the content provided above, and save it to some location (e.g. C:\temp\iis) on one of the host machines that you plan to use as a swarm node. From that location, build the image using the following command:
@@ -123,11 +123,11 @@ Now, start the container again and repeat the previous steps to create a second 
     C:\> docker stop <CONTAINERID>
     C:\> docker commit <CONTAINERID> web_2
 
-You have now created images for two unique web services; if you view the Docker images on your host by running ` docker images `, you should see that you have two new container images—“web_1” and “web_2”.
+You have now created images for two unique web services; if you view the Docker images on your host by running `docker images`, you should see that you have two new container images—“web_1” and “web_2”.
 
 ### Put the IIS container images on all of your swarm hosts
 
-To complete this exercise you will need the custom web container images that you just created to be on all of the host machines that you intend to use as swarm nodes. There are two ways for you to get the images onto additional machines: **_Option 1:_ ** Repeat the steps above to build the "web_1" and "web_2" containers on your second host. _**Option 2 [recommended]:** _ Push the images to your repository on [Docker Hub](https://hub.docker.com/r/microsoft/windowsservercore/) then pull them onto additional hosts. _Using Docker Hub is a convenient way to leverage the lightweight nature of containers across all of your machines, and to share your images with others. Visit the following Docker resources to get started with pushing/pulling images with Docker Hub:[Create a Docker Hub account and repository ](https://docs.docker.com/engine/getstarted/step_five/)[Tag, push and pull your image](https://docs.docker.com/engine/getstarted/step_six/)_
+To complete this exercise you will need the custom web container images that you just created to be on all of the host machines that you intend to use as swarm nodes. There are two ways for you to get the images onto additional machines: **_Option 1:_ ** Repeat the steps above to build the "web_1" and "web_2" containers on your second host. _**Option 2 [recommended]:** _ Push the images to your repository on [Docker Hub](https://hub.docker.com/r/windows/servercore/) then pull them onto additional hosts. _Using Docker Hub is a convenient way to leverage the lightweight nature of containers across all of your machines, and to share your images with others. Visit the following Docker resources to get started with pushing/pulling images with Docker Hub:[Create a Docker Hub account and repository ](https://docs.docker.com/engine/getstarted/step_five/)[Tag, push and pull your image](https://docs.docker.com/engine/getstarted/step_six/)_
 
 ## Step 3: Join your hosts to a swarm
 
