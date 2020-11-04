@@ -35,7 +35,7 @@ docker run -it golang
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://golang.org/LICENSE
 
-FROM microsoft-windows-nanoserver
+FROM mcr.microsoft.com/windows/nanoserver:2009
 
 ENV GOLANG_VERSION 1.6
 ENV GOLANG_DOWNLOAD_URL "https://golang.org/dl/go$GOLANG_VERSION.windows-amd64.zip"
@@ -87,7 +87,7 @@ docker run -it golang
 
 ### Windows Server Core - Dockerfile Details:
 ```Dockerfile
-FROM windows/servercore
+FROM mcr.microsoft.com/windows/servercore:2009
 
 ENV GOLANG_VERSION 1.6
 ENV GOLANG_DOWNLOAD_URL "https://golang.org/dl/go$GOLANG_VERSION.windows-amd64.zip"

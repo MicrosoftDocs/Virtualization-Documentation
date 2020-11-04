@@ -30,7 +30,8 @@ Describing Windows container settings are correct
  [+] Do not have zz values set 22ms
  [+] Do not have FDVDenyWriteAccess set to 1 30ms
 Describing The right container base images are installed
- [+] At least one of 'mcr.microsoft.com/windows/servercore' or 'microsoft/nanoserver' should be installed 136ms
+ [+] At least one of 'mcr.microsoft.com/windows/servercore' or 'mcr.microsoft.com/windows/nanoserver
+' should be installed 136ms
 Describing Container network is created
  [+] At least one local container network is available 3.23s
  [+] At least one NAT, Transparent, or L2Bridge Network exists 58ms
@@ -48,7 +49,7 @@ error during connect: Get http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.25/images/jso
    Expected: value to not be empty
    15:         $serverCoreImages | Should Not BeNullOrEmpty
    at <ScriptBlock>, C:\Users\Patrick\Source\Virtualization-Documentation-Private\windows-server-container-tools\Debug-ContainerHost\ContainerImage.Tests.ps1: line 15
- [-] microsoft/nanoserver is installed 69ms
+ [-] mcr.microsoft.com/windows/nanoserver is installed 69ms
    Expected: value to not be empty
    20:         $serverCoreImages | Should Not BeNullOrEmpty
    at <ScriptBlock>, C:\Users\Patrick\Source\Virtualization-Documentation-Private\windows-server-container-tools\Debug-ContainerHost\ContainerImage.Tests.ps1: line 20
@@ -159,7 +160,7 @@ Anti-virus products that have not been updated and validated based on the [Anti-
 ### Describing The right container base images are installed
 **[+] At least one of 'mcr.microsoft.com/windows/servercore' or 'microsoft/nanoserver' should be installed**
 
-- Try `docker pull microsoft/nanoserver` or `docker pull mcr.microsoft.com/windows/servercore` to pull a Windows container image
+- Try `docker pull mcr.microsoft.com/windows/nanoserver` or `docker pull mcr.microsoft.com/windows/servercore` to pull a Windows container image
 
 ### Describing Container network is created ###
 

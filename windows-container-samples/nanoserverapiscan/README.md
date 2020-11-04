@@ -37,7 +37,8 @@ docker run scan
 ## Build the nanoserverapiscan images
 
 ```
-docker create --name nano microsoft-windows-nanoserver
+docker create --name nano mcr.microsoft.com/windows/nanoserver:2009
+
 mkdir tmp
 docker cp nano:Windows/System32/Forwarders tmp
 
