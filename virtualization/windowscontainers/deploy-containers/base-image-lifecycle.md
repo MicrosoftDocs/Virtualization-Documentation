@@ -27,7 +27,8 @@ The following table lists each type of base image, its servicing channel, and ho
 |Server Core, Nano Server, Windows|Semi-Annual      |1909   |18363   |11/12/2019  |05/11/2021                 |N/A                  |
 |Server Core, Nano Server, Windows|Semi-Annual      |1903   |18362   |05/21/2019  |12/08/2020                 |N/A                  |
 |Server Core                      |Long-Term        |2019   |17763   |11/13/2018  |01/09/2024                 |01/09/2029           |
-|Server Core, Nano Server, Windows|Semi-Annual      |1809   |17763   |11/13/2018  |11/10/2020                 |N/A                  |
+|Nano Server                      |Semi-Annual      |1809   |17763   |11/13/2018  |01/09/2024                 |N/A                  |
+|Server Core, Windows             |Semi-Annual      |1809   |17763   |11/13/2018  |11/10/2020                 |N/A                  |
 |Server Core, Nano Server         |Semi-Annual      |1803   |17134   |04/30/2018  |11/12/2019                 |N/A                  |
 |Server Core, Nano Server         |Semi-Annual      |1709   |16299   |10/17/2017  |04/09/2019                 |N/A                  |
 |Server Core                      |Long-Term        |2016   |14393   |10/15/2016  |01/11/2022                 |01/11/2027           |
