@@ -49,7 +49,7 @@ Beyond checking if an image has been modified, it's important to ensure the imag
 
 ### Windows Updates
 
-Working alongside Docker Security Scanning, Microsoft Windows Update can ensure that your Windows Server operating system is up to date. Microsoft publishes two pre-built Windows Server base images to Docker Hub: [microsoft-windows-nanoserver](https://hub.docker.com/_/microsoft-windows-nanoserver) and [microsoft-windows-servercore](https://hub.docker.com/r/microsoft-windows-servercore). These images are updated the same day as new Windows security updates are released. When you use the "latest" tag to pull these images, you can rest assured that you're working with the most up to date version of Windows Server. This makes it easy to integrate updates into your continuous integration and deployment workflow.
+Working alongside Docker Security Scanning, Microsoft Windows Update can ensure that your Windows Server operating system is up to date. Microsoft publishes two pre-built Windows Server base images to Docker Hub: [mcr.microsoft.com/windows/nanoserver:2009](https://hub.docker.com/_/microsoft-windows-nanoserver) and [mcr.microsoft.com/windows/servercore:ltsc2016](https://hub.docker.com/_/microsoft-windows-servercore). These images are updated the same day as new Windows security updates are released. When you use the "latest" tag to pull these images, you can rest assured that you're working with the most up to date version of Windows Server. This makes it easy to integrate updates into your continuous integration and deployment workflow.
 
 ## Infrastructure Independent
 
