@@ -26,7 +26,7 @@ docker run -d -p 80:80 iis
 ```
 # This dockerfile utilizes components licensed by their respective owners/authors.
 
-FROM windows/servercore
+FROM mcr.microsoft.com/windows/servercore:2009
 
 LABEL Description="IIS" Vendor="Microsoft" Version="10"
 

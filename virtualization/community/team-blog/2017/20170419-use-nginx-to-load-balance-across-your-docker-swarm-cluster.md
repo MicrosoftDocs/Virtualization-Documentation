@@ -19,7 +19,7 @@ This exercise requires three container hosts--two of which will be joined to for
 
 Additionally, each host system should be configured with the following:
 
-  * The [windows/servercore](https://hub.docker.com/r/windows/servercore) container image
+  * The [mcr.microsoft.com/windows/servercore](https://hub.docker.com/_/microsoft-windows-servercore) container image
   * Docker Engine v1.13.0 or later
   * Open ports: Swarm mode requires that the following ports be available on each host.
     * TCP port 2377 for cluster management communications
