@@ -12,6 +12,12 @@ The operations supported on compute systems include creating, starting and stopp
 
 For both VMs and containers, the API provides the ability to start and interact with process in the compute system. For containers, this functionality is the primary way that applications create and interact with the workload in the container. 
 
+## Compared to Hyper-V WMI APIs
+
+The WMI provider for Hyper-V enable developers, and scripters, to quickly build custom tools, utilities, and enhancements for the virtualization platform. [The WMI interfaces](https://docs.microsoft.com/en-us/windows/win32/hyperv_v2/windows-virtualization-portal) can manage all aspects of the Hyper-V services. 
+
+Similar to HCS APIs, Hyper-V WMI classes have [virtualization WMI classes](https://docs.microsoft.com/en-us/windows/win32/hyperv_v2/virtual-system-management-classes) related to virtual machine management.
+
 ## Life Cycle Management
 A client must configure the necessary resources in the host environment prior to calling the HCS APIs to create and configure the virtual machine. The HCS will not provide functionality to setup resources when creating the virtual machine.  
 
