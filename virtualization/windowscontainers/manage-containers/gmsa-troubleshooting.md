@@ -66,7 +66,7 @@ If you're encountering errors when running a container with a gMSA, the followin
 
 1. Run **Get-CredentialSpec** from the [CredentialSpec PowerShell module](https://aka.ms/credspec) to locate all credential specs on the machine. The credential specs must be stored in the "CredentialSpecs" directory under the Docker root directory. You can find the Docker root directory by running **docker info -f "{{.DockerRootDir}}"**.
 2. Open the CredentialSpec file and make sure the following fields are filled out correctly:
-    - **Sid**: the SID of your gMSA account
+    - **Sid**: the SID of your domain
     - **MachineAccountName**: the gMSA SAM Account Name (don't include full domain name or dollar sign)
     - **DnsTreeName**: the FQDN of your Active Directory forest
     - **DnsName**: the FQDN of the domain to which the gMSA belongs
