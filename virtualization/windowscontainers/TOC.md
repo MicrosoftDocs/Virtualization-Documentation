@@ -15,6 +15,8 @@
 ## Build a Windows container
 ### [Write a Dockerfile](manage-docker/manage-windows-dockerfile.md)
 ### [Optimize a Dockerfile](manage-docker/optimize-windows-dockerfile.md)
+## Run on Azure Kubernetes Service on Azure Stack HCI
+### [Create a Kubernetes cluster on Azure Stack HCI](/azure-stack/aks-hci/create-kubernetes-cluster) 
 ## Run on Azure Kubernetes Service
 ### [Create a Windows container cluster on AKS](/azure/aks/windows-container-cli)
 ### [Current Limitations](/azure/aks/windows-node-limitations)
@@ -52,13 +54,14 @@
 ### Docker Swarm
 #### [Swarm Mode](manage-containers/swarm-mode.md)
 ## Workloads
+### [Printer services](deploy-containers/print-spooler.md)
+## Security
 ### Group Managed Service Accounts
 #### [Create a gMSA](manage-containers/manage-serviceaccounts.md)
 #### [Configure your app to use a gMSA](manage-containers/gmsa-configure-app.md)
 #### [Run a container with a gMSA](manage-containers/gmsa-run-container.md)
 #### [Orchestrate containers with a gMSA](manage-containers/gmsa-orchestrate-containers.md)
 #### [Troubleshoot gMSAs](manage-containers/gmsa-troubleshooting.md)
-### [Printer services](deploy-containers/print-spooler.md)
 ## Networking
 ### [Overview](container-networking/architecture.md)
 ### [Network topologies and drivers](container-networking/network-drivers-topologies.md)
@@ -80,6 +83,7 @@
 # Resources
 ## [Known Issues](manage-containers/known-issues.md)
 ## [Container samples](samples.md)
+## [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1)
 ## [Troubleshooting](troubleshooting.md)
 ## [Container forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
 ## [Community videos and blogs](communitylinks.md)

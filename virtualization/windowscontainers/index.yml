@@ -58,6 +58,8 @@ landingContent:
         links:
           - text: Building a Windows container
             url: ./manage-docker/manage-windows-dockerfile.md
+          - text: Run on Azure Kubernetes Service on Azure Stack HCI 
+            url: /azure-stack/aks-hci/create-kubernetes-cluster
           - text: Run on AKS
             url: /azure/aks/windows-container-cli
           - text: Run on Service Fabric
