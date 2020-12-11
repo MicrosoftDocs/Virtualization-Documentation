@@ -10,7 +10,7 @@ ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 
 # Container Base Images
 
-Windows offers four container base images that users can build from. Each base image is a different flavor of the Windows OS, has a different on-disk footprint, and carries a different amount of the Windows API set.
+Windows offers four container base images that users can build from. Each base image is a different type of the Windows operating system, has a different on-disk footprint, and has a different set of the Windows API set.
 
 <ul class="columns is-multiline has-margin-left-none has-margin-bottom-none has-padding-top-medium">
     <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
