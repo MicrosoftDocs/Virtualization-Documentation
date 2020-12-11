@@ -56,6 +56,7 @@
 ## Workloads
 ### [Printer services](deploy-containers/print-spooler.md)
 ## Security
+#### [Windows Container Security](manage-containers/container-security.md)
 ### Group Managed Service Accounts
 #### [Create a gMSA](manage-containers/manage-serviceaccounts.md)
 #### [Configure your app to use a gMSA](manage-containers/gmsa-configure-app.md)
