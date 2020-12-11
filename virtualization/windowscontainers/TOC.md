@@ -15,8 +15,8 @@
 ## Build a Windows container
 ### [Write a Dockerfile](manage-docker/manage-windows-dockerfile.md)
 ### [Optimize a Dockerfile](manage-docker/optimize-windows-dockerfile.md)
-## Run on Azure Kubernetes Service on Azure Stack HCI 
-### [Create a Kubernetes cluster on Azure Stack HCI](/azure-stack/aks-hci/create-kubernetes-cluster)
+## Run on Azure Kubernetes Service on Azure Stack HCI
+### [Create a Kubernetes cluster on Azure Stack HCI](/azure-stack/aks-hci/create-kubernetes-cluster) 
 ## Run on Azure Kubernetes Service
 ### [Create a Windows container cluster on AKS](/azure/aks/windows-container-cli)
 ### [Current Limitations](/azure/aks/windows-node-limitations)
