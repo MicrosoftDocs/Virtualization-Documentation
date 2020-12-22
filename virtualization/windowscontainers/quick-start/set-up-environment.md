@@ -91,6 +91,16 @@ Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
 Start-Service Docker
 ```
 
+# [Windows Admin Center](#tab/Windows-Admin-Center)
+
+You can use Windows Admin Center to properly set up a Windows Server machine as a container host. To get started, ensure you have the latest Containers extension installed on your Windows Admin Center instance. For more information on how to install and configure extensions, check out the Windows Admin Center [documentation](http://aka.ms/wacdocs). With the Containers extension installed, target the Windows Server machine you want to configure and select the Containers option:
+
+![WAC-InstallDocker](./media/WAC-InstallDocker.png)
+
+Click the Install button. Windows Admin Center will start the configuration of Windows Server and Docker in the background. After the process is complete, you can refresh the page and see the other functionalities of the Containers extension.
+
+![WAC-Images](./media/WAC-Images.png)
+
 # [Windows 10](#tab/Windows-10-Client)
 
 You can install Docker on Windows 10 Professional and Enterprise editions by using the following steps.
