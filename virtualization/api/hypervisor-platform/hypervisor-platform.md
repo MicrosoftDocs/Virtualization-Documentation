@@ -114,7 +114,7 @@ When this functionality is enabled, these functions can be used to query and set
 |---|---|
 |[WHvGetVirtualProcessorInterruptControllerState](funcs/WHvGetVirtualProcessorInterruptControllerState.md)|Queries a virtual processor's interrupt controller state.|
 |[WHvRequestInterrupt](funcs/WHvRequestInterrupt.md)|Requests a interrupt.|
-|[WHvSetVirtualProcessorInterruptControllerState](funcs/WHvGetVirtualProcessorInterruptControllerState.md)|Sets a virtual processor's interrupt controller state.|
+|[WHvSetVirtualProcessorInterruptControllerState](funcs/WHvSetVirtualProcessorInterruptControllerState.md)|Sets a virtual processor's interrupt controller state.|
 |||
 
 ### Counters
