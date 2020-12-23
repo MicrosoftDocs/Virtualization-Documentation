@@ -83,6 +83,28 @@ For this simple example, a ‘Hello World’ container image will be created and
    ```
    The result is that Docker created a container from the 'HelloWorld' image, Docker started an instance of cmd.exe in the container, and the cmd.exe read our file and output the contents to the shell. As the final step, Docker stopped and removed the container.
 
+## Run a Windows container using Windows Admin Center
+
+Windows Admin Center provides a User Interface (UI) that can be used to run containers locally. Using your Windows Admin Center instance with the Containers extension installed, open the container host you want to manage and select the Containers extension on the left side. Click the Images Tab inside the Container extension under Container Host.
+
+![WAC-Images](./media/WAC-Images.png)
+
+If your host doesn't have a base container image, you can click the Pull option:
+
+![WAC-Pull.png](./media/WAC-Pull.png)
+
+On the Pull menu, you can provide the image URL and tag. If you are not certain which image to pull, Windows Admin Center provides a list of common images from Microsoft. You can also provide the credentials to pull an image from a private repository, if necessary. Once you fill out the necessary information, you can click Pull. Windows Admin Center will start the pull process on the container host. After the download is completed you should see the new image on the Images tab.
+
+Select the image you want to run and click Run.
+
+![WAC-RunContainers](./media/WAC-RunContainers.png)
+
+On the Run menu you can specify the container related configuration, such as container name, isolation type, which ports to publish, and memory and cpu allocation. Additionally, you can append Docker run commands that are not in the UI, such as -v for persistent volume. For more information on available Docker run parameters, check out the [documentation](https://docs.docker.com/engine/reference/commandline/run/).
+
+Once you specified the configuration for the container, click Run. You can check out the status of the running containers on the Containers tab:
+
+![WAC-Containers](./media/WAC-Containers.png)
+
 ## Next steps
 
 > [!div class="nextstepaction"]
