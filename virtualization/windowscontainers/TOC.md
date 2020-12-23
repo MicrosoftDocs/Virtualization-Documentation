@@ -31,6 +31,13 @@
 ### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
 ## Use containers with the Windows Insider program
 ### [Overview](deploy-containers/insider-overview.md)
+## Windows Admin Center tooling
+### [Containers extension overview](WAC-Tooling/WAC-extension.md)
+### Managing container images with Windows Admin Center
+### Running containers with with Windows Admin Center
+### Creating new container images with Windows Admin Center
+### Managing Azure Container Registry with with Windows Admin Center
+### Managing Azure Container Instance with Windows Admin Center
 
 # Concepts
 ## Windows Container Essentials
