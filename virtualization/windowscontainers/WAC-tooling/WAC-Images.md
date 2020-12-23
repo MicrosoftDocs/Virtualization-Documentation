@@ -42,4 +42,4 @@ Once you have all the options for your container image selected, you can review 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Create new containers on Windows Admin Center](./WAC-Images.md)
+> [Run containers on Windows Admin Center](./WAC-Containers.md)
