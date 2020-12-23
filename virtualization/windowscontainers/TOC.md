@@ -32,7 +32,7 @@
 ## Use containers with the Windows Insider program
 ### [Overview](deploy-containers/insider-overview.md)
 ## Windows Admin Center tooling
-### [Containers extension overview](WAC-Tooling/WAC-extension.md)
+### [Containers extension overview](WAC-tooling/WAC-extension.md)
 ### Managing container images with Windows Admin Center
 ### Running containers with with Windows Admin Center
 ### Creating new container images with Windows Admin Center
