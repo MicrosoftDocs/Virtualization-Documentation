@@ -12,7 +12,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 This topic describes how to create new container images using Windows Admin Center. Container images are used to create new containers on Windows machines or other cloud services, such as Azure Kubernetes Service. For more information on Windows images, check out the [Container images overview](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#container-images).
 
-# Create new container images
+## Create new container images
 
 When working with containers, you will find yourself writing instructions to Docker on how your container image works so Docker can create a new container image based on these instructions. These instructions are saved on a file called "dockerfile" which is saved on the same folder on which your application resides. 
 

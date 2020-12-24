@@ -12,7 +12,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 This topic describes how to configure the Containers extension on Windows Admin Center. For more information on how to install and configure Windows Admin Center as well as how to target remote serser, check out the [Windows Admin Center documentation](http://aka.ms/wacdocs).
 
-# Install the Containers extesion on Windows Admin Center
+## Install the Containers extesion on Windows Admin Center
 
 On your Windows Admin Center instance click on the Settings button in the top-right. On the left-hand side menu, under Gateway, select Extensions.
 On the Available extensions tab, look for the Containers extension.

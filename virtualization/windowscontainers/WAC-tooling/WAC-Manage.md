@@ -12,7 +12,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 This topic describes how to manage container images on Windows Admin Center. Container images are used to create new containers on Windows machines or other cloud services, such as Azure Kubernetes Service. For more information on Windows images, check out the [Container images overview](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#container-images).
 
-# Pull container images
+## Pull container images
 
 After deploying a container host, the next loggical action is to pull (or download) container images so new containers can be created from said images. You can use Windows Admin Center to pull new container images by opening the Containers extension on your targeted container host, selecting Images on the left-hand side menu under Container Host and clicking Pull.
 
@@ -24,7 +24,7 @@ If the image you want to pull is on a private repository you can provide the use
 
 If you are not certain which image to pull, Windows Admin Center also provides a list of common images available. You can expend the Common Windows images tab to see a list of base images that are commonly pulled. Select the image you want to pull and Windows Admin Center will fill out the repository and tag fields.
 
-# Push container images
+## Push container images
 
 Once you have your own container image created, it's a good practice to push that image to a centralized repository to allow other container hosts or cloud services to pull the image.
 
@@ -37,4 +37,4 @@ On the Push menu, you can change the image name and tag before pushing (uploadin
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Create new containers on Windows Admin Center](./WAC-Images.md)
+> [Create new containers on Windows Admin Center](./WAC-Images.md) 
