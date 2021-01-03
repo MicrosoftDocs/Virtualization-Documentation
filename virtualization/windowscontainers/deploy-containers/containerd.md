@@ -102,7 +102,7 @@ For a deeper look at the HCS, watch [John Stark’s DockerCon presentation](http
 > CRI support is only available in Server 2019/Windows 10 1809 and later.  We're also still actively developing containerd for Windows.
 > Dev/test only.
 
-While OCI specs defines a single container, [CRI](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto) (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can contain one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
+While OCI specs defines a single container, [CRI](https://github.com/kubernetes/cri-api/blob/master/pkg/apis/runtime/v1/api.proto) (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can contain one or more container workloads. Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
 
 containerd/cri enables the following compatibility matrix for pods:
 
@@ -112,12 +112,12 @@ containerd/cri enables the following compatibility matrix for pods:
 |  | Windows Server 2019/1809 | `process`* or `hyperv` | Yes—Supports true multi-container pods if each workload container OS matches the utility VM OS. |
 |  | Windows Server 2016,</br>Windows Server 1709,</br>Windows Server 1803 | `hyperv` | Partial—Supports pod sandboxes that can support a single process-isolated container per utility VM if the Container OS matches the utility VM OS. |
 
-\*Windows 10 hosts only support Hyper-V isolation
+\* Windows 10 hosts only support Hyper-V isolation
 
 Links to the CRI spec:
 
-* [RunPodSandbox](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L24) - Pod Spec
-* [CreateContainer](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L47) - Workload Spec
+* [RunPodSandbox](https://github.com/kubernetes/cri-api/blob/3094f92ca2a23915931d9345285a6721be06cf62/pkg/apis/runtime/v1/api.proto#L40) - Pod Spec
+* [CreateContainer](https://github.com/kubernetes/cri-api/blob/3094f92ca2a23915931d9345285a6721be06cf62/pkg/apis/runtime/v1/api.proto#L63) - Workload Spec
 
 ![Containerd based container environments](media/containerd-platform.png)
 
