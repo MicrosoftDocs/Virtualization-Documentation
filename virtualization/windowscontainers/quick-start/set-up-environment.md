@@ -25,7 +25,7 @@ To run containers on Windows Server, you need a physical server or virtual machi
 
 For testing, you can download a copy of [Windows Server 2019 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2019 ) or a [Windows Server Insider Preview](https://insider.windows.com/for-business-getting-started-server/).
 
-# [Windows 10](#tab/Windows-10-Client)
+# [Windows 10](#tab/Windows-10)
 
 To run containers on Windows 10, you need the following:
 
@@ -74,34 +74,34 @@ To install Docker on Windows Server, you can use a [OneGet provider PowerShell m
 
 If you want to update Docker later:
 
-- Check the installed version with:
+- Check the installed version using:
 ```powershell
 Get-Package -Name Docker -ProviderName DockerMsftProvider
 ```
-- Find the current version with:
+- Find the current version using:
 ```powershell
 Find-Package -Name Docker -ProviderName DockerMsftProvider
 ```
-- When you're ready, upgrade with:
+- When you're ready, upgrade using:
 ```powershell
 Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
 ```
-, followed by 
+- Then, followed with: 
 ```powershell
 Start-Service Docker
-```
+```  
 
 # [Windows Admin Center](#tab/Windows-Admin-Center)
 
-You can use Windows Admin Center to properly set up a Windows Server machine as a container host. To get started, ensure you have the latest Containers extension installed on your Windows Admin Center instance. For more information on how to install and configure extensions, check out the Windows Admin Center [documentation](http://aka.ms/wacdocs). With the Containers extension installed, target the Windows Server machine you want to configure and select the Containers option:
+You can use Windows Admin Center to properly set up a Windows Server machine as a container host. To get started, ensure you have the latest Containers extension installed on your Windows Admin Center instance. For more information on how to install and configure extensions, check out the Windows Admin Center [documentation](https://aka.ms/wacdocs). With the Containers extension installed, target the Windows Server machine you want to configure and select the Containers option:
 
-![WAC-InstallDocker](./media/WAC-InstallDocker.png)
+![Install Docker](./media/WAC-InstallDocker.png)
 
-Click the Install button. Windows Admin Center will start the configuration of Windows Server and Docker in the background. After the process is complete, you can refresh the page and see the other functionalities of the Containers extension.
+Click the **Install** button. Windows Admin Center will start the configuration of Windows Server and Docker in the background. After the process is complete, you can refresh the page and see the other functionalities of the Containers extension.
 
-![WAC-Images](./media/WAC-Images.png)
+![Container images](./media/WAC-Images.png)
 
-# [Windows 10](#tab/Windows-10-Client)
+# [Windows 10](#tab/Windows-10)
 
 You can install Docker on Windows 10 Professional and Enterprise editions by using the following steps.
 
@@ -113,7 +113,7 @@ You can install Docker on Windows 10 Professional and Enterprise editions by usi
    & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
    ```
 
-![Docker system tray menu showing the "Switch to Windows containers" command.](./media/docker-for-win-switch.png)
+![Docker system tray menu showing the "Switch to Windows containers" command](./media/docker-for-win-switch.png)
 
 ---
 <!-- stop tab view -->
