@@ -10,6 +10,7 @@
 ## [Set up your environment](quick-start/set-up-environment.md)
 ## [Run your first container](quick-start/run-your-first-container.md)
 ## [Containerize a sample app](quick-start/building-sample-app.md)
+## [Lift and shift to containers](quick-start/lift-shift-to-containers.md)
 
 # Tutorials
 ## Build a Windows container

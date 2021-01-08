@@ -99,7 +99,7 @@ You can use Windows Admin Center to properly set up a Windows Server machine as 
 
 Click the **Install** button. Windows Admin Center will start the configuration of Windows Server and Docker in the background. After the process is complete, you can refresh the page and see the other functionalities of the Containers extension.
 
-![Container images](./media/WAC-Images.png)
+![Container images](./media/WAC-Images.png)  
 
 # [Windows 10](#tab/Windows-10)
 
