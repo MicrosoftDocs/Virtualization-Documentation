@@ -18,8 +18,6 @@ You need Docker in order to work with Windows Containers. Docker consists of the
 
 - [Install Docker](../quick-start/set-up-environment.md)
 
-For scripted installations, see [Use a script to install Docker EE](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
-
 Before you can use Docker, you'll need to install the container images. For more information, see [docs for our container base images](../manage-containers/container-base-images.md).
 
 ## Configure Docker with a configuration file
