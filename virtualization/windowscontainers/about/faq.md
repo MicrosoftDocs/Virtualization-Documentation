@@ -3,11 +3,14 @@ title: Windows Containers FAQ
 description: Windows Server containers FAQ
 keywords: docker, containers
 author: PatrickLang
+ms.author: PatrickLang
 ms.date: 10/25/2019
 ms.topic: overview
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 ---
 # Frequently asked questions about containers
+
+Have a question about Windows Server containers, see if it's answered in the list below.
 
 ## What's the difference between Linux and Windows Server containers?
 
@@ -18,6 +21,18 @@ When a customer uses Windows Server containers, they can integrate with existing
 ## What are the prerequisites for running containers on Windows?
 
 Containers were introduced to the platform with Windows Server 2016. To use containers, you'll need either Windows Server 2016 or the Windows 10 Anniversary update (version 1607) or newer. Read the [System Requirements](../deploy-containers/system-requirements.md) to learn more.
+
+## What Windows operating systems are supported?
+
+AKS on Azure Stack HCI uses Windows Server 2019 as the container host OS version and only supports process isolation. For Windows container version compatibility, see [Windows container version compatibility](../deploy-containers/version-compatibility.md).
+
+## How do I patch my Windows nodes?
+
+Windows Server nodes in AKS on Azure Stack HCI must be upgraded to get the latest patch fixes and updates. Windows Updates are not enabled on Windows nodes in AKS on Azure Stack HCI. However, AKS on Azure Stack HCI makes Windows Updates available by periodically updating the Windows Server node images.
+
+## Can my Windows Server containers use gMSA?
+
+Yes, gMSA is supported with domain-joined Windows worker nodes. To learn more about using gMSA with Windows containers, see [Prepare Windows nodes for gMSA](https://docs.microsoft.com/azure-stack/aks-hci/prepare-windows-nodes-gmsa).
 
 ## What are WCOW and LCOW?
 

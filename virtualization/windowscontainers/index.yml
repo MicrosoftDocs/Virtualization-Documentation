@@ -50,6 +50,8 @@ landingContent:
             url: ./quick-start/run-your-first-container.md
           - text: Containerize a sample app
             url: ./quick-start/building-sample-app.md
+          - text: Lift and shift to containers
+            url: ./quick-start/lift-shift-to-containers.md
 
   # Card
   - title: Tutorials
@@ -66,6 +68,8 @@ landingContent:
             url: /azure/service-fabric/service-fabric-quickstart-containers
           - text: Run on Azure App Service
             url: /azure/app-service/app-service-web-get-started-windows-container
+          - text: Configure the Containers extension on Windows Admin Center
+            url: ./WAC-tooling/WAC-extension.md
 
   # Card
   - title: Concepts
@@ -84,7 +88,9 @@ landingContent:
     linkLists:
       - linkListType: reference
         links:
-          - text: Version Compatibility
+          - text: Events
+            url: ./deploy-containers/events.md
+          - text: Version compatibility
             url: ./deploy-containers/version-compatibility.md
           - text: Image servicing lifecycles
             url: ./deploy-containers/base-image-lifecycle.md
@@ -96,6 +102,8 @@ landingContent:
     linkLists:
       - linkListType: reference
         links:
+          - text: Windows containers roadmap
+            url: https://github.com/microsoft/Windows-Containers/projects/1
           - text: Samples
             url: ./samples.md
           - text: Troubleshooting
