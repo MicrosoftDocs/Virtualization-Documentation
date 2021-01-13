@@ -16,5 +16,5 @@ This page contains links to PowerPoint slideshows, videos, and other information
 
 - [Ignite 2019](https://azure.microsoft.com/resources/videos/ignite-2019-windows-container-and-the-azure-kubernetes-service/) View this video to learn how to leverage Windows containers and Azure Kubernetes Service.
 
-- [Build 2019](http://aka.ms/windowscontainers/build19) This session covered the different Windows operating system base images, and what types of applications can or cannot be containerized.  
+- [Build 2019](https://aka.ms/windowscontainers/build19) This session covered the different Windows operating system base images, and what types of applications can or cannot be containerized.  
 

@@ -29,25 +29,25 @@ Using Windows Admin Center to manage ACR, you can prepare the Azure location to 
 2. Under **Tools** in the left pane, scroll down and select the **Containers** extension.
 3. Open the **Azure Container Registry** tab under **Azure**.
 
-    ![WAC-ACR](./media/WAC-ACR.png)
+    ![Azure Container Registry tab](./media/WAC-ACR.png)
 
 ## Manage registries and images
 
 To create a new registry, under **Azure Container Registry**, select **Create New Registry**.
 
-![WAC-ACRNew](./media/WAC-ACRNew.png)
+![Create new registry](./media/WAC-ACRNew.png)
 
-Under **Create a new registry**, select the subscription you want to use to create a new registry and the Resource Group you want to allocate the registry. Next, provide a registry name, location and SKU. For more information on pricing and features on each SKU, see [ACR documentation](https://docs.microsoft.com/en-us/azure/container-registry/). Click **Create** to create the new registry. Once completed, Windows Admin Center will notify you if the operation is completed successfully, and then you'll see the new registry listed.
+Under **Create a new registry**, select the subscription you want to use to create a new registry and the Resource Group you want to allocate the registry. Next, provide a registry name, location and SKU. For more information on pricing and features on each SKU, see [ACR documentation](https://docs.microsoft.com/azure/container-registry/). Click **Create** to create the new registry. Once completed, Windows Admin Center will notify you if the operation is completed successfully, and then you'll see the new registry listed.
 
 Once registries and images are listed, you can remove an existing image or pull it to the container host for local use. To pull an image, select the image you want to pull and click **Pull Image**:
 
-![WAC-ACRPull](./media/WAC-ACRPull.png)
+![Pull image](./media/WAC-ACRPull.png)
 
 After the pull process completes, Windows Admin Center will notify you, and the image will be available for use on the **Images** tab under **Container host**.
 
 Finally, you can run a new container that's based on an image hosted on ACR. To get started, select the image you want to run and click **Run Instance**:
 
-![WAC-ACRRun](./media/WAC-ACRRun.png)
+![Run instance](./media/WAC-ACRRun.png)
 
 Under **Run Instance**, you need to provide a container name, which subscription to use, and the resource group and location you want to run this instance.
 
