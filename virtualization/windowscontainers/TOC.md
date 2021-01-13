@@ -27,30 +27,32 @@
 ## Run on Azure App Service
 ### [Azure App Service Quickstart](/azure/app-service/app-service-web-get-started-windows-container)
 ### [Migrate an ASP.NET app with Windows containers and Azure App Service](/azure/app-service/app-service-web-tutorial-windows-containers-custom-fonts)
-## Linux containers on Windows
+## Use Linux containers on Windows
 ### [Overview](deploy-containers/linux-containers.md)
 ### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
 ## Use containers with the Windows Insider program
 ### [Overview](deploy-containers/insider-overview.md)
-## Windows Admin Center tooling
+## [Containerize apps with printer services]
+### [Printer services](deploy-containers/print-spooler.md)
+## Manage containers with Windows Admin Center
 ### [Containers extension overview](WAC-tooling/WAC-extension.md)
-### [Managing container images with Windows Admin Center](WAC-tooling/WAC-Manage.md)
-### [Running containers with with Windows Admin Center](WAC-tooling/WAC-Containers.md)
-### [Creating new container images with Windows Admin Center](WAC-tooling/WAC-Images.md)
-### [Managing Azure Container Registry with with Windows Admin Center](WAC-tooling/WAC-ACR.md)
-### [Managing Azure Container Instance with Windows Admin Center](WAC-tooling/WAC-ACI.md)
+### [Manage container images with Windows Admin Center](WAC-tooling/WAC-Manage.md)
+### [Run containers with with Windows Admin Center](WAC-tooling/WAC-Containers.md)
+### [Create new container images with Windows Admin Center](WAC-tooling/WAC-Images.md)
+### [Manage Azure Container Registry with with Windows Admin Center](WAC-tooling/WAC-ACR.md)
+### [Manage Azure Container Instance with Windows Admin Center](WAC-tooling/WAC-ACI.md)
 
 # Concepts
 ## Windows Container Essentials
-### [Container Base Images](manage-containers/container-base-images.md)
-### [Isolation Modes](manage-containers/hyperv-container.md)
+### [Container base Images](manage-containers/container-base-images.md)
+### [Isolation modes](manage-containers/hyperv-container.md)
 ### [Version compatibility](deploy-containers/version-compatibility.md)
 ### [Update containers](deploy-containers/update-containers.md)
 ### [Resource controls](manage-containers/resource-controls.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ### [Remote management of a Windows Docker host](management/manage_remotehost.md)
-## Container Orchestration
+## Container orchestration
 ### [Overview](about/overview-container-orchestrators.md)
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
@@ -61,8 +63,6 @@
 #### [Resource Governance](/azure/service-fabric/service-fabric-resource-governance)
 ### Docker Swarm
 #### [Swarm Mode](manage-containers/swarm-mode.md)
-## Workloads
-### [Printer services](deploy-containers/print-spooler.md)
 ## Security
 ### Group Managed Service Accounts
 #### [Create a gMSA](manage-containers/manage-serviceaccounts.md)
@@ -77,13 +77,14 @@
 ### [Configure advanced networking options](container-networking/advanced.md)
 ## Storage
 ### [Overview](manage-containers/container-storage.md)
-### [Persistent Storage](manage-containers/persistent-storage.md)
+### [Persistent storage](manage-containers/persistent-storage.md)
 ## Devices
 ### [Hardware devices](deploy-containers/hardware-devices-in-containers.md)
 ### [GPU acceleration](deploy-containers/gpu-acceleration.md)
 
 # Reference
 ## [Base image servicing lifecycles](deploy-containers/base-image-lifecycle.md)
+## [Events](deploy-containers/events.md)
 ## [Anti-virus optimization](/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Container platform tools](deploy-containers/containerd.md)
 ## [Container OS image EULA](./images-eula.md)

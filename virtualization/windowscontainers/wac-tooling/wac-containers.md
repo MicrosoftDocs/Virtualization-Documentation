@@ -26,7 +26,7 @@ Under **Run** image, you can specify the container-related configuration:
 - Memory allocation and CPU count: You can specify how much memory and how many CPUs that a container should be able to use. This option does not allocate the assigned memory or CPU to the container. Rather, this option specifies the maximum amount a container will be able to allocate.
 - Add: You can also append Docker run parameters that are not in the UI, such as -v for persistent volume. For more information on available Docker run parameters, see [Docker documentation](https://docs.docker.com/engine/reference/commandline/run/).
 
-Once you finished the configuration for the container, select **Run**. You can check out the status of the running containers on the **Containers** tab:
+Once you've finished configuring the container, select **Run**. You can view the status of the running containers on the **Containers** tab:
 
 ![WAC-Containers](./media/WAC-Containers.png)
 

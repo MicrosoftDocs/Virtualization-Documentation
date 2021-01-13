@@ -9,7 +9,7 @@ ms.assetid: cfbb2542-fead-48e7-8318-4da92a7b5b6f
 ---
 # Community Videos and Blogs
 
-This page contains links to videos and blogs created by members or the container community.  If you know of a great resource, or you yourself created one please submit a PR to add to this list.
+This page contains links to videos and blogs created by members of the container community.  If you know of a great resource, or you have a resource you'd like to share, submit a PR to add to this list.
 
 ## Getting Started
 
