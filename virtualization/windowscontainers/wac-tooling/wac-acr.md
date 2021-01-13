@@ -29,7 +29,7 @@ Using Windows Admin Center to manage ACR, you can prepare the Azure location to 
 2. Under **Tools** in the left pane, scroll down and select the **Containers** extension.
 3. Open the **Azure Container Registry** tab under **Azure**.
 
-![WAC-ACR](./media/WAC-ACR.png)
+    ![WAC-ACR](./media/WAC-ACR.png)
 
 ## Manage registries and images
 

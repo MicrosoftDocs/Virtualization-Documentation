@@ -10,7 +10,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Create new container images on Windows Admin Center
 
-This topic describes how to create new container images using Windows Admin Center. Container images are used to create new containers on Windows machines or other cloud services, such as Azure Kubernetes Service. For more information on Windows images, check out the [Container images overview](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#container-images).
+This topic describes how to create new container images using Windows Admin Center. Container images are used to create new containers on Windows machines or other cloud services, such as Azure Kubernetes Service. For more information on Windows images, see the [Container images overview](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#container-images).
 
 ## Create new container images
 

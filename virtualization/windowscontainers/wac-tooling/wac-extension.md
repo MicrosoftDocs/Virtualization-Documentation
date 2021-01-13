@@ -20,7 +20,7 @@ This topic describes how to configure the Containers extension on Windows Admin 
 
 ![WAC-Extension](./media/WAC-Extension.png) 
 
-Windows Admin Center will refresh and once completed, the extension will appear under the **Installed extensions** tab.
+Windows Admin Center will refresh and, once completed, the extension will appear under the **Installed extensions** tab.
 
 ## Next steps
 
