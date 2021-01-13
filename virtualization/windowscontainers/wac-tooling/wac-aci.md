@@ -19,12 +19,12 @@ Windows Admin Center allows you to perform basic management of Azure Container I
 
 ![Azure container instance](./media/WAC-ACI.png)
 
-With the container instance listed, you can perform the following operations:
+With the container instance, you can perform the following actions:
 
-- **Start**: To start an already existing instance that is currently stopped.
+- **Start**: To start an existing instance that is currently stopped.
 - **End**: To stop a running instance.
-- **Delete**: To delete an instance. This is irreversible and will remove any configuration that's been made to the instance.
-- **Manage in Azure**: This opens the Azure Portal pane to manage the selected container instance on a new browser tab.
+- **Delete**: To delete an instance. This is irreversible and removes any configuration that's been made to the instance.
+- **Manage in Azure**: This opens the **Azure Portal** pane to manage the selected container instance on a new browser tab.
 
 ## Next steps
 

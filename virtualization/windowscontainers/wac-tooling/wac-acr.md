@@ -13,15 +13,25 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 This topic describes how to manage Azure Container Registry (ACR) using Windows Admin Center. Azure Container Registry allows you to build, store, and manage container images and artifacts in a private registry for all types of container deployments. 
 
 >[!Note]
->An Azure subscription is required to run the steps in this tutorial. For more information on how to connect your Windows Admin Center instance to Azure, see [Configuring Azure integration](https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/azure/azure-integration).
+>An Azure subscription is required to run the steps in this tutorial. For more information on how to connect your Windows Admin Center instance to Azure, see [Configuring Azure integration](https://docs.microsoft.com/windows-server/manage/windows-admin-center/azure/azure-integration).
 
-Windows Admin Center allows you to perform basic management of Azure Container Registry, which includes listing registries and images, creating new registries, removing images, pulling images to your container host, and starting new containers on Azure Container Instances from images stored in Azure Container Registry.
+Windows Admin Center allows you to perform basic management of Azure Container Registry, such as:
+  
+- List registries and images 
+- Create new registries 
+- Remove images 
+- Pull images to your container host
+- Start new containers on Azure Container Instances from images stored in Azure Container Registry
 
-Managing ACR from Windows Admin Center allows you to prepare the Azure location to which you can push images directly from the **Images** tab under Container host. To get started, open your Windows Admin Center instance and select your container host. Then, under **Tools** in the left pane, scroll down and select the **Containers** extension, and open the **Azure Container Registry** tab under **Azure**.
+Using Windows Admin Center to manage ACR, you can prepare the Azure location to which you can push images directly from the **Images** tab under Container host. To get started, follow the steps below:  
+
+1. Open your Windows Admin Center instance and select the container host. 
+2. Under **Tools** in the left pane, scroll down and select the **Containers** extension.
+3. Open the **Azure Container Registry** tab under **Azure**.
 
 ![WAC-ACR](./media/WAC-ACR.png)
 
-## Managing registries and images
+## Manage registries and images
 
 To create a new registry, under **Azure Container Registry**, select **Create New Registry**.
 
