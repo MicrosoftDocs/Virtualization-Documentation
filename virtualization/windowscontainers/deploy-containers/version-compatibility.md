@@ -5,6 +5,7 @@ keywords: metadata, containers, version
 author: taylorb-microsoft
 ms.author: jgerend
 ms.topic: conceptual
+ms.date: 10/22/2020
 ---
 # Windows container version compatibility
 

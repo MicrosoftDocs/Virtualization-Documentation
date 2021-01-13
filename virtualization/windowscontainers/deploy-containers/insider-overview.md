@@ -2,7 +2,9 @@
 title: Use Containers with Windows Insider Program
 description: Learn how to get started using windows containers with the Windows Insider program
 keywords: docker, containers, insider, windows
-author: cwilhit
+author: v-susbo
+ms.author: v-susbo
+ms.date: 12/29/2020
 ms.topic: how-to
 ---
 
