@@ -23,7 +23,7 @@ Windows Admin Center allows you to perform basic management of Azure Container R
 - Pull images to your container host
 - Start new containers on Azure Container Instances from images stored in Azure Container Registry
 
-Using Windows Admin Center to manage ACR, you can prepare the Azure location to which you can push images directly from the **Images** tab under Container host. To get started, follow the steps below:  
+Using Windows Admin Center to manage ACR, you can prepare the Azure location to which you can push images directly from the **Images** tab under **Container host**. To get started, follow the steps below:  
 
 1. Open your Windows Admin Center instance and select the container host. 
 2. Under **Tools** in the left pane, scroll down and select the **Containers** extension.
@@ -37,21 +37,21 @@ To create a new registry, under **Azure Container Registry**, select **Create Ne
 
 ![WAC-ACRNew](./media/WAC-ACRNew.png)
 
-Under **Create a new registry**, select the subscription you want to use to create a new registry. Select the Resource Group you want to allocate the registry. Next, provide a registry name, location and SKU. More information on pricing and features on each SKU can be fund in the [ACR documentation](https://docs.microsoft.com/en-us/azure/container-registry/). Click Create to create the new registry. Once completed Windows Admin Center will inform if the operation completed sucessfully and you'll see the new registry listed.
+Under **Create a new registry**, select the subscription you want to use to create a new registry and the Resource Group you want to allocate the registry. Next, provide a registry name, location and SKU. For more information on pricing and features on each SKU, see [ACR documentation](https://docs.microsoft.com/en-us/azure/container-registry/). Click **Create** to create the new registry. Once completed, Windows Admin Center will notify you if the operation is completed successfully, and then you'll see the new registry listed.
 
-Once registries and images are listed you can remove an existing image or pull it to the container host for local use. To pull an image, select the image you want to pull and click Pull Image:
+Once registries and images are listed, you can remove an existing image or pull it to the container host for local use. To pull an image, select the image you want to pull and click **Pull Image**:
 
 ![WAC-ACRPull](./media/WAC-ACRPull.png)
 
-Once the pull process completes, Windows Admin Center will notify you and the image will be available for use on the Images tab under Container Host.
+After the pull process completes, Windows Admin Center will notify you, and the image will be available for use on the **Images** tab under **Container host**.
 
-Finally, you can run a new Container based on an image hosted on ACR. To get started, select the image you want to run and click Run Instance:
+Finally, you can run a new container that's based on an image hosted on ACR. To get started, select the image you want to run and click **Run Instance**:
 
 ![WAC-ACRRun](./media/WAC-ACRRun.png)
 
-On the Run Instance menu, you need to provide a container name, which subscription to use, and the resource group and location you want to run this instance.
+Under **Run Instance**, you need to provide a container name, which subscription to use, and the resource group and location you want to run this instance.
 
-Next, you can provide the CPU and Memory allocation for this instance as well as the port you want to open, if needed. Click Create and Windows Admin Center wil send the command to Azure to run the instance. You can check the status of the container instance on the Azure Container Instance tab.
+Next, provide the CPU and memory allocation for this instance as well as the port you want to open, if needed. Click **Create** and Windows Admin Center sends the command to Azure to run the instance. You can check the status of the container instance on the **Azure Container Instance** tab.
 
 ## Next steps
 
