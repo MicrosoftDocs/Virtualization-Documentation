@@ -32,15 +32,15 @@
 ### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
 ## Use containers with the Windows Insider program
 ### [Overview](deploy-containers/insider-overview.md)
-## [Containerize apps with printer services]
+## Containerize apps with printer services
 ### [Printer services](deploy-containers/print-spooler.md)
 ## Manage containers with Windows Admin Center
 ### [Containers extension overview](WAC-tooling/WAC-extension.md)
-### [Manage container images with Windows Admin Center](WAC-tooling/WAC-Manage.md)
-### [Run containers with with Windows Admin Center](WAC-tooling/WAC-Containers.md)
-### [Create new container images with Windows Admin Center](WAC-tooling/WAC-Images.md)
-### [Manage Azure Container Registry with with Windows Admin Center](WAC-tooling/WAC-ACR.md)
-### [Manage Azure Container Instance with Windows Admin Center](WAC-tooling/WAC-ACI.md)
+### [Manage container images](WAC-tooling/WAC-Manage.md)
+### [Run new containers](WAC-tooling/WAC-Containers.md)
+### [Create new container images](WAC-tooling/WAC-Images.md)
+### [Manage Azure Container Registry](WAC-tooling/WAC-ACR.md)
+### [Manage Azure Container Instance](WAC-tooling/WAC-ACI.md)
 
 # Concepts
 ## Windows Container Essentials
