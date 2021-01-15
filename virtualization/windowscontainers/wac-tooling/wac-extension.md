@@ -18,7 +18,7 @@ This topic describes how to configure the Containers extension on Windows Admin 
 2. On the **Available extensions** tab, select the **Containers** extension from the list.
 3. Click **Install** to install the extension.
 
-![WAC-Extension](./media/WAC-Extension.png) 
+![Containers extension](./media/WAC-Extension.png) 
 
 Windows Admin Center will refresh and, once completed, the extension will appear under the **Installed extensions** tab.
 
