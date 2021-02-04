@@ -32,7 +32,7 @@ The 'nat' network is the default network for containers running on Windows. Any 
 
 ## Container Network Management with Host Network Service
 
-The Host Networking Service (HNS) and the Host Compute Service (HCS) work together to create containers and attach endpoints to a network. You can interact with HNS with the [HNS Powershell Helper Module](https://www.powershellgallery.com/packages/HNS).
+The Host Networking Service (HNS) and the Host Compute Service (HCS) work together to create containers and attach endpoints to a network. You can interact with HNS through the [HNS Powershell Helper Module](https://www.powershellgallery.com/packages/HNS).
 
 ### Network Creation
 
