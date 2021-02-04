@@ -73,12 +73,6 @@ If additional accounts come from different domains, you can specify them using a
 New-CredentialSpec WebApp01 -AdditionalAccounts @{ AccountName = 'LogAgentSvc'; Domain = 'secinf.contoso.com' }
 ```
 
-To generate a credential spec for gMSAv2, use `-AKV` for Azure Key Vault usage. `-AkvObjectId` and `-AkvSecretUri` are mandatory inputs for AKV.
-
-```powershell
-New-CredentialSpec -AccountName "FrontEndWeb01" -AKV -AkvObjectId "abcd-ef123-456ab-cdef" -AkvSecretUri "https://contoso-key-vault.vault.azure.net"
-```
-
 ## Documentation
 Check out the [Windows Container Identity](https://aka.ms/containers/identity) docs for instructions on how to set up your environment, generate a credential spec, and run a container using an Active Directory identity.
 
