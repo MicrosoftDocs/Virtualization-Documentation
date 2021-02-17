@@ -22,9 +22,9 @@ landingContent:
         links:
           - text: Try Windows containers in AKS!
             url: /azure/aks/windows-container-cli
-          - text: Check out our container images on Docker Hub.
+          - text: Check out our container images on Docker Hub
             url: https://hub.docker.com/_/microsoft-windows-base-os-images
-          - text: Read the Containers blog.
+          - text: Read the Containers blog
             url: https://techcommunity.microsoft.com/t5/Containers/bg-p/Containers
 
   # Card

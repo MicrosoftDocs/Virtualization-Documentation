@@ -2,8 +2,8 @@
 title: Windows Container Version Compatibility
 description: Version compatibility for containers built from different versions of Windows Server and Windows.
 keywords: metadata, containers, version
-author: taylorb-microsoft
-ms.author: jgerend
+author: v-susbo
+ms.author: v-susbo
 ms.topic: conceptual
 ms.date: 10/22/2020
 ---

@@ -2,8 +2,8 @@
 title: Run your first Windows container
 description: Container deployment quick start
 keywords: docker, containers, LCOW
-author: cwilhit
-ms.author: crwilhit
+author: v-susbo
+ms.author: viniap
 ms.date: 11/12/2019
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
