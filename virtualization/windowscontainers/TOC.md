@@ -93,6 +93,7 @@
 ## [Known Issues](manage-containers/known-issues.md)
 ## [Container samples](samples.md)
 ## [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1)
+## [Licensing and pricing](https://www.microsoft.com/en-us/windows-server/pricing)
 ## [Troubleshooting](troubleshooting.md)
 ## [Container forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
 ## [Community videos and blogs](communitylinks.md)
