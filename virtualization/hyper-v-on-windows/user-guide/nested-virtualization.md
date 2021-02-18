@@ -27,7 +27,7 @@ Nested virtualization is a feature that allows you to run Hyper-V inside of a Hy
 ## Configure Nested Virtualization
 
 1. Create a virtual machine. See the prerequisites above for the required OS and VM versions.
-2. While the virtual machine is in the OFF state, run the following command on the physical Hyper-V host. This enables nested virtualization for the virtual machine.
+2. While the virtual machine is in the OFF state, run the following command in an elevated Poweshell window on the physical Hyper-V host. This enables nested virtualization for the virtual machine.
 
 ```
 Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
