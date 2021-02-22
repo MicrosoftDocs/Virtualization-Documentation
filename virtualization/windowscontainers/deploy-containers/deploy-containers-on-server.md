@@ -20,15 +20,14 @@ To install Docker, we'll use the [OneGet provider PowerShell module](https://git
 
 Open an elevated PowerShell session and run the following cmdlets.
 
-Install the OneGet PowerShell module.
-
 ```PowerShell
+# Configure TLS Policy
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]'Tls,Tls11,Tls12'
+
+# Install OneGet PowerShell Module
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
-```
 
-Use OneGet to install the latest version of Docker.
-
-```PowerShell
+# Install Docker via OneGet
 Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
