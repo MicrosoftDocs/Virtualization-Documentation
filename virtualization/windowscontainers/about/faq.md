@@ -49,7 +49,7 @@ The Windows container image [EULA](../images-eula.md) describes a usage that dep
 |Windows 10 Pro and Enterprise                                   |Unlimited *(for test or development purposes only)*|Unlimited *(for test or development purposes only)*|
 |Windows 10 IoT Core and Enterprise                             |Unlimited*                                         |Unlimited*                                          |
 
-Windows Server container image usage is determined by reading the number of virtualization guests supported for that [edition](/windows-server/get-started-19/editions-comparison-19.md). <br/>
+Windows Server container image usage is determined by reading the number of virtualization guests supported for that [edition](/windows-server/get-started-19/editions-comparison-19). <br/>
 
 >[!NOTE]
 >\*Production usage of containers on an IoT edition of Windows depend on if you have agreed to the Microsoft Commercial Terms of Use for Windows 10 Core Runtime Images or the Windows 10 IoT Enterprise Device License (“Windows IoT Commercial Agreement”). Additional terms and restrictions in the Windows IoT Commercial Agreements apply to your use of Container Image in a production environment. Please read the [container image EULA](../images-eula.md) to understand exactly what is permitted and what is not.
