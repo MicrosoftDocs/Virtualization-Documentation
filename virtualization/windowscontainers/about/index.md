@@ -51,7 +51,7 @@ For more details on the similarities and differences of these complementary tech
 
 ## Container images
 
-All containers are created from container images. Container images are a bundle of files organized into a stack of layers that reside on your local machine or in a remote container registry. The container image consists of the user mode operating system files needed to support your app, your app, any runtimes or dependencies of your app, and any other miscellaneous configuration file your app needs to run properly.
+All containers are created from container images. Container images are a bundle of files organized into a stack of layers that reside on your local machine or in a remote container registry. The container image consists of the user mode operating system files needed to support your app, any runtimes or dependencies of your app, and any other miscellaneous configuration file your app needs to run properly.
 
 Microsoft offers several images (called base images) that you can use as a starting point to build your own container image:
 
