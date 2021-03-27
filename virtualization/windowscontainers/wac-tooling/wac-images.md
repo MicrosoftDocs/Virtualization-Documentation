@@ -18,7 +18,7 @@ When working with containers, you'll write instructions to Docker on how your co
 
 Windows Admin Center can considerably reduce the overhead of writing Dockerfiles or even remove the need to write these files entirely. To get started, on the **Containers** extension, select the **Create New** option on the **Images** tab.
 
-![Create a new container](./media/WAC-CreateNew.png)
+![Create a new container](./media/wac-create-new.png)
 
 When creating a new container image, you have different options to choose from:
 
