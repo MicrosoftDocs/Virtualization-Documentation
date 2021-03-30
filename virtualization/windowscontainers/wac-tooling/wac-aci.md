@@ -17,7 +17,7 @@ This topic describes how to manage Azure Container Instances (ACI) using Windows
 
 Windows Admin Center allows you to perform basic management of Azure Container Instances, which includes listing existing container instances, starting and stopping an instance, removing instances, and opening the Azure Portal for advanced management.
 
-![Azure container instance](./media/WAC-ACI.png)
+![Azure container instance](./media/wac-aci.png)
 
 With the container instance, you can perform the following actions:
 
