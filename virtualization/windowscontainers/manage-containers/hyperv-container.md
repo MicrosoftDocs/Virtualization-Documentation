@@ -27,7 +27,7 @@ This isolation mode offers enhanced security and broader compatibility between h
 
 ### Create container
 
-Managing Hyper-V-isolated containers with Docker is nearly identical to managing process-isolated containers. To create a container with Hyper-V isolation thorough Docker, use the `--isolation` parameter to set `--isolation=hyperv`.
+Managing Hyper-V-isolated containers with Docker is nearly identical to managing process-isolated containers. To use Docker to create a container with Hyper-V isolation, use the `--isolation` parameter to set `--isolation=hyperv`.
 
 ```cmd
 docker run -it --isolation=hyperv mcr.microsoft.com/windows/servercore:ltsc2019 cmd
