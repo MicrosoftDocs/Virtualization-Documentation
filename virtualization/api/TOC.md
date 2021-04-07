@@ -39,27 +39,6 @@
 ## [WHvTranslateGva](./hypervisor-platform/funcs/WHvTranslateGva.md)
 ## [WHvUnmapGpaRange](./hypervisor-platform/funcs/WHvUnmapGpaRange.md)
 
-# [Hypervisor Instruction Emulator API](./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md)
-## Instruction Emulation
-### [I/O Port Access](./hypervisor-instruction-emulator/funcs/IOPortAccessIE.md)
-### [MMIO Access](./hypervisor-instruction-emulator/funcs/MMIOAccessIE.md)
-## Emulator Structures
-### [WHV_EMULATOR_CALLBACKS](./hypervisor-instruction-emulator/funcs/WhvEmulatorCallbacks.md)
-### [WHV_EMULATOR_IO_ACCESS_INFO](./hypervisor-instruction-emulator/funcs/WhvEmulatorIOAccessInfo.md)
-### [WHV_EMULATOR_MEMORY_ACCESS_INFO](./hypervisor-instruction-emulator/funcs/WhvEmulatorMemoryAccessInfo.md)
-### [WHV_EMULATOR_STATUS](./hypervisor-instruction-emulator/funcs/WhvEmulatorStatus.md)
-## API Methods
-### [WHvEmulatorCreateEmulator](./hypervisor-instruction-emulator/funcs/WHvEmulatorCreateEmulator.md)
-### [WHvEmulatorDestoryEmulator](./hypervisor-instruction-emulator/funcs/WHvEmulatorDestoryEmulator.md)
-### [WHvEmulatorTryIoEmulation](./hypervisor-instruction-emulator/funcs/WHvEmulatorTryEmulation.md)
-### [WHvEmulatorTryMmioEmulation](./hypervisor-instruction-emulator/funcs/WHvEmulatorTryEmulation.md)
-## Callback Functions
-### [WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorGetVirtualProcessorRegistersCallback.md)
-### [WHV_EMULATOR_IO_PORT_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorIOPortCallback.md)
-### [WHV_EMULATOR_MEMORY_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorMemoryCallback.md)
-### [WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorSetVirtualProcessorRegistersCallback.md)
-### [WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorTranslateGVAPageCallback.md)
-
 # Host Compute System API
 ## [Overview](./hcs/overview.md)
 ## API Reference
@@ -150,7 +129,29 @@
 ### [Host Service](./hcs/Reference/ServiceSample.md)
 ### [Virtual Machine Utilities](./hcs/Reference/UtilityFunctionSample.md)
 
-# VM Saved State Dump Provider API
-## [Overview](./vm-dump-provider/index.md)
-## [Reference](./vm-dump-provider/reference/reference.md)
-## [Samples](./vm-dump-provider/samples.md)
+# Related Tools
+## [Hypervisor Instruction Emulator API](./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md)
+### Instruction Emulation
+#### [I/O Port Access](./hypervisor-instruction-emulator/funcs/IOPortAccessIE.md)
+#### [MMIO Access](./hypervisor-instruction-emulator/funcs/MMIOAccessIE.md)
+### Emulator Structures
+#### [WHV_EMULATOR_CALLBACKS](./hypervisor-instruction-emulator/funcs/WhvEmulatorCallbacks.md)
+#### [WHV_EMULATOR_IO_ACCESS_INFO](./hypervisor-instruction-emulator/funcs/WhvEmulatorIOAccessInfo.md)
+#### [WHV_EMULATOR_MEMORY_ACCESS_INFO](./hypervisor-instruction-emulator/funcs/WhvEmulatorMemoryAccessInfo.md)
+#### [WHV_EMULATOR_STATUS](./hypervisor-instruction-emulator/funcs/WhvEmulatorStatus.md)
+### API Methods
+#### [WHvEmulatorCreateEmulator](./hypervisor-instruction-emulator/funcs/WHvEmulatorCreateEmulator.md)
+#### [WHvEmulatorDestoryEmulator](./hypervisor-instruction-emulator/funcs/WHvEmulatorDestoryEmulator.md)
+#### [WHvEmulatorTryIoEmulation](./hypervisor-instruction-emulator/funcs/WHvEmulatorTryEmulation.md)
+#### [WHvEmulatorTryMmioEmulation](./hypervisor-instruction-emulator/funcs/WHvEmulatorTryEmulation.md)
+### Callback Functions
+#### [WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorGetVirtualProcessorRegistersCallback.md)
+#### [WHV_EMULATOR_IO_PORT_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorIOPortCallback.md)
+#### [WHV_EMULATOR_MEMORY_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorMemoryCallback.md)
+#### [WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorSetVirtualProcessorRegistersCallback.md)
+#### [WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorTranslateGVAPageCallback.md)
+
+## VM Saved State Dump Provider API
+### [Overview](./vm-dump-provider/index.md)
+### [Reference](./vm-dump-provider/reference/reference.md)
+### [Samples](./vm-dump-provider/samples.md)
