@@ -129,7 +129,7 @@
 ### [Host Service](./hcs/Reference/ServiceSample.md)
 ### [Virtual Machine Utilities](./hcs/Reference/UtilityFunctionSample.md)
 
-# Related Tools
+# Virtualization Related Tools
 ## [Hypervisor Instruction Emulator API](./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md)
 ### Instruction Emulation
 #### [I/O Port Access](./hypervisor-instruction-emulator/funcs/IOPortAccessIE.md)
