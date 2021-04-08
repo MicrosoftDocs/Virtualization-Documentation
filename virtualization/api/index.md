@@ -54,14 +54,14 @@ WMI APIs mainly focus on on-prem server management, which provide high level abs
 
 The Virtual Hard Disk (VHD) format is a publicly-available image format specification that specifies a virtual hard disk encapsulated in a single file, capable of hosting native file systems while supporting standard disk and file operations. The Windows SDK supports an API to create and manage the virtual disk.
 
-> For more information see: [Virtual Hard Disk](https://docs.microsoft.com/en-us/windows/win32/api/virtdisk/)
+> For more information see: [Virtual Hard Disk Interface](https://docs.microsoft.com/en-us/windows/win32/api/virtdisk/)
 
 
 ### Host Compute Network Service API
 
 Host Compute Network (HCN) service API is a public-facing Win32 API that provides platform-level access to manage the virtual networks, virtual network endpoints, and associated policies. 
 
-> For more information see: [HCS Service API](https://docs.microsoft.com/en-us/windows-server/networking/technologies/hcn/hcn-top)
+> For more information see: [HCN Service API](https://docs.microsoft.com/en-us/windows-server/networking/technologies/hcn/hcn-top)
 
 
 ### Hypervisor Instruction Emulator API
