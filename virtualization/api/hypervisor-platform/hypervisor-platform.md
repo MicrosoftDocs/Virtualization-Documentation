@@ -3,7 +3,7 @@
 
 The following diagram provides a high-level overview of the third-party architecture.
 
-![](./media/windows-hypervisor-platform-architecture.png)
+![](./../media/windows-hypervisor-platform-architecture.png)
 
 
 

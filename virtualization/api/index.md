@@ -15,6 +15,22 @@ Hyper-V APIs give users the freedom to build and manage virtual machines or cont
 
 
 
+## Hyper-V WMI provider
+
+The WMI provider for Hyper-V enable developers, and scripters, to quickly build custom tools, utilities, and enhancements for the virtualization platform. The WMI interfaces can manage all aspects of the Hyper-V services.
+
+> For more information see: [Hyper-V WMI provider (V2)](https://docs.microsoft.com/en-us/windows/win32/hyperv_v2/windows-virtualization-portal)
+
+
+## Host Compute System APIs
+
+The main purpose of the Host Compute System API is to provide platform-level access to VMs and containers on Windows.
+
+The HCS APIs are aimed at developers who want to build applications or management services for VMs or containers. End users are not expected to directly interact with the HCS APIs, the end-user experience (graphical or command line interfaces, higher-level APIs, …) is expected to be provided by the applications or management service that are built on top of the platform APIs.
+ 
+> For more information see: [Host Compute System API](./hcs/hcs.md)
+
+
 ## Windows Hypervisor Platform
  
 >**This API is available starting in the Windows April 2018 Update.**
@@ -25,19 +41,6 @@ The Windows Hypervisor Platform adds an extended user-mode API for third-party v
 
 > For more information see: [Windows Hypervisor Platform API](./hypervisor-platform/hypervisor-platform.md)
 
-## Host Compute System APIs
-
-The main purpose of the Host Compute System API is to provide platform-level access to VMs and containers on Windows.
-
-The HCS APIs are aimed at developers who want to build applications or management services for VMs or containers. End users are not expected to directly interact with the HCS APIs, the end-user experience (graphical or command line interfaces, higher-level APIs, …) is expected to be provided by the applications or management service that are built on top of the platform APIs.
- 
-> For more information see: [Host Compute System API](./hcs/hcs.md)
-
-## Hyper-V WMI provider
-
-The WMI provider for Hyper-V enable developers, and scripters, to quickly build custom tools, utilities, and enhancements for the virtualization platform. The WMI interfaces can manage all aspects of the Hyper-V services.
-
-> For more information see: [Hyper-V WMI provider (V2)](https://docs.microsoft.com/en-us/windows/win32/hyperv_v2/windows-virtualization-portal)
 
 ## Comparison between WHP, WMI and HCS APIs
 
