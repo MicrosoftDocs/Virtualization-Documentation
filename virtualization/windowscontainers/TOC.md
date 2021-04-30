@@ -63,7 +63,7 @@
 #### [Resource Governance](/azure/service-fabric/service-fabric-resource-governance)
 ### Docker Swarm
 #### [Swarm Mode](manage-containers/swarm-mode.md)
-## Security
+### Security
 #### [Secure Windows containers](manage-containers/container-security.md)
 ### Group Managed Service Accounts
 #### [Create a gMSA](manage-containers/manage-serviceaccounts.md)
