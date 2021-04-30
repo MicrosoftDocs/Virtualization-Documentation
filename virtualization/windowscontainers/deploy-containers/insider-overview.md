@@ -14,7 +14,7 @@ This exercise will walk you through the deployment and use of the Windows contai
 
 ## Join the Windows Insider Program
 
-In order to run the insider version of Windows containers, you must have a host running the latest build of Windows Server from the Windows Insider program and/or the latest build of Windows 10 from the Windows Insider program. Join the [Windows Insider Program](https://insider.windows.com/GettingStarted) and review the Terms of Use.
+In order to run the insider version of Windows containers, you must have a host running the latest build of Windows Server from the Windows Insider program and/or the latest build of Windows 10 from the Windows Insider program. Join the [Windows Insider Program](https://insider.windows.com/) and review the Terms of Use.
 
 > [!IMPORTANT]
 > You must use a build of Windows Server from the Windows Server Insider Preview program or a build of Windows 10 from the Windows Insider Preview program to use the base image described below. If you are not using one of these builds, the use of these base images will result in failure to start a container.
@@ -39,7 +39,7 @@ To pull the Windows Server Core insider base image run the following:
 docker pull mcr.microsoft.com/windows/servercore/insider
 ```
 
-The "Windows" and "IoTCore" base images also have an insider version that is available to pull. You can read more about the available insider base images in the [Container base images](../manage-containers/container-base-images.md) doc.
+The "Windows" base images also have an insider version that is available to pull. You can read more about the available insider base images in the [Container base images](../manage-containers/container-base-images.md) doc.
 
 > [!IMPORTANT]
-> Please read the Windows containers OS image [EULA](../images-eula.md ) and the Windows Insider program [Terms of Use](https://www.microsoft.com/software-download/windowsinsiderpreviewserver).
+> Please read the Windows containers OS image [EULA](../images-eula.md ) and the Windows Insider program [Terms of Use](https://insider.windows.com/program-agreement).
