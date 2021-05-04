@@ -20,7 +20,7 @@ Windows Admin Center helps you run containers locally on your container host.
 
 4. Select the image you want to run and click **Run**.
 
-    ![Run image](./media/wac-ru-containers.png)
+    ![Run image](./media/wac-run-containers.png)
 
 5. Under **Run image**, you can specify the container-related configuration:
 
