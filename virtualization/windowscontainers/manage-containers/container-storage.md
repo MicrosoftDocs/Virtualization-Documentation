@@ -10,8 +10,6 @@ ms.topic: overview
 
 # Container Storage Overview
 
-<!-- Great diagram would be great! -->
-
 This topic provides an overview of the different ways containers use storage on Windows. Containers behave differently than virtual machines when it comes to storage. By nature, containers are built to prevent an app running within them from writing state all over the host's filesystem. Containers use a "scratch" space by default, but Windows also provides a means to persist storage.
 
 ## Scratch Space
@@ -51,7 +49,7 @@ A common pattern for Windows applications is to query the amount of free disk sp
 
 Some users may want to override this default and configure the free space to a smaller or larger value. this can be accomplished though the “size” option within the “storage-opt” configuration.
 
-### Examples
+### Example
 
 Command line: `docker run --storage-opt "size=50GB" mcr.microsoft.com/windows/servercore:ltsc2019 cmd`
 

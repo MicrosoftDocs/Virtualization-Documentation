@@ -82,6 +82,10 @@ landingContent:
             url: ./about/overview-container-orchestrators.md
           - text: Windows container essentials
             url: ./manage-containers/container-base-images.md
+          - text: Secure Windows containers
+            url: ./manage-containers/container-security.md
+          - text: Group Managed Service Accounts
+            url: ./manage-containers/manage-serviceaccounts.md
 
   # Card
   - title: Reference
