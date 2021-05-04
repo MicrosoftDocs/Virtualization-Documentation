@@ -37,7 +37,7 @@ landingContent:
           - text: System requirements
             url: ./deploy-containers/system-requirements.md
           - text: FAQ
-            url: ./about/faq.md
+            url: ./about/faq.yml
 
   # Card
   - title: Get Started
