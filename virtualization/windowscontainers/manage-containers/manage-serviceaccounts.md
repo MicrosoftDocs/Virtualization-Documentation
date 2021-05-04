@@ -51,7 +51,7 @@ To run a Windows container with a group managed service account, you will need t
 
 - An Active Directory domain with at least one domain controller running Windows Server 2012 or later. There are no forest or domain functional level requirements to use gMSAs, but the gMSA passwords can only be distributed by domain controllers running Windows Server 2012 or later. For more information, see [Active Directory requirements for gMSAs](/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#BKMK_gMSA_Req).
 - Permission to create a gMSA account. To create a gMSA account, you'll need to be a Domain Administrator or use an account that has been delegated the *Create msDS-GroupManagedServiceAccount objects* permission.
-- Access to the internet to download the CredentialSpec PowerShell module. If you're working in a disconnected environment, you can [save the module](/powershell/module/powershellget/save-module?view=powershell-5.1) on a computer with internet access and copy it to your development machine or container host.
+- Access to the internet to download the CredentialSpec PowerShell module. If you're working in a disconnected environment, you can [save the module](/powershell/module/powershellget/save-module?view=powershell-5.1&preserve-view=true) on a computer with internet access and copy it to your development machine or container host.
 
 ## One-time preparation of Active Directory
 
@@ -111,7 +111,7 @@ Once you've decided on the name for your gMSA, run the following cmdlets in Powe
 
 > [!TIP]
 > You'll need to use an account that belongs to the **Domain Admins** security group or has been delegated the **Create msDS-GroupManagedServiceAccount objects** permission to run the following commands.
-> The [New-ADServiceAccount](/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps) cmdlet is part of the AD PowerShell Tools from [Remote Server Administration Tools](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools).
+> The [New-ADServiceAccount](/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps&preserve-view=true) cmdlet is part of the AD PowerShell Tools from [Remote Server Administration Tools](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools).
 
 ```powershell
 # Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively
