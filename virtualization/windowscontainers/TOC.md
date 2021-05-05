@@ -4,7 +4,7 @@
 ## [About Windows containers](about/index.md)
 ## [Containers vs. VMs](about/containers-vs-vm.md)
 ## [System requirements](deploy-containers/system-requirements.md)
-## [FAQ](about/faq.md)
+## [FAQ](about/faq.yml)
 
 # Get Started
 ## [Set up your environment](quick-start/set-up-environment.md)
