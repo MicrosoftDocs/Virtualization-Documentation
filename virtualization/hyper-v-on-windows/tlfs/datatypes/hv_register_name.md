@@ -3,7 +3,7 @@ title: HV_REGISTER_NAME
 description: HV_REGISTER_NAME
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv
@@ -174,6 +174,7 @@ The following table lists all register names:
 | HvX64RegisterMtrrFix4kE8000            | 0x00080078      |                                      |
 | HvX64RegisterMtrrFix4kF0000            | 0x00080079      |                                      |
 | HvX64RegisterMtrrFix4kF8000            | 0x0008007A      |                                      |
+| HvX64RegisterTscAux                    | 0x0008007B      |                                      |
 | HvX64RegisterBndcfgs                   | 0x0008007C      |                                      |
 | HvX64RegisterDebugCtl                  | 0x0008007D      |                                      |
 | HvX64RegisterSgxLaunchControl0         | 0x00080080      |                                      |
@@ -192,6 +193,7 @@ The following table lists all register names:
 | HvX64RegisterTpr                       | 0x00090012      |                                      |
 | HvRegisterVpAssistPage                 | 0x00090013      |                                      |
 | HvRegisterReferenceTsc                 | 0x00090017      |                                      |
+| HvRegisterReferenceTscSequence         | 0x0009001A      |                                      |
 | HvRegisterSint0                        | 0x000A0000      |                                      |
 | HvRegisterSint1                        | 0x000A0001      |                                      |
 | HvRegisterSint2                        | 0x000A0002      |                                      |

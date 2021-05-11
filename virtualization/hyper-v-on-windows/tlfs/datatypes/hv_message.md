@@ -3,7 +3,7 @@ title: HV_MESSAGE
 description: HV_MESSAGE
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv
