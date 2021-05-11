@@ -3,7 +3,7 @@ title: HV_VP_SET
 description: HV_VP_SET
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv
