@@ -225,7 +225,7 @@ function Convert-VmBackupCheckpoint
     # Wait for the job to complete.
     $job | Trace-CimMethodExecution | Out-Null
 
-    # The new reference point object is related to the job, GetReleated
+    # The new reference point object is related to the job
     # always returns an array in this case there is only one member
     $refPoint = ($job.Job | Get-CimAssociatedInstance -ResultClassName "Msvm_VirtualSystemReferencePoint" | % {$_})
 
@@ -261,11 +261,10 @@ function Export-VMBackupCheckpoint
     } else {
         $filter = "Name='$VmId'"
     }
-    # Retrieve an instance of the virtual machine computer system that will be snapshoted
+    # Retrieve an instance of the virtual machine computer system that will be snapshotted
     $Msvm_ComputerSystem = Get-CimInstance -Namespace root\virtualization\v2 -Class Msvm_ComputerSystem -Filter $filter
 
     # Retrieve an instance of the Export Setting Data Class (this is used to inform the export operation)
-    # GetReleated always returns an array in this case there is only one member
     $Msvm_VirtualSystemExportSettingData = ($Msvm_ComputerSystem | Get-CimAssociatedInstance -ResultClassName "Msvm_VirtualSystemExportSettingData" -Association "Msvm_SystemExportSettingData" | % {$_})
 
     # Specify the export options
@@ -292,7 +291,7 @@ function Export-VMBackupCheckpoint
     # Path to a Msvm_VirtualSystemSettingData instance that represents the snapshot to be exported with the VM.
     $Msvm_VirtualSystemExportSettingData.SnapshotVirtualSystem = (Get-CimInstancePath -CimInstance $BackupCheckpoint)
 
-    # DifferentialBase
+    # DifferentialBackupBase
     # Base for differential export. This is either path to a Msvm_VirtualSystemReferencePoint instance that
     # represents the reference point or path to a Msvm_VirtualSystemSettingData instance that
     # represents the snapshot to be used as a base for differential export. If the CopySnapshotConfiguration
@@ -304,10 +303,10 @@ function Export-VMBackupCheckpoint
         $Msvm_VirtualSystemExportSettingData.DifferentialBackupBase = (Get-CimInstancePath -CimInstance $ReferencePoint)
     }
 
-    # StorageConfiguration
+    # BackupIntent
     # Indicates what should be the VHD path in the exported configuration.
-    # 0: StorageConfigurationCurrent - The exported configuration would point to the current VHD.
-    # 1: StorageConfigurationBaseVhd - The exported configuration would point to the base VHD.
+    # 0: The exported configuration would point to the current VHD.
+    # 1: The exported configuration would point to the base VHD.
     $Msvm_VirtualSystemExportSettingData.BackupIntent = 1
 
     #Export the virtual machine snapshot, this method returns a job object.
@@ -345,7 +344,7 @@ function Get-VmBackupCheckpoints
     # Retrieve all snapshot associations for the virtual machine
     $allSnapshotAssociations = ($Msvm_ComputerSystem | Get-CimAssociatedInstance -ResultClassName "CIM_VirtualSystemSettingData" -Association "Msvm_SnapshotOfVirtualSystem" | % {$_})
 
-    # Enumerate across all of the instances and add all recovery snapshots to an array
+    # find all recovery snapshots
     $virtualSystemSnapshots = $allSnapshotAssociations | Where-Object { $_.VirtualSystemType -eq "Microsoft:Hyper-V:Snapshot:Recovery" }
 
     # Return the array of recovery snapshots
@@ -374,7 +373,6 @@ function Get-VmReferencePoints
     # Retrieve all refrence associations of the virtual machine
     $allRefPoints = ($Msvm_ComputerSystem | Get-CimAssociatedInstance -ResultClassName "Msvm_VirtualSystemReferencePoint" -Association "Msvm_ReferencePointOfVirtualSystem" | % {$_})
 
-    # Enumerate across all of the instances and add all recovery points to an array
     $virtualSystemRefPoints = $allRefPoints
 
     # Return the array of recovery points
@@ -422,7 +420,7 @@ function New-VmBackupCheckpoint
         }
 
         default {
-        throw "Unexpected Consistency Level Specified"
+            throw "Unexpected Consistency Level Specified"
         }
     }
 
@@ -455,7 +453,6 @@ function Remove-VmReferencePoint
       [Parameter(Mandatory=$True)]
       [Microsoft.Management.Infrastructure.CimInstance]$ReferencePoint = $null
     )
-
 
     # Retrieve an instance of the virtual machine refrence point service
     $Msvm_VirtualSystemReferencePointService = Get-CimInstance -Namespace root\virtualization\v2 -Class Msvm_VirtualSystemReferencePointService
