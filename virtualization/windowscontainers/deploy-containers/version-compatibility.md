@@ -331,9 +331,7 @@ In this case, you should use the method described in [Errors from mismatched ver
 
 ### Mitigation - Use Hyper-V isolation with Docker Swarm
 
-There is a proposal to support using Hyper-V isolation on a per-container basis, but the code is not done yet. You can follow progress on [GitHub](https://github.com/moby/moby/issues/31616). Until that's done, the hosts would need to be configured to always run with Hyper-V isolation.
-
-This requires changing the Docker service configuration, then restarting the Docker engine.
+Windows containers supports using Hyper-V isolation on a per-container basis, which requires changing the Docker service configuration, and then restarting the Docker engine.
 
 1. Edit `C:\ProgramData\docker\config\daemon.json`
 2. Add a line with `"exec-opts":["isolation=hyperv"]`

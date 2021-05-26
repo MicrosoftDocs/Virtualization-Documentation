@@ -3,7 +3,7 @@ title: HV_PARTITION_PRIVILEGE_MASK
 description: HV_PARTITION_PRIVILEGE_MASK
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv

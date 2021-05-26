@@ -24,7 +24,7 @@ If a Windows container host will be run from a Hyper-V virtual machine, and will
 
 - At least 4 GB RAM available for the virtualized Hyper-V host.
 - Windows Server (Semi-Annual Channel), Windows Server 2019, Windows Server 2016, or Windows 10 on the host system; and Windows Server (Full or Server Core) in the virtual machine.
-- A processor with Intel VT-x (this feature is currently only available for Intel processors).
+- A processor with Intel VT-x (this feature is currently available for Intel and AMD processors).
 - The container host VM will also need at least two virtual processors.
 
 ### Memory requirements
