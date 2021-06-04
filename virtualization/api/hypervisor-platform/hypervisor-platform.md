@@ -1,6 +1,12 @@
 # Windows Hypervisor Platform API Definitions
 >**This API is available starting in the Windows April 2018 Update.**
 
+The following diagram provides a high-level overview of the third-party architecture.
+
+![](./../media/windows-hypervisor-platform-architecture.png)
+
+
+
 The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through WinHvPlatform.h. WinHvAPi.dll exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
 ## Platform Capabilities
