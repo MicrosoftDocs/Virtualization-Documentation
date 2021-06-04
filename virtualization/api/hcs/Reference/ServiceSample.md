@@ -3,12 +3,12 @@
 <a name = "GetServiceProperties"></a>
 ## Get the properties of host service
 
-Here takes the memory property of service as example.
+Here takes the memory property in the service as the example.
 
 ```cpp
     static constexpr wchar_t c_ServicePropertyQuery[] = LR"(
     {
-        "PropertyTypes":[
+        "PropertyTypes": [
             "Memory"
         ]
     })";
@@ -21,12 +21,20 @@ Here takes the memory property of service as example.
 <a name = "ModifyServiceSettings"></a>
 ## Modify the service settings
 
+Here takes the CPUGroup property in the service as the example.
+
 ```cpp
-// Not finished yet, only available type `ContainerCredentialGuard` is used for container
     static constexpr wchar_t c_ServiceSettings[] = LR"(
     {
-        "PropertyType": "ContainerCredentialGuard",
-        "Settings":
+        "PropertyType": "CpuGroup",
+        "Settings": {
+            "Operation": "CreateGroup",
+            "OperationDetails": {
+                "GroupId": "GUID",
+                "LogicalProcessorCount": 2,
+                "LogicalProcessors": [0, 1]
+            }
+        }
     })";
 
     wil::unique_hlocal_string resultDoc;

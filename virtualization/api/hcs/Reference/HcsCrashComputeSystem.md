@@ -2,7 +2,7 @@
 
 ## Description
 
-Requests to crash the guest through an architectured defined mechanism, by sending an NMI (Non Maskable Interrupt).
+Requests to crash the guest through an architecture defined mechanism, by sending an NMI (Non Maskable Interrupt).
 
 ## Syntax
 

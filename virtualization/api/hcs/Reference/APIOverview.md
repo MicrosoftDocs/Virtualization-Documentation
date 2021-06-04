@@ -1,6 +1,6 @@
 # Host Compute System API Reference
 
-The following section contains the definitions of the host Compute System APIs. The DLL exports a set of C-style Windows API functions, using JSON schema as configuration.
+The following section contains the definitions of the Host Compute System APIs. The DLL exports a set of C-style Windows API functions, using JSON schema as configuration.
 
 
 ## Data types
