@@ -1,0 +1,24 @@
+- name: Virtualization
+  tocHref: /virtualization/
+  topicHref: /virtualization/index
+  items:
+  - name: Virtualization APIs
+    tocHref: /virtualization/api/
+    topicHref: /virtualization/api/index
+    items:
+    - name: Windows Hypervisor Platform API
+      tocHref: /virtualization/api/hypervisor-platform/
+      topicHref: /virtualization/api/hypervisor-platform/hypervisor-platform
+    - name: Hypervisor Instruction Emulator API
+      tocHref: /virtualization/api/hypervisor-instruction-emulator/
+      topicHref: /virtualization/api/hypervisor-instruction-emulator/hypervisor-instruction-emulator
+    - name: Host Compute System API
+      tocHref: /virtualization/api/hcs/
+      topicHref: /virtualization/api/hcs/overview
+      items:
+        - name: Reference
+          tocHref: /virtualization/api/hcs/reference
+          topicHref: /virtualization/api/hcs/reference
+    - name: VM Saved State Dump Provider API
+      tocHref: /virtualization/api/vm-dump-provider/
+      topicHref: /virtualization/api/vm-dump-provider/vm-dump-provider

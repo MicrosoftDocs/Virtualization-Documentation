@@ -3,7 +3,7 @@ title: HV_VMX_ENLIGHTENED_VMCS
 description: HV_VMX_ENLIGHTENED_VMCS
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv
@@ -190,10 +190,21 @@ typedef struct
     UINT64 Rsvd5[4];
 
     UINT64 GuestBndcfgs;
-    UINT64 Rsvd6[7];
+    UINT64 GuestPerfGlobalCtrl;
+    UINT64 GuestSCet;
+    UINT64 GuestSsp;
+    UINT64 GuestInterruptSspTableAddr;
+    UINT64 GuestLbrCtl;
+    UINT64 Rsvd6[2];
+
     UINT64 XssExitingBitmap;
     UINT64 EnclsExitingBitmap;
-    UINT64 Rsvd7[6];
+    UINT64 HostPerfGlobalCtrl;
+    UINT64 TscMultiplier;
+    UINT64 HostSCet;
+    UINT64 HostSsp;
+    UINT64 HostInterruptSspTableAddr;
+    UINT64 Rsvd7;
 } HV_VMX_ENLIGHTENED_VMCS;
  ```
 
@@ -303,8 +314,18 @@ The following table maps the Intel physical VMCS encoding to its corresponding e
 | 0x00000000     | Vpid                        | 2      | CONTROL_XLAT                  |
 | 0x0000201a     | EptRoot                     | 8      | CONTROL_XLAT                  |
 | 0x00002812     | GuestBndcfgs                | 8      | GUEST_GRP1                    |
+| 0x00002808     | GuestPerfGlobalCtrl         | 8      | GUEST_GRP1                    |
+| 0x00006828     | GuestSCet                   | 8      | GUEST_GRP1                    |
+| 0x0000682A     | GuestSsp                    | 8      | GUEST_BASIC                   |
+| 0x0000682C     | GuestInterruptSspTableAddr  | 8      | GUEST_GRP1                    |
+| 0x00002816     | GuestLbrCtl                 | 8      | GUEST_GRP1                    |
 | 0x0000202c     | XssExitingBitmap            | 8      | CONTROL_GRP2                  |
 | 0x0000202e     | EnclsExitingBitmap          | 8      | CONTROL_GRP2                  |
+| 0x00002C04     | HostPerfGlobalCtrl          | 8      | HOST_GRP1                     |
+| 0x00002032     | TscMultiplier               | 8      | CONTROL_GRP2                  |
+| 0x00006C18     | HostSCet                    | 8      | HOST_GRP1                     |
+| 0x00006C1A     | HostSsp                     | 8      | HOST_GRP1                     |
+| 0x00006C1C     | HostInterruptSspTableAddr   | 8      | HOST_GRP1                     |
 | 0x00002400     | ExitEptFaultGpa             | 8      | NONE (Read only)              |
 | 0x00004400     | ExitInstructionError        | 4      | NONE (Read only)              |
 | 0x00004402     | ExitReason                  | 4      | NONE (Read only)              |
