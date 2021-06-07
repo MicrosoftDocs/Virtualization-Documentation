@@ -250,6 +250,8 @@ function Export-VMBackupCheckpoint
 
       [Microsoft.Management.Infrastructure.CimInstance]$ReferencePoint = $null,
 
+      [int] $BackupIntent = 0,
+
       [bool]$noWait = $false
     )
 
@@ -307,7 +309,7 @@ function Export-VMBackupCheckpoint
     # Indicates what should be the VHD path in the exported configuration.
     # 0: The exported configuration would point to the current VHD.
     # 1: The exported configuration would point to the base VHD.
-    $Msvm_VirtualSystemExportSettingData.BackupIntent = 1
+    $Msvm_VirtualSystemExportSettingData.BackupIntent = $BackupIntent
 
     #Export the virtual machine snapshot, this method returns a job object.
     $job = ($Msvm_VirtualSystemManagementService | Invoke-CimMethod -MethodName "ExportSystemDefinition" -Arguments @{
