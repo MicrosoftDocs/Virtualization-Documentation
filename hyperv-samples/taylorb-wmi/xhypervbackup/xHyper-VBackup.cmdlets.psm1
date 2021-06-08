@@ -274,7 +274,7 @@ function Export-VMBackupCheckpoint
     # 0: ExportAllSnapshots - All snapshots will be exported with the VM.
     # 1: ExportNoSnapshots - No snapshots will be exported with the VM.
     # 2: ExportOneSnapshot - The snapshot identified by the SnapshotVirtualSystem property will be exported with the VM.
-    # 3: ExportOneSnapshotUseVmId - The snapshot identified by the SnapshotVirtualSystem property will be exported with the VM. Using the VMs ID.
+    # 3: ExportOneSnapshotForBackup - The snapshot identified by the SnapshotVirtualSystem property will be exported for the purpose of backing up the VM. The exported configuration will use the ID of the VM."
     $Msvm_VirtualSystemExportSettingData.CopySnapshotConfiguration = 3
 
     # CopyVmRuntimeInformation
@@ -297,7 +297,7 @@ function Export-VMBackupCheckpoint
     # Base for differential export. This is either path to a Msvm_VirtualSystemReferencePoint instance that
     # represents the reference point or path to a Msvm_VirtualSystemSettingData instance that
     # represents the snapshot to be used as a base for differential export. If the CopySnapshotConfiguration
-    # property is not set to 3(ExportOneSnapshotUseVmId), this property is ignored."
+    # property is not set to 3 (ExportOneSnapshotForBackup), this property is ignored."
     if ($null -eq $ReferencePoint) {
         $Msvm_VirtualSystemExportSettingData.DifferentialBackupBase = $ReferencePoint
     }
@@ -306,9 +306,9 @@ function Export-VMBackupCheckpoint
     }
 
     # BackupIntent
-    # Indicates what should be the VHD path in the exported configuration.
-    # 0: The exported configuration would point to the current VHD.
-    # 1: The exported configuration would point to the base VHD.
+    # Indicates the intent on how the exported backup sets would be used.
+    # 0: BackupIntentPreserveChain = All exported full and differential backup sets would be preserved as they are.
+    # 1: BackupIntentMerge = The exported full and differential backup sets would be merged to synthesize full backup sets.
     $Msvm_VirtualSystemExportSettingData.BackupIntent = $BackupIntent
 
     #Export the virtual machine snapshot, this method returns a job object.
