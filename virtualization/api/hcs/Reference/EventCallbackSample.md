@@ -1,3 +1,13 @@
+---
+title: Event Callback Samples
+description: Event Callback Samples
+author: faymeng
+ms.author: qiumeng
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.date: 06/09/2021
+---
 # Event Callback Samples
 
 This section shows example code on how to configure event callback function in the HCS APIs.

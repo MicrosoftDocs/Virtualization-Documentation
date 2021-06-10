@@ -1,3 +1,13 @@
+---
+title: HCS_EVENT_CALLBACK
+description: HCS_EVENT_CALLBACK
+author: faymeng
+ms.author: qiumeng
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.date: 06/09/2021
+---
 # HCS_EVENT_CALLBACK
 
 ## Description

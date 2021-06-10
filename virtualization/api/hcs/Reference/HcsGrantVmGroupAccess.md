@@ -1,4 +1,14 @@
-# HcsGrantVmAccess
+---
+title: HcsGrantVmGroupAccess
+description: HcsGrantVmGroupAccess
+author: faymeng
+ms.author: qiumeng
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.date: 06/09/2021
+---
+# HcsGrantVmGroupAccess
 
 ## Description
 
@@ -8,7 +18,7 @@ This function adds a group of entries to a files ACL that grants access to the u
 
 ```cpp
 HRESULT WINAPI
-HcsGrantVmAccess(
+HcsGrantVmGroupAccess(
     _In_ PCWSTR filePath
     );
 ```
