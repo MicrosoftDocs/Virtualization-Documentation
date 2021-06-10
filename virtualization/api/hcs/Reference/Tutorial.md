@@ -1,3 +1,13 @@
+---
+title: Quick Start
+description: Quick Start
+author: faymeng
+ms.author: qiumeng
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.date: 06/09/2021
+---
 # Quick Start
 
 Here provides a simple example to use HCS API to manage the virtual machine, which includes HcsCreateComputeSystem, HcsStartComputeSystem, HcsGetComputeSystemProperties, HcsModifyComputeSystem and HcsTerminateComputeSystem.

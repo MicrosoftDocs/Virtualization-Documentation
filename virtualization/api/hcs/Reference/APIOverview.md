@@ -1,8 +1,8 @@
 ---
 title: Host Compute System API Reference
 description: Host Compute System API Reference
-author: faymeng, alvinmorales1
-ms.author: qiumeng, alvinm
+author: faymeng
+ms.author: qiumeng
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization

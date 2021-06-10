@@ -11,7 +11,7 @@ ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
 ---
 # Hyper-V APIs
 
-Hyper-V APIs give users the freedom to build and manage virtual machines or contiainers at various levels in the virtualization stack.
+Hyper-V APIs give users the freedom to build and manage virtual machines or containers at various levels in the virtualization stack.
 
 
 
@@ -19,7 +19,7 @@ Hyper-V APIs give users the freedom to build and manage virtual machines or cont
 
 The WMI provider for Hyper-V enable developers, and scripters, to quickly build custom tools, utilities, and enhancements for the virtualization platform. The WMI interfaces can manage all aspects of the Hyper-V services.
 
-> For more information see: [Hyper-V WMI provider (V2)](https://docs.microsoft.com/en-us/windows/win32/hyperv_v2/windows-virtualization-portal)
+> For more information see: [Hyper-V WMI provider (V2)](https://docs.microsoft.com/windows/win32/hyperv_v2/windows-virtualization-portal)
 
 
 ## Host Compute System APIs
@@ -28,7 +28,7 @@ The main purpose of the Host Compute System API is to provide platform-level acc
 
 The HCS APIs are aimed at developers who want to build applications or management services for VMs or containers. End users are not expected to directly interact with the HCS APIs, the end-user experience (graphical or command line interfaces, higher-level APIs, …) is expected to be provided by the applications or management service that are built on top of the platform APIs.
  
-> For more information see: [Host Compute System API](./hcs/hcs.md)
+> For more information see: [Host Compute System API](https://docs.microsoft.com/virtualization/api/hcs/overview)
 
 
 ## Windows Hypervisor Platform

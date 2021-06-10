@@ -1,3 +1,13 @@
+---
+title: HcsGetOperationResult
+description: HcsGetOperationResult
+author: faymeng
+ms.author: qiumeng
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.date: 06/09/2021
+---
 # HcsGetOperationResult
 
 ## Description

@@ -1,3 +1,13 @@
+---
+title: Host Compute System Overview
+description: Host Compute System Overview
+author: faymeng
+ms.author: qiumeng
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.date: 06/09/2021
+---
 # Host Compute System Overview
 
 >**Applies to: Windows Server 2019, Windows Server 2022, Azure Stack HCI 20H2, Azure Stack 21H2, Microsoft Windows 10 October 2018 Update**
