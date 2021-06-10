@@ -1,6 +1,6 @@
 # [Overview](./index.md)
 
-# [Hyper-V WMI provider (V2)](https://docs.microsoft.com/en-us/windows/win32/hyperv_v2/windows-virtualization-portal)
+# [Hyper-V WMI provider (V2)](https://docs.microsoft.com/windows/win32/hyperv_v2/windows-virtualization-portal)
 
 # Host Compute System API
 ## [Overview](./hcs/overview.md)
