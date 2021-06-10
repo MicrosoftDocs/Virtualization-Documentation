@@ -1,3 +1,13 @@
+---
+title: Host Compute System API Reference
+description: Host Compute System API Reference
+author: faymeng
+ms.author: qiumeng
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.date: 06/09/2021
+---
 # Host Compute System API Reference
 
 The following section contains the definitions of the Host Compute System APIs. The DLL exports a set of C-style Windows API functions, using JSON schema as configuration.

@@ -1,3 +1,14 @@
+---
+title: Operation Completion Samples
+description: Operation Completion Samples
+author: faymeng
+ms.author: qiumeng
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.date: 06/09/2021
+---
+
 # Operation Completion Samples
 
 This section shows example code on how to use operation completion callback function in the HCS APIs.

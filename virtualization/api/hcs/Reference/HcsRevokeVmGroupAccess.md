@@ -1,4 +1,14 @@
-# HcsRevokeVmAccess
+---
+title: HcsRevokeVmAccess
+description: HcsRevokeVmAccess
+author: faymeng
+ms.author: qiumeng
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.date: 06/09/2021
+---
+# HcsRevokeVmGroupAccess
 
 ## Description
 
@@ -8,7 +18,7 @@ This function removes a group of entries in the ACL of a file that granted acces
 
 ```Cpp
 HRESULT WINAPI
-HcsRevokeVmAccess(
+HcsRevokeVmGroupAccess(
     _In_ PCWSTR filePath
     );
 ```
