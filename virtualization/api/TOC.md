@@ -133,9 +133,9 @@
 ## [WHvUnmapGpaRange](./hypervisor-platform/funcs/WHvUnmapGpaRange.md)
 
 # Virtualization Related Tools
-## [Virtual Hard Disk Interface](https://docs.microsoft.com/en-us/windows/win32/api/virtdisk/)
+## [Virtual Hard Disk Interface](https://docs.microsoft.com/windows/win32/api/virtdisk/)
 
-## [HCN Service API](https://docs.microsoft.com/en-us/windows-server/networking/technologies/hcn/hcn-top)
+## [HCN Service API](https://docs.microsoft.com/windows-server/networking/technologies/hcn/hcn-top)
 
 ## [Hypervisor Instruction Emulator API](./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md)
 ### Instruction Emulation
