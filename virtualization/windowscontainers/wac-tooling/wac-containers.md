@@ -12,15 +12,15 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 Windows Admin Center helps you run containers locally on your container host. 
 
-1. Using Windows Admin Center with the Containers extension installed, open the container host you want to manage.
-2. Under **Tools** on the left side, select the **Containers** extension. 
+1. In Windows Admin Center with the **Containers** extension installed, open the container host you want to manage.
+2. Under **Tools** in the left pane, select the **Containers** extension. 
 3. Select the **Images** tab under Container host.
 
-    ![Images tab](./media/WAC-Images.png)
+    ![Images tab](./media/wac-images.png)
 
 4. Select the image you want to run and click **Run**.
 
-    ![Run image](./media/WAC-RunContainers.png)
+    ![Run image](./media/wac-run-containers.png)
 
 5. Under **Run image**, you can specify the container-related configuration:
 
@@ -32,7 +32,7 @@ Windows Admin Center helps you run containers locally on your container host.
 
 6. Once you've finished configuring the container, select **Run**. You can view the status of the running containers on the **Containers** tab:
 
-    ![Containers tab](./media/WAC-Containers.png)
+    ![Containers tab](./media/wac-containers.png)
 
 ## Next steps
 

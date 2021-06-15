@@ -14,7 +14,7 @@ Containers are a technology for packaging and running Windows and Linux applicat
 
 ![Graphic showing how containers can run in the cloud or on-premises, supporting monolithic apps or microservices written in nearly any language.](media/about-3-box.png)
 
-To view a roadmap of planned and currently available features, see the [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1).
+To view a roadmap of planned and currently available features, see the [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1). Also, see [Events](../deploy-containers/events.md) to view recent video presentations and blog posts for Windows Containers.
 
 ## The Microsoft container ecosystem
 
@@ -51,7 +51,7 @@ For more details on the similarities and differences of these complementary tech
 
 ## Container images
 
-All containers are created from container images. Container images are a bundle of files organized into a stack of layers that reside on your local machine or in a remote container registry. The container image consists of the user mode operating system files needed to support your app, your app, any runtimes or dependencies of your app, and any other miscellaneous configuration file your app needs to run properly.
+All containers are created from container images. Container images are a bundle of files organized into a stack of layers that reside on your local machine or in a remote container registry. The container image consists of the user mode operating system files needed to support your app, any runtimes or dependencies of your app, and any other miscellaneous configuration file your app needs to run properly.
 
 Microsoft offers several images (called base images) that you can use as a starting point to build your own container image:
 

@@ -15,6 +15,8 @@ This page contains links to videos, slideshows, and other information from Windo
 <!-- start tab view -->
 # [100 Beginner](#tab/100-beginner)
 
+[2021 highlights for Windows Containers](https://techcommunity.microsoft.com/t5/containers/new-year-new-resolution-and-new-era-of-windows-containers/ba-p/2169761) Read this blog for recent new about Windows Containers!
+
 [Microsoft Build 2020: Modernizing your Windows Server apps](https://channel9.msdn.com/Events/Build/2020/INT143) Get started on your modernization journey with Windows containers and Azure Kubernetes Service to lift and shift Windows Server applications to the cloud.
 
 [Microsoft Ignite 2019: Windows container and the Azure Kubernetes Service](https://azure.microsoft.com/resources/videos/ignite-2019-windows-container-and-the-azure-kubernetes-service/) View this video to learn how to leverage Windows containers and Azure Kubernetes Service.

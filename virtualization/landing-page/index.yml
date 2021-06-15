@@ -91,14 +91,14 @@ conceptualContent:
           itemType: reference
           text: PowerShell
     # Card
-    - title: Hyper-V internals
+    - title: Developer Resources
       links:
         - url: /virtualization/hyper-v-on-windows/reference/hyper-v-architecture
           itemType: reference
           text: Hyper-V architecture
         - url: /virtualization/api/index
           itemType: reference
-          text: Windows hypervisor platform
+          text: Hyper-V APIs
         - url: /virtualization/hyper-v-on-windows/reference/tlfs
           itemType: reference
           text: Hypervisor specifications

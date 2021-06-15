@@ -3,7 +3,7 @@ title: HV_VP_ASSIST_PAGE
 description: HV_VP_ASSIST_PAGE
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv

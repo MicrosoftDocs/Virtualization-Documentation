@@ -4,7 +4,7 @@
 ## [About Windows containers](about/index.md)
 ## [Containers vs. VMs](about/containers-vs-vm.md)
 ## [System requirements](deploy-containers/system-requirements.md)
-## [FAQ](about/faq.md)
+## [FAQ](about/faq.yml)
 
 # Get Started
 ## [Set up your environment](quick-start/set-up-environment.md)
@@ -65,7 +65,7 @@
 ### Docker Swarm
 #### [Swarm Mode](manage-containers/swarm-mode.md)
 ## Security
-#### [Secure Windows containers](manage-containers/container-security.md)
+### [Secure Windows containers](manage-containers/container-security.md)
 ### Group Managed Service Accounts
 #### [Create a gMSA](manage-containers/manage-serviceaccounts.md)
 #### [Configure your app to use a gMSA](manage-containers/gmsa-configure-app.md)

@@ -10,15 +10,40 @@ ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 # Create gMSAs for Windows containers
 
-Windows-based networks commonly use Active Directory (AD) to facilitate authentication and authorization between users, computers, and other network resources. Enterprise application developers often design their apps to be AD-integrated and run on domain-joined servers to take advantage of Integrated Windows Authentication, which makes it easy for users and other services to automatically and transparently sign in to the application with their identities.
+Windows-based networks commonly use Active Directory (AD) to facilitate authentication and authorization between users, computers, and other network resources. Enterprise application developers often design their apps to be AD-integrated and run on domain-joined servers to take advantage of Integrated Windows Authentication, which makes it easy for users and other services to automatically and transparently sign in to the application with their identities. This article explains how to start using Active Directory group managed service accounts with Windows containers.
 
-Although Windows containers cannot be domain joined, they can still use Active Directory domain identities to support various authentication scenarios.
+Although Windows containers cannot be domain joined, they can still use Active Directory domain identities to support various authentication scenarios. To achieve this, you can configure a Windows container to run with a [group Managed Service Account](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA), which is a special type of service account introduced in Windows Server 2012 and designed to allow multiple computers to share an identity without needing to know its password. Windows containers cannot be domain joined, but many Windows applications that run in Windows containers still need AD Authentication. To use AD Authentication, you can configure a Windows container to run with a group Managed Service Account (gMSA). 
+When gMSA was initially introduced, it required the container host to be domain joined, which created a lot of overhead for users to manually join Windows worker nodes to a domain. This limitation has been addressed with gMSA support for non-domain joined containers, so users can now use gMSA with domain-unjoined hosts. Other improvements to gMSA include the following:
 
-To achieve this, you can configure a Windows container to run with a [group Managed Service Account](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA), which is a special type of service account introduced in Windows Server 2012 designed to allow multiple computers to share an identity without needing to know its password.
+- Eliminating the requirement to manually join Windows worker nodes to a domain, which caused a lot of overhead for users. For scaling scenarios, this will simplify the process.
+- In rolling update scenarios, users no longer must rejoin the node to a domain.
+- An easier process for managing the worker node machine accounts to retrieve gMSA service account passwords.
+- A less complicated end-to-end process to configure gMSA with Kubernetes.
 
-When you run a container with a gMSA, the container host retrieves the gMSA password from an Active Directory domain controller and gives it to the container instance. The container will use the gMSA credentials whenever its computer account (SYSTEM) needs to access network resources.
+> [!NOTE]
+> To learn how the Kubernetes community supports using gMSA with Windows containers, see [configuring gMSA](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa).
 
-This article explains how to start using Active Directory group managed service accounts with Windows containers.
+## gMSA architecture and improvements
+
+To address the limitations of the initial version of gMSA, new gMSA support for non-domain joined containers uses a portable user identity instead of a host identity to retrieve gMSA credentials. Therefore, manually joining Windows worker nodes to a domain is no longer necessary, although it's still supported. The user identity/credentials are stored as a Kubernetes secret where authenticated users can retrieve it.
+
+![Diagram of group Managed Service Accounts version two](../media/gmsa-v2.png)
+
+gMSA support for non-domain joined containers provides the flexibility of creating containers with gMSA without joining the host node to the domain. Starting in Windows Server 2019, Container Credential Guard (CCG) is supported which enables a plug-in mechanism to retrieve gMSA credentials from Active Directory. You can use that identity to start the container. For more information on CCG, see the [ICcgDomainAuthCredentials interface](https://docs.microsoft.com/windows/win32/secauthn/iccgdomainauthcredentials).
+
+> [!NOTE]
+> In Azure Kubernetes Service on Azure Stack HCI, you can use the plug-in to communicate from CCG to AD and then retrieve the gMSA credentials. For more information, see [configure group Managed Service Account](https://docs.microsoft.com/azure-stack/aks-hci/prepare-windows-nodes-gmsa).
+
+View the diagram below to follow the steps of the Container Credential Guard process:
+
+1. Using a _CredSpec_ file as input, the CCG process is started on the node host.
+2. CCG uses information in the _CredSpec_ file to launch a plug-in and then retrieve the account credentials in the secret store associated with the plug-in.
+3. CCG uses the retrieved account credentials to retrieve the gMSA password from AD.
+4. CCG makes the gMSA password available to a container that has requested credentials.
+5. The container authenticates to the domain controller using the gMSA password to get a Kerberos Ticket-Granting Ticket (TGT).
+6. Applications running as Network Service or Local System in the container can now authenticate and access domain resources, such as the gMSA.
+
+   ![Diagram of the Container Credential Guard process](../media/credential-guard.png)
 
 ## Prerequisites
 
@@ -26,7 +51,7 @@ To run a Windows container with a group managed service account, you will need t
 
 - An Active Directory domain with at least one domain controller running Windows Server 2012 or later. There are no forest or domain functional level requirements to use gMSAs, but the gMSA passwords can only be distributed by domain controllers running Windows Server 2012 or later. For more information, see [Active Directory requirements for gMSAs](/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#BKMK_gMSA_Req).
 - Permission to create a gMSA account. To create a gMSA account, you'll need to be a Domain Administrator or use an account that has been delegated the *Create msDS-GroupManagedServiceAccount objects* permission.
-- Access to the internet to download the CredentialSpec PowerShell module. If you're working in a disconnected environment, you can [save the module](/powershell/module/powershellget/save-module?view=powershell-5.1) on a computer with internet access and copy it to your development machine or container host.
+- Access to the internet to download the CredentialSpec PowerShell module. If you're working in a disconnected environment, you can [save the module](/powershell/module/powershellget/save-module?view=powershell-5.1&preserve-view=true) on a computer with internet access and copy it to your development machine or container host.
 
 ## One-time preparation of Active Directory
 
@@ -86,7 +111,7 @@ Once you've decided on the name for your gMSA, run the following cmdlets in Powe
 
 > [!TIP]
 > You'll need to use an account that belongs to the **Domain Admins** security group or has been delegated the **Create msDS-GroupManagedServiceAccount objects** permission to run the following commands.
-> The [New-ADServiceAccount](/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps) cmdlet is part of the AD PowerShell Tools from [Remote Server Administration Tools](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools).
+> The [New-ADServiceAccount](/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps&preserve-view=true) cmdlet is part of the AD PowerShell Tools from [Remote Server Administration Tools](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools).
 
 ```powershell
 # Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively

@@ -3,7 +3,7 @@ title: HvCallModifyVtlProtectionMask
 description: HvCallModifyVtlProtectionMask hypercall
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv
