@@ -3,7 +3,7 @@ title: Virtualized container time zone
 description: Learn how to configure the time zone in a container.
 keywords: containers, timezone, virtualization
 author: brasmith-ms
-ms. author: brasmith
+ms. author: brandon.smith
 ms.topic: conceptual
 ms.date: 06/15/2021
 ---
