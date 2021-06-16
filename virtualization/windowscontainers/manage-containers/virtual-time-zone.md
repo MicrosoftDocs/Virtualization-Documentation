@@ -7,13 +7,8 @@ ms.author: brasmith
 ms.topic: conceptual
 ms.date: 06/15/2021
 ---
-# Virtualized time zone
 
-| SKU | Supported build |
-|---|---|
-| Windows Server 2019 | 10.0.17763.1935 or higher |
-| 20H2 SAC | 10.0.19042.985 or higher |
-| Windows Server 2022 | All versions |
+# Virtualized time zone
 
 Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. With this feature, Windows containers offer the following behaviors:
 
@@ -22,6 +17,14 @@ Windows containers support the ability to maintain a virtualized time zone confi
 - If you configure the container's time zone and subsequently save the state of the container, the time zone configuration persists across reboots.
 
 All kernel mode and user mode APIs relating to configuration of the system time zone are now container-aware. When a thread running in the context of a container calls a system API to query the local time, it retrieves the container's time zone configuration instead of the host's. Time zone data written from within a container now persists in container-specific storage and the container in question no longer inherits the host’s current time zone data during startup. This means that once you set the time zone, the container continues to use the configured time zone across reboots. Any containers built on top of an image inherit the time zone configuration as long as it was explicitly set within one of the layers.
+
+The following table shows the supported build for each SKU:
+
+| SKU | Supported build |
+|---|---|
+| Windows Server 2019 | 10.0.17763.1935 or higher |
+| 20H2 SAC | 10.0.19042.985 or higher |
+| Windows Server 2022 | All versions |
 
 ## How do I configure the container's time zone?
 
