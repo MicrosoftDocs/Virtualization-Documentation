@@ -49,7 +49,7 @@
 ### [Version compatibility](deploy-containers/version-compatibility.md)
 ### [Update containers](deploy-containers/update-containers.md)
 ### [Resource controls](manage-containers/resource-controls.md)
-### [Container Time Zones](manage-containers/virtual-time-zone.md)
+### [Container time zones](manage-containers/virtual-time-zone.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ### [Remote management of a Windows Docker host](management/manage_remotehost.md)
