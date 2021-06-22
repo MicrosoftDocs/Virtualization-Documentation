@@ -170,10 +170,10 @@ function Get-CimInstancePath {
 
 <#
 .SYNOPSIS
-    Helper function that converts a CIM instancce to an embedded Unicode string.
+    Helper function that converts a CIM instance to an embedded Unicode string.
 
 .DESCRIPTION
-    Helper function that converts a CIM instancce to an embedded Unicode string.
+    Helper function that converts a CIM instance to an embedded Unicode string.
     Useful to pass to Hyper-V WMI cmdlets that expect string versions of MSVM
     classes as parameters.
 
