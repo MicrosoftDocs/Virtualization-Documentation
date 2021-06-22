@@ -4,7 +4,7 @@
 ## [About Windows containers](about/index.md)
 ## [Containers vs. VMs](about/containers-vs-vm.md)
 ## [System requirements](deploy-containers/system-requirements.md)
-## [FAQ](about/faq.md)
+## [FAQ](about/faq.yml)
 
 # Get Started
 ## [Set up your environment](quick-start/set-up-environment.md)
@@ -45,10 +45,12 @@
 # Concepts
 ## Windows Container Essentials
 ### [Container base Images](manage-containers/container-base-images.md)
+### [Base image servicing lifecycles](deploy-containers/base-image-lifecycle.md)
 ### [Isolation modes](manage-containers/hyperv-container.md)
 ### [Version compatibility](deploy-containers/version-compatibility.md)
 ### [Update containers](deploy-containers/update-containers.md)
 ### [Resource controls](manage-containers/resource-controls.md)
+### [Container time zones](manage-containers/virtual-time-zone.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ### [Remote management of a Windows Docker host](management/manage_remotehost.md)
@@ -84,7 +86,6 @@
 ### [GPU acceleration](deploy-containers/gpu-acceleration.md)
 
 # Reference
-## [Base image servicing lifecycles](deploy-containers/base-image-lifecycle.md)
 ## [Events](deploy-containers/events.md)
 ## [Anti-virus optimization](/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Container platform tools](deploy-containers/containerd.md)

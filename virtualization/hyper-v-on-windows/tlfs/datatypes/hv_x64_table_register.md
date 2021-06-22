@@ -3,7 +3,7 @@ title: HV_X64_TABLE_REGISTER
 description: HV_X64_TABLE_REGISTER
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv
