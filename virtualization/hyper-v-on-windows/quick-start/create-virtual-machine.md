@@ -75,12 +75,12 @@ Learn how to create a virtual machine and install an operating system in your ne
 
   # Add DVD Drive to Virtual Machine
   Add-VMScsiController -VMName $VMName
+  
+  # Mount Installation Media
   Add-VMDvdDrive -VMName $VMName -ControllerNumber 1 -ControllerLocation 0 -Path $InstallMedia
 
-  # Mount Installation Media
-  $DVDDrive = Get-VMDvdDrive -VMName $VMName
-
   # Configure Virtual Machine to Boot from DVD
+  $DVDDrive = Get-VMDvdDrive -VMName $VMName
   Set-VMFirmware -VMName $VMName -FirstBootDevice $DVDDrive
   ```
 
