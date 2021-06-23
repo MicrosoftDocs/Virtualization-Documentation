@@ -3,9 +3,9 @@ title: JSON Schema Reference
 description: JSON Schema Reference
 author: faymeng
 ms.author: qiumeng
-ms.topic: article
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
+ms.technology: virtualization
 ms.date: 06/09/2021
 ---
 # JSON Schema Reference

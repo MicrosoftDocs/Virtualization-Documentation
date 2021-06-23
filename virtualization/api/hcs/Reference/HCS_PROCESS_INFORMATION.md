@@ -3,9 +3,9 @@ title: HCS_PROCESS_INFORMATION
 description: HCS_PROCESS_INFORMATION
 author: faymeng
 ms.author: qiumeng
-ms.topic: article
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
+ms.technology: virtualization
 ms.date: 06/09/2021
 ---
 # HCS_PROCESS_INFORMATION
