@@ -4,7 +4,7 @@ description: An overview of the Windows container base images and when to use th
 keywords: docker, containers, hashes
 author: v-susbo
 ms.author: v-susbo
-ms.date: 09/25/2019
+ms.date: 06/22/2021
 ms.topic: conceptual
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 ---
