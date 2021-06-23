@@ -2,7 +2,8 @@
 title: Windows Container Base Images
 description: An overview of the Windows container base images and when to use them.
 keywords: docker, containers, hashes
-author: patricklang
+author: v-susbo
+ms.author: v-susbo
 ms.date: 09/25/2019
 ms.topic: conceptual
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
@@ -75,7 +76,7 @@ Windows offers four container base images that users can build from. Each base i
     </li>
     <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
         <a class="is-undecorated is-full-height is-block"
-            href="https://hub.docker.com/_/microsoft-windows-iotcore" data-linktype="external">
+            href="https://hub.docker.com/_/microsoft-windows-server-insider/" data-linktype="external">
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
@@ -84,10 +85,10 @@ Windows offers four container base images that users can build from. Each base i
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
                     <div class="has-padding-bottom-none">
-                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Windows IoT Core</h3>
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Windows Server</h3>
                     </div>
                     <div class="is-size-7 has-margin-top-small has-line-height-reset">
-                        <p>Purpose-built for IoT applications.</p>
+                        <p>Provides the full Windows API set.</p>
                     </div>
                 </div>
             </article>
