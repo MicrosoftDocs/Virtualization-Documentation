@@ -1,3 +1,14 @@
+---
+title: HDV_PCI_BAR_SELECTOR Enumeration
+description: HDV_PCI_BAR_SELECTOR Enumeration
+author: faymeng
+ms.author: qiumeng
+ms.topic: reference
+ms.prod: virtualization
+ms.technology: virtualization
+ms.date: 06/09/2021
+---
+
 # HDV_PCI_BAR_SELECTOR Enumeration
 
 Discriminator for the BAR selection.

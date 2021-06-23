@@ -1,3 +1,14 @@
+---
+title: HdvInitializeDeviceHost function
+description: HdvInitializeDeviceHost function
+author: faymeng
+ms.author: qiumeng
+ms.topic: reference
+ms.prod: virtualization
+ms.technology: virtualization
+ms.date: 06/09/2021
+---
+
 # HdvInitializeDeviceHost function
 
 Initializes a device emulator host in the caller’s process and associates it with the specified compute system.

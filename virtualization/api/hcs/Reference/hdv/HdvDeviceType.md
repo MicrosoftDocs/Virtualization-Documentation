@@ -1,3 +1,13 @@
+---
+title: HDV_DEVICE_TYPE
+description: HDV_DEVICE_TYPE
+author: faymeng
+ms.author: qiumeng
+ms.topic: reference
+ms.prod: virtualization
+ms.technology: virtualization
+ms.date: 06/09/2021
+---
 # HDV_DEVICE_TYPE
 
 ## Description
