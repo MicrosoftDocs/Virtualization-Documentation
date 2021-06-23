@@ -3,9 +3,9 @@ title: HcsInitializeWritableLayer
 description: HcsInitializeWritableLayer
 author: faymeng
 ms.author: qiumeng
-ms.topic: article
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
+ms.technology: virtualization
 ms.date: 06/09/2021
 ---
 # HcsInitializeWritableLayer

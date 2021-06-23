@@ -1,3 +1,13 @@
+---
+title: HDV_PCI_PNP_ID structure
+description: HDV_PCI_PNP_ID structure
+author: faymeng
+ms.author: qiumeng
+ms.topic: reference
+ms.prod: virtualization
+ms.technology: virtualization
+ms.date: 06/09/2021
+---
 # HDV_PCI_PNP_ID structure
 
 PnP ID definition for a virtual device.
