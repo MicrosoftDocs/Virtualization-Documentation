@@ -2,9 +2,9 @@
 title: About Windows containers
 description: Containers are a technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. This topic discusses how Microsoft, Windows, and Azure help you develop and deploy apps in containers, including using Docker and Azure Kubernetes Service.
 keywords: docker, containers
-author: taylorb-microsoft
-ms.author: jgerend
-ms.date: 10/22/2019
+author: v-susbo
+ms.author: v-susbo
+ms.date: 06/22/2021
 ms.topic: overview
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
@@ -56,9 +56,9 @@ All containers are created from container images. Container images are a bundle 
 Microsoft offers several images (called base images) that you can use as a starting point to build your own container image:
 
 * <strong>Windows</strong> - contains the full set of Windows APIs and system services (minus server roles).
+* <strong>Windows Server</strong> - contains the full set of Windows APIs and system services.
 * <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs–namely the full .NET framework. It also includes most server roles, though sadly to few, not Fax Server.
 * <strong>Nano Server</strong> - the smallest Windows Server image, with support for the .NET Core APIs and some server roles.
-* <strong>Windows 10 IoT Core</strong> - a version of Windows used by hardware manufacturers for small Internet of Things devices that run ARM or x86/x64 processors.
 
 As mentioned earlier, container images are composed of a series of layers. Each layer contains a set of files that, when overlaid together, represent your container image. Because of the layered nature of containers, you don't have to always target a base image to build a Windows container. Instead, you could target another image that already carries the framework you want. For example, the .NET team publishes a [.NET core image](https://hub.docker.com/_/microsoft-dotnet-core) that carries the .NET core runtime. It saves users from needing to duplicate the process of installing .NET core–instead they can reuse the layers of this container image. The .NET core image itself is built based upon Nano Server.
 
