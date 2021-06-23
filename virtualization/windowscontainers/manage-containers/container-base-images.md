@@ -116,20 +116,18 @@ How do you choose the right base image to build upon? For most users, `Windows S
 
 - **Does your application require the full .NET framework?** If the answer to this question is yes, you should target `Windows Server Core`.
 - **Are you building a Windows app based upon .NET Core?** If the answer to this question is yes, you should target `Nanoserver`.
-- **Are you building an IoT application?** If the answer to this question is yes, you should target `IoT Core`.
 - **Is the Windows Server Core container image missing a dependency your app needs?** If the answer to this question is yes, you should attempt to target `Windows`. This image is much larger than the other base images, but it carries many of the core Windows libraries (such as the GDI library).
-- **Are you a Windows Insider?** If yes, you should consider using the insider version of the images. See "Base images for Windows insiders" below.
+- **Are you a Windows Insider?** If yes, you should consider using the insider version of the images. For more information, see "Base images for Windows insiders" below.
 
 > [!TIP]
 > Many Windows users want to containerize applications that have a dependency on .NET. In addition to the four base images described here, Microsoft publishes several Windows container images that come pre-configured with popular Microsoft frameworks, such as a the [.NET framework](https://hub.docker.com/_/microsoft-dotnet-framework) image and the [ASP .NET](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet/) image.
 
-### Base images for Windows Insiders
+## Base images for Windows Insiders
 
-Microsoft provides "insider" versions of each container base image. These insider container images carry the latest and greatest feature development in our container images. When you're running a host that is an insider version of Windows (either Windows Insider or Windows Server Insider), it is preferable to use these images. The insider images are available on Docker Hub:
+Microsoft provides "insider" versions of each container base image. These insider container images carry the latest and greatest feature development in our container images. When you're running a host that is an insider version of Windows (either Windows Insider or Windows Server Insider), it is preferable to use these images. The following insider images are available on Docker Hub:
 
 - [mcr.microsoft.com/windows/servercore/insider](https://hub.docker.com/_/microsoft-windows-servercore-insider)
 - [mcr.microsoft.com/windows/nanoserver/insider](https://hub.docker.com/_/microsoft-windows-nanoserver-insider)
-- [mcr.microsoft.com/windows/iotcore/insider](https://hub.docker.com/_/microsoft-windows-iotcore-insider)
 - [mcr.microsoft.com/windows/insider](https://hub.docker.com/_/microsoft-windows-insider)
 
 Read [Use Containers with the Windows Insider Program](../deploy-containers/insider-overview.md) to learn more.
