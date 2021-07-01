@@ -7,6 +7,11 @@ ms.topic: reference
 ms.prod: virtualization
 ms.technology: virtualization
 ms.date: 06/09/2021
+api_name: Operation Completion Samples
+api_location: computecore.dll
+api_type: DllExport
+topic_type: apiref
+
 ---
 
 # Operation Completion Samples
