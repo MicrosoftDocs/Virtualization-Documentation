@@ -94,9 +94,7 @@ Container orchestrators were built to help manage containers at scale and in pro
 
 There are many different orchestrators that you can use with Windows containers; here are the options Microsoft provides:
 - [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) - use a managed Azure Kubernetes service
-- [Azure Service Fabric](/azure/service-fabric/) - use a managed service
 - [Azure Stack with the AKS Engine](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) - use Azure Kubernetes Service on-premises
-- [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md) - set up Kubernetes yourself on Windows
 
 ## Try containers on Windows
 
