@@ -97,7 +97,7 @@ Windows offers four container base images that users can build from. Each base i
 </ul>
 
 > [!NOTE]
-> The Windows Server base image is only available with the Windows Server 2022 Insider preview release.
+> The Windows Server base image is available only with the Windows Server 2022 Insider preview release.
 
 ## Image discovery
 
@@ -111,10 +111,10 @@ The MCR does not have its own catalog experience and is meant to support existin
 
 ## Choosing a base image
 
-How do you choose the right base image to build upon? For most users, `Windows Server Core` and `Nanoserver` will be the most appropriate image to use.
+How do you choose the right base image to build upon? For most users, `Windows Server Core` and `Nanoserver` will be the most appropriate image to use. Each base image is briefly described below:
 
 - `Nano Server` is an ultralight Windows offering for new application development.
-- `Server Core` is medium size and a good option for "lifting and shifting" Windows Server apps.
+- `Server Core` is medium in size and a good option for "lifting and shifting" Windows Server apps.
 - `Windows` is the largest image and has full Windows API support for workloads.
 - `Windows Server` is slightly smaller than the Windows image, has full Windows API support, and allows you to use more server features.
 
@@ -126,7 +126,7 @@ How do you choose the right base image to build upon? For most users, `Windows S
 - **Are you building a Windows app based upon .NET Core?** If the answer to this question is yes, you should target `Nanoserver`.
 - **Is the Windows Server Core container image missing a dependency your app needs?** If the answer to this question is yes, you should attempt to target `Windows`. This image is much larger than the other base images, but it carries many of the core Windows libraries (such as the GDI library).
 - **Are you a Windows Insider?** If yes, you should consider using the insider version of the images. For more information, see "Base images for Windows insiders" below.
-- **Do you need GPU acceleration support for your container workloads?** If yes, you should consider using the Windows Server image to include hardware acceleration for your Windows containers workloads.
+- **Do you need GPU acceleration support for your container workloads?** If yes, you should consider using the `Windows Server` image to include hardware acceleration for your Windows containers workloads.
 
 > [!TIP]
 > Many Windows users want to containerize applications that have a dependency on .NET. In addition to the four base images described here, Microsoft publishes several Windows container images that come pre-configured with popular Microsoft frameworks, such as a the [.NET framework](https://hub.docker.com/_/microsoft-dotnet-framework) image and the [ASP .NET](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet/) image.
@@ -150,4 +150,4 @@ Nanoserver was built to provide just enough API surface to run apps that have a 
 
 ## Windows vs Windows Server
 
-The Windows Server image (3.1 GB) is slightly smaller in size from the Windows image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and no limits on IIS connections. To use the Windows Server image, you’ll need a Windows Server 2022 installation that's based on the Insiders preview build 20344. For more information, see [Windows Insider preview downloads](https://www.microsoft.com/software-download/windowsinsiderpreviewserver).
+The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and no limits on IIS connections. To use the Windows Server image, you’ll need a Windows Server 2022 installation that's based on the Insiders preview build 20344. For more information, see [Windows Insider preview downloads](https://www.microsoft.com/software-download/windowsinsiderpreviewserver).

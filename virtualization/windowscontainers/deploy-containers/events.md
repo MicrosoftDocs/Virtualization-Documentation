@@ -10,7 +10,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Windows containers events and slideshows
 
-This page contains links to videos, slideshows, and other information from Windows Server container events. Select the tab that matches your current level of knowledge about containers to see specific events for that level.
+This page contains links to videos, slideshows, blog posts, and other information from Windows Server container events. Select a tab to see different events that took place during a specific year.
 
 <!-- start tab view -->
 # [2020 and later](#tab/2020-and-later)
@@ -41,7 +41,7 @@ This page contains links to videos, slideshows, and other information from Windo
 
 [Microsoft Ignite 2019: Navigate common pitfalls encountered when containerizing Windows Server applications](https://myignite.microsoft.com/archives/IG19-THR2191) Watch a step-by-step process of containerizing a challenging Windows Server 2008 legacy .NET application.
 
-# [2018 and older](#tab/2018-and-older)
+# [2018](#tab/2018)
 
 [Modernize your Windows Server applications with containers](https://channel9.msdn.com/Events/Build/2018/BRK2149) Do you have applications running on Windows Server? Are those apps difficult to deploy, patch, and manage? Container-based workflows address many of these challenges. This session focuses on the container-based developer workflows that are available in Windows Server along with Azure, Service Fabric and partner services such as Docker that make containers a real option for Windows applications.
 
