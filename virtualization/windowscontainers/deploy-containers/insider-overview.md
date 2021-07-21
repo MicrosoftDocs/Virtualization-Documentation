@@ -27,19 +27,25 @@ If you do not have Docker already installed, follow the [Get Started](../quick-s
 
 By being part of the Windows Insider program, you can use our latest builds for the base images.
 
-To pull the Nano Server Insider base image run the following:
+To pull the Windows Server Insider base image, run the following:
+
+```console
+docker pull mcr.microsoft.com/windows/server/insider:10.0.20344.1
+```
+
+To pull the Nano Server Insider base image, run the following:
 
 ```console
 docker pull mcr.microsoft.com/nanoserver/insider
 ```
 
-To pull the Windows Server Core insider base image run the following:
+To pull the Windows Server Core insider base image, run the following:
 
 ```console
 docker pull mcr.microsoft.com/windows/servercore/insider
 ```
 
-The "Windows" base images also have an insider version that is available to pull. You can read more about the available insider base images in the [Container base images](../manage-containers/container-base-images.md) doc.
+To see all of the available insider base images, see [Base images for Windows Insiders](../manage-containers/container-base-images.md#base-images-for-windows-insiders) doc.
 
 > [!IMPORTANT]
 > Please read the Windows containers OS image [EULA](../images-eula.md ) and the Windows Insider program [Terms of Use](https://insider.windows.com/program-agreement).
