@@ -2,8 +2,8 @@
 title: Known Issues
 description: Known Issues for Windows Server containers
 keywords: metadata, containers, version,
-author: weijuans
-ms. author: weijuans
+author: taylob
+ms. author: taylob
 manager: taylob
 ms.date: 07/21/2021
 ---
@@ -16,9 +16,9 @@ In prepping for general availability of Windows Server, version 2004 release, we
 
 The performance issues that we observed are:
 
-When using the Server Core container image to build your own image and then upload it to a remote container registry, such as Azure Container Registry, when you pull that image from the registry and run it, you will see a slower performance of the container. However, if you build the image and run the image locally, you will not observe that performance difference.
+When using the Server Core container image to build your own image and then uploading it to a remote container registry, such as Azure Container Registry, when you pull that image from the registry and run it, you'll see a slower performance of the container. However, if you build the image and run the image locally, you will not observe that performance difference.
 
-This issue is now root caused and we are working on the fix. You can find the following links that track the issue:
+This issue is now root caused, and we are working on the fix. You can find the following links that track the issue:
 [microsoft/hcsshim#830](https://github.com/microsoft/hcsshim/issues/830);
 
 [moby/moby#41066](https://github.com/moby/moby/issues/41066);
