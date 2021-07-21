@@ -6,7 +6,7 @@
 ## [System requirements](deploy-containers/system-requirements.md)
 ## [FAQ](about/faq.yml)
 
-# Get Started
+# Quickstarts
 ## [Set up your environment](quick-start/set-up-environment.md)
 ## [Run your first container](quick-start/run-your-first-container.md)
 ## [Containerize a sample app](quick-start/building-sample-app.md)
@@ -28,12 +28,11 @@
 ### [Azure App Service Quickstart](/azure/app-service/app-service-web-get-started-windows-container)
 ### [Migrate an ASP.NET app with Windows containers and Azure App Service](/azure/app-service/app-service-web-tutorial-windows-containers-custom-fonts)
 ## Use Linux containers on Windows
-### [Overview](deploy-containers/linux-containers.md)
+### [Linux containers on Windows 10](deploy-containers/linux-containers.md)
 ### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
 ## Use containers with the Windows Insider program
 ### [Overview](deploy-containers/insider-overview.md)
-## Containerize apps with printer services
-### [Printer services](deploy-containers/print-spooler.md)
+## [Containerize apps with printer services](deploy-containers/print-spooler.md)
 ## Manage containers with Windows Admin Center
 ### [Containers extension overview](WAC-tooling/WAC-extension.md)
 ### [Manage container images](WAC-tooling/WAC-Manage.md)
@@ -55,7 +54,7 @@
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ### [Remote management of a Windows Docker host](management/manage_remotehost.md)
 ## Container orchestration
-### [Overview](about/overview-container-orchestrators.md)
+### [Windows Container orchestration overview](about/overview-container-orchestrators.md)
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
 #### [Troubleshooting](kubernetes/common-problems.md)
@@ -74,12 +73,12 @@
 #### [Orchestrate containers with a gMSA](manage-containers/gmsa-orchestrate-containers.md)
 #### [Troubleshoot gMSAs](manage-containers/gmsa-troubleshooting.md)
 ## Networking
-### [Overview](container-networking/architecture.md)
+### [Windows container networking](container-networking/architecture.md)
 ### [Network topologies and drivers](container-networking/network-drivers-topologies.md)
 ### [Network isolation and security](container-networking/network-isolation-security.md)
 ### [Configure advanced networking options](container-networking/advanced.md)
 ## Storage
-### [Overview](manage-containers/container-storage.md)
+### [Container Storage overview](manage-containers/container-storage.md)
 ### [Persistent storage](manage-containers/persistent-storage.md)
 ## Devices
 ### [Hardware devices](deploy-containers/hardware-devices-in-containers.md)
