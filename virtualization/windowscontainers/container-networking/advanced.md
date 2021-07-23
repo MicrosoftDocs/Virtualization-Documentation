@@ -1,23 +1,22 @@
 ---
-title: Windows Container Networking
+title: Advanced network options in Windows
 description: Advanced networking for Windows containers.
 keywords: docker, containers
 author: jmesser81
+ms.author: jgerend
 ms.date: 03/27/2018
-ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
+ms.topic: how-to
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 # Advanced Network Options in Windows
 
-Several network driver options are supported to take advantage of Windows-specific capabilities and features. 
+Several network driver options are supported to take advantage of Windows-specific capabilities and features.
 
 ## Switch Embedded Teaming with Docker Networks
 
 > Applies to all network drivers
 
-You can take advantage of [Switch Embedded Teaming](https://docs.microsoft.com/windows-server/virtualization/hyper-v-virtual-switch/RDMA-and-Switch-Embedded-Teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option.
+You can take advantage of [Switch Embedded Teaming](/windows-server/virtualization/hyper-v-virtual-switch/RDMA-and-Switch-Embedded-Teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option.
 
 ```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2", "Ethernet 3" TeamedNet
@@ -54,7 +53,7 @@ C:\> docker network create -d l2bridge -o com.docker.network.windowsshim.enable_
 
 ## Specify the Name of a Network to the HNS Service
 
-> Applies to all network drivers 
+> Applies to all network drivers
 
 Ordinarily, when you create a container network using `docker network create`, the network name that you provide is used by the Docker service but not by the HNS service. If you are creating a network, you can specify the name that it is given by the HNS service using the option, `-o com.docker.network.windowsshim.networkname=<network name>` to the `docker network create` command. For instance, you might use the following command to create a transparent network with a name that is specified to the HNS service:
 
@@ -64,7 +63,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.netw
 
 ## Bind a Network to a Specific Network Interface
 
-> Applies to all network drivers except 'nat'  
+> Applies to all network drivers except 'nat'
 
 To bind a network (attached through the Hyper-V virtual switch) to a specific network interface, use the option, `-o com.docker.network.windowsshim.interface=<Interface>` to the `docker network create` command. For instance, you might use the following command to create a transparent network which is attached to the "Ethernet 2" network interface:
 
@@ -80,7 +79,7 @@ PS C:\> Get-NetAdapter
 
 ## Specify the DNS Suffix and/or the DNS Servers of a Network
 
-> Applies to all network drivers 
+> Applies to all network drivers
 
 Use the option, `-o com.docker.network.windowsshim.dnssuffix=<DNS SUFFIX>` to specify the DNS suffix of a network, and the option, `-o com.docker.network.windowsshim.dnsservers=<DNS SERVER/S>` to specify the DNS servers of a network. For example, you might use the following command to set the DNS suffix of a network to "example.com" and the DNS servers of a network to 4.4.4.4 and 8.8.8.8:
 
@@ -93,9 +92,11 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnss
 See [this article](https://www.microsoft.com/research/project/azure-virtual-filtering-platform/) for more information.
 
 ## Tips & Insights
+
 Here's a list of handy tips and insights, inspired by common questions on Windows container networking that we hear from the community...
 
-#### HNS requires that IPv6 is enabled on container host machines 
+#### HNS requires that IPv6 is enabled on container host machines
+
 As part of [KB4015217](https://support.microsoft.com/help/4015217/windows-10-update-kb4015217) HNS requires that IPv6 is enabled on Windows container hosts. If you're running into an error such as the one below, there's a chance that IPv6 is disabled on your host machine.
 ```
 docker: Error response from daemon: container e15d99c06e312302f4d23747f2dfda4b11b92d488e8c5b53ab5e4331fd80636d encountered an error during CreateContainer: failure in a Windows system call: Element not found.
@@ -109,7 +110,7 @@ C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Para
 
 #### Linux Containers on Windows
 
-**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux).
+**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](../quick-start/quick-start-windows-10-linux.md).
 > NOTE: LCOW is deprecating the Moby Linux VM, and it will utilize the default HNS "nat" internal vSwitch.
 
 #### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition))
@@ -131,7 +132,7 @@ If you are running VMware as your hypervisor, you will need to enable promiscuou
 If you wish to create more than one transparent network you must specify to which (virtual) network adapter the external Hyper-V Virtual Switch should bind. To specify the interface for a network, use the following syntax:
 ```
 # General syntax:
-C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface=<INTERFACE NAME> <NETWORK NAME> 
+C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface=<INTERFACE NAME> <NETWORK NAME>
 
 # Example:
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" myTransparent2
@@ -152,13 +153,13 @@ C:\> docker run -it --network=MyTransparentNet --ip=10.123.174.105 windowsserver
 Only static IP assignment is supported with container networks created using the l2bridge driver. As stated above, remember to use the *--subnet* and *--gateway* parameters to create a network that's configured for static IP assignment.
 
 #### Networks that leverage external vSwitch must each have their own network adapter
-Note that if multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) are created on the same container host, each of them requires its own network adapter. 
+Note that if multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) are created on the same container host, each of them requires its own network adapter.
 
 #### IP assignment on stopped vs. running containers
 Static IP assignment is performed directly on the container's network adapter and must only be performed when the container is in a STOPPED state. "Hot-add" of container network adapters or changes to the network stack is not supported (in Windows Server 2016) while the container is running.
 
 #### Existing vSwitch (not visible to Docker) can block transparent network creation
-If you encounter an error in creating a transparent network, it is possible that there is an external vSwitch on your system which was not automatically discovered by Docker and is therefore preventing the transparent network from being bound to your container host's external network adapter. 
+If you encounter an error in creating a transparent network, it is possible that there is an external vSwitch on your system which was not automatically discovered by Docker and is therefore preventing the transparent network from being bound to your container host's external network adapter.
 
 When creating a transparent network, Docker creates an external vSwitch for the network then tries to bind the switch to an (external) network adapter - the adapter could be a VM Network Adapter or the physical network adapter. If a vSwitch has already been created on the container host, *and it is visible to Docker,* the Windows Docker engine will use that switch instead of creating a new one. However, if the vSwitch which was created out-of-band (i.e. created on the container host using HYper-V Manager or PowerShell) and is not yet visible to Docker, the Windows Docker engine will try create a new vSwitch and then be unable to connect the new switch to the container host external network adapter (because the network adapter will already be connected to the switch that was created out-of-band).
 
@@ -175,7 +176,7 @@ PS C:\> restart-service docker
 * Another option is to use the '-o com.docker.network.windowsshim.interface' option to bind the transparent network's external vSwitch to a specific network adapter which is not already in use on the container host (i.e. a network adapter other than the one being used by the vSwitch that was created out-of-band). The '-o' option is described further in the [Creating multiple transparent networks on a single container host](advanced.md#creating-multiple-transparent-networks-on-a-single-container-host) section of this document.
 
 
-## Windows Server 2016 Work-arounds 
+## Windows Server 2016 Work-arounds
 
 Although we continue to add new features and drive development, some of these features will not be back-ported to older platforms. Instead, the best plan of action is to "get on the train" for latest updates to Windows 10 and Windows Server.  The section below lists some work-arounds and caveats which apply to Windows Server 2016 and older versions of Windows 10 (i.e. before 1704 Creators Update)
 

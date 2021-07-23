@@ -3,10 +3,9 @@ title: Troubleshoot gMSAs for Windows containers
 description: How to troubleshoot Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts, troubleshooting, troubleshoot
 author: rpsqrd
+ms.author: jgerend
 ms.date: 10/03/2019
-ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
+ms.topic: troubleshooting
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 # Troubleshoot gMSAs for Windows containers
@@ -40,7 +39,7 @@ If you're encountering errors when running a container with a gMSA, the followin
 ### Make sure the host can use the gMSA
 
 1. Verify the host is domain joined and can reach the domain controller.
-2. Install the AD PowerShell Tools from RSAT and run [Test-ADServiceAccount](https://docs.microsoft.com/powershell/module/activedirectory/test-adserviceaccount) to see if the computer has access to retrieve the gMSA. If the cmdlet returns **False**, the computer does not have access to the gMSA password.
+2. Install the AD PowerShell Tools from RSAT and run [Test-ADServiceAccount](/powershell/module/activedirectory/test-adserviceaccount) to see if the computer has access to retrieve the gMSA. If the cmdlet returns **False**, the computer does not have access to the gMSA password.
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
@@ -67,7 +66,7 @@ If you're encountering errors when running a container with a gMSA, the followin
 
 1. Run **Get-CredentialSpec** from the [CredentialSpec PowerShell module](https://aka.ms/credspec) to locate all credential specs on the machine. The credential specs must be stored in the "CredentialSpecs" directory under the Docker root directory. You can find the Docker root directory by running **docker info -f "{{.DockerRootDir}}"**.
 2. Open the CredentialSpec file and make sure the following fields are filled out correctly:
-    - **Sid**: the SID of your gMSA account
+    - **Sid**: the SID of your domain
     - **MachineAccountName**: the gMSA SAM Account Name (don't include full domain name or dollar sign)
     - **DnsTreeName**: the FQDN of your Active Directory forest
     - **DnsName**: the FQDN of the domain to which the gMSA belongs
@@ -120,7 +119,7 @@ If you're using a strict firewall policy on the container or host network, it ma
 | TCP 636 | LDAP SSL |
 
 You may need to allow access to additional ports depending on the type of traffic your container sends to a domain controller.
-See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
+See [Active Directory and Active Directory Domain Services port requirements](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
 
 ### Check the container
 
@@ -164,7 +163,7 @@ See [Active Directory and Active Directory Domain Services port requirements](ht
     Get-ADObject -Filter 'sAMAccountName -like "GMSANAMEHERE*"'
     ```
 
-4. If you've enabled unconstrained delegation on the gMSA account, ensure that the [UserAccountControl attribute](https://support.microsoft.com/en-us/help/305144/how-to-use-useraccountcontrol-to-manipulate-user-account-properties) still has the `WORKSTATION_TRUST_ACCOUNT` flag enabled. This flag is required for NETLOGON in the container to communicate with the domain controller, as is the case when an app has to resolve a name to a SID or vice versa. You can check if the flag is configured correctly with the following commands:
+4. If you've enabled unconstrained delegation on the gMSA account, ensure that the [UserAccountControl attribute](https://support.microsoft.com/help/305144/how-to-use-useraccountcontrol-to-manipulate-user-account-properties) still has the `WORKSTATION_TRUST_ACCOUNT` flag enabled. This flag is required for NETLOGON in the container to communicate with the domain controller, as is the case when an app has to resolve a name to a SID or vice versa. You can check if the flag is configured correctly with the following commands:
 
     ```powershell
     $gMSA = Get-ADServiceAccount -Identity 'yourGmsaName' -Properties UserAccountControl

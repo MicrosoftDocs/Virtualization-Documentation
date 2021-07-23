@@ -3,10 +3,9 @@ title: Configure Docker in Windows
 description: Configure Docker in Windows
 keywords: docker, containers
 author: PatrickLang
+ms.author: jgerend
 ms.date: 05/03/2019
-ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
+ms.topic: overview
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 ---
 # Docker Engine on Windows
@@ -19,7 +18,7 @@ You need Docker in order to work with Windows Containers. Docker consists of the
 
 - [Install Docker](../quick-start/set-up-environment.md)
 
-For scripted installations, see [Use a script to install Docker EE](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
+For scripted installations, see [Use a script to install Docker EE](https://docs.mirantis.com/docker-enterprise/v3.1/dockeree-products/mcr/mcr-windows.html).
 
 Before you can use Docker, you'll need to install the container images. For more information, see [docs for our container base images](../manage-containers/container-base-images.md).
 
@@ -40,7 +39,7 @@ The preferred method for configuring the Docker Engine on Windows is using a con
     "storage-driver": "",
     "storage-opts": [],
     "labels": [],
-    "log-driver": "", 
+    "log-driver": "",
     "mtu": 0,
     "pidfile": "",
     "data-root": "",
@@ -76,7 +75,7 @@ Likewise, the following sample configures the Docker daemon to keep images and c
 default is `c:\programdata\docker`.
 
 ```json
-{    
+{   
     "data-root": "d:\\docker"
 }
 ```
@@ -203,6 +202,11 @@ After you uninstall Docker, you'll need to remove Docker's default networks so t
 Get-HNSNetwork | Remove-HNSNetwork
 ```
 
+To remove Docker's default networks on Windows Server 2016.
+```powershell
+Get-ContainerNetwork | Remove-ContainerNetwork
+```
+
 Run the following cmdlet to remove Docker's program data from your system:
 
 ```powershell
@@ -214,7 +218,7 @@ You may also want to remove the Windows optional features associated with Docker
 This includes the "Containers" feature, which is automatically enabled on any Windows 10 or Windows Server 2016 when Docker is installed. It may also include the "Hyper-V" feature, which is automatically enabled on Windows 10 when Docker is installed, but must be explicitly enabled on Windows Server 2016.
 
 >[!IMPORTANT]
->[The Hyper-V feature](https://docs.microsoft.com/virtualization/hyper-v-on-windows/about/) is a general virtualization feature that enables much more than just containers. Before disabling the Hyper-V feature, make sure there are no other virtualized components on your system that require Hyper-V.
+>[The Hyper-V feature](/virtualization/hyper-v-on-windows/about/) is a general virtualization feature that enables much more than just containers. Before disabling the Hyper-V feature, make sure there are no other virtualized components on your system that require Hyper-V.
 
 To remove Windows features on Windows 10:
 

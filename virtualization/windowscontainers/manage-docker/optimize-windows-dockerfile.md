@@ -4,9 +4,7 @@ description: Optimize Dockerfiles for Windows containers.
 keywords: docker, containers
 author: cwilhit
 ms.date: 05/03/2019
-ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
+ms.topic: tutorial
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
 ---
 # Optimize Windows Dockerfiles
@@ -130,19 +128,19 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 RUN powershell -Command \
 
   # Download software ; \
-    
+
   wget https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
   wget "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist.exe ; \
   wget -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
 
   # Install Software ; \
-    
+
   Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
   Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
   start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
-    
+
   # Remove unneeded files ; \
-     
+
   Remove-Item c:\apache.zip -Force; \
   Remove-Item c:\vcredist.exe -Force; \
   Remove-Item c:\php.zip
@@ -200,7 +198,7 @@ How you order the instructions is important when working with image caches, as y
 
 A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions are processed in new container image layers. Because of this, the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so reduces the likelihood of negating existing cache.
 
-The following examples show how Dockerfile instruction ordering can affect caching effectiveness. This simple example Dockerfile has four numbered folders.  
+The following examples show how Dockerfile instruction ordering can affect caching effectiveness. This simple example Dockerfile has four numbered folders.
 
 ```dockerfile
 FROM mcr.microsoft.com/windows/servercore:ltsc2019

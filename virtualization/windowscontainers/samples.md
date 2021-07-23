@@ -1,12 +1,10 @@
 ---
 title: Windows Container Samples
 description: Find links to popular projects and code samples using Windows containers.
-keywords: docker, containers, windows, samples 
+keywords: docker, containers, windows, samples
 author: cwilhit
 ms.date: 12/19/2016
 ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 5c6f6350-f8d6-4426-b53d-9fb09c2bf267
 ---
 
@@ -14,9 +12,9 @@ ms.assetid: 5c6f6350-f8d6-4426-b53d-9fb09c2bf267
 
 This is a collection of samples and examples submitted by the Windows team and members of the community.  These samples are provided as is and with no warranties or guarantees made.  Please feel free to contribute additional samples or improve the current set.
 
-# Categories
+## Categories
 
-## Application Frameworks
+### Application Frameworks
 
 [aspnet](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/aspnet)
 
@@ -36,7 +34,7 @@ This is a collection of samples and examples submitted by the Windows team and m
 
 [nginx](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nginx)
 
-## Programing Languages
+### Programing Languages
 
 [dotnet35](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/dotnet35)
 
@@ -54,7 +52,7 @@ This is a collection of samples and examples submitted by the Windows team and m
 
 [server-jre-8u51-windows-x64](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/server-jre-8u51-windows-x64)
 
-## Databases
+### Databases
 
 [mongodb](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/mongodb)
 
@@ -64,16 +62,16 @@ This is a collection of samples and examples submitted by the Windows team and m
 
 [sqlite](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/sqlite)
 
-sqlserver-express - [Docker Hub Image](https://hub.docker.com/r/microsoft/mssql-server-windows-express/) or [dockerfile](https://github.com/Microsoft/mssql-docker/blob/master/windows/mssql-server-windows-express/dockerfile)
+[sqlserver-express](https://github.com/microsoft/mssql-docker/tree/master/windows)
 
-## Infrastructure and CI Tools
+### Infrastructure and CI Tools
 
 [PowerShellDSC_iis-10.0](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/PowerShellDSC_iis-10.0)
 
-## Just for Fun
+### Just for Fun
 
-[MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft) 
+[MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft)
 
-## Other
+### Other
 
 [DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx) (including GPU acceleration)

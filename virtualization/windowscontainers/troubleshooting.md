@@ -5,8 +5,6 @@ keywords: docker, containers, troubleshooting, logs
 author: PatrickLang
 ms.date: 12/19/2016
 ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
 ---
 
@@ -25,14 +23,14 @@ If that doesn't help find the source of the problem, please go ahead and post th
 ### Finding Logs
 There are multiple services that are used to manage Windows containers. The next sections shows where to get logs for each service.
 
-## Docker Container Logs 
-The `docker logs` command fetches a container's logs from STDOUT/STDERR, the standard application log deposit locations for Linux applications. Windows applications typically do not log to STDOUT/STDERR; instead, they log to ETW, Event Logs, or log files, among others. 
+## Docker Container Logs
+The `docker logs` command fetches a container's logs from STDOUT/STDERR, the standard application log deposit locations for Linux applications. Windows applications typically do not log to STDOUT/STDERR; instead, they log to ETW, Event Logs, or log files, among others.
 
-[Log Monitor](https://github.com/microsoft/windows-container-tools/tree/master/LogMonitor), a Microsoft-supported opensource tool, is now available on github. Log Monitor bridges Windows application logs to STDOUT/STDERR. Log Monitor is configured via a config file. 
+[Log Monitor](https://github.com/microsoft/windows-container-tools/tree/master/LogMonitor), a Microsoft-supported opensource tool, is now available on github. Log Monitor bridges Windows application logs to STDOUT/STDERR. Log Monitor is configured via a config file.
 
 ### Log Monitor Usage
 
-LogMonitor.exe and LogMonitorConfig.json should both be included in the same LogMonitor directory. 
+LogMonitor.exe and LogMonitorConfig.json should both be included in the same LogMonitor directory.
 
 Log Monitor can either be used in a SHELL usage pattern:
 
@@ -53,7 +51,7 @@ Both example usages wrap the ping.exe application. Other applications (such as [
 COPY LogMonitor.exe LogMonitorConfig.json C:\LogMonitor\
 WORKDIR /LogMonitor
 SHELL ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe"]
- 
+
 # Start IIS Remote Management and monitor IIS
 ENTRYPOINT      Start-Service WMSVC; `
                     C:\ServiceMonitor.exe w3svc;
@@ -72,7 +70,7 @@ The Docker Engine logs to the Windows 'Application' event log, rather than to a 
 For example, this will show the Docker Engine logs from the last 5 minutes starting with the oldest.
 
 ```
-Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-5) | Sort-Object Time 
+Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-5) | Sort-Object Time
 ```
 
 This could also easily be piped into a CSV file to be read by another tool or spreadsheet.
@@ -107,7 +105,7 @@ Take the current `BINARY_PATH_NAME`, and modify it:
 - Escape each " with \
 - Enclose the whole command in "
 
-Then run `sc.exe config docker binpath=` followed by the new string. For example: 
+Then run `sc.exe config docker binpath=` followed by the new string. For example:
 ```
 sc.exe config docker binpath= "\"C:\Program Files\Docker\dockerd.exe\" --run-service -D"
 ```
@@ -129,7 +127,7 @@ sc.exe stop docker
 
 ### Obtaining stack dump
 
-Generally, this is only useful if explicitly requested by Microsoft support, or docker developers. It can be used to assist diagnosing a situation where docker appears to have hung. 
+Generally, this is only useful if explicitly requested by Microsoft support, or docker developers. It can be used to assist diagnosing a situation where docker appears to have hung.
 
 Download [docker-signal.exe](https://github.com/moby/docker-signal).
 
@@ -146,7 +144,7 @@ Note that `goroutine-stacks*.log` does not contain personal information.
 
 
 ## Host Compute Service
-The Docker Engine depends on a Windows-specific Host Compute Service. It has separate logs: 
+The Docker Engine depends on a Windows-specific Host Compute Service. It has separate logs:
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
 
@@ -155,7 +153,7 @@ They are visible in Event Viewer and may also be queried with PowerShell.
 For example:
 ```PowerShell
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Admin
-Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Operational 
+Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Operational
 ```
 
 ### Capturing HCS analytic/debug logs
@@ -177,9 +175,9 @@ wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:false /q:true
 
 ### Capturing HCS verbose tracing
 
-Generally, these are only useful if requested by Microsoft support. 
+Generally, these are only useful if requested by Microsoft support.
 
-Download [HcsTraceProfile.wprp](https://gist.github.com/jhowardmsft/71b37956df0b4248087c3849b97d8a71)
+Download [HcsTraceProfile.wprp](https://github.com/MicrosoftDocs/Virtualization-Documentation/blob/master/windows-server-container-tools/wpr-profiles/HcsTraceProfile.wprp)
 
 ```PowerShell
 # Enable tracing

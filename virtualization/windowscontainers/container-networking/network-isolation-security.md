@@ -1,12 +1,10 @@
 ﻿---
-title: Windows Container Networking
+title: Network isolation and security
 description: Network isolation and security within Windows containers.
 keywords: docker, containers
 author: jmesser81
 ms.date: 03/27/2018
-ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
+ms.topic: conceptual
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 # Network isolation and security

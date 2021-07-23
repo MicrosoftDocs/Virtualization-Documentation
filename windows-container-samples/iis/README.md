@@ -2,7 +2,7 @@
 
 Create a demo container with IIS 10. The dockerfile CMD is just a persistent ping to give the container something to hang off of for demonstration purposes.
 
-This dockerfile is for demonstration purposes and may require modification for production use. 
+This dockerfile is for demonstration purposes and may require modification for production use.
 
 # Environment:
 
@@ -16,7 +16,7 @@ Windows Server Core Base OS Image
 docker build -t iis:latest .
 ```
 
-**Docker Run** 
+**Docker Run**
 
 ```
 docker run -d -p 80:80 iis
@@ -26,7 +26,7 @@ docker run -d -p 80:80 iis
 ```
 # This dockerfile utilizes components licensed by their respective owners/authors.
 
-FROM microsoft/windowsservercore
+FROM mcr.microsoft.com/windows/servercore:2009
 
 LABEL Description="IIS" Vendor="Microsoft" Version="10"
 

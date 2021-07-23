@@ -1,23 +1,22 @@
 ---
-title: Windows and Linux Containers on Windows 10
+title: Set up Linux Containers on Windows 10
 description: Container deployment quick start
 keywords: docker, containers, LCOW
 author: taylorb-microsoft
+ms.author: jgerend
 ms.date: 08/16/2019
-ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
+ms.topic: tutorial
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 
-# Linux Containers on Windows 10
+# Get started: Set up Linux Containers on Windows 10
 
 The exercise will walk through creating and running Linux containers on Windows 10.
 
 In this quick start you will accomplish:
 
 1. Installing Docker Desktop
-2. Running a simple Linux container using Linux Containers on Windows (LCOW)
+2. Running a simple Linux container
 
 This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left-hand side of this page.
 
@@ -26,51 +25,34 @@ This quick start is specific to Windows 10. Additional quick start documentation
 Please make sure you meet the following requirements:
 - One physical computer system running Windows 10 Professional, Windows 10 Enterprise, or Windows
 Server 2019 version 1809 or later
-- Make sure [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
-
-***Hyper-V isolation:***
-Linux Containers on Windows require Hyper-V isolation on Windows 10 in order to provide developers with the appropriate Linux kernel to run the container. More about Hyper-V isolation can be found on the [About Windows containers](../about/index.md) page.
+- Make sure [Hyper-V](/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
 
 ## Install Docker Desktop
 
 Download [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
 
-> If you already have Docker installed, make sure you have version 18.02 or later to support LCOW. Check by running `docker -v` or checking *About Docker*.
+## Run Your First Linux Container
 
-> The 'experimental features' option in *Docker Settings > Daemon* must be activated to run LCOW containers.
+In order to run Linux containers, you need to make sure Docker is targeting the correct daemon. You can toggle this by selecting `Switch to Linux Containers` from the action menu when clicking on the Docker whale icon in the system tray. If you see `Switch to Windows Containers`, then you are already targeting the Linux daemon.
 
-## Run Your First LCOW Container
+![Docker system tray menu showing the "Switch to Windows containers" command.](./media/switchDaemon.png)
 
-For this example, a BusyBox container will be deployed. First, attempt to run a 'Hello World' BusyBox image.
-
-```console
-docker run --rm busybox echo hello_world
-```
-
-Note that this returns an error when Docker attempts to pull the image. This occurs because Dockers requires a directive via the `--platform` flag to confirm that the image and host operating system are matched appropriately. Since the default platform in Windows container mode is Windows, add a `--platform linux` flag to pull and run the container.
-
-```console
-docker run --rm --platform linux busybox echo hello_world
-```
-
-Once the image has been pulled with the platform indicated, the `--platform` flag is no longer necessary. Run the command without it to test this.
+Once you've confirmed you are targeting the correc daemon, run the container with the following command:
 
 ```console
 docker run --rm busybox echo hello_world
 ```
 
-Run `docker images` to return a list of installed images. In this case, both the Windows and Linux images.
+The container should run, print "hello_world", then exit.
+
+When you query `docker images`, you should see the Linux container image that you just pulled an ran:
 
 ```console
 docker images
 
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-microsoft/nanoserver   latest              105d76d0f40e        4 days ago          652 MB
 busybox                latest              59788edf1f3e        4 weeks ago         3.41MB
 ```
-
-> [!TIP]
-> Bonus: See Docker's corresponding [blog post](https://blog.docker.com/2018/02/docker-for-windows-18-02-with-windows-10-fall-creators-update/) on running LCOW.
 
 ## Next Steps
 

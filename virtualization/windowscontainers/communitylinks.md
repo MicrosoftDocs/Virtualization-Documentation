@@ -1,17 +1,16 @@
 ---
 title: Community Videos and Blogs
 description: Links to great videos and blogs contributed by the Windows container community
-keywords: docker, containers, windows, samples 
+keywords: docker, containers, windows, samples
 author: taylorb-microsoft
+ms.author: taylorb-microsoft
 ms.date: 12/19/2016
 ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: cfbb2542-fead-48e7-8318-4da92a7b5b6f
 ---
 # Community Videos and Blogs
 
-This page contains links to videos and blogs created by members or the container community.  If you know of a great resource, or you yourself created one please submit a PR to add to this list.
+This page contains links to videos and blogs created by members of the container community.  If you know of a great resource, or you have a resource you'd like to share, submit a PR to add to this list.
 
 ## Getting Started
 
@@ -49,6 +48,6 @@ This page contains links to videos and blogs created by members or the container
 
 [How to protect a Windows 2016 Docker engine with TLS](https://stefanscherer.github.io/protecting-a-windows-2016-docker-engine-with-tls/) - Stefan Scherer
 
-[Using a Microsoft CA to secure Docker](https://dille.name/blog/2016/11/08/using-a-microsoft-ca-to-secure-docker/) - Nicholas Dille 
+[Using a Microsoft CA to secure Docker](https://dille.name/blog/2016/11/08/using-a-microsoft-ca-to-secure-docker/) - Nicholas Dille
 
 [Windows #Container Performance of Layers](https://dille.name/blog/2017/01/13/windows-container-performance-of-layers/) - Nicholas Dille

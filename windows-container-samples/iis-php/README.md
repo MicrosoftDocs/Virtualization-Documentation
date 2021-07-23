@@ -1,6 +1,6 @@
 This dockerfile will install PHP, version 5.6.11, in a Windows Server Core based container.
 
-It will use the microsoft/iis image as a base.
+It will use the mcr.microsoft.com/windows/servercore/iis image as a base.
 
 You will need to have a "sources" folder in the same directory as the dockerfile.
 

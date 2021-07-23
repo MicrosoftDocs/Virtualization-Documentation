@@ -2,7 +2,10 @@
 title: Devices in Containers on Windows
 description: What device support exists for containers on Windows
 keywords: docker, containers, devices, hardware
-author: cwilhit
+author: v-susbo
+ms.author: v-susbo
+ms.date: 10/20/2020
+ms.topic: how-to
 ---
 
 # Devices in Containers on Windows
@@ -25,7 +28,7 @@ To start a container with a device, use the following command:
 docker run --isolation=process --device="class/{interface class GUID}" mcr.microsoft.com/windows/servercore:1809
 ```
 
-You must replace the `{interface class guid}` with an appropriate [device interface class GUID](https://docs.microsoft.com/windows-hardware/drivers/install/overview-of-device-interface-classes), which can be found in the section below.
+You must replace the `{interface class guid}` with an appropriate [device interface class GUID](/windows-hardware/drivers/install/overview-of-device-interface-classes), which can be found in the section below.
 
 To start a container with multiple devices, use the following command and string together multiple `--device` arguments:
 
@@ -40,7 +43,7 @@ This means you are **not** assigning the device away from host. Instead, the hos
 ## What Devices are Supported
 
 The following devices (and their device interface class GUIDs) are supported today:
-  
+
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
 <thead>
 <tr valign="top">
@@ -67,7 +70,7 @@ The following devices (and their device interface class GUIDs) are supported tod
 </tr>
 <tr valign="top">
 <td><center>DirectX GPU Acceleration</center></td>
-<td><center>See <a href="https://docs.microsoft.com/virtualization/windowscontainers/deploy-containers/gpu-acceleration">GPU acceleration</a> docs</center></td>
+<td><center>See <a href="/virtualization/windowscontainers/deploy-containers/gpu-acceleration">GPU acceleration</a> docs</center></td>
 </tr>
 </tbody>
 </table>

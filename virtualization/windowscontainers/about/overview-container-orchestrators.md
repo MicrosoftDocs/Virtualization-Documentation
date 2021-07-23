@@ -5,9 +5,7 @@ keywords: docker, containers
 author: Heidilohr
 ms.author: helohr
 ms.date: 05/22/2019
-ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
+ms.topic: overview
 ---
 # Windows Container Orchestration Overview
 

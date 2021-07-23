@@ -2,7 +2,7 @@
 
 Creates an image containing Django 2.2.
 
-The microsoft/python is used as the base image.
+The python is used as the base image.
 
 This dockerfile is for demonstration purposes and may require modification for production use. 
 

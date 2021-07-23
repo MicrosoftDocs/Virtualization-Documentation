@@ -1,8 +1,8 @@
 # Description:
 
-Create a demo container with SQLite 3.12.0 software. 
+Create a demo container with SQLite 3.12.0 software.
 
-This dockerfile is for demonstration purposes and may require modification for production use. 
+This dockerfile is for demonstration purposes and may require modification for production use.
 
 # Environment:
 
@@ -16,7 +16,7 @@ Windows Server Core Base OS Image
 docker build -t sqlite:latest .
 ```
 
-**Docker Run** 
+**Docker Run**
 
 This will run a container, display the SQLite version, and then exit. Modify the Dockerfile appropriately for application use.
 
@@ -29,7 +29,7 @@ docker run -it sqlite
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://www.sqlite.org/copyright.html
 
-FROM microsoft/windowsservercore
+FROM mcr.microsoft.com/windows/servercore:2009
 
 LABEL Description="SQLite" Vendor="SQLite" Version="3.27.2"
 

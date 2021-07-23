@@ -2,11 +2,10 @@
 title: Windows Container Requirements
 description: Windows Container Requirements.
 keywords: metadata, containers
-author: taylorb-microsoft
-ms.author: taylorb
+author: v-susbo
+ms.author: v-susbo
 ms.date: 10/22/2019
-ms.topic: deployment-article
-ms.prod: windows-containers
+ms.topic: conceptual
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
 ---
 # Windows container requirements
@@ -25,12 +24,12 @@ If a Windows container host will be run from a Hyper-V virtual machine, and will
 
 - At least 4 GB RAM available for the virtualized Hyper-V host.
 - Windows Server (Semi-Annual Channel), Windows Server 2019, Windows Server 2016, or Windows 10 on the host system; and Windows Server (Full or Server Core) in the virtual machine.
-- A processor with Intel VT-x (this feature is currently only available for Intel processors).
+- A processor with Intel VT-x (this feature is currently available for Intel and AMD processors).
 - The container host VM will also need at least two virtual processors.
 
 ### Memory requirements
 
-Restrictions on available memory to containers can be configured though [resource controls](https://docs.microsoft.com/virtualization/windowscontainers/manage-containers/resource-controls) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, and so on) are listed below.
+Restrictions on available memory to containers can be configured though [resource controls](../manage-containers/resource-controls.md) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, and so on) are listed below.
 
 >[!NOTE]
 >These values don't take into account resource sharing between containers or requirements from the application running in the container.  For example a host with 512MB of free memory can run multiple Server Core containers under Hyper-V isolation because those containers share resources.

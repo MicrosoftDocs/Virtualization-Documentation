@@ -3,6 +3,9 @@ title: Print Spooler in Windows Containers
 description: Explains current working behavior for the print spooler service in Windows containers
 keywords: docker, containers, printer, spooler
 author: cwilhit
+ms.author: cwilhit
+ms.date: 10/22/2019
+ms.topic: tutorial
 ---
 
 # Print Spooler in Windows Containers
@@ -52,7 +55,7 @@ PS C:\>
 Due to the shared kernel nature of process-isolated containers, current behavior limits the user to running only **one instance** of the printer spooler service across the host and all its container children. If the host has the printer spooler running, you must stop the service on the host before attemping to launch the printer service in the guest.
 
 > [!TIP]
-> If you launch a container and query for the spooler service in both the container and the host simultaneously, both will report their state as 'running'. But do not be deceived--the container will not be able to query for a list of available printers. The host's spooler service must not run. 
+> If you launch a container and query for the spooler service in both the container and the host simultaneously, both will report their state as 'running'. But do not be deceived--the container will not be able to query for a list of available printers. The host's spooler service must not run.
 
 To check if the host is running the printer service, use the query in PowerShell below:
 

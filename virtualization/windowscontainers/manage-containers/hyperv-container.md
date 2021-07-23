@@ -2,11 +2,10 @@
 title: Isolation Modes
 description: Explanation of how Hyper-V isolation differ from process isolated containers.
 keywords: docker, containers
-author: crwilhit
-ms.date: 09/26/2019
-ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
+author: cwilhit
+ms.author: v-susbo
+ms.date: 06/01/2021
+ms.topic: conceptual
 ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
 ---
 
@@ -18,18 +17,18 @@ Windows containers offer two distinct modes of runtime isolation: `process` and 
 
 This is the "traditional" isolation mode for containers and is what is described in the [Windows containers overview](../about/index.md). With process isolation, multiple container instances run concurrently on a given host with isolation provided through namespace, resource control, and process isolation technologies. When running in this mode, containers share the same kernel with the host as well as each other.  This is approximately the same as how Linux containers run.
 
-![](media/container-arch-process.png)
+![A diagram showing a container full of applications being isolated from the OS and hardware.](media/container-arch-process.png)
 
 ## Hyper-V isolation
-This isolation mode offers enhanced security and broader compatibility between host and container versions. With Hyper-V isolation, multiple container instances run concurrently on a host; However, each container runs inside of a highly optimized virtual machine and effectively gets its own kernel. The presence of the virtual machine provides hardware-level isolation between each container as well as the container host.
+This isolation mode offers enhanced security and broader compatibility between host and container versions. With Hyper-V isolation, multiple container instances run concurrently on a host; however, each container runs inside of a highly optimized virtual machine and effectively gets its own kernel. The presence of the virtual machine provides hardware-level isolation between each container as well as the container host.
 
-![](media/container-arch-hyperv.png)
+![A diagram of a container being isolated within an OS on a visual machine that's running on an OS within a physical machine.](media/container-arch-hyperv.png)
 
 ## Isolation examples
 
 ### Create container
 
-Managing Hyper-V-isolated containers with Docker is nearly identical to managing process-isolated containers. To create a container with Hyper-V isolation thorough Docker, use the `--isolation` parameter to set `--isolation=hyperv`.
+Managing Hyper-V-isolated containers with Docker is nearly identical to managing process-isolated containers. To create a container with Hyper-V isolation using Docker, use the `--isolation` parameter to set `--isolation=hyperv`.
 
 ```cmd
 docker run -it --isolation=hyperv mcr.microsoft.com/windows/servercore:ltsc2019 cmd
@@ -45,7 +44,7 @@ Windows containers running on Windows Server default to running with process iso
 
 > [!WARNING]
 > Running with process isolation on Windows 10 Pro and Enterprise is meant for development/testing. Your host must be running Windows 10 build 17763+ and you must have a Docker version with Engine 18.09 or newer.
-> 
+>
 > You should continue to use Windows Server as the host for production deployments. By using this feature on Windows 10 Pro and Enterprise, you must also ensure that your host and container version tags match, otherwise the container may fail to start or exhibit undefined behavior.
 
 ### Isolation explanation
