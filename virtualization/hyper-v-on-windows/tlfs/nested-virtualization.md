@@ -28,7 +28,7 @@ The following terminology is used to define various levels of nested virtualizat
 
 Compared to bare-metal, hypervisors can incur a significant performance regression when running in a VM. L1 hypervisors can be optimized to run in a Hyper-V VM by using enlightened interfaces provided by the L0 hypervisor.
 
-## Enlightened VMCS
+## Enlightened VMCS (Intel)
 
 On Intel platforms, virtualization software uses virtual machine control data structures (VMCSs) to configure processor behavior related to virtualization. VMCSs must be made active using a VMPTRLD instruction and modified using VMREAD and VMWRITE instructions. These instructions are often a significant bottleneck for nested virtualization because they must be emulated.
 
@@ -40,25 +40,33 @@ After the L1 hypervisor performs a VM entry with an enlightened VMCS, the VMCS i
 
 The [HV_VMX_ENLIGHTENED_VMCS](datatypes/HV_VMX_ENLIGHTENED_VMCS.md) structure defines the layout of the enlightened VMCS. All non-synthetic fields map to an Intel physical VMCS encoding.
 
-### Feature Discovery
-
-Support for an enlightened VMCS interface is reported with CPUID leaf 0x40000004.
-
-The enlightened VMCS structure is versioned to account for future changes. Each enlightened VMCS structure contains a version field, which is reported by the L0 hypervisor.
-
-The only VMCS version currently supported is 1.
-
 ### Clean Fields
 
 The L0 hypervisor may choose to cache parts of the enlightened VMCS. The enlightened VMCS clean fields control which parts of the enlightened VMCS are reloaded from guest memory on a nested VM entry. The L1 hypervisor must clear the corresponding VMCS clean fields every time it modifies the enlightened VMCS, otherwise the L0 hypervisor might use a stale version.
 
 The clean fields enlightenment is controlled via the synthetic “CleanFields” field of the enlightened VMCS. By default, all bits are set such that the L0 hypervisor must reload the corresponding VMCS fields for each nested VM entry.
 
+### Feature Discovery
+
+Support for an enlightened VMCS interface is reported with [CPUID leaf 0x40000004](feature-discovery.md#microsoft-hypervisor-cpuid-leaves).
+
+The enlightened VMCS structure is versioned to account for future changes. Each enlightened VMCS structure contains a version field, which is reported by the L0 hypervisor.
+
+The only VMCS version currently supported is 1.
+
+## Enlighened VMCB fields (AMD)
+
+AMD has reserved space in the VMCB for hypervisor use, as well as an associated clean bit. The reserved bytes are in the control section, offset 0x3E0-3FF, of the VMCB. The clean bit is bit 31 (the clean bit must be invalidated whenever the hypervisor modifies the “enlightenments” area of the VMCB).
+
+Hyper-V utilizes the reserved VMCB area to configure enlightenments. The [HV_SVM_ENLIGHTENED_VMCB_FIELDS](datatypes/HV_SVM_ENLIGHTENED_VMCB_FIELDS.md) structure documents the format.
+
 ## Enlightened MSR Bitmap
 
-On Intel platforms, the L0 hypervisor emulates the VMX “MSR-Bitmap Address” controls that allow virtualization software to control which MSR accesses generate intercepts.
+The L0 hypervisor emulates the “MSR-Bitmap” controls on both Intel and AMD platforms that allow virtualization software to control which MSR accesses generate intercepts.
 
-The L1 hypervisor may collaborate with the L0 hypervisor to make MSR accesses more efficient. It can enable enlightened MSR bitmaps by setting the corresponding field in the enlightened VMCS to 1. When enabled, the L0 hypervisor does not monitor the MSR bitmaps for changes. Instead, the L1 hypervisor must invalidate the corresponding clean field after making changes to one of the MSR bitmaps.
+The L1 hypervisor may collaborate with the L0 hypervisor to make MSR accesses more efficient. It can enable enlightened MSR bitmaps by setting the corresponding field in the enlightened VMCS / VMCB fields to 1. When enabled, the L0 hypervisor does not monitor the MSR bitmaps for changes. Instead, the L1 hypervisor must invalidate the corresponding clean field after making changes to one of the MSR bitmaps.
+
+Support for the enlightened MSR bitmap is reported in [CPUID leaf 0x4000000A](feature-discovery.md#microsoft-hypervisor-cpuid-leaves).
 
 ## Compatibility with Live Migration
 
@@ -123,31 +131,29 @@ typedef union
 ## Virtual TLB
 
 The virtual TLB exposed by the hypervisor may be extended to cache translations from L2 GPAs to GPAs. As with the TLB on a logical processor, the virtual TLB is a non-coherent cache, and this non-coherence is visible to guests. The hypervisor exposes operations to manage the TLB.
-On Intel platforms, the L0 hypervisor virtualizes the following additional ways to manage the TLB:
-
-- The INVVPID instruction can be used to invalidate cached GVA to GPA or SPA mappings
-- The INVEPT instruction can be used to invalidate cached L2 GPA to GPA mappings
 
 ### Direct Virtual Flush
 
-The hypervisor exposes hypercalls ([HvCallFlushVirtualAddressSpace](hypercalls/HvCallFlushVirtualAddressSpace.md), [HvCallFlushVirtualAddressSpaceEx](hypercalls/HvCallFlushVirtualAddressSpaceEx.md), [HvCallFlushVirtualAddressList](hypercalls/HvCallFlushVirtualAddressList.md), and [HvCallFlushVirtualAddressListEx](hypercalls/HvCallFlushVirtualAddressListEx.md)) that allow operating systems to more efficiently manage the virtual TLB. The L1 hypervisor can choose to allow its guest to use those hypercalls and delegate the responsibility of handling them to the L0 hypervisor. This requires the use of enlightened VMCSs and of a partition assist page.
+The hypervisor exposes hypercalls ([HvCallFlushVirtualAddressSpace](hypercalls/HvCallFlushVirtualAddressSpace.md), [HvCallFlushVirtualAddressSpaceEx](hypercalls/HvCallFlushVirtualAddressSpaceEx.md), [HvCallFlushVirtualAddressList](hypercalls/HvCallFlushVirtualAddressList.md), and [HvCallFlushVirtualAddressListEx](hypercalls/HvCallFlushVirtualAddressListEx.md)) that allow operating systems to more efficiently manage the virtual TLB. The L1 hypervisor can choose to allow its guest to use those hypercalls and delegate the responsibility of handling them to the L0 hypervisor. This requires the use of a partition assist page (and a virtual VMCS on Intel platforms).
 
-When enlightened VMCSs are in use, the virtual TLB tags all cached mappings with an identifier of the enlightened VMCS that created them. In response to a direct virtual flush hypercall from a L2 guest, the L0 hypervisor invalidates all cached mappings created by enlightened VMCSs where
+When in use, the virtual TLB tags all cached mappings with an identifier of the nested context (VMCS or VMCB) that created them. In response to a direct virtual flush hypercall from a L2 guest, the L0 hypervisor invalidates all cached mappings created by nested contexts where
 
 - The VmId is the same as the caller’s VmId
 - Either the VpId is contained in the specified ProcessorMask or HV_FLUSH_ALL_PROCESSORS is specified
+
+Support for direct virtual flushes is reported in [CPUID leaf 0x4000000A](feature-discovery.md#microsoft-hypervisor-cpuid-leaves).
 
 #### Configuration
 
 Direct handling of virtual flush hypercalls is enabled by:
 
 1. Setting the NestedEnlightenmentsControl.Features.DirectHypercall field of the [Virtual Processor Assist Page](vp-properties.md#virtual-processor-assist-page) to 1.
-2. Setting the EnlightenmentsControl.NestedFlushVirtualHypercall field of an enlightened VMCS to 1.
+2. Setting the EnlightenmentsControl.NestedFlushVirtualHypercall field of an enlightened VMCS or VMCB to 1.
 
-Before enabling it, the L1 hypervisor must configure the following additional fields of the enlightened VMCS:
+Before enabling it, the L1 hypervisor must configure the following additional fields of the enlightened VMCS / VMCB:
 
-- VpId: ID of the virtual processor that the enlightened VMCS controls.
-- VmId: ID of the virtual machine that the enlightened VMCS belongs to.
+- VpId: ID of the virtual processor that the enlightened VMCS / VMCB controls.
+- VmId: ID of the virtual machine that the enlightened VMCS / VMCB belongs to.
 - PartitionAssistPage: Guest physical address of the partition assist page.
 
 The L1 hypervisor must also expose the following capabilities to its guests via CPUID.
@@ -157,7 +163,7 @@ The L1 hypervisor must also expose the following capabilities to its guests via 
 
 #### Partition Assist Page
 
-The partition assist page is a page-size aligned page-size region of memory that the L1 hypervisor must allocate and zero before direct flush hypercalls can be used. Its GPA must be written to the corresponding field in the enlightened VMCS.
+The partition assist page is a page-size aligned page-size region of memory that the L1 hypervisor must allocate and zero before direct flush hypercalls can be used. Its GPA must be written to the corresponding field in the enlightened VMCS / VMCB.
 
 ```c
 struct
@@ -170,23 +176,28 @@ struct
 
 If the TlbLockCount of the caller’s partition assist page is non-zero, the L0 hypervisor delivers a VM-Exit with a synthetic exit reason to the L1 hypervisor after handling a direct virtual flush hypercall.
 
+On Intel platforms, a VM-Exit with exit reason `HV_VMX_SYNTHETIC_EXIT_REASON_TRAP_AFTER_FLUSH` is delivered. On AMD platforms, a VM-Exit with exit code `HV_SVM_EXITCODE_ENL` is delivered and ExitInfo1 is set to `HV_SVM_ENL_EXITCODE_TRAP_AFTER_FLUSH`.
+
 ```c
 #define HV_VMX_SYNTHETIC_EXIT_REASON_TRAP_AFTER_FLUSH 0x10000031
+
+#define HV_SVM_EXITCODE_ENL 0xF0000000
+#define HV_SVM_ENL_EXITCODE_TRAP_AFTER_FLUSH   (1)
 ```
 
 ### Second Level Address Translation
 
 When nested virtualization is enabled for a guest partition, the memory management unit (MMU) exposed by the partition includes support for second level address translation. Second level address translation is a capability that can be used by the L1 hypervisor to virtualize physical memory. When in use, certain addresses that would be treated as guest physical addresses (GPAs) are treated as L2 guest physical addresses (L2 GPAs) and translated to GPAs by traversing a set of paging structures.
 
-The L1 hypervisor can decide how and where to use second level address spaces. Each second level address space is identified by a guest defined 64-bit ID value. On Intel platforms, this value is the same as the address of the EPT PML4 table.
+The L1 hypervisor can decide how and where to use second level address spaces. Each second level address space is identified by a guest defined 64-bit ID value. On Intel platforms, this value is the same as the EPT pointer. On AMD platforms, the value equals the nCR3 VMCB field.
 
 #### Compatibility
 
-On Intel platforms, the second level address translation capability exposed by the hypervisor is generally compatible with VMX support for address translation. However, the following guest-observable differences exist:
+The second level address translation capability exposed by the hypervisor is generally compatible with VMX or SVM support for address translation. However, the following guest-observable differences exist:
 
 - Internally, the hypervisor may use shadow page tables that translate L2 GPAs to SPAs. In such implementations, these shadow page tables appear to software as large TLBs. However, several differences may be observable. First, shadow page tables can be shared between two virtual processors, whereas traditional TLBs are per-processor structures and are independent. This sharing may be visible because a page access by one virtual processor can fill a shadow page table entry that is subsequently used by another virtual processor.
 - Some hypervisor implementations may use internal write protection of guest page tables to lazily flush MMU mappings from internal data structures (for example, shadow page tables). This is architecturally invisible to the guest because writes to these tables will be handled transparently by the hypervisor. However, writes performed to the underlying GPA pages by other partitions or by devices may not trigger the appropriate TLB flush.
-- On some hypervisor implementations, a second level page fault (“EPT violation”) might not invalidate cached mappings.
+- On some hypervisor implementations, a second level page fault might not invalidate cached mappings.
 
 #### Enlightened Second Level TLB Flushes
 
@@ -199,9 +210,11 @@ The hypervisor supports the following hypercalls to invalidate TLBs:
 | [HvCallFlushGuestPhysicalAddressSpace](hypercalls/HvCallFlushGuestPhysicalAddressSpace.md)      | invalidates cached L2 GPA to GPA mappings within a second level address space.   |
 | [HvCallFlushGuestPhysicalAddressList](hypercalls/HvCallFlushGuestPhysicalAddressList.md)  | invalidates cached GVA / L2 GPA to GPA mappings within a portion of a second level address space.    |
 
+On AMD platforms, all TLB entries are architecturally tagged with an ASID (address space identifier). Invalidation of the ASID causes all TLB entires associated with the ASID to be invalidated. The nested hypervisor can optionally opt into an "enlightened TLB" by setting EnlightnedNptTlb to "1" in [HV_SVM_ENLIGHTENED_VMCB_FIELDS](datatypes/HV_SVM_ENLIGHTENED_VMCB_FIELDS.md). If the nested hypervisor opts into the enlightenment, ASID invalidations just flush TLB entires derived from first level address translation (i.e. the virtual address space). To flush TLB entries derived from the nested page table (NPT) and force the L0 hypervisor to rebuild shadow page tables, the HvCallFlushGuestPhysicalAddressSpace or HvCallFlushGuestPhysicalAddressList hypercalls must be used.
+
 ## Nested Virtualization Exceptions
 
-The L1 hypervisor can opt in to combining virtualization exceptions in the page fault exception class. The L0 hypervisor advertises support for this enlightment in the Hypervisor Nested Virtualization Features CPUID leaf.
+On Intel platforms. the L1 hypervisor can opt in to combining virtualization exceptions in the page fault exception class. The L0 hypervisor advertises support for this enlightment in the Hypervisor Nested Virtualization Features CPUID leaf.
 
 This enlightenment can be enabled by setting VirtualizationException to “1” in [HV_NESTED_ENLIGHTENMENTS_CONTROL](datatypes/HV_NESTED_ENLIGHTENMENTS_CONTROL.md) data structure in the Virtual Processor Assist Page.
 
