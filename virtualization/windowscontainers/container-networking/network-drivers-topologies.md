@@ -79,7 +79,7 @@ Containers attached to a network created with the 'l2bridge' driver will be conn
 
 To create a new l2bridge network with subnet `10.244.0.0/24`, gateway `10.244.0.1`, DNS server `10.244.0.7` and VLAN ID 7:
 ```powershell
-docker network create -d "l2bridge" --subnet 10.244.0.0/24 --gateway 10.244.0.1 -o com.docker.network.windowsshim.vlanid=7 -o com.docker.network.windowsshim.dnsservers="10.244.0.7" my_transparent
+docker network create -d "l2bridge" --subnet 10.244.0.0/24 --gateway 10.244.0.1 -o com.docker.network.windowsshim.vlanid=7 -o com.docker.network.windowsshim.dnsservers="10.244.0.7" my_l2bridge
 ```
 
   >[!TIP]
