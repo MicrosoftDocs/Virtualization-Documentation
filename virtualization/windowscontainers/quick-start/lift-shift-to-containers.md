@@ -3,7 +3,7 @@ title: Lift and shift to containers
 description: Learn how to migrate existing applications to containers
 keywords: containers, migrate
 author: v-susbo
-ms.author: orin-thomas
+ms.author: inhenkel
 ms.date: 08/11/2021
 ms.topic: quickstart
 ---  
@@ -17,7 +17,7 @@ To view a roadmap of planned and currently available features, see the [Windows 
 ## Benefits of using containers
 
 Since containers are a way to isolate an application into its own package where it's not affected by apps or processes that exist outside of the container, it's easy to see how this lowers costs and provides portability and control.
-Using containers to build apps offers a significant increase in agility for building and running any application, across any infrastructure. With containers, you can take any app from development to production with little or no code change, thanks to Docker integration across Microsoft developer tools, operating systems. To see a complete list of benefits for using containers, see [Deploy existing .NET apps as Windows containers](../dotnet/architecture/modernize-with-azure-containers/modernize-existing-apps-to-cloud-optimized/deploy-existing-net-apps-as-windows-containers).
+Using containers to build apps offers a significant increase in agility for building and running any application, across any infrastructure. With containers, you can take any app from development to production with little or no code change, thanks to Docker integration across Microsoft developer tools, operating systems. To see a complete list of benefits for using containers, see [Deploy existing .NET apps as Windows containers](/dotnet/architecture/modernize-with-azure-containers/modernize-existing-apps-to-cloud-optimized/deploy-existing-net-apps-as-windows-containers).
 
 ## Supported applications for containers
 
@@ -42,8 +42,8 @@ Use the following steps to plan how you will move traditional and legacy apps to
 2. Determine the type of container, for example, whether it should be process-isolated or hypervisor-isolated. For more information, see [Isolation Modes](../manage-containers/hyperv-container.md). Currently, AKS and Azure Kubernetes Service on Azure Stack HCI support only process-isolated containers, and Windows Server 2019 Datacenter and Windows Server 2022 Datacenter are the only container host operating systems supported. In a future release, both AKS and Azure Kubernetes Service on Azure Stack HCI will support hypervisor-isolated containers.
 3. Configure security for your container(s). To configure a Windows container to run with a group Managed Service Account (gMSA), see [Create gMSAs for Windows containers](../manage-containers/manage-serviceaccounts.md).
 4. Containerize the app. Before you can do this, you need to [install the **Containers** extension](../wac-tooling/wac-extension.md) in Windows Admin Center. Then, you can use Windows Admin Center to [create new Container images](../wac-tooling/wac-images.md) and [run](../wac-tooling/wac-containers.md) them.
-5. Push the legacy app by [creating the container registry](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-powershell) and [uploading the image](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-powershell#push-image-to-registry) to the registry.
-6. Deploy to a Windows-supported Kubernetes environment. You can deploy to either [Azure Kubernetes Service](https://docs.microsoft.com/azure/aks/) or Azure Kubernetes Service on Azure Stack HCI using [Windows Admin Center](https://docs.microsoft.com/azure-stack/aks-hci/setup) or [PowerShell](https://docs.microsoft.com/azure-stack/aks-hci/setup-powershell).
+5. Push the legacy app by [creating the container registry](/azure/container-registry/container-registry-get-started-powershell) and [uploading the image](/azure/container-registry/container-registry-get-started-powershell#push-image-to-registry) to the registry.
+6. Deploy to a Windows-supported Kubernetes environment. You can deploy to either [Azure Kubernetes Service](/azure/aks/) or Azure Kubernetes Service on Azure Stack HCI using [Windows Admin Center](/azure-stack/aks-hci/setup) or [PowerShell](/azure-stack/aks-hci/setup-powershell).
 
 To help you decide which applications to lift and shift and develop a plan for how to do this, review the following flowchart:
 
