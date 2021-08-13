@@ -29,7 +29,7 @@ To address the limitations of the initial version of gMSA, new gMSA support for 
 
 ![Diagram of group Managed Service Accounts version two](../media/gmsa-v2.png)
 
-gMSA support for non-domain joined containers provides the flexibility of creating containers with gMSA without joining the host node to the domain. Starting in Windows Server 2019, Container Credential Guard (CCG) is supported which enables a plug-in mechanism to retrieve gMSA credentials from Active Directory. You can use that identity to start the container. For more information on CCG, see the [ICcgDomainAuthCredentials interface](https://docs.microsoft.com/windows/win32/secauthn/iccgdomainauthcredentials).
+gMSA support for non-domain joined containers provides the flexibility of creating containers with gMSA without joining the host node to the domain. Starting in Windows Server 2019, Container Credential Guard (CCG) is supported which enables a plug-in mechanism to retrieve gMSA credentials from Active Directory. You can use that identity to start the container. For more information on CCG, see the [ICcgDomainAuthCredentials interface](https://docs.microsoft.com/windows/win32/api/ccgplugins/nn-ccgplugins-iccgdomainauthcredentials).
 
 > [!NOTE]
 > In Azure Kubernetes Service on Azure Stack HCI, you can use the plug-in to communicate from CCG to AD and then retrieve the gMSA credentials. For more information, see [configure group Managed Service Account](https://docs.microsoft.com/azure-stack/aks-hci/prepare-windows-nodes-gmsa).
