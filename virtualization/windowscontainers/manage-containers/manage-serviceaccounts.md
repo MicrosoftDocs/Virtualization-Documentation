@@ -152,7 +152,7 @@ New-ADGroup -Name "WebApp01 Authorized Accounts" -SamAccountName "WebApp01Accoun
 # Create the gMSA
 New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -ServicePrincipalNames "host/WebApp01", "host/WebApp01.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "WebApp01Accounts"
 
-# Create standard user accoun. This account information needs to be stored a secret store and will be retrieved by the ccg.exe hosted plugin to retrieve the gMSA password. Replace 'StandardUser01' with 'SecurePassword' with a unique username and password. We recommend using a random, long, machine-generated password.
+# Create standard user account. This account information needs to be stored a secret store and will be retrieved by the ccg.exe hosted plugin to retrieve the gMSA password. Replace 'StandardUser01' with 'SecurePassword' with a unique username and password. We recommend using a random, long, machine-generated password.
 New-ADUser -Name "StandardUser01" -AccountPassword "SecurePassword" -Enabled 1 
 
 # Add your container hosts to the security group
