@@ -273,7 +273,7 @@ This is an example of a credential spec:
 When using gMSA with non-domain-joined container hosts, information about the ccg.exe plugin that you will be using needs to be added to the credential spec. This will be added to a section of the credential spec called *HostAccountConfig*. The *HostAccountConfig* section will has three fields that need to be populated:
 
 - **PortableCcgVersion**: This should be set to "1"
-- **PluginGUID**: The COM CLSID for the ccg.exe plugin. This is unique to the plugin being used. 
+- **PluginGUID**: The COM CLSID for the ccg.exe plugin. This is unique to the plugin being used
 - **PluginInput**: Plugin specific input for retrieving user account information from the secret store
 
 This is an example of a credential spec with the *HostAccountConfig* section added:
