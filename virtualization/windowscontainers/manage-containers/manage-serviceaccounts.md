@@ -30,10 +30,10 @@ To address the limitations of the initial implementation of gMSA for Windows con
 
 ![Diagram of group Managed Service Accounts version two](../media/gmsa-v2.png)
 
-gMSA support for non-domain-joined container hosts provides the flexibility of creating containers with gMSA without joining the host node to the domain. Starting in Windows Server 2019, ccg.exe is supported which enables a plug-in mechanism to retrieve gMSA credentials from Active Directory. You can use that identity to start the container. For more information on this plug-in mechanism, see the [ICcgDomainAuthCredentials interface](https://docs.microsoft.com/windows/win32/api/ccgplugins/nn-ccgplugins-iccgdomainauthcredentials).
+gMSA support for non-domain-joined container hosts provides the flexibility of creating containers with gMSA without joining the host node to the domain. Starting in Windows Server 2019, ccg.exe is supported which enables a plug-in mechanism to retrieve gMSA credentials from Active Directory. You can use that identity to start the container. For more information on this plug-in mechanism, see the [ICcgDomainAuthCredentials interface](/windows/win32/api/ccgplugins/nn-ccgplugins-iccgdomainauthcredentials).
 
 > [!NOTE]
-> In Azure Kubernetes Service on Azure Stack HCI, you can use the plug-in to communicate from ccg.exe to AD and then retrieve the gMSA credentials. For more information, see [configure group Managed Service Account with AKS on Azure Stack HCI](https://docs.microsoft.com/azure-stack/aks-hci/prepare-windows-nodes-gmsa).
+> In Azure Kubernetes Service on Azure Stack HCI, you can use the plug-in to communicate from ccg.exe to AD and then retrieve the gMSA credentials. For more information, see [configure group Managed Service Account with AKS on Azure Stack HCI](/azure-stack/aks-hci/prepare-windows-nodes-gmsa).
 
 View the diagram below to follow the steps of the Container Credential Guard process:
 
@@ -183,7 +183,7 @@ Each container host that will run a Windows container with a gMSA must be domain
 
 When using gMSA for Windows containers on non-domain-joined container hosts, each container host must have a plugin for ccg.exe installed which will be used to retrieve the portable user account and credentials specified in the previous step. Plugins are unique to the secret store used to protect the portable user account credentials. For example, different plugins would be needed to store account credentials in Azure Key Vault versus in a Kubernetes secret store.
 
-Windows does not currently offer a built-in, default plugin. Installation instructions for a plugins will be implementation specific. For more information on creating and registering plugins for ccg.exe please refer to the [ICcgDomainAuthCredentials interface](https://docs.microsoft.com/windows/win32/api/ccgplugins/nn-ccgplugins-iccgdomainauthcredentials).
+Windows does not currently offer a built-in, default plugin. Installation instructions for a plugins will be implementation specific. For more information on creating and registering plugins for ccg.exe please refer to the [ICcgDomainAuthCredentials interface](/windows/win32/api/ccgplugins/nn-ccgplugins-iccgdomainauthcredentials).
 
 ## Create a credential spec
 
@@ -240,41 +240,41 @@ To create a credential spec file on your container host:
 
 This is an example of a credential spec:
 
-    ```json
-    {
-        "CmsPlugins": [
-            "ActiveDirectory"
-        ],
-        "DomainJoinConfig": {
-            "Sid": "S-1-5-21-702590844-1001920913-2680819671",
-            "MachineAccountName": "webapp01",
-            "Guid": "56d9b66c-d746-4f87-bd26-26760cfdca2e",
-            "DnsTreeName": "contoso.com",
-            "DnsName": "contoso.com",
-            "NetBiosName": "CONTOSO"
-        },
-        "ActiveDirectoryConfig": {
-            "GroupManagedServiceAccounts": [
-                {
-                    "Name": "webapp01",
-                    "Scope": "contoso.com"
-                },
-                {
-                    "Name": "webapp01",
-                    "Scope": "CONTOSO"
-                }
-            ]
-        }
+```json
+{
+    "CmsPlugins": [
+        "ActiveDirectory"
+    ],
+    "DomainJoinConfig": {
+        "Sid": "S-1-5-21-702590844-1001920913-2680819671",
+        "MachineAccountName": "webapp01",
+        "Guid": "56d9b66c-d746-4f87-bd26-26760cfdca2e",
+        "DnsTreeName": "contoso.com",
+        "DnsName": "contoso.com",
+        "NetBiosName": "CONTOSO"
+    },
+    "ActiveDirectoryConfig": {
+        "GroupManagedServiceAccounts": [
+            {
+                "Name": "webapp01",
+                "Scope": "contoso.com"
+            },
+            {
+                "Name": "webapp01",
+                "Scope": "CONTOSO"
+            }
+        ]
     }
-    ```
+}
+```
 
 ### Additional credential spec configuration for non-domain-joined container host use case
 
 When using gMSA with non-domain-joined container hosts, information about the ccg.exe plugin that you will be using needs to be added to the credential spec. This will be added to a section of the credential spec called *HostAccountConfig*. The *HostAccountConfig* section will has three fields that need to be populated:
 
-    - **PortableCcgVersion**: This should be set to "1"
-    - **PluginGUID**: The COM CLSID for the ccg.exe plugin
-    - **PluginInput**: Plugin specific input for retrieving user account information from the secret store
+- **PortableCcgVersion**: This should be set to "1"
+- **PluginGUID**: The COM CLSID for the ccg.exe plugin
+- **PluginInput**: Plugin specific input for retrieving user account information from the secret store
 
 This is an example of a credential spec with the *HostAccountConfig* section added:
 
