@@ -284,9 +284,9 @@ This is an example of a credential spec with the *HostAccountConfig* section add
         "ActiveDirectory"
     ],
     "DomainJoinConfig": {
-        "Sid": "S-1-5-21-3700119848-2853083131-2094573802",
-        "MachineAccountName": "gmsa1",
-        "Guid": "630a7dd3-2d3e-4471-ae91-1d9ea2556cd5",
+        "Sid": "S-1-5-21-702590844-1001920913-2680819671",
+        "MachineAccountName": "webapp01",
+        "Guid": "56d9b66c-d746-4f87-bd26-26760cfdca2e",
         "DnsTreeName": "contoso.com",
         "DnsName": "contoso.com",
         "NetBiosName": "CONTOSO"
@@ -294,11 +294,11 @@ This is an example of a credential spec with the *HostAccountConfig* section add
     "ActiveDirectoryConfig": {
         "GroupManagedServiceAccounts": [
             {
-                "Name": "gmsa1",
+                "Name": "webapp01",
                 "Scope": "contoso.com"
             },
             {
-                "Name": "gmsa1",
+                "Name": "webapp01",
                 "Scope": "CONTOSO"
             }
         ],
