@@ -22,6 +22,8 @@ landingContent:
         links:
           - text: Try Windows containers in AKS!
             url: /azure/aks/windows-container-cli
+          - text: Try Windows containers in AKS on Azure Stack HCI!
+            url: /azure-stack/aks-hci/deploy-windows-application
           - text: Check out our container images on Docker Hub
             url: https://hub.docker.com/_/microsoft-windows-base-os-images
           - text: Read the Containers blog
@@ -33,6 +35,8 @@ landingContent:
       - linkListType: overview
         links:
           - text: About Windows containers
+            url: ./about/index.md
+          - text: What's new for Windows containers in Windows Server 2022
             url: ./about/index.md
           - text: System requirements
             url: ./deploy-containers/system-requirements.md

@@ -20,7 +20,7 @@ The size of an image is important when using containers because when you deploy 
 
 ### Virtualized time zone
 
-With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1) Powershell cmdlet. To learn more, see [Virtualized time zone](./manage-containers/virtual-time-zone.md).
+With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1) Powershell cmdlet. To learn more, see [Virtualized time zone](../manage-containers/virtual-time-zone.md).
 
 ### Nano server support lifecycle
 
@@ -50,7 +50,7 @@ To learn more, see [DSR in Introduction to Windows support in Kubernetes](https:
 
 You can use Group Managed Service Accounts (gMSA) with Windows containers to facilitate Active Directory (AD) authentication. When introduced in Windows Server 2019, gMSA required joining the container host to a domain to retrieve the gMSA credentials from Active Directory. In Windows Server 2022, gMSA for containers with a non-domain joined host uses a portable user identity instead of a host identity to retrieve gMSA credentials, and therefore, manually joining Windows worker nodes to a domain is no longer necessary. The user identity is saved as a secret in Kubernetes. gMSA for containers with a non-domain joined host provides the flexibility of creating containers with gMSA without joining the host node to the domain.
 
-To learn more about the gMSA improvements, see [Create gMSAs for Windows containers](./manage-containers/manage-serviceaccounts.md).
+To learn more about the gMSA improvements, see [Create gMSAs for Windows containers](../manage-containers/manage-serviceaccounts.md).
 
 ### IPv6 support
 

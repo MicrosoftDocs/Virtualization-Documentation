@@ -2,6 +2,7 @@
 
 # Overview
 ## [About Windows containers](about/index.md)
+## [What's new for Windows containers](about/whats-new-ws2022-containers.md) 
 ## [Containers vs. VMs](about/containers-vs-vm.md)
 ## [System requirements](deploy-containers/system-requirements.md)
 ## [FAQ](about/faq.yml)
