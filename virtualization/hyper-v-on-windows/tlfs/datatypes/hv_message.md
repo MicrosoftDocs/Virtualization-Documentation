@@ -31,9 +31,9 @@ typedef struct
 typedef struct
 {
     HV_MESSAGE_TYPE MessageType;
-    UINT16 Reserved;
-    HV_MESSAGE_FLAGS MessageFlags;
     UINT8 PayloadSize;
+    HV_MESSAGE_FLAGS MessageFlags;
+    UINT16 Reserved;
     union
     {
         UINT64 OriginationId;

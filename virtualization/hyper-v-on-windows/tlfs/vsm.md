@@ -85,7 +85,8 @@ HvRegisterVsmPartitionStatus is a per-partition read-only register that is share
 typedef union
 {
     UINT64 AsUINT64;
-    struct {
+    struct
+    {
         UINT64 EnabledVtlSet : 16;
         UINT64 MaximumVtl : 4;
         UINT64 MbecEnabledVtlSet: 16;
@@ -186,8 +187,8 @@ A higher VTL can set a different default memory protection policy by specifying 
 |-----------|--------------------------------------------------------------------------------------|
 | 0         | Read                                                                                 |
 | 1         | Write                                                                                |
-| 2         | User Mode Execute (UMX)                                                              |
-| 3         | Kernel Mode Execute (KMX)                                                            |
+| 2         | Kernel Mode Execute (KMX)                                                            |
+| 3         | User Mode Execute (UMX)                                                              |
 
 #### Zero Memory on Reset
 
@@ -355,7 +356,7 @@ These three combine for the following types of memory protection:
 4. Read/write, no execute
 5. Read/write, execute
 
-If “mode based execution control (MBEC))” is enabed, user and kernel mode execute protections can be set seperately.
+If “mode based execution control (MBEC)” is enabled, user and kernel mode execute protections can be set separately.
 
 Higher VTLs can set the memory protection for a GPA through the [HvCallModifyVtlProtectionMask](hypercalls/HvCallModifyVtlProtectionMask.md) hypercall.
 
