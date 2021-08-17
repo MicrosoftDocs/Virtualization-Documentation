@@ -1,10 +1,9 @@
----
-title: Create gMSAs for Windows containers
+---title: Create gMSAs for Windows containers
 description: How to create Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts
 author: rpsqrd
 ms.author: jgerend
-ms.date: 01/03/2019
+ms.date: 08/16/2021
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
@@ -14,7 +13,7 @@ Windows-based networks commonly use Active Directory (AD) to facilitate authenti
 
 Although Windows containers cannot be domain joined, they can still use Active Directory domain identities to support various authentication scenarios. To achieve this, you can configure a Windows container to run with a [group Managed Service Account](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA), which is a special type of service account introduced in Windows Server 2012 and designed to allow multiple computers to share an identity without needing to know its password. Windows containers cannot be domain joined, but many Windows applications that run in Windows containers still need AD Authentication. To use AD Authentication, you can configure a Windows container to run with a group Managed Service Account (gMSA).
 
-When gMSA for Windows containers was initially introduced, it required the container host to be domain joined, which created a lot of overhead for users to manually join Windows worker nodes to a domain. This limitation has been addressed with gMSA for Windows containers support for non-domain-joined container hosts. The original functionality to use a domain joined container host will continue to be supported, though. Improvements when using gMSA with Windows containers when using a non-domain-joined container host include the following:
+When gMSA for Windows containers was initially introduced, it required the container host to be domain joined, which created a lot of overhead for users to manually join Windows worker nodes to a domain. This limitation has been addressed with gMSA for Windows containers support for non-domain-joined container hosts. Although, the original functionality to use a domain joined container host will continue to be supported. Improvements to gMSA when using a non-domain-joined container host include the following:
 
 - Eliminating the requirement to manually join Windows worker nodes to a domain, which caused a lot of overhead for users. For scaling scenarios, this will simplify the process.
 - In rolling update scenarios, users no longer must rejoin the node to a domain.
@@ -26,7 +25,7 @@ When gMSA for Windows containers was initially introduced, it required the conta
 
 ## gMSA architecture and improvements
 
-To address the limitations of the initial implementation of gMSA for Windows containers, new gMSA support for non-domain-joined container hosts uses a portable user identity instead of a host computer account to retrieve gMSA credentials. Therefore, manually joining Windows worker nodes to a domain is no longer necessary, although it's still supported. The user identity/credentials are stored in a secret store accessible to the container host (for exampled, as a Kubernetes secret) where authenticated users can retrieve it.
+To address the limitations of the initial implementation of gMSA for Windows containers, new gMSA support for non-domain-joined container hosts uses a portable user identity instead of a host computer account to retrieve gMSA credentials. Therefore, manually joining Windows worker nodes to a domain is no longer necessary, although it's still supported. The user identity/credentials are stored in a secret store accessible to the container host (for example, as a Kubernetes secret) where authenticated users can retrieve it.
 
 ![Diagram of group Managed Service Accounts version two](../media/gmsa-v2.png)
 
@@ -114,12 +113,12 @@ Once you've decided on the name for your gMSA, run the following cmdlets in Powe
 > You'll need to use an account that belongs to the **Domain Admins** security group or has been delegated the **Create msDS-GroupManagedServiceAccount objects** permission to run the following commands.
 > The [New-ADServiceAccount](/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps&preserve-view=true) cmdlet is part of the AD PowerShell Tools from [Remote Server Administration Tools](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools).
 
-We recommend you create separate gMSA accounts for your dev, test, and production environments.
+We recommend you create separate gMSA accounts for your development, test, and production environments.
 
 ### Instructions for creating gMSA account for domain joined container hosts use case
 
 ```powershell
-# Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively
+# Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively.
 
 # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
 # To install the AD module on Windows 10 version 1809 or later, run Add-WindowsCapability -Online -Name 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
@@ -152,7 +151,7 @@ New-ADGroup -Name "WebApp01 Authorized Accounts" -SamAccountName "WebApp01Accoun
 # Create the gMSA
 New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -ServicePrincipalNames "host/WebApp01", "host/WebApp01.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "WebApp01Accounts"
 
-# Create standard user account. This account information needs to be stored a secret store and will be retrieved by the ccg.exe hosted plugin to retrieve the gMSA password. Replace 'StandardUser01' with 'SecurePassword' with a unique username and password. We recommend using a random, long, machine-generated password.
+# Create the standard user account. This account information needs to be stored in a secret store and will be retrieved by the ccg.exe hosted plug-in to retrieve the gMSA password. Replace 'StandardUser01' and 'SecurePassword' with a unique username and password. We recommend using a random, long, machine-generated password.
 New-ADUser -Name "StandardUser01" -AccountPassword "SecurePassword" -Enabled 1 
 
 # Add your container hosts to the security group
@@ -167,7 +166,7 @@ Each container host that will run a Windows container with a gMSA must be domain
 
 1. Join your computer to your Active Directory domain.
 2. Ensure your host belongs to the security group controlling access to the gMSA password.
-3. Restart the computer so it gets its new group membership.
+3. Restart the computer to get its new group membership.
 4. Set up [Docker Desktop for Windows 10](https://docs.docker.com/docker-for-windows/install/) or [Docker for Windows Server](https://docs.docker.com/install/windows/docker-ee/).
 5. (Recommended) Verify the host can use the gMSA account by running [Test-ADServiceAccount](/powershell/module/activedirectory/test-adserviceaccount). If the command returns **False**, follow the [troubleshooting instructions](gmsa-troubleshooting.md#make-sure-the-host-can-use-the-gmsa).
 
@@ -181,16 +180,16 @@ Each container host that will run a Windows container with a gMSA must be domain
 
 ### Preparing container host for non-domain-joined container host use case
 
-When using gMSA for Windows containers on non-domain-joined container hosts, each container host must have a plugin for ccg.exe installed which will be used to retrieve the portable user account and credentials specified in the previous step. Plugins are unique to the secret store used to protect the portable user account credentials. For example, different plugins would be needed to store account credentials in Azure Key Vault versus in a Kubernetes secret store.
+When using gMSA for Windows containers on non-domain-joined container hosts, each container host must have a plug-in for ccg.exe installed which will be used to retrieve the portable user account and credentials specified in the previous step. Plug-ins are unique to the secret store used to protect the portable user account credentials. For example, different plug-ins would be needed to store account credentials in Azure Key Vault versus in a Kubernetes secret store.
 
-Windows does not currently offer a built-in, default plugin. Installation instructions for a plugins will be implementation specific. For more information on creating and registering plugins for ccg.exe please refer to the [ICcgDomainAuthCredentials interface](/windows/win32/api/ccgplugins/nn-ccgplugins-iccgdomainauthcredentials).
+Windows does not currently offer a built-in, default plug-in. Installation instructions for plug-ins will be implementation specific. For more information on creating and registering plug-ins for ccg.exe, see [ICcgDomainAuthCredentials interface](/windows/win32/api/ccgplugins/nn-ccgplugins-iccgdomainauthcredentials).
 
 ## Create a credential spec
 
-A credential spec file is a JSON document that contains metadata about the gMSA account(s) you want a container to use. By keeping the identity configuration separate from the container image, you can change which gMSA the container uses by simply swapping the credential spec file, no code changes necessary.
+A credential spec file is a JSON document that contains metadata about the gMSA account(s) you want a container to use. By keeping the identity configuration separate from the container image, you can change which gMSA the container uses by simply swapping the credential spec file, no code changes are necessary.
 
 The credential spec file is created using the [CredentialSpec PowerShell module](https://aka.ms/credspec) on a domain-joined machine.
-Once you've created the file, you can copy it to other container hosts or your container orchestrator.
+Once you've created the file, you can copy it to other container hosts or to your container orchestrator.
 The credential spec file does not contain any secrets, such as the gMSA password, since the container host retrieves the gMSA on behalf of the container.
 
 Docker expects to find the credential spec file under the **CredentialSpecs** directory in the Docker data directory. In a default installation, you'll find this folder at `C:\ProgramData\Docker\CredentialSpecs`.
@@ -207,7 +206,7 @@ To create a credential spec file on your container host:
     Install-Module CredentialSpec
     ```
 
-    If you don't have internet access on your container host, run `Save-Module CredentialSpec` on an internet-connected machine and copy the module folder to `C:\Program Files\WindowsPowerShell\Modules` or another location in `$env:PSModulePath` on the container host.
+    If you don't have internet access on your container host, run `Save-Module CredentialSpec` on an Internet-connected machine and copy the module folder to `C:\Program Files\WindowsPowerShell\Modules` or to another location in `$env:PSModulePath` on the container host.
 
 3. Run the following cmdlet to create the new credential spec file:
 
@@ -216,7 +215,7 @@ To create a credential spec file on your container host:
     New-CredentialSpec -AccountName WebApp01
     ```
 
-    By default, the cmdlet will create a cred spec using the provided gMSA name as the computer account for the container. The file will be saved in the Docker CredentialSpecs directory using the gMSA domain and account name for the filename.
+    By default, the cmdlet will create a credential spec using the provided gMSA name as the computer account for the container. The file will be saved in the Docker CredentialSpecs directory using the gMSA domain and account name for the filename.
 
     If you want to save the file to another directory, use the `-Path` parameter:
 
@@ -270,11 +269,11 @@ This is an example of a credential spec:
 
 ### Additional credential spec configuration for non-domain-joined container host use case
 
-When using gMSA with non-domain-joined container hosts, information about the ccg.exe plugin that you will be using needs to be added to the credential spec. This will be added to a section of the credential spec called *HostAccountConfig*. The *HostAccountConfig* section will has three fields that need to be populated:
+When using gMSA with non-domain-joined container hosts, information about the ccg.exe plug-in that you will be using needs to be added to the credential spec. This will be added to a section of the credential spec called *HostAccountConfig*. The *HostAccountConfig* section has three fields that need to be populated:
 
-- **PortableCcgVersion**: This should be set to "1"
-- **PluginGUID**: The COM CLSID for the ccg.exe plugin. This is unique to the plugin being used
-- **PluginInput**: Plugin specific input for retrieving user account information from the secret store
+- **PortableCcgVersion**: This should be set to "1".
+- **PluginGUID**: The COM CLSID for the ccg.exe plug-in. This is unique to the plug-in being used.
+- **PluginInput**: Plug-in specific input for retrieving the user account information from the secret store.
 
 This is an example of a credential spec with the *HostAccountConfig* section added:
 
