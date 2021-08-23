@@ -36,12 +36,10 @@
     },
     "fileMetadata": {
       "ms.topic": {
-        "/api/**/*.md": "reference",
-        "/hyper-v-on-windows/**/*.md": "article"
+        "/api/**/*.md": "reference"
       },
       "ms.prod": {
         "/api/**/*.md": "windows",
-        "/hyper-v-on-windows/**/*.md": "windows-10-hyperv",
         "/windowscontainers/**/index.yml": "windows",
         "/windowscontainers/**/faq.yml": "windows"
       }
