@@ -20,6 +20,15 @@
         }
     ],
     "externalReference": [],
+    "template": "op.html",
+    "dest": "virtualization/community",
+    "globalMetadata": {
+      "breadcrumb_path": "/virtualization/toc.json",
+      "extendBreadcrumb": true, 
+      "feedback_system": "GitHub", 
+      "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
+      "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
+    },
     "fileMetadata": {
       "ms.topic": {
         "/team-blog/**/*.md": "article"
@@ -241,15 +250,6 @@
         "/team-blog/2017/20171219-tar-and-curl-come-to-windows.md": "windows",
         "/team-blog/2018/20180123-looking-at-the-hyper-v-event-log-january-2018-edition.md": "windows"
       }
-    },
-    "template": "op.html",
-    "dest": "virtualization/community",
-    "globalMetadata": {
-      "breadcrumb_path": "/virtualization/toc.json",
-      "extendBreadcrumb": true, 
-      "feedback_system": "GitHub", 
-      "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
-      "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },  
     "extendBreadcrumb": true
   }
