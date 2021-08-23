@@ -37,10 +37,13 @@
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
     "fileMetadata": {
+      "ms.topic": {
+        "**/*.md": "article"
+      },
       "ms.prod": {
          "**/*.md": "windows-server",
-        "/windowscontainers/index.yml": "windows",
-        "/windowscontainers/**/faq.yml": "windows"
+        "index.yml": "windows-server",
+        "**/faq.yml": "windows-server"
       },
       "ms.technology": {
          "**/*.md": "windows-containers"

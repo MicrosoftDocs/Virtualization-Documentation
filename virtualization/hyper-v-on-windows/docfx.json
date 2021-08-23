@@ -40,10 +40,10 @@
         "tlfs/datatypes/**/*.md": "tlfs/datatypes/breadcrumb/toc.yml"          
       },
       "ms.topic": {
-        "/hyper-v-on-windows/**/*.md": "article"
+        "**/*.md": "article"
       },
       "ms.prod": {
-        "/hyper-v-on-windows/**/*.md": "windows-10-hyperv"
+        "**/*.md": "windows-10-hyperv"
       },
       "extendBreadcrumb": {
         "tlfs/hypercalls/**/*.md": false,

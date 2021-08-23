@@ -36,10 +36,10 @@
     },
     "fileMetadata": {
       "ms.topic": {
-        "/api/**/*.md": "reference"
+        "**/*.md": "reference"
       },
       "ms.prod": {
-        "/api/**/*.md": "windows"
+        "**/*.md": "windows"
       }
     },
     "template": [],
