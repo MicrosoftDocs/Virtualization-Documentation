@@ -38,7 +38,9 @@
     },
     "fileMetadata": {
       "ms.prod": {
-         "**/*.md": "windows-server"
+         "**/*.md": "windows-server",
+        "/windowscontainers/index.yml": "windows",
+        "/windowscontainers/**/faq.yml": "windows"
       },
       "ms.technology": {
          "**/*.md": "windows-containers"
