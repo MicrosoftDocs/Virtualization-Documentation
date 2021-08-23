@@ -37,12 +37,10 @@
     "fileMetadata": {
       "ms.topic": {
         "/api/**/*.md": "reference",
-        "/community/team-blog/**/*.md": "article",
         "/hyper-v-on-windows/**/*.md": "article"
       },
       "ms.prod": {
         "/api/**/*.md": "windows",
-        "/community/team-blog/**/*.md": "virtualization",
         "/hyper-v-on-windows/**/*.md": "windows-10-hyperv",
         "/windowscontainers/**/index.yml": "windows",
         "/windowscontainers/**/faq.yml": "windows"

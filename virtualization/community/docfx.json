@@ -20,6 +20,14 @@
         }
     ],
     "externalReference": [],
+    "fileMetadata": {
+      "ms.topic": {
+        "/team-blog/**/*.md": "article"
+      },
+      "ms.prod": {
+        "/team-blog/**/*.md": "virtualization"
+      }
+    },
     "template": "op.html",
     "dest": "virtualization/community",
     "globalMetadata": {
