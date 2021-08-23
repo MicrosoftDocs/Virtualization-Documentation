@@ -39,9 +39,7 @@
         "/api/**/*.md": "reference"
       },
       "ms.prod": {
-        "/api/**/*.md": "windows",
-        "/windowscontainers/**/index.yml": "windows",
-        "/windowscontainers/**/faq.yml": "windows"
+        "/api/**/*.md": "windows"
       }
     },
     "template": [],
