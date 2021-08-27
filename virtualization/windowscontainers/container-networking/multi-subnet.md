@@ -10,7 +10,7 @@ ms.topic: conceptual
 
 # Multiple subnet support in Host Networking Service
 
-Using multiple subnets per network is now supported in Host Networking Service (HNS) for Windows containers. Previously, HNS restricted Kubernetes container endpoint configurations to use only the prefix length of the underlying subnet. HNS is now enhanced so you can use more restrictive subnets (such as subnets with a longer prefix length) as well as multiple subnets per Windows worker node. The first Container Networking Interface (CNI) that can this functionality is Calico for Windows. Calico Network Policies is an open-source network and network security solution founded by [Tigera](https://www.tigera.io/).
+Using multiple subnets per network is now supported in Host Networking Service (HNS) for Windows containers. Previously, HNS restricted Kubernetes container endpoint configurations to use only the prefix length of the underlying subnet. HNS has been enhanced so you can use more restrictive subnets, such as subnets with a longer prefix length, as well as multiple subnets per Windows worker node. The first Container Networking Interface (CNI) that can this functionality is Calico for Windows. Calico Network Policies is an open-source network and network security solution founded by [Tigera](https://www.tigera.io/).
 
 You can utilize multiple subnets in HNS only for _l2bridge_, _l2tunnel_, and _overlay_ network drivers. These network drivers can expose multiple subnets, and then allow each endpoint to bind to one of these subnets.
 
@@ -22,7 +22,7 @@ Multiple subnet support for the Calico CNI requires subdividing the subnet into 
 
 A full implementation of Calico IP Address Management (IPAM) works as follows:
 
-Calico's IPAM function is designed to allocate IP addresses to workloads on-demand. Calico supports multiple IP pools for administrative grouping. When configuring an allocation for a particular workload, the set of allowed pools may be limited by the configuration, which allows for various use cases. Different varied cases, follow these guidelines:
+Calico's IPAM function is designed to allocate IP addresses to workloads on-demand. Calico also supports multiple IP pools for administrative grouping. When configuring an allocation for a particular workload, the set of allowed pools may be limited by the configuration, which allows for various use cases. Follow the guidelines below for different use cases:
 
 - Use multiple disjoint pools to increase capacity. 
 - For _l2bridge_ networks within a rack, configure an IP pool per rack where the hosts within a rack can only allocate from a particular pool. 
@@ -31,7 +31,7 @@ Calico's IPAM function is designed to allocate IP addresses to workloads on-dema
 
  IPs are always allocated from blocks, and those blocks can be affine to a particular host. A host will always try to assign IPs from one of its own affine blocks if there is space (and only if the block is from an allowed pool for the given workload). If none of the host’s existing blocks have space, the host will try to claim a new block from an allowed pool. If no empty blocks are available, the host will borrow an IP from any block in an allowed pool that has free space available, even if that block is affine to another host.
 
-Calico relies on longest prefix match routing to support aggregation. Each host advertises routes for all its affine blocks and advertises (/32) routes for any IPs that it has borrowed. Since a /32 route is more specific, remote hosts that need to forward to the /32 will use the /32 route instead of the broader /26 route to the host with the affine block.
+Calico relies on the _longest prefix match routing_ to support aggregation. Each host advertises routes for all its affine blocks and advertises /32 routes for any IPs that it has borrowed. Since a /32 route is more specific, remote hosts that need to forward to the /32 will use the /32 route instead of the broader /26 route to the host with the affine block.
 
 Since Calico is a routed L3 network, it's worth noting that the /26 routes are not intended to be subnets. For example, there is no network or broadcast address; and the "0" and "255" addresses of a block are used as normal IPs.
 
@@ -63,14 +63,14 @@ Windows nodes do not support this borrowing mechanism. They won't borrow IPs eve
 
 ### Requirements to support micropools
 
-To use micropools, the requirement to reserve 4 IPs per block is removed. In the micropool use case, very small pools and very small blocks are used, so four IPs per block wastes most of the IPs. You can require a small number of reserved IPs per host or per pool.
+To use micropools, the requirement to reserve four IPs per block is removed. In the micropool use case, very small pools and very small blocks are used, so four IPs per block wastes most of the IPs. You can require a small number of reserved IPs either per host or per pool.
 A best practice is to have all _layer 2_ support restrictions lifted (for example, there should be no support for broadcast and no reserved IPs).
 
 ## Create a subnet and an IP subnet using PowerShell
 
 Before continuing, make sure you have the HNS.V2.psm1 module installed from the [HNS PowerShell gallery](https://www.powershellgallery.com/packages/HNS/0.2.4).
 
-To create a subnet and an IP subnet, use the following steps.
+The following steps explain how to create a subnet and an IP subnet using examples.
 
 1. To create am _l2bridge_ network with one 192.168.0.0/16 subnet that contains a 192.168.1.0/24 IP subnet and a 192.168.2.0/24 IP subnet, run the following command:
 
@@ -95,14 +95,14 @@ To create a subnet and an IP subnet, use the following steps.
 
 To remove the IP subnets, use the following steps:
 
-1. To dynamically remove the 172.16.2.0/24 IP subnet, run the following command:
+1. To remove the 172.16.2.0/24 IP subnet, run the following command:
 
    ```powershell
       $net2 = Get-HnsNetwork -ID $net1.ID
       Remove-HnsIpSubnet -NetworkID $net1.ID -SubnetID $net2.Subnets[1].ID -IPSubnets @{"ID"=$net2.Subnets[1].IPSubnets[1].ID}
    ```
 
-2. To dynamically remove the 172.16.0.0/16 subnet, run the following command:
+2. To remove the 172.16.0.0/16 subnet, run the following command:
 
    ```powershell
    Remove-HnsSubnet -NetworkID $net1.ID -Subnets @{"ID"=$net2.Subnets[1].ID}
