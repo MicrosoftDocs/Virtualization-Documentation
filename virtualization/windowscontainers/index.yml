@@ -37,7 +37,7 @@ landingContent:
           - text: About Windows containers
             url: ./about/index.md
           - text: What's new for Windows containers in Windows Server 2022
-            url: ./about/index.md
+            url: ./about/whats-new-ws2022-containers.md
           - text: System requirements
             url: ./deploy-containers/system-requirements.md
           - text: FAQ

@@ -20,7 +20,7 @@ The size of an image is important when using containers because when you deploy 
 
 ### Virtualized time zone
 
-With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1) Powershell cmdlet. To learn more, see [Virtualized time zone](../manage-containers/virtual-time-zone.md).
+With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1) Powershell cmdlet. To learn more, see [Virtualized time zone](../manage-containers/virtual-time-zone.md).
 
 ### Nano server support lifecycle
 
@@ -74,7 +74,7 @@ HostProcess containers have the following benefits:
 - HostProcess containers provide the best way to manage Windows nodes in Kubernetes.
 
 
-## Tooling for containers
+## Windows container tooling
 
 ### Windows Admin Center improvements
 
@@ -92,6 +92,6 @@ Azure Migrate App Containerization is an end-to-end solution to containerize and
 
 For more information on using this tool, see the following topics:
 
-[ASP.NET app containerization and migration to Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/migrate/tutorial-app-containerization-aspnet-kubernetes)
+[ASP.NET app containerization and migration to Azure Kubernetes Service](/azure/migrate/tutorial-app-containerization-aspnet-kubernetes)
 
-[Java web app containerization and migration to Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/migrate/tutorial-app-containerization-java-kubernetes)
+[Java web app containerization and migration to Azure Kubernetes Service](/azure/migrate/tutorial-app-containerization-java-kubernetes)
