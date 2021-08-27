@@ -61,7 +61,7 @@ The first step to fully supporting the IPv6 dual stack has been implemented for 
 
 ### Multi-subnet support for Windows worker nodes with Calico for Windows
 
-The Host Network Service (HNS) has been improved and now allows the use of more restrictive subnets (such as subnets with a longer prefix length) as well as multiple subnets for each Windows worker node. Previously, HNS was restricting the Kubernetes container endpoint configurations to only use the prefix length of the underlying subnet. The first CNI that makes use of this functionality is [Calico for Windows](https://techcommunity.microsoft.com/t5/networking-blog/calico-for-windows-goes-open-source/ba-p/1620297).  For information on using multi-subnet with Windows containers, see _link to new topic_.
+The Host Network Service (HNS) has been improved and now allows the use of more restrictive subnets (such as subnets with a longer prefix length) as well as multiple subnets for each Windows worker node. Previously, HNS was restricting the Kubernetes container endpoint configurations to only use the prefix length of the underlying subnet. The first CNI that makes use of this functionality is [Calico for Windows](https://techcommunity.microsoft.com/t5/networking-blog/calico-for-windows-goes-open-source/ba-p/1620297).  For more information, see [Multiple subnet support in Host Networking Service](../container-networking/multi-subnet.md).
 
 ### HostProcess containers for node management
 

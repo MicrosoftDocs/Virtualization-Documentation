@@ -12,7 +12,7 @@ ms.topic: conceptual
 
 Using multiple subnets per network is now supported in Host Networking Service (HNS) for Windows containers. Previously, HNS restricted Kubernetes container endpoint configurations to use only the prefix length of the underlying subnet. HNS is now enhanced so you can use more restrictive subnets (such as subnets with a longer prefix length) as well as multiple subnets per Windows worker node. The first Container Networking Interface (CNI) that can this functionality is Calico for Windows. Calico Network Policies is an open-source network and network security solution founded by [Tigera](https://www.tigera.io/).
 
-You can utilize multiple subnets in HNS only for l2bridge, l2tunnel, and overlay network drivers. These network drivers can expose multiple subnets, and then allow each endpoint to bind to one of these subnets.
+You can utilize multiple subnets in HNS only for _l2bridge_, _l2tunnel_, and _overlay_ network drivers. These network drivers can expose multiple subnets, and then allow each endpoint to bind to one of these subnets.
 
 HNS and the Host Compute Service (HCS) work together to create containers and attach endpoints to a network. You can interact with HNS using the [HNS Powershell Helper module](https://www.powershellgallery.com/packages/HNS/0.2.4).
 
@@ -72,13 +72,13 @@ Before continuing, make sure you have the HNS.V2.psm1 module installed from the 
 
 To create a subnet and an IP subnet, use the following steps.
 
-1. To create a L2Bridge network with one 192.168.0.0/16 subnet containing a 192.168.1.0/24 IP subnet and a 192.168.2.0/24 IP subnet, run the following command:
+1. To create am _l2bridge_ network with one 192.168.0.0/16 subnet that contains a 192.168.1.0/24 IP subnet and a 192.168.2.0/24 IP subnet, run the following command:
 
    ```powershell
    $net1 = New-HnsNetwork -Type L2Bridge -Name Test1 -AddressPrefix "192.168.0.0/16" -Gateway "192.168.0.1" -Verbose -IPSubnets @(@{"IpAddressPrefix"="192.168.1.0/24";"Flags"=0},@{"IpAddressPrefix"="192.168.2.0/24";"Flags"=[IPSubnetFlags]::EnableBroadcast})
    ```
 
-2. To add a new 172.16.0.0/16 Subnet containing a 172.16.1.0/16 IP subnet to the L2Bridge network, run the following command:
+2. To add a new 172.16.0.0/16 subnet that contains a 172.16.1.0/16 IP subnet to the _l2bridge_ network, run the following command:
 
    ```powershell
    New-HnsSubnet -NetworkID $net1.ID -Subnets @{
