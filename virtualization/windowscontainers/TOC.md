@@ -73,6 +73,7 @@
 ## Networking
 ### [Windows container networking](container-networking/architecture.md)
 ### [Network topologies and drivers](container-networking/network-drivers-topologies.md)
+### [Multiple subnet support in Host Networking Service](container-networking/multi-subnet.md)
 ### [Network isolation and security](container-networking/network-isolation-security.md)
 ### [Configure advanced networking options](container-networking/advanced.md)
 ## Storage

@@ -17,16 +17,16 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 
 This topic provides an overview of how Docker creates and manages host networks on Windows. Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a Hyper-V virtual switch (vSwitch). Windows supports five different [networking drivers or modes](./network-drivers-topologies.md) which can be created through Docker: *nat*, *overlay*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should choose the network driver which best suits your needs.
 
-![text](media/windowsnetworkstack-simple.png)
+![Illustrates the Windows network stack](media/windowsnetworkstack-simple.png)
 
 The first time the Docker engine runs, it will create a default NAT network, 'nat', which uses an internal vSwitch and a Windows component named `WinNAT`. If there are any pre-existing external vSwitches on the host which were created through PowerShell or Hyper-V Manager, they will also be available to Docker using the *transparent* network driver and can be seen when you run the ``docker network ls`` command.
 
-![text](media/docker-network-ls.png)
+![Illustrates the Docker network ls PowerShell command](media/docker-network-ls.png)
 
 - An **internal** vSwitch is one that isn't directly connected to a network adapter on the container host.
 - An **external** vSwitch is one that is directly connected to a network adapter on the container host.
 
-![text](media/get-vmswitch.png)
+![Illustrates the Get-VMSwitch PowerShell command](media/get-vmswitch.png)
 
 The 'nat' network is the default network for containers running on Windows. Any containers that are run on Windows without any flags or arguments to implement specific network configurations will be attached to the default 'nat' network, and automatically assigned an IP address from the 'nat' network's internal prefix IP range. The default internal IP prefix used for 'nat' is 172.16.0.0/16.
 

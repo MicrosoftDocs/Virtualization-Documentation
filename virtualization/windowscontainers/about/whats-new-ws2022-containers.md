@@ -20,7 +20,7 @@ The size of an image is important when using containers because when you deploy 
 
 ### Virtualized time zone
 
-With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1) Powershell cmdlet. To learn more, see [Virtualized time zone](../manage-containers/virtual-time-zone.md).
+With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1&preserve-view=true) Powershell cmdlet. To learn more, see [Virtualized time zone](../manage-containers/virtual-time-zone.md).
 
 ### Nano server support lifecycle
 
