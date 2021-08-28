@@ -90,7 +90,7 @@ Windows Admin Center includes the following enhancements:
 
 Azure Migrate App Containerization is an end-to-end solution to containerize and move existing web applications to Azure Kubernetes Service. It’s step-by-step approach provides functionality to assess existing web servers, create a container image, push the image to ACR, create a Kubernetes deployment, and finally deploy it to AKS.
 
-For more information on using this tool, see the following topics:
+For more information on using the Azure Migrate App ContainerizationAzure Migrate App Containerization tool, see the following topics:
 
 [ASP.NET app containerization and migration to Azure Kubernetes Service](/azure/migrate/tutorial-app-containerization-aspnet-kubernetes)
 
