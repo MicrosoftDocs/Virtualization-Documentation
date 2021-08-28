@@ -20,7 +20,7 @@ The size of an image is important when using containers because when you deploy 
 
 ### Virtualized time zone
 
-With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1&preserve-view=true) Powershell cmdlet. To learn more, see [Virtualized time zone](../manage-containers/virtual-time-zone.md).
+With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](https://docs.microsoft.com/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](https://docs.microsoft.com/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1&preserve-view=true) Powershell cmdlet. To learn more, see [Virtualized time zone](../manage-containers/virtual-time-zone.md).
 
 ### Nano server support lifecycle
 
@@ -65,10 +65,11 @@ The Host Network Service (HNS) has been improved and now allows the use of more 
 
 ### HostProcess containers for node management
 
-HostProcess containers are a new container type that extend the Windows container model to enable a wider range of Kubernetes cluster management scenarios. HostProcess containers run directly on the host and maintain behavior and access similar to that of a regular process. With HostProcess containers, users can package and distribute management operations that require host access while retaining versioning and deployment methods provided by containers. This allows Windows containers to be used for a variety of device plug-in, storage, and networking management scenarios in Kubernetes. A host network mode is introduced so that HostProcess containers can be created within the host's network namespace instead of their own namespace.
+HostProcess containers are a new container type that runs directly on the host and extends the Windows container model to enable a wider range of Kubernetes cluster management scenarios. With HostProcess containers, users can package and distribute management operations that require host access while retaining versioning and deployment methods provided by containers. This allows you to use Windows containers for a variety of device plug-in, storage, and networking management scenarios in Kubernetes. 
+
 HostProcess containers have the following benefits:
 
-- Cluster users no longer need to log in to and individually configure each Windows node for administrative tasks and management of Windows services. 
+- Cluster users no longer need to log in and individually configure each Windows node for administrative tasks and management of Windows services. 
 - Users can utilize the container model to deploy management logic to as many clusters as needed.
 - HostProcess containers can be built on top of existing Windows server 2019 (or later) base images, managed through the Windows container runtime, and run as any user that is available in the domain of the host machine. 
 - HostProcess containers provide the best way to manage Windows nodes in Kubernetes.
@@ -92,6 +93,6 @@ Azure Migrate App Containerization is an end-to-end solution to containerize and
 
 For more information on using the Azure Migrate App ContainerizationAzure Migrate App Containerization tool, see the following topics:
 
-[ASP.NET app containerization and migration to Azure Kubernetes Service](/azure/migrate/tutorial-app-containerization-aspnet-kubernetes)
+[ASP.NET app containerization and migration to Azure Kubernetes Service](https://docs.microsoft.com/azure/migrate/tutorial-app-containerization-aspnet-kubernetes)
 
-[Java web app containerization and migration to Azure Kubernetes Service](/azure/migrate/tutorial-app-containerization-java-kubernetes)
+[Java web app containerization and migration to Azure Kubernetes Service](https://docs.microsoft.com/azure/migrate/tutorial-app-containerization-java-kubernetes)
