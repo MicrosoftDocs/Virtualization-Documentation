@@ -93,6 +93,6 @@ Azure Migrate App Containerization is an end-to-end solution to containerize and
 
 For more information on using the Azure Migrate App ContainerizationAzure Migrate App Containerization tool, see the following topics:
 
-[ASP.NET app containerization and migration to Azure Kubernetes Service]/azure/migrate/tutorial-app-containerization-aspnet-kubernetes)
+[ASP.NET app containerization and migration to Azure Kubernetes Service](/azure/migrate/tutorial-app-containerization-aspnet-kubernetes)
 
 [Java web app containerization and migration to Azure Kubernetes Service](/azure/migrate/tutorial-app-containerization-java-kubernetes)
