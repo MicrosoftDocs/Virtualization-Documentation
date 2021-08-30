@@ -46,6 +46,7 @@
 ### [Isolation modes](manage-containers/hyperv-container.md)
 ### [Version compatibility](deploy-containers/version-compatibility.md)
 ### [Update containers](deploy-containers/update-containers.md)
+### [Upgrade Windows containers](deploy-containers/upgrade-windows-containers.md)
 ### [Resource controls](manage-containers/resource-controls.md)
 ### [Container time zones](manage-containers/virtual-time-zone.md)
 ## Docker
