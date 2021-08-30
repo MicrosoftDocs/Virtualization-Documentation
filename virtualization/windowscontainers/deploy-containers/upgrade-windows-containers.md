@@ -107,4 +107,4 @@ To allow other hosts to reuse the new image, you should tag and then push the co
 
 ## Upgrade containers using an orchestrator
 
-You can also redeploy your Windows containers using an orchestrator, such as Azure Kubernetes Service and AKS on Azure Stack HCI. The orchestrator provides powerful automation for doing this at scale. For details, see [Tutorial: Update an application in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-app-update?tabs=azure-cli) or [Tutorial: Update an application in Azure Kubernetes Service on Azure Stack HCI](https://docs.microsoft.com/en-us/azure-stack/aks-hci/tutorial-kubernetes-app-update).
+You can also redeploy your Windows containers using an orchestrator, such as Azure Kubernetes Service and AKS on Azure Stack HCI. The orchestrator provides powerful automation for doing this at scale. For details, see [Tutorial: Update an application in Azure Kubernetes Service](/azure/aks/tutorial-kubernetes-app-update?tabs=azure-cli) or [Tutorial: Update an application in Azure Kubernetes Service on Azure Stack HCI](/azure-stack/aks-hci/tutorial-kubernetes-app-update).
