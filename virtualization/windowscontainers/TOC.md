@@ -2,6 +2,7 @@
 
 # Overview
 ## [About Windows containers](about/index.md)
+## [What's new for Windows containers in Windows Server 2022](about/whats-new-ws2022-containers.md) 
 ## [Containers vs. VMs](about/containers-vs-vm.md)
 ## [System requirements](deploy-containers/system-requirements.md)
 ## [FAQ](about/faq.yml)
@@ -45,6 +46,7 @@
 ### [Isolation modes](manage-containers/hyperv-container.md)
 ### [Version compatibility](deploy-containers/version-compatibility.md)
 ### [Update containers](deploy-containers/update-containers.md)
+### [Upgrade Windows containers](deploy-containers/upgrade-windows-containers.md)
 ### [Resource controls](manage-containers/resource-controls.md)
 ### [Container time zones](manage-containers/virtual-time-zone.md)
 ## Docker
@@ -72,6 +74,7 @@
 ## Networking
 ### [Windows container networking](container-networking/architecture.md)
 ### [Network topologies and drivers](container-networking/network-drivers-topologies.md)
+### [Multiple subnet support in Host Networking Service](container-networking/multi-subnet.md)
 ### [Network isolation and security](container-networking/network-isolation-security.md)
 ### [Configure advanced networking options](container-networking/advanced.md)
 ## Storage
