@@ -103,7 +103,7 @@ As we've been improving the Windows container features, we've had to make some c
 ---
 <!-- stop tab view -->
 
-## Windows 10 host OS compatibility
+## Windows Client host OS compatibility
 
 <!-- start tab view -->
 

@@ -61,7 +61,7 @@ The Host Network Service (HNS) has been improved and now allows the use of more 
 
 ### HostProcess containers for node management
 
-HostProcess containers are a new container type that runs directly on the host and extends the Windows container model to enable a wider range of Kubernetes cluster management scenarios. With HostProcess containers, users can package and distribute management operations that require host access while retaining versioning and deployment methods provided by containers. This allows you to use Windows containers for a variety of device plug-in, storage, and networking management scenarios in Kubernetes. For more information, see [Windows HostProcess Containers](https://kubernetes.io/blog/2021/08/16/windows-hostprocess-containers/).
+HostProcess containers are a new container type that runs directly on the host and extends the Windows container model to enable a wider range of Kubernetes cluster management scenarios. With HostProcess containers, users can package and distribute management operations that require host access while retaining versioning and deployment methods provided by containers. This allows you to use Windows containers for a variety of device plug-in, storage, and networking management scenarios in Kubernetes. 
 
 HostProcess containers have the following benefits:
 
@@ -70,6 +70,7 @@ HostProcess containers have the following benefits:
 - HostProcess containers can be built on top of existing Windows server 2019 (or later) base images, managed through the Windows container runtime, and run as any user that is available in the domain of the host machine. 
 - HostProcess containers provide the best way to manage Windows nodes in Kubernetes.
 
+For more information, see [Windows HostProcess Containers](https://kubernetes.io/blog/2021/08/16/windows-hostprocess-containers/).
 
 ## Windows container tooling
 
