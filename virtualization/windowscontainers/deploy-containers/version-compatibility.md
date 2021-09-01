@@ -16,11 +16,11 @@ As we've been improving the Windows container features, we've had to make some c
 ## Windows Server host OS compatibility
 
 <!-- start tab view -->
-# [Windows Server, version 21H1](#tab/windows-server-21H1)
+# [Windows Server 2022](#tab/windows-server-2022)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 21H1|&#10004;|&#10004;|
+|Windows Server, version 2022|&#10004;|&#10004;|
 |Windows Server, version 20H2|&#10004;|&#10060;|
 |Windows Server, version 2004|&#10004;|&#10060;|
 |Windows Server, version 1909|&#10004;|&#10060;|
@@ -32,7 +32,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 21H1|&#10060;|&#10060;|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10004;|&#10004;|
 |Windows Server, version 2004|&#10004;|&#10060;|
 |Windows Server, version 1909|&#10004;|&#10060;|
@@ -44,7 +44,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 21H1|&#10060;|&#10060;|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10004;|&#10004;|
 |Windows Server, version 1909|&#10004;|&#10060;|
@@ -56,7 +56,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 21H1|&#10060;|&#10060;|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10004;|&#10004;|
@@ -68,7 +68,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 21H1|&#10060;|&#10060;|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
@@ -80,7 +80,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 21H1|&#10060;|&#10060;|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
@@ -92,7 +92,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 21H1|&#10060;|&#10060;|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
