@@ -22,10 +22,6 @@ The size of an image is important when using containers because when you deploy 
 
 With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1&preserve-view=true) Powershell cmdlet. To learn more, see [Virtualized time zone](../manage-containers/virtual-time-zone.md).
 
-### Nano server support lifecycle
-
-With Windows Server 2022, the Nano Server base container image is released with a longer support cycle: the image will be supported until 2026. This extended lifecycle aligns with the mainstream support of Windows Server 2022 and lets customers use that image for a longer period of time.
-
 ### Scalability improvements for overlay networking support
 
 Windows Server 2022 aggregates several performance and scale improvements that have been made across the last four Semi-Annual Channel (SAC) releases of Windows Server (but have not been backported into Windows Server 2019). The areas of improvement are listed below:
@@ -65,7 +61,7 @@ The Host Network Service (HNS) has been improved and now allows the use of more 
 
 ### HostProcess containers for node management
 
-HostProcess containers are a new container type that runs directly on the host and extends the Windows container model to enable a wider range of Kubernetes cluster management scenarios. With HostProcess containers, users can package and distribute management operations that require host access while retaining versioning and deployment methods provided by containers. This allows you to use Windows containers for a variety of device plug-in, storage, and networking management scenarios in Kubernetes. 
+HostProcess containers are a new container type that runs directly on the host and extends the Windows container model to enable a wider range of Kubernetes cluster management scenarios. With HostProcess containers, users can package and distribute management operations that require host access while retaining versioning and deployment methods provided by containers. This allows you to use Windows containers for a variety of device plug-in, storage, and networking management scenarios in Kubernetes. For more information, see [Windows HostProcess Containers](https://kubernetes.io/blog/2021/08/16/windows-hostprocess-containers/).
 
 HostProcess containers have the following benefits:
 
