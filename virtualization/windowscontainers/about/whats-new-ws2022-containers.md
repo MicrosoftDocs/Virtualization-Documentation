@@ -18,6 +18,10 @@ This article describes some of the new features when using Windows containers wi
 
 The size of an image is important when using containers because when you deploy a containerized application, you want it to start quickly. Before a container starts, the container image layers need to be downloaded and extracted on the container host. In Windows Server 2022, the size of the Server Core image is reduced, which allows the container to start faster than in previous Server Core versions.
 
+### Longer support cycle for all Windows container images 
+
+Customers will receive five years of mainstream support and an additional five years of extended support for all Windows Server 2022 images: Server Core, Nano Server, and the recently announced [Server image](https://techcommunity.microsoft.com/t5/containers/announcing-a-new-windows-server-container-image-preview/ba-p/2304897). This longer support cycle will ensure you have the time to implement, use, and upgrade or migrate at the right time.
+
 ### Virtualized time zone
 
 With Windows Server 2022, Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. To configure the container time zone, you can use the [tzutil](/windows-server/administration/windows-commands/tzutil) command utility or the [Set-TimeZone](/powershell/module/microsoft.powershell.management/set-timezone?view=powershell-7.1&preserve-view=true) Powershell cmdlet. To learn more, see [Virtualized time zone](../manage-containers/virtual-time-zone.md).
