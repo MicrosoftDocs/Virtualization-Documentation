@@ -20,7 +20,7 @@ The size of an image is important when using containers because when you deploy 
 
 ### Longer support cycle for all Windows container images 
 
-You will receive five years of mainstream support and an additional five years of extended support for all Windows Server 2022 images: Server Core, Nano Server, and the recently announced [Server image](https://techcommunity.microsoft.com/t5/containers/announcing-a-new-windows-server-container-image-preview/ba-p/2304897). This longer support cycle will ensure you have time to implement, use, and upgrade or migrate when appropriate for your organization. For more information, see [Windows containers base image lifecycles](../deploy-containers/base-image-lifecycle.md) and [Windows Server 2022 lifecycles](/lifecycle/products/windows-server-2022).
+Five years of mainstream support and an additional five years of extended support is now offered for all Windows Server 2022 images: Server Core, Nano Server, and the recently announced [Server image](https://techcommunity.microsoft.com/t5/containers/announcing-a-new-windows-server-container-image-preview/ba-p/2304897). This longer support cycle will ensure you have time to implement, use, and upgrade or migrate when appropriate for your organization. For more information, see [Windows containers base image lifecycles](../deploy-containers/base-image-lifecycle.md) and [Windows Server 2022 lifecycles](/lifecycle/products/windows-server-2022).
 
 ### Virtualized time zone
 
