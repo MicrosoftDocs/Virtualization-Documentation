@@ -4,7 +4,7 @@ description: An overview of the Windows container base images and when to use th
 keywords: docker, containers, hashes
 author: v-susbo
 ms.author: v-susbo
-ms.date: 06/22/2021
+ms.date: 09/01/2021
 ms.topic: conceptual
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 ---
@@ -76,7 +76,7 @@ Windows offers four container base images that users can build from. Each base i
     </li>
     <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
         <a class="is-undecorated is-full-height is-block"
-            href="https://hub.docker.com/_/microsoft-windows-server-insider/" data-linktype="external">
+            href="https://hub.docker.com/_/microsoft-windows-server/" data-linktype="external">
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
@@ -96,15 +96,12 @@ Windows offers four container base images that users can build from. Each base i
     </li>
 </ul>
 
-> [!NOTE]
-> The Windows Server base image is available only with the Windows Server 2022 Insider preview release.
-
 ## Image discovery
 
 All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/_/microsoft-windows-base-os-images). The Windows container base images themselves are served from [mcr.microsoft.com](https://azure.microsoft.com/services/container-registry/), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
 
 ```code
-docker pull mcr.microsoft.com/windows/servercore:ltsc2019
+docker pull mcr.microsoft.com/windows/servercore:ltsc2022
 ```
 
 The MCR does not have its own catalog experience and is meant to support existing catalogs, such as Docker Hub. Thanks to Azure’s global footprint and coupled with Azure CDN, the MCR delivers an image pull experience that is consistent and fast. Azure customers, running their workloads in Azure, benefit from in-network performance enhancements as well as tight integration with the MCR (the source for Microsoft container images), Azure Marketplace, and the expanding number of services in Azure that offer containers as the deployment package format.
@@ -150,4 +147,4 @@ Nanoserver was built to provide just enough API surface to run apps that have a 
 
 ## Windows vs Windows Server
 
-The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and no limits on IIS connections. To use the Windows Server image, you’ll need a Windows Server 2022 installation that's based on the Insiders preview build 20344. For more information, see [Windows Insider preview downloads](https://www.microsoft.com/software-download/windowsinsiderpreviewserver).
+The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and has no limits for IIS connections. To use the latest Windows Server image, you’ll need a Windows Server 2022 installation. The Windows image is not available for Windows Server 2022.

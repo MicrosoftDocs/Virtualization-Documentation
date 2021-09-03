@@ -4,7 +4,7 @@ description: Set up Windows 10 or Windows Server for containers, then move on to
 keywords: docker, containers, LCOW
 author: v-susbo
 ms.author: viniap
-ms.date: 12/23/2020
+ms.date: 09/01/2021
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
@@ -21,9 +21,9 @@ This tutorial describes how to:
 
 ### Windows Server
 
-To run containers on Windows Server, you need a physical server or virtual machine running Windows Server (Semi-Annual Channel), Windows Server 2019, or Windows Server 2016.
+To run containers on Windows Server, you need a physical server or virtual machine running Windows Server 2022, Windows Server (Semi-Annual Channel), Windows Server 2019, or Windows Server 2016.
 
-For testing, you can download a copy of [Windows Server 2019 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2019 ) or a [Windows Server Insider Preview](https://insider.windows.com/for-business-getting-started-server/).
+For testing, you can download a copy of [Windows Server 2022 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2022) or a [Windows Server Insider Preview](https://insider.windows.com/for-business-getting-started-server/).
 
 ### Windows 10
 
