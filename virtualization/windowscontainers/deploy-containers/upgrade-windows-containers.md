@@ -40,7 +40,7 @@ After you have pulled the new Windows OS version on the container host, follow t
 2. Open a PowerShell session as an administrator and, depending on the OS version you chose, run the [docker pull](https://docs.docker.com/engine/reference/commandline/pull/) command to pull an image:
 
    ```powershell
-   PS C:\> docker pull mcr.microsoft.com/windows/servercore:2022
+   PS C:\> docker pull mcr.microsoft.com/windows/servercore:ltsc2022
    ```
 
    This example pulls the Server Core version 20H2 base image.
@@ -61,13 +61,13 @@ Next, you want to create and start new container instances using the new base im
 Open the Dockerfile in a text editor and make the updates. In the following example, the Dockerfile is updated to Server Core 20H2 with the IIS application.
 
 ```dockerfile
-FROM mcr.microsoft.com/windows/servercore/iis:windowsservercore-2022 AS build-env
+FROM mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2022 AS build-env
 WORKDIR /app
 
 COPY *.csproj ./
 RUN PowerShell Install-WindowsFeature NET-Framework-45-ASPNET
 
-FROM mcr.microsoft.com/windows/servercore/iis:windowsservercore-2022
+FROM mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2022
 WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["ServiceMonitor.exe", "w3svc"]
@@ -96,7 +96,7 @@ To allow other hosts to reuse the new image, you should tag and then push the co
 1. Use [docker tag](https://docs.docker.com/engine/reference/commandline/tag/) to tag the image as follows:
 
    ```powershell
-   docker tag mcr.microsoft.com/windows/servercore/iis:windowsservercore-2022 <login-server>/iss
+   docker tag mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2022 <login-server>/iss
    ``` 
 
 2. Use [docker push](https://docs.docker.com/engine/reference/commandline/push/) to push the image to the container registry as follows:
