@@ -71,22 +71,22 @@ To install Docker on Windows Server, you can use a [OneGet provider PowerShell m
 
 If you want to update Docker later:
 
-- Check the installed version using:
-```powershell
-Get-Package -Name Docker -ProviderName DockerMsftProvider
-```
-- Find the current version using:
-```powershell
-Find-Package -Name Docker -ProviderName DockerMsftProvider
-```
-- When you're ready, upgrade using:
-```powershell
-Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
-```
-- Then, followed with: 
-```powershell
-Start-Service Docker
-```  
+1. Check the installed version using the following command:
+   ```powershell
+   Get-Package -Name Docker -ProviderName DockerMsftProvider
+   ```
+2. Find the current version using the following command:
+   ```powershell
+   Find-Package -Name Docker -ProviderName DockerMsftProvider
+   ```
+3. When you're ready to upgrade, run the following command:
+   ```powershell
+   Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
+   ```
+4. Finally, run the following command to start Docker: 
+   ```powershell
+   Start-Service Docker
+   ```  
   
 # [Windows Admin Center](#tab/Windows-Admin-Center)
 
@@ -102,7 +102,7 @@ Click the **Install** button. Windows Admin Center will start the configuration 
 
 You can install Docker on Windows 10 Professional and Enterprise editions by using the following steps.
 
-1. Download and install [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), creating a free Docker account if you don't have one already. For more details, see the [Docker documentation](https://docs.docker.com/docker-for-windows/install).
+1. Download and install [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) and create a Docker account if you don't already have one. You can create a free Docker account for personal or small business users, however, for larger businesses, there is a monthly fee. For more details, see the [Docker documentation](https://docs.docker.com/docker-for-windows/install).
 
 2. During installation, set the default container type to Windows containers. To switch after installation completes, you can use either the Docker item in the Windows system tray (as shown below), or the following command in a PowerShell prompt:
 
@@ -110,7 +110,7 @@ You can install Docker on Windows 10 Professional and Enterprise editions by usi
    & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
    ```
 
-![Docker system tray menu showing the "Switch to Windows containers" command](./media/docker-for-win-switch.png)
+   ![Docker system tray menu showing the "Switch to Windows containers" command](./media/docker-for-win-switch.png)
 
 ---
 <!-- stop tab view -->
