@@ -18,10 +18,11 @@ Nested virtualization is a feature that allows you to run Hyper-V inside of a Hy
 
 ## Prerequisites
 
-* The Hyper-V host and guest must both be Windows Server 2016/Windows 10 Anniversary Update or later.
-* VM configuration version 8.0 or greater.
-* An Intel processor with VT-x and EPT technology -- nesting is currently **Intel-only**.
-* There are some differences with virtual networking for second-level virtual machines. See "Nested Virtual Machine Networking".
+* The Hyper-V host and guest must both be Windows Server 2022/Windows 11
+* VM configuration version 10.0 or greater
+* An Intel processor with VT-x and EPT technology
+* An AMD EPYC/Ryzen processor or later
+* There are some differences with virtual networking for second-level virtual machines. See "Nested Virtual Machine Networking"
 
 
 ## Configure Nested Virtualization
