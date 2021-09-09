@@ -182,9 +182,16 @@ As we've been improving the Windows container features, we've had to make some c
 ---
 <!-- stop tab view -->
 
-> [!NOTE]
-> For Windows Server 2022, forward compatibility for Windows 10 21H1 container hosts is temporarily enabled to run Windows Server 2022 images using Hyper-V isolation. You can use specific tags for Windows Server 2022 container images for Server Core, Nano Server, and Server images that are  specifically published for running on Windows 10 21H1 hosts with Hyper-V isolation.
-> If you are running a Windows 10 21H1 container host, you can pull these temporary images via:
+For Windows Server 2022, forward compatibility for Windows 10 21H1 container hosts is temporarily enabled to run Windows Server 2022 images using Hyper-V isolation. You can use specific tags for Windows Server 2022 container images for Server Core, Nano Server, and Server images that are specifically published for running on Windows 10 21H1 hosts with Hyper-V isolation.
+
+If you are running a Windows 10 21H1 container host, you can pull the following temporary images:
+
+ - docker pull mcr.microsoft.com/windows/server:win10-21h1-preview
+ - docker pull mcr.microsoft.com/windows/nanoserver:win10-21h1-preview
+ - docker pull mcr.microsoft.com/windows/servercore:win10-21h1-preview
+ 
+When the GA release for Windows 11 occurs, the temporary images will be removed, and customers running Windows 11 and Windows Server 2022 hosts will be able to use the regular container images.
+
 
 ## Matching container host version with container image versions
 
