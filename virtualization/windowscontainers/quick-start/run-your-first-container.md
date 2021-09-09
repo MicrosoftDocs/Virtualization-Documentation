@@ -19,7 +19,7 @@ All containers are created from container images. Microsoft offers several start
 1. Open a command prompt window (such as the built-in command prompt, PowerShell, or [Windows Terminal](https://www.microsoft.com/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab)), and then run the following command to download and install the base image:
 
    ```console
-   docker pull mcr.microsoft.com/windows/nanoserver:1809
+   docker pull mcr.microsoft.com/windows/nanoserver:ltsc2022
    ```
 
    > [!TIP]
@@ -41,7 +41,7 @@ For this simple example, a ‘Hello World’ container image will be created and
 1. Start a container with an interactive session from the `nanoserver` image by entering the following command in your command prompt window:
 
    ```console
-   docker run -it mcr.microsoft.com/windows/nanoserver:1809 cmd.exe
+   docker run -it mcr.microsoft.com/windows/nanoserver:ltsc2022 cmd.exe
    ```
 2. After the container is started, the command prompt window changes context to the container. Inside the container, we'll create a simple ‘Hello World’ text file and then exit the container by entering the following commands:
 
@@ -73,7 +73,7 @@ For this simple example, a ‘Hello World’ container image will be created and
    ```console
    REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
    helloworld                             latest              a1064f2ec798        10 seconds ago      258MB
-   mcr.microsoft.com/windows/nanoserver   1809                2b9c381d0911        3 weeks ago         256MB
+   mcr.microsoft.com/windows/nanoserver   2022                2b9c381d0911        3 weeks ago         256MB
    ```
 
 5. Finally, run the new container by using the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command with the `--rm` parameter that automatically removes the container once the command line (cmd.exe) stops.

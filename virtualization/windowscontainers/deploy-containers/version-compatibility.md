@@ -107,10 +107,23 @@ As we've been improving the Windows container features, we've had to make some c
 
 <!-- start tab view -->
 
+# [Windows 10, version 21H1](#tab/windows-10-21H1)
+
+|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server, version 21H1|&#10004;|&#10060;|
+|Windows Server, version 20H2|&#10004;|&#10004;|
+|Windows Server, version 2004|&#10004;|&#10060;|
+|Windows Server, version 1909|&#10004;|&#10060;|
+|Windows Server, version 1903|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
+
 # [Windows 10, version 20H2](#tab/windows-10-20H2)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 21H1|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10004;|&#10004;|
 |Windows Server, version 2004|&#10004;|&#10060;|
 |Windows Server, version 1909|&#10004;|&#10060;|
@@ -122,6 +135,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 21H1|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10004;|&#10004;|
 |Windows Server, version 1909|&#10004;|&#10060;|
@@ -133,6 +147,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 21H1|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10004;|&#10060;|
@@ -144,6 +159,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 21H1|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
@@ -155,6 +171,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 21H1|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
 |Windows Server, version 2004|&#10060;|&#10060;|
 |Windows Server, version 1909|&#10060;|&#10060;|
@@ -164,6 +181,10 @@ As we've been improving the Windows container features, we've had to make some c
 
 ---
 <!-- stop tab view -->
+
+> [!NOTE]
+> For Windows Server 2022, forward compatibility for Windows 10 21H1 container hosts is temporarily enabled to run Windows Server 2022 images using Hyper-V isolation. You can use specific tags for Windows Server 2022 container images for Server Core, Nano Server, and Server images that are  specifically published for running on Windows 10 21H1 hosts with Hyper-V isolation.
+> If you are running a Windows 10 21H1 container host, you can pull these temporary images via:
 
 ## Matching container host version with container image versions
 
