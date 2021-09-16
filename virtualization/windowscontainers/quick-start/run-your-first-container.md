@@ -19,7 +19,7 @@ All containers are created from container images. Microsoft offers several start
 1. Open a command prompt window (such as the built-in command prompt, PowerShell, or [Windows Terminal](https://www.microsoft.com/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab)), and then run the following command to download and install the base image:
 
    ```console
-   docker pull mcr.microsoft.com/windows/nanoserver:ltsc2022
+   docker pull mcr.microsoft.com/windows/nanoserver:latest
    ```
 
    > [!TIP]
