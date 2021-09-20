@@ -13,7 +13,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 This topic describes how to manage Azure Container Instances (ACI) using Windows Admin Center. Azure Container Instances is a solution for any scenario that can operate in isolated containers, without orchestration.
 
 >[!Note]
->An Azure subscription is required to run the steps in this tutorial. For more information on how to connect your Windows Admin Center instance to Azure, see [Configuring Azure integration](https://docs.microsoft.com/windows-server/manage/windows-admin-center/azure/azure-integration).
+>An Azure subscription is required to run the steps in this tutorial. For more information on how to connect your Windows Admin Center instance to Azure, see [Configuring Azure integration](/windows-server/manage/windows-admin-center/azure/azure-integration).
 
 Windows Admin Center allows you to perform basic management of Azure Container Instances, which includes listing existing container instances, starting and stopping an instance, removing instances, and opening the Azure Portal for advanced management.
 

@@ -41,7 +41,7 @@ sections:
       - question: |
           Can my Windows Server containers use gMSA?
         answer: |
-          Yes, gMSA is supported with domain-joined Windows worker nodes. To learn more about using gMSA with Windows containers, see [Prepare Windows nodes for gMSA](https://docs.microsoft.com/azure-stack/aks-hci/prepare-windows-nodes-gmsa).
+          Yes, gMSA is supported with domain-joined Windows worker nodes. To learn more about using gMSA with Windows containers, see [Prepare Windows nodes for gMSA](/azure-stack/aks-hci/prepare-windows-nodes-gmsa).
           
       - question: |
           What are WCOW and LCOW?
