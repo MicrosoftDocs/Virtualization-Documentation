@@ -30,6 +30,33 @@ RDP/Enhanced Session mode:
 
 This article shows you how to see your session type, enter enhanced session mode, and configure your session settings.
 
+## Check session type
+
+You can check to see what type of connection you have using the Enhanced Session mode icon in the top of the Virtual Machine Connect tool (VMConnect).  This button also lets you toggle between basic session and enhanced session mode.
+
+![](media/esm-button-location.png)
+
+| icon | connection state |
+|:-----|:---------|
+|![](media/esm-basic.png)| You are currently running in enhanced session mode.  Clicking this icon will reconnect to your virtual machine in basic mode. |
+|![](media/esm-connect.png)| You are currently running in basic session mode but enhanced session mode is available.  Clicking this icon will reconnect to your virtual machine in enhanced session mode.  |
+|![](media/esm-stop.png)| You are currently running in basic mode.  Enhanced session mode isn't available for this virtual machine. |
+
+## Configure VM for Remote Desktop
+
+Enhanced Session Mode requires Remote Desktop to be enabled in the VM. Search for "Remote Desktop settings" in the Settings app or Start menu. Turn "Enable Remote Desktop" on.
+
+![Enable Remote Desktop](media/remote-desktop-settings.png)
+
+Windows 10, version 2004 needs one more setting too. If the Virtual Machine Connect window shows a background without a login prompt, then you need to make one more change.
+
+First, log back in to the VM using Basic Mode. Search for "Sign-In Options" in the Settings app or Start menu. 
+On this page, turn "Require Windows Hello sign-in for Microsoft accounts" off. 
+
+![Disable Require Windows Hello sign-in](media/sign-in-options.png)
+
+Now, sign out of the VM or reboot before closing the Virtual Machine Connect window.
+
 ## Share drives and devices
 
 Enhanced Session Mode's device sharing capabilities are hidden inside this inconspicuous connection window that pops up when you connect to a virtual machine:
@@ -79,15 +106,3 @@ If you aren't getting the resolution and device sharing dialogue box, try launch
 ``` Powershell
 vmconnect.exe
 ```
-
-## Check session type
-
-You can check to see what type of connection you have using the Enhanced Session mode icon in the top of the Virtual Machine Connect tool (VMConnect).  This button also lets you toggle between basic session and enhanced session mode.
-
-![](media/esm-button-location.png)
-
-| icon | connection state |
-|:-----|:---------|
-|![](media/esm-basic.png)| You are currently running in enhanced session mode.  Clicking this icon will reconnect to your virtual machine in basic mode. |
-|![](media/esm-connect.png)| You are currently running in basic session mode but enhanced session mode is available.  Clicking this icon will reconnect to your virtual machine in enhanced session mode.  |
-|![](media/esm-stop.png)| You are currently running in basic mode.  Enhanced session mode isn't available for this virtual machine. |
