@@ -53,7 +53,9 @@ Versions newer than Windows 10, version 2004 will requrire an additional setting
 First, log back in to the VM using Basic Mode. Search for "Sign-In Options" in the Settings app or Start menu. 
 On this page, turn "Require Windows Hello sign-in for Microsoft accounts" off. 
 
-![Disable Require Windows Hello sign-in](media/sign-in-options.png)
+| Windows 11 | Windows 10 |
+|:----|:----|
+| ![Disable Require Windows Hello sign-in Win 11](media/sign-in-options-win11.png) | ![Disable Require Windows Hello sign-in](media/sign-in-options.png) |
 
 Now, sign out of the VM or reboot before closing the Virtual Machine Connect window.
 
