@@ -47,7 +47,7 @@ Id for the new network.
 
 `Settings`
 
-JSON document specifying the settings of the [network](./../HNS_Schema.md#HostComputeNetwork).
+JSON document specifying the settings of the [HostComputeNetwork](./../HNS_Schema.md#HostComputeNetwork).
 
 `Network`
 
