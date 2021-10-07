@@ -1,12 +1,12 @@
 ---
 title: HCN Error Code
 description: HCN Error Code
-author: kemange
+author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
 ms.prod: virtualization
 ms.technology: virtualization
-ms.date: 06/09/2021
+ms.date: 10/31/2021
 api_name:
 - HCN Error Code
 api_location:

@@ -96,6 +96,7 @@
 ## [Overview](https://docs.microsoft.com/windows-server/networking/technologies/hcn/hcn-top)
 ### Data Types
 #### [HCN Error Codes](./hcn/Reference/HCNHResult.md)
+#### [HCN\_NOTIFICATIONS](./hcn/Reference/HCN_NOTIFICATIONS.md)
 #### [HCN\_NOTIFICATION_CALLBACK](./hcn/Reference/HCN_NOTIFICATION_CALLBACK.md)
 #### [HCN\_CALLBACK](./hcn/Reference/HCN_CALLBACK.md)
 #### [HCN\_NAMESPACE](./hcn/Reference/HCN_NAMESPACE.md)
