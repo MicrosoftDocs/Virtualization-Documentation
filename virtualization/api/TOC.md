@@ -101,6 +101,7 @@
 #### [HCN\_CALLBACK](./hcn/Reference/HCN_CALLBACK.md)
 #### [HCN\_NAMESPACE](./hcn/Reference/HCN_NAMESPACE.md)
 #### [HCN\_ENDPOINT](./hcn/Reference/HCN_ENDPOINT.md)
+#### [HCN\_NETWORK](./hcn/Reference/HCN_NETWORK.md)
 #### [HCN\_LOADBALANCER](./hcn/Reference/HCN_LOADBALANCER.md)
 #### [HCN\_SERVICE](./hcn/Reference/HCN_SERVICE.md)
 #### [HCN\_GUESTNETWORKSERVICE](./hcn/Reference/HCN_GUESTNETWORKSERVICE.md)
@@ -108,7 +109,6 @@
 #### [HCN\_PORT\_ACCESS](./hcn/Reference/HCN_PORT_ACCESS.md)
 #### [HCN\_PORT\_RANGE\_RESERVATION](./hcn/Reference/HCN_PORT_RANGE_RESERVATION.md)
 #### [HCN\_PORT\_RANGE\_ENTRY](./hcn/Reference/HCN_PORT_RANGE_ENTRY.md)
-#### [HCN\_NOTIFICATION\_CALLBACK](./hcn/Reference/HCN_NOTIFICATION_CALLBACK.md)
 ### Functions
 #### Networks
 ##### [HcnEnumerateNetworks](./hcn/Reference/HcnEnumerateNetworks.md)
