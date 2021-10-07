@@ -92,6 +92,74 @@
 ### [Host Service](./hcs/Reference/ServiceSample.md)
 ### [Virtual Machine Utilities](./hcs/Reference/UtilityFunctionSample.md)
 
+# Host Compute Network API
+## [Overview](https://docs.microsoft.com/windows-server/networking/technologies/hcn/hcn-top)
+### Data Types
+#### [HCN Error Codes](./hcn/Reference/HNSHResult.md)
+#### [HCN\_NOTIFICATION_CALLBACK](./hcn/Reference/HCN_NOTIFICATION_CALLBACK.md)
+#### [HCN\_CALLBACK](./hcn/Reference/HCN_CALLBACK.md)
+#### [HCN\_NAMESPACE](./hcn/Reference/HCN_NAMESPACE.md)
+#### [HCN\_ENDPOINT](./hcn/Reference/HCN_ENDPOINT.md)
+#### [HCN\_LOADBALANCER](./hcn/Reference/HCN_LOADBALANCER.md)
+#### [HCN\_SERVICE](./hcn/Reference/HCN_SERVICE.md)
+#### [HCN\_GUESTNETWORKSERVICE](./hcn/Reference/HCN_GUESTNETWORKSERVICE.md)
+#### [HCN\_PORT\_PROTOCOL](./hcn/Reference/HCN_PORT_PROTOCOL.md)
+#### [HCN\_PORT\_ACCESS](./hcn/Reference/HCN_PORT_ACCESS.md)
+#### [HCN\_PORT\_RANGE\_RESERVATION](./hcn/Reference/HCN_PORT_RANGE_RESERVATION.md)
+#### [HCN\_PORT\_RANGE\_ENTRY](./hcn/Reference/HCN_PORT_RANGE_ENTRY.md)
+#### [HCN\_NOTIFICATION\_CALLBACK](./hcn/Reference/HCN_NOTIFICATION_CALLBACK.md)
+### Functions
+#### Networks
+##### [HcnEnumerateNetworks](./hcn/Reference/HcnEnumerateNetworks.md)
+##### [HcnCreateNetwork](./hcn/Reference/HcnCreateNetwork.md)
+##### [HcnOpenNetwork](./hcn/Reference/HcnOpenNetwork.md)
+##### [HcnModifyNetwork](./hcn/Reference/HcnModifyNetwork.md)
+##### [HcnQueryNetworkProperties](./hcn/Reference/HcnQueryNetworkProperties.md)
+##### [HcnDeleteNetwork](./hcn/Reference/HcnDeleteNetwork.md)
+##### [HcnCloseNetwork](./hcn/Reference/HcnCloseNetwork.md)
+#### Namespaces
+##### [HcnEnumerateNamespaces](./hcn/Reference/HcnEnumerateNamespaces.md)
+##### [HcnCreateNamespace](./hcn/Reference/HcnCreateNamespace.md)
+##### [HcnOpenNamespace](./hcn/Reference/HcnOpenNamespace.md)
+##### [HcnModifyNamespace](./hcn/Reference/HcnModifyNamespace.md)
+##### [HcnQueryNamespaceProperties](./hcn/Reference/HcnQueryNamespaceProperties.md)
+##### [HcnDeleteNamespace](./hcn/Reference/HcnDeleteNamespace.md)
+##### [HcnCloseNamespace](./hcn/Reference/HcnCloseNamespace.md)
+#### Endpoints
+##### [HcnEnumerateEndpoints](./hcn/Reference/HcnEnumerateEndpoints.md)
+##### [HcnCreateEndpoint](./hcn/Reference/HcnCreateEndpoint.md)
+##### [HcnOpenEndpoint](./hcn/Reference/HcnOpenEndpoint.md)
+##### [HcnModifyEndpoint](./hcn/Reference/HcnModifyEndpoint.md)
+##### [HcnQueryEndpointProperties](./hcn/Reference/HcnQueryEndpointProperties.md)
+##### [HcnDeleteEndpoint](./hcn/Reference/HcnDeleteEndpoint.md)
+##### [HcnCloseEndpoint](./hcn/Reference/HcnCloseEndpoint.md)
+#### LoadBalancers
+##### [HcnEnumerateLoadBalancers](./hcn/Reference/HcnEnumerateLoadBalancers.md)
+##### [HcnCreateLoadBalancer](./hcn/Reference/HcnCreateLoadBalancer.md)
+##### [HcnOpenLoadBalancer](./hcn/Reference/HcnOpenLoadBalancer.md)
+##### [HcnModifyLoadBalancer](./hcn/Reference/HcnModifyLoadBalancer.md)
+##### [HcnQueryLoadBalancerProperties](./hcn/Reference/HcnQueryLoadBalancerProperties.md)
+##### [HcnDeleteLoadBalancer](./hcn/Reference/HcnDeleteLoadBalancer.md)
+##### [HcnCloseLoadBalancer](./hcn/Reference/HcnCloseLoadBalancer.md)
+#### Services
+##### [HcnRegisterServiceCallback](./hcn/Reference/HcnRegisterServiceCallback.md)
+##### [HcnUnregisterServiceCallback](./hcn/Reference/HcnUnregisterServiceCallback.md)
+#### Guest Network Services
+##### [HcnRegisterGuestNetworkServiceCallback](./hcn/Reference/HcnRegisterGuestNetworkServiceCallback.md)
+##### [HcnUnregisterGuestNetworkServiceCallback](./hcn/Reference/HcnUnregisterGuestNetworkServiceCallback.md)
+##### [HcnCreateGuestNetworkService](./hcn/Reference/HcnCreateGuestNetworkService.md)
+##### [HcnCloseGuestNetworkService](./hcn/Reference/HcnCloseGuestNetworkService.md)
+##### [HcnModifyGuestNetworkService](./hcn/Reference/HcnModifyGuestNetworkService.md)
+##### [HcnDeleteGuestNetworkService](./hcn/Reference/HcnDeleteGuestNetworkService.md)
+#### Port Reservations
+##### [HcnReserveGuestNetworkServicePort](./hcn/Reference/HcnReserveGuestNetworkServicePort.md)
+##### [HcnReserveGuestNetworkServicePortRange](./hcn/Reference/HcnReserveGuestNetworkServicePortRange.md)
+##### [HcnReleaseGuestNetworkServicePortReservationHandle](./hcn/Reference/HcnReleaseGuestNetworkServicePortReservationHandle.md)
+##### [HcnEnumerateGuestNetworkPortReservations](./hcn/Reference/HcnEnumerateGuestNetworkPortReservations.md)
+##### [HcnFreeGuestNetworkPortReservations](./hcn/Reference/HcnFreeGuestNetworkPortReservations.md)
+## JSON Schema
+### [JSON Schema Reference](./hcn/HNS_Schema.md)
+
 # [Windows Hypervisor Platform API](./hypervisor-platform/hypervisor-platform.md)
 ## [WHvCancelRunVirtualProcessor](./hypervisor-platform/funcs/WHvCancelRunVirtualProcessor.md)
 ## [WHvCreatePartition](./hypervisor-platform/funcs/WHvCreatePartition.md)
@@ -134,8 +202,6 @@
 
 # Virtualization Related Tools
 ## [Virtual Hard Disk Interface](https://docs.microsoft.com/windows/win32/api/virtdisk/)
-
-## [HCN Service API](https://docs.microsoft.com/windows-server/networking/technologies/hcn/hcn-top)
 
 ## [Hypervisor Instruction Emulator API](./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md)
 ### Instruction Emulation
