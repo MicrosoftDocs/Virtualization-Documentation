@@ -13,7 +13,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 This topic describes how to manage Azure Container Registry (ACR) using Windows Admin Center. Azure Container Registry allows you to build, store, and manage container images and artifacts in a private registry for all types of container deployments. 
 
 >[!Note]
->An Azure subscription is required to run the steps in this tutorial. For more information on how to connect your Windows Admin Center instance to Azure, see [Configuring Azure integration](https://docs.microsoft.com/windows-server/manage/windows-admin-center/azure/azure-integration).
+>An Azure subscription is required to run the steps in this tutorial. For more information on how to connect your Windows Admin Center instance to Azure, see [Configuring Azure integration](/windows-server/manage/windows-admin-center/azure/azure-integration).
 
 Windows Admin Center allows you to perform basic management of Azure Container Registry, such as:
   
@@ -37,7 +37,7 @@ To create a new registry, under **Azure Container Registry**, select **Create Ne
 
 ![Create new registry](./media/wac-acr-new.png)
 
-Under **Create a new registry**, select the subscription you want to use to create a new registry and the Resource Group you want to allocate the registry. Next, provide a registry name, location and SKU. For more information on pricing and features on each SKU, see [ACR documentation](https://docs.microsoft.com/azure/container-registry/). Click **Create** to create the new registry. Once completed, Windows Admin Center will notify you if the operation is completed successfully, and then you'll see the new registry listed.
+Under **Create a new registry**, select the subscription you want to use to create a new registry and the Resource Group you want to allocate the registry. Next, provide a registry name, location and SKU. For more information on pricing and features on each SKU, see [ACR documentation](/azure/container-registry/). Click **Create** to create the new registry. Once completed, Windows Admin Center will notify you if the operation is completed successfully, and then you'll see the new registry listed.
 
 Once registries and images are listed, you can remove an existing image or pull it to the container host for local use. To pull an image, select the image you want to pull and click **Pull Image**:
 
