@@ -30,7 +30,8 @@ WINAPI
 HcnEnumerateGuestNetworkPortReservations(
     _Out_ ULONG* ReturnCount,
     _Out_writes_bytes_all_(*ReturnCount) HCN_PORT_RANGE_ENTRY** PortEntries
-    );```
+    );
+```
 
 ## Parameters
 
@@ -40,7 +41,7 @@ Recieves the count of reserved port entries.
 
 `PortEntries`
 
-Recieves the list of [port entries](./.HCN_PORT_RANGE_ENTRY.md).
+Recieves the list of [port entries](./HCN_PORT_RANGE_ENTRY.md).
 
 ## Return Values
 
