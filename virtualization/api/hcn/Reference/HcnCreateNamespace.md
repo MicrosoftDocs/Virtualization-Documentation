@@ -20,7 +20,7 @@ topic_type:
 
 ## Description
 
-Creates an namespace.
+Creates a namespace.
 
 ## Syntax
 
@@ -68,8 +68,4 @@ The function returns [HRESULT](./HCNHResult.md).
 | **Header** | ComputeNetwork.h |
 | **Library** | ComputeNetwork.lib |
 | **Dll** | ComputeNetwork.dll |
-
-
-
-
 

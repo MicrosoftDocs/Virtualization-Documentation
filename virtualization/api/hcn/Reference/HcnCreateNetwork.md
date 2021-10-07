@@ -20,7 +20,7 @@ topic_type:
 
 ## Description
 
-Creates an network.
+Creates a network.
 
 ## Syntax
 
@@ -71,8 +71,4 @@ The function returns [HRESULT](./HCNHResult.md).
 | **Header** | ComputeNetwork.h |
 | **Library** | ComputeNetwork.lib |
 | **Dll** | ComputeNetwork.dll |
-
-
-
-
 

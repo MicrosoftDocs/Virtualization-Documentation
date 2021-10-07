@@ -73,6 +73,3 @@ The function returns [HRESULT](./HCNHResult.md).
 | **Library** | ComputeNetwork.lib |
 | **Dll** | ComputeNetwork.dll |
 
-
-
-
