@@ -1,5 +1,30 @@
-/// Create a Network
-@[rs5, DLoadRet(E_NOTIMPL)]
+---
+title: HcnCreateNetwork
+description: HcnCreateNetwork
+author: Keith-Mange
+ms.author: kemange
+ms.topic: reference
+ms.prod: virtualization
+ms.technology: virtualization
+ms.date: 10/31/2021
+api_name:
+- HcnCreateNetwork
+api_location:
+- computenetwork.dll
+api_type:
+- DllExport
+topic_type:
+- apiref
+---
+# HcnCreateNetwork
+
+## Description
+
+Creates an network.
+
+## Syntax
+
+```cpp
 HRESULT
 WINAPI
 HcnCreateNetwork(
@@ -8,3 +33,46 @@ HcnCreateNetwork(
     _Out_ PHCN_NETWORK Network,
     _Outptr_opt_ PWSTR* ErrorRecord
     );
+```
+
+## Parameters
+
+`Network`
+
+Network for the new network.
+
+`Id`
+
+Id for the new network.
+
+`Settings`
+
+JSON document specifying the settings of the [network](./../HNS_Schema.md#HostComputeNetwork).
+
+`Network`
+
+Receives a handle to the newly created network. It is the responsibility of the caller to release the handle using [HcnCloseNetwork](./HcnCloseNetwork.md) once it is no longer in use.
+
+`ErrorRecord`
+
+Receives a JSON document with extended errorCode information. The caller must release the buffer using CoTaskMemFree.
+
+## Return Values
+
+The function returns [HRESULT](./HCNHResult.md).
+
+## Requirements
+
+|Parameter|Description|
+|---|---|
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeNetwork.h |
+| **Library** | ComputeNetwork.lib |
+| **Dll** | ComputeNetwork.dll |
+
+
+
+
+
