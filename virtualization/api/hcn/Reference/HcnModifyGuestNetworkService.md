@@ -1,6 +1,6 @@
 ---
 title: HcnModifyGuestNetworkService
-description: HcnCreateGuestNetworkService
+description: HcnModifyGuestNetworkService
 author: Keith-Mange
 ms.author: kemange
 ms.topic: reference

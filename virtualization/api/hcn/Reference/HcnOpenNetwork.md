@@ -1,6 +1,6 @@
 ---
-title: HcnCreateNetwork
-description: HcnCreateNetwork
+title: HcnOpenNetwork
+description: HcnOpenNetwork
 author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
@@ -8,7 +8,7 @@ ms.prod: virtualization
 ms.technology: virtualization
 ms.date: 10/31/2021
 api_name:
-- HcnCreateNetwork
+- HcnOpenNetwork
 api_location:
 - computenetwork.dll
 api_type:
@@ -16,7 +16,7 @@ api_type:
 topic_type:
 - apiref
 ---
-# HcnCreateNetwork
+# HcnOpenNetwork
 
 ## Description
 
