@@ -16,14 +16,14 @@ api_type:
 topic_type:
 - apiref
 ---
-# Agenda
+# Hcn Agenda
 - [Enums](#enums)
 - [Structs](#structs)
 - [JSON type table](#JSON-type)
 - [Version Map](#Schema-Version-Map)
 ---
 <a name = "enums"></a>
-# Enums
+# Hcn Enums
 Note: all variants listed should be used as string
 <a name = "ActionType"></a>
 ## ActionType
@@ -630,7 +630,7 @@ Referenced by: [SubnetPolicy](#SubnetPolicy)
 ---
 
 <a name = "structs"></a>
-# Structs
+# Hcn Structs
 <a name = "AclPolicySetting"></a>
 ## AclPolicySetting
 
@@ -1868,11 +1868,10 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ## NetworkAclPolicySetting
 
 
-Derived from parent class: [FiveTuple](#FiveTuple)
+Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#CommonAclPolicySetting)
 
 
 
-[CommonAclPolicySetting](#CommonAclPolicySetting)
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Protocols**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -1901,8 +1900,6 @@ Derived from parent class: [FiveTuple](#FiveTuple)
 <a name = "NetworkInterface"></a>
 ## NetworkInterface
 Referenced by: [GuestEndpointState](#GuestEndpointState)
-
-POST /networkInterfaces/<Id> {message}
 
 Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
 
