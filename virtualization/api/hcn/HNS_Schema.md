@@ -617,9 +617,10 @@ Referenced by: [SubnetPolicy](#SubnetPolicy)
 ## AclPolicySetting
 
 
-Derived from parent class: 
-[FiveTuple](#FiveTuple)
-[CommonAclPolicySetting](#CommonAclPolicySetting)
+Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#CommonAclPolicySetting)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Protocols**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -639,8 +640,10 @@ Derived from parent class:
 ## AuthenticationCertificate
 
 
-Derived from parent class: 
-[AuthenticationMethod](#AuthenticationMethod)
+Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**CertificateName**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
@@ -660,8 +663,10 @@ Derived from parent class:
 ## AuthenticationPresharedKey
 
 
-Derived from parent class: 
-[AuthenticationMethod](#AuthenticationMethod)
+Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Key**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
@@ -700,8 +705,10 @@ Derived from parent class:
 ## BasePolicy
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -722,8 +729,10 @@ Derived from parent class:
 ## CommonAclPolicySetting
 
 
-Derived from parent class: 
-[FiveTuple](#FiveTuple)
+Derived from parent class: [FiveTuple](#FiveTuple)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Protocols**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -775,8 +784,10 @@ Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
 
-Derived from parent class: 
-[InterfaceNotificationMessage](#InterfaceNotificationMessage)
+Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -881,8 +892,10 @@ Referenced by: [Health](#Health)
 ## Feature
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -935,8 +948,10 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ## GuestEndpoint
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -970,8 +985,10 @@ Derived from parent class:
 ## GuestFirewall
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -990,8 +1007,10 @@ Derived from parent class:
 ## GuestModifySettingRequest
 
 
-Derived from parent class: 
-[ModifySettingRequest](#ModifySettingRequest)
+Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1005,8 +1024,10 @@ Derived from parent class:
 ## GuestNamespace
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1027,8 +1048,10 @@ Derived from parent class:
 ## GuestNetworkService
 Schema to hold the GNS info in HNS
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1088,8 +1111,10 @@ Referenced by: [GuestNetworkService](#GuestNetworkService); [GuestNetworkService
 ## GuestService
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1123,8 +1148,10 @@ Referenced by: [Base](#Base)
 ## HostComputeEndpoint
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1151,8 +1178,10 @@ Derived from parent class:
 ## HostComputeLoadBalancer
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1177,8 +1206,10 @@ Derived from parent class:
 ## HostComputeNamespace
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1201,8 +1232,10 @@ Derived from parent class:
 ## HostComputeNetwork
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1227,8 +1260,10 @@ Derived from parent class:
 ## HostComputePolicyList
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1261,8 +1296,10 @@ Derived from parent class:
 ## HostComputeRoute
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1358,8 +1395,10 @@ Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
 
-Derived from parent class: 
-[InterfaceNotificationMessage](#InterfaceNotificationMessage)
+Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1407,8 +1446,10 @@ Referenced by: [IPSubnetNetworkRequest](#IPSubnetNetworkRequest); [Subnet](#Subn
 
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1440,8 +1481,10 @@ Derived from parent class:
 ## L4ProxyPolicySetting
 
 
-Derived from parent class: 
-[CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting)
+Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**IP**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1457,8 +1500,10 @@ Derived from parent class:
 ## L4ProxyPolicySetting_2
 
 
-Derived from parent class: 
-[CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting)
+Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**IP**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1515,8 +1560,10 @@ Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 ## MacAddress
 
 
-Derived from parent class: 
-[InterfaceNotificationMessage](#InterfaceNotificationMessage)
+Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1554,8 +1601,10 @@ Referenced by: [MacPool](#MacPool)
 ## ModifyEndpointSettingRequest
 
 
-Derived from parent class: 
-[ModifySettingRequest](#ModifySettingRequest)
+Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1569,8 +1618,10 @@ Derived from parent class:
 ## ModifyGuestEndpointSettingRequest
 
 
-Derived from parent class: 
-[ModifySettingRequest](#ModifySettingRequest)
+Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1584,8 +1635,10 @@ Derived from parent class:
 ## ModifyGuestNamespaceSettingRequest
 
 
-Derived from parent class: 
-[ModifySettingRequest](#ModifySettingRequest)
+Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1599,8 +1652,10 @@ Derived from parent class:
 ## ModifyGuestNetworkServiceSettingRequest
 
 
-Derived from parent class: 
-[ModifySettingRequest](#ModifySettingRequest)
+Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1614,8 +1669,10 @@ Derived from parent class:
 ## ModifyNamespaceSettingRequest
 
 
-Derived from parent class: 
-[ModifySettingRequest](#ModifySettingRequest)
+Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1629,8 +1686,10 @@ Derived from parent class:
 ## ModifyNamespaceSettingResponse
 Find out if Modify can return with a response?
 
-Derived from parent class: 
-[Response](#Response)
+Derived from parent class: [Response](#Response)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Success**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
@@ -1644,8 +1703,10 @@ Derived from parent class:
 ## ModifyNetworkSettingRequest
 
 
-Derived from parent class: 
-[ModifySettingRequest](#ModifySettingRequest)
+Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1670,8 +1731,10 @@ Derived from parent class:
 ## ModifySettingResponse
 
 
-Derived from parent class: 
-[Response](#Response)
+Derived from parent class: [Response](#Response)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Success**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
@@ -1751,8 +1814,10 @@ Referenced by: [GuestNamespace](#GuestNamespace)
 ## Neighbor
 
 
-Derived from parent class: 
-[InterfaceNotificationMessage](#InterfaceNotificationMessage)
+Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1785,8 +1850,10 @@ Derived from parent class:
 ## NetworkAclPolicySetting
 
 
-Derived from parent class: 
-[FiveTuple](#FiveTuple)
+Derived from parent class: [FiveTuple](#FiveTuple)
+
+
+
 [CommonAclPolicySetting](#CommonAclPolicySetting)
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
@@ -1819,8 +1886,10 @@ Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 POST /networkInterfaces/<Id> {message}
 
-Derived from parent class: 
-[InterfaceNotificationMessage](#InterfaceNotificationMessage)
+Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1998,8 +2067,10 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ## RegistryKey
 
 
-Derived from parent class: 
-[InterfaceNotificationMessage](#InterfaceNotificationMessage)
+Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -2070,8 +2141,10 @@ Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
 
-Derived from parent class: 
-[InterfaceNotificationMessage](#InterfaceNotificationMessage)
+Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -2149,8 +2222,10 @@ Referenced by: [Ipam](#Ipam); [SubnetNetworkRequest](#SubnetNetworkRequest)
 
 
 
-Derived from parent class: 
-[Base](#Base)
+Derived from parent class: [Base](#Base)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -2224,8 +2299,10 @@ Referenced by: [TierAclPolicySetting](#TierAclPolicySetting)
 
 
 
-Derived from parent class: 
-[FiveTuple](#FiveTuple)
+Derived from parent class: [FiveTuple](#FiveTuple)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Protocols**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -2311,8 +2388,10 @@ Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
 
-Derived from parent class: 
-[InterfaceNotificationMessage](#InterfaceNotificationMessage)
+Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
+
+
+
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
