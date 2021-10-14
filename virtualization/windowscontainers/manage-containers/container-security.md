@@ -34,7 +34,7 @@ Microsoft is committed to patching all exploits and escapes that break the estab
 
 Multi-tenant environments exist when multiple workloads are operating on shared infrastructure and resources. If one or more workloads running on an infrastructure cannot be trusted, then the multi-tenant environment is considered hostile. Both Windows Server and Linux containers share the host kernel, so any exploit performed on a single container can impact all other workloads running on the shared infrastructure.
 
-You can take steps to reduce the chance that an exploit will occur, for example, by using pod security policies, AppArmor, and role-based access control (RBAC), but they do not provide guaranteed protection against an attacker. We recommend you follow our [best practices for cluster isolation](https://docs.microsoft.com/azure/aks/operator-best-practices-cluster-isolation) for any multi-tenant scenario.
+You can take steps to reduce the chance that an exploit will occur, for example, by using pod security policies, AppArmor, and role-based access control (RBAC), but they do not provide guaranteed protection against an attacker. We recommend you follow our [best practices for cluster isolation](/azure/aks/operator-best-practices-cluster-isolation) for any multi-tenant scenario.
 
 ## When to use ContainerAdmin and ContainerUser user accounts
 

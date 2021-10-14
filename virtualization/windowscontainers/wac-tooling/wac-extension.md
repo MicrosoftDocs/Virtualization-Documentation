@@ -10,7 +10,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Configure the Containers extension on Windows Admin Center
 
-This topic describes how to configure the Containers extension on Windows Admin Center. For more information on how to install and configure Windows Admin Center as well as how to target remote servers, see the [Windows Admin Center](https://aka.ms/wacdocs) documentation.
+This topic describes how to configure the Containers extension on Windows Admin Center. For more information on how to install and configure Windows Admin Center as well as how to target remote servers, see the [Windows Admin Center](/windows-server/manage/windows-admin-center/overview) documentation.
 
 ## Install the Containers extension on Windows Admin Center
 
