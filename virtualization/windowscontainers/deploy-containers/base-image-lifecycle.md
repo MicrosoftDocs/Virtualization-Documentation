@@ -9,6 +9,8 @@ ms.topic: reference
 ---
 # Base image servicing lifecycles
 
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+
 > [!Note]
 > Microsoft has delayed the scheduled end of support and servicing dates for a number of products to help people and organizations focus their attention on retaining business continuity. See [Lifecycle changes to end of support and servicing dates](https://support.microsoft.com/help/4557164/lifecycle-changes-to-end-of-support-and-servicing-dates) entry from April 14, 2020 for more information.
 

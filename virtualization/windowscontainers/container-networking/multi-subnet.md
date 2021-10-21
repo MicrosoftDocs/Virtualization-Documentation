@@ -10,6 +10,8 @@ ms.topic: conceptual
 
 # Multiple subnet support in Host Networking Service
 
+> Applies to: Windows Server 2022
+
 Using multiple subnets per network is now supported in Host Networking Service (HNS) for Windows containers. Previously, HNS restricted Kubernetes container endpoint configurations to use only the prefix length of the underlying subnet. HNS has been enhanced so you can use more restrictive subnets, such as subnets with a longer prefix length, as well as multiple subnets per Windows worker node. The first Container Networking Interface (CNI) that can this functionality is Calico for Windows. Calico Network Policies is an open-source network and network security solution founded by [Tigera](https://www.tigera.io/).
 
 You can utilize multiple subnets in HNS only for _l2bridge_, _l2tunnel_, and _overlay_ network drivers. These network drivers can expose multiple subnets, and then allow each endpoint to bind to one of these subnets.

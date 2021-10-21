@@ -3,11 +3,14 @@ title: Windows container network drivers
 description: Network drivers and topologies for Windows containers.
 keywords: docker, containers
 author: daschott
-ms.date: 08/13/2020
+ms.author: daschott
+ms.date: 10/20/2021
 ms.topic: conceptual
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 # Windows container network drivers
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 In addition to leveraging the default 'nat' network created by Docker on Windows, users can define custom container networks. User-defined networks can be created using the Docker CLI [`docker network create -d <NETWORK DRIVER TYPE> <NAME>`](https://docs.docker.com/engine/reference/commandline/network_create/) command. On Windows, the following network driver types are available:
 

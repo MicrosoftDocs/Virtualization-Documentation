@@ -10,6 +10,8 @@ ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 # Troubleshoot gMSAs for Windows containers
 
+> Applies to: Windows Server 2022, Windows Server 2019
+
 ## Known issues
 
 ### Container hostname must match the gMSA name for Windows Server 2016 and Windows 10, versions 1709 and 1803
