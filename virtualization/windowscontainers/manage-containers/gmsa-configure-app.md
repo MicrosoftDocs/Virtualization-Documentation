@@ -9,6 +9,8 @@ ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 # Configure your app to use a gMSA
 
+> Applies to: Windows Server 2022, Windows Server 2019
+
 In the typical configuration, a container is only given one Group Managed Service Account (gMSA) that is used whenever the container computer account tries to authenticate to network resources. This means your app will need to run as **Local System** or **Network Service** if it needs to use the gMSA identity.
 
 ## Run an IIS app pool as Network Service

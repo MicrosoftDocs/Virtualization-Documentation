@@ -10,6 +10,8 @@ ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 
 # Run a container with a gMSA
 
+> Applies to: Windows Server 2022, Windows Server 2019
+
 To run a container with a Group Managed Service Account (gMSA), provide the credential spec file to the `--security-opt` parameter of [docker run](https://docs.docker.com/engine/reference/run):
 
 ```powershell
