@@ -39,6 +39,9 @@ Windows Server Containers use Hyper-V isolation by default on Windows 10 in orde
 
 ## Install Docker
 
+> [!NOTE]
+>  [At the end of September 2022](https://techcommunity.microsoft.com/t5/containers/updates-to-the-windows-container-runtime-support/ba-p/2788799) Microsoft will no longer produce builds of Docker EE for the DockerMsftProvider API. Customers looking to install a container runtime on Windows server are encouraged to transition to either [containerd](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd), [Moby](https://mobyproject.org/), or the [Mirantis Container Runtime](https://info.mirantis.com/docker-engine-support). By September 2022 these installation docs will be updated to reflect the Microsoft recommended installation process.
+
 The first step is to install Docker, which is required for working with Windows containers. Docker provides a standard runtime environment for containers, with a common API and command-line interface (CLI).
 
 For more configuration details, see [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md).
