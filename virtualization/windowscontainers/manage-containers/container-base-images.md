@@ -11,6 +11,8 @@ ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 
 # Container Base Images
 
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+
 Windows offers four container base images that users can build from. Each base image is a different type of the Windows or Windows Server operating system, has a different on-disk footprint, and has a different set of the Windows API set.
 
 <ul class="columns is-multiline has-margin-left-none has-margin-bottom-none has-padding-top-medium">

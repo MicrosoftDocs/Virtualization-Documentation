@@ -10,6 +10,8 @@ ms.date: 06/15/2021
 
 # Virtualized time zone
 
+> Applies to: Windows Server 2022
+
 Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. With this feature, Windows containers offer the following behaviors:
 
 - When starting the container, the time zone of the host is inherited and stays within the container. If the time zone of the host changes while the container is running, then the time zone stored within the container does not change. To re-inherit the host's time zone, the container must be restarted.

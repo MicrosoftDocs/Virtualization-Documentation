@@ -10,6 +10,8 @@ ms.date: 09/01/2021
 
 # Upgrade containers to a new version of the Windows operating system
 
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+
 This topic describes how to upgrade Windows containers to a new Windows or Windows Server operating system version. There are two steps for upgrading containers:
 
 1. Upgrade the container host to the new operating system version.

@@ -3,11 +3,13 @@ title: Network isolation and security
 description: Network isolation and security within Windows containers.
 keywords: docker, containers
 author: jmesser81
-ms.date: 03/27/2018
+ms.date: 10/20/2021
 ms.topic: conceptual
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 # Network isolation and security
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 ## Isolation with network namespaces
 
