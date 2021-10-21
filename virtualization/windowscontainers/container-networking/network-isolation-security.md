@@ -3,6 +3,7 @@ title: Network isolation and security
 description: Network isolation and security within Windows containers.
 keywords: docker, containers
 author: jmesser81
+ms.author: jmesser81
 ms.date: 10/20/2021
 ms.topic: conceptual
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
@@ -13,9 +14,12 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 
 ## Isolation with network namespaces
 
-Each container endpoint is placed in its own __network namespace__. The management host vNIC and host network stack are located in the default network namespace. In order to enforce network isolation between containers on the same host, a network namespace is created for each Windows Server container and containers run under Hyper-V isolation into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attach to the virtual switch. Hyper-V isolation uses a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch.
+Each container endpoint is placed in its own __network namespace__. The management host virtual network adapter and host network stack are located in the default network namespace. To enforce network isolation between containers on the same host, a network namespace is created for each Windows Server container and containers run under Hyper-V isolation into which the network adapter for the container is installed. Windows Server containers use a host virtual network adapter to attach to the virtual switch. Hyper-V isolation uses a synthetic VM network adapter (not exposed to the utility VM) to attach to the virtual switch.
 
-![text](media/network-compartment-visual.png)
+![Hyper-V isolation with a synthetic VM network adapter](media/windows-firewall-containers.png)
+
+
+Run the following Powershell cmdlet to get all network compartments in the protocol stack:
 
 ```powershell
 Get-NetCompartment
@@ -23,39 +27,39 @@ Get-NetCompartment
 
 ## Network security
 
-Depending on which container and network driver is used, port ACLs are enforced by a combination of the Windows Firewall and [VFP](https://www.microsoft.com/research/project/azure-virtual-filtering-platform/).
+Depending on which container and network driver is used, port ACLs are enforced by a combination of the Windows Firewall and [Azure Virtual Filtering Platform (VFP)](https://www.microsoft.com/research/project/azure-virtual-filtering-platform/).
 
 ### Windows Server containers
 
-These use the Windows hosts' firewall (enlightened with network namespaces) as well as VFP
+The following values use the Windows hosts' firewall (enlightened with network namespaces) as well as VFP:
 
 * Default Outbound: ALLOW ALL
 * Default Inbound: ALLOW ALL (TCP, UDP, ICMP, IGMP) unsolicited network traffic
   * DENY ALL other network traffic not from these protocols
 
-  >[!NOTE]
-  >Prior to Windows Server, version 1709 and Windows 10 Fall Creators Update, the default inbound rule was DENY all. Users running these older releases can create inbound ALLOW rules with ``docker run -p`` (port forwarding).
+> [!NOTE]
+> Prior to Windows Server version 1709 and Windows 10 Fall Creators Update, the default inbound rule was DENY all. Users running these older releases can create inbound ALLOW rules with ``docker run -p`` (port forwarding).
 
 ### Hyper-V isolation
 
-Containers running in Hyper-V isolation have their own isolated kernel and therefore run their own instance of Windows Firewall with the following configuration:
+Containers running in Hyper-V isolation have their own isolated kernel, and therefore, run their own instance of Windows Firewall with the following configuration:
 
-* Default ALLOW ALL in both Windows Firewall (running in the utility VM) and VFP
+* Default ALLOW ALL in both Windows Firewall (running in the utility VM) and VFP.
 
-![text](media/windows-firewall-containers.png)
+![Hyper-V isolation with firewall](media/windows-firewall-containers.png)
 
 ### Kubernetes pods
 
-In a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/), an infrastructure container is first created to which an endpoint is attached. Containers that belong to the same pod, including infrastructure and worker containers, share a common network namespace (same IP and port space).
+In a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/), an infrastructure container is first created to which an endpoint is attached. Containers that belong to the same pod, including infrastructure and worker containers, share a common network namespace (such as the same IP and port space).
 
-![text](media/pod-network-compartment.png)
+![Kubernetes pods networking](media/pod-network-compartment.png)
 
 ### Customizing default port ACLs
 
-If you want to modify the default port ACLs, please read our Host Networking Service documentation first (link to be added soon). You'll need to update policies inside the following components:
+If you want to modify the default port ACLs, review the [Host Networking Service](multi-subnet.md) topic before changing the ports. You'll need to update policies inside the following components:
 
->[!NOTE]
->For Hyper-V isolation in Transparent and NAT mode, you currently can't reprogram the default port ACLs. This is reflected by an "X" in the table.
+> [!NOTE]
+> For Hyper-V isolation in Transparent and NAT mode, currently you can't reconfigure the default port ACLs, which is reflected by an "X" in the table below:
 
 | Network driver | Windows Server containers | Hyper-V isolation  |
 | -------------- |-------------------------- | ------------------- |
