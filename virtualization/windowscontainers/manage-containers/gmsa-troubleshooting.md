@@ -233,6 +233,19 @@ nltest /sc_verify:contoso.com
     Set-ADObject -Identity $gMSA -Replace @{ userAccountControl = ($gmsa.userAccountControl -band 0x7FFFC5FF) -bor 0x1000 }
     ```
 
-### Non-joined container hosts: Use event logs to identify configuration issues
+### Non-domain-joined container hosts: Use event logs to identify configuration issues
 
-Event logging for using gMSA with non-domain-joined container hosts
+Event logging for using gMSA with non-domain-joined container hosts can be used to identify configuration issues. Events are logged in the Microsoft-Windows-Containers-CCG log file and can be found in the Event Viewer under Applications and Services Logs\Microsoft\Windows\Containers-CCG\Admin. If you export this log file from the container host to reader it, you must have the containers feature enabled on the device where you are trying to read the log file and you must be on a Windows version that supports using gMSA with non-domain-joined container hosts.
+
+#### Events and Descriptions
+
+|Event Number| Event Text | Description |
+|--------------|----------------|--------|
+| 1 | Container Credential Guard instantiated the plug-in | No action needed. This event indicates that the plug-in specified in the Credential Spec was installed and could be loaded. |
+| 2 | Container Credential Guard failed to instantiate the plug-in: %1. Error: %2 | This event indicates that the plug-in could not be loaded. You should check that the plugin was installed correctly on the host |
+| 4 | Container Credential Guard failed to fetch credentials from the plugin: %1. Error: %2 | This event indicates that the plug-in loaded but could not retrieve credentials to fetch the gMSA password. Make sure that the node has the necessary permissions to access the secret  |
+| 5 |  |  |
+| 6 |  |  |
+| 7 |  |  |
+| 8 |  |  |
+| 9 |  |  |
