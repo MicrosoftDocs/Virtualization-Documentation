@@ -3,11 +3,14 @@ title: Configure your app to use a Group Managed Service Account
 description: How to configure apps to use Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, apps, applications, group managed service account, group managed service accounts, configuration
 author: rpsqrd
+ms.author: v-susbo
 ms.date: 09/10/2019
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 # Configure your app to use a gMSA
+
+> Applies to: Windows Server 2022, Windows Server 2019
 
 In the typical configuration, a container is only given one Group Managed Service Account (gMSA) that is used whenever the container computer account tries to authenticate to network resources. This means your app will need to run as **Local System** or **Network Service** if it needs to use the gMSA identity.
 

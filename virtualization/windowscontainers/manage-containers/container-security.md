@@ -10,6 +10,8 @@ ms.assetid:
 ---
 # Secure Windows containers
 
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+
 Containers lend their reduced image size to the fact that they can rely on the host to provide limited access to various resources. If the container knows that the host will be able to provide the functionality needed to perform a specific set of actions, then the container does not need to include the relevant software in its base image. The extent of resource sharing that occurs, however, can have a significant impact on both the performance and security of the container. If too many resources are shared, then the application may as well just run as a process on the host. If the resources are shared too little, then the container becomes indistinguishable from a VM. Both configurations are applicable to many scenarios, but most people using containers generally opt for something in the middle.
 
 The security of a Windows container is derived from the degree of sharing that occurs with its host. The security boundary of a container is constituted by the isolation mechanisms that separate the container from the host. Most importantly, these isolation mechanisms define which processes in the container can interact with the host. **If the design of a container allows for an elevated (admin) process to interact with the host, then Microsoft does not consider this container to have a robust security boundary.**

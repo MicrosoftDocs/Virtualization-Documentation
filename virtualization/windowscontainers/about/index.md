@@ -4,7 +4,7 @@ description: Containers are a technology for packaging and running apps--includi
 keywords: docker, containers
 author: v-susbo
 ms.author: v-susbo
-ms.date: 06/22/2021
+ms.date: 09/01/2021
 ms.topic: overview
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
@@ -27,11 +27,11 @@ Microsoft provides a number of tools and platforms to help you develop and deplo
 
   - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) or [Azure Service Fabric](/azure/service-fabric/).
   - Azure Kubernetes Service deploys containers to Azure virtual machines and manages them at scale, whether that's dozens of containers, hundreds, or even thousands. The Azure virtual machines run either a customized Windows Server image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
-- <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview with Linux containers) or [Azure Stack with OpenShift](/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server (see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md)), and we're working on support for running [Windows containers on RedHat OpenShift Container Platform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821) as well.
+- <strong>Deploy containers on-premises</strong> by using [AKS on Azure Stack HCI](/azure-stack/aks-hci/), [Azure Stack with the AKS Engine](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview), or [Azure Stack with OpenShift](/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server (see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md)), and we're working on support for running [Windows containers on RedHat OpenShift Container Platform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821) as well.
 
 ## How containers work
 
-A container is an isolated, lightweight package for running an application on the host operating system. Containers build on top of the host operating system's kernel (which can be thought of as the buried plumbing of the operating system), as shown in this diagram.
+A container is an isolated, lightweight package for running an application on the host operating system. Containers build on top of the host operating system's kernel (which can be thought of as the buried plumbing of the operating system), as shown in the diagram below.
 
 ![Architectural diagram showing how containers run on top of the kernel](media/container-diagram.svg)
 
