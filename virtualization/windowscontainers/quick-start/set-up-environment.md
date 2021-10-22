@@ -4,7 +4,7 @@ description: Set up Windows 10 or Windows Server for containers, then move on to
 keywords: docker, containers, LCOW
 author: v-susbo
 ms.author: viniap
-ms.date: 09/01/2021
+ms.date: 10/22/2021
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
@@ -33,11 +33,14 @@ To run containers on Windows 10, you need the following:
 - [Hyper-V](/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) should be enabled.
 
 > [!NOTE]
->  Starting with the Windows 10 October Update 2018, we no longer disallow users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for dev/test purposes. See the [FAQ](../about/faq.yml) to learn more.  
+> Starting with the Windows 10 October Update 2018, Microsoft no longer disallows users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for development ot test purposes. See the [FAQ](../about/faq.yml) to learn more.  
 
-Windows Server Containers use Hyper-V isolation by default on Windows 10 in order to provide developers with the same kernel version and configuration that will be used in production. Learn more about Hyper-V isolation in the [Concepts](../manage-containers/hyperv-container.md) area of our docs.
+Windows Server Containers use Hyper-V isolation by default on Windows 10 to provide developers with the same kernel version and configuration that will be used in production. To learn more about Hyper-V isolation, see [Isolation Modes](../manage-containers/hyperv-container.md).
 
 ## Install Docker
+
+> [!NOTE]
+> At the end of September 2022, Microsoft announced [updates to the Windows Container Runtime support](https://techcommunity.microsoft.com/t5/containers/updates-to-the-windows-container-runtime-support/ba-p/2788799) where we'll no longer produce builds of Docker EE for the DockerMsftProvider API. Customers who want to install a container runtime on Windows server are encouraged to transition to either [containerd](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd), [Moby](https://mobyproject.org/), or the [Mirantis Container Runtime](https://info.mirantis.com/docker-engine-support). By September 2022 these installation docs will be updated to reflect the Microsoft recommended installation process.
 
 The first step is to install Docker, which is required for working with Windows containers. Docker provides a standard runtime environment for containers, with a common API and command-line interface (CLI).
 
