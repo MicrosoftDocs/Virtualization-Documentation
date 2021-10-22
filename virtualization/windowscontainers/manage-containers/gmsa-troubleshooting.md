@@ -241,11 +241,11 @@ Event logging for using gMSA with non-domain-joined container hosts can be used 
 
 |Event Number| Event Text | Description |
 |--------------|----------------|--------|
-| 1 | Container Credential Guard instantiated the plug-in | No action needed. This event indicates that the plug-in specified in the Credential Spec was installed and could be loaded. |
+| 1 | Container Credential Guard instantiated the plug-in | This event indicates that the plug-in specified in the Credential Spec was installed and could be loaded. No action needed. |
 | 2 | Container Credential Guard failed to instantiate the plug-in: %1. Error: %2 | This event indicates that the plug-in could not be loaded. You should check that the plugin was installed correctly on the host |
-| 4 | Container Credential Guard failed to fetch credentials from the plugin: %1. Error: %2 | This event indicates that the plug-in loaded but could not retrieve credentials to fetch the gMSA password. Make sure that the node has the necessary permissions to access the secret  |
-| 5 |  |  |
-| 6 |  |  |
-| 7 |  |  |
-| 8 |  |  |
-| 9 |  |  |
+| 4 | Container Credential Guard failed to fetch credentials from the plug-in: %1. Error: %2 | This event indicates that the plug-in loaded but could not retrieve credentials needed to fetch the gMSA password from AD. You should verify that the input to the plugin is formatted correctly in the credential specification and that the container host has the necessary permissions to access the secret store used by the plug-in.   |
+| 5 | Container Credential Guard is refetching the credentials using the plug-in: %1 | This is an informational event. This event is generated when the gMSA password has expired and needs to be refreshed using the credentials fetched by the plug-in. |
+| 6 | Container Credential Guard fetched gmsa credentials for %1 using plug-in: %2 | This is an informational event indicating that gMSA credentials were successfully fetched from AD. No action needed.  |
+| 7 | Container Credential Guard failed to fetch gmsa credentials for %1 using plugin %2. Error reason: %3 | This event indicates that the credentials fetched using the plugin could not be used to fetch gMSA credentials from AD. You should verify that the account being fetched from the plug-in has permissions in AD to retrieve the gMSA credentials. |
+| 8 | Container Credential Guard failed to parse the credential spec. Error: %1 | This event indicates an issue with the credential specification. Please review [troubleshooting guidance for the credential specification](###Check-the-Credential-Spec-file) to verify the formatting and contents of the credential specification. |
+| 9 | Container Credential Guard failed to parse the plug-in GUID in the credential spec. Error: %1 |  Please make sure the GUID for the plug-in is correctly included in the credential specification. |
