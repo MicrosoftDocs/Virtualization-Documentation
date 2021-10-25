@@ -171,7 +171,7 @@ Each container host that will run a Windows container with a gMSA must be domain
 2. Ensure your host belongs to the security group controlling access to the gMSA password.
 3. Restart the computer to get its new group membership.
 4. Set up [Docker Desktop for Windows 10](https://docs.docker.com/docker-for-windows/install/) or [Docker for Windows Server](https://docs.docker.com/install/windows/docker-ee/).
-5. (Recommended) Verify the host can use the gMSA account by running [Test-ADServiceAccount](/powershell/module/activedirectory/test-adserviceaccount). If the command returns **False**, follow the [troubleshooting instructions](gmsa-troubleshooting.md#make-sure-the-host-can-use-the-gmsa).
+5. (Recommended) Verify the host can use the gMSA account by running [Test-ADServiceAccount](/powershell/module/activedirectory/test-adserviceaccount). If the command returns **False**, follow the [troubleshooting instructions](gmsa-troubleshooting.md#domain-joined-hosts:-make-sure-the-host-can-use-the-gmsa).
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
