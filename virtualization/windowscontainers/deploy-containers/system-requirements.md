@@ -16,7 +16,7 @@ This guide lists the requirements for a Windows container host.
 
 ## Operating system requirements
 
-- The Windows container feature is available on Windows Server 2022, Windows Server 2019, Windows Server 2016, and Windows 10 Professional and Enterprise Editions (version 1607 and later).
+- The Windows container feature is available on Windows Server 2022, Windows Server (Semi-Annual Channel), Windows Server 2019, Windows Server 2016, and Windows 10 Professional and Enterprise Editions (version 1607 and later).
 - The Hyper-V role must be installed before running Hyper-V isolation.
 - Windows Server Container hosts must have Windows installed to c:\. This restriction does not apply if only Hyper-V isolated containers will be deployed.
 
