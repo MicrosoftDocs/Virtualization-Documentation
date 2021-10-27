@@ -234,3 +234,8 @@ Contributions are welcome! Here are a few suggested areas needing improvement:
 - Add options to start & stop log collections to Debug-ContainerHost.ps1, create CSV file
 - Add a commitId and date to script output so it's easier to troubleshoot the troubleshooting script
 - Search for TODO in *.ps1 for incomplete tests
+
+## There are more other solutions 
+That's not the end ... :) 
+- Win10 Home with container _WSL2_ support
+[My solution](https://github.com/docker/for-win/issues/11967#issuecomment-911891505) on [issue 11967](https://github.com/docker/for-win/issues/11967)
