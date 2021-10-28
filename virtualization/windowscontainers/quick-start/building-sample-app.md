@@ -4,10 +4,12 @@ description: Learn to build a sample .NET core app with containers
 keywords: docker, containers
 author: cwilhit
 ms.author: crwilhit
-ms.date: 11/12/2019
+ms.date: 09/01/2021
 ms.topic: quickstart
 ---
 # Containerize a .NET Core App
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 This topic describes how to package an existing sample .NET app for deployment as a Windows container, after setting up your environment as described in [Get started: Prep Windows for containers](set-up-environment.md), and running your first container as described in [Run your first Windows container](run-your-first-container.md).
 

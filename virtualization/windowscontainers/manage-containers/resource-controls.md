@@ -10,6 +10,8 @@ ms.assetid: 8ccd4192-4a58-42a5-8f74-2574d10de98e
 ---
 # Implementing resource controls for Windows containers
 
+> Applies to: Windows Server 2022, Windows Server 2019
+
 There are several resource controls that can be implemented on a per-container and per-resource basis.  By default, containers run are subject to typical Windows resource management, which in general is fair-share based but though configuration of these controls a developer or administrator can limit or influence resource usage.  Resources that can be controlled include: CPU/Processor, Memory/RAM, Disk/Storage and Networking/Throughput.
 
 Windows containers utilize [job objects](/windows/desktop/ProcThread/job-objects) to group and track processes associated with each container.  Resource controls are implemented on the parent job object associated with the container.

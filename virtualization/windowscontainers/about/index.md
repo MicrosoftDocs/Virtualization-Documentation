@@ -8,7 +8,10 @@ ms.date: 09/01/2021
 ms.topic: overview
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
+
 # Windows and containers
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Containers are a technology for packaging and running Windows and Linux applications across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for apps that need to rapidly adapt to changing demand. The lightweight nature of containers also make them a useful tool for increasing the density and utilization of your infrastructure.
 
