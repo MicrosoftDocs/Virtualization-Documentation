@@ -4,11 +4,13 @@ description: Learn how to migrate existing applications to containers
 keywords: containers, migrate
 author: IngridAtMicrosoft
 ms.author: v-susbo
-ms.date: 08/11/2021
+ms.date: 09/01/2021
 ms.topic: quickstart
 ---  
 
 # Lift and shift to containers
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 This topic provides guidance for modernizing traditional and legacy apps by lifting and shifting them to containers. You'll learn how to identify the types of apps that are appropriate for containers and then learn how to lift and shift them with minimal change to your code. Some traditional Windows Server applications that are currently running on physical machines or VMs can be easily moved to containers.
 
