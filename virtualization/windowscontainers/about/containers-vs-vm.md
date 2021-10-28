@@ -4,10 +4,12 @@ description: This topic discusses some of the key similarities and differences b
 keywords: docker, containers, vms, virtual machines
 author: jasongerend
 ms.author: jgerend
-ms.date: 10/21/2019
+ms.date: 09/01/2021
 ms.topic: overview
 ---
 # Containers vs. virtual machines
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 This topic discusses some of the key similarities and differences between containers and virtual machines (VMs), and when you might want to use each. Containers and VMs each have their uses–in fact, many deployments of containers use VMs as the host operating system rather than running directly on the hardware, especially when running containers in the cloud.
 
