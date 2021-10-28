@@ -154,8 +154,8 @@ New-ADGroup -Name "WebApp01 Authorized Accounts" -SamAccountName "WebApp01Accoun
 # Create the gMSA
 New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -ServicePrincipalNames "host/WebApp01", "host/WebApp01.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "WebApp01Accounts"
 
-# Create the standard user account. This account information needs to be stored in a secret store and will be retrieved by the ccg.exe hosted plug-in to retrieve the gMSA password. Replace 'StandardUser01' and 'SecurePassword' with a unique username and password. We recommend using a random, long, machine-generated password.
-New-ADUser -Name "StandardUser01" -AccountPassword "SecurePassword" -Enabled 1 
+# Create the standard user account. This account information needs to be stored in a secret store and will be retrieved by the ccg.exe hosted plug-in to retrieve the gMSA password. Replace 'StandardUser01' and 'p@ssw0rd' with a unique username and password. We recommend using a random, long, machine-generated password.
+New-ADUser -Name "StandardUser01" -AccountPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd" -Force) -Enabled 1 
 
 # Add your container hosts to the security group
 Add-ADGroupMember -Identity "WebApp01Accounts" -Members "StandardUser01"
@@ -171,7 +171,7 @@ Each container host that will run a Windows container with a gMSA must be domain
 2. Ensure your host belongs to the security group controlling access to the gMSA password.
 3. Restart the computer to get its new group membership.
 4. Set up [Docker Desktop for Windows 10](https://docs.docker.com/docker-for-windows/install/) or [Docker for Windows Server](https://docs.docker.com/install/windows/docker-ee/).
-5. (Recommended) Verify the host can use the gMSA account by running [Test-ADServiceAccount](/powershell/module/activedirectory/test-adserviceaccount). If the command returns **False**, follow the [troubleshooting instructions](gmsa-troubleshooting.md#make-sure-the-host-can-use-the-gmsa).
+5. (Recommended) Verify the host can use the gMSA account by running [Test-ADServiceAccount](/powershell/module/activedirectory/test-adserviceaccount). If the command returns **False**, follow the [troubleshooting instructions](gmsa-troubleshooting.md#domain-joined-hosts-make-sure-the-host-can-use-the-gmsa).
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
