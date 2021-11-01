@@ -10,6 +10,8 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Get started: Prep Windows for containers
 
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+
 This tutorial describes how to:
 
 - [Set up Windows 10 or Windows Server for containers](#prerequisites)

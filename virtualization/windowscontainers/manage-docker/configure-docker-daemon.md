@@ -10,6 +10,8 @@ ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 ---
 # Docker Engine on Windows
 
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+
 The Docker Engine and client aren't included with Windows and need to be installed and configured individually. Furthermore, the Docker Engine can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug/log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document details how to install and configure the Docker Engine, and also provides some examples of commonly used configurations.
 
 ## Install Docker

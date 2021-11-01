@@ -4,11 +4,13 @@ description: Quick start to learn how to run Windows containers
 keywords: docker, containers, LCOW
 author: v-susbo
 ms.author: viniap
-ms.date: 06/22/2021
+ms.date: 09/01/2021
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Get started: Run your first Windows container
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 This topic describes how to run your first Windows container, after setting up your environment as described in [Get started: Prep Windows for containers](./set-up-environment.md). To run a container, you first install a base image, which provides a foundational layer of operating system services to your container. Then you create and run a container image, which is based upon the base image. For details, read on.
 
