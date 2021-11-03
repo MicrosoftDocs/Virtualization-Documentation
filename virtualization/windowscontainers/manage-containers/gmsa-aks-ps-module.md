@@ -70,7 +70,7 @@ After running the command, provide the necessary inputs until the command finish
 
 ## Connect to your AKS cluster
 
-While using the gMSA on AKS PowerShell module, you will be connecting to the AKS cluster you want to configure. The gMSA on AKs PowerShell module relies on the kubectl connection. To connect your cluster, run the following: (Notice that because you provided the inputs above, you can simply copy and paste the command below into your PowerShell session)
+While using the gMSA on AKS PowerShell module, you will be connecting to the AKS cluster you want to configure. The gMSA on AKs PowerShell module relies on the kubectl connection. To connect your cluster, run the following: (Notice that because you provided the inputs above, you can simply copy and paste the command below into your PowerShell session).
 
    ```powershell
     Import-AzAksCredential -Force `
@@ -95,7 +95,7 @@ After configuring your cluster, you can configure the remaining infrastructure n
 
 The first step in preparing your Active Directory, is to ensure the Key Distribution System is configured. For this step, the commands need to be executed with credentials with the proper delegation, against a Domain Controller. This task can be delegated to authorized people.
 
-From a Domain Controller run the following to enable the root key:
+From a Domain Controller, run the following to enable the root key:
 
 For production environments:
 
@@ -142,7 +142,7 @@ If running remotely, make sure your Domain Controller is configured for remote m
 
 ## Setup Azure Key Vault and Azure user-assigned Managed Identity
 
-Azure Key Vault (AKV) will be used to store the credential used by the Windows nodes on AKS to communicate to the Active Directory Domain Controllers. A Managed Identity (MI) will be used to provide proper access to AKV for your Windows Nodes.
+Azure Key Vault (AKV) will be used to store the credential used by the Windows nodes on AKS to communicate to the Active Directory Domain Controllers. A Managed Identity (MI) will be used to provide proper access to AKV for your Windows nodes.
 
 ### Create the Azure key vault
 
@@ -222,9 +222,10 @@ The following command can be used to extract logs from the Windows hosts:
     Copy-WindowsHostsLogs -LogsDirectory $params["logs-directory"]
    ```
 
-The logs will be copied from each Windows hosts to the local directory $params["logs-directory"]. The logs directory will have a subdirectory named after each Windows agent host. The CCG (Container Credential Guard) .evtx log file can be properly inspected in the Event Viewer, only after the following requirements are met:
+The logs will be copied from each Windows hosts to the local directory `$params["logs-directory"]`. The logs directory will have a subdirectory named after each Windows agent host. The CCG (Container Credential Guard) .evtx log file can be properly inspected in the Event Viewer, only after the following requirements are met:
 
-- The Containers Windows feature is installed. It can be installed via PowerShell with:
+- The Containers Windows feature is installed. It can be installed via PowerShell using the following command:
+
  ```powershell
 # Needs computer restart
 Install-WindowsFeature -Name Containers
@@ -233,7 +234,9 @@ Install-WindowsFeature -Name Containers
  ```powershell
 wevtutil im CCGEvents.man
  ```
-Note: The logging manifest file needs to be provided by Microsoft.
+
+> [!NOTE]
+> The logging manifest file needs to be provided by Microsoft.
 
 ## Setup sample application using gMSA
 
