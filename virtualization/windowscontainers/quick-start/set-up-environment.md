@@ -61,6 +61,13 @@ To install Docker on Windows Server, you can use a [OneGet provider PowerShell m
 
    If you're prompted to install the NuGet provider, type `Y` to install it as well.
 
+   If you get an error opening the PowerShell gallery, you may need to set the TLS version used by the PowerShell client to TLS 1.2. To do this, run the following command:
+   
+   ```powershell
+   # Set the TLS version used by the PowerShell client to TLS 1.2.
+   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
+   ```
+
 2. Use the PackageManagement PowerShell module to install the latest version of Docker.
 
    ```powershell

@@ -26,7 +26,7 @@ This limitation was fixed in Windows Server 2019, where the container will now a
 
 Because all containers are required to use the same hostname, a second issue affects versions of Windows prior to Windows Server 2019 and Windows 10, version 1809. When multiple containers are assigned the same identity and hostname, a race condition may occur when two containers talk to the same domain controller simultaneously. When another container talks to the same domain controller, it will cancel communication with any prior containers using the same identity. This can lead to intermittent authentication failures and can sometimes be observed as a trust failure when you run `nltest /sc_verify:contoso.com` inside the container.
 
-We changed the behavior in Windows Server 2019 to separate the container identity from the machine name, allowing multiple containers to use the same gMSA simultaneously.
+We changed the behavior in Windows Server 2019 to separate the container identity from the machine name, allowing multiple containers to use the same gMSA simultaneously. Therefore, in Windows Server 2019, you can run multiple containers with the same identity, whether on the same or multiple hosts. 
 
 ### You can't use gMSAs with Hyper-V isolated containers on Windows 10 versions 1703, 1709, and 1803
 
@@ -195,7 +195,7 @@ nltest /sc_verify:contoso.com
 4. Check if the container can obtain a valid Kerberos Ticket Granting Ticket (TGT):
 
     ```powershell
-    klist get krbtgt
+    klist get <myapp>
     ```
 
     This command should return "A ticket to krbtgt has been retrieved successfully" and list the domain controller used to retrieve the ticket. If you're able to obtain a TGT but `nltest` from the previous step fails, this may be an indication that the gMSA account is misconfigured. See [check the gMSA account](#check-the-gmsa-account) for more information.
