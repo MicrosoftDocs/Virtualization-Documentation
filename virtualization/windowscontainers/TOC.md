@@ -54,6 +54,8 @@
 ### [Remote management of a Windows Docker host](management/manage_remotehost.md)
 ## Container orchestration
 ### [Windows Container orchestration overview](about/overview-container-orchestrators.md)
+### [Azure Kubernetes Service (AKS)](/azure/aks/)
+### [AKS on Azure Stack HCI](//azure-stack/aks-hci/)
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
 #### [Troubleshooting](kubernetes/common-problems.md)
