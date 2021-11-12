@@ -55,7 +55,7 @@
 ## Container orchestration
 ### [Windows Container orchestration overview](about/overview-container-orchestrators.md)
 ### [Azure Kubernetes Service (AKS)](/azure/aks)
-### [AKS on Azure Stack HCI](/azure-stack/aks-hci)
+### [AKS on Azure Stack HCI](/azure-stack/aks-hci/overview)
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
 #### [Troubleshooting](kubernetes/common-problems.md)
