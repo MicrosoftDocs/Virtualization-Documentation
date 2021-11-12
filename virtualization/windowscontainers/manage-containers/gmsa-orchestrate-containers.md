@@ -23,7 +23,13 @@ When you're orchestrating containers with Group Managed Service Accounts (gMSAs)
 > * The credential spec files are created and uploaded to the orchestrator or copied to every container host, depending on how the orchestrator prefers to handle them.
 > * Container networks allow the containers to communicate with the Active Directory Domain Controllers to retrieve gMSA tickets
 
-## How to use gMSA with Service Fabric
+## Use gMSA with Kubernetes
+
+You can use gMSA with Azure Kubernetes Service (AKS) and Azure Kubernetes Service (AKS) on Azure Stack HCI. See [Use gMSA on Azure Kubernetes Service in Windows Containers](./gmsa-aks-ps-module.md) and [Configure group Managed Service Account with AKS on Azure Stack HCI](/azure-stack/aks-hci/prepare-windows-nodes-gmsa) for more information about how to use gMSA with Kubernetes.
+
+To find the the latest information about this feature, see [Configure gMSA for Windows pods and containers](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa).
+
+## Use gMSA with Service Fabric
 
 Service Fabric supports running Windows containers with a gMSA when you specify the credential spec location in your application manifest. You'll need to create the credential spec file and place in the **CredentialSpecs** subdirectory of the Docker data directory on each host so that Service Fabric can locate it. You can run the **Get-CredentialSpec** cmdlet, part of the [CredentialSpec PowerShell module](https://aka.ms/credspec), to verify if your credential spec is in the correct location.
 
@@ -38,10 +44,6 @@ docker service create --credential-spec "file://contoso_webapp01.json" --hostnam
 ```
 
 See the [Docker Swarm example](https://docs.docker.com/engine/reference/commandline/service_create/#provide-credential-specs-for-managed-service-accounts-windows-only) for more information about how to use credential specs with Docker services.
-
-## How to use gMSA with Kubernetes
-
-Support for scheduling Windows containers with gMSAs in Kubernetes is available as an alpha feature in Kubernetes 1.14. See [Configure gMSA for Windows pods and containers](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa) for the latest information about this feature and how to test it in your Kubernetes distribution.
 
 ## Next steps
 
