@@ -13,7 +13,7 @@ ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 
 > Applies to: Windows Server 2022, Windows Server 2019
 
-In production environments, you'll often use a container orchestrator to deploy and manage your apps and services. Each orchestrator has its own management paradigms and is responsible for accepting credential specs to give to the Windows container platform.
+In production environments, you'll often use a container orchestrator such as the hosted Kubernetes service, Azure Kubernetes Service (AKS), to deploy and manage your apps and cluster services. Each orchestrator has its own management paradigms and is responsible for accepting credential specs to give to the Windows container platform.
 
 When you're orchestrating containers with Group Managed Service Accounts (gMSAs), make sure that:
 
@@ -25,9 +25,9 @@ When you're orchestrating containers with Group Managed Service Accounts (gMSAs)
 
 ## Use gMSA with Kubernetes
 
-You can use gMSA with Azure Kubernetes Service (AKS) and Azure Kubernetes Service (AKS) on Azure Stack HCI. See [Use gMSA on Azure Kubernetes Service in Windows Containers](./gmsa-aks-ps-module.md) and [Configure group Managed Service Account with AKS on Azure Stack HCI](/azure-stack/aks-hci/prepare-windows-nodes-gmsa) for more information about how to use gMSA with Kubernetes.
+You can use gMSA with AKS and also with AKS on Azure Stack HCI, which is the on-premises implementation of the AKS orchestrator. For more information about how to use gMSA with Kubernetes, see [Use gMSA on Azure Kubernetes Service in Windows Containers](./gmsa-aks-ps-module.md) and [Configure group Managed Service Account with AKS on Azure Stack HCI](/azure-stack/aks-hci/prepare-windows-nodes-gmsa).
 
-To find the the latest information about this feature, see [Configure gMSA for Windows pods and containers](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa).
+To read about the latest industry information about this feature, see [Configure gMSA for Windows pods and containers](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa).
 
 ## Use gMSA with Service Fabric
 
