@@ -70,7 +70,7 @@
 #### [Configure your app to use a gMSA](manage-containers/gmsa-configure-app.md)
 #### [Run a container with a gMSA](manage-containers/gmsa-run-container.md)
 #### [Orchestrate containers with a gMSA](manage-containers/gmsa-orchestrate-containers.md)
-#### [gMSA on Azure Kubernetes Service](manage-containers/gmsa-aks-ps-module.md)
+#### [Configure gMSA on Azure Kubernetes Service](manage-containers/gmsa-aks-ps-module.md)
 #### [Configure gMSA with AKS on Azure Stack HCI](/azure-stack/aks-hci/prepare-windows-nodes-gmsa)
 #### [Troubleshoot gMSAs](manage-containers/gmsa-troubleshooting.md)
 ## Networking
