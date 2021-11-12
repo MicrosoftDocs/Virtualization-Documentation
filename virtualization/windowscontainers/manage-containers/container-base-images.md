@@ -130,6 +130,10 @@ How do you choose the right base image to build upon? For most users, `Windows S
 > [!TIP]
 > Many Windows users want to containerize applications that have a dependency on .NET. In addition to the four base images described here, Microsoft publishes several Windows container images that come pre-configured with popular Microsoft frameworks, such as a the [.NET framework](https://hub.docker.com/_/microsoft-dotnet-framework) image and the [ASP .NET](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet/) image.
 
+## Windows vs Windows Server
+
+The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and has no limits for IIS connections. To use the latest Windows Server image, you’ll need a Windows Server 2022 installation. The Windows image is not available for Windows Server 2022.
+
 ## Base images for Windows Insiders
 
 Microsoft provides "insider" versions of each container base image. These insider container images carry the latest and greatest feature development in our container images. When you're running a host that is an insider version of Windows (either Windows Insider or Windows Server Insider), it is preferable to use these images. The following insider images are available on Docker Hub:
@@ -147,6 +151,4 @@ Read [Use Containers with the Windows Insider Program](../deploy-containers/insi
 
 Nanoserver was built to provide just enough API surface to run apps that have a dependency on .NET core or other modern open source frameworks. As a tradeoff to the smaller API surface, the Nanoserver image has a significantly smaller on-disk footprint than the rest of the Windows base images. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/main/src/sdk/6.0/nanoserver-1809/amd64/Dockerfile).
 
-## Windows vs Windows Server
 
-The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and has no limits for IIS connections. To use the latest Windows Server image, you’ll need a Windows Server 2022 installation. The Windows image is not available for Windows Server 2022.
