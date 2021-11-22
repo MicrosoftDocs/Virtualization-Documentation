@@ -96,7 +96,7 @@
 
 # Resources
 ## [Known Issues](manage-containers/known-issues.md)
-## [Container samples](samples.md)
+## Container samples
 ### Application Frameworks
 #### [aspnet](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/aspnet)
 #### [iis](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/iis)
