@@ -127,7 +127,7 @@
 ### Just for fun
 #### [MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft)
 ### Other
-#### [DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx) (including GPU acceleration)
+#### [DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx)
 ## [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1)
 ## Licensing and support
 ### [Pricing and licensing](https://www.microsoft.com/windows-server/pricing)
