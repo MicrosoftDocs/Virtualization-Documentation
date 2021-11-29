@@ -28,8 +28,7 @@
 ## Use Linux containers on Windows
 ### [Linux containers on Windows 10](deploy-containers/linux-containers.md)
 ### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
-## Use containers with the Windows Insider program
-### [Overview](deploy-containers/insider-overview.md)
+## [Use containers with the Windows Insider program](deploy-containers/insider-overview.md)
 ## [Containerize apps with printer services](deploy-containers/print-spooler.md)
 ## Manage containers with Windows Admin Center
 ### [Containers extension overview](WAC-tooling/WAC-extension.md)
@@ -96,7 +95,8 @@
 
 # Resources
 ## [Known Issues](manage-containers/known-issues.md)
-## [Container samples](samples.md)
+## Container samples
+### [Samples overview](samples.md)
 ### Application Frameworks
 #### [aspnet](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/aspnet)
 #### [iis](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/iis)

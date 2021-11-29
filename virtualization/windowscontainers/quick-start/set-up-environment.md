@@ -1,6 +1,6 @@
 ---
 title: Prep Windows operating system containers
-description: Set up Windows 10 or Windows Server for containers, then move on to running your first container image.
+description: Set up Windows or Windows Server for containers, then move on to running your first container image.
 keywords: docker, containers, LCOW
 author: v-susbo
 ms.author: viniap
@@ -27,17 +27,17 @@ To run containers on Windows Server, you need a physical server or virtual machi
 
 For testing, you can download a copy of [Windows Server 2022 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2022) or a [Windows Server Insider Preview](https://insider.windows.com/for-business-getting-started-server/).
 
-### Windows 10
+### Windows 10 and 11
 
-To run containers on Windows 10, you need the following:
+To run containers on Windows 10 or 11, you need the following:
 
-- One physical computer system running Windows 10 Professional or Enterprise with Anniversary Update (version 1607) or later.
+- One physical computer system running Windows 10 or 11 Professional or Enterprise with Anniversary Update (version 1607) or later.
 - [Hyper-V](/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) should be enabled.
 
 > [!NOTE]
 > Starting with the Windows 10 October Update 2018, Microsoft no longer disallows users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for development ot test purposes. See the [FAQ](../about/faq.yml) to learn more.  
 
-Windows Server Containers use Hyper-V isolation by default on Windows 10 to provide developers with the same kernel version and configuration that will be used in production. To learn more about Hyper-V isolation, see [Isolation Modes](../manage-containers/hyperv-container.md).
+Windows Server Containers use Hyper-V isolation by default on Windows 10 and 11 to provide developers with the same kernel version and configuration that will be used in production. To learn more about Hyper-V isolation, see [Isolation Modes](../manage-containers/hyperv-container.md).
 
 ## Install Docker
 
@@ -110,9 +110,9 @@ Click the **Install** button. Windows Admin Center will start the configuration 
 
 ![Container images](./media/WAC-Images.png)  
 
-# [Windows 10](#tab/Windows-10)
+# [Windows 10 and 11](#tab/Windows-10-and-11)
 
-You can install Docker on Windows 10 Professional and Enterprise editions by using the following steps.
+You can install Docker on Windows 10 or 11 Professional and Enterprise editions by using the following steps.
 
 1. Download and install [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) and create a Docker account if you don't already have one. You can create a free Docker account for personal or small business users, however, for larger businesses, there is a monthly fee. For more details, see the [Docker documentation](https://docs.docker.com/docker-for-windows/install).
 
