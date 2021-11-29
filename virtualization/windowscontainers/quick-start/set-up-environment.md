@@ -4,7 +4,7 @@ description: Set up Windows or Windows Server for containers, then move on to ru
 keywords: docker, containers, LCOW
 author: v-susbo
 ms.author: viniap
-ms.date: 10/22/2021
+ms.date: 11/22/2021
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
@@ -14,7 +14,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 This tutorial describes how to:
 
-- [Set up Windows 10 or Windows Server for containers](#prerequisites)
+- [Set up Windows 10/11 or Windows Server for containers](#prerequisites)
 - [Install Docker](#install-docker)
 - [Run your first container image](./run-your-first-container.md)
 - [Containerize a simple .NET core application](./building-sample-app.md)
