@@ -26,7 +26,7 @@ All containers are created from container images. Microsoft offers several start
    If Docker fails to start when trying to pull the image, the Docker daemon may be unreachable. To resolve this issue, try restarting the Docker service.
 
    > [!TIP]
-   > If you see an error message that says `no matching manifest for linux/amd64 in the manifest list entries`, make sure Docker isn't configured to run Linux containers. To switch to Windows containers in Docker, right-click the Docker icon, and select **Switch to Windows containers**.
+   > If you see an error message that says `no matching manifest for linux/amd64 in the manifest list entries`, make sure Docker isn't configured to run Linux containers. To switch to Windows containers in Docker, right-click the Docker icon, and select **Switch to Windows containers**. To use the command line to switch between containers, run `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon`.
 
 2. After the image is finished downloading—read the [EULA](../images-eula.md) while you wait—verify its existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images.
 

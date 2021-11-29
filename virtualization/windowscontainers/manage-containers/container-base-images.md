@@ -140,8 +140,8 @@ Microsoft provides "insider" versions of each container base image. These inside
 
 - [mcr.microsoft.com/windows/servercore/insider](https://hub.docker.com/_/microsoft-windows-servercore-insider)
 - [mcr.microsoft.com/windows/nanoserver/insider](https://hub.docker.com/_/microsoft-windows-nanoserver-insider)
-- [mcr.microsoft.com/windows/insider](https://hub.docker.com/_/microsoft-windows-insider)
 - [mcr.microsoft.com/windows/server/insider:10.0.20344.1](https://hub.docker.com/_/microsoft-windows-server-insider/)
+- [mcr.microsoft.com/windows/insider](https://hub.docker.com/_/microsoft-windows-insider)
 
 Read [Use Containers with the Windows Insider Program](../deploy-containers/insider-overview.md) to learn more.
 
