@@ -8,19 +8,12 @@ LABEL Description="MySql" Vendor="Oracle" Version="8.0.27"
 RUN powershell -Command ; \
     $ErrorActionPreference = 'Stop'; \
     Invoke-WebRequest -Method Get -Uri https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-8.0.27-winx64.zip -OutFile c:\mysql.zip ; \
-    Expand-Archive -Path c:\mysql.zip -DestinationPath c:\ ; \
+    Expand-Archive -Path c:\mysql.zip -DestinationPath c:\mysql ; \
     Remove-Item c:\mysql.zip -Force
 
 RUN SETX /M Path %path%;C:\mysql-8.0.27-winx64\bin
 
-RUN powershell -Command \
-    $ErrorActionPreference = 'Stop'; \
-    mysqld.exe --install ; \
-    Start-Service mysql ; \
-    Stop-Service mysql ; \
-    Start-Service mysql
+CMD [ "mysqld.exe" ]
 
-RUN mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '' WITH GRANT OPTION;"
 
-CMD [ "ping localhost -t" ]
 

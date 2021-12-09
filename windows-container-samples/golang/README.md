@@ -34,7 +34,7 @@ docker run -it golang
 # Instructions
 
 All container sample source code is kept under the Vitualization-Documentation git repository in a folder called windows-container-samples.
-1. Open a CLI session and change directories to the folder in which you want to store this repository. 
+1. Open a Powershell session and change directories to the folder in which you want to store this repository. 
 2. Clone the repo to your current working directory:
     git clone https://github.com/MicrosoftDocs/Virtualization-Documentation.git
 3. Navigate to the folder in CLI containing the django repository based on where you cloned the Virtualization-Documentation repo.

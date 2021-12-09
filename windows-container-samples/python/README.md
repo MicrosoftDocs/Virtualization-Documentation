@@ -26,7 +26,7 @@ docker run -it python
 # Instructions
 
 All container sample source code is kept under the Vitualization-Documentation git repository in a folder called windows-container-samples.
-1. Open a CLI session and change directories to the folder in which you want to store this repository. 
+1. Open a PowerShell session and change directories to the folder in which you want to store this repository. 
 2. Clone the repo to your current working directory:
     git clone https://github.com/MicrosoftDocs/Virtualization-Documentation.git
 3. Navigate to the folder in CLI containing the django repository based on where you cloned the Virtualization-Documentation repo.
@@ -41,7 +41,7 @@ All container sample source code is kept under the Vitualization-Documentation g
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://docs.python.org/3/license.html
 
-FROM mcr.microsoft.com/windows/servercore:2009
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
 LABEL Description="Python" Vendor="Python Software Foundation" Version="3.10.0"
 
