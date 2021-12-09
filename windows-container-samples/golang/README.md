@@ -1,12 +1,11 @@
 # Description
-Example of how to create a go image for Nano Server and Windows Server Core.
-
+This sample shows how to create a go image for both windows nanoserver and servercore 2022.
 
 # Nano Server
 
 ## Nano Server - Description:
 
-Creates an image containing golang 1.6
+The first samples creates an image containing the latest version of golang, which is golang 1.13.
 
 This dockerfile is for demonstration purposes and may require modification for production use.
 
@@ -30,29 +29,36 @@ This will start a container, display the Go version, and then exit.  Modify the 
 docker run -it golang
 ```
 
+
+
+# Instructions
+
+All container sample source code is kept under the Vitualization-Documentation git repository in a folder called windows-container-samples.
+1. Open a CLI session and change directories to the folder in which you want to store this repository. 
+2. Clone the repo to your current working directory:
+    git clone https://github.com/MicrosoftDocs/Virtualization-Documentation.git
+3. Navigate to the folder in CLI containing the django repository based on where you cloned the Virtualization-Documentation repo.
+4. When you are at the directory that the dockerfile resides, run the docker build command to build the container from the Dockerfile.
+    docker build --isolation=hyperv -t golang:latest .
+5. To run the newly built container, run the docker run command.
+    docker run -it golang
+7. The golang version should display. Use the exit command to exit the container.
+The below directions will show users how to run the samples located in the repo. 
+
 ### Nano Server - Dockerfile Details:
 ```Dockerfile
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://golang.org/LICENSE
 
-FROM mcr.microsoft.com/windows/nanoserver:2009
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2022
 
-ENV GOLANG_VERSION 1.6
+ENV GOLANG_VERSION 1.13
 ENV GOLANG_DOWNLOAD_URL "https://golang.org/dl/go$GOLANG_VERSION.windows-amd64.zip"
 
 RUN powershell.exe -Command ; \
-    $handler = New-Object System.Net.Http.HttpClientHandler ; \
-    $client = New-Object System.Net.Http.HttpClient($handler) ; \
-    $client.Timeout = New-Object System.TimeSpan(0, 30, 0) ; \
-    $cancelTokenSource = [System.Threading.CancellationTokenSource]::new() ; \
-    $responseMsg = $client.GetAsync([System.Uri]::new('%GOLANG_DOWNLOAD_URL%'), $cancelTokenSource.Token) ; \
-    $responseMsg.Wait() ; \
-    $downloadedFileStream = [System.IO.FileStream]::new('c:\go.zip', [System.IO.FileMode]::Create, [System.IO.FileAccess]::Write) ; \
-    $response = $responseMsg.Result ; \
-    $copyStreamOp = $response.Content.CopyToAsync($downloadedFileStream) ; \
-    $copyStreamOp.Wait() ; \
-    $downloadedFileStream.Close() ; \
-    [System.IO.Compression.ZipFile]::ExtractToDirectory('c:\go.zip','c:\') ; \
+   $ErrorActionPreference = 'Stop'; \
+	(New-Object System.Net.WebClient).DownloadFile('%GOLANG_DOWNLOAD_URL%', 'go.zip') ; \
+	Expand-Archive go.zip -DestinationPath c:\\ ; \
     Remove-Item c:\go.zip -Force
 
 RUN powershell.exe -Command $env:path = $env:path + ';c:\go\bin'
@@ -61,7 +67,7 @@ RUN powershell.exe -Command $env:path = $env:path + ';c:\go\bin'
 
 ## Windows Server Core - Description:
 
-Creates an image containing golang 1.5.1.
+This sample creates an image containing golang 1.13 on Windows Server Core 2022. 
 
 This dockerfile is for demonstration purposes and may require modification for production use.
 
@@ -87,9 +93,9 @@ docker run -it golang
 
 ### Windows Server Core - Dockerfile Details:
 ```Dockerfile
-FROM mcr.microsoft.com/windows/servercore:2009
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
-ENV GOLANG_VERSION 1.6
+ENV GOLANG_VERSION 1.13
 ENV GOLANG_DOWNLOAD_URL "https://golang.org/dl/go$GOLANG_VERSION.windows-amd64.zip"
 
 RUN powershell -Command \

@@ -1,6 +1,8 @@
 # Description:
 
-This topic describes how to create an image containing Django 3.2.9. Please do this after seting up your environment as described in [Prep Windows for containers] (https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment) and running your first container as described in and [Run your first windows Container] (https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/run-your-first-container).
+This topic describes how to create an image containing Django 3.2.9. Django is a Python web framework that focuses on rapid development and clean design. The primary focus for django is that it is used for development of different types of websites. It is a free, open source framework that uses simple Python programming language to build web applications. 
+
+Please do this after seting up your environment as described in [Prep Windows for containers] (https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment) and running your first container as described in and [Run your first windows Container] (https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/run-your-first-container).
 
 You'll also need the Git source control system installed on your computer.
 
