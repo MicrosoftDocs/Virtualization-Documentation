@@ -18,6 +18,13 @@
 ### [Write a Dockerfile](manage-docker/manage-windows-dockerfile.md)
 ### [Optimize a Dockerfile](manage-docker/optimize-windows-dockerfile.md)
 ## Run on Azure Kubernetes Service on Azure Stack HCI
+### [Deploy Windows applications in AKS on Azure Stack HCI](/azure-stack/aks-hci/deploy-windows-application) 
+## Run on Azure Kubernetes Service
+### [Create a Windows container cluster on AKS](/azure/aks/windows-container-cli)
+### [Current Limitations](/azure/aks/windows-node-limitations)
+## Run on Azure App Service
+### [Azure App Service Quickstart](/azure/app-service/app-service-web-get-started-windows-container)
+### [Migrate an ASP.NET app with Windows containers and Azure App Service](/azure/app-service/app-service-web-tutorial-windows-containers-custom-fonts)
 ## Container solutions
 ### [Solutions overview](samples.md)
 ### Application Frameworks
@@ -51,13 +58,6 @@
 #### [MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft)
 ### Other
 #### [DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx)
-### [Deploy Windows applications in AKS on Azure Stack HCI](/azure-stack/aks-hci/deploy-windows-application) 
-## Run on Azure Kubernetes Service
-### [Create a Windows container cluster on AKS](/azure/aks/windows-container-cli)
-### [Current Limitations](/azure/aks/windows-node-limitations)
-## Run on Azure App Service
-### [Azure App Service Quickstart](/azure/app-service/app-service-web-get-started-windows-container)
-### [Migrate an ASP.NET app with Windows containers and Azure App Service](/azure/app-service/app-service-web-tutorial-windows-containers-custom-fonts)
 ## Use Linux containers on Windows
 ### [Linux containers on Windows 10](deploy-containers/linux-containers.md)
 ### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
