@@ -16,12 +16,14 @@ Windows-based networks commonly use Active Directory (AD) to facilitate authenti
 
 Although Windows containers cannot be domain joined, they can still use Active Directory domain identities to support various authentication scenarios. To achieve this, you can configure a Windows container to run with a [group Managed Service Account](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA), which is a special type of service account introduced in Windows Server 2012 and designed to allow multiple computers to share an identity without needing to know its password. Windows containers cannot be domain joined, but many Windows applications that run in Windows containers still need AD Authentication. To use AD Authentication, you can configure a Windows container to run with a group Managed Service Account (gMSA).
 
-When gMSA for Windows containers was initially introduced, it required the container host to be domain joined, which created a lot of overhead for users to manually join Windows worker nodes to a domain. This limitation has been addressed with gMSA for Windows containers support for non-domain-joined container hosts. Although, the original functionality to use a domain joined container host will continue to be supported. Improvements to gMSA when using a non-domain-joined container host include the following:
+When gMSA for Windows containers was initially introduced, it required the container host to be domain joined, which created a lot of overhead for users to manually join Windows worker nodes to a domain. This limitation has been addressed with gMSA for Windows containers support for non-domain-joined container hosts. We'll continue to support the original gMSA functionality to use a domain joined container host. 
 
-- Eliminating the requirement to manually join Windows worker nodes to a domain, which caused a lot of overhead for users. For scaling scenarios, this will simplify the process.
+Improvements to gMSA when using a non-domain-joined container host include:
+
+- The requirement to manually join Windows worker nodes to a domain is eliminated because it caused a lot of overhead for users. For scaling scenarios, using a non-domain-joined container host simplifies the process.
 - In rolling update scenarios, users no longer must rejoin the node to a domain.
-- An easier process for managing the worker node machine accounts to retrieve gMSA service account passwords.
-- A less complicated end-to-end process to configure gMSA with Kubernetes.
+- Managing the worker node machine accounts to retrieve gMSA service account passwords is an easier process.
+- Configuring gMSA with Kubernetes is a less complicated end-to-end process.
 
 > [!NOTE]
 > To learn how the Kubernetes community supports using gMSA with Windows containers, see [configuring gMSA](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa).
@@ -83,7 +85,7 @@ If you only have one domain controller in your domain, you can expedite the proc
 >Don't use this technique in a production environment.
 
 ```powershell
-# For single-DC test environments ONLY
+# For single-DC test environments only
 Add-KdsRootKey -EffectiveTime (Get-Date).AddHours(-10)
 ```
 
@@ -118,7 +120,7 @@ Once you've decided on the name for your gMSA, run the following cmdlets in Powe
 
 We recommend you create separate gMSA accounts for your development, test, and production environments.
 
-### Instructions for creating gMSA account for domain joined container hosts use case
+### Use case for creating gMSA account for domain joined container hosts
 
 ```powershell
 # Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively.
@@ -137,9 +139,9 @@ New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -Servi
 Add-ADGroupMember -Identity "WebApp01Hosts" -Members "ContainerHost01$", "ContainerHost02$", "ContainerHost03$"
 ```
 
-### Instructions for creating gMSA account for non-domain-joined container hosts use case
+### Use case for creating gMSA account for non-domain-joined container hosts
 
-When using gMSA for containers with non-domain-joined hosts, instead of adding container hosts to the WebApp01Hosts security group, create and add a standard user account.
+When using gMSA for containers with non-domain-joined hosts, instead of adding container hosts to the `WebApp01Hosts` security group, create and add a standard user account.
 
 ```powershell
 # Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively. 
@@ -163,7 +165,7 @@ Add-ADGroupMember -Identity "WebApp01Accounts" -Members "StandardUser01"
 
 ## Prepare your container host
 
-### Preparing container host for domain joined container host use case
+### Use case for preparing the container host for a domain joined container host
 
 Each container host that will run a Windows container with a gMSA must be domain joined and have access to retrieve the gMSA password.
 
@@ -181,7 +183,7 @@ Each container host that will run a Windows container with a gMSA must be domain
     Test-ADServiceAccount WebApp01
     ```
 
-### Preparing container host for non-domain-joined container host use case
+### Use case for preparing the container host for a non-domain-joined container host
 
 When using gMSA for Windows containers on non-domain-joined container hosts, each container host must have a plug-in for ccg.exe installed which will be used to retrieve the portable user account and credentials specified in the previous step. Plug-ins are unique to the secret store used to protect the portable user account credentials. For example, different plug-ins would be needed to store account credentials in Azure Key Vault versus in a Kubernetes secret store.
 
