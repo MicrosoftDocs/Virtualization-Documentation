@@ -20,7 +20,7 @@ Containers are a technology for packaging and running Windows and Linux applicat
 All containers are created from container images. A container image is a bundle of files organized into a stack of layers that resides on your local machine or in a remote container registry. The container images used in the samples described in this topic are images based on Windows Server, Windows Server Core, and Nano server:
 
 - Windows Server contains the full set of Windows APIs and system services.
-- Windows Server Core is a smaller image that contains a subset of the Windows Server APIs, namely the full .NET framework. It also includes most, but not all, server roles (for example Fax Server is not included).
+- Windows Server Core is a smaller image that contains a subset of the Windows Server APIs, namely the full .NET framework. It also includes most, but not all, server roles (for example, Fax Server is not included).
 - Nano Server is the smallest Windows Server image and includes support for the .NET Core APIs and some server roles.
 
 The Windows base images used for the container samples are Windows Server 2022, which was released in August 2021. The samples help you get started using Windows containers, for example, one of the samples helps you install Python bits inside of a Windows container.
@@ -28,6 +28,9 @@ The Windows base images used for the container samples are Windows Server 2022, 
 ## Container solutions
 
 Use the category tabs below to learn how to leverage Windows containers using the latest Windows Server base images in your app development. The provided samples fit into six categories and are updated to reflect recent version changes, as well as [Windows Server 2022 images](https://hub.docker.com/_/microsoft-windows-base-os-images).
+
+> [!NOTE]
+> You can also [use step-by-step deployment guides](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/main/windows-container-samples) to help you deploy an example solution. Each guide may also refer to a companion code sample.
 
 <!-- start tab view -->
 # [Application frameworks](#tab/Application-frameworks)
@@ -95,5 +98,8 @@ Use the category tabs below to learn how to leverage Windows containers using th
 <!-- stop tab view -->
 
 
-## Use deployment guides to deploy samples
-You can also [use step-by-step deployment guides](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/main/windows-container-samples) to help you deploy an example solution. Each guide may also refer to a companion code sample.
+
+
+
+
+
