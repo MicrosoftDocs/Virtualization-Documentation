@@ -18,6 +18,13 @@
 ### [Write a Dockerfile](manage-docker/manage-windows-dockerfile.md)
 ### [Optimize a Dockerfile](manage-docker/optimize-windows-dockerfile.md)
 ## Run on Azure Kubernetes Service on Azure Stack HCI
+### [Deploy Windows applications in AKS on Azure Stack HCI](/azure-stack/aks-hci/deploy-windows-application) 
+## Run on Azure Kubernetes Service
+### [Create a Windows container cluster on AKS](/azure/aks/windows-container-cli)
+### [Current Limitations](/azure/aks/windows-node-limitations)
+## Run on Azure App Service
+### [Azure App Service Quickstart](/azure/app-service/app-service-web-get-started-windows-container)
+### [Migrate an ASP.NET app with Windows containers and Azure App Service](/azure/app-service/app-service-web-tutorial-windows-containers-custom-fonts)
 ## Container solutions
 ### [Solutions overview](samples.md)
 ### Application Frameworks
@@ -51,13 +58,6 @@
 #### [MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft)
 ### Other
 #### [DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx)
-### [Deploy Windows applications in AKS on Azure Stack HCI](/azure-stack/aks-hci/deploy-windows-application) 
-## Run on Azure Kubernetes Service
-### [Create a Windows container cluster on AKS](/azure/aks/windows-container-cli)
-### [Current Limitations](/azure/aks/windows-node-limitations)
-## Run on Azure App Service
-### [Azure App Service Quickstart](/azure/app-service/app-service-web-get-started-windows-container)
-### [Migrate an ASP.NET app with Windows containers and Azure App Service](/azure/app-service/app-service-web-tutorial-windows-containers-custom-fonts)
 ## Use Linux containers on Windows
 ### [Linux containers on Windows 10](deploy-containers/linux-containers.md)
 ### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
@@ -128,39 +128,6 @@
 
 # Resources
 ## [Known Issues](manage-containers/known-issues.md)
-## Container samples
-### [Samples overview](samples.md)
-### Application Frameworks
-#### [aspnet](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/aspnet)
-#### [iis](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/iis)
-#### [iis-arr](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/iis-arr)
-#### [iis-https](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/iis-https)
-#### [iis-php](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/iis-php)
-#### [Django](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/Django)
-#### [apache-http](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/apache-http)
-#### [apache-http-php](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/apache-http-php)
-#### [nginx](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nginx)
-### Programing Languages
-#### [dotnet35](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/dotnet35)
-#### [golang](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/golang)
-#### [nodejs](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nodejs)
-#### [python](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/python)
-#### [python-django](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/python-django)
-#### [rails](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/rails)
-#### [ruby](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/ruby)
-#### [server-jre-8u51-windows-x64](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/server-jre-8u51-windows-x64)
-### Databases
-#### [mongodb](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/mongodb)
-#### [mysql](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/mysql)
-#### [redis](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/redis)
-#### [sqlite](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/sqlite)
-#### [sqlserver-express](https://github.com/microsoft/mssql-docker/tree/master/windows)
-### Infrastructure and CI Tools
-#### [PowerShellDSC_iis-10.0](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/PowerShellDSC_iis-10.0)
-### Just for fun
-#### [MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft)
-### Other
-#### [DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx)
 ## [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1)
 ## Licensing and support
 ### [Pricing and licensing](https://www.microsoft.com/windows-server/pricing)
