@@ -17,17 +17,17 @@ Microsoft provides solutions for Windows containers using the latest Windows Ser
 
 Containers are a technology for packaging and running Windows and Linux applications across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for apps that need to rapidly adapt to changing demand. 
 
-All containers are created from container images. A container image is a bundle of files organized into a stack of layers that resides on your local machine or in a remote container registry. The container images used in the samples described in this topics are images based on Windows Server, Windows Server Core, and Nano server:
+All containers are created from container images. A container image is a bundle of files organized into a stack of layers that resides on your local machine or in a remote container registry. The container images used in the samples described in this topic are images based on Windows Server, Windows Server Core, and Nano server:
 
 - Windows Server contains the full set of Windows APIs and system services.
 - Windows Server Core is a smaller image that contains a subset of the Windows Server APIs, namely the full .NET framework. It also includes most, but not all, server roles (for example Fax Server is not included).
 - Nano Server is the smallest Windows Server image and includes support for the .NET Core APIs and some server roles.
 
-The Windows base images for the container samples are Windows Server 2022, which was released in August 2021. The samples help consumers get started using Windows containers - for example, one of the samples will help you install Python bits inside of a Windows container.
+The Windows base images used for the container samples are Windows Server 2022, which was released in August 2021. The samples help you get started using Windows containers, for example, one of the samples helps you install Python bits inside of a Windows container.
 
-## Solutions
+## Container solutions
 
-Learn how to leverage Windows containers using the latest Windows Server base images in your app development for the following categories. The provided samples fit into six categories (as shown below) and are updated to reflect recent version changes, as well as [Windows Server 2022 images](https://hub.docker.com/_/microsoft-windows-base-os-images).
+Use the category tabs below to learn how to leverage Windows containers using the latest Windows Server base images in your app development. The provided samples fit into six categories and are updated to reflect recent version changes, as well as [Windows Server 2022 images](https://hub.docker.com/_/microsoft-windows-base-os-images).
 
 <!-- start tab view -->
 # [Application frameworks](#tab/Application-frameworks)
@@ -94,5 +94,6 @@ Learn how to leverage Windows containers using the latest Windows Server base im
 
 <!-- stop tab view -->
 
-> [!NOTE]
-> [Use Step-by-step deployment guides](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/main/windows-container-samples) to help you deploy an example solution. The guide may also refer to a companion code sample.
+
+## Use deployment guides to deploy samples
+You can also [use step-by-step deployment guides](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/main/windows-container-samples) to help you deploy an example solution. Each guide may also refer to a companion code sample.
