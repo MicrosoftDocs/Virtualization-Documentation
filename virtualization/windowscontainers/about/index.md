@@ -60,8 +60,8 @@ Microsoft offers several images (called base images) that you can use as a start
 
 * <strong>Windows</strong> - contains the full set of Windows APIs and system services (minus server roles).
 * <strong>Windows Server</strong> - contains the full set of Windows APIs and system services.
-* <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs–namely the full .NET framework. It also includes most server roles, though sadly to few, not Fax Server.
-* <strong>Nano Server</strong> - the smallest Windows Server image, with support for the .NET Core APIs and some server roles.
+* <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs–namely the full .NET framework. It also includes most but not all server roles (for example Fax Server is not included).
+* <strong>Nano Server</strong> - the smallest Windows Server image and includes support for the .NET Core APIs and some server roles.
 
 As mentioned earlier, container images are composed of a series of layers. Each layer contains a set of files that, when overlaid together, represent your container image. Because of the layered nature of containers, you don't have to always target a base image to build a Windows container. Instead, you could target another image that already carries the framework you want. For example, the .NET team publishes a [.NET core image](https://hub.docker.com/_/microsoft-dotnet-core) that carries the .NET core runtime. It saves users from needing to duplicate the process of installing .NET core–instead they can reuse the layers of this container image. The .NET core image itself is built based upon Nano Server.
 
