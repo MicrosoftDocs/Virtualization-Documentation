@@ -3,7 +3,7 @@ title: Nested Virtualization
 description: Nested Virtualization
 keywords: windows 10, hyper-v
 author: johncslack
-ms.date: 12/18/2016
+ms.date: 9/9/2021
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
@@ -14,14 +14,23 @@ ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 
 Nested virtualization is a feature that allows you to run Hyper-V inside of a Hyper-V virtual machine (VM). This is helpful for running a Visual Studio phone emulator in a virtual machine, or testing configurations that ordinarily require several hosts.
 
+>[!NOTE]
+> Nested Virtualization is supported both Azure and on-premises. However, the nested virtual machines are not supported for production purposes. Labs, testing environments, demo environments, etc, are more of it's purpose.
+
 ![](./media/HyperVNesting.png)
 
 ## Prerequisites
 
-* The Hyper-V host and guest must both be Windows Server 2016/Windows 10 Anniversary Update or later.
-* VM configuration version 8.0 or greater.
-* An Intel processor with VT-x and EPT technology -- nesting is currently **Intel-only**.
-* There are some differences with virtual networking for second-level virtual machines. See "Nested Virtual Machine Networking".
+### Intel processor with VT-x and EPT technology
+* The Hyper-V host must be Windows Server 2016/Windows 10 or greater
+* VM configuration version 8.0 or greater
+
+### AMD EPYC/Ryzen processor or later
+* The Hyper-V host must be Windows Server 2022/Windows 11 or greater
+* VM configuration version 10.0 or greater
+
+>[!NOTE]
+> The guest can be any Windows supported guest operating system. Newer Windows operating systems may support enlightenments that improve performance.
 
 
 ## Configure Nested Virtualization

@@ -22,9 +22,11 @@ landingContent:
         links:
           - text: Try Windows containers in AKS!
             url: /azure/aks/windows-container-cli
-          - text: Check out our container images on Docker Hub.
+          - text: Try Windows containers in AKS on Azure Stack HCI!
+            url: /azure-stack/aks-hci/deploy-windows-application
+          - text: Check out our container images on Docker Hub
             url: https://hub.docker.com/_/microsoft-windows-base-os-images
-          - text: Read the Containers blog.
+          - text: Read the Containers blog
             url: https://techcommunity.microsoft.com/t5/Containers/bg-p/Containers
 
   # Card
@@ -33,11 +35,13 @@ landingContent:
       - linkListType: overview
         links:
           - text: About Windows containers
-            url: /virtualization/windowscontainers/about/
+            url: ./about/index.md
+          - text: What's new for Windows containers in Windows Server 2022
+            url: ./about/whats-new-ws2022-containers.md
           - text: System requirements
-            url: /virtualization/windowscontainers/deploy-containers/system-requirements
+            url: ./deploy-containers/system-requirements.md
           - text: FAQ
-            url: /virtualization/windowscontainers/about/faq
+            url: ./about/faq.yml
 
   # Card
   - title: Get Started
@@ -45,11 +49,13 @@ landingContent:
       - linkListType: get-started
         links:
           - text: Set up your environment
-            url: /virtualization/windowscontainers/quick-start/set-up-environment
+            url: ./quick-start/set-up-environment.md
           - text: Run your first container
-            url: /virtualization/windowscontainers/quick-start/run-your-first-container
+            url: ./quick-start/run-your-first-container.md
           - text: Containerize a sample app
-            url: /virtualization/windowscontainers/quick-start/building-sample-app
+            url: ./quick-start/building-sample-app.md
+          - text: Lift and shift to containers
+            url: ./quick-start/lift-shift-to-containers.md
 
   # Card
   - title: Tutorials
@@ -57,13 +63,17 @@ landingContent:
       - linkListType: tutorial
         links:
           - text: Building a Windows container
-            url: /virtualization/windowscontainers/manage-docker/manage-windows-dockerfile
+            url: ./manage-docker/manage-windows-dockerfile.md
+          - text: Run on Azure Kubernetes Service on Azure Stack HCI 
+            url: /azure-stack/aks-hci/create-kubernetes-cluster
           - text: Run on AKS
             url: /azure/aks/windows-container-cli
           - text: Run on Service Fabric
             url: /azure/service-fabric/service-fabric-quickstart-containers
           - text: Run on Azure App Service
             url: /azure/app-service/app-service-web-get-started-windows-container
+          - text: Configure the Containers extension on Windows Admin Center
+            url: ./WAC-tooling/WAC-extension.md
 
   # Card
   - title: Concepts
@@ -71,32 +81,40 @@ landingContent:
       - linkListType: concept
         links:
           - text: Docker
-            url: /virtualization/windowscontainers/manage-docker/configure-docker-daemon
+            url: ./manage-docker/configure-docker-daemon.md
           - text: Container orchestration
-            url: /virtualization/windowscontainers/about/overview-container-orchestrators
+            url: ./about/overview-container-orchestrators.md
           - text: Windows container essentials
-            url: /virtualization/windowscontainers/manage-containers/container-base-images
+            url: ./manage-containers/container-base-images.md
+          - text: Secure Windows containers
+            url: ./manage-containers/container-security.md
+          - text: Group Managed Service Accounts
+            url: ./manage-containers/manage-serviceaccounts.md
 
   # Card
   - title: Reference
     linkLists:
       - linkListType: reference
         links:
-          - text: Version Compatibility
-            url: /virtualization/windowscontainers/deploy-containers/version-compatibility
+          - text: Events
+            url: ./deploy-containers/events.md
+          - text: Version compatibility
+            url: ./deploy-containers/version-compatibility.md
           - text: Image servicing lifecycles
-            url: /virtualization/windowscontainers/deploy-containers/base-image-lifecycle
+            url: ./deploy-containers/base-image-lifecycle.md
           - text: Container OS image EULA
-            url: /virtualization/windowscontainers/images-eula
+            url: ./images-eula.md
 
   # Card
   - title: Resources
     linkLists:
       - linkListType: reference
         links:
+          - text: Windows containers roadmap
+            url: https://github.com/microsoft/Windows-Containers/projects/1
           - text: Samples
-            url: /virtualization/windowscontainers/samples
+            url: ./samples.md
           - text: Troubleshooting
-            url: /virtualization/windowscontainers/troubleshooting
+            url: ./troubleshooting.md
           - text: Community videos and blogs
-            url: /virtualization/windowscontainers/communitylinks
+            url: ./communitylinks.md

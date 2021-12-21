@@ -15,7 +15,7 @@ The amount of time in seconds to wait for the service to start after initating t
 Automatically restart the wait process when the service exits looping for the StartupTimeout again.
 ## Example
 ```Dockerfile
-FROM microsoft/iis
+FROM mcr.microsoft.com/windows/servercore/iis
 ADD Wait-Service.ps1 /Wait-Service.ps1
 
 SHELL ["powershell", "-File"]
@@ -23,7 +23,7 @@ CMD c:\Wait-Service.ps1 -ServiceName W3SVC -AllowServiceRestart
 ```
 or
 ```Dockerfile
-FROM microsoft/iis
+FROM mcr.microsoft.com/windows/servercore/iis
 ADD Wait-Service.ps1 /Wait-Service.ps1
 
 CMD powershell.exe -file c:\Wait-Service.ps1 -ServiceName W3SVC -AllowServiceRestart

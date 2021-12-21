@@ -3,8 +3,8 @@
 
 FROM python
 
-LABEL Description="Django" Vendor="Django Software Foundation" Version="2.2"
+LABEL Description="Django" Vendor="Django Software Foundation" Version="3.2.9"
 
-RUN ["pip", "install", "Django==2.2"]
+RUN ["pip", "install", "Django==3.2.9"]
 
-CMD ["django-admin --version"]
+CMD ["Hello World"]

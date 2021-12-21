@@ -1,20 +1,39 @@
 ---
-title: Windows Container Samples
-description: Find links to popular projects and code samples using Windows containers.
+title: Windows Containers Solutions
+description: Discover and learn about popular projects and code samples using Windows containers.
 keywords: docker, containers, windows, samples
-author: cwilhit
-ms.date: 12/19/2016
+author: sijuman
+ms.date: 12/17/2021
 ms.topic: article
+ms.author: sijuman
 ms.assetid: 5c6f6350-f8d6-4426-b53d-9fb09c2bf267
 ---
 
-# Windows Container Samples
+# Windows Container solutions
 
-This is a collection of samples and examples submitted by the Windows team and members of the community.  These samples are provided as is and with no warranties or guarantees made.  Please feel free to contribute additional samples or improve the current set.
+Microsoft provides solutions for Windows containers using the latest Windows Server 2022 base images to help our consumers get started. This is a collection of samples around application frameworks, programming languages, databases, and infrastructure/continuous integration (CI) tools. These samples are provided as-is and with no warranties or guarantees made. Please feel free to contribute to additional samples or submit a PR to help improve the current repository.
 
-## Categories
+## What are Windows containers?
 
-### Application Frameworks
+Containers are a technology for packaging and running Windows and Linux applications across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for apps that need to rapidly adapt to changing demand. 
+
+All containers are created from container images. A container image is a bundle of files organized into a stack of layers that resides on your local machine or in a remote container registry. The container images used in the samples described in this topic are images based on Windows Server, Windows Server Core, and Nano server:
+
+- Windows Server contains the full set of Windows APIs and system services.
+- Windows Server Core is a smaller image that contains a subset of the Windows Server APIs, namely the full .NET framework. It also includes most, but not all, server roles (for example, Fax Server is not included).
+- Nano Server is the smallest Windows Server image and includes support for the .NET Core APIs and some server roles.
+
+The Windows base images used for the container samples are Windows Server 2022, which was released in August 2021. The samples help you get started using Windows containers, for example, one of the samples helps you install Python bits inside of a Windows container.
+
+## Container solutions
+
+Use the category tabs below to learn how to leverage Windows containers using the latest Windows Server base images in your app development. The provided samples fit into six categories and are updated to reflect recent version changes, as well as [Windows Server 2022 images](https://hub.docker.com/_/microsoft-windows-base-os-images).
+
+> [!NOTE]
+> You can also [use step-by-step deployment guides](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/main/windows-container-samples) to help you deploy an example solution. Each guide may also refer to a companion code sample.
+
+<!-- start tab view -->
+# [Application frameworks](#tab/Application-frameworks)
 
 [aspnet](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/aspnet)
 
@@ -34,7 +53,7 @@ This is a collection of samples and examples submitted by the Windows team and m
 
 [nginx](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nginx)
 
-### Programing Languages
+# [Programming languages](#tab/Programming-languages)
 
 [dotnet35](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/dotnet35)
 
@@ -52,7 +71,7 @@ This is a collection of samples and examples submitted by the Windows team and m
 
 [server-jre-8u51-windows-x64](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/server-jre-8u51-windows-x64)
 
-### Databases
+# [Databases](#tab/Databases)
 
 [mongodb](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/mongodb)
 
@@ -62,16 +81,25 @@ This is a collection of samples and examples submitted by the Windows team and m
 
 [sqlite](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/sqlite)
 
-sqlserver-express - [Docker Hub Image](https://hub.docker.com/r/microsoft/mssql-server-windows-express/) or [dockerfile](https://github.com/Microsoft/mssql-docker/blob/master/windows/mssql-server-windows-express/dockerfile)
+[sqlserver-express](https://github.com/microsoft/mssql-docker/tree/master/windows)
 
-### Infrastructure and CI Tools
+# [Infrastructure and CI tools](#tab/Infrastructure-and-CI-tools)
 
 [PowerShellDSC_iis-10.0](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/PowerShellDSC_iis-10.0)
 
-### Just for Fun
+# [Just for fun](#tab/Just-for-run)
 
 [MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft)
 
-### Other
+# [Other](#tab/Other)
 
 [DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx) (including GPU acceleration)
+
+<!-- stop tab view -->
+
+
+
+
+
+
+
