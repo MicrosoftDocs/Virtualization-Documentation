@@ -5,7 +5,7 @@ This collection of scripts is designed to make it easier to troubleshoot common 
 ## How to run it
 First, run `Debug-ContainerHost.ps1` with no options. It will run several tests on the system automatically. Any failures will be in red, and there is a pass/fail summary at the end.
 
-All of the tests use [Pester](https://github.com/pester/Pester/wiki). 
+All of the tests use [Pester](https://github.com/pester/Pester/wiki).
 
 The first line of each test starts with _Describe_ and explains what a group of tests will do. Each part of the test describes what a good result _Should_ look like.
 
@@ -30,7 +30,8 @@ Describing Windows container settings are correct
  [+] Do not have zz values set 22ms
  [+] Do not have FDVDenyWriteAccess set to 1 30ms
 Describing The right container base images are installed
- [+] At least one of 'microsoft/windowsservercore' or 'microsoft/nanoserver' should be installed 136ms
+ [+] At least one of 'mcr.microsoft.com/windows/servercore' or 'mcr.microsoft.com/windows/nanoserver
+' should be installed 136ms
 Describing Container network is created
  [+] At least one local container network is available 3.23s
  [+] At least one NAT, Transparent, or L2Bridge Network exists 58ms
@@ -44,11 +45,11 @@ Example Failure:
 ```
 Describing The right container base images are installed
 error during connect: Get http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.25/images/json: open //./pipe/docker_engine: Access is denied.
- [-] microsoft/windowsservercore is installed 196ms
+ [-] mcr.microsoft.com/windows/servercore is installed 196ms
    Expected: value to not be empty
    15:         $serverCoreImages | Should Not BeNullOrEmpty
    at <ScriptBlock>, C:\Users\Patrick\Source\Virtualization-Documentation-Private\windows-server-container-tools\Debug-ContainerHost\ContainerImage.Tests.ps1: line 15
- [-] microsoft/nanoserver is installed 69ms
+ [-] mcr.microsoft.com/windows/nanoserver is installed 69ms
    Expected: value to not be empty
    20:         $serverCoreImages | Should Not BeNullOrEmpty
    at <ScriptBlock>, C:\Users\Patrick\Source\Virtualization-Documentation-Private\windows-server-container-tools\Debug-ContainerHost\ContainerImage.Tests.ps1: line 20
@@ -87,7 +88,7 @@ Here's a list of the test cases, organized by _Describe_ and _Should_, along wit
 
 **[+] Has KB3192366, KB3194496, or later installed if running Windows build 14393**
 
-To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history). 
+To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history).
 Make sure you have 14393.206 or later. If not, run Windows Update and install the latest KB shown in that list.
 
 **[+] Is not a build with blocking issues**
@@ -115,11 +116,11 @@ If this fails, then the Docker Engine is not installed. Check [here](https://aka
 **[+] Docker.exe is in path**
 
 - Try logging out and back in
-- If it still fails, try reinstalling based on the Quick Start guide [here](https://aka.ms/windowscontainers) 
+- If it still fails, try reinstalling based on the Quick Start guide [here](https://aka.ms/windowscontainers)
 
 **[+] Docker is registered in the EventLog service**
 
-- Create and run this registry file: 
+- Create and run this registry file:
 ```
 Windows Registry Editor Version 5.00
 
@@ -152,16 +153,14 @@ These registry values should not be needed, and can be removed. Some past test b
 
 This is a registry key set by a Group Policy setting "Deny write access to fixed drives not protected by bitlocker." For more details on it, see [technet](https://technet.microsoft.com/library/ee706521(v=ws.10).aspx#BKMK_driveaccess1). If your machines are Active Directory domain joined, then this policy needs to be modified otherwise the registry key will be overwritten the next time Group Policy is synced.
 
-It can cause problems with Windows containers because VHD files are used for container temporary storage. This may cause failures in `docker load` or `docker pull`. This was described in issues [#355](https://github.com/Microsoft/Virtualization-Documentation/issues/355) and [#530](https://github.com/Microsoft/Virtualization-Documentation/issues/530) . 
+It can cause problems with Windows containers because VHD files are used for container temporary storage. This may cause failures in `docker load` or `docker pull`. This was described in issues [#355](https://github.com/Microsoft/Virtualization-Documentation/issues/355) and [#530](https://github.com/Microsoft/Virtualization-Documentation/issues/530) .
 
 Anti-virus products that have not been updated and validated based on the [Anti-virus optimization for Windows Containers](https://msdn.microsoft.com/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers) can also cause similar failures without this registry value set. If this test passes but you still have problems with `docker pull` and `docker load`, try updating or disabling anti-virus as the next troubleshooting step.
 
 ### Describing The right container base images are installed
-**[+] At least one of 'microsoft/windowsservercore' or 'microsoft/nanoserver' should be installed**
+**[+] At least one of 'mcr.microsoft.com/windows/servercore' or 'microsoft/nanoserver' should be installed**
 
-- Try `docker pull microsoft/nanoserver` or `docker pull microsoft/windowsservercore` to pull a Windows container image
-
-
+- Try `docker pull mcr.microsoft.com/windows/nanoserver` or `docker pull mcr.microsoft.com/windows/servercore` to pull a Windows container image
 
 ### Describing Container network is created ###
 
@@ -218,7 +217,7 @@ PS> docker network inspect nat
 In this case it was 172.25.112.0/20. Next, create the Windows NAT using that subnet.
 
 ```powershell
-New-NetNat -Name nat -InternalIPInterfaceAddressPrefix 172.25.112.0/20 
+New-NetNat -Name nat -InternalIPInterfaceAddressPrefix 172.25.112.0/20
 ```
 
 **Specified Network Gateway IP for NAT network is assigned to Host vNIC**

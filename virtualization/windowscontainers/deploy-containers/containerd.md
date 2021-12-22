@@ -3,6 +3,7 @@ title: Windows container platform
 description: Learn more about new container building blocks available in Windows.
 keywords: LCOW, linux containers, docker, containers, containerd, cri, runhcs, runc
 author: scooley
+ms.author: jgerend
 ms.date: 11/19/2018
 ms.topic: conceptual
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
@@ -13,7 +14,7 @@ The Windows container platform is expanding! Docker was the first piece of the c
 
 * [containerd/cri](https://github.com/containerd/cri) - new in Windows Server 2019/Windows 10 1809.
 * [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs) - a Windows container host counterpart to runc.
-* [hcs](https://docs.microsoft.com/virtualization/api/) - the Host Compute Service + handy shims to make it easier to use.
+* [hcs](/virtualization/api/) - the Host Compute Service + handy shims to make it easier to use.
   * [hcsshim](https://github.com/microsoft/hcsshim)
   * [dotnet-computevirtualization](https://github.com/microsoft/dotnet-computevirtualization)
 

@@ -3,6 +3,7 @@ title: Run a container with a gMSA
 description: How to run a Windows container with a Group Managed Service Account (gMSA).
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts
 author: rpsqrd
+ms.author: v-susbo
 ms.date: 09/10/2019
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
@@ -10,17 +11,18 @@ ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 
 # Run a container with a gMSA
 
+> Applies to: Windows Server 2022, Windows Server 2019
+
 To run a container with a Group Managed Service Account (gMSA), provide the credential spec file to the `--security-opt` parameter of [docker run](https://docs.docker.com/engine/reference/run):
 
 ```powershell
-# For Windows Server 2016, change the image name to mcr.microsoft.com/windows/servercore:ltsc2016
-docker run --security-opt "credentialspec=file://contoso_webapp01.json" --hostname webapp01 -it mcr.microsoft.com/windows/servercore:ltsc2019 powershell
+docker run --security-opt "credentialspec=file://contoso_webapp01.json" --hostname webapp01 -it mcr.microsoft.com/windows/server:ltsc2022 powershell
 ```
 
 >[!IMPORTANT]
 >On Windows Server 2016 versions 1709 and 1803, the hostname of the container must match the gMSA short name.
 
-In the previous example, the gMSA SAM Account Name is "webapp01," so the container hostname is also named "webapp01."
+In the previous example, the gMSA SAM Account Name is *webapp01*, so the container hostname is also named *webapp01*.
 
 On Windows Server 2019 and later, the hostname field is not required, but the container will still identify itself by the gMSA name instead of the hostname, even if you explicitly provide a different one.
 
@@ -91,5 +93,6 @@ In addition to running containers, you can also use gMSAs to:
 
 - [Configure apps](gmsa-configure-app.md)
 - [Orchestrate containers](gmsa-orchestrate-containers.md)
+- With [gMSA on Azure Kubernetes Service](./gmsa-aks-ps-module.md)
 
 If you run into any issues during setup, check our [troubleshooting guide](gmsa-troubleshooting.md) for possible solutions.

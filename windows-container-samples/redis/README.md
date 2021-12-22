@@ -2,7 +2,7 @@
 
 Creates an image containing MSOpenTech Redis 2.8.2. For more information see, [MSOpenTech / redis on Github.com](https://github.com/MSOpenTech/redis/releases).
 
-This dockerfile is for demonstration purposes and may require modification for production use. 
+This dockerfile is for demonstration purposes and may require modification for production use.
 
 # Environment:
 
@@ -16,9 +16,9 @@ Windows Server Core Base OS Image
 docker build -t redis:latest .
 ```
 
-**Docker Run** 
+**Docker Run**
 
-This will display the Redis splash screen. Use `ctrl - c` to exit.  
+This will display the Redis splash screen. Use `ctrl - c` to exit.
 
 ```
 docker run -it redis
@@ -35,7 +35,7 @@ docker run -d -p 6379:6379 redis
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://libraries.io/licenses/BSD-3-Clause
 
-FROM microsoft/windowsservercore
+FROM mcr.microsoft.com/windows/servercore
 
 LABEL Description="Redis" Vendor="MSOpenTech" Version="2.8"
 

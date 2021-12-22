@@ -3,12 +3,12 @@ title: Container Storage Overview
 description: How Windows Server Containers can use host & other storage types
 keywords: containers, volume, storage, mount, bindmount
 author: cwilhit
+ms.author: jgerend
+ms.date: 09/25/2019
 ms.topic: overview
 ---
 
 # Container Storage Overview
-
-<!-- Great diagram would be great! -->
 
 This topic provides an overview of the different ways containers use storage on Windows. Containers behave differently than virtual machines when it comes to storage. By nature, containers are built to prevent an app running within them from writing state all over the host's filesystem. Containers use a "scratch" space by default, but Windows also provides a means to persist storage.
 
@@ -49,17 +49,17 @@ A common pattern for Windows applications is to query the amount of free disk sp
 
 Some users may want to override this default and configure the free space to a smaller or larger value. this can be accomplished though the “size” option within the “storage-opt” configuration.
 
-### Examples
+### Example
 
 Command line: `docker run --storage-opt "size=50GB" mcr.microsoft.com/windows/servercore:ltsc2019 cmd`
 
 Or you can change the docker configuration file directly:
 
 ```Docker Configuration File
-"storage-opt": [
+"storage-opts": [
     "size=50GB"
   ]
 ```
 
 > [!TIP]
-> This method works for docker build, too. See the [configure docker](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon#configure-docker-with-configuration-file) document for more details on modifying the docker configuration file.
+> This method works for docker build, too. See the [configure docker](../manage-docker/configure-docker-daemon.md#configure-docker-with-a-configuration-file) document for more details on modifying the docker configuration file.

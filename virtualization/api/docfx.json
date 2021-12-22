@@ -28,13 +28,20 @@
     "overwrite": [],
     "externalReference": [], 
     "globalMetadata": {
-      "breadcrumb_path": "/virtualization/toc.json",
+      "breadcrumb_path": "/virtualization/api/breadcrumbs/toc.json",
       "extendBreadcrumb": true, 
       "feedback_system": "GitHub", 
       "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
-    "fileMetadata": {},
+    "fileMetadata": {
+      "ms.topic": {
+        "**/*.md": "reference"
+      },
+      "ms.prod": {
+        "**/*.md": "windows"
+      }
+    },
     "template": [],
     "dest": "virtualization/api"
   }

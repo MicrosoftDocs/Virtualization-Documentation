@@ -3,11 +3,14 @@ title: Advanced network options in Windows
 description: Advanced networking for Windows containers.
 keywords: docker, containers
 author: jmesser81
-ms.date: 03/27/2018
+ms.author: jgerend
+ms.date: 10/20/2021
 ms.topic: how-to
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 # Advanced Network Options in Windows
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Several network driver options are supported to take advantage of Windows-specific capabilities and features.
 
@@ -15,7 +18,7 @@ Several network driver options are supported to take advantage of Windows-specif
 
 > Applies to all network drivers
 
-You can take advantage of [Switch Embedded Teaming](https://docs.microsoft.com/windows-server/virtualization/hyper-v-virtual-switch/RDMA-and-Switch-Embedded-Teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option.
+You can take advantage of [Switch Embedded Teaming](/windows-server/virtualization/hyper-v-virtual-switch/RDMA-and-Switch-Embedded-Teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option.
 
 ```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2", "Ethernet 3" TeamedNet
@@ -109,7 +112,7 @@ C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Para
 
 #### Linux Containers on Windows
 
-**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux).
+**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](../quick-start/quick-start-windows-10-linux.md).
 > NOTE: LCOW is deprecating the Moby Linux VM, and it will utilize the default HNS "nat" internal vSwitch.
 
 #### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition))

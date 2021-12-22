@@ -3,6 +3,7 @@ title: Set up Linux Containers on Windows 10
 description: Container deployment quick start
 keywords: docker, containers, LCOW
 author: taylorb-microsoft
+ms.author: jgerend
 ms.date: 08/16/2019
 ms.topic: tutorial
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
@@ -24,7 +25,7 @@ This quick start is specific to Windows 10. Additional quick start documentation
 Please make sure you meet the following requirements:
 - One physical computer system running Windows 10 Professional, Windows 10 Enterprise, or Windows
 Server 2019 version 1809 or later
-- Make sure [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
+- Make sure [Hyper-V](/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
 
 ## Install Docker Desktop
 
