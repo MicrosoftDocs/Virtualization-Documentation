@@ -148,6 +148,20 @@
                 }
             }
         },
+        "ComputeSystemProperties": {
+            "type": "object",
+            "description": "An object consisting of basic system properties for a compute system",
+            "properties": {}
+        },
+        "ConsoleImage": {
+            "type": "object",
+            "properties": {}
+        },
+        "ConsoleImageQuery": {
+            "type": "object",
+            "description": "A query to request a screenshot of the console of the virtual machine",
+            "properties": {}
+        },
         "ConsoleSize": {
             "type": "object",
             "properties": {
@@ -601,18 +615,6 @@
                 }
             }
         },
-        "DownlevelFixups": {
-            "type": "object",
-            "properties": {}
-        },
-        "DownlevelNamespace": {
-            "type": "object",
-            "properties": {}
-        },
-        "DownlevelSku": {
-            "type": "object",
-            "properties": {}
-        },
         "EnhancedModeVideo": {
             "type": "object",
             "properties": {
@@ -943,6 +945,15 @@
             "type": "object",
             "properties": {}
         },
+        "KvpExchange": {
+            "type": "object",
+            "properties": {}
+        },
+        "KvpQuery": {
+            "type": "object",
+            "description": "Query information to request from the key-value exchange integration component",
+            "properties": {}
+        },
         "Layer": {
             "type": "object",
             "description": "Describe the parent hierarchy for a container's storage",
@@ -1073,7 +1084,7 @@
         },
         "MemoryInformationForVm": {
             "type": "object",
-            "description": "The response of memory information for virtual machine when query memory propery of compute system",
+            "description": "The response of memory information for virtual machine when query memory property of compute system",
             "properties": {
                 "VirtualNodeCount": {
                     "type": "integer",
@@ -1222,6 +1233,26 @@
             "type": "object",
             "properties": {}
         },
+        "OperationFailureInfo": {
+            "type": "object",
+            "description": "/ Contains information describing a failure in an operation on a compute system.",
+            "properties": {}
+        },
+        "OperationInfo": {
+            "type": "object",
+            "description": "/ Information about an operation on a compute system. / An operation is typically an HCS API call but can also be something like / a compute system exit or crash.",
+            "properties": {}
+        },
+        "OperationNotificationInfo": {
+            "type": "object",
+            "description": "Payload for an operation notification",
+            "properties": {}
+        },
+        "OperationProgress": {
+            "type": "object",
+            "description": "Information about the progress of an operation",
+            "properties": {}
+        },
         "OsLayerOptions": {
             "type": "object",
             "properties": {
@@ -1345,6 +1376,16 @@
                     "$ref": "#/definitions/CloseHandle"
                 }
             }
+        },
+        "ProcessorCapabilitiesInfo": {
+            "type": "object",
+            "description": "Host specific processor feature capabilities",
+            "properties": {}
+        },
+        "ProcessorFeatureSet": {
+            "type": "object",
+            "description": "VM specific processor feature requirements",
+            "properties": {}
         },
         "ProcessorLimits": {
             "type": "object",
@@ -1540,6 +1581,10 @@
                 }
             }
         },
+        "PropertyResponse": {
+            "type": "object",
+            "properties": {}
+        },
         "QoSCapabilities": {
             "type": "object",
             "description": "Quality of Service (QoS) capabilities",
@@ -1616,7 +1661,11 @@
         },
         "RegistryLayer": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "trustedhive": {
+                    "type": "boolean"
+                }
+            }
         },
         "RegistryMakeKey": {
             "type": "object",
@@ -1822,6 +1871,15 @@
                 }
             }
         },
+        "Shutdown": {
+            "type": "object",
+            "properties": {}
+        },
+        "ShutdownOptions": {
+            "type": "object",
+            "description": "Options for HcsShutdownComputeSystem",
+            "properties": {}
+        },
         "SignalProcessOptions": {
             "type": "object",
             "properties": {
@@ -1914,6 +1972,10 @@
                     "format": "uint64"
                 }
             }
+        },
+        "Subnode": {
+            "type": "object",
+            "properties": {}
         },
         "System_PropertyQuery": {
             "type": "object",
@@ -2023,6 +2085,10 @@
                     "format": "uint16"
                 }
             }
+        },
+        "Timesync": {
+            "type": "object",
+            "properties": {}
         },
         "TimeZoneInformation": {
             "type": "object",
@@ -2159,10 +2225,12 @@
             "type": "object",
             "properties": {
                 "NamedPipe": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Pipe name to connect to this port from the host."
                 },
                 "Name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Friendly name provided to the guest."
                 }
             }
         },
@@ -2514,6 +2582,11 @@
                 }
             }
         },
+        "VmProcessorRequirements": {
+            "type": "object",
+            "description": "VM specific processor feature requirements",
+            "properties": {}
+        },
         "WindowsCrashReport": {
             "type": "object",
             "description": "Windows specific crash information",
@@ -2747,6 +2820,13 @@
                 "ForcedExit",
                 "UnexpectedExit",
                 "Unknown"
+            ]
+        },
+        "OperationType": {
+            "type": "string",
+            "description": "TODO: Replace usage of ActiveOperation with this?",
+            "enum": [
+                "None"
             ]
         },
         "OsLayerType": {

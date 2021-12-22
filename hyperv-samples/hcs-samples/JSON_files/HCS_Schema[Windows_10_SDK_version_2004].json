@@ -162,6 +162,20 @@
                 }
             }
         },
+        "ComputeSystemProperties": {
+            "type": "object",
+            "description": "An object consisting of basic system properties for a compute system",
+            "properties": {}
+        },
+        "ConsoleImage": {
+            "type": "object",
+            "properties": {}
+        },
+        "ConsoleImageQuery": {
+            "type": "object",
+            "description": "A query to request a screenshot of the console of the virtual machine",
+            "properties": {}
+        },
         "ConsoleSize": {
             "type": "object",
             "properties": {
@@ -223,6 +237,9 @@
                         "$ref": "#/definitions/Device"
                     },
                     "description": "Optional list of direct device assignment configurations."
+                },
+                "AdditionalDeviceNamespace": {
+                    "$ref": "#/definitions/ContainersDef_Device"
                 }
             }
         },
@@ -708,56 +725,6 @@
                 }
             }
         },
-        "DownlevelFixups": {
-            "type": "object",
-            "properties": {
-                "build_number": {
-                    "type": "integer",
-                    "format": "uint32"
-                },
-                "lcu": {
-                    "type": "integer",
-                    "format": "uint32"
-                },
-                "file": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
-        },
-        "DownlevelNamespace": {
-            "type": "object",
-            "properties": {
-                "base_image_path": {
-                    "type": "string"
-                },
-                "sandbox_path": {
-                    "type": "string"
-                },
-                "sku": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/DownlevelSku"
-                    }
-                }
-            }
-        },
-        "DownlevelSku": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "fixups": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/DownlevelFixups"
-                    }
-                }
-            }
-        },
         "EnhancedModeVideo": {
             "type": "object",
             "properties": {
@@ -1026,12 +993,6 @@
                     "items": {
                         "type": "string"
                     }
-                },
-                "optionalfile": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
                 }
             }
         },
@@ -1191,6 +1152,15 @@
             "type": "object",
             "properties": {}
         },
+        "KvpExchange": {
+            "type": "object",
+            "properties": {}
+        },
+        "KvpQuery": {
+            "type": "object",
+            "description": "Query information to request from the key-value exchange integration component",
+            "properties": {}
+        },
         "Layer": {
             "type": "object",
             "description": "Describe the parent hierarchy for a container's storage",
@@ -1325,7 +1295,7 @@
         },
         "MemoryInformationForVm": {
             "type": "object",
-            "description": "The response of memory information for virtual machine when query memory propery of compute system",
+            "description": "The response of memory information for virtual machine when query memory property of compute system",
             "properties": {
                 "VirtualNodeCount": {
                     "type": "integer",
@@ -1467,9 +1437,6 @@
                 "device": {
                     "$ref": "#/definitions/DeviceNamespace"
                 },
-                "downlevel": {
-                    "$ref": "#/definitions/DownlevelNamespace"
-                },
                 "hostfiles": {
                     "$ref": "#/definitions/HostFiles"
                 }
@@ -1595,6 +1562,26 @@
             "type": "object",
             "properties": {}
         },
+        "OperationFailureInfo": {
+            "type": "object",
+            "description": "/ Contains information describing a failure in an operation on a compute system.",
+            "properties": {}
+        },
+        "OperationInfo": {
+            "type": "object",
+            "description": "/ Information about an operation on a compute system. / An operation is typically an HCS API call but can also be something like / a compute system exit or crash.",
+            "properties": {}
+        },
+        "OperationNotificationInfo": {
+            "type": "object",
+            "description": "Payload for an operation notification",
+            "properties": {}
+        },
+        "OperationProgress": {
+            "type": "object",
+            "description": "Information about the progress of an operation",
+            "properties": {}
+        },
         "OsLayerOptions": {
             "type": "object",
             "properties": {
@@ -1718,6 +1705,16 @@
                     "$ref": "#/definitions/CloseHandle"
                 }
             }
+        },
+        "ProcessorCapabilitiesInfo": {
+            "type": "object",
+            "description": "Host specific processor feature capabilities",
+            "properties": {}
+        },
+        "ProcessorFeatureSet": {
+            "type": "object",
+            "description": "VM specific processor feature requirements",
+            "properties": {}
         },
         "ProcessorLimits": {
             "type": "object",
@@ -1913,6 +1910,10 @@
                 }
             }
         },
+        "PropertyResponse": {
+            "type": "object",
+            "properties": {}
+        },
         "QoSCapabilities": {
             "type": "object",
             "description": "Quality of Service (QoS) capabilities",
@@ -2033,6 +2034,9 @@
                     "type": "boolean"
                 },
                 "inherittrustclass": {
+                    "type": "boolean"
+                },
+                "trustedhive": {
                     "type": "boolean"
                 },
                 "writethrough": {
@@ -2335,6 +2339,15 @@
                 }
             }
         },
+        "Shutdown": {
+            "type": "object",
+            "properties": {}
+        },
+        "ShutdownOptions": {
+            "type": "object",
+            "description": "Options for HcsShutdownComputeSystem",
+            "properties": {}
+        },
         "SignalProcessOptions": {
             "type": "object",
             "properties": {
@@ -2427,6 +2440,10 @@
                     "format": "uint64"
                 }
             }
+        },
+        "Subnode": {
+            "type": "object",
+            "properties": {}
         },
         "System_PropertyQuery": {
             "type": "object",
@@ -2536,6 +2553,10 @@
                     "format": "uint16"
                 }
             }
+        },
+        "Timesync": {
+            "type": "object",
+            "properties": {}
         },
         "TimeZoneInformation": {
             "type": "object",
@@ -2676,10 +2697,12 @@
             "type": "object",
             "properties": {
                 "NamedPipe": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Pipe name to connect to this port from the host."
                 },
                 "Name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Friendly name provided to the guest."
                 }
             }
         },
@@ -3064,6 +3087,11 @@
                 }
             }
         },
+        "VmProcessorRequirements": {
+            "type": "object",
+            "description": "VM specific processor feature requirements",
+            "properties": {}
+        },
         "WindowsCrashReport": {
             "type": "object",
             "description": "Windows specific crash information",
@@ -3357,6 +3385,13 @@
                 "Local",
                 "Global",
                 "GlobalDropSilo"
+            ]
+        },
+        "OperationType": {
+            "type": "string",
+            "description": "TODO: Replace usage of ActiveOperation with this?",
+            "enum": [
+                "None"
             ]
         },
         "OsLayerType": {
