@@ -73,9 +73,7 @@ The following section contains the definitions of the Host Compute System APIs. 
 |Function|Description|
 |---|---|
 |[HcsCreateComputeSystem](./HcsCreateComputeSystem.md)|Create a new compute system|
-|[HcsCreateComputeSystemInNamespace](./HcsCreateComputeSystemInNamespace.md)|Create a new compute system in a given namespace|
 |[HcsOpenComputeSystem](./HcsOpenComputeSystem.md)|Open a handle to an existing compute system|
-|[HcsOpenComputeSystemInNamespace](./HcsOpenComputeSystemInNamespace.md)|Open a handle to an existing compute system in a given namespace|
 |[HcsCloseComputeSystem](./HcsCloseComputeSystem.md)|Close a handle to a compute system|
 |[HcsStartComputeSystem](./HcsStartComputeSystem.md)|Start a compute system|
 |[HcsShutDownComputeSystem](./HcsShutDownComputeSystem.md)|Cleanly Shut down a compute system|
@@ -88,7 +86,6 @@ The following section contains the definitions of the Host Compute System APIs. 
 |[HcsModifyComputeSystem](./HcsModifyComputeSystem.md)|Modify setting of a compute system|
 |[HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md)|Register a callback function to receive notifications for the compute system|
 |[HcsEnumerateComputeSystems](./HcsEnumerateComputeSystems.md)|Enumerate existing compute systems|
-|[HcsEnumerateComputeSystemsInNamespace](./HcsEnumerateComputeSystemsInNamespace.md)|Enumerate existing compute systems in a given namespace|
 |[HcsWaitForComputeSystemExit](./HcsWaitForComputeSystemExit.md)|Wait compute system to exit|
 
 

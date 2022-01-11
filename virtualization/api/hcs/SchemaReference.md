@@ -552,8 +552,6 @@ Referenced by: [OperationFailure](#OperationFailure)
 ## OperationType
 Referenced by: [OperationInfo](#OperationInfo)
 
-TODO: Replace usage of ActiveOperation with this?
-
 |Variants|NewInVersion|Description|
 |---|---|---|
 |`"None"`<br>|[](#Schema-Version-Map)||
