@@ -4033,7 +4033,6 @@
         },
         "OperationType": {
             "type": "string",
-            "description": "TODO: Replace usage of ActiveOperation with this?",
             "enum": [
                 "None",
                 "Construct",
