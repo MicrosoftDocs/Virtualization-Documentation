@@ -107,6 +107,10 @@
 #### [Configure gMSA on Azure Kubernetes Service](manage-containers/gmsa-aks-ps-module.md)
 #### [Configure gMSA with AKS on Azure Stack HCI](/azure-stack/aks-hci/prepare-windows-nodes-gmsa)
 #### [Troubleshoot gMSAs](manage-containers/gmsa-troubleshooting.md)
+#### gMSA on Azure Kubernetes Service (AKS)
+##### [gMSA on AKS PowerShell Module](manage-containers/gmsa-aks-ps-module.md)
+##### [Configure gMSA on AKS with PowerShell Module](manage-containers/configure-gmsa-ps-module.md)
+##### [Validate gMSA on AKS with PowerShell Module](manage-containers/validate-gmsa-ps-module.md)
 ## Networking
 ### [Windows container networking](container-networking/architecture.md)
 ### [Network topologies and drivers](container-networking/network-drivers-topologies.md)
