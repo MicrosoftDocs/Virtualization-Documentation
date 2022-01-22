@@ -46,7 +46,7 @@ The function returns [HRESULT](./HCSHResult.md).
 |Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 2004 |
-| **Minimum supported server** | Windows Server, version 2004 |
+| **Minimum supported server** | Windows Server 2022 |
 | **Target Platform** | Windows |
 | **Header** | ComputeCore.h |
 | **Library** | ComputeCore.lib |

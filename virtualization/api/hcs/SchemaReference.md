@@ -1026,7 +1026,7 @@ Referenced by: [UefiBootEntry](#UefiBootEntry)
 ## VirtualDeviceFailureDetail
 Referenced by: [VirtualDeviceFailure](#VirtualDeviceFailure)
 
-Provides detail on the context in which a virtual device failed.
+Provides detail on the context in which a virtual device failed. These values are informational only. Clients should not take a dependency on them
 
 |Variants|NewInVersion|Description|
 |---|---|---|
@@ -1106,7 +1106,7 @@ Indicated the progress of a Windows memory dump in a WindowsCrashReport.
 ## WorkerExitDetail
 Referenced by: [WorkerExit](#WorkerExit)
 
-Detailed reasons for a VM stop
+Detailed reasons for a VM stop. These values are informational only. Clients should not take a dependency on them
 
 |Variants|NewInVersion|Description|
 |---|---|---|
@@ -3573,8 +3573,8 @@ Referenced by: [Topology](#Topology)
 |**SizeInMB**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**AllowOvercommit**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|If enabled, then the VM's memory is backed by the Windows pagefile rather than physically backed, statically allocated memory.|
 |**BackingPageSize**<br>|[MemoryBackingPageSize](#MemoryBackingPageSize)|[2.2](#Schema-Version-Map)|The preferred page size unit (chunk size) used when allocating backing pages for the VM.|
-|**FaultClusterSizeShift**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Fault clustering size for primary RAM.|
-|**DirectMapFaultClusterSizeShift**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Fault clustering size for direct mapped memory.|
+|**FaultClusterSizeShift**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Fault clustering size for primary RAM. Backported to windows 10 version 2004|
+|**DirectMapFaultClusterSizeShift**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Fault clustering size for direct mapped memory. Backported to windows 10 version 2004|
 |**PinBackingPages**<br>|[bool](#JSON-type)|[2.2](#Schema-Version-Map)|If enabled, then each backing page is physically pinned on first access.|
 |**ForbidSmallBackingPages**<br>|[bool](#JSON-type)|[2.2](#Schema-Version-Map)|If enabled, then backing page chunks smaller than the backing page size are never used unless the system is under extreme memory pressure. If the backing page size is Small, then it is forced to Large when this option is enabled.|
 |**EnableHotHint**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)|If enabled, then the memory hot hint feature is exposed to the VM, allowing it to prefetch pages into its working set. (if supported by the guest operating system).|
@@ -3871,8 +3871,8 @@ The table shows the mapping from type name for field of classes to JSON type, it
 |2.1|Windows 10 SDK, version 1809 (10.0.17763.0)|
 |2.2|Windows 10 SDK, version 1903 (10.0.18362.1)|
 |2.3|Windows 10 SDK, version 2004 (10.0.19041.0)|
-|2.4|Windows 10 SDK, version 20H2 (10.0.19042.0)|
-|2.5|Windows 10 SDK, version 2104 (10.0.20348.0)|
+|2.4|Windows Server 2022 (OS build 20348.169)|
+|2.5|Windows Server 2022 (OS build 20348.169)|
 |2.6|Windows 11 SDK, version 21H2 (10.0.22000.194)|
 
 ---
