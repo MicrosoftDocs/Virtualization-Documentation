@@ -1485,7 +1485,7 @@
         },
         "MemoryInformationForVm": {
             "type": "object",
-            "description": "The response of memory information for virtual machine when query memory property of compute system",
+            "description": "The response of memory information for virtual machine when query memory propery of compute system",
             "properties": {
                 "VirtualNodeCount": {
                     "type": "integer",
@@ -1805,16 +1805,6 @@
                 }
             }
         },
-        "OperationNotificationInfo": {
-            "type": "object",
-            "description": "Payload for an operation notification",
-            "properties": {}
-        },
-        "OperationProgress": {
-            "type": "object",
-            "description": "Information about the progress of an operation",
-            "properties": {}
-        },
         "OsLayerOptions": {
             "type": "object",
             "properties": {
@@ -1939,68 +1929,6 @@
                 },
                 "CloseHandle": {
                     "$ref": "#/definitions/CloseHandle"
-                }
-            }
-        },
-        "ProcessorCapabilitiesInfo": {
-            "type": "object",
-            "description": "Host specific processor feature capabilities",
-            "properties": {
-                "ProcessorFeatures": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "$ref": "#/definitions/ProcessorFeature"
-                    },
-                    "description": "Processor features"
-                },
-                "XsaveProcessorFeatures": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "$ref": "#/definitions/XsaveProcessorFeature"
-                    },
-                    "description": "Xsave processor features"
-                },
-                "CacheLineFlushSize": {
-                    "type": "integer",
-                    "format": "uint64",
-                    "description": "Processor cache line flush size"
-                },
-                "ImplementedPhysicalAddressBits": {
-                    "type": "integer",
-                    "format": "uint64",
-                    "description": "Processor physical address bits"
-                },
-                "NonArchitecturalCoreSharing": {
-                    "type": "string",
-                    "$ref": "#/definitions/NonArchitecturalCoreSharing"
-                }
-            }
-        },
-        "ProcessorFeatureSet": {
-            "type": "object",
-            "description": "VM specific processor feature requirements",
-            "properties": {
-                "ProcessorFeatures": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "$ref": "#/definitions/ProcessorFeature"
-                    },
-                    "description": "Processor features"
-                },
-                "XsaveProcessorFeatures": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "$ref": "#/definitions/XsaveProcessorFeature"
-                    },
-                    "description": "Xsave processor features"
-                },
-                "ProcessorFeatureSetMode": {
-                    "type": "string",
-                    "$ref": "#/definitions/ProcessorFeatureSetMode"
                 }
             }
         },
@@ -3123,6 +3051,10 @@
                 "Name": {
                     "type": "string",
                     "description": "Friendly name provided to the guest."
+                },
+                "ConsoleSupport": {
+                    "type": "boolean",
+                    "description": "Indicates to the guest that this port can be used as a console."
                 }
             }
         },
@@ -3294,9 +3226,6 @@
                 "EnablePerfmonPmu": {
                     "type": "boolean"
                 },
-                "EnablePerfmonArchPmu": {
-                    "type": "boolean"
-                },
                 "EnablePerfmonPebs": {
                     "type": "boolean"
                 },
@@ -3305,17 +3234,6 @@
                 },
                 "EnablePerfmonIpt": {
                     "type": "boolean"
-                },
-                "EnablePageShattering": {
-                    "type": "boolean",
-                    "description": "Useful to enable if you want to protect against the Intel Processor Machine Check Error vulnerability (CVE-2018-12207). For instance, if you have some virtual machines that you trust that won't cause denial of service on the virtualization hosts and some that you don't trust. Additionally, disabling this may improve guest performance for some workloads. This feature does nothing on non-Intel machines or on Intel machines that are not vulnerable to CVE-2018-12207."
-                },
-                "DisableSpeculationControls": {
-                    "type": "boolean",
-                    "description": "Hides the presence of speculation controls commonly used by guest operating systems as part of side channel vulnerability mitigations. Additionally, these mitigations are often detrimental to guest operating system performance"
-                },
-                "ProcessorFeatureSet": {
-                    "$ref": "#/definitions/ProcessorFeatureSet"
                 },
                 "CpuGroup": {
                     "$ref": "#/definitions/CpuGroup"
@@ -3575,42 +3493,6 @@
                 }
             }
         },
-        "VmProcessorRequirements": {
-            "type": "object",
-            "description": "VM specific processor feature requirements",
-            "properties": {
-                "ProcessorFeatures": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "$ref": "#/definitions/ProcessorFeature"
-                    },
-                    "description": "Processor features"
-                },
-                "XsaveProcessorFeatures": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "$ref": "#/definitions/XsaveProcessorFeature"
-                    },
-                    "description": "Xsave processor features"
-                },
-                "CacheLineFlushSize": {
-                    "type": "integer",
-                    "format": "uint64",
-                    "description": "Processor cache line flush size"
-                },
-                "ImplementedPhysicalAddressBits": {
-                    "type": "integer",
-                    "format": "uint64",
-                    "description": "Processor physical address bits"
-                },
-                "NonArchitecturalCoreSharing": {
-                    "type": "string",
-                    "$ref": "#/definitions/NonArchitecturalCoreSharing"
-                }
-            }
-        },
         "WindowsCrashReport": {
             "type": "object",
             "description": "Windows specific crash information",
@@ -3758,15 +3640,6 @@
                 "ClassGuid",
                 "DeviceInstance",
                 "GpuMirror"
-            ]
-        },
-        "EnlightenmentModifications": {
-            "type": "string",
-            "description": "Enum for enlightenment modifications",
-            "enum": [
-                "Unreported",
-                "FavorAutoEoi",
-                "RsvdZ1"
             ]
         },
         "EventDataType": {
@@ -3964,15 +3837,6 @@
                 "SetProperty"
             ]
         },
-        "NonArchitecturalCoreSharing": {
-            "type": "string",
-            "description": "Enum for non architecture core sharing",
-            "enum": [
-                "Unreported",
-                "Off",
-                "On"
-            ]
-        },
         "NotificationType": {
             "type": "string",
             "description": "Exit type of a compute system.",
@@ -4033,6 +3897,7 @@
         },
         "OperationType": {
             "type": "string",
+            "description": "TODO: Replace usage of ActiveOperation with this?",
             "enum": [
                 "None",
                 "Construct",
@@ -4090,148 +3955,6 @@
                 "MemoryLow",
                 "MemoryMedium",
                 "MemoryHigh"
-            ]
-        },
-        "ProcessorFeature": {
-            "type": "string",
-            "description": "Enum for processor features",
-            "enum": [
-                "Sse3",
-                "LahfSahf",
-                "Ssse3",
-                "Sse4_1",
-                "Sse4_2",
-                "Sse4A",
-                "Xop",
-                "Popcnt",
-                "Cmpxchg16B",
-                "Altmovcr8",
-                "Lzcnt",
-                "Misalignsse",
-                "MmxExt",
-                "Amd3Dnow",
-                "ExtAmd3Dnow",
-                "Page1Gb",
-                "AmdAes",
-                "Pclmulqdq",
-                "Pcid",
-                "Fma4",
-                "F16C",
-                "Rdrand",
-                "Rdwrfsgs",
-                "Smep",
-                "EnhancedFastString",
-                "Bmi1",
-                "Bmi2",
-                "Movbe",
-                "Npiep1",
-                "DepX87FpuSave",
-                "Rdseed",
-                "Adx",
-                "IntelPrefetch",
-                "Smap",
-                "Hle",
-                "Rtm",
-                "Rdtscp",
-                "Clflushopt",
-                "Clwb",
-                "Sha",
-                "X87PointersSaved",
-                "Invpcid",
-                "Ibrs",
-                "Stibp",
-                "Ibpb",
-                "UnrestrictedGuest",
-                "Mdd",
-                "FastShortRepMov",
-                "L1DCacheFlush",
-                "RdclNo",
-                "IbrsAll",
-                "SkipL1Df",
-                "SsbNo",
-                "RsbaNo",
-                "VirtSpecCtrl",
-                "Rdpid",
-                "Umip",
-                "MbsNo",
-                "MbClear",
-                "TaaNo",
-                "TsxCtrl",
-                "AcountMcount",
-                "TscInvariant",
-                "Clzero",
-                "Rdpru",
-                "La57",
-                "Mbec",
-                "NestedVirt",
-                "Psfd",
-                "CetSs",
-                "CetIbt",
-                "VmxExceptionInject",
-                "UmwaitTpause",
-                "Movdiri",
-                "Movdir64b",
-                "Cldemote",
-                "Serialize",
-                "TscDeadlineTmr",
-                "TscAdjust",
-                "FZLRepMovsb",
-                "FSRepStosb",
-                "FSRepCmpsb",
-                "SentinelAmd",
-                "Asid16",
-                "TGran16",
-                "TGran64",
-                "Haf",
-                "Hdbs",
-                "Pan",
-                "AtS1E1",
-                "Uao",
-                "El0Aarch32",
-                "Fp",
-                "FpHp",
-                "AdvSimd",
-                "AdvSimdHp",
-                "GicV3V4",
-                "PmuV3",
-                "PmuV3ArmV81",
-                "PmuV3ArmV84",
-                "ArmAes",
-                "PolyMul",
-                "Sha1",
-                "Sha256",
-                "Sha512",
-                "Crc32",
-                "Atomic",
-                "Rdm",
-                "Sha3",
-                "Sm3",
-                "Sm4",
-                "Dp",
-                "Fhm",
-                "DcCvap",
-                "DcCvadp",
-                "ApaBase",
-                "ApaEp",
-                "ApaEp2",
-                "ApaEp2Fp",
-                "ApaEp2Fpc",
-                "Jscvt",
-                "Fcma",
-                "RcpcV83",
-                "RcpcV84",
-                "Gpa",
-                "L1ipPipt",
-                "DzPermitted",
-                "SentinelArm"
-            ]
-        },
-        "ProcessorFeatureSetMode": {
-            "type": "string",
-            "description": "Enum for setting Strict/Flexible configuration mode",
-            "enum": [
-                "Strict",
-                "Permissive"
             ]
         },
         "ProcessSignal": {
@@ -4471,9 +4194,7 @@
                 "FastSavePreservePartitionHandleTransferStorage",
                 "FastSavePreservePartitionHandleTransferNetworking",
                 "FastSavePreservePartitionHandleTransferStorageAndNetworking",
-                "FastSavePreservePartitionHsr",
-                "FastSavePreservePartitionWithHandleTransfer",
-                "FastSaveWithHandleTransfer"
+                "FastSavePreservePartitionHsr"
             ]
         },
         "WorkerExitType": {
@@ -4487,44 +4208,6 @@
                 "UnexpectedStop",
                 "ResetFailed",
                 "UnrecoverableError"
-            ]
-        },
-        "XsaveProcessorFeature": {
-            "type": "string",
-            "description": "Enum for xsave processor features",
-            "enum": [
-                "Xsave",
-                "Xsave_Opt",
-                "Avx",
-                "Avx2",
-                "Fma",
-                "Mpx",
-                "Avx512",
-                "Avx512Dq",
-                "Avx512Cd",
-                "Avx512Bw",
-                "Avx512Vl",
-                "Xsave_Comp",
-                "Xsave_Supervisor",
-                "Xcr1",
-                "Avx512_Bitalg",
-                "AVX512_Ifma",
-                "Avx512_Vbmi",
-                "Avx512_Vbmi2",
-                "Avx512_Vnni",
-                "Gfni",
-                "Vaes",
-                "Avx512_Vpopcntdq",
-                "Vpclmulqdq",
-                "Avx512_Bf16",
-                "Avx512_Vp2Intersect",
-                "Avx512Fp16",
-                "Xfd",
-                "AmxTile",
-                "AmxBf16",
-                "AmxInt8",
-                "AvxVnni",
-                "SentinelAmdXsave"
             ]
         }
     }
