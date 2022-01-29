@@ -91,7 +91,7 @@ The following section contains the definitions of the Host Compute System APIs. 
 
 ## Process Execution
 
-The following functions enable applications to execute a process in a compute system. For containers, these functions are the main way for an application to start and interact with the workload running in the container. Unlike the compute system operations, these process execution functions are executed synchronously.
+The following functions enable applications to execute a process in a compute system. For containers, these functions are the main way for an application to start and interact with the workload running in the container.
 
 |Function|Description|
 |---|---|
