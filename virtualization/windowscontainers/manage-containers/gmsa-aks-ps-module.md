@@ -50,7 +50,7 @@ You will need to be logged in to Azure with your credentials for the gMSA on AKS
    Connect-AzAccount -DeviceCode -Subscription "<SUBSCRIPTION_ID>"
    ```
 
-If you prefer to use the Azure CLI, you can use:
+You also need to log in with the Azure CLI, as the PowerShell module also uses that in the background:
 
    ```powershell
    az login --use-device-code

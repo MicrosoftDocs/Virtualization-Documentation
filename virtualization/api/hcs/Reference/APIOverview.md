@@ -86,6 +86,7 @@ The following section contains the definitions of the Host Compute System APIs. 
 |[HcsModifyComputeSystem](./HcsModifyComputeSystem.md)|Modify setting of a compute system|
 |[HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md)|Register a callback function to receive notifications for the compute system|
 |[HcsEnumerateComputeSystems](./HcsEnumerateComputeSystems.md)|Enumerate existing compute systems|
+|[HcsWaitForComputeSystemExit](./HcsWaitForComputeSystemExit.md)|Wait compute system to exit|
 
 
 ## Process Execution
@@ -103,6 +104,7 @@ The following functions enable applications to execute a process in a compute sy
 |[HcsGetProcessProperties](./HcsGetProcessProperties.md)|Return properties a process in a compute system |
 |[HcsModifyProcess](./HcsModifyProcess.md)|Modify the parameters in a process of a compute system |
 |[HcsSetProcessCallback](./HcsSetProcessCallback.md)|Register a callback function to receive notifications for a process in a compute system |
+|[HcsWaitForProcessExit](./HcsWaitForProcessExit.md)|Wait a process in a compute system to exit|
 
 ## Host Service Operations
 
@@ -126,6 +128,7 @@ The following set of functions allow applications to set up the environment to r
 |[HcsRevokeVmAccess](./HcsRevokeVmAccess.md)|Remove an entry to a file's ACL that granted access for a VM|
 |[HcsGrantVmGroupAccess](./HcsGrantVmGroupAccess.md)|Grant VM group access (R/O) to the specified file.|
 |[HcsRevokeVmGroupAccess](./HcsRevokeVmGroupAccess.md)|Remove VM group access for the specified file.|
+|[HcsGetProcessorCompatibilityFromSavedState](./HcsGetProcessorCompatibilityFromSavedState.md)|Get the processor compatibility from runtime-state file (.vmrs)|
 
 ## Storage Utility Functions for Containers
 
@@ -138,6 +141,7 @@ The following functions allow applications to create and manage the file system 
 |[HcsExportLegacyWritableLayer](./HcsExportLegacyWritableLayer.md)|Export a legacy container writable layer|
 |[HcsDestroyLayer](./HcsDestroyLayer.md)|Delete a container layer from the host|
 |[HcsSetupBaseOSLayer](./HcsSetupBaseOSLayer.md)|Set up a layer that contains a base OS for a container|
+|[HcsSetupBaseOSVolume](./HcsSetupBaseOSVolume.md)|Set up the base OS layer based on the mounted volume|
 |[HcsInitializeWritableLayer](./HcsInitializeWritableLayer.md)|Initialize the writable layer for a container (i.e. the layer that captures the filesystem)|
 |[HcsInitializeLegacyWritableLayer](./HcsInitializeLegacyWritableLayer.md)|Initialize the writable layer for a container using the legacy hive folder format|
 |[HcsAttachLayerStorageFilter](./HcsAttachLayerStorageFilter.md)|Set up the layer storage filter on a writable container layers|
