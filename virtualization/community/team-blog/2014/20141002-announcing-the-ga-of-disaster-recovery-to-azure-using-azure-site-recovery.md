@@ -7,10 +7,10 @@ I am excited to [announce the GA of the Disaster Recovery to Azure using Azure 
 
 The GA release also brings significant additions to the already expansive list of ASR’s DR to Azure features:
 
-  ***NEW*** **ASR Recovery Plans and Azure Automation** integrate to offer robust and simplified one-click orchestration of your DR plans  
+  * ***NEW*** **ASR Recovery Plans and Azure Automation** integrate to offer robust and simplified one-click orchestration of your DR plans  
 
-  ***NEW*** **Track Initial Replication Progress** as virtual machine data gets replicated to a customer-owned and managed geo-redundant Azure Storage account. This new feature is also available when configuring DR between on-premises private clouds across enterprise sites
+  * ***NEW*** **Track Initial Replication Progress** as virtual machine data gets replicated to a customer-owned and managed geo-redundant Azure Storage account. This new feature is also available when configuring DR between on-premises private clouds across enterprise sites
 
-  ***NEW*** **Simplified Setup and Registration** streamlines the DR setup by removing the complexity of generating certificates and integrity keys needed to register your on-premises System Center Virtual Machine Manager server with your Site Recovery vault
+  * ***NEW*** **Simplified Setup and Registration** streamlines the DR setup by removing the complexity of generating certificates and integrity keys needed to register your on-premises System Center Virtual Machine Manager server with your Site Recovery vault
 
 
