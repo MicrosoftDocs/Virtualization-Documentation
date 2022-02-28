@@ -146,7 +146,7 @@ So, where's the VMware Security Development Lifecycle?
 
 You're guess is as good as mine.
 
-I went to VMware's site and searched for their security development lifecycle. I found their [Security Center](http://www.vmware.com/security/advisories/) which lists their patches, but that's just one small aspect to a security development lifecycle. I Bing searched "VMware security development lifecycle" and was returned a sales pitch from VMware to buy something at $1500 per processor.
+I went to VMware's site and searched for their security development lifecycle. I found their [Defender for Cloud](http://www.vmware.com/security/advisories/) which lists their patches, but that's just one small aspect to a security development lifecycle. I Bing searched "VMware security development lifecycle" and was returned a sales pitch from VMware to buy something at $1500 per processor.
 
 No, I'm not kidding.
 
