@@ -13,7 +13,7 @@ Hello fellow virtualization fans,
 
 Bryon here [again](http://blogs.technet.com/virtualization/archive/2009/01/16/winserver-2k8-hyper-v-is-alive.aspx). With all the excitement around the [beta release of Windows Server 2008 R2](http://blogs.technet.com/windowsserver/archive/2009/01/07/announcing-windows-server-2008-r2-beta.aspx), it’s important to call attention to another important beta release: Microsoft Hyper-V Server 2008 R2! 
 
-To ensure there is no confusion, let me be clear that I’m talking about **Microsoft Hyper-V Server 2008 R2.   **Not Hyper-V the feature of Windows Server 2008 R2. **** Alessandro’s [post](http://www.virtualization.info/2009/01/microsoft-releases-stand-alone-hyper-v.html) did a good job showing the differences. Microsoft Hyper-V Server 2008 R2 is the next generation of the standalone hypervisor based product. ~~
+To ensure there is no confusion, let me be clear that I’m talking about **Microsoft Hyper-V Server 2008 R2**.  **Not Hyper-V the feature of Windows Server 2008 R2**.  Alessandro’s [post](http://www.virtualization.info/2009/01/microsoft-releases-stand-alone-hyper-v.html) did a good job showing the differences. Microsoft Hyper-V Server 2008 R2 is the next generation of the standalone hypervisor based product. ~~
 
 ~~
 
