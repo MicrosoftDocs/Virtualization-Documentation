@@ -2,10 +2,10 @@
 title: Windows Container Version Compatibility
 description: Version compatibility for containers built from different versions of Windows Server and Windows.
 keywords: metadata, containers, version
-author: v-susbo
-ms.author: v-susbo
+author: brasmith-ms
+ms.author: brasmith-ms
 ms.topic: conceptual
-ms.date: 03/03/2022
+ms.date: 03/15/2022
 ---
 # Windows container version compatibility
 
@@ -28,9 +28,6 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 |---|:---:|:---:|
 |Windows Server, version 2022|&#10004;|&#10004;|
 |Windows Server, version 20H2|&#10004;|&#10060;|
-|Windows Server, version 2004|&#10004;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -40,45 +37,6 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 |---|:---:|:---:|
 |Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10004;|&#10004;|
-|Windows Server, version 2004|&#10004;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows Server, version 2004](#tab/windows-server-2004)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10004;|&#10004;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows Server, version 1909](#tab/windows-server-1909)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10004;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows Server, version 1903](#tab/windows-server-1903)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10004;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -88,9 +46,6 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 |---|:---:|:---:|
 |Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10004;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -100,9 +55,6 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 |---|:---:|:---:|
 |Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10060;|&#10060;|
 |Windows Server 2019|&#10060;|&#10060;|
 |Windows Server 2016|&#10004;|&#10004;|
 
@@ -119,9 +71,6 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 |---|:---:|:---:|
 |Windows Server, version 2022|&#10004;|&#10004;|
 |Windows Server, version 20H2|&#10004;|&#10060;|
-|Windows Server, version 2004|&#10004;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -131,9 +80,6 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 |---|:---:|:---:|
 |Windows Server, version 2022|&#10004;|&#10060;|
 |Windows Server, version 20H2|&#10004;|&#10060;|
-|Windows Server, version 2004|&#10004;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -143,57 +89,6 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 |---|:---:|:---:|
 |Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10004;|&#10004;|
-|Windows Server, version 2004|&#10004;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 2004](#tab/windows-10-2004)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10004;|&#10004;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 1909](#tab/windows-10-1909)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 1903](#tab/windows-10-1903)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 1809](#tab/windows-10-1809)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -206,21 +101,17 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 #### Build number (new release of Windows)
 
-The Windows operating system has four levels of versioning: major, minor, build and revision. For example, version 10.0.14393.103 would have a major version of 10, a minor version of 0, a build number of 14393, and a revision number of 103. The build number only changes when new versions of the OS are published, such as version 1709, 1903, and so on. The revision number is updated as Windows updates are applied.
+The Windows operating system has four levels of versioning: major, minor, build and revision. For example, version 10.0.14393.103 would have a major version of 10, a minor version of 0, a build number of 14393, and a revision number of 103. The build number only changes when new versions of the OS are published, and the revision number is updated as Windows updates are applied.
 
-With the exception of WS2022 + Windows 11, Windows Server containers are blocked from starting when the build number between the container host and the container image are different. For example, when the container host is version 10.0.14393.* (Windows Server 2016) and container image is version 10.0.16299.* (Windows Server version 1709), the container won't start.
+With the exception of WS2022 + Windows 11, Windows Server containers are blocked from starting when the build number between the container host and the container image are different. For example, when the container host is version 10.0.14393.* (Windows Server 2016) and you attempt to run a container with an image version 10.0.16299.* (Windows Server version 1709) the OS compute service will return a version incompatibility error.
 
 #### Windows Server 2016 Restrictions
 
-Windows Server containers currently don't support scenarios where Windows Server 2016-based containers run in a system where the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.**1914** (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.**1944** (Windows Server 2016 with KB4053579 applied), then the image might not start.
+Windows Server 2016-based containers will not run in a system where the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.**1914** (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.**1944** (Windows Server 2016 with KB4053579 applied), then the image might not start.
 
-However, for hosts or images using Windows Server version 1809 and later, this rule doesn't apply, and the host and container image don't need to have matching revisions.
-
-We recommend you keep your systems (host and container) up-to-date with the latest patches and updates to stay secure.
+**For hosts or images using Windows Server version 1809 and later, this rule doesn't apply** - the host and container image do not need matching **revisions**.
 
 >[!NOTE]
->You might encounter issues when using Windows Server containers with the February 11, 2020 security update release (also called "2B") or later monthly security update releases. See [this article](https://support.microsoft.com/help/4542617/you-might-encounter-issues-when-using-windows-server-containers-with-t) for more details.
->
 >We strongly recommend you update both your host and containers with the latest patches and updates to stay secure and compatible. For important guidance for how to update Windows containers, see [Update Windows Server containers](update-containers.md).
 
 #### Practical application
