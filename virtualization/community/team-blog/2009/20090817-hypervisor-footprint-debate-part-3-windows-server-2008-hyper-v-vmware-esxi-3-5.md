@@ -33,10 +33,10 @@ Using an 18 month sample set for Windows Server 2008 covers the majority of its 
 
 **Windows Server 2008 Hyper-V to VMware ESXi 3.5**
 
-****Disk Footprint & Patch Count**. **Here's what we found:
+**Disk Footprint & Patch Count. Here's what we found:**
 
   * Windows Server 2008 Full Installation: 32 patches totaling 408 MB of patches 
-  * Windows Server 2008 Core Installation: 26 **** patches totaling 82 MB of patches or (~20% fewer than a Windows Server 2008 full installation) 
+  * Windows Server 2008 Core Installation: 26 **patches totaling 82 MB of patches or (~20% fewer than a Windows Server 2008 full installation)** 
   * VMware ESXi 3.5: **_13 patches, totaling over 2.7 GB._**
 
 
