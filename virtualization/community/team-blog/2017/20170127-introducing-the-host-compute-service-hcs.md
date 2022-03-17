@@ -16,7 +16,6 @@ Building a great management API for Docker was important for Windows Server Cont
 
 After a bit of thinking, we decided to go with a third option. We created a new management service called the Host Compute Service (HCS), which acts as a layer of abstraction above the low level functionality. The HCS was a stable API Docker could build upon, and it was also easier to use. Making a Windows Server Container with the HCS is just a single API call. Making a Hyper-V Container instead just means adding a flag when calling into the API. Figuring out how those calls translate into actual low-level implementation is something the Hyper-V team has already figured out. 
 
-[![linux-arch](https://msdnshared.blob.core.windows.net/media/2017/01/Linux-Arch-1024x698.png)](https://msdnshared.blob.core.windows.net/media/2017/01/Linux-Arch.png) [![windows-arch](https://msdnshared.blob.core.windows.net/media/2017/01/Windows-Arch2-1024x718.png)](https://msdnshared.blob.core.windows.net/media/2017/01/Windows-Arch2.png)
 
 ### Getting Started with the HCS
 
