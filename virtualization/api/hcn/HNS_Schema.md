@@ -147,6 +147,30 @@ Referenced by: [ModifyEndpointSettingRequest](#ModifyEndpointSettingRequest)
 
 ---
 
+<a name = "FirewallPolicyFlags"></a>
+## FirewallPolicyFlags
+Referenced by: [FirewallPolicySetting](#FirewallPolicySetting)
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"None"`<br>|[2.16](#Schema-Version-Map)||
+|`"ConstrainedInterface"`<br>|[2.16](#Schema-Version-Map)||
+
+---
+
+<a name = "FirewallVMType"></a>
+## FirewallVMType
+Referenced by: [FirewallPolicySetting](#FirewallPolicySetting)
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Invalid"`<br>|[2.16](#Schema-Version-Map)||
+|`"Host"`<br>|[2.16](#Schema-Version-Map)||
+|`"WSA"`<br>|[2.16](#Schema-Version-Map)||
+|`"WSL"`<br>|[2.16](#Schema-Version-Map)||
+
+---
+
 <a name = "GuestEndpointResourceType"></a>
 ## GuestEndpointResourceType
 Referenced by: [ModifyGuestEndpointSettingRequest](#ModifyGuestEndpointSettingRequest)
@@ -927,6 +951,17 @@ Derived from parent class: [Base](#Base)
 |**State**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Enabled**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Data**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
+
+---
+
+<a name = "FirewallPolicySetting"></a>
+## FirewallPolicySetting
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**VmType**<br>|[FirewallVMType](#FirewallVMType)|[2.16](#Schema-Version-Map)||
+|**FirewallPolicyFlags**<br>|[FirewallPolicyFlags](#FirewallPolicyFlags)|[2.16](#Schema-Version-Map)||
 
 ---
 
