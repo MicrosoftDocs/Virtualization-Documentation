@@ -16,8 +16,6 @@ api_type:
 topic_type:
 - apiref
 ---
-# HcnSchema
-
 # Agenda
 - [Enums](#enums)
 - [Structs](#structs)
