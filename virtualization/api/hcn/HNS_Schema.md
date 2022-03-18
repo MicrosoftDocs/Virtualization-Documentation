@@ -322,11 +322,11 @@ Referenced by: [HostComputeQuery](#HostComputeQuery)
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Network"`<br>|[](#Schema-Version-Map)||
-|`"Endpoint"`<br>|[](#Schema-Version-Map)||
-|`"Container"`<br>|[](#Schema-Version-Map)||
-|`"Namespace"`<br>|[](#Schema-Version-Map)||
-|`"PolicyList"`<br>|[](#Schema-Version-Map)||
+|`"Network"`<br>|[2.0](#Schema-Version-Map)||
+|`"Endpoint"`<br>|[2.0](#Schema-Version-Map)||
+|`"Container"`<br>|[2.0](#Schema-Version-Map)||
+|`"Namespace"`<br>|[2.0](#Schema-Version-Map)||
+|`"PolicyList"`<br>|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -426,11 +426,11 @@ Referenced by: [ModifySettingRequest](#ModifySettingRequest)
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Add"`<br>|[](#Schema-Version-Map)||
-|`"Remove"`<br>|[](#Schema-Version-Map)||
-|`"Update"`<br>|[](#Schema-Version-Map)||
-|`"Refresh"`<br>|[](#Schema-Version-Map)||
-|`"Reset"`<br>|[](#Schema-Version-Map)||
+|`"Add"`<br>|[2.0](#Schema-Version-Map)||
+|`"Remove"`<br>|[2.0](#Schema-Version-Map)||
+|`"Update"`<br>|[2.0](#Schema-Version-Map)||
+|`"Refresh"`<br>|[2.0](#Schema-Version-Map)||
+|`"Reset"`<br>|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -455,10 +455,10 @@ Referenced by: [HostComputeNamespace](#HostComputeNamespace)
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Host"`<br>|[](#Schema-Version-Map)||
-|`"HostDefault"`<br>|[](#Schema-Version-Map)||
-|`"Guest"`<br>|[](#Schema-Version-Map)||
-|`"GuestDefault"`<br>|[](#Schema-Version-Map)||
+|`"Host"`<br>|[2.0](#Schema-Version-Map)||
+|`"HostDefault"`<br>|[2.0](#Schema-Version-Map)||
+|`"Guest"`<br>|[2.0](#Schema-Version-Map)||
+|`"GuestDefault"`<br>|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -671,9 +671,9 @@ Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#Co
 |**LocalPorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**RemotePorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**Priority**<br>|[uint16](#JSON-type)|[2.5](#Schema-Version-Map)||
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**Action**<br>|[ActionType](#ActionType)|[](#Schema-Version-Map)||
-|**Direction**<br>|[DirectionType](#DirectionType)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Action**<br>|[ActionType](#ActionType)|[2.0](#Schema-Version-Map)||
+|**Direction**<br>|[DirectionType](#DirectionType)|[2.0](#Schema-Version-Map)||
 |**RuleType**<br>|[RuleType](#RuleType)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -783,9 +783,9 @@ Derived from parent class: [FiveTuple](#FiveTuple)
 |**LocalPorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**RemotePorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**Priority**<br>|[uint16](#JSON-type)|[2.5](#Schema-Version-Map)||
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**Action**<br>|[ActionType](#ActionType)|[](#Schema-Version-Map)||
-|**Direction**<br>|[DirectionType](#DirectionType)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Action**<br>|[ActionType](#ActionType)|[2.0](#Schema-Version-Map)||
+|**Direction**<br>|[DirectionType](#DirectionType)|[2.0](#Schema-Version-Map)||
 |**RuleType**<br>|[RuleType](#RuleType)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -800,7 +800,7 @@ Derived from parent class: [FiveTuple](#FiveTuple)
 |**Port**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Protocol**<br>|[ProtocolType](#ProtocolType)|[2.0](#Schema-Version-Map)||
 |**ExceptionList**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
-|**Destination**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Destination**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**OutboundNat**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -833,7 +833,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Domain**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Search**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ServerList**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -908,8 +908,8 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [PolicyEndpointReque
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)||
-|**IsEnabled**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Id**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**IsEnabled**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -1340,7 +1340,7 @@ Derived from parent class: [Base](#Base)
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**SchemaVersion**<br>|[Version](#Version)|[2.0](#Schema-Version-Map)||
-|**Flags**<br>|[HostComputeQueryFlags](#HostComputeQueryFlags)|[](#Schema-Version-Map)||
+|**Flags**<br>|[HostComputeQueryFlags](#HostComputeQueryFlags)|[2.0](#Schema-Version-Map)||
 |**Filter**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -1416,7 +1416,7 @@ Derived from parent class: [Base](#Base)
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -1455,14 +1455,14 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**Address**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**PrefixOrigin**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**SuffixOrigin**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**ValidLifetime**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**PreferredLifetime**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**OnLinkPrefixLength**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**SkipAsSource**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Address**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**PrefixOrigin**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**SuffixOrigin**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**ValidLifetime**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**PreferredLifetime**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**OnLinkPrefixLength**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**SkipAsSource**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -1544,7 +1544,7 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 |**Port**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Protocol**<br>|[ProtocolType](#ProtocolType)|[2.0](#Schema-Version-Map)||
 |**ExceptionList**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
-|**Destination**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Destination**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**OutboundNat**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -1563,7 +1563,7 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 |**Port**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Protocol**<br>|[ProtocolType](#ProtocolType)|[2.0](#Schema-Version-Map)||
 |**ExceptionList**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
-|**Destination**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Destination**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**OutboundNat**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -1605,7 +1605,7 @@ Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 |**InternalPort**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ExternalPort**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**DistributionType**<br>|[LoadBalancerDistribution](#LoadBalancerDistribution)|[2.7](#Schema-Version-Map)||
-|**Flags**<br>|[LoadBalancerPortMappingFlags](#LoadBalancerPortMappingFlags)|[](#Schema-Version-Map)||
+|**Flags**<br>|[LoadBalancerPortMappingFlags](#LoadBalancerPortMappingFlags)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -1620,7 +1620,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**PhysicalAddress**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 
 ---
@@ -1679,7 +1679,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RequestType**<br>|[ModifyRequestType](#ModifyRequestType)|[2.0](#Schema-Version-Map)||
-|**ResourceType**<br>|[GuestEndpointResourceType](#GuestEndpointResourceType)|[](#Schema-Version-Map)||
+|**ResourceType**<br>|[GuestEndpointResourceType](#GuestEndpointResourceType)|[2.0](#Schema-Version-Map)||
 |**Settings**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -1696,7 +1696,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RequestType**<br>|[ModifyRequestType](#ModifyRequestType)|[2.0](#Schema-Version-Map)||
-|**ResourceType**<br>|[GuestNamespaceResourceType](#GuestNamespaceResourceType)|[](#Schema-Version-Map)||
+|**ResourceType**<br>|[GuestNamespaceResourceType](#GuestNamespaceResourceType)|[2.0](#Schema-Version-Map)||
 |**Settings**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -1713,7 +1713,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RequestType**<br>|[ModifyRequestType](#ModifyRequestType)|[2.0](#Schema-Version-Map)||
-|**ResourceType**<br>|[GuestNetworkServiceResourceType](#GuestNetworkServiceResourceType)|[](#Schema-Version-Map)||
+|**ResourceType**<br>|[GuestNetworkServiceResourceType](#GuestNetworkServiceResourceType)|[2.0](#Schema-Version-Map)||
 |**Settings**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -1730,7 +1730,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RequestType**<br>|[ModifyRequestType](#ModifyRequestType)|[2.0](#Schema-Version-Map)||
-|**ResourceType**<br>|[NamespaceResourceType](#NamespaceResourceType)|[](#Schema-Version-Map)||
+|**ResourceType**<br>|[NamespaceResourceType](#NamespaceResourceType)|[2.0](#Schema-Version-Map)||
 |**Settings**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -1745,7 +1745,7 @@ Derived from parent class: [Response](#Response)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Success**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Success**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Error**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ErrorCode**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**CompartmentId**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1790,7 +1790,7 @@ Derived from parent class: [Response](#Response)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Success**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Success**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Error**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ErrorCode**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Data**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1825,8 +1825,8 @@ Referenced by: [HostComputeNamespace](#HostComputeNamespace)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Type**<br>|[NamespaceResourceType](#NamespaceResourceType)|[](#Schema-Version-Map)||
-|**Data**<br>|[Any](#JSON-type)|[](#Schema-Version-Map)||
+|**Type**<br>|[NamespaceResourceType](#NamespaceResourceType)|[2.0](#Schema-Version-Map)||
+|**Data**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -1849,7 +1849,7 @@ Referenced by: [GuestNamespace](#GuestNamespace)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -1859,7 +1859,7 @@ Referenced by: [GuestNamespace](#GuestNamespace)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -1874,7 +1874,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Address**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**InterfaceLuid**<br>|[uint64](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**InterfaceIndex**<br>|[uint32](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -1915,9 +1915,9 @@ Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#Co
 |**LocalPorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**RemotePorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**Priority**<br>|[uint16](#JSON-type)|[2.5](#Schema-Version-Map)||
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**Action**<br>|[ActionType](#ActionType)|[](#Schema-Version-Map)||
-|**Direction**<br>|[DirectionType](#DirectionType)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Action**<br>|[ActionType](#ActionType)|[2.0](#Schema-Version-Map)||
+|**Direction**<br>|[DirectionType](#DirectionType)|[2.0](#Schema-Version-Map)||
 |**RuleType**<br>|[RuleType](#RuleType)|[2.0](#Schema-Version-Map)||
 
 ---
@@ -1943,7 +1943,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**AdvertisingEnabled**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ForwardingEnabled**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**WeakHostSend**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1994,7 +1994,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**ID**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)||
+|**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Flags**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Data**<br>|[Any](#JSON-type)|[2.2](#Schema-Version-Map)||
 
@@ -2009,7 +2009,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 |**VirtualIP**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Destinations**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
 |**Exceptions**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
-|**Flags**<br>|[NatFlags](#NatFlags)|[](#Schema-Version-Map)||
+|**Flags**<br>|[NatFlags](#NatFlags)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -2043,7 +2043,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 |**InternalPort**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ExternalPort**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**VIP**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Flags**<br>|[NatFlags](#NatFlags)|[](#Schema-Version-Map)||
+|**Flags**<br>|[NatFlags](#NatFlags)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -2124,7 +2124,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RegKeys**<br>|<[RegKey](#RegKey)> array|[2.1](#Schema-Version-Map)||
 |**Keyword**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**AdapterCLSID**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -2165,7 +2165,7 @@ Referenced by: [RegistryKey](#RegistryKey)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Success**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Success**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Error**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ErrorCode**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
 
@@ -2198,18 +2198,18 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**NextHop**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**DestinationPrefix**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**SitePrefixLength**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**ValidLifetime**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**PreferredLifetime**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**Metric**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**Protocol**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**Loopback**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
-|**AutoconfigureAddress**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
-|**Publish**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
-|**Immortal**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**NextHop**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**DestinationPrefix**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**SitePrefixLength**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**ValidLifetime**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**PreferredLifetime**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Metric**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Protocol**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Loopback**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**AutoconfigureAddress**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Publish**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Immortal**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
@@ -2445,7 +2445,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**SyntheticIPv4Address**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**FallbackIPv4Address**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**LocalPrefix**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -2478,6 +2478,7 @@ The table shows the mapping from type name for field of classes to JSON type, it
 
 |Schema Version|Release Version|
 |---|---|
+|2.0|Windows 10, version 1809 (10.0.17763.0)|
 |2.6|Windows 10, version 2004 (10.0.19041.0)|
 |2.11|Windows Server 2022 (10.0.20348.0)|
 |2.14|Windows 11, version 2004 (10.0.2200.0)|
