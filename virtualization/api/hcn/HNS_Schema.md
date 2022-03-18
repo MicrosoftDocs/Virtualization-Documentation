@@ -16,7 +16,7 @@ api_type:
 topic_type:
 - apiref
 ---
-# Agenda
+# Hcn Agenda
 - [Enums](#enums)
 - [Structs](#structs)
 - [JSON type table](#JSON-type)
