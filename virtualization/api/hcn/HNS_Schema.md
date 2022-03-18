@@ -16,17 +16,19 @@ api_type:
 topic_type:
 - apiref
 ---
-# Hcn Agenda
+# HcnSchema
+
+# Agenda
 - [Enums](#enums)
 - [Structs](#structs)
 - [JSON type table](#JSON-type)
 - [Version Map](#Schema-Version-Map)
 ---
 <a name = "enums"></a>
-# Hcn Enums
+## Enums
 Note: all variants listed should be used as string
 <a name = "ActionType"></a>
-## ActionType
+### ActionType
 Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting); [TierAclRule](#TierAclRule)
 
 
@@ -40,7 +42,7 @@ Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting); [TierAclRule](
 ---
 
 <a name = "AuthenticationType"></a>
-## AuthenticationType
+### AuthenticationType
 Referenced by: [PrioritizedAuthenticationMethod](#PrioritizedAuthenticationMethod)
 
 
@@ -53,7 +55,7 @@ Referenced by: [PrioritizedAuthenticationMethod](#PrioritizedAuthenticationMetho
 ---
 
 <a name = "DirectionType"></a>
-## DirectionType
+### DirectionType
 Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting); [TierAclPolicySetting](#TierAclPolicySetting)
 
 
@@ -66,7 +68,7 @@ Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting); [TierAclPolicy
 ---
 
 <a name = "EncryptionMethod"></a>
-## EncryptionMethod
+### EncryptionMethod
 Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 
 
@@ -78,7 +80,7 @@ Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 ---
 
 <a name = "EndpointFlags"></a>
-## EndpointFlags
+### EndpointFlags
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint)
 
 
@@ -96,7 +98,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint)
 ---
 
 <a name = "EndpointPolicyType"></a>
-## EndpointPolicyType
+### EndpointPolicyType
 Referenced by: [EndpointPolicy](#EndpointPolicy)
 
 
@@ -124,7 +126,7 @@ Referenced by: [EndpointPolicy](#EndpointPolicy)
 ---
 
 <a name = "EndpointResourceType"></a>
-## EndpointResourceType
+### EndpointResourceType
 Referenced by: [ModifyEndpointSettingRequest](#ModifyEndpointSettingRequest)
 
 
@@ -137,7 +139,7 @@ Referenced by: [ModifyEndpointSettingRequest](#ModifyEndpointSettingRequest)
 ---
 
 <a name = "EntityFlags"></a>
-## EntityFlags
+### EntityFlags
 
 
 |Variants|NewInVersion|Description|
@@ -148,7 +150,7 @@ Referenced by: [ModifyEndpointSettingRequest](#ModifyEndpointSettingRequest)
 ---
 
 <a name = "FirewallPolicyFlags"></a>
-## FirewallPolicyFlags
+### FirewallPolicyFlags
 Referenced by: [FirewallPolicySetting](#FirewallPolicySetting)
 
 |Variants|NewInVersion|Description|
@@ -159,7 +161,7 @@ Referenced by: [FirewallPolicySetting](#FirewallPolicySetting)
 ---
 
 <a name = "FirewallVMType"></a>
-## FirewallVMType
+### FirewallVMType
 Referenced by: [FirewallPolicySetting](#FirewallPolicySetting)
 
 |Variants|NewInVersion|Description|
@@ -172,7 +174,7 @@ Referenced by: [FirewallPolicySetting](#FirewallPolicySetting)
 ---
 
 <a name = "GuestEndpointResourceType"></a>
-## GuestEndpointResourceType
+### GuestEndpointResourceType
 Referenced by: [ModifyGuestEndpointSettingRequest](#ModifyGuestEndpointSettingRequest)
 
 
@@ -194,7 +196,7 @@ Referenced by: [ModifyGuestEndpointSettingRequest](#ModifyGuestEndpointSettingRe
 ---
 
 <a name = "GuestNamespaceResourceType"></a>
-## GuestNamespaceResourceType
+### GuestNamespaceResourceType
 Referenced by: [ModifyGuestNamespaceSettingRequest](#ModifyGuestNamespaceSettingRequest)
 
 
@@ -207,7 +209,7 @@ Referenced by: [ModifyGuestNamespaceSettingRequest](#ModifyGuestNamespaceSetting
 ---
 
 <a name = "GuestNetworkServiceFlags"></a>
-## GuestNetworkServiceFlags
+### GuestNetworkServiceFlags
 Referenced by: [GuestNetworkService](#GuestNetworkService)
 
 
@@ -221,7 +223,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService)
 ---
 
 <a name = "GuestNetworkServiceInterfaceState"></a>
-## GuestNetworkServiceInterfaceState
+### GuestNetworkServiceInterfaceState
 Referenced by: [GuestNetworkServiceInterface](#GuestNetworkServiceInterface)
 
 
@@ -237,7 +239,7 @@ Referenced by: [GuestNetworkServiceInterface](#GuestNetworkServiceInterface)
 ---
 
 <a name = "GuestNetworkServiceNotificationType"></a>
-## GuestNetworkServiceNotificationType
+### GuestNetworkServiceNotificationType
 Referenced by: [GuestNetworkServiceInterface](#GuestNetworkServiceInterface)
 
 
@@ -257,7 +259,7 @@ Referenced by: [GuestNetworkServiceInterface](#GuestNetworkServiceInterface)
 ---
 
 <a name = "GuestNetworkServiceResourceType"></a>
-## GuestNetworkServiceResourceType
+### GuestNetworkServiceResourceType
 Referenced by: [ModifyGuestNetworkServiceSettingRequest](#ModifyGuestNetworkServiceSettingRequest)
 
 
@@ -269,7 +271,7 @@ Referenced by: [ModifyGuestNetworkServiceSettingRequest](#ModifyGuestNetworkServ
 ---
 
 <a name = "GuestNetworkServiceState"></a>
-## GuestNetworkServiceState
+### GuestNetworkServiceState
 Referenced by: [GuestNetworkServiceNotificationData](#GuestNetworkServiceNotificationData); [GuestNetworkServiceStateRequest](#GuestNetworkServiceStateRequest)
 
 
@@ -289,7 +291,7 @@ Referenced by: [GuestNetworkServiceNotificationData](#GuestNetworkServiceNotific
 ---
 
 <a name = "GuestResourceType"></a>
-## GuestResourceType
+### GuestResourceType
 Referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest)
 
 
@@ -304,7 +306,7 @@ Referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest)
 ---
 
 <a name = "HostComputeQueryFlags"></a>
-## HostComputeQueryFlags
+### HostComputeQueryFlags
 Referenced by: [HostComputeQuery](#HostComputeQuery)
 
 
@@ -317,7 +319,7 @@ Referenced by: [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "HostResourceType"></a>
-## HostResourceType
+### HostResourceType
 
 
 |Variants|NewInVersion|Description|
@@ -331,7 +333,7 @@ Referenced by: [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "IovInterruptModerationType"></a>
-## IovInterruptModerationType
+### IovInterruptModerationType
 Referenced by: [IovPolicySetting](#IovPolicySetting)
 
 
@@ -348,7 +350,7 @@ Referenced by: [IovPolicySetting](#IovPolicySetting)
 ---
 
 <a name = "IpamType"></a>
-## IpamType
+### IpamType
 Referenced by: [Ipam](#Ipam)
 
 
@@ -361,7 +363,7 @@ Referenced by: [Ipam](#Ipam)
 ---
 
 <a name = "IPSubnetFlags"></a>
-## IPSubnetFlags
+### IPSubnetFlags
 Referenced by: [IpSubnet](#IpSubnet)
 
 
@@ -375,7 +377,7 @@ Referenced by: [IpSubnet](#IpSubnet)
 ---
 
 <a name = "LoadBalancerDistribution"></a>
-## LoadBalancerDistribution
+### LoadBalancerDistribution
 Referenced by: [LoadBalancerPortMapping](#LoadBalancerPortMapping)
 
 
@@ -389,7 +391,7 @@ Referenced by: [LoadBalancerPortMapping](#LoadBalancerPortMapping)
 ---
 
 <a name = "LoadBalancerFlags"></a>
-## LoadBalancerFlags
+### LoadBalancerFlags
 Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 
 
@@ -403,7 +405,7 @@ Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 ---
 
 <a name = "LoadBalancerPortMappingFlags"></a>
-## LoadBalancerPortMappingFlags
+### LoadBalancerPortMappingFlags
 Referenced by: [LoadBalancerPortMapping](#LoadBalancerPortMapping)
 
 
@@ -419,7 +421,7 @@ Referenced by: [LoadBalancerPortMapping](#LoadBalancerPortMapping)
 ---
 
 <a name = "ModifyRequestType"></a>
-## ModifyRequestType
+### ModifyRequestType
 Referenced by: [ModifySettingRequest](#ModifySettingRequest)
 
 
@@ -435,7 +437,7 @@ Referenced by: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "NamespaceResourceType"></a>
-## NamespaceResourceType
+### NamespaceResourceType
 Referenced by: [ModifyNamespaceSettingRequest](#ModifyNamespaceSettingRequest); [NamespaceResource](#NamespaceResource)
 
 
@@ -448,7 +450,7 @@ Referenced by: [ModifyNamespaceSettingRequest](#ModifyNamespaceSettingRequest); 
 ---
 
 <a name = "NamespaceType"></a>
-## NamespaceType
+### NamespaceType
 Referenced by: [HostComputeNamespace](#HostComputeNamespace)
 
 
@@ -463,7 +465,7 @@ Referenced by: [HostComputeNamespace](#HostComputeNamespace)
 ---
 
 <a name = "NatFlags"></a>
-## NatFlags
+### NatFlags
 Referenced by: [OutboundNatPolicySetting](#OutboundNatPolicySetting); [PortMappingPolicySetting](#PortMappingPolicySetting)
 
 
@@ -477,7 +479,7 @@ Referenced by: [OutboundNatPolicySetting](#OutboundNatPolicySetting); [PortMappi
 ---
 
 <a name = "NetworkFlags"></a>
-## NetworkFlags
+### NetworkFlags
 Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -498,7 +500,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 ---
 
 <a name = "NetworkMode"></a>
-## NetworkMode
+### NetworkMode
 Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -520,7 +522,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 ---
 
 <a name = "NetworkPolicyType"></a>
-## NetworkPolicyType
+### NetworkPolicyType
 Referenced by: [NetworkPolicy](#NetworkPolicy)
 
 
@@ -545,7 +547,7 @@ Referenced by: [NetworkPolicy](#NetworkPolicy)
 ---
 
 <a name = "NetworkResourceType"></a>
-## NetworkResourceType
+### NetworkResourceType
 Referenced by: [ModifyNetworkSettingRequest](#ModifyNetworkSettingRequest)
 
 
@@ -561,7 +563,7 @@ Referenced by: [ModifyNetworkSettingRequest](#ModifyNetworkSettingRequest)
 ---
 
 <a name = "ProtocolType"></a>
-## ProtocolType
+### ProtocolType
 Referenced by: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting); [LoadBalancerPortMapping](#LoadBalancerPortMapping); [PortMappingPolicySetting](#PortMappingPolicySetting)
 
 
@@ -578,7 +580,7 @@ Referenced by: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting); [LoadB
 ---
 
 <a name = "ProxyType"></a>
-## ProxyType
+### ProxyType
 
 
 |Variants|NewInVersion|Description|
@@ -589,7 +591,7 @@ Referenced by: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting); [LoadB
 ---
 
 <a name = "RpcEndpointType"></a>
-## RpcEndpointType
+### RpcEndpointType
 Referenced by: [RpcConnectionInformation](#RpcConnectionInformation)
 
 
@@ -602,7 +604,7 @@ Referenced by: [RpcConnectionInformation](#RpcConnectionInformation)
 ---
 
 <a name = "RuleType"></a>
-## RuleType
+### RuleType
 Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting)
 
 
@@ -615,7 +617,7 @@ Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting)
 ---
 
 <a name = "SetPolicyTypes"></a>
-## SetPolicyTypes
+### SetPolicyTypes
 Referenced by: [SetPolicySetting](#SetPolicySetting)
 
 
@@ -628,7 +630,7 @@ Referenced by: [SetPolicySetting](#SetPolicySetting)
 ---
 
 <a name = "SubnetFlags"></a>
-## SubnetFlags
+### SubnetFlags
 Referenced by: [Subnet](#Subnet)
 
 
@@ -641,7 +643,7 @@ Referenced by: [Subnet](#Subnet)
 ---
 
 <a name = "SubnetPolicyType"></a>
-## SubnetPolicyType
+### SubnetPolicyType
 Referenced by: [SubnetPolicy](#SubnetPolicy)
 
 
@@ -654,9 +656,9 @@ Referenced by: [SubnetPolicy](#SubnetPolicy)
 ---
 
 <a name = "structs"></a>
-# Hcn Structs
+## Structs
 <a name = "AclPolicySetting"></a>
-## AclPolicySetting
+### AclPolicySetting
 
 
 Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#CommonAclPolicySetting)
@@ -679,7 +681,7 @@ Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#Co
 ---
 
 <a name = "AuthenticationCertificate"></a>
-## AuthenticationCertificate
+### AuthenticationCertificate
 
 
 Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
@@ -693,7 +695,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "AuthenticationMethod"></a>
-## AuthenticationMethod
+### AuthenticationMethod
 
 
 
@@ -702,7 +704,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "AuthenticationPresharedKey"></a>
-## AuthenticationPresharedKey
+### AuthenticationPresharedKey
 
 
 Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
@@ -716,7 +718,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "AutomaticDNSNetworkPolicySetting"></a>
-## AutomaticDNSNetworkPolicySetting
+### AutomaticDNSNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -726,7 +728,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "Base"></a>
-## Base
+### Base
 
 
 |Field|Type|NewInVersion|Description|
@@ -744,7 +746,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "BasePolicy"></a>
-## BasePolicy
+### BasePolicy
 
 
 Derived from parent class: [Base](#Base)
@@ -768,7 +770,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "CommonAclPolicySetting"></a>
-## CommonAclPolicySetting
+### CommonAclPolicySetting
 
 
 Derived from parent class: [FiveTuple](#FiveTuple)
@@ -791,7 +793,7 @@ Derived from parent class: [FiveTuple](#FiveTuple)
 ---
 
 <a name = "CommonL4ProxyPolicySetting"></a>
-## CommonL4ProxyPolicySetting
+### CommonL4ProxyPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -806,7 +808,7 @@ Derived from parent class: [FiveTuple](#FiveTuple)
 ---
 
 <a name = "DNS"></a>
-## DNS
+### DNS
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -821,7 +823,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [HostComputeNetwork]
 ---
 
 <a name = "DNS_2"></a>
-## DNS_2
+### DNS_2
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
@@ -842,7 +844,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "DrMacAddressNetworkPolicySetting"></a>
-## DrMacAddressNetworkPolicySetting
+### DrMacAddressNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -852,7 +854,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "EncapOverheadEndpointPolicySetting"></a>
-## EncapOverheadEndpointPolicySetting
+### EncapOverheadEndpointPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -862,7 +864,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "EncryptionPolicySetting"></a>
-## EncryptionPolicySetting
+### EncryptionPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -879,7 +881,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "EndpointAdditionalParams"></a>
-## EndpointAdditionalParams
+### EndpointAdditionalParams
 
 
 |Field|Type|NewInVersion|Description|
@@ -890,7 +892,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "EndpointPolicy"></a>
-## EndpointPolicy
+### EndpointPolicy
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [PolicyEndpointRequest](#PolicyEndpointRequest)
 
 
@@ -903,7 +905,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [PolicyEndpointReque
 ---
 
 <a name = "Extension"></a>
-## Extension
+### Extension
 
 
 |Field|Type|NewInVersion|Description|
@@ -914,7 +916,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [PolicyEndpointReque
 ---
 
 <a name = "ExtraParams"></a>
-## ExtraParams
+### ExtraParams
 Referenced by: [Health](#Health)
 
 
@@ -931,7 +933,7 @@ Referenced by: [Health](#Health)
 ---
 
 <a name = "Feature"></a>
-## Feature
+### Feature
 
 
 Derived from parent class: [Base](#Base)
@@ -955,7 +957,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "FirewallPolicySetting"></a>
-## FirewallPolicySetting
+### FirewallPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -966,7 +968,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "FiveTuple"></a>
-## FiveTuple
+### FiveTuple
 Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 
 
@@ -983,7 +985,7 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ---
 
 <a name = "FiveTuple_2"></a>
-## FiveTuple_2
+### FiveTuple_2
 
 
 |Field|Type|NewInVersion|Description|
@@ -998,7 +1000,7 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ---
 
 <a name = "GuestEndpoint"></a>
-## GuestEndpoint
+### GuestEndpoint
 
 
 Derived from parent class: [Base](#Base)
@@ -1021,7 +1023,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestEndpointState"></a>
-## GuestEndpointState
+### GuestEndpointState
 
 
 |Field|Type|NewInVersion|Description|
@@ -1035,7 +1037,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestFirewall"></a>
-## GuestFirewall
+### GuestFirewall
 
 
 Derived from parent class: [Base](#Base)
@@ -1057,7 +1059,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestModifySettingRequest"></a>
-## GuestModifySettingRequest
+### GuestModifySettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1074,7 +1076,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "GuestNamespace"></a>
-## GuestNamespace
+### GuestNamespace
 
 
 Derived from parent class: [Base](#Base)
@@ -1098,7 +1100,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestNetworkService"></a>
-## GuestNetworkService
+### GuestNetworkService
 Schema to hold the GNS info in HNS
 
 Derived from parent class: [Base](#Base)
@@ -1125,7 +1127,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestNetworkServiceInterface"></a>
-## GuestNetworkServiceInterface
+### GuestNetworkServiceInterface
 Referenced by: [GuestNetworkService](#GuestNetworkService); [GuestNetworkServiceNotificationData](#GuestNetworkServiceNotificationData)
 
 
@@ -1140,7 +1142,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService); [GuestNetworkService
 ---
 
 <a name = "GuestNetworkServiceNotificationData"></a>
-## GuestNetworkServiceNotificationData
+### GuestNetworkServiceNotificationData
 
 
 |Field|Type|NewInVersion|Description|
@@ -1151,7 +1153,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService); [GuestNetworkService
 ---
 
 <a name = "GuestNetworkServiceStateRequest"></a>
-## GuestNetworkServiceStateRequest
+### GuestNetworkServiceStateRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1161,7 +1163,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService); [GuestNetworkService
 ---
 
 <a name = "GuestService"></a>
-## GuestService
+### GuestService
 
 
 Derived from parent class: [Base](#Base)
@@ -1185,7 +1187,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "Health"></a>
-## Health
+### Health
 Referenced by: [Base](#Base)
 
 
@@ -1198,7 +1200,7 @@ Referenced by: [Base](#Base)
 ---
 
 <a name = "HostComputeEndpoint"></a>
-## HostComputeEndpoint
+### HostComputeEndpoint
 
 
 Derived from parent class: [Base](#Base)
@@ -1228,7 +1230,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputeLoadBalancer"></a>
-## HostComputeLoadBalancer
+### HostComputeLoadBalancer
 
 
 Derived from parent class: [Base](#Base)
@@ -1256,7 +1258,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputeNamespace"></a>
-## HostComputeNamespace
+### HostComputeNamespace
 
 
 Derived from parent class: [Base](#Base)
@@ -1282,7 +1284,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputeNetwork"></a>
-## HostComputeNetwork
+### HostComputeNetwork
 
 
 Derived from parent class: [Base](#Base)
@@ -1310,7 +1312,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputePolicyList"></a>
-## HostComputePolicyList
+### HostComputePolicyList
 
 
 Derived from parent class: [Base](#Base)
@@ -1334,7 +1336,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputeQuery"></a>
-## HostComputeQuery
+### HostComputeQuery
 
 
 |Field|Type|NewInVersion|Description|
@@ -1346,7 +1348,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputeRoute"></a>
-## HostComputeRoute
+### HostComputeRoute
 
 
 Derived from parent class: [Base](#Base)
@@ -1371,7 +1373,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostRoutePolicySetting"></a>
-## HostRoutePolicySetting
+### HostRoutePolicySetting
 
 
 
@@ -1380,7 +1382,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "InterfaceConstraintEndpointPolicySetting"></a>
-## InterfaceConstraintEndpointPolicySetting
+### InterfaceConstraintEndpointPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1395,7 +1397,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "InterfaceConstraintNetworkPolicySetting"></a>
-## InterfaceConstraintNetworkPolicySetting
+### InterfaceConstraintNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1410,7 +1412,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "InterfaceNotificationMessage"></a>
-## InterfaceNotificationMessage
+### InterfaceNotificationMessage
 
 
 |Field|Type|NewInVersion|Description|
@@ -1421,7 +1423,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "InterfaceParametersPolicySetting"></a>
-## InterfaceParametersPolicySetting
+### InterfaceParametersPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1431,7 +1433,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "IovPolicySetting"></a>
-## IovPolicySetting
+### IovPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1443,7 +1445,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "IPAddress"></a>
-## IPAddress
+### IPAddress
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
@@ -1467,7 +1469,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "Ipam"></a>
-## Ipam
+### Ipam
 Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -1480,7 +1482,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 ---
 
 <a name = "IpConfig"></a>
-## IpConfig
+### IpConfig
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint)
 
 
@@ -1494,7 +1496,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint)
 ---
 
 <a name = "IpSubnet"></a>
-## IpSubnet
+### IpSubnet
 Referenced by: [IPSubnetNetworkRequest](#IPSubnetNetworkRequest); [Subnet](#Subnet)
 
 
@@ -1520,7 +1522,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "IPSubnetNetworkRequest"></a>
-## IPSubnetNetworkRequest
+### IPSubnetNetworkRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1531,7 +1533,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "L4ProxyPolicySetting"></a>
-## L4ProxyPolicySetting
+### L4ProxyPolicySetting
 
 
 Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting)
@@ -1550,7 +1552,7 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 ---
 
 <a name = "L4ProxyPolicySetting_2"></a>
-## L4ProxyPolicySetting_2
+### L4ProxyPolicySetting_2
 
 
 Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting)
@@ -1569,7 +1571,7 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 ---
 
 <a name = "L4WfpProxyPolicySetting"></a>
-## L4WfpProxyPolicySetting
+### L4WfpProxyPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1584,7 +1586,7 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 ---
 
 <a name = "LayerConstraintNetworkPolicySetting"></a>
-## LayerConstraintNetworkPolicySetting
+### LayerConstraintNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1594,7 +1596,7 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 ---
 
 <a name = "LoadBalancerPortMapping"></a>
-## LoadBalancerPortMapping
+### LoadBalancerPortMapping
 Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 
 
@@ -1610,7 +1612,7 @@ Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 ---
 
 <a name = "MacAddress"></a>
-## MacAddress
+### MacAddress
 
 
 Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
@@ -1626,7 +1628,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "MacPool"></a>
-## MacPool
+### MacPool
 Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -1638,7 +1640,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 ---
 
 <a name = "MacRange"></a>
-## MacRange
+### MacRange
 Referenced by: [MacPool](#MacPool)
 
 
@@ -1651,7 +1653,7 @@ Referenced by: [MacPool](#MacPool)
 ---
 
 <a name = "ModifyEndpointSettingRequest"></a>
-## ModifyEndpointSettingRequest
+### ModifyEndpointSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1668,7 +1670,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifyGuestEndpointSettingRequest"></a>
-## ModifyGuestEndpointSettingRequest
+### ModifyGuestEndpointSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1685,7 +1687,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifyGuestNamespaceSettingRequest"></a>
-## ModifyGuestNamespaceSettingRequest
+### ModifyGuestNamespaceSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1702,7 +1704,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifyGuestNetworkServiceSettingRequest"></a>
-## ModifyGuestNetworkServiceSettingRequest
+### ModifyGuestNetworkServiceSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1719,7 +1721,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifyNamespaceSettingRequest"></a>
-## ModifyNamespaceSettingRequest
+### ModifyNamespaceSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1736,7 +1738,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifyNamespaceSettingResponse"></a>
-## ModifyNamespaceSettingResponse
+### ModifyNamespaceSettingResponse
 Find out if Modify can return with a response?
 
 Derived from parent class: [Response](#Response)
@@ -1753,7 +1755,7 @@ Derived from parent class: [Response](#Response)
 ---
 
 <a name = "ModifyNetworkSettingRequest"></a>
-## ModifyNetworkSettingRequest
+### ModifyNetworkSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1770,7 +1772,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifySettingRequest"></a>
-## ModifySettingRequest
+### ModifySettingRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1781,7 +1783,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifySettingResponse"></a>
-## ModifySettingResponse
+### ModifySettingResponse
 
 
 Derived from parent class: [Response](#Response)
@@ -1798,7 +1800,7 @@ Derived from parent class: [Response](#Response)
 ---
 
 <a name = "NamespaceContainerRequest"></a>
-## NamespaceContainerRequest
+### NamespaceContainerRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1808,7 +1810,7 @@ Derived from parent class: [Response](#Response)
 ---
 
 <a name = "NamespaceEndpointRequest"></a>
-## NamespaceEndpointRequest
+### NamespaceEndpointRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1818,7 +1820,7 @@ Derived from parent class: [Response](#Response)
 ---
 
 <a name = "NamespaceResource"></a>
-## NamespaceResource
+### NamespaceResource
 Referenced by: [HostComputeNamespace](#HostComputeNamespace)
 
 
@@ -1831,7 +1833,7 @@ Referenced by: [HostComputeNamespace](#HostComputeNamespace)
 ---
 
 <a name = "NamespaceResource_2"></a>
-## NamespaceResource_2
+### NamespaceResource_2
 Referenced by: [GuestNamespace](#GuestNamespace)
 
 
@@ -1844,7 +1846,7 @@ Referenced by: [GuestNamespace](#GuestNamespace)
 ---
 
 <a name = "NamespaceResourceContainer"></a>
-## NamespaceResourceContainer
+### NamespaceResourceContainer
 
 
 |Field|Type|NewInVersion|Description|
@@ -1854,7 +1856,7 @@ Referenced by: [GuestNamespace](#GuestNamespace)
 ---
 
 <a name = "NamespaceResourceEndpoint"></a>
-## NamespaceResourceEndpoint
+### NamespaceResourceEndpoint
 
 
 |Field|Type|NewInVersion|Description|
@@ -1864,7 +1866,7 @@ Referenced by: [GuestNamespace](#GuestNamespace)
 ---
 
 <a name = "Neighbor"></a>
-## Neighbor
+### Neighbor
 
 
 Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
@@ -1890,7 +1892,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "NetAdapterNameNetworkPolicySetting"></a>
-## NetAdapterNameNetworkPolicySetting
+### NetAdapterNameNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1900,7 +1902,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "NetworkAclPolicySetting"></a>
-## NetworkAclPolicySetting
+### NetworkAclPolicySetting
 
 
 Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#CommonAclPolicySetting)
@@ -1923,7 +1925,7 @@ Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#Co
 ---
 
 <a name = "NetworkAdditionalParams"></a>
-## NetworkAdditionalParams
+### NetworkAdditionalParams
 
 
 |Field|Type|NewInVersion|Description|
@@ -1933,7 +1935,7 @@ Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#Co
 ---
 
 <a name = "NetworkInterface"></a>
-## NetworkInterface
+### NetworkInterface
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
@@ -1976,7 +1978,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "NetworkPolicy"></a>
-## NetworkPolicy
+### NetworkPolicy
 Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest](#PolicyNetworkRequest)
 
 
@@ -1989,7 +1991,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "NotificationBase"></a>
-## NotificationBase
+### NotificationBase
 
 
 |Field|Type|NewInVersion|Description|
@@ -2001,7 +2003,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "OutboundNatPolicySetting"></a>
-## OutboundNatPolicySetting
+### OutboundNatPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2014,7 +2016,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "PolicyEndpointRequest"></a>
-## PolicyEndpointRequest
+### PolicyEndpointRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -2024,7 +2026,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "PolicyNetworkRequest"></a>
-## PolicyNetworkRequest
+### PolicyNetworkRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -2034,7 +2036,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "PortMappingPolicySetting"></a>
-## PortMappingPolicySetting
+### PortMappingPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2048,7 +2050,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "PortnameEndpointPolicySetting"></a>
-## PortnameEndpointPolicySetting
+### PortnameEndpointPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2058,7 +2060,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "PrioritizedAuthenticationMethod"></a>
-## PrioritizedAuthenticationMethod
+### PrioritizedAuthenticationMethod
 Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 
 
@@ -2071,7 +2073,7 @@ Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 ---
 
 <a name = "ProviderAddressEndpointPolicySetting"></a>
-## ProviderAddressEndpointPolicySetting
+### ProviderAddressEndpointPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2081,7 +2083,7 @@ Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 ---
 
 <a name = "ProviderAddressNetworkPolicySetting"></a>
-## ProviderAddressNetworkPolicySetting
+### ProviderAddressNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2091,7 +2093,7 @@ Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 ---
 
 <a name = "ProxyExceptions"></a>
-## ProxyExceptions
+### ProxyExceptions
 Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 
 
@@ -2104,7 +2106,7 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ---
 
 <a name = "QosPolicySetting"></a>
-## QosPolicySetting
+### QosPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2114,7 +2116,7 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ---
 
 <a name = "RegistryKey"></a>
-## RegistryKey
+### RegistryKey
 
 
 Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
@@ -2132,7 +2134,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "RegKey"></a>
-## RegKey
+### RegKey
 Referenced by: [RegistryKey](#RegistryKey)
 
 
@@ -2147,7 +2149,7 @@ Referenced by: [RegistryKey](#RegistryKey)
 ---
 
 <a name = "RemoteSubnetRoutePolicySetting"></a>
-## RemoteSubnetRoutePolicySetting
+### RemoteSubnetRoutePolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2160,7 +2162,7 @@ Referenced by: [RegistryKey](#RegistryKey)
 ---
 
 <a name = "Response"></a>
-## Response
+### Response
 
 
 |Field|Type|NewInVersion|Description|
@@ -2172,7 +2174,7 @@ Referenced by: [RegistryKey](#RegistryKey)
 ---
 
 <a name = "Route"></a>
-## Route
+### Route
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [Subnet](#Subnet)
 
 
@@ -2186,7 +2188,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [Subnet](#Subnet)
 ---
 
 <a name = "Route_2"></a>
-## Route_2
+### Route_2
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
@@ -2214,7 +2216,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "RpcConnectionInformation"></a>
-## RpcConnectionInformation
+### RpcConnectionInformation
 Referenced by: [GuestNetworkService](#GuestNetworkService)
 
 
@@ -2229,7 +2231,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService)
 ---
 
 <a name = "SDNRoutePolicySetting"></a>
-## SDNRoutePolicySetting
+### SDNRoutePolicySetting
 Referenced by: [HostComputeRoute](#HostComputeRoute)
 
 
@@ -2244,7 +2246,7 @@ Referenced by: [HostComputeRoute](#HostComputeRoute)
 ---
 
 <a name = "SetPolicySetting"></a>
-## SetPolicySetting
+### SetPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2257,7 +2259,7 @@ Referenced by: [HostComputeRoute](#HostComputeRoute)
 ---
 
 <a name = "SourceMacAddressNetworkPolicySetting"></a>
-## SourceMacAddressNetworkPolicySetting
+### SourceMacAddressNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2267,7 +2269,7 @@ Referenced by: [HostComputeRoute](#HostComputeRoute)
 ---
 
 <a name = "Subnet"></a>
-## Subnet
+### Subnet
 Referenced by: [Ipam](#Ipam); [SubnetNetworkRequest](#SubnetNetworkRequest)
 
 
@@ -2296,7 +2298,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "SubnetNetworkRequest"></a>
-## SubnetNetworkRequest
+### SubnetNetworkRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -2306,7 +2308,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "SubnetPolicy"></a>
-## SubnetPolicy
+### SubnetPolicy
 Referenced by: [Subnet](#Subnet)
 
 
@@ -2319,7 +2321,7 @@ Referenced by: [Subnet](#Subnet)
 ---
 
 <a name = "Telemetry"></a>
-## Telemetry
+### Telemetry
 Referenced by: [Base](#Base)
 
 
@@ -2331,7 +2333,7 @@ Referenced by: [Base](#Base)
 ---
 
 <a name = "TierAclPolicySetting"></a>
-## TierAclPolicySetting
+### TierAclPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2344,7 +2346,7 @@ Referenced by: [Base](#Base)
 ---
 
 <a name = "TierAclRule"></a>
-## TierAclRule
+### TierAclRule
 Referenced by: [TierAclPolicySetting](#TierAclPolicySetting)
 
 
@@ -2367,7 +2369,7 @@ Derived from parent class: [FiveTuple](#FiveTuple)
 ---
 
 <a name = "Version"></a>
-## Version
+### Version
 Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 
 
@@ -2380,7 +2382,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VlanPolicySetting"></a>
-## VlanPolicySetting
+### VlanPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2390,7 +2392,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VmEndpointRequest"></a>
-## VmEndpointRequest
+### VmEndpointRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -2402,7 +2404,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VsidPolicySetting"></a>
-## VsidPolicySetting
+### VsidPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2412,7 +2414,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VSwitchExtensionNetworkPolicySetting"></a>
-## VSwitchExtensionNetworkPolicySetting
+### VSwitchExtensionNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2423,7 +2425,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VxlanPortPolicySetting"></a>
-## VxlanPortPolicySetting
+### VxlanPortPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2433,7 +2435,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "Xlat"></a>
-## Xlat
+### Xlat
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
