@@ -15,8 +15,7 @@ ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 Nested virtualization is a feature that allows you to run Hyper-V inside of a Hyper-V virtual machine (VM). This is helpful for running a Visual Studio phone emulator in a virtual machine, or testing configurations that ordinarily require several hosts.
 
 >[!NOTE]
-> Nested Virtualization is supported both Azure and on-premises. However, the nested virtual machines are not supported for production purposes. Labs, testing environments, demo environments, etc, are more of it's purpose.
-
+> Nested Virtualization is supported both Azure and on-premises. However, if using a non-Microsoft hypervisor such as KVM, Microsoft can not provide end-to-end support please ensure your vendor supports this scenario.
 ![](./media/HyperVNesting.png)
 
 ## Prerequisites

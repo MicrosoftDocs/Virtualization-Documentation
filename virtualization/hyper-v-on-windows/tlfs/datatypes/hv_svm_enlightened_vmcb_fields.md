@@ -28,7 +28,7 @@ typedef struct
 
         // Enlightened TLB: ASID flushes do not affect TLB entries derived from the NPT.
         // Hypercalls must be used to invalidate NPT TLB entries.
-        UINT32 EnlightnedNptTlb : 1;
+        UINT32 EnlightenedNptTlb : 1;
 
         UINT32 Reserved : 29;
     } EnlightenmentsControl;

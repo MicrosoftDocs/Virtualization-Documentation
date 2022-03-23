@@ -17,11 +17,38 @@ Windows containers offer two distinct modes of runtime isolation: `process` and 
 
 ## Process Isolation
 
-This is the "traditional" isolation mode for containers and is what is described in the [Windows containers overview](../about/index.md). With process isolation, multiple container instances run concurrently on a given host with isolation provided through namespace, resource control, and process isolation technologies. When running in this mode, containers share the same kernel with the host as well as each other.  This is approximately the same as how Linux containers run.
+This is the "traditional" isolation mode for containers and is what is described in the [Windows containers overview](../about/index.md). With process isolation, multiple container instances run concurrently on a given host with isolation provided through namespace, resource control, and other process isolation technologies. When running in this mode, containers share the same kernel with the host as well as each other.  This is approximately the same as how Linux containers run.
 
 ![A diagram showing a container full of applications being isolated from the OS and hardware.](media/container-arch-process.png)
 
+### What gets isolated
+
+Windows containers virtualize access to various operating system namespaces. A namespace provides access to information, objects, or resources via a name. For example, the file system is probably the best-known namespace. There are numerous namespaces on Windows that get isolated on a per-container basis:
+
+- file system
+- registry
+- network ports
+- process and thread ID space
+- Object Manager namespace
+
+### Piercing the isolation boundary
+
+There are cases when it is useful to pierce the isolation boundary. These operations must be deliberately requested by the user and should be done with careful consideration since it may compromise the security posture of the container. Windows containers support the following:
+
+- [mapping shared files or volumes from host into the container](./persistent-storage.md)
+- mapping a named pipe from host into the container
+- mapping a port from the host into the container
+- [customizing and sharing the network namespace](../container-networking/network-isolation-security.md#kubernetes-pods)
+- [sharing host device visibility into the container](../deploy-containers/hardware-devices-in-containers.md)
+
+Windows containers don't currently support:
+
+- shared memory
+- sharing synchronization objects (semaphores, mutexes, etc)
+- shared process namespaces
+
 ## Hyper-V isolation
+
 This isolation mode offers enhanced security and broader compatibility between host and container versions. With Hyper-V isolation, multiple container instances run concurrently on a host; however, each container runs inside of a highly optimized virtual machine and effectively gets its own kernel. The presence of the virtual machine provides hardware-level isolation between each container as well as the container host.
 
 ![A diagram of a container being isolated within an OS on a visual machine that's running on an OS within a physical machine.](media/container-arch-hyperv.png)
