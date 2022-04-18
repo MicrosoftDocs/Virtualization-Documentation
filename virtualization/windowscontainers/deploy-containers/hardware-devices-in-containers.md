@@ -44,7 +44,7 @@ This means you are **not** assigning the device away from host. Instead, the hos
 
 The following devices (and their device interface class GUIDs) are supported today:
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
+<table>
 <thead>
 <tr valign="top">
 <th><center>Device Type</center></th>
