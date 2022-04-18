@@ -3,9 +3,10 @@ title: DPM for data backup/recovery of virtualized apps and environments
 keywords: virtualization, virtual server, virtual pc, blog
 description: Congratulations to the Microsoft Storage Solutions team for releasing Service Pack 1 for System Center Data Protection Manager 2007.
 author: scooley
+ms.author: scooley
 ms.date: 1/13/2009
 ms.topic: article
-ms.service: virtualization
+ms.service: virtual-machines
 ms.assetid: 
 ---
 

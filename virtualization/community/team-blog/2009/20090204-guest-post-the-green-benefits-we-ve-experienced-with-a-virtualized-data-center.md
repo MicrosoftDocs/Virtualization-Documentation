@@ -1,8 +1,6 @@
 ---
 title:      "Guest Post&#58; The Green Benefits We've Experienced with a Virtualized Data Center"
 description: A guest post by Chris Steffen, Principal Technical Architect with Kroll Factual Data, about green benefits with a virtualized data center.
-author: scooley
-ms.author: scooley
 date:       2009-02-04 12:54:00
 ms.date: 02/04/2009
 categories: hyper-v
