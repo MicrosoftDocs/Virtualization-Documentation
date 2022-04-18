@@ -1,3 +1,8 @@
+---
+title: The GetGuestPhysicalMemoryChunks function
+description: Returns the layout of the physical memory of the guest. This information contains the chunks of memory with consecutive pages and from where each one starts. If the supplied count is less than the amount of chunks for this guest, then this function returns the expected chunk count.
+ms.date: 04/18/2022
+---
 # GetGuestPhysicalMemoryChunks function
 
 Returns the layout of the physical memory of the guest. This information contains the chunks of memory with consecutive pages and from where each one starts. If the supplied count is less than the amount of chunks for this guest, then this function returns the expected chunk count.

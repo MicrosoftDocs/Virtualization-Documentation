@@ -1,3 +1,8 @@
+---
+title: The GetGuestRawSavedMemorySize function
+description: Returns the size in bytes of the saved memory for a given VM saved state file.
+ms.date: 04/18/2022
+---
 # GetGuestRawSavedMemorySize function
 
 Returns the size in bytes of the saved memory for a given VM saved state file.

@@ -1,3 +1,9 @@
+---
+title: The GetArchitecture function
+description: Learn about the GetArchitecture function.
+ms.date: 04/18/2022
+---
+
 # GetArchitecture function
 
 Queries for the current Architecture/ISA the virtual processor was running at the time the saved state file was generated.
