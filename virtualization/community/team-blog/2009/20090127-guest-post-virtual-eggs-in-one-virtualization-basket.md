@@ -1,10 +1,10 @@
 ---
 title:      "Guest Post&#58; Virtual Eggs in One Virtualization Basket?"
-author: Dave Demlow
 description: Guest post from Dave Demlow of Double-Take Software about data virtualization, replication, and backups.
-ms.author: 
+author: scooley
+ms.author: scooley
 ms.date: 01/27/2009
-date:       2009-01-27 01:43:00
+date: 2009-01-27 01:43:00
 categories: cross-platform-management
 ---
 
