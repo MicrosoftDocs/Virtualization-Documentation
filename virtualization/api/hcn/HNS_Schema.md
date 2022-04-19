@@ -4,8 +4,6 @@ description: HcnSchema
 author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 10/31/2021
 api_name:
 - HcnSchema
@@ -15,6 +13,7 @@ api_type:
 - DllExport
 topic_type:
 - apiref
+
 ---
 # Hcn Agenda
 - [Enums](#enums)
