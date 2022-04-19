@@ -2,10 +2,9 @@
 title: HdvWriteGuestMemory
 description: HdvWriteGuestMemory
 author: faymeng
-ms.author: qiumeng
+ms.author: mabriggs
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - HdvWriteGuestMemory
