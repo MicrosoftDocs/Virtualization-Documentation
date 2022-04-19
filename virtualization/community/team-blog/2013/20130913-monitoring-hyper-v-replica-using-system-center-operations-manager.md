@@ -2,7 +2,7 @@
 title:      "Monitoring Hyper-V Replica using System Center Operations Manager"
 author: mattbriggs
 ms.author: mabrigg
-date: 09/13/2013
+ms.date: 09/13/2013
 categories: hvr
 description: Using System Center Operations Manager to monitor Hyper-V Replica.
 ---
