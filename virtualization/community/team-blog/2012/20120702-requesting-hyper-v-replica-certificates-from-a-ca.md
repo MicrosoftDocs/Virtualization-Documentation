@@ -3,7 +3,7 @@ title:      "Requesting Hyper-V Replica certificates from a CA"
 date:       2012-07-02 04:59:00
 categories: hvr
 ---
-The certificate requirements for Hyper-V Replica were discussed [earlier](/b/virtualization/archive/2012/03/13/hyper-v-replica-certificate-requirements.aspx) – this post provides details on how to request a certificate from a Certification Authority (CA), which can then be used for Hyper-V Replica for certificate based authentication.
+The certificate requirements for Hyper-V Replica were discussed [earlier](/virtualization/community/team-blog/2012/20120313-hyper-v-replica-prerequisites-for-certificate-based-deployments) – this post provides details on how to request a certificate from a Certification Authority (CA), which can then be used for Hyper-V Replica for certificate based authentication.
 
 **Step #1: Create an INF file**
 
