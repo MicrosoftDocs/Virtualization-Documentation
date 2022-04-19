@@ -23,7 +23,7 @@ HV_STATUS
 HvCallFlushVirtualAddressListEx(
     _In_ HV_ADDRESS_SPACE_ID AddressSpace,
     _In_ HV_FLUSH_FLAGS Flags,
-    _In_ HV_VP_SET ProcessorSet,,
+    _In_ HV_VP_SET ProcessorSet,
     _Inout_ PUINT32 GvaCount,
     _In_reads_(GvaCount) PCHV_GVA GvaRangeList
     );
