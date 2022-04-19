@@ -1,3 +1,13 @@
+title: WHV_EMULATOR_CALLBACKS
+description: WHV_EMULATOR_CALLBACKS 
+author: Juarezhm
+ms.author: hajuarez
+ms.date: 04/19/2018
+
+
+
+@microsoft.com
+
 # WHV_EMULATOR_CALLBACKS
 
 
