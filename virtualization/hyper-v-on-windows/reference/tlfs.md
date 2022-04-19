@@ -3,7 +3,7 @@ title: Hypervisor Specifications
 description: Hypervisor Specifications
 keywords: windows 10, hyper-v
 author: allenma
-ms.author: allenma
+ms.author: mabrigg
 ms.date: 06/26/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
