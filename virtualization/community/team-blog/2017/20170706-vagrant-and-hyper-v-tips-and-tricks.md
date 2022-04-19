@@ -1,6 +1,10 @@
 ---
-title:      "Vagrant and Hyper-V -- Tips and Tricks"
-date:       2017-07-06 22:22:02
+title: "Vagrant and Hyper-V -- Tips and Tricks"
+description: Blog post that includes various tips, including how to install and use various features within Hyper-V.
+date: 2017-07-06 22:22:02
+author: scooley
+ms.author: scooley
+ms.date: 08/07/2020
 categories: hyper-v
 ---
 # Learning to Use Vagrant on Windows 10
@@ -9,7 +13,7 @@ A few months ago, I went to [DockerCon](https://2017.dockercon.com/) as a Micros
 
 ## Tip 0: Install Hyper-V
 
-For those new to Hyper-V, make sure you've got Hyper-V running on your machine. Our [official docs](https://docs.microsoft.com/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) list the exact steps and requirements.
+For those new to Hyper-V, make sure you've got Hyper-V running on your machine. Our [official docs](/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) list the exact steps and requirements.
 
 ## Tip 1: Set Up Networking Correctly
 
@@ -19,30 +23,30 @@ Vagrant doesn't know how to set up networking on Hyper-V right now (unlike other
 
 Unfortunately, the [Getting Started](https://www.vagrantup.com/intro/getting-started/index.html) guide uses VirtualBox, and you can't run other virtualization solutions alongside Hyper-V. You need to change the "[provider](https://www.vagrantup.com/intro/getting-started/providers.html)" Vagrant uses at a few different points. When you install your first box, add --provider:
 
-
-    vagrant box add hashicorp/bionic64 --provider hyperv
+`vagrant box add hashicorp/bionic64 --provider hyperv`
 
 
 And when you boot your first Vagrant environment, again, add --provider. Note: you might run into the error mentioned in Trick 4, so skip to there if you see something like "mount error(112): Host is down".
 
 
-    vagrant up --provider hyperv
+`vagrant up --provider hyperv`
 
 
 ## Tip 3: Add the basics to your Vagrantfile
 
 Adding the provider flag is a pain to do every single time you run `vagrant up`. Fortunately, you can set up your Vagrantfile to automate things for you. After running `vagrant init`, modify your vagrant file with the following:
 
-
-     Vagrant.configure(2) do |config|
-      config.vm.box = "hashicorp/bionic64"
-      config.vm.provider "hyperv"
-      config.vm.network "public_network"
+```csharp
+Vagrant.configure(2) do |config|
+    config.vm.box = "hashicorp/bionic64"
+    config.vm.provider "hyperv"
+    config.vm.network "public_network"
     end
+```
+One additional trick here: `vagrant init` will create a file that will appear to be full of commented out items. However, there is one line not commented out: [caption id="attachment_10185" align="aligncenter" width="879"]
+![asdf](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog-1024x784.png)](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog.png) There is one line not commented.[/caption] Make sure you delete that line! Otherwise, you'll end up with an error like this:
 
-One additional trick here: `vagrant init` will create a file that will appear to be full of commented out items. However, there is one line not commented out: [caption id="attachment_10185" align="aligncenter" width="879"][![](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog-1024x784.png)](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog.png) There is one line not commented.[/caption] Make sure you delete that line! Otherwise, you'll end up with an error like this:
-
-
+```csharp
     Bringing machine 'default' up with 'hyperv' provider...
     ==> default: Verifying Hyper-V is enabled...
     ==> default: Box 'base' could not be found. Attempting to find and install...
@@ -55,13 +59,13 @@ One additional trick here: `vagrant init` will create a file that will appear to
     An error occurred while downloading the remote file. The error
     message, if any, is reproduced below. Please fix this error and try
     again.
-
+```
 
 ## Trick 4: Shared folders uses SMBv1 for hashicorp/bionic64
 
 For the image used in the "Getting Started" guide (hashicorp/bionic64), Vagrant tries to use SMBv1 for shared folders. However, if you're like me and have [SMBv1 disabled](https://blogs.technet.microsoft.com/filecab/2016/09/16/stop-using-smb1/), this will fail:
 
-
+```csharp
     Failed to mount folders in Linux guest. This is usually because
     the "vboxsf" file system is not available. Please verify that
     the guest additions are properly installed in the guest and
@@ -73,18 +77,18 @@ For the image used in the "Getting Started" guide (hashicorp/bionic64), Vagrant 
 
     mount error(112): Host is down
     Refer to the mount.cifs(8) manual page (e.g. man mount.cifs)
-
+```
 
 You can check if SMBv1 is enabled with this PowerShell Cmdlet:
 
 
-    Get-SmbServerConfiguration
+`Get-SmbServerConfiguration`
 
 
 If you can live without synced folders, here's the line to add to the vagrantfile to disable the default synced folder.
 
 
-    config.vm.synced_folder ".", "/vagrant", disabled: true
+`config.vm.synced_folder ".", "/vagrant", disabled: true`
 
 If you can't, you can try installing cifs-utils in the VM and re-provision. You could also try [another synced folder method](https://www.vagrantup.com/docs/synced-folders/). For example, rsync works with Cygwin or MinGW. Disclaimer: I personally didn't try either of these methods.
 
@@ -92,12 +96,12 @@ If you can't, you can try installing cifs-utils in the VM and re-provision. You 
 
 Hyper-V has some useful features that improve the Vagrant experience. For example, a pretty substantial portion of the time spent running `vagrant up` is spent cloning the virtual hard drive. A faster way is to use differencing disks with Hyper-V. You can also turn on virtualization extensions, which allow nested virtualization within the VM (i.e. Docker with Hyper-V containers). Here are the lines to add to your Vagrantfile to add these features:
 
-
+```csharp
     config.vm.provider "hyperv" do |h|
       h.enable_virtualization_extensions = true
       h.linked_clone = true
     end
-
+```
 There are a many more customization options that can be added here (i.e. VMName, CPU/Memory settings, integration services). You can find the details in the [Hyper-V provider documentation](https://www.vagrantup.com/docs/hyperv/configuration.html).
 
 ## Tip 6: Filter for Hyper-V compatible boxes on Vagrant Cloud
@@ -108,7 +112,7 @@ You can find more boxes to use in the Vagrant Cloud (formally called Atlas). The
 
 While adding the default provider to your Vagrantfile is useful, it means you need to remember to do it with each new Vagrantfile you create. If you don't, Vagrant will trying to download VirtualBox when you `vagrant up` the first time for your new box. Again, VirtualBox doesn't work alongside Hyper-V, so this is a problem.
 
-
+```csharp
     PS C:\vagrant> vagrant up
     ==>  Provider 'virtualbox' not found. We'll automatically install it now...
          The installation process will start below. Human interaction may be
@@ -119,7 +123,7 @@ While adding the default provider to your Vagrantfile is useful, it means you ne
          This may not be the latest version of VirtualBox, but it is a version
          that is known to work well. Over time, we'll update the version that
          is installed.
-
+```
 
 You can set your default provider on a user level by using the VAGRANT_DEFAULT_PROVIDER environmental variable. For more options (and details), [this](https://www.vagrantup.com/docs/providers/basic_usage.html) is the relevant page of Vagrant's documentation. Here's how I set the user-level environment variable in PowerShell:
 
@@ -133,7 +137,7 @@ Again, you can also set the default provider in the Vagrant file (see Trick 3), 
 
 Those are my tips and tricks for getting started with Vagrant on Hyper-V. If there are any you think I missed, or anything you think I got wrong, let me know in the comments. Here's the complete version of my simple starting Vagrantfile:
 
-
+```csharp
     # -*- mode: ruby -*-
     # vi: set ft=ruby :
 
@@ -151,3 +155,4 @@ Those are my tips and tricks for getting started with Vagrant on Hyper-V. If the
         h.linked_clone = true
       end
     end
+```
