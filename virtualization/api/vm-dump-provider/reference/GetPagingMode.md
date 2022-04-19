@@ -2,6 +2,8 @@
 title: The GetPagingMode function
 description: Queries for the current Paging Mode in use by the virtual processor.
 ms.date: 04/19/2022
+author: mattbriggs
+ms.author: mabrigg
 ---
 
 

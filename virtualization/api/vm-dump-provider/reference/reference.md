@@ -2,6 +2,8 @@
 title: VM Saved State Dump Provider API Definitions
 description: Learn about VM Saved State Dump Provider API Definitions.
 ms.date: 04/19/2022
+author: mattbriggs
+ms.author: mabrigg
 ---
 
 # VM Saved State Dump Provider API Definitions
