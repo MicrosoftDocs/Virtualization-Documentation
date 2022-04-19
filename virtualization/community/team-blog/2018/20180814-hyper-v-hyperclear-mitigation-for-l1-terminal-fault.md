@@ -13,7 +13,7 @@ ms.assetid:
 
 ## Introduction
 
-A new speculative execution side channel vulnerability was announced recently that affects a range of Intel Core and Intel Xenon processors. This vulnerability, referred to as L1 Terminal Fault (L1TF) and assigned CVE 2018-3646 for hypervisors, can be used for a range of attacks across isolation boundaries, including intra-OS attacks from user-mode to kernel-mode as well as inter-VM attacks. Due to the nature of this vulnerability, creating a robust, inter-VM mitigation that doesn’t significantly degrade performance is particularly challenging.
+A new speculative execution side channel vulnerability was announced recently that affects a range of Intel Core and Intel Xeon processors. This vulnerability, referred to as L1 Terminal Fault (L1TF) and assigned CVE 2018-3646 for hypervisors, can be used for a range of attacks across isolation boundaries, including intra-OS attacks from user-mode to kernel-mode as well as inter-VM attacks. Due to the nature of this vulnerability, creating a robust, inter-VM mitigation that doesn’t significantly degrade performance is particularly challenging.
 
 For Hyper-V, we have developed a comprehensive mitigation to this attack that we call HyperClear. This mitigation is in-use by Microsoft Azure and is available in Windows Server 2016 and later. The HyperClear mitigation continues to allow for safe use of SMT (hyper-threading) with VMs and, based on our observations of deploying this mitigation in Microsoft Azure, HyperClear has shown to have relatively negligible performance impact.
 
