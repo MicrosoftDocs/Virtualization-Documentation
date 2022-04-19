@@ -2,7 +2,7 @@
 title:      "The Hyper-V Team at VMworld 2013 - Fun Times and Frozen Custard"
 ms.author: mabrigg
 author: mattbriggs
-date: 08/28/2013
+ms.date: 08/28/2013
 categories: uncategorized
 description: What the Hyper-V team did at VMworld 2013.
 ---

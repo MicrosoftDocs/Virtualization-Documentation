@@ -2,7 +2,7 @@
 title: "Replicating fixed disks to dynamic disks in Hyper-V Replica"
 author: mattbriggs
 ms.author: mabrigg
-date: 09/24/2013
+ms.date: 09/24/2013
 categories: hvr
 description: Converting fixed virtual disks to dynamic disks to trim the size down.
 ---
