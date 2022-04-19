@@ -29,7 +29,7 @@ The following section contains the definitions of the APIs for device virtualiza
 |[HdvInitializeDeviceHost](./HdvPciDeviceInitialize.md)|Create a compute system|
 |[HdvTeardownDeviceHost](./HdvTeardownDeviceHost.md)| Query a compute system's properties|
 |[HdvCreateDeviceInstance](./HdvCreateDeviceInstance.md)|Modify a compute system|
-|[HdvReadGuestMemory](./HdvReadGuesMemory.md)|Open a compute system|
+|[HdvReadGuestMemory](./HdvReadGuestMemory.md)|Open a compute system|
 |[HdvWriteGuestMemory](./HdvWriteGuestMemory.md)|Pause a compute system|
 |[HdvCreateGuestMemoryAperture](./HdvCreateGuestMemoryAperture.md)|Resume a compute system|
 |[HdvDeliverGuestInterrupt](./HdvDeliverGuestInterrupt.md)|Save a compute system|

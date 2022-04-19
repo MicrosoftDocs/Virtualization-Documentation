@@ -2,7 +2,7 @@
 title: HDV_PCI_DEVICE_INITIALIZE
 description: HDV_PCI_DEVICE_INITIALIZE
 author: faymeng
-ms.author: mabriggs
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
 ms.date: 06/09/2021
