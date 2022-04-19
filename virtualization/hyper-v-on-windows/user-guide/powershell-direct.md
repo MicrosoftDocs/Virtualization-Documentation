@@ -262,7 +262,7 @@ Enter-PSSession : The input VMName parameter does not resolve to any virtual mac
 * You are not a Hyper-V Administrator.  
 * The virtual machine doesn't exist.
 
-You can use the [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps&perserve-view=true) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
+You can use the [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps&preserve-view=true) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
 
 
 -------------
