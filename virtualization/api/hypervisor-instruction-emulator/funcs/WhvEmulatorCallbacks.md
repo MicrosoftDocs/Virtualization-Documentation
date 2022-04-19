@@ -15,4 +15,4 @@ typedef struct _WHV_EMULATOR_CALLBACKS {
 } WHV_EMULATOR_CALLBACKS;
 ```
 ## Remarks
-Used in [`WHvTranslateGva`](/virtualization/api/hypervisor-platform/funcs/WHvTranslateGva.md) to specify callback methods needed by the emulator.
+Used in [`WHvTranslateGva`](/virtualization/api/hypervisor-platform/funcs/WHvTranslateGva) to specify callback methods needed by the emulator.
