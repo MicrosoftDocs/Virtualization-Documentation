@@ -34,4 +34,4 @@ The following documents provide a quick and guided introduction to Hyper-V on Wi
 Additional technical support and community resources.
 
 * [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/home?forum=winserverhyperv)
-* [Community Resources for Hyper-V and Windows Containers](/virtualization/community/index.md)
+* [Community Resources for Hyper-V and Windows Containers](/virtualization/community/)
