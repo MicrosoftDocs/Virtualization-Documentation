@@ -1,3 +1,9 @@
+---
+title: VM Saved State Dump Provider API Definitions
+description: Learn about VM Saved State Dump Provider API Definitions.
+ms.date: 04/19/2022
+---
+
 # VM Saved State Dump Provider API Definitions
 
 The VM Saved State Dump Provider DLL offers APIs that fall into two categories: 
@@ -8,25 +14,25 @@ The VM Saved State Dump Provider DLL offers APIs that fall into two categories:
 
 |Methods   |Description|
 |---|---|---|---|---|---|---|---|
-|[LoadSavedStateFile](./reference/LoadSavedStateFile.md)|Loads the saved state file and creates an instance of VmSavedStateDump|
-|[LoadSavedStateFiles](./reference/LoadSavedStateFiles.md)|Loads the saved state files and creates an instance of VmSavedStateDump|
-|[LocateSavedStateFiles](./reference/LocateSavedStateFiles.md)|Locate the saved state files for a given VM or snapshot|
-|[ReleaseSavedStateFiles](./reference/ReleaseSavedStateFiles.md)|Releases the given VmSavedStateDump provider that matches the supplied ID|
+|[LoadSavedStateFile](./LoadSavedStateFile.md)|Loads the saved state file and creates an instance of VmSavedStateDump|
+|[LoadSavedStateFiles](./LoadSavedStateFiles.md)|Loads the saved state files and creates an instance of VmSavedStateDump|
+|[LocateSavedStateFiles](./LocateSavedStateFiles.md)|Locate the saved state files for a given VM or snapshot|
+|[ReleaseSavedStateFiles](./ReleaseSavedStateFiles.md)|Releases the given VmSavedStateDump provider that matches the supplied ID|
 |   |   |
 
 ## Query Functions for the Save State File
 
 |Methods   |Description|
 |---|---|---|---|---|---|---|---|
-|[ApplyPendingSavedStateFileReplay](./reference/ApplyPendingSavedStateFileReplay.md)|Opens the saved state file in read-write exclusive mode so that it applies any pending replay logs to the contents|
-|[GetArchitecture](./reference/GetArchitecture.md)|Queries the saved state for the current achitecture the virtual processor was running|
-|[GetGuestPhysicalMemoryChunks](./reference/GetGuestPhysicalMemoryChunks.md)|Returns the layout of the physical memory of the guest|
-|[GetGuestRawSavedMemorySize](./reference/WHvEmulatoGetGuestRawSavedMemorySizerCreateEmulator.md)|Queries for the current paging mode in use by the virtual processor|
-|[GetPagingMode](./reference/GetPagingMode.md)|Queries for the current paging mode in use by the virtual processor|
-|[GetRegisterValue](./reference/GetRegisterValue.md)|Queries for a specific vergister value for a given virtual processor|
-|[GetVpCount](./reference/GetVpCount.md)|Queries for the virtual processor count from the dump file|
-|[GuestPhysicalAddressToRawSavedMemoryOffset](./reference/GuestPhysicalAddressToRawSavedMemoryOffset.md)|Translates the given guest physical address to a raw saved memory offset|
-|[GuestVirtualAddressToPhysicalAddress](./reference/GuestVirtualAddressToPhysicalAddress.md)|Translates a virtual address to the associated physical address|
-|[ReadGuestPhysicalAddress](./reference/ReadGuestPhysicalAddress.md)|Reads from the saved state file the given guest physical address range|
-|[ReadGuestRawSavedMemory](./reference/ReadGuestRawSavedMemory.md)|Read raw memory from the saved state file|
+|[ApplyPendingSavedStateFileReplay](./ApplyPendingSavedStateFileReplay.md)|Opens the saved state file in read-write exclusive mode so that it applies any pending replay logs to the contents|
+|[GetArchitecture](./GetArchitecture.md)|Queries the saved state for the current achitecture the virtual processor was running|
+|[GetGuestPhysicalMemoryChunks](./GetGuestPhysicalMemoryChunks.md)|Returns the layout of the physical memory of the guest|
+|[GetGuestRawSavedMemorySize](./WHvEmulatoGetGuestRawSavedMemorySizerCreateEmulator.md)|Queries for the current paging mode in use by the virtual processor|
+|[GetPagingMode](./GetPagingMode.md)|Queries for the current paging mode in use by the virtual processor|
+|[GetRegisterValue](./GetRegisterValue.md)|Queries for a specific vergister value for a given virtual processor|
+|[GetVpCount](./GetVpCount.md)|Queries for the virtual processor count from the dump file|
+|[GuestPhysicalAddressToRawSavedMemoryOffset](./GuestPhysicalAddressToRawSavedMemoryOffset.md)|Translates the given guest physical address to a raw saved memory offset|
+|[GuestVirtualAddressToPhysicalAddress](./GuestVirtualAddressToPhysicalAddress.md)|Translates a virtual address to the associated physical address|
+|[ReadGuestPhysicalAddress](./ReadGuestPhysicalAddress.md)|Reads from the saved state file the given guest physical address range|
+|[ReadGuestRawSavedMemory](./ReadGuestRawSavedMemory.md)|Read raw memory from the saved state file|
 |   |   |

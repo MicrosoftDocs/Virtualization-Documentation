@@ -1,3 +1,9 @@
+---
+title: The GetRegisterValue function
+description: Queries for a specific register value for a given VP in a VmSavedStateDump. Callers must specify architecture and register ID in parameter Register, and this function returns the register value through it.
+ms.date: 04/19/2022
+---
+
 # GetRegisterValue function
 
 Queries for a specific register value for a given VP in a VmSavedStateDump. Callers must specify architecture and register ID in paremeter Register, and this function returns the regsiter value through it.

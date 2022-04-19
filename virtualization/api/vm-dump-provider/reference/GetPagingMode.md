@@ -1,3 +1,10 @@
+---
+title: The GetPagingMode function
+description: Queries for the current Paging Mode in use by the virtual processor at the time the
+saved state file was generated.
+ms.date: 04/19/2022
+---
+
 # GetPagingMode function
 
 Queries for the current Paging Mode in use by the virtual processor at the time the
