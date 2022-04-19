@@ -48,7 +48,7 @@ In order to be supported, all operating systems (guest and host) must be up to d
 
 > Windows 10 can run as a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
-## Supported Linux and Free BSD
+## Supported Linux and FreeBSD
 
 | Guest operating system |  |
 |:-----|:------|
