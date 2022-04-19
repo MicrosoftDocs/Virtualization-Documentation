@@ -2,10 +2,9 @@
 title: Virtual Machine Utilities Samples
 description: Virtual Machine Utilities Samples
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - Virtual Machine Utilities Samples
