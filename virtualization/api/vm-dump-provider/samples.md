@@ -2,6 +2,8 @@
 title: VM Saved State Dump Provider Samples
 description: Two samples written in C to demonstrate usage of the dump provider APIs.
 ms.date: 04/19/2022
+author: mattbriggs
+ms.author: mabrigg
 ---
 
 # VM Saved State Dump Provider Samples
