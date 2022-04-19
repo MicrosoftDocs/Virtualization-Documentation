@@ -2,7 +2,7 @@
 title: Hello World MSMQ
 description: Writing "Hello World" using MSMQ in containers.
 keywords: virtualization, containers, windows containers, dda, devices, blog
-author: crwilhit
+ms.author: cwilhit
 ms.date: 7/25/2018
 ms.topic: article
 ms.service: virtualization
