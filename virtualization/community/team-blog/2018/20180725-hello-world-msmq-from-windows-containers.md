@@ -6,7 +6,7 @@ ms.author: crwilhit
 author: cwilhit
 ms.date: 7/25/2018
 ms.topic: article
-ms.service: virtualization
+ms.prod: virtualization
 ms.assetid: 
 ---
 
