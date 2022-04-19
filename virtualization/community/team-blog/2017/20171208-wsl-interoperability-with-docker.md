@@ -1,8 +1,14 @@
 ---
-title:      "WSL Interoperability with Docker"
+title: WSL Interoperability with Docker
+description: Learn about the supported features for calling the docker daemon under Windows using the Windows Subsystem for Linux.
+author: mattbriggs
+ms.author: mabrigg
 date:       2017-12-08 18:20:23
+ms.date: 12/08/2017
 categories: containers
 ---
+# WSL Interoperability with Docker
+
 We frequently get asked about running docker from within the Windows Subsystem for Linux (WSL). We don’t support running the docker daemon directly in WSL. But what you _can_ do is call in to the daemon running under Windows from WSL. What does this let you do? You can create dockerfiles, build them, and run them in the daemon—Windows or Linux, depending on which runtime you have selected—all from the comfort of WSL. [![](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)
 
 ### **Overview**
