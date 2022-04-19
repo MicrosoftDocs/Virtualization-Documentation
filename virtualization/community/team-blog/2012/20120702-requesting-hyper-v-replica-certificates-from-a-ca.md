@@ -65,9 +65,10 @@ Save the above file as **HVR.inf**.
 **Step #2: Create a request**
 
 Issue the following command from an **elevated** command prompt, to create a certificate request from an .inf file.
-    
-    
-    `certreq -new HVR.inf HVR.req`
+
+```
+certreq -new HVR.inf HVR.req
+```
 
 A request file with the name **HVR.req** is created in the same directory.
 
@@ -119,8 +120,9 @@ There are three possible outcomes here:
 
 Once the certificate is issued, issue the following command to install the certificate
     
-    
-    `certreq -accept HVR.cer`
+```
+certreq -accept HVR.cer
+```
 
 This command imports the certificate into the appropriate store.
 
