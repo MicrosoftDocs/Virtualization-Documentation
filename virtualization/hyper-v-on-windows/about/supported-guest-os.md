@@ -28,7 +28,7 @@ In order to be supported, all operating systems (guest and host) must be up to d
 
 ## Supported guest operating systems
 
-| Guest operating system |  Maximum number of virtual processors | Notes |
+| Guest operating system | Maximum number of virtual processors | Notes |
 |:-----|:-----|:-----|
 | Windows 10 | 32 |Enhanced Session Mode does not work on Windows 10 Home edition |
 | Windows 8.1 | 32 | |
@@ -50,13 +50,13 @@ In order to be supported, all operating systems (guest and host) must be up to d
 
 ## Supported Linux and Free BSD
 
-| Guest operating system |  |
-|:-----|:------|
-| [CentOS and Red Hat Enterprise Linux](/windows-server/virtualization/hyper-v/Supported-CentOS-and-Red-Hat-Enterprise-Linux-virtual-machines-on-Hyper-V) | |
-| [Debian virtual machines on Hyper-V](/windows-server/virtualization/hyper-v/Supported-Debian-virtual-machines-on-Hyper-V) | |
-| [SUSE](/windows-server/virtualization/hyper-v/Supported-SUSE-virtual-machines-on-Hyper-V) | |
-| [Oracle Linux](/windows-server/virtualization/hyper-v/Supported-Oracle-Linux-virtual-machines-on-Hyper-V)  | |
-| [Ubuntu](/windows-server/virtualization/hyper-v/Supported-Ubuntu-virtual-machines-on-Hyper-V) | |
-| [FreeBSD](/windows-server/virtualization/hyper-v/Supported-FreeBSD-virtual-machines-on-Hyper-V) | |
+| Guest operating system |
+|:-----|
+| [CentOS and Red Hat Enterprise Linux](/windows-server/virtualization/hyper-v/Supported-CentOS-and-Red-Hat-Enterprise-Linux-virtual-machines-on-Hyper-V) |
+| [Debian virtual machines on Hyper-V](/windows-server/virtualization/hyper-v/Supported-Debian-virtual-machines-on-Hyper-V) |
+| [SUSE](/windows-server/virtualization/hyper-v/Supported-SUSE-virtual-machines-on-Hyper-V) |
+| [Oracle Linux](/windows-server/virtualization/hyper-v/Supported-Oracle-Linux-virtual-machines-on-Hyper-V)  |
+| [Ubuntu](/windows-server/virtualization/hyper-v/Supported-Ubuntu-virtual-machines-on-Hyper-V) |
+| [FreeBSD](/windows-server/virtualization/hyper-v/Supported-FreeBSD-virtual-machines-on-Hyper-V) |
 
 For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows).
