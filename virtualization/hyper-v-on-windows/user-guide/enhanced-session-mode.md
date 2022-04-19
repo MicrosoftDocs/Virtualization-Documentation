@@ -97,7 +97,7 @@ Select the "Settings..." menu for configuring remote audio settings
 ![Screenshot of the Settings button emphasized in the Remote audio section.](media/esm-audio.png)
 
 Now configure audio and microphone settings  
-![](media/esm-audio-settings.png)
+![Screenshot of Remote audio playback set to Play on this computer and disabling Remote audio recording.](media/esm-audio-settings.png)
 
 Since your virtual machine is probably running locally, the "play on this computer" and "play on remote computer" options will yield the same results.
 
