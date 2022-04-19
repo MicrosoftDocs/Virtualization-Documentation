@@ -1,11 +1,12 @@
 ---
 title: Hyper-V HyperClear Mitigation for L1 Terminal Fault
+description: Learn about the mitigation effort for Hyper-V to address the new execution side channel vulnerability.
 keywords: virtualization, virtual server, virtual pc, blog
 author: scooley
+ms.author: scooley
 ms.date: 8/14/2018
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 
 ---
 
@@ -56,7 +57,7 @@ To address the downsides of the basic L1TF Inter-VM mitigation, we developed the
 
 The traditional Hyper-V scheduler operates at the level of individual SMT threads (logical processors). When making scheduling decisions, the Hyper-V scheduler would schedule a virtual processor onto a SMT thread, without regards to what the sibling SMT threads of the same core were doing. Thus, a single physical core could be running virtual processors from different VMs simultaneously.
 
-Starting in Windows Server 2016, Hyper-V introduced a new scheduler implementation for SMT systems known as the "[Core Scheduler](https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/manage-hyper-v-scheduler-types)". When the Core Scheduler is enabled, Hyper-V schedules virtual cores onto physical cores. Thus, when a virtual core for a VM is scheduled, it gets exclusive use of a physical core, and a VM will never share a physical core with another VM.
+Starting in Windows Server 2016, Hyper-V introduced a new scheduler implementation for SMT systems known as the "[Core Scheduler](/windows-server/virtualization/hyper-v/manage/manage-hyper-v-scheduler-types)". When the Core Scheduler is enabled, Hyper-V schedules virtual cores onto physical cores. Thus, when a virtual core for a VM is scheduled, it gets exclusive use of a physical core, and a VM will never share a physical core with another VM.
 
 ![Core scheduler](https://msdnshared.blob.core.windows.net/media/2018/08/CoreScheduler.png)
 
