@@ -128,7 +128,7 @@ While adding the default provider to your Vagrantfile is useful, it means you ne
 You can set your default provider on a user level by using the VAGRANT_DEFAULT_PROVIDER environmental variable. For more options (and details), [this](https://www.vagrantup.com/docs/providers/basic_usage.html) is the relevant page of Vagrant's documentation. Here's how I set the user-level environment variable in PowerShell:
 
 
-    [Environment]::SetEnvironmentVariable("VAGRANT_DEFAULT_PROVIDER", "hyperv", "User")
+`[Environment]::SetEnvironmentVariable("VAGRANT_DEFAULT_PROVIDER", "hyperv", "User")`
 
 
 Again, you can also set the default provider in the Vagrant file (see Trick 3), which will prevent this issue on a per project basis. You can also just add `--provider hyperv` when running `vagrant up`. The choice is yours.
