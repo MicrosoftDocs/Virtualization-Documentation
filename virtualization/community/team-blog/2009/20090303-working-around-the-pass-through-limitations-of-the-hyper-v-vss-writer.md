@@ -1,8 +1,14 @@
 ---
 title:      "Working around the pass through limitations of the Hyper-V VSS Writer"
-date:       2009-03-03 14:53:00
+description: While the Hyper-V VSS writer provides backup admins significant flexibility in their ability to back up VMs in an application-consistent way while running backup applications in the physical machine, it does have a prominent limitation when it comes to VMs with pass-through storage.
+author: scooley
+ms.author: scooley
+date: 2009-03-03 14:53:00
+ms.date: 03/03/2009
 categories: hyper-v
 ---
+# Working around the pass through limitations of the Hyper-V VSS Writer
+
 While the Hyper-V VSS writer provides backup admins significant flexibility in their ability to back up VMs in an application-consistent way while running backup applications in the physical machine, it does have a prominent limitation when it comes to VMs with pass-through storage. The VSS Writer excludes pass-through storage from the set of items to be backed up for a VM. Here I am using the term “pass-through” rather loosely, to include local storage which may be configured directly on the virtual machine (which may be iSCSI initiated from the physical machine or FC attached to the physical machine) as well as iSCSI targets that are initiated directly from the guest. Technical issues due to the way we create VSS snapshots as well as challenges while doing the restore operation has kept us from providing this functionality so far. I will not, however, belabor the reader with the details of the technical challenges. Instead, let us look at ways to work around this limitation.
 
  

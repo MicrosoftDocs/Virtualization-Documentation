@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft and Red Hat Cooperative Technical Support"
-description: 
+description: Ever since we released several server and virtual-machine products last year, customers and partners have been getting huge value from server consolidation projects.
 ms.date: 02/15/2009
 date:       2009-02-15 16:00:00
 categories: application-virtualization
