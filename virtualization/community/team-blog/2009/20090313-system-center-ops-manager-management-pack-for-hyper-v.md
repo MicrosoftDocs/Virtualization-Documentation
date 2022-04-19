@@ -7,6 +7,8 @@ date:       2009-03-13 14:43:00
 ms.date: 03/13/2009
 categories: esx
 ---
+# System Center Ops Manager management pack for Hyper-V
+
 A quick note that a beta of the Hyper-V management pack for System Center Operations Manager (2007, 2007 R2) is available. In combination with SCVMM (for advanced monitoring of VMs across your Hyper-V, ESX and Virtual Server environments), this SCOM management pack enables health/perf monitoring of the Hyper-V host. The management pack includes health diagram view of virtual machines, virtual components roll-up per host, critical Hyper-V Service monitoring, disk space threshold monitoring.
 
 This beta management pack supports the following OS only (for now):

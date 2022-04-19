@@ -6,7 +6,6 @@ author: scooley
 ms.author: scooley
 ms.date: 1/13/2009
 ms.topic: article
-ms.service: virtual-machines
 ms.assetid: 
 ---
 
