@@ -5,12 +5,16 @@ ms.date: 11/20/2015
 author: scooley
 ms.author: scooley
 categories: dda
+
 ---
+
+# Discrete Device Assignment -- Machines and devices
+
 In [my last post](/b/virtualization/archive/2015/11/19/discrete-device-assignment.aspx "Discrete Device Assignment -- Description and background"), I talked about a new feature of Windows Server 2016, Discrete Device Assignment. This post will discuss the machines and devices necessary for making this feature work.
 
 First, we're not supporting Discrete Device Assignment in Hyper-V in Windows 10. Only Server versions of Windows support this. This isn't some wanton play for more of your hard-earned cash but rather just a side effect of being comfortable supporting server-class machines. They tend to work and be quite stable.
 
-# Firmware, including BIOS and UEFI, Must Cooperate
+## Firmware, including BIOS and UEFI, Must Cooperate
 
 Second, in order to pass a device through to a guest VM, we have to change the way parts of the PCI Express fabric in the machine are configured. To do this, we need the firmware (BIOS, UEFI, whatever) in the machine to agree that it won't change the very same parts of PCI Express that Windows is changing while the machine is running. (Yes, the BIOS does actually do things while the machine is running.) So, in accordance with the PCI firmware specification, Windows asks the firmware for control of several different parts of PCIe.
 

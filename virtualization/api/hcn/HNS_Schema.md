@@ -4,7 +4,6 @@ description: HcnSchema
 author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
-ms.technology: virtualization
 ms.date: 10/31/2021
 api_name:
 - HcnSchema
