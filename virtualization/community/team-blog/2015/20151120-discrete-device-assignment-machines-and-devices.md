@@ -91,6 +91,6 @@ virtual machine.
 
 Use the “-force” options only with extreme caution, and only when you have some deep knowledge of the device involved. You have been warned.
 
-Read the next post in this series:[ Discrete Device Assignment -- GPUs](/b/virtualization/archive/2015/11/23/discrete-device-assignment-gpus.aspx "Discrete Device Assignment -- GPUs")
+Read the next post in this series:[ Discrete Device Assignment -- GPUs](/virtualization/community/team-blog/2015/20151123-discrete-device-assignment-gpus)
 
 \-- Jake Oshins
