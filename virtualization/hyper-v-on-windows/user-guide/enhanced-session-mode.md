@@ -2,11 +2,11 @@
 title: Share devices with Windows virtual machines
 description: Walks you through sharing devices with Hyper-V virtual machines (USB, audio, microphone, and mounted drives)
 keywords: windows 10, hyper-v
+author: scooley
 ms.author: scooley
 ms.date: 10/20/2017
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: d1aeb9cb-b18f-43cb-a568-46b33346a188
 ---
 
@@ -34,13 +34,13 @@ This article shows you how to see your session type, enter enhanced session mode
 
 You can check to see what type of connection you have using the Enhanced Session mode icon in the top of the Virtual Machine Connect tool (VMConnect).  This button also lets you toggle between basic session and enhanced session mode.
 
-![](media/esm-button-location.png)
+![Screenshot of the Enhanced Session mode icon emphasized in the V M Connect tool bar.](media/esm-button-location.png)
 
 | icon | connection state |
 |:-----|:---------|
-|![](media/esm-basic.png)| You are currently running in enhanced session mode.  Clicking this icon will reconnect to your virtual machine in basic mode. |
-|![](media/esm-connect.png)| You are currently running in basic session mode but enhanced session mode is available.  Clicking this icon will reconnect to your virtual machine in enhanced session mode.  |
-|![](media/esm-stop.png)| You are currently running in basic mode.  Enhanced session mode isn't available for this virtual machine. |
+|:::image type="icon" source="\<media/esm-basic.png\>":::| You are currently running in enhanced session mode.  Clicking this icon will reconnect to your virtual machine in basic mode. |
+|:::image type="icon" source="\<media/esm-connect.png\>":::| You are currently running in basic session mode but enhanced session mode is available.  Clicking this icon will reconnect to your virtual machine in enhanced session mode.  |
+|:::image type="icon" source="\<media/esm-stop.png\>":::| You are currently running in basic mode.  Enhanced session mode isn't available for this virtual machine. |
 
 ## Configure VM for Remote Desktop
 
@@ -63,7 +63,7 @@ Now, sign out of the VM or reboot before closing the Virtual Machine Connect win
 
 Enhanced Session Mode's device sharing capabilities are hidden inside this inconspicuous connection window that pops up when you connect to a virtual machine:
 
-![](media/esm-default-view.png)
+![Screenshot of the connection pop up with a Display configuration of 1366 by 768 pixels.](media/esm-default-view.png)
 
 By default, virtual machines using enhanced session mode will share clipboard and printers.  They are also configured by default to pass audio from the virtual machine back to your computer's speakers.
 
@@ -71,21 +71,21 @@ To share devices with your virtual machine or to change those default settings:
 
 1. Show more options
 
-  ![](media/esm-show-options.png)
+  ![Screenshot of the connection pop up with the Show Options drop down emphasized.](media/esm-show-options.png)
 
 1. View local resources
 
-  ![](media/esm-local-resources.png)
+  ![Screenshot of the connection pop up with the Local Resources tab emphasized.](media/esm-local-resources.png)
 
 ### Share storage and USB devices
 
 By default, virtual machines using enhanced session mode share printers, the clipboard, pass smartcard and other security devices through to the virtual machine so you can use more secure login tools from your virtual machine.
 
 To share other devices, such as USB devices or your C: drive, select the "More..." menu:  
-![](media/esm-more-devices.png)
+![Screenshot of the More button emphasized in the Local devices and resources section.](media/esm-more-devices.png)
 
 From there you can select the devices you'd like to share with the virtual machine.  The system drive (Windows C:) is especially helpful for file sharing.  
-![](media/esm-drives-usb.png)
+![Screenshot of Smart cards selected in the Local Resources dialog.](media/esm-drives-usb.png)
 
 ### Share audio devices (speakers and microphones)
 
@@ -94,7 +94,7 @@ By default, virtual machines using enhanced session mode pass audio through so y
 To change those settings or to add microphone passthrough (so you can record audio in a virtual machine):
 
 Select the "Settings..." menu for configuring remote audio settings  
-![](media/esm-audio.png)
+![Screenshot of the Settings button emphasized in the Remote audio section.](media/esm-audio.png)
 
 Now configure audio and microphone settings  
 ![](media/esm-audio-settings.png)
