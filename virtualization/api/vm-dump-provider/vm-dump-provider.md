@@ -1,6 +1,6 @@
 ---
 title: Virtual Machine Saved State Dump Provider API
-description: The saved state format of a VM can be accessed via VmSavedStateDumpProvider DLL, which abstracts away the format to provide an API to extract dump-related content from a virtual machine's saved state. The DLL exports a set of C-style Windows API functions.
+description: The saved state format of a VM can be accessed via VmSavedStateDumpProvider DLL.
 ms.date: 04/18/2022
 author: mattbriggs
 ms.author: mabrigg
