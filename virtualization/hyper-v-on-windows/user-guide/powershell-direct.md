@@ -207,7 +207,7 @@ Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. 
   * The operating system can't boot correctly
   * Some boot time event needs user input
 
-You can use the [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps) cmdlet to check to see which VMs are running on the host.
+You can use the [Get-VM](/powershell/module/hyper-v/get-vm?view=win10-ps&preserve-view=true) cmdlet to check to see which VMs are running on the host.
 
 **Error message:**  
 ```
