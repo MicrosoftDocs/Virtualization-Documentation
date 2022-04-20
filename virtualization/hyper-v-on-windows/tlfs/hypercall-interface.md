@@ -72,7 +72,8 @@ Callers specify a hypercall by a 64-bit value called a hypercall input value. It
 | Call Code               | 15-0    | Specifies which hypercall is requested                      |
 | Fast                    | 16      | Specifies whether the hypercall uses the register-based calling convention: 0 = memory-based, 1 = register-based |
 | Variable header size    | 26-17   | The size of a variable header, in QWORDS.                   |
-| RsvdZ                   | 31-27   | Must be zero                                                |
+| RsvdZ                   | 30-27   | Must be zero                                                |
+| Is Nested               | 31      | Specifies the hypercall should be handled by the L0 hypervisor in a nested environment. |
 | Rep Count               | 43-32   | Total number of reps (for rep call, must be zero otherwise) |
 | RsvdZ                   | 47-44   | Must be zero                                                |
 | Rep Start Index         | 59-48   | Starting index (for rep call, must be zero otherwise)       |
