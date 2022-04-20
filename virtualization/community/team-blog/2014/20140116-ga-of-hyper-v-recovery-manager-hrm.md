@@ -12,7 +12,7 @@ We are excited to announce the General Availability of Hyper-V Recovery Manager 
 
 The high level solution is as follows:
 
-[![image](http://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_08F9A01C.png)](http://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_63015F14.png)
+[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_08F9A01C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_63015F14.png)
 
 A step by step guide on setting up HRM is available @ <http://www.windowsazure.com/en-us/documentation/articles/hyper-v-recovery-manager-configure-vault/>
 
