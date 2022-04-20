@@ -1,8 +1,8 @@
 ---
 title: Setting up Linux Operating System Clusters on Hyper-V (2 of 3)
 description: Follow along with part 2 of this three-part walk-through about setting up Linux operating system clusters on Hyper-V.
-author: mattbriggs
-ms.author: mabrigg
+author: dcui
+ms.author: decui
 date:       2016-02-23 01:22:56
 ms.date: 02/23/2016
 categories: hyper-v
