@@ -24,30 +24,33 @@ Note: this is actually an “Active-Passive” cluster ([A cluster where only on
 
 
     
-    
+```code
     # yum install httpd
     # chkconfig httpd off   # By Default, Apache doesn’t automatically start.
+```
 
   3. On node 1, make the minimal change to the default Apache config file /etc/httpd/conf/httpd.conf:
 (Note: **/mydata** is in the shared GFS2 partition) 
 
     
-    
+```code
     -DocumentRoot "/var/www/html"
     +DocumentRoot "/ **mydata** /html"
     
     
     -<Directory "/var/www/html">
     +<Directory "/ **mydata** /html">
+```
 
 And scp /etc/httpd/conf/httpd.conf to the other 4 nodes.
 
 Next, add a simple html file /mydata/html/index.html with the below content:
     
-    
+```code
     **< html> <body> <h1> "Hello, World" (test page)</h1>  </body> </html>
     
     **
+```
 
   4. Define the “Resources” and “Service Group” of the cluster
 Note: here 10.156.76.58 is the “floating IP” (a.k.a. virtual IP). An end user uses <http://10.156.76.58> to access the web server, but the web server httpd daemon can be running on any node of the cluster according to the fail over configuration, when some of the nodes fail. 
@@ -61,18 +64,25 @@ Note: here 10.156.76.58 is the “floating IP” (a.k.a. virtual IP). An end use
 -->
   5. Test the Web Server from another host
 Use a browser to access [http://10.156.76.58/ ](http://10.156.76.58/)[![image5](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)[ ](http://10.156.76.58/)Keep pressing “F5” to refresh the page and everything works fine. We can verify the web server is actually running on node1: 
-    
+
+```code
         [root@my-vm1 ~]# ps aux | grep httpd
     
     root     13539  0.0  0.6 298432 12744 ?        S<s  21:38   0:00 /usr/sbin/httpd -Dmy_apache -d /etc/httpd -f /etc/cluster/apache/apache:my_apache/httpd.conf -k start
+```
 
   6. Test Fail Over
-Shutdown node 1 by “shutdown -h now” and the end user will detect this failure immediately by keeping pressing F5. <!--[![image6](https://msdnshared.blob.core.windows.net/media/2016/03/image6.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image6.png)-->In ~15 seconds, the end user finds the web server backs to normal. <!--[![image5](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)--> Now, we can verify the web server is running on node 2: [root@my-vm2 ~]# ps aux | grep http 
-    
+Shutdown node 1 by “shutdown -h now” and the end user will detect this failure immediately by keeping pressing F5. <!--[![image6](https://msdnshared.blob.core.windows.net/media/2016/03/image6.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image6.png)-->In ~15 seconds, the end user finds the web server backs to normal. <!--[![image5](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)--> Now, we can verify the web server is running on node 2:
+
+```code
+          [root@my-vm2 ~]# ps aux | grep http
+
         root     13879  0.0  0.6 298432 12772 ?        S<s  21:58   0:00 /usr/sbin/httpd -Dmy_apache -d /etc/httpd -f /etc/cluster/apache/apache:my_apache/httpd.conf -k start
+```
 
 And we can check the cluster status: 
-    
+
+```code
         [root@my-vm2 ~]# clustat
     Cluster Status for my-cluster @ Thu Oct 29 21:59:40 2015
     
@@ -89,10 +99,12 @@ And we can check the cluster status:
     Service Name                        Owner (Last)          State
     ------- ----                        ----- ------          -----
     service:my_service_group            my-vm2                started
+```
 
   7. Now we power off node 2 by clicking Virtual Machine Connection’s “Turn Off” icon.
 Similarly, we’ll find out node 3 will take over node 2 and the end user can still notice the webserver backs to normal after a transient black-out. 
-    
+
+```code
         [root@my-vm3 ~]# clustat
     Cluster Status for my-cluster @ Thu Oct 29 22:03:57 2015
     
@@ -109,6 +121,7 @@ Similarly, we’ll find out node 3 will take over node 2 and the end user can st
      Service Name                            Owner (Last)      State
      ------- ----                            ----- ------      ------          
      service:my_service_group                my-vm3            started
+```
 
   8. Now we power off node 3 and 4 and later we’ll find the web server will be running in node 5, the last node, in ~20 seconds.
   9. Now let’s power on node 1 and after node 1 re-joins the cluster, the web server will be moved from node 5 to node 1.
