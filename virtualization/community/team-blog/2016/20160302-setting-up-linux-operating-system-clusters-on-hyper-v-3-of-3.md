@@ -7,6 +7,8 @@ date:       2016-03-02 20:22:21
 ms.date: 03/02/2016
 categories: clustering
 ---
+# Setting up Linux Operating System Clusters on Hyper-V (3 of 3)
+
 Author: Dexuan Cui [Link to Part 2: Setting up Linux Operating System Clusters on Hyper-V ](https://blogs.technet.microsoft.com/virtualization/2016/02/23/setting-up-linux-operating-system-clusters-on-hyper-v-2-of-3/ "Setting up Linux Operating System Clusters on Hyper-V \(2 of 3\)")[Link to Part 1: Setting up Linux Operating System Clusters on Hyper-V](https://blogs.technet.microsoft.com/virtualization/2016/02/19/setting-up-linux-operating-system-clusters-on-hyper-v-1-of-3/ "Setting up Linux Operating System Clusters on Hyper-V \(1 of 3\)")
 
 ## **Background**
@@ -50,13 +52,13 @@ Next, add a simple html file /mydata/html/index.html with the below content:
   4. Define the “Resources” and “Service Group” of the cluster
 Note: here 10.156.76.58 is the “floating IP” (a.k.a. virtual IP). An end user uses <http://10.156.76.58> to access the web server, but the web server httpd daemon can be running on any node of the cluster according to the fail over configuration, when some of the nodes fail. 
 
-
+<!--
 [![image2](https://msdnshared.blob.core.windows.net/media/2016/03/image21.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image21.png)
 
 [![image3](https://msdnshared.blob.core.windows.net/media/2016/03/image31.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image31.png)
 
 [![image4](https://msdnshared.blob.core.windows.net/media/2016/03/image4.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image4.png)
-
+-->
   5. Test the Web Server from another host
 Use a browser to access [http://10.156.76.58/ ](http://10.156.76.58/)[![image5](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)[ ](http://10.156.76.58/)Keep pressing “F5” to refresh the page and everything works fine. We can verify the web server is actually running on node1: 
     
@@ -65,7 +67,7 @@ Use a browser to access [http://10.156.76.58/ ](http://10.156.76.58/)[![image5](
     root     13539  0.0  0.6 298432 12744 ?        S<s  21:38   0:00 /usr/sbin/httpd -Dmy_apache -d /etc/httpd -f /etc/cluster/apache/apache:my_apache/httpd.conf -k start
 
   6. Test Fail Over
-Shutdown node 1 by “shutdown -h now” and the end user will detect this failure immediately by keeping pressing F5: [![image6](https://msdnshared.blob.core.windows.net/media/2016/03/image6.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image6.png)In ~15 seconds, the end user finds the web server backs to normal: [![image5](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png) Now, we can verify the web server is running on node 2: [root@my-vm2 ~]# ps aux | grep http 
+Shutdown node 1 by “shutdown -h now” and the end user will detect this failure immediately by keeping pressing F5. <!--[![image6](https://msdnshared.blob.core.windows.net/media/2016/03/image6.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image6.png)-->In ~15 seconds, the end user finds the web server backs to normal. <!--[![image5](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)--> Now, we can verify the web server is running on node 2: [root@my-vm2 ~]# ps aux | grep http 
     
         root     13879  0.0  0.6 298432 12772 ?        S<s  21:58   0:00 /usr/sbin/httpd -Dmy_apache -d /etc/httpd -f /etc/cluster/apache/apache:my_apache/httpd.conf -k start
 
