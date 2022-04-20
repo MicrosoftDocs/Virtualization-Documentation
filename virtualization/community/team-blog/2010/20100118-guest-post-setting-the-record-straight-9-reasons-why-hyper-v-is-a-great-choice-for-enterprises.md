@@ -1,9 +1,15 @@
 ---
 title:      "Guest post&#58; &#34;Setting the Record Straight - 9 Reasons Why Hyper-V is a Great Choice for Enterprises&#34;"
+author: mattbriggs
+ms.author: mabrigg
+description: Setting the Record Straight - 9 Reasons Why Hyper-V is a Great Choice for Enterprises
+ms.date: 01/18/2010
 date:       2010-01-18 13:21:00
 categories: disaster-recovery
 ---
-Hi, my name is Chris Steffen, architect with Kroll Factual Data. You may have read one of my [prior guest posts](http://blogs.technet.com/virtualization/archive/2008/04/03/disaster-recovery-not-a-nightmare-with-virtualization.aspx "Chris Steffen post on DR").
+# Guest post: Setting the Record Straight - 9 Reasons Why Hyper-V is a Great Choice for Enterprises
+
+Hi, my name is Chris Steffen, architect with Kroll Factual Data. You may have read one of my [prior guest posts](https://blogs.technet.com/virtualization/archive/2008/04/03/disaster-recovery-not-a-nightmare-with-virtualization.aspx "Chris Steffen post on DR").
 
  
 

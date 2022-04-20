@@ -1,9 +1,15 @@
 ---
 title:      "Windows Server 2008 R2 Hyper-V iSCSI Performance Webcast"
+author: mattbriggs
+ms.author: mabrigg
+description: Windows Server 2008 R2 Hyper-V iSCSI Performance Webcast
+ms.date: 01/12/2010
 date:       2010-01-12 19:20:00
 categories: dell
 ---
-My friend and teammate Jim Schwartz on our Virtualization Solutions Marketing Team has asked me to post this entry about a very exciting [webcast](http://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?EventID=1032432956&EventCategory=4&culture=en-US&CountryCode=US) coming up, but he can describe it much better than me...
+# Windows Server 2008 R2 Hyper-V iSCSI Performance Webcast
+
+My friend and teammate Jim Schwartz on our Virtualization Solutions Marketing Team has asked me to post this entry about a very exciting [webcast](https://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?EventID=1032432956&EventCategory=4&culture=en-US&CountryCode=US) coming up, but he can describe it much better than me...
 
  
 
@@ -35,7 +41,7 @@ In addition to iSCSI storage target providers, advances in CPU and network accel
 
  
 
-If you’re interested in hearing more about Windows Server R2 Hyper-V, the iSCSI initiator and Intel’s iSCSI enhancements, join us for a webcast on 1/14—the speakers will provide a deep dive into the technologies and cover practical considerations.  Microsoft and Intel will announce physical and virtual throughput and IOP performance numbers developed as a result of collaborative engineering efforts during the Windows Server 2008 R2 release cycle...you may be surprised at the results!  Register for the webcast [here](http://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?EventID=1032432956&EventCategory=4&culture=en-US&CountryCode=US). 
+If you’re interested in hearing more about Windows Server R2 Hyper-V, the iSCSI initiator and Intel’s iSCSI enhancements, join us for a webcast on 1/14—the speakers will provide a deep dive into the technologies and cover practical considerations.  Microsoft and Intel will announce physical and virtual throughput and IOP performance numbers developed as a result of collaborative engineering efforts during the Windows Server 2008 R2 release cycle...you may be surprised at the results!  Register for the webcast [here](https://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?EventID=1032432956&EventCategory=4&culture=en-US&CountryCode=US). 
 
  
 
