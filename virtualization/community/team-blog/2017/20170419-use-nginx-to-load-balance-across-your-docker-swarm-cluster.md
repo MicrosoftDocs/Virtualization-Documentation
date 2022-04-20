@@ -7,6 +7,8 @@ date:       2017-04-19 13:38:56
 ms.date: 04/19/2017
 categories: containers
 ---
+# Use NGINX to load balance across your Docker Swarm cluster
+
 ## A practical walkthrough, in six steps
 
 _This basic example demonstrates NGINX and swarm mode in action, to provide the foundation for you to apply these concepts to your own configurations._ This document walks through several steps for setting up a containerized NGINX server and using it to load balance traffic across a swarm cluster. For clarity, these steps are designed as an end-to-end tutorial for setting up a three node cluster and running two docker services on that cluster; by completing this exercise, you will become familiar with the general workflow required to use swarm mode and to load balance across Windows Container endpoints using an NGINX load balancer.
@@ -17,7 +19,7 @@ This exercise requires three container hosts--two of which will be joined to for
 
 ### System requirements
 
-**Three* or more computer systems** running either **Windows 10 Creators Update** or **Windows Server 2016** _with all of the latest updates_ *, setup as a container host (see the topic, [Windows Containers on Windows 10](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows Containers on Windows Server](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).\+
+**Three* or more computer systems** running either **Windows 10 Creators Update** or **Windows Server 2016** _with all of the latest updates_ *, setup as a container host (see the topic, [Windows Containers on Windows 10](/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows Containers on Windows Server](/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).\+
 
 * **Note** : Docker Swarm on Windows Server 2016 requires [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217)
 
@@ -142,7 +144,7 @@ As a result of the previous steps, one of your host machines should have the ngi
 
 
 
-    C:\temp> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADDRESS>:2377
+    `C:\temp> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADDRESS>:2377`
 
 Now run the following command from each of the other host machines that you intend to use as swarm nodes, joining them to the swarm as a worker nodes.
 
@@ -152,7 +154,7 @@ Now run the following command from each of the other host machines that you inte
 
 
 
-    C:\temp> docker swarm join --token <WORKERJOINTOKEN> <MANAGERIPADDRESS>:2377
+    `C:\temp> docker swarm join --token <WORKERJOINTOKEN> <MANAGERIPADDRESS>:2377`
 
 Your nodes are now configured to form a swarm cluster! You can see the status of the nodes by running the following command from your manage node:
 
