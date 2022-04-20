@@ -1,8 +1,14 @@
 ---
 title:      "Strong end to end management required for Virtualization to be successful (VMworld day 2)"
+author: mattbriggs
+ms.author: mabrigg
+description:
+ms.date: 09/02/2009
 date:       2009-09-02 09:39:00
 categories: application-virtualization
 ---
+# Strong end to end management required for Virtualization to be successful (VMworld day 2)
+
 I am pleased that it is being acknowledged by VMware (evidenced by their keynote announcements yesterday on the vCenter additions) that for a strong virtualization platform a complete end-to-end solution is required. We agree completely!! We at Microsoft provide solutions for configuration/change management, operational/health monitoring, virtual machine management and data protection and have been doing so for a while now. Just to get some perspective I dug up the release dates for our management software (I have trimmed the list a bit for readabilityJ). From the table below its clear that our management lifecycle experience goes back many many years. It is great to see VMware finally acknowledge this and is attempting to now build a solution that spans some aspects of this end-to-end management. We welcome this.
 
  
