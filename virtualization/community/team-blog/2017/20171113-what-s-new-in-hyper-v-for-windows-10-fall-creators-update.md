@@ -7,6 +7,8 @@ date:       2017-11-13 18:00:46
 ms.date: 11/13/2017
 categories: hyper-v
 ---
+# What's new in Hyper-V for Windows 10 Fall Creators Update
+
 [Windows 10 Fall Creators Update](https://blogs.windows.com/windowsexperience/2017/10/17/whats-new-windows-10-fall-creators-update) has arrived! While we’ve been blogging about new features as they appear in Windows Insider builds, many of you have asked for a consolidated list of Hyper-V updates and improvements since Creators Update in April. Summary: 
 
   * Quick Create includes a gallery (and you can add your own images)
