@@ -1,6 +1,10 @@
 ---
-title:      "Use NGINX to load balance across your Docker Swarm cluster"
+title: Use NGINX to load balance across your Docker Swarm cluster
+description: Learn how to set up a containerized NGINX server to load balance traffic across a Docker swarm cluster.
+author: mattbriggs
+ms.author: mabrigg
 date:       2017-04-19 13:38:56
+ms.date: 04/19/2017
 categories: containers
 ---
 ## A practical walkthrough, in six steps
