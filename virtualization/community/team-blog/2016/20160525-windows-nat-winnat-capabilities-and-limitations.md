@@ -4,7 +4,7 @@ description: Blog post that describes what services the Network Address Translat
 author: scooley
 ms.author: scooley
 date: 2016-05-25 21:15:59
-ms. date: 07/31/2019
+ms.date: 07/31/2019
 categories: hyper-v
 ---
 # Windows NAT (WinNAT) -- Capabilities and limitations
@@ -64,7 +64,7 @@ _Docker/HNS will assign IPs to Windows containers from the \<container prefix\> 
 2. `PS C:\> Get-ContainerNetwork | Remove-ContainerNetwork -force`
 3. `PS C:\> Get-NetNat | Remove-NetNat` _(this will remove the NAT but keep the internal vSwitch)_
 4. Edit the arguments passed to the docker daemon (dockerd) by adding -b “none” option to the end of docker daemon (dockerd) command to tell docker not to create a default NAT network.
-5. `PS C:\> New-ContainerNetwork –name nat –Mode NAT –subnetprefix <container prefix>` _(create a new NAT and internal vSwitch – HNS will allocate IPs to container endpoints attached to this network from the <container prefix>)_
+5. `PS C:\> New-ContainerNetwork –name nat –Mode NAT –subnetprefix <container prefix>` _(create a new NAT and internal vSwitch – HNS will allocate IPs to container endpoints attached to this network from the \<container prefix\>)_
 6. `PS C:\> Get-Netnat | Remove-NetNAT` _(again, this will remove the NAT but keep the internal vSwitch)_
 7. `PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared prefix>`
 8. `PS C:\> New-VirtualSwitch -Type internal` _(attach VMs to this new vSwitch)_
