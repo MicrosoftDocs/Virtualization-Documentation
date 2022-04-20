@@ -106,7 +106,7 @@ From a high level, the Microsoft SDL looks like this:
 
 ##### **The Microsoft Security Development Lifecycle**
 
-![](https://i.msdn.microsoft.com/cc448177.SDL-Lifecycle-gradient_0609\(en-us,MSDN.10\).jpg)
+![Software Development Lifecycle gradient image](https://i.msdn.microsoft.com/cc448177.SDL-Lifecycle-gradient_0609\(en-us,MSDN.10\).jpg)
 
 Benefits of the Microsoft SDL:
 
