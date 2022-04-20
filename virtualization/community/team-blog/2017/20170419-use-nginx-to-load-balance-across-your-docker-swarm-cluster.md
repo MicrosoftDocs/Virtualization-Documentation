@@ -84,14 +84,16 @@ _Note: Complete the instructions in this section on one of the container hosts t
 
 Below are the contents of a simple Dockerfile that can be used to create an IIS Web server image. The Dockerfile simply enables the[Internet Information Services (IIS)](https://www.iis.net/) Web server role within a windows/servercore container.
 
-
+```code
     FROM windows/servercore
     RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
+```
 
 Create a Dockerfile from the content provided above, and save it to some location (e.g. C:\temp\iis) on one of the host machines that you plan to use as a swarm node. From that location, build the image using the following command:
 
-
+```code
      C:\temp\iis> docker build -t iis-web .
+```
 
 ### (Optional) Confirm that your IIS Web server image is ready
 
