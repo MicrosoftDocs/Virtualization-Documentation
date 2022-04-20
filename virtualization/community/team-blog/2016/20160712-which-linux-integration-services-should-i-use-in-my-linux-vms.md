@@ -19,6 +19,6 @@ If you run Linux guest VMs on Hyper-V, you may wonder about how to get the “be
 | How up to date? | Snapshot as of the code deadline for the distro version | Most up-to-date because released directly by Microsoft |
 | Update process | Automatically updated as part of the distro update process | Requires a separate step to update the Microsoft LIS package. Bad things can happen if you don’t do this extra step. |
 | Can get latest LIS updates for older distro versions? | No. Only path forward is to upgrade to the latest minor version of the distro (6.8, or 7.2, for CentOS) | Yes. Available for a wide range of RHEL/CentOS versions back to RHEL/CentOS 5.2. See [this documentation](https://technet.microsoft.com/library/dn531026.aspx) for details on functionality and limitations for older RHEL/CentOS versions. |
-| Meets distro vendor criteria for support? | Yes | No, for RHEL. Considered “uncertified drivers” by Red Hat. Not an issue for CentOS, which has community support.  
+| Meets distro vendor criteria for support? | Yes | No, for RHEL. Considered “uncertified drivers” by Red Hat. Not an issue for CentOS, which has community support. |
 | End customer support process | Via your distro vendor, or via Microsoft support. LIS fixes delivered by distro vendor normal update processes. | Via Microsoft support per your Hyper-V support agreement. Fixes delivered as a new version of the Microsoft LIS package. |
  
