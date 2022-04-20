@@ -1,6 +1,10 @@
 ---
-title:      "Create your custom Quick Create VM gallery"
+title: Create your custom Quick Create VM gallery
+description: Learn how to create your own custom virtual machine gallery using Quick Create on JSON files.
+author: mattbriggs
+ms.author: mabrigg
 date:       2017-11-08 02:41:52
+ms.date: 11/08/2017
 categories: hyper-v
 ---
 Have you ever wondered whether it is possible to add your own custom images to the list of available VMs for [Quick Create](https://blogs.technet.microsoft.com/virtualization/2017/07/26/hyper-v-virtual-machine-gallery-and-networking-improvements/)? The answer is: Yes, you can! Since quite a few people have been asking us, this post will give you a quick example to get started and add your own custom image while we're working on the official documentation. The following two steps will be described in this blog post: 
