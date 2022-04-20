@@ -12,8 +12,8 @@ categories: hyper-v
 **Author: Jason Messer** 
 
 Beginning in Windows Server Technical Preview 3, our users noticed a new Hyper-V Virtual Switch Type – “NAT” – which was introduced to simplify the process of connecting Windows containers to the host using a private network. This allowed network traffic sent to the host to be redirected to individual containers running on the host through network and port address translation (NAT and PAT) rules. Additional users began to use this new VM Switch type not only for containers but also for ordinary VMs to connect them to a NAT network. While this may have simplified the process of creating a NAT network and connecting containers or VMs to a vSwitch, it resulted in confusion and a layering violation in the network stack. Beginning in Windows Server Technical Preview 5 and with recent Windows Insider Builds, the “NAT” VM Switch Type has been removed to resolve this layering violation. In the OSI (Open Systems Interconnect) model, both physical network switches and virtual switches operate at Layer-2 of the network stack without any knowledge of IP addresses or ports. These switches simply forward packets based on the Ethernet headers (i.e. MAC addresses) in the Layer-2 frame. NAT and PAT operate at Layers-3 and 4 respectively of the network stack.  
-Layer | Function | Example  
----|---|---  
+|Layer | Function | Example |
+|---|---|---|  
 Application (7) | Network process | HTTP, SMTP, DNS  
 Presentation (6) | Data representation and encryption | JPG, GIF, SSL, ASCII  
 Session (5) | Interhost communication | NetBIOS  
