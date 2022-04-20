@@ -63,7 +63,7 @@ Note: here 10.156.76.58 is the “floating IP” (a.k.a. virtual IP). An end use
 [![image4](https://msdnshared.blob.core.windows.net/media/2016/03/image4.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image4.png)
 -->
   5. Test the Web Server from another host
-Use a browser to access [http://10.156.76.58/ ](http://10.156.76.58/)[![image5](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)[ ](http://10.156.76.58/)Keep pressing “F5” to refresh the page and everything works fine. We can verify the web server is actually running on node1: 
+Use a browser to access [http://10.156.76.58/ ](http://10.156.76.58/)<!--[![image5](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)](https://msdnshared.blob.core.windows.net/media/2016/03/image5.png)[ ](http://10.156.76.58/)--> Keep pressing “F5” to refresh the page and everything works fine. We can verify the web server is actually running on node1: 
 
 ```code
         [root@my-vm1 ~]# ps aux | grep httpd
