@@ -1,5 +1,5 @@
 ---
-title:      "Setting up Linux Operating System Clusters on Hyper-V (1 of 3)"
+title: Setting up Linux Operating System Clusters on Hyper-V (1 of 3)
 description: Follow along with part 1 of this three-part walk-through about setting up Linux operating system clusters on Hyper-V.
 author: dcui
 ms.author: decui
@@ -7,6 +7,8 @@ date:       2016-02-19 23:16:50
 ms.date: 02/19/2016
 categories: cluster
 ---
+# Setting up Linux Operating System Clusters on Hyper-V (1 of 3)
+
 Author: Dexuan Cui 
 
 ## **Background**
@@ -32,7 +34,7 @@ Let’s get started!
 
 (Refer to [Deploy a Hyper-V Cluster](https://technet.microsoft.com/library/jj863389.aspx), [Deploy a Guest Cluster Using a Shared Virtual Hard Disk](https://technet.microsoft.com/library/dn265980.aspx)) Here we first setup an iSCSI target (server) on iscsi01 and then set up a 2-node Hyper-V host cluster on hyperv01 and hyperv02. Both nodes of the Hyper-V host cluster are running Windows Server 2012 R2 Hyper-V, with access to the iSCSI shared storage. The resulting configuration looks like this: [![image1](https://msdnshared.blob.core.windows.net/media/2016/02/image113.png)](https://msdnshared.blob.core.windows.net/media/2016/02/image113.png)
 
-  1. Setup an iSCSI target on iscsi01. (Refer to [Installing and Configuring target iSCSI server on Windows Server 2012](http://blogs.technet.com/b/meamcs/archive/2012/03/30/installing-and-configuring-target-iscsi-server-on-windows-server-8-beta.aspx).) We don’t have to buy a real iSCSI hardware. Windows Server 2012 R2 can emulate an iSCSI target based on .vhdx files.
+  1. Setup an iSCSI target on iscsi01. (Refer to [Installing and Configuring target iSCSI server on Windows Server 2012](https://blogs.technet.com/b/meamcs/archive/2012/03/30/installing-and-configuring-target-iscsi-server-on-windows-server-8-beta.aspx).) We don’t have to buy a real iSCSI hardware. Windows Server 2012 R2 can emulate an iSCSI target based on .vhdx files.
 So we install “File and Storage Service” on iscsi01 using Server Manager -> Configure this local server -> Add roles and features -> Role-based or feature-based installation -> … -> Server Roles -> File and Storage Service -> iSCSI Target Server(add). Then in Server Manager -> File and Storage Service -> iSCSI, use “New iSCSI Virtual Disk…” to create 2 .vhdx files: iscsi-1.vhdx (200GB) and iscsi-2.vhdx (1GB). In “iSCSI TARGETS”, allow hyperv01 and hyperv02 as Initiators (iSCSI clients). 
   2. On hyperv01 and hyperv02, use “iSCSI Initiator” to connect to the 2 LUNs of iscsi01. Now in “Disk Management” of both the hosts, 2 new disks should appear and one’s size is 200GB and the other’s size is 1GB.
 In one host only, for example hyperv02, in “Disk Management”, we create and format a NTFS partition in the 200GB disk (remember to choose "Do not assign a drive letter or drive path"). 
@@ -50,7 +52,8 @@ Using “Storage -> Disks | Add Disk”, we add the 2 new disks: the 200GB one i
 Make sure to choose “Store the virtual machine in a different location” and choose C:\ClusterStorage\Volume1\\. In other words, my-vm1’s configuration file and .vhdx file are stored in C:\ClusterStorage\Volume1\my-vm1\Virtual Machines\ and C:\ClusterStorage\Volume1\my-vm1\Virtual Hard Disks\\. You can spread out the five VMs across the two Hyper-V hosts however you like, as both hosts have equivalent access to C:\ClusterStorage\Volume1\\. The schematic diagram above shows three VMs on hyperv01 and two VMs on hyperv02, but the specific layout does not affect the operation of the Linux OS cluster or the subsequent examples in this walk through. 
   2. Use Static IP addresses and update /etc/hosts in all 5 VMs _
 Note: contact your network administrator to make sure the static IPs are reserved for this use._ So on my-vm1 in /etc/sysconfig/network-scripts/ifcfg-eth0, we have 
-    
+
+```code
         DEVICE=eth0
     TYPE=Ethernet
     UUID=2b5e2f5a-3001-4e12-bf0c-d3d74b0b28e1
@@ -60,9 +63,11 @@ Note: contact your network administrator to make sure the static IPs are reserve
     IPV4_FAILURE_FATAL=yes
     IPV6INIT=no
     NAME="System eth0"
+```
 
 And in /etc/hosts, we have 
-    
+
+```code
         127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
     ::1       localhost localhost.localdomain localhost6 localhost6.localdomain6
     
@@ -71,6 +76,7 @@ And in /etc/hosts, we have
     10.156.76.48      my-vm3
     10.156.76.79      my-vm4
     10.156.76.75      my-vm5
+```
 
   3. On hyperv02, in my-vm1’s “Settings | SCSI Controller”, add a 100GB Hard Drive by using the “New Virtual Hard Disk Wizard”. Remember to store the .vhdx file in the shared host storage, e.g., **C:\ClusterStorage\Volume1\** 100GB-shared-vhdx.vhdx and remember to enable the “ **Advanced Features | Enable virtual hard disk sharing** ”. Next we add the .vhdx file to the other 4 VMs with disk sharing enabled too. In all the 5 VMs, the disk will show as /dev/sdb. Later, we’ll create a clustering file system (GFS2) in it.
   4. Similarly, we add another shared disk of 1GB (C:\ClusterStorage\Volume1\quorum_disk.vhdx) with the Shared VHDX feaure to all the 5 VMs. The small disk will show as /dev/sdc in the VMs and later we’ll use it as a Quorum Disk in RHCS.
