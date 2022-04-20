@@ -1,6 +1,10 @@
 ---
-title:      "Copying Files into a Hyper-V VM with Vagrant"
+title: Copying Files into a Hyper-V VM with Vagrant
+description: Learn about using Vagrant to enable coping virtual machine files into a Hyper-V environment.
+author: mattbriggs
+ms.author: mabrigg
 date:       2017-07-18 21:50:09
+ms.date: 07/18/2017
 categories: hyper-v
 ---
 A couple of weeks ago, I published a [blog](https://blogs.technet.microsoft.com/virtualization/2017/07/06/vagrant-and-hyper-v-tips-and-tricks/) with tips and tricks for getting started with Vagrant on Hyper-V. My fifth tip was to "Enable Nifty Hyper-V Features," where I briefly mentioned stuff like differencing disks and virtualization extensions. While those are useful, I realized later that I should have added one more feature to my list of examples: the "guest_service_interface" field in "vm_integration_services." It's hard to know what that means just from the name, so I usually call it the "the thing that lets me copy files into a VM." Disclaimer: this is _not_ a replacement for [Vagrant's synced folders](https://www.vagrantup.com/docs/synced-folders/). Those are super convienent, and should really be your default solution for sharing files. This method is more useful in one-off situations. 
