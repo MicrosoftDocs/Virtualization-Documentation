@@ -15,7 +15,8 @@ A couple of weeks ago, I published a [blog](https://blogs.technet.microsoft.com/
 
 Enabling this functionality requires a simple change to your Vagrantfile. You need to set "guest_service_interface" to true within "vm_integration_services" configuration hash. Here's what my Vagrantfile looks like for CentOS 7:
 
-```# -*- mode: ruby -*-
+```code
+    # -*- mode: ruby -*-
     # vi: set ft=ruby :
     
     Vagrant.configure("2") do |config|
@@ -35,7 +36,8 @@ Enabling this functionality requires a simple change to your Vagrantfile. You ne
 
 You can check that it's enabled by running `Get-VMIntegrationService` in PowerShell on the host machine:
 
-```PS C:\vagrant_selfhost\centos>  Get-VMIntegrationService -VMName "centos-7-1-1.x86_64"
+```code
+  PS C:\vagrant_selfhost\centos>  Get-VMIntegrationService -VMName "centos-7-1-1.x86_64"
     VMName              Name                    Enabled PrimaryStatusDescription SecondaryStatusDescription
     ------              ----                    ------- ------------------------ --------------------------
     centos-7-1-1.x86_64 Guest Service Interface True    OK
