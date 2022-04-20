@@ -1,3 +1,11 @@
+---
+title: I/O port access for QEMU
+description: Learn about the I/O port access for QEMU. 
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/19/2022
+---
+
 # I/O Port Access for QEMU
 
 ## Syntax

@@ -1,3 +1,11 @@
+---
+title: WHvEmulatorDestoryEmulator method
+description: Learn about the WHvEmulatorDestoryEmulator method. 
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/19/2022
+---
+
 # WHvEmulatorDestoryEmulator
 
 
