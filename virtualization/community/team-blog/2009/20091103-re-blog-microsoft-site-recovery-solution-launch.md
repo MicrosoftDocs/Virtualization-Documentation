@@ -9,7 +9,7 @@ categories: disaster-recovery
 ---
 # Re-blog Microsoft Site Recovery Solution Launch
 
-I'm re-blogging here. Over at [Virt Planet blog](http://blogs.technet.com/virtplanet/ "Virt Planet Blog"), Jim wrote the following:
+I'm re-blogging here. Over at [Virt Planet blog](https://blogs.technet.com/virtplanet/ "Virt Planet Blog"), Jim wrote the following:
 
 > This week Microsoft is launching a comprehensive solution to help customers implement cost effective, end-to-end site recovery programs. Built on proven capabilities in [Windows Server 2008 R2](https://www.microsoft.com/windowsserver2008/en/us/default.aspx) and the [System Center](https://www.microsoft.com/systemcenter/en/us/default.aspx) management suite, Microsoft is helping IT Professionals leverage Windows Server [Hyper-V](https://www.microsoft.com/windowsserver2008/en/us/hyperv-main.aspx) and [Failover Clustering](https://www.microsoft.com/Windowsserver2008/en/us/failover-clustering-main.aspx) along with tools like [Virtual Machine Manager](https://www.microsoft.com/systemcenter/virtualmachinemanager/en/us/default.aspx) to deliver cost effective site recovery.
 > 

@@ -19,11 +19,11 @@ We have worked across MS application groups to test our products with hyper-v an
 
 The folks who developed the MS server applications have developed specific guidance on virtualizing individual applications based on deployment scenarios.  You can hear more thoughts from them on the following blogs:
 
-Exchange Server: [https://msexchangeteam.com/](http://msexchangeteam.com/)
+Exchange Server: [https://msexchangeteam.com/](https://msexchangeteam.com/)
 
-SQL Server: [https://blogs.technet.com/dataplatforminsider/default.aspx](http://blogs.technet.com/dataplatforminsider/default.aspx)
+SQL Server: [https://blogs.technet.com/dataplatforminsider/default.aspx](https://blogs.technet.com/dataplatforminsider/default.aspx)
 
-SharePoint: [https://blogs.msdn.com/sharepoint](http://blogs.msdn.com/sharepoint)
+SharePoint: [https://blogs.msdn.com/sharepoint](https://blogs.msdn.com/sharepoint)
 
  
 

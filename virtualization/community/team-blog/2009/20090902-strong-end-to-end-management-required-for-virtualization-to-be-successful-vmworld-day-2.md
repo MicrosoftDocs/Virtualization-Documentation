@@ -2,7 +2,7 @@
 title:      "Strong end to end management required for Virtualization to be successful (VMworld day 2)"
 author: mattbriggs
 ms.author: mabrigg
-description:
+description: Strong end to end management required for Virtualization to be successful (VMworld day 2)
 ms.date: 09/02/2009
 date:       2009-09-02 09:39:00
 categories: application-virtualization
