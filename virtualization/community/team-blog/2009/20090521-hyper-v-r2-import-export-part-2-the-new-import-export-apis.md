@@ -1,8 +1,14 @@
 ---
 title:      "Hyper-V R2 Import/Export – Part 2 - The New Import/Export APIs"
+description: 
+author: scooley
+ms.author: scooley
 date:       2009-05-21 12:51:00
+ms.date: 05/21/2009
 categories: hyper-v
 ---
+# Hyper-V R2 Import/Export – Part 2 - The New Import/Export APIs
+
 To enable the new functionality of Import/Export we now have new ‘Ex’ versions of the Import/Export APIs along with settings data objects that allow the user to tweak the necessary parameters upon export or import:
 
 _Export:_
@@ -29,32 +35,33 @@ While I will not repeat the information in the MSDN documentation, there are som
 
 Here is a dump of the parameters from powershell:
     
-    
-    Caption                    : Virtual System Export Setting Data
-    
-    
-    CopySnapshotConfiguration  : 0
+```
+Caption                    : Virtual System Export Setting Data
     
     
-    CopyVmRuntimeInformation   : True
+CopySnapshotConfiguration  : 0
     
     
-    CopyVmStorage              : True
+CopyVmRuntimeInformation   : True
     
     
-    CreateVmExportSubdirectory : False
+CopyVmStorage              : True
     
     
-    Description                : Microsoft Virtual System Export Setting Data
+CreateVmExportSubdirectory : False
     
     
-    ElementName                : Microsoft Virtual System Export Setting Data
+Description                : Microsoft Virtual System Export Setting Data
     
     
-    InstanceID                 : Microsoft:4919C848-AA71-43B3-A1A5-988242D39FA2
+ElementName                : Microsoft Virtual System Export Setting Data
     
     
-    SnapshotVirtualSystem      :
+InstanceID                 : Microsoft:4919C848-AA71-43B3-A1A5-988242D39FA2
+    
+    
+SnapshotVirtualSystem      :
+```
 
  
 
@@ -70,65 +77,64 @@ Here is a dump of the parameters from powershell:
 
 Here is the dump of the parameters from powershell: 
     
-    
-    Caption                  : Virtual System Import Setting Data
-    
-    
-    CreateCopy               : True
+```
+Caption                  : Virtual System Import Setting Data
     
     
-    CurrentResourcePaths     : {C:\7088\blog.vhd}
+CreateCopy               : True
     
     
-    Description              : Microsoft Virtual System Import Setting Data
+CurrentResourcePaths     : {C:\7088\blog.vhd}
     
     
-    ElementName              : Microsoft Virtual System Import Setting Data
+Description              : Microsoft Virtual System Import Setting Data
     
     
-    GenerateNewId            : True
+ElementName              : Microsoft Virtual System Import Setting Data
     
     
-    InstanceID               : Microsoft:ADDB3F5B-17BF-4AB4-A21F-BF1EE41B0165
+GenerateNewId            : True
     
     
-    Name                     : blog
+InstanceID               : Microsoft:ADDB3F5B-17BF-4AB4-A21F-BF1EE41B0165
     
     
-    SecurityScope            :
+Name                     : blog
     
     
-    SourceNetworkConnections :
+SecurityScope            :
     
     
-    SourceResourcePaths      : {C:\blog_VM\runtime\Virtual Hard Disks\blog.vhd}
+SourceNetworkConnections :
     
     
-    SourceSnapshotDataRoot   :
+SourceResourcePaths      : {C:\blog_VM\runtime\Virtual Hard Disks\blog.vhd}
     
     
-    SourceVhdDataRoot        :
+SourceSnapshotDataRoot   :
     
     
-    SourceVmDataRoot         :
+SourceVhdDataRoot        :
     
     
-    TargetNetworkConnections :
+SourceVmDataRoot         :
     
     
-    TargetResourcePaths      :
+TargetNetworkConnections :
     
     
-    TargetSnapshotDataRoot   :
+TargetResourcePaths      :
     
     
-    TargetVhdDataRoot        :
+TargetSnapshotDataRoot   :
     
     
-    TargetVmDataRoot         :
+TargetVhdDataRoot        :
     
     
-     
+TargetVmDataRoot         :
+```
+  
 
 _Source vs. Target:_
 
