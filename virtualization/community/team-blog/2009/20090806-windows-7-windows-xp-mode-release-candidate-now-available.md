@@ -1,7 +1,7 @@
 ---
 title:      "Windows 7&#58; Windows XP Mode Release Candidate Now Available"
 description: Contains highlights of the WIndows XP Mode Release Candidate for Windows 7.
-author: mabriggs
+author: mattbriggs
 ms.author: mabrigg
 date:       2009-08-06 11:59:34
 ms.date: 08/06/2009

@@ -1,7 +1,7 @@
 ---
 title:      "Hypervisor Footprint Debate Part 2&#58; Windows Server 2008 Hyper-V & VMware ESX 3.5"
 description: Comparison, analysis, and debate of the Hypervisor disk footprint Part 2
-author: mabriggs
+author: mattbriggs
 ms.author: mabrigg
 date:       2009-08-14 12:26:30
 ms.date: 08/14/2009

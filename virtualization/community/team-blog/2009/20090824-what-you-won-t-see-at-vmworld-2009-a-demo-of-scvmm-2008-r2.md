@@ -1,7 +1,7 @@
 ---
 title:      "What you won't see at VMworld 2009 - a demo of SCVMM 2008 R2"
 description: VMworld 2009 announcement System Center Virtual Machine Manager (SCVMM) 2008 R2 will not be demonstrated.
-author: mabriggs
+author: mattbriggs
 ms.author: mabrigg
 date:       2009-08-24 20:32:00
 ms.date: 08/24/2009
