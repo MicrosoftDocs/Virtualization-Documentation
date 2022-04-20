@@ -2,10 +2,9 @@
 title: HcsWaitForComputeSystemExit
 description: HcsWaitForComputeSystemExit
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 12/21/2021
 api_name:
 - HcsWaitForComputeSystemExit
@@ -47,7 +46,7 @@ Time to wait in milliseconds for the compute system to exit.
 
 JSON document of [SystemExitStatus](./../SchemaReference.md#SystemExitStatus).
 
-The caller is responsible for releasing the returned string using [`LocalFree`](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-localfree).
+The caller is responsible for releasing the returned string using [`LocalFree`](/windows/win32/api/winbase/nf-winbase-localfree).
 
 ## Return Values
 

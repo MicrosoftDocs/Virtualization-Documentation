@@ -2,10 +2,9 @@
 title: HcsPauseComputeSystem
 description: HcsPauseComputeSystem
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - HcsPauseComputeSystem
@@ -50,7 +49,7 @@ Optional JSON document of [PauseOptions](./../SchemaReference.md#PauseOptions) s
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md), refer to hcs operation async model.
 
 If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md).
 

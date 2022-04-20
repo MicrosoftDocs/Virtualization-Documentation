@@ -2,10 +2,9 @@
 title: HcsModifyComputeSystem
 description: HcsModifyComputeSystem
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - HcsModifyComputeSystem
@@ -82,7 +81,7 @@ The [ModifySettingRequest](./../SchemaReference.md#ModifySettingRequest) JSON do
 |L"VirtualMachine/Devices/NetworkAdapters/`<Identifier`>"<br>`Identifier` is expected as uniq name to represent the network adapter|[NetworkAdapter](./../SchemaReference.md#CpuGroup)|No Limit|
 |L"VirtualMachine/Devices/Plan9/Shares"|[Plan9Share](./../SchemaReference.md#Plan9Share)|No Limit|
 |L"VirtualMachine/Devices/Scsi/`<Identifier>`/Attachments/`<UnsignedInt>`"<br>`Identifier` is expected as uniq name to represent the scsi device; `UnsignedInt` is expected as the unsigned int value to represent the lun of the disk|[Attachment](./../SchemaReference.md#Attachment)|No Limit<br>`Settings` is ignored when type is "Remove"|
-|L"VirtualMachine/Devices/ComPorts/`<UnsignedInt>`"<br>`UnsignedInt` is expected to represent the serial ID which is not larger than 1|[comPort](./../SchemaReference.md#comPort)|No Limit(check c_SerialResourceRegex???)|
+|L"VirtualMachine/Devices/ComPorts/`<UnsignedInt>`"<br>`UnsignedInt` is expected to represent the serial ID which is not larger than 1|[comPort](./../SchemaReference.md#ComPort)|No Limit(check c_SerialResourceRegex???)|
 |L"VirtualMachine/Devices/SharedMemory/Regions"|[SharedMemoryRegion](./../SchemaReference.md#SharedMemoryRegion)|No Limit|
 |L"VirtualMachine/Devices/VirtualPMem/Devices/`<UnsignedInt>`"<br>`UnsignedInt` is expected to represent the number identifier of the VPMEM device|[VirtualPMemDevice](./../SchemaReference.md#VirtualPMemDevice)|"Add" or "Remove"<br>`Settings` is ignored when type is "Remove"|
 |L"VirtualMachine/Devices/VirtualPMem/Devices/`<UnsignedInt>`/Mappings/`<UnsignedInt>`"<br>First `UnsignedInt` is expected to represent the number identifier of the VPMEM device; Second `UnsignedInt` is expected to represent the offset indicating which Mapping to modify|[VirtualPMemMapping](./../SchemaReference.md#VirtualPMemMapping)|"Add" or "Remove"<br>`Settings` is ignored when type is "Remove"|
