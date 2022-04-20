@@ -19,25 +19,26 @@ This blog post is the second in a series of three that walks through setting up 
 
 
     
-    
+```code
     # yum groupinstall "High Availability Management"
     # chkconfig luci on; service luci start
+```
 
   2. On all 5 nodes, install RHCS and make proper configuration change
 
 
     
-    
+```code
     # yum groupinstall "High Availability" "Resilient Storage"
     # chkconfig iptables off
     # chkconfig ip6tables off
     # chkconfig NetworkManager off
-    
+```
     
 
 Disable SeLinux by
     
-    
+```code
     edit /etc/selinux/config: SELINUX=disabled
     # setenforce 0
     # passwd ricci        _[this user/password is to login the web-based HA configuration tool luci]_
@@ -48,6 +49,7 @@ Disable SeLinux by
     # chkconfig rgmanager on; chkconfig modclusterd on
     # chkconfig gfs2 on
     # reboot               _[Can also choose to start the above daemons manually without reboot]_
+```
 
 After 1 and 2, we should reboot all the nodes to make things take effect. Or we need to manually start or shut down the above service daemons on every node.
 
@@ -57,13 +59,13 @@ Optionally, remove the “rhgb quiet” kernel parameters for every node, so you
 
  
   4. Create a 5-node cluster “my-cluster” [![image1](https://msdnshared.blob.core.windows.net/media/2016/02/image121.png)](https://msdnshared.blob.core.windows.net/media/2016/02/image121.png) [![image2](https://msdnshared.blob.core.windows.net/media/2016/02/image210.png)](https://msdnshared.blob.core.windows.net/media/2016/02/image210.png) [![image3](https://msdnshared.blob.core.windows.net/media/2016/02/image310.png)](https://msdnshared.blob.core.windows.net/media/2016/02/image310.png) We can confirm the cluster is created properly by checking the status of the service daemons and checking the cluster status (clustat): 
-    
+```code
         service modclusterd status
     service cman status
     service clvmd status
     service rgmanager status
     clustat
-    
+```
     
 
 e.g., when we run the commands in my-vm3, we get: [![image4](https://msdnshared.blob.core.windows.net/media/2016/02/image410.png)](https://msdnshared.blob.core.windows.net/media/2016/02/image410.png)
@@ -74,14 +76,17 @@ In our 5-node cluster, if more than 2 nodes fail, the whole cluster will stop wo
     * In my-vm1, use “fdisk /dev/sdc” to create a partition. Here we don’t run mkfs against it.
     * Run “mkqdisk -c /dev/sdc1 -l myqdisk” to initialize the qdisk partition and run “mkqdisk -L” to confirm it’s done successfully.
     * Use the web-based tool to configure the qdisk: [![image8](https://msdnshared.blob.core.windows.net/media/2016/02/image810.png)](https://msdnshared.blob.core.windows.net/media/2016/02/image810.png) Here a heuristics is defined to help to check the healthiness of every node. On every node, the ping command is run every 2 seconds. In (2*10 = 20) seconds, if 10 successful runs of ping aren’t achieved, the node itself thinks it has failed. As a consequence, it won’t vote, and it will be fenced, and the node will try to reboot itself. After we “apply” the configuration in the Web GUI, /etc/cluster/cluster.conf is updated with the new lines: 
-        
+
+```code
                 _< **cman expected_votes="9"** />
         __< quorumd label="myqdisk" min_score="1">
         __ <heuristic program="ping -c3 -t2 10.156.76.1" score="2" tko="10"/>
         __< /quorumd>_
+```
 
 And “ **clustat** ” and “ **cman_tool status** ” shows: 
-        
+
+```code
                 [root@my-vm1 ~]# **clustat** Cluster Status for my-cluster @ Thu Oct 29 14:11:16 2015
         
         Member Status: Quorate 
@@ -115,11 +120,13 @@ And “ **clustat** ” and “ **cman_tool status** ” shows:
         Node ID: 1
         Multicast addresses: 239.192.99.54
         Node addresses: 10.156.76.74
+```
 
 Note 1: “Expected vote”: The expected votes value is used by cman to determine if the cluster has quorum. The cluster is quorate if the sum of votes of existing members is over half of the expected votes value. Here we have n=5 nodes. RHCS automatically specifies the vote value of the qdisk is n-1 = 4 and the expected votes value is n + (n -1) = 2n – 1 = 9. In the case only 1 node is alive, the effective vote value is: 1 + (n-1) = n, which is larger than (2n-1)/2 = n -1 (in C language), so the cluster will continue to function. Note 2: In practice, “ _ping -c3 -t2 10.156.76.1_ ” wasn’t always reliable – sometimes the ping failed after a timeout of 19 seconds and the related node was rebooted unexpectedly. Maybe it’s due to the firewall rule of the gateway server 10.156.76.1. In this case, replace “ _10.156.76.1_ ” with “127.0.0.1” as a workaround. 
   7. Create a GFS2 file system in the shared storage /dev/sdb and test IO fencing 
     * Create a 30GB LVM partition with fdisk 
-        
+
+```code
                 _[root@my-vm1 ~]# **fdisk /dev/sdb**_ _Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel_ _Building a new DOS disklabel with disk identifier 0x73312800._ _Changes will remain in memory only, until you decide to write them._ _After that, of course, the previous content won't be recoverable._ __
         
                 _WARNING: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)_ __
@@ -151,19 +158,23 @@ Note 1: “Expected vote”: The expected votes value is used by cman to determi
                 _Calling ioctl() to re-read partition table._ _Syncing disks._
         
                 _[root@my-vm1 ~]#_ __
+```
 
 NOTE: the above fdisk command is run in node1. On nodes 2 through 4, we need to run “partprobe /dev/sdb” command to force the kernel to discover the new partition (another method is: we can simply reboot nodes 2 through 4).
     * Create physical & logical volumes, run mkfs.gfs2 and mount the file systemRun the following on node1:
-        
+
+```code
                 # pvcreate /dev/sdb1
         # vgcreate my-vg1 /dev/sdb1
         # lvcreate -L +20G -n my-store1 my-vg1
         # lvdisplay /dev/my-vg1/my-store1
         # 
         # mkfs.gfs2 -p lock_dlm -t **my-cluster** :storage -j5 /dev/mapper/my--vg1-my--store1
+```
 
 (Note: here “my-cluster” is the cluster name we used in Step 4.) Run the following on all the 5 notes: 
-        
+
+```code
                 # mkdir /mydata
         # echo '/dev/mapper/my--vg1-my--store1 /mydata  gfs2 defaults 0 0' >> /etc/fstab
         # mount /mydata
@@ -200,11 +211,12 @@ NOTE: the above fdisk command is run in node1. On nodes 2 through 4, we need to 
          PR generation=0x158, Reservation follows:
             Key=0x63d20005
         scope: LU_SCOPE,  type: Write Exclusive, registrants only
-        
+```
         
 
 Then pause node 5 using Hyper-V Manager, so node 5 will be considered dead. In a few seconds, node 1 prints the kernel messages: 
-        
+
+```code
                 dlm: closing connection to node5
         GFS2: fsid=my-cluster:storage.0: jid=4: Trying to acquire journal lock...
         GFS2: fsid=my-cluster:storage.0: jid=4: Looking at journal...
@@ -214,11 +226,12 @@ Then pause node 5 using Hyper-V Manager, so node 5 will be considered dead. In a
         GFS2: fsid=my-cluster:storage.0: jid=4: Found 1 revoke tags
         GFS2: fsid=my-cluster:storage.0: jid=4: Journal replayed in 1s
         GFS2: fsid=my-cluster:storage.0: jid=4: Done
-        
+```
         
 
 And nodes 2 through 4 print these messages: 
-        
+
+```code
                 dlm: closing connection to node5
         GFS2: fsid=my-cluster:storage.2: jid=4: Trying to acquire journal lock...
         GFS2: fsid=my-cluster:storage.2: jid=4: Busy, retrying...
@@ -229,6 +242,7 @@ And nodes 2 through 4 print these messages:
             0x63d20002
         [root@my-vm1 mydata]# sg_persist -i -r -d /dev/sdb
           Msft      Virtual Disk      1.0
+```
 
 Now on nodes 1 through 4, “clustat” shows node 5 is offline and “cman_tool status” shows the current “Total votes: 8”. And the sg_persist command show the current SCSI owner of /dev/sdb is changed from node 5 to node 1 and there are only 4 registered keys: 
 
