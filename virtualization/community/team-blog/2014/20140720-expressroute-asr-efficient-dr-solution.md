@@ -1,8 +1,14 @@
 ---
 title:      "ExpressRoute + ASR = Efficient DR solution"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 07/20/2014
 date:       2014-07-20 13:00:00
 categories: asr
+description: This article discusses the addition of ExpressRoute to Azure Site Recovery.
 ---
+# ExpressRoute + ASR = Efficient DR solution
+
 Microsoft recently announced the availability of Azure **ExpressRoute** which enabled our customers to create a private connection between their on-premises to Microsoft Azure. This ensured that the data to Azure used an alternate path to the internet where a connection to Azure could be established through an Exchange Provider or through a Network Service Provider. With ExpressRoute customers can connect in a private peering setup to both Azure Public Cloud Services as well as Private Virtual Networks. 
 
 This opened up a new set of scenarios which otherwise was gated on the network infrastructure (or lack of it) – key among them were continuous, replication scenarios such as Azure Site Recovery. At scale, when replicating 10’s-100’s of VMs to Azure using **Azure Site Recovery (ASR)** , you can quickly send TBs of data over ExpressRoute. 
@@ -21,7 +27,7 @@ The results were **fabulous** to say the least! High throughput was observed dur
 
 How high is “high throughput” - in a setup, where I had 3 replicating VMs, the below picture captures the network throughput when initial replication was in progress:  
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0015_thumb_1D797C9A.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0015_374B2218.jpg)
+[![Network throughput when initial replication was in progress](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0015_thumb_1D797C9A.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0015_374B2218.jpg)
 
 A whooping 1.5Gbps network upload speed to Azure – **go ExpressRoute, go!**
 
@@ -33,6 +39,6 @@ The “UploadThreadsPerVM” controls the number of threads which is used when r
 
 In summary, ASR combined with ExpressRoute provides a powerful, compelling, efficient disaster recovery scenario to Microsoft Azure. ExpressRoute removes traditional blockers in networking when sending massive amounts of data to Azure – disaster recovery being one such scenario. And ASR removes traditional blockers of providing an easy, cost effective DR solution to a public cloud infrastructure such as Microsoft Azure. 
 
-You can find more details on ASR @ <https://azure.microsoft.com/services/site-recovery/>. The documentation explaining the end to end workflows is available @ <https://azure.microsoft.com/documentation/articles/hyper-v-recovery-manager-azure/>. And if you have questions when using the product, post them @ <http://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr> or in this blog. 
+You can find more details on ASR @ <https://azure.microsoft.com/services/site-recovery/>. The documentation explaining the end to end workflows is available @ <https://azure.microsoft.com/documentation/articles/hyper-v-recovery-manager-azure/>. And if you have questions when using the product, post them @ <https://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr> or in this blog. 
 
-You can also share your feedback on your favorite features/gaps @ <http://feedback.azure.com/forums/256299-site-recovery>. As always, we love to hear from you!
+You can also share your feedback on your favorite features/gaps @ <https://feedback.azure.com/forums/256299-site-recovery>. As always, we love to hear from you!
