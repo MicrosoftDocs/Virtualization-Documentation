@@ -1,8 +1,14 @@
 ---
-title:      "Windows Insider Preview&#58; Nested Virtualization"
+title: Windows Insider Preview - Nested Virtualization
+description: Learn more about the upcoming build release that supports nested virtualization in a Hyper-V virtual machine.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-10-13 12:55:00
+ms.date: 10/13/2015
 categories: hyper-v
 ---
+# Windows Insider Preview - Nested Virtualization
+
 Earlier in the year, we announced that we will be building nested virtualization so that people could run [Hyper-V Containers ](/b/server-cloud/archive/2015/04/08/microsoft-announces-new-container-technologies-for-the-next-generation-cloud.aspx)in Hyper-V virtual machines. In preparation for the first public preview of Hyper-V Containers, we are releasing a preview of nested virtualization. This feature allows you to run Hyper-V in a virtual machine (note that this is Hyper-V on Hyper-V only… other hypervisors will fail). Although Hyper-V Containers have not been released yet, for now you can try out this feature with Hyper-V virtual machines. 
 
 ### Build 10565 -- It is a very early preview
