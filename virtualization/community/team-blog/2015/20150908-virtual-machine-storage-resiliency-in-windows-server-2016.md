@@ -25,7 +25,7 @@ Remember that when a VM is in a critical pause state, the VM is frozen and not a
 
 A VM will not stay in a critical pause state indefinitely, if storage access cannot be regained within the configurable timeout, the VM is then powered off and the next start will be a cold boot.
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/VM%20Storage%20Resiliency%20Workflow.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/VM%20Storage%20Resiliency%20Workflow.png)
+<!-- [![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/VM%20Storage%20Resiliency%20Workflow.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/VM%20Storage%20Resiliency%20Workflow.png) -->
 
 #### Configuration Options
 
@@ -35,12 +35,12 @@ This new functionality is an integrated part of Hyper-V and you do not need to d
 PowerShell syntax:   
 
 
-Set-VM -AutomaticCriticalErrorAction <None | Pause>
+`Set-VM -AutomaticCriticalErrorAction <None | Pause>`
 
   2. **Timeout** – The amount of time a VM remains in critical pause state before powering off can be configured on a per VM basis.  The default value is 30 minutes.  
 PowerShell syntax: 
 
-Set-VM –AutomaticCriticalErrorActionTimeout <value in minutes>
+`Set-VM –AutomaticCriticalErrorActionTimeout <value in minutes>`
 
 
 
@@ -49,7 +49,7 @@ Set-VM –AutomaticCriticalErrorActionTimeout <value in minutes>
 
 Shared VHDX is usually used where multiple VMs are sharing a storage space and form a guest cluster to provide high availability for applications running inside the VM. For a guest cluster there is resiliency at the application layer inside of the VM, so the preferred behavior is to have failover occur to another VM.  The new storage resiliency feature is aware and optimized to provide the best behavior for a Shared VHDX.  When a VM experiences a failure in reading and writing to its Shared VHDX than connection of the Shared VHDX is removed from the VM. This results in clustering within the VM to detect the storage failure and take recovery action.  Unlike a normal VM, a VM with a Shared VHDX does not go into critical pause state and the guest cluster moves its workload to another VM which is also part of the cluster and has access to shared VHDX. The VM which has lost connection to its Shared VHDX will poll it every 10 minutes to check if storage access has been restored. As soon as it gets access to it, the Shared VHDX is reattached to VM.
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Shared%20VHDX%20resiliency.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Shared%20VHDX%20resiliency.png)
+<!-- [![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Shared%20VHDX%20resiliency.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Shared%20VHDX%20resiliency.png) -->
 
 #### When can I use storage resiliency
 
