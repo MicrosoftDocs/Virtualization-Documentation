@@ -75,7 +75,7 @@ This test result was reproduced with the Dell M610 blades [and improved with Cit
 
 **Closing**
 
-Dynamic Memory can add significant density to all workloads. While today we have shown you how VDI benefits significantly from Dynamic Memory, shortly you will see case studies from us that show in various workloads customers can expect to see between 25% to 50% increases in density in production deployments. For further information on Dynamic Memory, Jeff Woolsey [has made some great comments on this already](http://blogs.technet.com/b/virtualization/archive/2010/04/07/dynamic-memory-coming-to-hyper-v-part-3.aspx), and just how much better its architecture is in comparison to the competition.
+Dynamic Memory can add significant density to all workloads. While today we have shown you how VDI benefits significantly from Dynamic Memory, shortly you will see case studies from us that show in various workloads customers can expect to see between 25% to 50% increases in density in production deployments. For further information on Dynamic Memory, Jeff Woolsey [has made some great comments on this already](https://blogs.technet.com/b/virtualization/archive/2010/04/07/dynamic-memory-coming-to-hyper-v-part-3.aspx), and just how much better its architecture is in comparison to the competition.
 
 Watch out for the whitepaper which we will also announce via this blog in the near future.
 
