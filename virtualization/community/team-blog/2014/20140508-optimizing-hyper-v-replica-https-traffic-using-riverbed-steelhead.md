@@ -11,7 +11,7 @@ description: This article discusses how to use Riverbed SteelHead to optimize Hy
 
 Hyper-V Replica support both Kerberos based authentication and certificate based authentication – the former sends the replication traffic between the two servers/sites over HTTP while the latter sends it over HTTPS. Network is a precious commodity and any optimization delivered has a huge impact on the organization’s TCO and the Recovery Point Objective (RPO). 
 
-Around a year back, we partnered with the folks from [Riverbed](https://www.riverbed.com/products-solutions/products/wan-optimization-steelhead/) in Microsoft’s EEC lab, to publish a [whitepaper](http://www.microsoft.com/en-us/download/details.aspx?id=36786) which detailed the bandwidth optimization of replication traffic sent over HTTP. 
+Around a year back, we partnered with the folks from [Riverbed](https://www.riverbed.com/products-solutions/products/wan-optimization-steelhead/) in Microsoft’s EEC lab, to publish a [whitepaper](https://www.microsoft.com/en-us/download/details.aspx?id=36786) which detailed the bandwidth optimization of replication traffic sent over HTTP. 
 
 A few months back, we decided to revisit the setup with the latest release of RiOS (Riverbed OS which runs in the Riverbed appliance). Using the resources and appliances from EEC and Riverbed, a set of experiments were performed to study the network optimizations delivered by the Riverbed SteelHead appliance. Optimizing SSL traffic has been a tough nut to crack and we saw some really impressive numbers.  The whitepaper documenting the results and technology is available here - [**http://www.microsoft.com/en-us/download/details.aspx?id=42627**](https://www.microsoft.com/en-us/download/details.aspx?id=42627) **.**
 
