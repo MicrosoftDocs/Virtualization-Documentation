@@ -22,7 +22,7 @@ Makecert is a certificate creation tool which generates certificates for testing
 3\. Run the following command couple of times, from an elevated command prompt to create new certificate(s) signed by the test root authority certificate
     
     
-makecert -pe -n "CN=<FQDN>" -ss my -sr LocalMachine -sky exchange -eku 1.3.6.1.5.5.7.3.1,1.3.6.1.5.5.7.3.2 -in "MyTestRootCA" -is root -ir LocalMachine -sp "Microsoft RSA SChannel Cryptographic Provider" -sy 12 <MachineName>.cer 
+makecert -pe -n "CN=\<FQDN\>" -ss my -sr LocalMachine -sky exchange -eku 1.3.6.1.5.5.7.3.1,1.3.6.1.5.5.7.3.2 -in "MyTestRootCA" -is root -ir LocalMachine -sp "Microsoft RSA SChannel Cryptographic Provider" -sy 12 \<MachineName\>.cer 
 
 Each time:
 

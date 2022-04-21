@@ -100,184 +100,182 @@ In this example, HosterGW has two NICs one connected to “Internet” (131.107.
     # Rename the NIC connected to internal network  as  “WnvNIC” and run the following cmdlets
     
     
-    $WnvNIC   = "WnvNIC"
+ $WnvNIC   = "WnvNIC"
     
     
-    $WnvDRV   = "ms_netwnv"
-    
-    
-     
-    
-    
-    Disable-NetAdapterBinding $WnvNIC -ComponentID $WnvDRV
-    
-    
-    Enable-NetAdapterBinding  $WnvNIC -ComponentID $WnvDRV
+$WnvDRV   = "ms_netwnv"
     
     
      
     
     
-    # Run the following cmdlets to enable Contoso virtual network
+Disable-NetAdapterBinding $WnvNIC -ComponentID $WnvDRV
+    
+    
+Enable-NetAdapterBinding  $WnvNIC -ComponentID $WnvDRV
     
     
      
     
     
-    # ContosoCloudGW 10.6.0.2
-    
-    
-    New-NetVirtualizationLookupRecord -CustomerAddress "10.6.0.2"        -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "ContosoCloudGW-v4"
-    
-    
-    New-NetVirtualizationLookupRecord -CustomerAddress "0.0.0.0"         -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "wildcard v4"
-    
-    
-    New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:ba::2"  -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "ContosoCloudGW-v6"
-    
-    
-    New-NetVirtualizationLookupRecord -CustomerAddress "::"              -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "wildcard v6"
+# Run the following cmdlets to enable Contoso virtual network
     
     
      
     
     
-    #ContosoCloudDAServer
+# ContosoCloudGW 10.6.0.2
     
     
-    New-NetVirtualizationLookupRecord -CustomerAddress "10.6.0.6"        -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059701" -Rule "TranslationMethodEncap" -VMName "ContosoCloudDAServer-v4"
+New-NetVirtualizationLookupRecord -CustomerAddress "10.6.0.2"        -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "ContosoCloudGW-v4"
     
     
-    New-NetVirtualizationLookupRecord -CustomerAddress "0.0.0.0"         -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059701" -Rule "TranslationMethodEncap" -VMName "wildcard v4"
+New-NetVirtualizationLookupRecord -CustomerAddress "0.0.0.0"         -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "wildcard v4"
     
     
-    New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:ba::6"  -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059701" -Rule "TranslationMethodEncap" -VMName "ContosoCloudDAServer-v6"
+New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:ba::2"  -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "ContosoCloudGW-v6"
     
     
-    New-NetVirtualizationLookupRecord -CustomerAddress "::"              -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059701" -Rule "TranslationMethodEncap" -VMName "wildcard v6"
-    
-    
-     
-    
-    
-    #ContosoCloudDC
-    
-    
-    New-NetVirtualizationLookupRecord -CustomerAddress "10.6.0.3"        -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059700" -Rule "TranslationMethodEncap" -VMName "ContosoCloudDC-v4"
-    
-    
-    New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:ba::3"  -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059700" -Rule "TranslationMethodEncap" -VMName "ContosoCloudDC-v6"
+New-NetVirtualizationLookupRecord -CustomerAddress "::"              -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "wildcard v6"
     
     
      
     
     
-    #Customer Routes for VSID 5001
+#ContosoCloudDAServer
     
     
-    New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "10.6.0.0/24" -NextHop "0.0.0.0"  -Metric 255 
+New-NetVirtualizationLookupRecord -CustomerAddress "10.6.0.6"        -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059701" -Rule "TranslationMethodEncap" -VMName "ContosoCloudDAServer-v4"
     
     
-    New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "0.0.0.0/0"   -NextHop "10.6.0.2" -Metric 255 
+New-NetVirtualizationLookupRecord -CustomerAddress "0.0.0.0"         -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059701" -Rule "TranslationMethodEncap" -VMName "wildcard v4"
     
     
-    #New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "10.0.0.0/24" -NextHop "10.6.0.2" -Metric 255 
+New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:ba::6"  -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059701" -Rule "TranslationMethodEncap" -VMName "ContosoCloudDAServer-v6"
     
     
-    #New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "10.2.0.0/24" -NextHop "10.6.0.2" -Metric 255 
-    
-    
-     
-    
-    
-    New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "2001:db8:ba::/48" -NextHop "::"  -Metric 255 
-    
-    
-    New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "2001:db8:dc::/48" -NextHop "2001:db8:ba::2" -Metric 255 
-    
-    
-    New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "2001:db8:fa::/48" -NextHop "2001:db8:ba::2" -Metric 255 
-    
-    
-    New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "2001:db8:ba:1000::/64" -NextHop "2001:db8:ba::6"  -Metric 255 
+New-NetVirtualizationLookupRecord -CustomerAddress "::"              -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059701" -Rule "TranslationMethodEncap" -VMName "wildcard v6"
     
     
      
     
     
-    #App1
+#ContosoCloudDC
     
     
-    New-NetVirtualizationLookupRecord -CustomerAddress "10.0.0.80"       -ProviderAddress "192.168.1.111" -VirtualSubnetID "5002" -MACAddress "00155db1c505" -Rule "TranslationMethodEncap" -VMName "APP1-v4"
+New-NetVirtualizationLookupRecord -CustomerAddress "10.6.0.3"        -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059700" -Rule "TranslationMethodEncap" -VMName "ContosoCloudDC-v4"
     
     
-    New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:dc::80" -ProviderAddress "192.168.1.111" -VirtualSubnetID "5002" -MACAddress "00155db1c505" -Rule "TranslationMethodEncap" -VMName "APP1-v6"  
+New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:ba::3"  -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059700" -Rule "TranslationMethodEncap" -VMName "ContosoCloudDC-v6"
     
     
      
     
     
-    *Replace the MAC addrersses  if required
+#Customer Routes for VSID 5001
+    
+    
+New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "10.6.0.0/24" -NextHop "0.0.0.0"  -Metric 255 
+    
+    
+New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "0.0.0.0/0"   -NextHop "10.6.0.2" -Metric 255 
+    
+    
+#New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "10.0.0.0/24" -NextHop "10.6.0.2" -Metric 255 
+    
+    
+#New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "10.2.0.0/24" -NextHop "10.6.0.2" -Metric 255 
+    
+    
+   
+    
+    
+New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "2001:db8:ba::/48" -NextHop "::"  -Metric 255 
+    
+    
+New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "2001:db8:dc::/48" -NextHop "2001:db8:ba::2" -Metric 255 
+    
+    
+New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "2001:db8:fa::/48" -NextHop "2001:db8:ba::2" -Metric 255 
+    
+New-NetVirtualizationCustomerRoute -RoutingDomainID "{11111111-2222-3333-4444-000000005001}" -VirtualSubnetID "5001" -DestinationPrefix "2001:db8:ba:1000::/64" -NextHop "2001:db8:ba::6"  -Metric 255 
+    
+    
+  
+    
+    
+#App1
+    
+    
+New-NetVirtualizationLookupRecord -CustomerAddress "10.0.0.80"       -ProviderAddress "192.168.1.111" -VirtualSubnetID "5002" -MACAddress "00155db1c505" -Rule "TranslationMethodEncap" -VMName "APP1-v4"
+    
+    
+New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:dc::80" -ProviderAddress "192.168.1.111" -VirtualSubnetID "5002" -MACAddress "00155db1c505" -Rule "TranslationMethodEncap" -VMName "APP1-v6"  
+    
+    
+   
+    
+    
+*Replace the MAC addrersses  if required
 
 On the HosterGW, run the following cmdlets:
     
     
-    $iface = Get-NetAdapter $WnvNIC
+$iface = Get-NetAdapter $WnvNIC
     
-    
-    New-NetVirtualizationProviderAddress -InterfaceIndex $iface.InterfaceIndex -ProviderAddress "192.168.1.101" -PrefixLength 24 
+New-NetVirtualizationProviderAddress -InterfaceIndex $iface.InterfaceIndex -ProviderAddress "192.168.1.101" -PrefixLength 24 
     
     
      
     
     
-    # Make sure the adapter name is correct  Rename-VMNetworkAdapter -vmname ContosoCloudGW -Name "Network Adapter" -NewName "Wnv-CA-NIC"
+#Make sure the adapter name is correct  Rename-VMNetworkAdapter -vmname ContosoCloudGW -Name "Network Adapter" -NewName "Wnv-CA-NIC"
     
     
-    Set-VMNetworkAdapter "ContosoCloudGW"   -Name "Wnv-CA-NIC" -VirtualSubnetID 5001;
+Set-VMNetworkAdapter "ContosoCloudGW"   -Name "Wnv-CA-NIC" -VirtualSubnetID 5001;
     
     
-    Get-VMNetworkAdapter "ContosoCloudGW" | where {$_.MacAddress -eq "808080808002"} | Set-VMNetworkAdapter -VirtualSubnetID 5002 
+ Get-VMNetworkAdapter "ContosoCloudGW" | where {$_.MacAddress -eq "808080808002"} | Set-VMNetworkAdapter -VirtualSubnetID 5002 
 
  
 
 On HosterR1, run the following cmdlets:
     
     
-    $iface = Get-NetAdapter $WnvNIC 
+$iface = Get-NetAdapter $WnvNIC 
     
     
-    New-NetVirtualizationProviderAddress -InterfaceIndex $iface.InterfaceIndex -ProviderAddress "192.168.1.111" -PrefixLength 24 
+New-NetVirtualizationProviderAddress -InterfaceIndex $iface.InterfaceIndex -ProviderAddress "192.168.1.111" -PrefixLength 24 
     
     
-    New-NetVirtualizationProviderRoute -InterfaceIndex $iface.ifIndex -DestinationPrefix "0.0.0.0/0" -NextHop "192.168.1.101"
-    
-    
-     
-    
-    
-    # Make sure the adapter name is correct 
-    
-    
-    Rename-VMNetworkAdapter -vmname ContosoCloudDAServer -Name "Network Adapter" -NewName "Wnv-CA-NIC"
-    
-    
-    Set-VMNetworkAdapter "ContosoCloudDAServer" -Name "Wnv-CA-NIC" -VirtualSubnetID 5001;
+New-NetVirtualizationProviderRoute -InterfaceIndex $iface.ifIndex -DestinationPrefix "0.0.0.0/0" -NextHop "192.168.1.101"
     
     
      
     
     
-    # Make sure the adapter name is correct 
+#Make sure the adapter name is correct 
     
     
-    Rename-VMNetworkAdapter -vmname 3-APP1 -Name "WnvNic" -NewName "Wnv-CA-NIC"
+Rename-VMNetworkAdapter -vmname ContosoCloudDAServer -Name "Network Adapter" -NewName "Wnv-CA-NIC"
     
     
-    Get-VMNetworkAdapter "ContosoCloudDC" | where {$_.MacAddress -eq "00155d059700"} | Set-VMNetworkAdapter -VirtualSubnetID 5001
+Set-VMNetworkAdapter "ContosoCloudDAServer" -Name "Wnv-CA-NIC" -VirtualSubnetID 5001;
     
     
-    Set-VMNetworkAdapter App1 -Name "Private Corpnet" -VirtualSubnetID 5002 –Passthru
+     
+    
+    
+#Make sure the adapter name is correct 
+    
+    
+Rename-VMNetworkAdapter -vmname 3-APP1 -Name "WnvNic" -NewName "Wnv-CA-NIC"
+    
+    
+Get-VMNetworkAdapter "ContosoCloudDC" | where {$_.MacAddress -eq "00155d059700"} | Set-VMNetworkAdapter -VirtualSubnetID 5001
+    
+    
+Set-VMNetworkAdapter App1 -Name "Private Corpnet" -VirtualSubnetID 5002 –Passthru
 
 **Step 2b: Connect Contoso VMs back to their on-prem network.**
 
