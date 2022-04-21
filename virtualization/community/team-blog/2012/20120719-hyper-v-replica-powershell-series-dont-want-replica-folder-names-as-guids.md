@@ -258,8 +258,9 @@ Function Enable-VMReplicationCustomStorageOneLocationUsingCertificate
 
 Once you run this script on you primary cluster, you will get a function that can then be used to enable replication to get the desired folder structure on the Replica cluster. Here is an example usage for this script:
     
-    
-    Enable-VMReplicationCustomStorageOneLocationUsingCertificate -VMName MyVM -PrimaryCluster MySeattleCluster -ReplicaCluster MyLondonCluster -AllowedPrimaryServer MySeattleBroker.contoso.com
+```markdown
+Enable-VMReplicationCustomStorageOneLocationUsingCertificate -VMName MyVM -PrimaryCluster MySeattleCluster -ReplicaCluster MyLondonCluster -AllowedPrimaryServer MySeattleBroker.contoso.com
+```
 
 Here **MySeattleCluster** is the name of the primary cluster, **MyLondonCluster** is the name of the replica cluster, and **MyLondonCluster** authorizes **MySeattleCluster** to replicate by an authorization entry where **AllowedPrimaryServer** value is **MySeattleBroker.contoso.com**
 

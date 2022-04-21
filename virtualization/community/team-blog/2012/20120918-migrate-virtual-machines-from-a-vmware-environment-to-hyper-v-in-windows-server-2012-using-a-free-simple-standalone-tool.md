@@ -13,7 +13,7 @@ Windows Server 2012 is generally available for evaluation and purchase by all cu
   
 Click on the links provided below to download MVMC and the MVMC Plug-In for vSphere Client 
 
-  * [MVMC Standalone solution (Production Release)](http://go.microsoft.com/fwlink/?LinkID=247805)
+  * [MVMC Standalone solution (Production Release)](https://go.microsoft.com/fwlink/?LinkID=247805)
   * [MVMC Plug-In for VMware vSphere Client Beta](https://connect.microsoft.com/site14/InvitationUse.aspx?ProgramID=7594&InvitationID=MVMC-PK9Q-BR47)
 
 In case you haven’t had a chance to evaluate the pre-release versions of these tools, MVMC provides a Microsoft-supported, freely available, standalone solution and a VMware console plugin solution. In each case, it converts VMware virtual machines (VMs) and VMware virtual disks (VMDKs) to Hyper-V virtual machines and Hyper-V virtual hard disks (VHDs). The virtual machine conversion capability can be invoked through a graphical user interface (GUI) or a command- line interface. The wizard-driven GUI has all of 5 simple screens where user input is required and you are ready to convert a virtual machine from vSphere to Hyper-V. It doesn’t get more simple than that!   
