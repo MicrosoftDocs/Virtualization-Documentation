@@ -81,16 +81,21 @@ Below is a table from VMware detailing the new memory entitlements with _[vSpher
 
 ##### _(vSphere 5 2.0 Licensing)_  
  
+
+
 Table 
+Name|Size|Size
 ---|---|---  
 **vSphere Enterprise+** |  48 GB | 96 GB  
 **vSphere Enterprise** |  32 GB | 64 GB  
 **vSphere Standard** |  24 GB | 32 GB  
 **vSphere Essentials+** |  24 GB | 32 GB  
 **vSphere Essentials** |  24 GB | 32 GB  
-**Free vSphere Hypervisor** |  8 GB | 32 GB[[ii]](http://blogs.vmware.com/rethinkit/2011/08/changes-to-the-vram-licensing-model-introduced-on-july-12-2011.html#_edn2)  
+**Free vSphere Hypervisor** |  8 GB | 32 GB[ii]  
 **vSphere Desktop** |  Unlimited | Unlimited  
-  
+
+
+ 
 [[ii]](http://blogs.vmware.com/rethinkit/2011/08/changes-to-the-vram-licensing-model-introduced-on-july-12-2011.html#_ednref2) this limit is GB of physical RAM per physical server
 
 While an improvement, the memory entitlements are still a tax on memory. In addition, VMware fails to recognize or even acknowledge that, from a memory standpoint, vSphere 5 is a **_downgrade_** _._ No matter how hard VMware tries to spin this change, folks see right through this.
