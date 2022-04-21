@@ -4,6 +4,7 @@ description: This post is designed to bring some of the  energy and excitement o
 author: scooley
 ms.author: scooley
 date:       2010-09-01 10:34:08
+ms.date: 09/01/2010
 categories: net
 ---
 # Items of interest from VMworld 2010

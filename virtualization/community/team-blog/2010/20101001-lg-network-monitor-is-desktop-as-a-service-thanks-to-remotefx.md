@@ -1,13 +1,19 @@
 ---
 title:      "LG Network Monitor is desktop as a service thanks to RemoteFX"
+description: LG and Microsoft team up to introduce monitors for cloud computing, a technology that allows users to access data and software over the Internet.
+author: scooley
+ms.author: scooley
 date:       2010-10-01 17:08:14
+ms.date: 10/01/2010
 categories: calista-technologies
 ---
+# LG Network Monitor is desktop as a service thanks to RemoteFX
+
 We all love the innovation enabled by virtualization, and the new options of computing form factors is even more interesting (to me). Yesterday saw something cool from LG, the electronics giant who helps me watch hockey, football and MadMen in HD. Allesandro wrote about it yesterday [[here](http://virtualization.info/en/news/2010/09/microsoft-and-lg-partner-on-vdi-desktop-as-a-service-cloud-computing.html)]. [News coverage](http://www.reuters.com/article/idUSTOE68T03K20100930?type=marketsNews) provided some context for the development work: 
 
 LG and Microsoft will also team up to introduce monitors for cloud computing, a technology that allows users to access data and software over the Internet. The cloud computing market is expected to expand to 12 million units in 2012, LG said.
 
-The alliance will primarily target the market for virtualization solutions for educational institutions, aiming to become a leader in the segment with a 25 percent share in 2012. The segment is expected to grow by more than 50 percent every year, reaching 6 million units in 2012 and 20 million units in 2015, LG said More technical meat was provided today by Max over at the [Remote Desktop Services team blog](http://blogs.msdn.com/b/rds/archive/2010/10/01/the-lg-network-monitor-a-fantastic-addition-to-the-growing-list-of-remotefx-enabled-devices.aspx "RDS team blog"). Here are some excerpts:
+The alliance will primarily target the market for virtualization solutions for educational institutions, aiming to become a leader in the segment with a 25 percent share in 2012. The segment is expected to grow by more than 50 percent every year, reaching 6 million units in 2012 and 20 million units in 2015, LG said More technical meat was provided today by Max over at the [Remote Desktop Services team blog](https://blogs.msdn.com/b/rds/archive/2010/10/01/the-lg-network-monitor-a-fantastic-addition-to-the-growing-list-of-remotefx-enabled-devices.aspx "RDS team blog"). Here are some excerpts:
 
 Yesterday, [LG and Microsoft announced an agreement](http://www.reuters.com/article/idUSTRE68T15U20100930?type=technologyNews)  to collaborate on the development and marketing of the LG Network Monitor, a multi-user computing solution that will integrate with RemoteFX. Under the agreement, LG will introduce a new line of network monitors with RemoteFX in mid-2011.
 
