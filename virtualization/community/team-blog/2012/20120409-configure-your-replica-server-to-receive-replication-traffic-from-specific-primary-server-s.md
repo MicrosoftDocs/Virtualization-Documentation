@@ -67,7 +67,7 @@ How is this useful? Hyper-V Replica allows replication to continue seamlessly wh
 
 For the Replica server to allow replication traffic for a Replica virtual machine from a set of primary servers (the servers amongst which the primary virtual machine can move), those set of primary servers should be grouped into the same trust zone i,e the same security tag. 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0640.image003.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0640.image003.jpg)
+[![Grouped into the same trust zone](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0640.image003.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0640.image003.jpg)
 
 The security tag can be used for another scenario - in the above picture, servers in **“ Trust Zone 2”** (say, security tag "TZ-2") will be able to send replication traffic for Replica virtual machines that were created by any of the servers in that trust zone. A server in **“ Trust Zone 2”** will **not** be able to send replication traffic for a Replica virtual machine that was created by a server in **“ Trust Zone 1”** (say, security tag "TZ-1"). This will ensure that in case a server from trust zone 2 gets compromised, the attacker cannot use replication to tamper the Replica virtual machine belonging to **“ Trust Zone 1”**.
 
