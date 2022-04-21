@@ -1,9 +1,15 @@
 ---
 title:      "Replication Health-Windows Server 2012 R2"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 05/05/2014
 date:       2014-05-05 09:00:36
 categories: uncategorized
+description: This article addresses the changes made to Replication Health displays in Windows Server 2012 R2.
 ---
-We have made improvements to the way we display Replication Health in Windows Server 2012 R2 to support Extend Replication. If you are new to measuring replication health, I would strongly suggest you to go through this [two part blog series on Interpreting Replication Health](http://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx). I would discuss specifically on the additional changes we made in Windows Server 2012 R2.
+# Changes in Replication Health
+
+We have made improvements to the way we display Replication Health in Windows Server 2012 R2 to support Extend Replication. If you are new to measuring replication health, I would strongly suggest you to go through this [two part blog series on Interpreting Replication Health](https://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx). I would discuss specifically on the additional changes we made in Windows Server 2012 R2.
 
 #### Replication Tab in Replica Site Hyper-V Manager:
 
@@ -25,6 +31,6 @@ Replication health information about primary replication relationship is shown i
 
 I can get Replication Health details of Extended Replication through Powershell by setting “ **ReplicationRelationshipType** ” **** parameter to “ **Extended** ”. To view the health of Replication from primary to replica, use the value of “ **Simple** ” as input to ReplicationRelationshipType parameter.
 
-_Measure-VMReplication –VMName <name> -ReplicationRelationshipType Extended_
+_Measure-VMReplication –VMName `<name>` -ReplicationRelationshipType Extended_
 
 While we have added support to display extended replication in our UI/PS, getting details about primary replication relationship remain same ![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/wlEmoticon-smile_300DF6C6.png)

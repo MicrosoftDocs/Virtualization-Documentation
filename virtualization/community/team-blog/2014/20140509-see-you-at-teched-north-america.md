@@ -1,8 +1,14 @@
 ---
 title:      "See you at TechEd North America!"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 05/09/2014
 date:       2014-05-09 14:50:50
 categories: uncategorized
+description: This article provides details about TechEd North America 2014.
 ---
+# TechEd 2014
+
 Here's a quick intro to the Hyper-V people attending TechEd North America in Houston next week.  I'm also posting booth times for each of us.
 
 The booth's official name is: Datacenter & Infrastructure Management: Cloud & Datacenter Infrastructure Solutions
@@ -75,7 +81,7 @@ Again, feel free to stop by and talk to us. Looking forward to seeing you at Tec
 
  
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/HyperVatTechEd.JPG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/HyperVatTechEd.JPG)  
+[![TechEd team](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/HyperVatTechEd.JPG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/HyperVatTechEd.JPG)  
 
 
 [From left to right: Taylor, Sam, Ben, Sarah, Jeff, Patrick]
