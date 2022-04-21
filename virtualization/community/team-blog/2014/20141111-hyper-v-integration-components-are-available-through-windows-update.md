@@ -1,8 +1,14 @@
 ---
-title:      "Hyper-V integration components are available through Windows Update"
+title:      Hyper-V integration components are available through Windows Update
+description: Learn about how the Hyper-V integration components will be delivered directly to virtual machines in a Windows update.
+author: mattbriggs
+ms.author: mabrigg
 date:       2014-11-11 02:00:00
+ms.date: 11/11/2014
 categories: hyper-v
 ---
+# Hyper-V integration components are available through Windows Update
+
 Starting in Windows Technical Preview, Hyper-V integration components will be delivered directly to virtual machines using Windows Update.
 
 Integration components (also called integration services) are the set of synthetic drivers which allow a virtual machine to communicate with the host operating system.  They control services ranging from time sync to guest file copy.  We've been talking to customers about integration component installation and update over the past year to discover that they are a huge pain point during the upgrade process.
