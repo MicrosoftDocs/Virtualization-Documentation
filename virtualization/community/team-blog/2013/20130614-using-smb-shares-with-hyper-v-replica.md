@@ -55,7 +55,7 @@ For all practical purposes this is like the single Replica server scenario discu
 #### The building blocks
 
   * A failover cluster ( _AAR-130612_ ) on the Replica site having the _.contoso.com_ domain. This consists of two servers ( _aashish-s1_ , _aashish-s2_ ), and a Replica Broker ( _AARBrk-130612_ ). The broker can be present on either node, but in this example we will assume that it resides on _aashish-s2_. 
-  * A single server ( _aashish-server3.contoso.com_ ) hosting an SMB share [\\\aashish-server3\Replica-Site](file://aashish-server3/Replica-Site) that will be used to store the Replica VMs.
+  * A single server ( _aashish-server3.contoso.com_ ) hosting an SMB share <!--[\\\aashish-server3\Replica-Site]--> that will be used to store the Replica VMs.
   * A single remote management server ( _mgmtnode.contoso.com_ )
 
 
