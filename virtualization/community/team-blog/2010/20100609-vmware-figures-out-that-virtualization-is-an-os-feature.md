@@ -1,6 +1,6 @@
 ---
 title:      "VMWare figures out that virtualization is an OS feature"
-description: 
+description: Every now and again, we like to use this forum to provide commentary and context on happenings in the industry.
 author: scooley
 ms.author: scooley
 date:       2010-06-09 11:21:00

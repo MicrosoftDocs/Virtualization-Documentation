@@ -1,6 +1,6 @@
 ---
 title:      "Repost&#58; Resellers and SIs check out our virtualization partner profitability toolkit"
-description: 
+description: Microsoft channel partners who read this blog will want to check out our new virtualization partner profitability toolkit.
 author: scooley
 ms.author: scooley
 date:       2010-05-25 19:33:00

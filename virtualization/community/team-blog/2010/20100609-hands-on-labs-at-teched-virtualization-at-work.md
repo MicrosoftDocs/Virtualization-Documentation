@@ -9,7 +9,7 @@ categories: community
 ---
 # Hands-On-Labs at TechEd, Virtualization at work
 
-One of the fun parts of being in a team that develops Hyper-V is seeing it in action. Here at TechEd 2010 in New Orleans, Hyper-V and the [System Center Suite](http://www.microsoft.com/systemcenter/en/us/default.aspx) are running the Hands-On-Lab infrastructure. Powering the labs for the 11,000 people here at TechEd are 25 x HP380G6’s. The detailed specs of each server is
+One of the fun parts of being in a team that develops Hyper-V is seeing it in action. Here at TechEd 2010 in New Orleans, Hyper-V and the [System Center Suite](https://www.microsoft.com/systemcenter/en/us/default.aspx) are running the Hands-On-Lab infrastructure. Powering the labs for the 11,000 people here at TechEd are 25 x HP380G6’s. The detailed specs of each server is
 
 ·        [HP DL 380G6](http://h10010.www1.hp.com/wwpc/us/en/sm/WF05a/15351-15351-3328412-241644-241475-3884082.html)
 
@@ -25,11 +25,11 @@ The infrastructure workloads, all running virtual machines, includes [SQL Server
 
 I’d encourage folks who are here at TechEd to stop by this mini datacenter in Ballroom C and chat with folks there to get more details on the setup. Below are a few pictures of the setup. Enjoy!!
 
-![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6622.IMG_0391.JPG)
+<!--- ![Setup for the mini datacenter in Ballroom C](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6622.IMG_0391.JPG) --->
 
 That's all it takes these days:). 
 
-![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0333.IMG_0380.JPG)
+<!--- ![Setup for the mini datacenter in Ballroom C, part 2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0333.IMG_0380.JPG) --->
 
 System Center Operations Manager, reporting at work
 
