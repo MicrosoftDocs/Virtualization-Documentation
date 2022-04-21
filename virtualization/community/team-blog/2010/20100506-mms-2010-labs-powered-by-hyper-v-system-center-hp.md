@@ -15,13 +15,13 @@ Virtualization Nation,
 
 We just wrapped up Microsoft Management Summit 2010 (MMS) in Las Vegas. MMS is the premier event of the year for deep technical information and training on the latest IT Management solutions from Microsoft, Partners, and Industry Experts. MMS 2010 was a huge success from a number of standpoints. Starting with sold out attendance (and attendance was way up from last year), compelling keynotes from Bob Muglia and Brad Anderson to the release of new products including:
 
-  * [System Center Essentials 2010](http://www.microsoft.com/systemcenter/en/us/service-manager.aspx)
-  * [System Center Data Protection Manager 2010](http://www.microsoft.com/systemcenter/en/us/data-protection-manager.aspx)
-  * [System Center Service Manager 2010](http://www.microsoft.com/systemcenter/en/us/service-manager.aspx)
+* [System Center Essentials 2010](https://www.microsoft.com/systemcenter/en/us/service-manager.aspx)
+* [System Center Data Protection Manager 2010](https://www.microsoft.com/systemcenter/en/us/data-protection-manager.aspx)
+* [System Center Service Manager 2010](https://www.microsoft.com/systemcenter/en/us/service-manager.aspx)
 
 
 
-...there was something for everyone. Furthermore, many folks were very pleased to learn that [Opalis](http://www.microsoft.com/systemcenter/en/us/opalis.aspx) (our datacenter orchestration and automation platform) was joining the System Center family. Why is this a big deal? Well, for our customers who have purchased the System Center Datacenter Suite license it means that Opalis is now **_included in the System Center Suite._** That's customer focus. You can find out more about [Opalis here](http://www.microsoft.com/systemcenter/en/us/opalis.aspx).
+...there was something for everyone. Furthermore, many folks were very pleased to learn that [Opalis](https://www.microsoft.com/systemcenter/en/us/opalis.aspx) (our datacenter orchestration and automation platform) was joining the System Center family. Why is this a big deal? Well, for our customers who have purchased the System Center Datacenter Suite license it means that Opalis is now **_included in the System Center Suite._** That's customer focus. You can find out more about [Opalis here](https://www.microsoft.com/systemcenter/en/us/opalis.aspx).
 
 There was a lot to experience at MMS, but I'd like to focus on something you may or may not have heard about...
 
@@ -29,10 +29,10 @@ There was a lot to experience at MMS, but I'd like to focus on something you may
 
 One of the most popular activities at MMS are the MMS Labs. The MMS Labs are very busy and constantly booked. These advanced, usually multi-server, labs are created and configured to walk IT professionals through a variety of tasks such as:
 
-  * Introducing new products (Service Manager Labs were very popular this year) 
-  * Exploring new product features 
-  * Advanced topics, automation, best practices, tips and tricks 
-  * and much more...
+* Introducing new products (Service Manager Labs were very popular this year) 
+* Exploring new product features 
+* Advanced topics, automation, best practices, tips and tricks 
+* and much more...
 
 
 
@@ -60,17 +60,17 @@ So, what were these racks filled with?
 
 **Servers**. All servers were configured identically as follows: 
 
-  * 41 HP Proliant DL380G6 servers (Dual socket, quad-core, Nehalem Processors with SMT, 16 LPs per system) each configured with 128 GB of memory and 4 300 GB SAS drive of local storage striped (no SANs were used), These servers were simply incredible. Performance, expandability, performance. 
-  * All networking was 1 Gb/E switched (no 10 Gb/E) and demonstrates the efficiency of Remote Desktop Protocol (RDP). Even with hundreds of labs going on simultaneously, network bandwidth was never an issue on 1 Gb/E 
-  * Windows Server 2008 R2 Hyper-V and System Center 
-  * Virtual machines were configured on average with 3-4 GB of memory each and the majority of labs used multiple VMs per lab.
+* 41 HP Proliant DL380G6 servers (Dual socket, quad-core, Nehalem Processors with SMT, 16 LPs per system) each configured with 128 GB of memory and 4 300 GB SAS drive of local storage striped (no SANs were used), These servers were simply incredible. Performance, expandability, performance. 
+* All networking was 1 Gb/E switched (no 10 Gb/E) and demonstrates the efficiency of Remote Desktop Protocol (RDP). Even with hundreds of labs going on simultaneously, network bandwidth was never an issue on 1 Gb/E 
+* Windows Server 2008 R2 Hyper-V and System Center 
+* Virtual machines were configured on average with 3-4 GB of memory each and the majority of labs used multiple VMs per lab.
 
 
 
 The power draw on each server when fully loaded was about 200 watts. Maximum power draw for the 41 servers was 8,200 watts. If we do a broad comparison against our previous 570 servers (assuming a similar power draw) the comparison looks like this:
 
-  * 570 servers * 200 watts per server = 114,000 watts 
-  * 41 server * 200 watts per server = 8,200 watts
+* 570 servers * 200 watts per server = 114,000 watts 
+* 41 server * 200 watts per server = 8,200 watts
 
 
 
@@ -80,8 +80,8 @@ The power draw on each server when fully loaded was about 200 watts. Maximum pow
 
 **Rich vs. Thin Clients**. On the client side, MMS historically uses rich clients at each station averaging about 120 watts per system. For MMS 2010, thin clients running Windows Embedded 7 (deployed using Windows Deployment Services) were used with each one averaging about 19 watts each. From a power standpoint the comparison looks like this: 
 
-  * Rich clients: 650 clients * 120 watts per client = 78,000 watts 
-  * Thin clients: 650 clients * 19 watts per client = 12,350 watts 
+* Rich clients: 650 clients * 120 watts per client = 78,000 watts 
+* Thin clients: 650 clients * 19 watts per client = 12,350 watts 
 
 
 
@@ -99,9 +99,9 @@ That's right, one less _semi_ for shipping labs to MMS. In addition to one less 
 
 **System Center**. Naturally, the MMS team used System Center to manage all the labs, specifically Operations Manager, Virtual Machine Manager and Configuration Manager. 
 
-  * Operations Manager 2007 R2 was used to monitor the health and performance of all the Hyper-V labs running Windows _& Linux_. 
-  * Configuration Manager 2007 R2 was to ensure that all of the host systems were configured in a uniform, consistent manner via Desired Configuration Management (DCM) 
-  * Virtual Machine Manager 2008 R2 was used to provision and manage the entire virtualized lab delivery infrastructure and monitor and report on all the virtual machines in the system. 
+* Operations Manager 2007 R2 was used to monitor the health and performance of all the Hyper-V labs running Windows _& Linux_. 
+* Configuration Manager 2007 R2 was to ensure that all of the host systems were configured in a uniform, consistent manner via Desired Configuration Management (DCM) 
+* Virtual Machine Manager 2008 R2 was used to provision and manage the entire virtualized lab delivery infrastructure and monitor and report on all the virtual machines in the system. 
 
 
 

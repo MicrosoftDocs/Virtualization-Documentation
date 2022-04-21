@@ -1,8 +1,14 @@
 ---
 title:      "Repost&#58; Dynamic Memory Coming to Hyper-V Part 5…"
+description: In my last blog, we covered some follow-up questions about Page Sharing. Today, we’ll discuss Second Level paging.
+author: scooley
+ms.author: scooley
 date:       2010-05-20 05:52:00
+ms.date: 05/20/2010
 categories: dynamic-memory
 ---
+# Repost: Dynamic Memory Coming to Hyper-V Part 5
+
 _=====================================================================_
 
 _Preamble: The point of this series, and the spirit in which it is written, is to take a holistic approach at the issues facing our customers, discuss the complexities with regard to memory management and explain why we ’re taking the approach we are with Hyper-V Dynamic Memory. This isn’t meant to criticize anyone or technology, rather to have an open and transparent discussion about the problem space._
@@ -25,7 +31,7 @@ Modern operating systems employ virtual memory. Virtual memory is a way of exten
 
 **Virtual Memory In Depth**
 
-Let’s dive in deeper. For that, I’m going to reference a TechNet article that discusses the Windows Virtual Memory Manager. If you’d like to read the full article it is here: <https://technet.microsoft.com/library/cc767886.aspx>. A second article I highly recommend on virtual memory is this one from Mark Russinovich: <http://blogs.technet.com/markrussinovich/archive/2008/11/17/3155406.aspx>
+Let’s dive in deeper. For that, I’m going to reference a TechNet article that discusses the Windows Virtual Memory Manager. If you’d like to read the full article it is here: <https://technet.microsoft.com/library/cc767886.aspx>. A second article I highly recommend on virtual memory is this one from Mark Russinovich: <https://blogs.technet.com/markrussinovich/archive/2008/11/17/3155406.aspx>
 
 From the TechNet article:
 
