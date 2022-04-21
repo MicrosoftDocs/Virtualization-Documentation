@@ -1,8 +1,14 @@
 ---
-title:      "Virtual Machine Storage Resiliency in Windows Server 2016"
+title: Virtual Machine Storage Resiliency in Windows Server 2016
+description: Learn about how Windows Server 2016 Hyper-V virtual machines handle storage failures.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-09-08 09:28:00
+ms.date: 09/08/2015
 categories: hyper-v
 ---
+# Virtual Machine Storage Resiliency in Windows Server 2016
+
 We live in an imperfect world, where things will go wrong.  When they do, you need a private cloud which is designed to be highly available and resilient to failures in the environment. In today’s cloud scale environments transient storage failures have become more common than hard failures. Transient storage failure means that a Virtual Machine (VM) cannot access the VHDX file and that read or write requests to the disk are failing. In Windows Server 2016 there is new Hyper-V capabilities which will enable a VM to detect when storage access fails and to be seamlessly resilient. In short, by moving your private cloud to Windows Server 2016 your VMs will achieve better SLA’s!
 
 ## What happens when VM experiences transient storage failure
