@@ -1,5 +1,5 @@
 ---
-title:      "Discrete Device Assignment -- Machines and devices"
+title: Discrete Device Assignment -- Machines and devices
 description: Firmware, including BIOS and UEFI, Must Cooperate.
 ms.date: 11/20/2015
 author: scooley
@@ -36,11 +36,11 @@ PCI-style devices have two possible ways to deliver interrupts to the CPUs in a 
 
 Some of the properties discussed are easily seen in the Device Manager. Here's the keyboard controller in the machine that I'm typing this with. It fails all the tests described above.
 
-[![This is one link to a missing graphic.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/KeyBoardProperties.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/KeyBoardProperties.png)
+<!-- [![This is one link to a missing graphic.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/KeyBoardProperties.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/KeyBoardProperties.png) -->
 
 And here's a USB 3 controller. The Message-Signaled Interrupts show up as IRQs with negative numbers. This device happens to pass all the tests.
 
-[![This is second link to a missing graphic.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/USB.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/USB.png)
+<!-- [![This is second link to a missing graphic.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/USB.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/USB.png) -->
 
 ## Survey the Machine
 
