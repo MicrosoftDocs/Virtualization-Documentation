@@ -20,7 +20,7 @@ In all the scenarios that are investigated, we will start from a remote manageme
 #### The building blocks
 
   * A single Hyper-V server ( _aashish-server.contoso.com_ ) on the Replica site
-  * A single server ( _aashish-server3.contoso.com_ ) hosting an SMB share <!--[\\\aashish-server3\Replica-Site](file://\\\\aashish-server3\\Replica-Site)--> that will be used to store the Replica VMs.
+  * A single server ( _aashish-server3.contoso.com_ ) hosting an SMB share <!--\\\aashish-server3\Replica-Site--> that will be used to store the Replica VMs.
   * A single remote management server ( _mgmtnode.contoso.com_ )
 
 
