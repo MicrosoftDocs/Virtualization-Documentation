@@ -83,16 +83,16 @@ Below is a table from VMware detailing the new memory entitlements with _[vSpher
  
 
 
-Table 
-Name|Size|Size
----|---|---  
-**vSphere Enterprise+** |  48 GB | 96 GB  
-**vSphere Enterprise** |  32 GB | 64 GB  
-**vSphere Standard** |  24 GB | 32 GB  
-**vSphere Essentials+** |  24 GB | 32 GB  
-**vSphere Essentials** |  24 GB | 32 GB  
-**Free vSphere Hypervisor** |  8 GB | 32 GB[ii]  
-**vSphere Desktop** |  Unlimited | Unlimited  
+ 
+|Name|Size|Size|
+|---|---|---|  
+|**vSphere Enterprise+** |  48 GB | 96 GB | 
+|**vSphere Enterprise** |  32 GB | 64 GB  |
+|**vSphere Standard** |  24 GB | 32 GB  |
+|**vSphere Essentials+** |  24 GB | 32 GB|  
+|**vSphere Essentials** |  24 GB | 32 GB  |
+|**Free vSphere Hypervisor** |  8 GB | 32 GB[ii]|  
+|**vSphere Desktop** |  Unlimited | Unlimited  |
 
 
  
