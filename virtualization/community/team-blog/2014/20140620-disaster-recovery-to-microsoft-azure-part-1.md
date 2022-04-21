@@ -5,7 +5,7 @@ ms.author: mabrigg
 ms.date: 06/20/2014
 date:       2014-06-20 04:34:43
 categories: asr
-description: This article discusses protecting, replicating, and failover VMs directly to Microsoft Azure.
+description: This article discusses protecting, replicating, and failover VMs directly to Microsoft Azure, Part 1.
 ---
 # Disaster Recovery to Microsoft Azure - PArt 1
 

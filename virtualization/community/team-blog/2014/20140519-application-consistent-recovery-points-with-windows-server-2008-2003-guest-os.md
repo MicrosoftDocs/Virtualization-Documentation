@@ -1,6 +1,6 @@
 ---
 title:      "Application consistent recovery points with Windows Server 2008/2003 guest OS"
-author: mattbrigss
+author: mattbrigs
 ms.author: mabrigg
 ms.date: 05/19/2014
 date:       2014-05-19 22:00:00
