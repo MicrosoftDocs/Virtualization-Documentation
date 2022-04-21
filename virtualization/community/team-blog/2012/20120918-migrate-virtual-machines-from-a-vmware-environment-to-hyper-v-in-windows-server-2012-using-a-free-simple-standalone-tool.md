@@ -1,9 +1,15 @@
 ---
 title:      "Migrate virtual machines from a VMware environment to Hyper-V in Windows Server 2012 using a free, simple, standalone tool"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 09/18/2012
 date:       2012-09-18 20:04:00
 categories: uncategorized
+description: Migrate virtual machines from a VMware environment to Hyper-V in Windows Server 2012 using a free, simple, standalone tool
 ---
-Windows Server 2012 is generally available for evaluation and purchase by all customers around the world. Additionally, there is great news for organizations that are looking for a way to migrate virtual machines hosted on VMware vSphere to the Hyper-V host in Windows Server 2012. The production (RTW) version of the Microsoft Virtual Machine Converter (MVMC) and the Beta version of the VMware console plugin version are both available to download. We extend a huge thank you to our beta participants who have taken the time to evaluate the pre-release versions of the tools and provided us with extremely valuable feedback. MVMC is one resource available as part of the [Switch to Hyper-V program](http://blogs.technet.com/b/server-cloud/archive/2012/07/16/go-beyond-virtualization-with-the-quot-switch-to-hyper-v-quot-program.aspx) announced at Microsoft’s Worldwide Partner Conference earlier this year. The Switch to Hyper-V program helps partners and customers go beyond virtualization to true cloud computing by providing guidance, resources, and tools that take the risk out of virtual migrations, reduce the time and effort required, and define best practices.  
+# Migrate virtual machines to the Hyper-V host in Windows Server 2012
+
+Windows Server 2012 is generally available for evaluation and purchase by all customers around the world. Additionally, there is great news for organizations that are looking for a way to migrate virtual machines hosted on VMware vSphere to the Hyper-V host in Windows Server 2012. The production (RTW) version of the Microsoft Virtual Machine Converter (MVMC) and the Beta version of the VMware console plugin version are both available to download. We extend a huge thank you to our beta participants who have taken the time to evaluate the pre-release versions of the tools and provided us with extremely valuable feedback. MVMC is one resource available as part of the [Switch to Hyper-V program](https://blogs.technet.com/b/server-cloud/archive/2012/07/16/go-beyond-virtualization-with-the-quot-switch-to-hyper-v-quot-program.aspx) announced at Microsoft’s Worldwide Partner Conference earlier this year. The Switch to Hyper-V program helps partners and customers go beyond virtualization to true cloud computing by providing guidance, resources, and tools that take the risk out of virtual migrations, reduce the time and effort required, and define best practices.  
   
 Click on the links provided below to download MVMC and the MVMC Plug-In for vSphere Client 
 
