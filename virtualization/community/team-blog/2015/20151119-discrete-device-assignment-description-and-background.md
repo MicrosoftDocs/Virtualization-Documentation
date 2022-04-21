@@ -37,18 +37,17 @@ GPUs (graphics processors) are, similarly, becoming a must-have in virtual machi
 
 Other types of devices may work when passed through to a guest VM.  We've tried a few USB 3 controllers, RAID/SAS controllers, and sundry other things.  Many will work, but none will be candidates for official support from Microsoft, at least not at first, and you won't be able to put them into use without overriding warning messages.  Consider these devices to be in the "experimental" category.  More on which devices can work in a future blog post.
 
-##   
-Switching it all On
+## Switching it all On
 
 Managing the underlying hardware of your machine is complicated, and can quickly get you in trouble. Furthermore, we’re really trying to address the need to pass NVMe devices though to storage appliances, which are likely to be configured by people who are IT pros and want to use scripts. So all of this is only available through PowerShell, with nothing in the Hyper-V Manager. What follows is a PowerShell script that finds all the NVMe controllers in the system, unloads the default drivers from them, dismounts them from the management OS and makes them available in a pool for guest VMs.
 
-# get all devices which are NVMe controllers
+### get all devices which are NVMe controllers
 
 $pnpdevs = Get-PnpDevice -PresentOnly | Where-Object {$_.Class -eq "SCSIAdapter"} | Where-Object {$_.Service -eq "stornvme"}
 
  
 
-# cycle through them disabling and dismounting them
+### cycle through them disabling and dismounting them
 
 foreach ($pnpdev in $pnpdevs) {
 
@@ -86,7 +85,7 @@ There are similar Remove-VMAssignableDevice and Get-VMAssignableDevice cmdlets.
 If you don’t like scripts, the InstanceID can be found as “Device Instance Path” under the Details tab in Device Manager. The Location Path is also under Details. You can disable the device there and then use PowerShell to dismount it.  
 Finally, it wouldn’t be a blog post without a screen shot. Here’s Device Manager from that VM, rearranged with “View by Connection” simply because it proves that I’m talking about a VM.
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png)
+% [![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png)
 
 In a future post, I’ll talk about how to figure out whether your machine and your devices support all this.
 
