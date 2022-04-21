@@ -1,8 +1,14 @@
 ---
 title:      "Using SMB shares with Hyper-V Replica"
+author: mattbriggs
+ms.author: mabrigg
+description: Using SMB shares with Hyper-V Replica
+ms.date: 06/14/2013
 date:       2013-06-14 05:48:00
 categories: hvr
 ---
+# Using SMB shares with Hyper-V Replica
+
 SMB is getting a lot of attention with Windows Server 2012, and we’ve had questions from a few customers regarding the inter-play between SMB shares and Hyper-V Replica. In this post we’ll share our experience around setting up and using various configurations involving SMB shares and Hyper-V Replica. The issue we were expecting to run into is the apparent lack of authorization to use the SMB share, when using remote management.
 
 In all the scenarios that are investigated, we will start from a remote management node ( _mgmtnode.contoso.com_ ). We will try to set up the scenario from this management node, and work through the errors encountered. In order to visualize what this means, all the scenarios will look roughly like this:
@@ -36,7 +42,7 @@ While the standard answer to fixing this error will be to setup constrained dele
     1. No domain controller access is possible. 
     2. No Remote access is possible.
     3. The Windows Server UI is not present on any node other than the management node.
-  3. Set up constrained delegation in your domain controller. This option has been explored extensively by [others](http://blogs.msdn.com/b/taylorb/archive/2012/03/20/enabling-hyper-v-remote-management-configuring-constrained-delegation-for-smb-and-highly-available-smb.aspx) and there is ample material on this available [online](https://technet.microsoft.com/library/jj134187.aspx).
+  3. Set up constrained delegation in your domain controller. This option has been explored extensively by [others](https://blogs.msdn.com/b/taylorb/archive/2012/03/20/enabling-hyper-v-remote-management-configuring-constrained-delegation-for-smb-and-highly-available-smb.aspx) and there is ample material on this available [online](https://technet.microsoft.com/library/jj134187.aspx).
 
 
 

@@ -1,8 +1,14 @@
 ---
 title:      "Multi-tenant disaster recover solution using Windows Server 2012"
+author: mattbriggs
+ms.author: mabrigg
+description: Multi-tenant disaster recover solution using Windows Server 2012
+ms.date: 04/01/2013
 date:       2013-04-01 12:54:00
 categories: hvr
 ---
+# Multi-tenant disaster recover solution using Windows Server 2012
+
 **Windows Server 2012** introduces fundamental improvements that make it a cloud-ready operating system. The capabilities provide a flexible and scalable solution which opens up a wide range of opportunities for hosting providers to build new cloud services.
 
 This blog post is co-authored by **Uma Mahesh** , Senior Program Manager and **Yigal Edery** , Principal Program Manager in the Windows Server division. The blog article is based on Yigal’s TechEd talk on “[Building Hosted Public and Private Clouds Using Windows Server 2012](https://channel9.msdn.com/events/TechEd/Europe/2012/WSV301)”
@@ -29,7 +35,7 @@ In this article, we will demonstrate the steps required to set up a deployment t
 
 The topology is as follows:
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7558.image_thumb_56749DC8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6472.image_5097697E.png)
+[![the topology](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7558.image_thumb_56749DC8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6472.image_5097697E.png)
 
 Contoso.com’s Washington site consists of  an:
 
@@ -68,9 +74,9 @@ Contoso.com’s Washington site consists of  an:
 
 #### Step 1: **Building Contoso ’s environment**
 
-This step is similar to creating the base environment for DA. The [test lab guide](http://www.microsoft.com/en-us/download/details.aspx?id=29031) which demonstrates Direct Access single server setup has detailed steps on creating the environment. Once the steps are completed, you will have a setup where Client1 from Internet (directly connected or behind NAT) can access APP1 over Direct Access as shown in the below diagram.
+This step is similar to creating the base environment for DA. The [test lab guide](https://www.microsoft.com/en-us/download/details.aspx?id=29031) which demonstrates Direct Access single server setup has detailed steps on creating the environment. Once the steps are completed, you will have a setup where Client1 from Internet (directly connected or behind NAT) can access APP1 over Direct Access as shown in the below diagram.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7532.image_thumb_459DDBAB.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5707.image_48B039A0.png)
+[![building Contoso's environment](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7532.image_thumb_459DDBAB.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5707.image_48B039A0.png)
 
 **Step 2:** **Building Hosters ’s environment**
 
@@ -82,7 +88,7 @@ The objectives of the hosting provider are:
 
 
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7838.image_thumb_368C1E33.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7851.image_7078D06E.png)
+[![building Hosters's environment](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7838.image_thumb_368C1E33.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7851.image_7078D06E.png)
 
 **2a) Steps required to “bring your own IP address”**
 
@@ -321,23 +327,23 @@ On **HosterGW:**
 
 
 
-**[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2161.image_thumb_0BD5D4C5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4705.image_2F033F77.png)**
+**[![the above steps](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2161.image_thumb_0BD5D4C5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4705.image_2F033F77.png)**
 
 **  Step 2c: Configure Hyper-V Replica**
 
 This replica server is ‘published’ using the hoster’s GW via regular HTTPS (customers use cert-based authentication to replicate).
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6862.image_thumb_517F8045.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3644.image_323A48C1.png)
+[![configure Hyper-V Replica](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6862.image_thumb_517F8045.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3644.image_323A48C1.png)
 
 The following links illustrate on how to achieve this:
 
-  * Create certificates using makecert – Appendix C of the [Understanding and Troubleshooting guide for Hyper-V Replica](http://www.microsoft.com/en-us/download/details.aspx?id=29016)
+  * Create certificates using makecert – Appendix C of the [Understanding and Troubleshooting guide for Hyper-V Replica](https://www.microsoft.com/en-us/download/details.aspx?id=29016)
 
-  * (or) Create certificates from a [standalone CA](http://blogs.technet.com/b/virtualization/archive/2012/07/02/requesting-certificates-for-hyper-v-replica-from-cas.aspx)
+  * (or) Create certificates from a [standalone CA](https://blogs.technet.com/b/virtualization/archive/2012/07/02/requesting-certificates-for-hyper-v-replica-from-cas.aspx)
 
-  * (or) Create certificates from an [Enterprise CA](http://blogs.technet.com/b/virtualization/archive/2012/07/10/requesting-hyper-v-replica-certificates-from-an-enterprise-ca.aspx)
+  * (or) Create certificates from an [Enterprise CA](https://blogs.technet.com/b/virtualization/archive/2012/07/10/requesting-hyper-v-replica-certificates-from-an-enterprise-ca.aspx)
 
-  * Setup replication for the virtual machine [using](http://blogs.technet.com/b/virtualization/archive/2012/07/18/hyper-v-replica-certificate-based-authentication-in-windows-server-2012-rc.aspx) the certificate based authentication.
+  * Setup replication for the virtual machine [using](https://blogs.technet.com/b/virtualization/archive/2012/07/18/hyper-v-replica-certificate-based-authentication-in-windows-server-2012-rc.aspx) the certificate based authentication.
 
 
 
@@ -359,7 +365,7 @@ Similarly on HosterR1, add the following entry in hosts file
 
 Now that  we have ensured the the VMs are replicated to the hoster we need to provide and option to Contoso employees  to connect  to their  replicated VMs  from Internet even if Washington DA server is not available.  This is done by deploying a DA server in Contoso cloud. Since DA in WS 2012 supports multiple DA sites, all that’s required here is to enable  a new  Cloud DA entry point.  Following diagram  describes the topology.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3247.image_thumb_621C9C95.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1588.image_77E3F441.png)
+[![Configuring Cloud DA site on top of Hyper-v Network Virtualization](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3247.image_thumb_621C9C95.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1588.image_77E3F441.png)
 
 #### Here are the steps to configure DA cloud site:
 
@@ -370,17 +376,17 @@ Now that  we have ensured the the VMs are replicated to the hoster we need to p
 
 
 
-[![clip_image002](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8461.clip_image002_thumb_1459CAD4.gif)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3618.clip_image002_5C18C30A.gif)
+[![Configure NAT on 3-EDG1](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8461.clip_image002_thumb_1459CAD4.gif)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3618.clip_image002_5C18C30A.gif)
 
 3\. Click new Routing Protocol…
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8787.image11_thumb_712EF0D2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2548.image11_5426420A.png) 
+[![Click new Routing Protocol](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8787.image11_thumb_712EF0D2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2548.image11_5426420A.png) 
 
 4\. Select NAT
 
 5\. Right click on NAT node.
 
- [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1680.image41_thumb_2FB95FDB.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2783.image41_02A1E25C.png)  
+ [![Right click on NAT node.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1680.image41_thumb_2FB95FDB.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2783.image41_02A1E25C.png)  
 ---  
   |    
   
@@ -388,7 +394,7 @@ Now that  we have ensured the the VMs are replicated to the hoster we need to p
 
 7\. Select the interface connected to Internet.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4743.image7_thumb_0D460965.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5633.image7_46C688AB.png)  
+[![Select the interface connected to Internet.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4743.image7_thumb_0D460965.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5633.image7_46C688AB.png)  
 ---  
   |    
   
@@ -396,17 +402,9 @@ Now that  we have ensured the the VMs are replicated to the hoster we need to p
 
 9\. Select services and ports tab, select “Secure web server (HTTPS) option
 
- [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1513.image101_thumb_677273B2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8037.image101_03146EF8.png)
+ [![Select services and ports tab, select “Secure web server (HTTPS) option](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1513.image101_thumb_677273B2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8037.image101_03146EF8.png)
 
-   
----  
-  |    
-  
- 
 
-   
----  
-  |    
   
 Enter the IP address of 3-DAS1, 10.6.0.6 in Private address.
 
@@ -551,7 +549,7 @@ The Hoster  infrastructure in place to replicate the apps. In our case,  Hyper
 
 Now that everything is setup lets simulate failover of Washington site and see how it works:
 
-#### [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5314.image_thumb_4B1F4E89.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5126.image_00957FFE.png)
+#### [![Validating Disaster Recover as a service](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5314.image_thumb_4B1F4E89.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5126.image_00957FFE.png)
 
 ####  
 

@@ -1,9 +1,15 @@
 ---
 title:      "Enabling Linux Support on Windows Server 2012 R2 Hyper-V"
+author: mattbriggs
+ms.author: mabrigg
+description: Enabling Linux Support on Windows Server 2012 R2 Hyper-V
+ms.date: 07/24/2013
 date:       2013-07-24 08:30:00
 categories: uncategorized
 ---
-_This post is a part of the nine-part “_[ _What ’s New in Windows Server & System Center 2012 R2_](http://blogs.technet.com/b/in_the_cloud/archive/tags/what_2700_s+new+in+2012+r2/) _” series that is featured on Brad Anderson ’s _[**_In the Cloud_**](http://blogs.technet.com/b/in_the_cloud/) _blog.   Today’s blog post covers Linux Support on Windows Server 2012 R2 and how it applies to Brad’s larger topic of “Transform the Datacenter”.  To read that post and see the other technologies discussed, read today’s post:  “_[ _What ’s New in 2012 R2:  Enabling Open Source Software_](http://blogs.technet.com/b/in_the_cloud/archive/2013/07/24/what-s-new-in-2012-r2-enabling-open-source-software.aspx) _. ”  _
+# Enabling Linux Support on Windows Server 2012 R2 Hyper-V
+
+_This post is a part of the nine-part “_[ _What ’s New in Windows Server & System Center 2012 R2_](https://blogs.technet.com/b/in_the_cloud/archive/tags/what_2700_s+new+in+2012+r2/) _” series that is featured on Brad Anderson ’s _[**_In the Cloud_**](https://blogs.technet.com/b/in_the_cloud/) _blog.   Today’s blog post covers Linux Support on Windows Server 2012 R2 and how it applies to Brad’s larger topic of “Transform the Datacenter”.  To read that post and see the other technologies discussed, read today’s post:  “_[ _What ’s New in 2012 R2:  Enabling Open Source Software_](https://blogs.technet.com/b/in_the_cloud/archive/2013/07/24/what-s-new-in-2012-r2-enabling-open-source-software.aspx) _. ”  _
 
 The ability to provision Linux on Hyper-V and Windows Azure is one of Microsoft’s core efforts towards enabling great Open Source Software support. As part of this initiative, the Microsoft Linux Integration Services (LIS) team pursues ongoing development of enlightened Linux drivers that are directly checked in to the Linux upstream kernel thereby allowing direct integration into upcoming releases of major distributions such as CentOS, Debian, Red Hat, SUSE and Ubuntu.
 
@@ -53,7 +59,7 @@ On the other hand, if the virtual machine requires less memory than allocated th
 
 | 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2260.SettingsForOSTC.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2260.SettingsForOSTC.png) 
+[![Configuring a Linux virtual machine with Dynamic Memory](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2260.SettingsForOSTC.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2260.SettingsForOSTC.png) 
 
 _**Figure** **1** **Configuring a Linux virtual machine with Dynamic Memory**_  
   
@@ -65,29 +71,29 @@ _**Figure** **1** **Configuring a Linux virtual machine with Dynamic Memory**_
 
  Under the static memory configuration, as the apache server becomes overloaded, the number of transactions/second that could be performed by the server continue to fall due to high memory demand. This can be observed in Figure 2 and Figure 3. Figure 2 represents the initial warm up period when there is ample free memory available to the Linux virtual machine hosting apache. During this period the number of transactions/second is as high as 103 with an average latency/transaction of 58ms. 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6116.10.200.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6116.10.200.png)
+[![number of transactions](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6116.10.200.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6116.10.200.png)
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2313.WindowsPowershell.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2313.WindowsPowershell.png) 
+[![Server and Client statistics during initial warm up period for the Linux apache server configured with static RAM](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2313.WindowsPowershell.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2313.WindowsPowershell.png) 
 
   _ **Figure** **2** **Server and Client statistics during initial warm up period for the Linux apache server configured with static RAM**_
 
  As the workload increases and the amount of free memory becomes scarce, the number of transactions/second drops to 32 and the average latency/transaction increases to 485ms. This situation can be observed in Figure 3.
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6433.10.200.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6433.10.200.png)
+[![As the workload increases and the amount of free memory becomes scarce, the number of transactions/second drops to 32 and the average latency/transaction increases to 485ms.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6433.10.200.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6433.10.200.png)
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2845.WindowsPowershell.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2845.WindowsPowershell.png) 
+[![Server and client statistics for an overloaded Linux apache server configured with static RAM](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2845.WindowsPowershell.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2845.WindowsPowershell.png) 
 
   _ **Figure** **3** **Server and client statistics for an overloaded Linux apache server configured with static RAM**_
 
  Next consider the case of the apache server hosted in a Linux virtual machine configured with dynamic memory. Figure 4 shows that for this server the amount of available memory quickly ramps up through Hyper-V’s hot-add mechanism to over 2GB and the number of transactions/second is 120 with an average latency/transaction of 182 ms during the warm up phase itself.
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3731.10.200.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3731.10.200.png)[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5381.WindowsPowershell.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5381.WindowsPowershell.png) 
+ [![Server and client statistics during startup phase of Linux apache server configured with Dynamic RAM](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3731.10.200.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3731.10.200.png)[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5381.WindowsPowershell.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5381.WindowsPowershell.png) 
 
 _**Figure** **4** **Server and client statistics during startup phase of Linux apache server configured with Dynamic RAM**_
 
  As the workload continues to increase, over 3GB of free memory becomes available and therefore the server is able to sustain the number of transactions/second at 130 even though average latency/transaction increases to 370ms. Notice that this memory gain can only be achieved if there is enough memory available on the Hyper-V server host. If the Hyper-V host memory is low then any demand for more memory by a guest virtual machine may not be satisfied and applications may receive no free memory errors.
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8422.10.200.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8422.10.200.png)[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1031.WindowsPowershell.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1031.WindowsPowershell.png)
+ [![Overloaded Linux apache server configured with Dynamic RAM](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8422.10.200.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8422.10.200.png)[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1031.WindowsPowershell.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1031.WindowsPowershell.png)
 
 _**Figure** **5** **Overloaded Linux apache server configured with Dynamic RAM**_
 
@@ -101,11 +107,11 @@ The best way to try out this feature is to take a backup of a running Linux virt
 
  
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0574.Backup%20Wizard%201.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0574.Backup%20Wizard%201.png)  _ **Figure** **6** **Using Windows Server Backup to backup a live Linux virtual machine**_
+[![Using Windows Server Backup to backup a live Linux virtual machine](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0574.Backup%20Wizard%201.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0574.Backup%20Wizard%201.png)  _ **Figure** **6** **Using Windows Server Backup to backup a live Linux virtual machine**_
 
 | 
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5127.Backup%20Wizard%202.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5127.Backup%20Wizard%202.png) _ **Figure** **7** **Completion of backup operation for a live Linux virtual machine**_  
+ [![More of using Windows Server Backup to backup a live Linux virtual machine](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5127.Backup%20Wizard%202.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5127.Backup%20Wizard%202.png) _ **Figure** **7** **Completion of backup operation for a live Linux virtual machine**_  
   
 ---|---  
   
@@ -117,34 +123,34 @@ The ability to dynamically resize a fixed sized VHD allows administrators to all
 
 First, as shown in Figure 8, a 1GB fixed sized VHD is attached to a Linux virtual machine through the SCSI controller. The amount of space available on the VHD can be observed through the **df** command as shown in Figure 9.
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5850.figure%208.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5850.figure%208.png)
+[![Fixed Sized VHD attached to a Linux virtual machine through the SCSI Controller](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5850.figure%208.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5850.figure%208.png)
 
 _**Figure** **8** **Fixed Sized VHD attached to a Linux virtual machine through the SCSI Controller**_
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6406.figure%209.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6406.figure%209.png) 
+[![Space usage in the Fixed Sized VHD](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6406.figure%209.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6406.figure%209.png) 
 
 _**Figure** **9** **Space usage in the Fixed Sized VHD**_
 
 Next, a workload is started to consume more space on the fixed sized VHD. While the workload is running, when the amount of used space goes beyond the 50% mark (Figure 10), the administrator may increase the size of the VHD to 2GB using the Hyper-V manager UI as shown in Figure 11.
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6136.figure%2010.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6136.figure%2010.png) 
+[![Amount of used space goes beyond 50% of the current size of the Fixed Sized VHD](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6136.figure%2010.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6136.figure%2010.png) 
 
 _**Figure** **10** **Amount of used space goes beyond 50% of the current size of the Fixed Sized VHD**_
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0334.figure%2011.1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0334.figure%2011.1.png) |  [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8030.figure%2011.2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8030.figure%2011.2.png)  
+ [![Expanding a Fixed Size VHD from 1GB to 2GB](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0334.figure%2011.1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0334.figure%2011.1.png) |  [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8030.figure%2011.2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8030.figure%2011.2.png)  
 ---|---  
   
 _**Figure** **11** **Expanding a Fixed Size VHD from 1GB to 2GB**_  
   
 Once the VHD is expanded, the **df** command will automatically update the amount of disk space to 2GB as shown in Figure 12. It is important to note that both the disk and the file-system adapted to the increase in size of the VHD while it was mounted and serving a running workload.
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0045.figure%2012.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0045.figure%2012.png)
+ [![Dynamically adjusted df statistics upon increase in size of Fixed Sized VHD](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0045.figure%2012.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0045.figure%2012.png)
 
 _**Figure** **12** **Dynamically adjusted df statistics upon increase in size of Fixed Sized VHD**_
 
 **5.        ****Linux kdump/kexec support**
 
-One particular pain point for hosters running Linux on Windows Server 2012 and Windows Server 2008 R2 environments is that legacy drivers (as mentioned in [KB 2858695](http://support.microsoft.com/kb/2858695) ) must be used to create kernel dumps for Linux virtual machines. 
+One particular pain point for hosters running Linux on Windows Server 2012 and Windows Server 2008 R2 environments is that legacy drivers (as mentioned in [KB 2858695](https://support.microsoft.com/kb/2858695) ) must be used to create kernel dumps for Linux virtual machines. 
 
 In Windows Server 2012 R2, the Hyper-V infrastructure has been changed to allow seamless creation of crash dumps using enlightened storage and network drivers and therefore no special configurations are required anymore. Linux users are free to dump core over the network or the attached storage devices.
 
@@ -154,17 +160,17 @@ If a Linux system becomes completely unresponsive while running on Hyper-V, user
 
 The following paragraphs illustrate how to test this functionality. As a first step observe if any NMIs are pending in your Linux virtual machines by executing the command in a Linux terminal session shown in Figure 13:
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4265.figure%2013.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4265.figure%2013.png) 
+[![Existing NMIs issued to the Linux virtual machine](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4265.figure%2013.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4265.figure%2013.png) 
 
 _**Figure** **13** **Existing NMIs issued to the Linux virtual machine**_
 
 Next, issue an NMI from a powershell window using the command shown below:
 
-Debug-VM -Name <Virtual Machine Name> -InjectNonMaskableInterrupt -ComputerName <Hyper-V host name> Confirm:$False –Force
+Debug-VM -Name \<Virtual Machine Name\> -InjectNonMaskableInterrupt -ComputerName \<Hyper-V host name\> Confirm:$False –Force
 
 Next check if the NMI has been delivered to the Linux VM by repeating the command shown in Figure 13. The output should be similar to what is shown in Figure 14 below:
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5008.figure%2014.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5008.figure%2014.png)
+ [![New NMIs issued to the Linux virtual machine](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5008.figure%2014.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5008.figure%2014.png)
 
 _**Figure** **14** **New NMIs issued to the Linux virtual machine**_
 
@@ -179,11 +185,11 @@ The memory of a virtual machine running on Hyper-V is fragmented to accommodate 
 The location of the MMIO gap can be set using the following sample PowerShell script functions:
 
 ############################################################################  
-#  
-# GetVmSettingData()  
-#  
-# Getting all VM's system settings data from the host hyper-v server  
-#  
+  
+## GetVmSettingData()  
+  
+## Getting all VM's system settings data from the host hyper-v server  
+  
 ############################################################################
 
 function GetVmSettingData([String] $name, [String] $server)  
@@ -215,11 +221,11 @@ function GetVmSettingData([String] $name, [String] $server)
 }
 
 ###########################################################################  
-#  
-# SetMMIOGap()  
-#  
-# Description:Function to validate and set the MMIO Gap to the linux VM  
-#  
+ 
+## SetMMIOGap()  
+  
+## Description:Function to validate and set the MMIO Gap to the linux VM  
+  
 ###########################################################################  
 function SetMMIOGap([INT] $newGapSize)  
 {
@@ -263,4 +269,4 @@ The location of the MMIO gap can be verified by searching the keyword “pci_bus
 
 Over the past year, the LIS team added a slew of features to enable great support for Linux virtual machines running on Hyper-V. These features will not only simplify the process of hosting Linux on Hyper-V but will also provide superior consolidation and improved performance for Linux workloads. As of now the team is actively working with various Linux vendors to bring these features in newer distribution releases. The team is eager to hear customer feedback and invites any feature proposals that will help improve Linux hosters experience on Hyper-V. Customers may get in touch with the team through [linuxic@microsoft.com](mailto:linuxic@microsoft.com) or thorough the Linux Kernel Mailing List ([https://lkml.org/](https://lkml.org/)).
 
-_To see all of the posts in this series, check out the_[ _What ’s New in Windows Server & System Center 2012 R2_](http://blogs.technet.com/b/in_the_cloud/archive/tags/what_2700_s+new+in+2012+r2/) _archive_
+_To see all of the posts in this series, check out the_[ _What ’s New in Windows Server & System Center 2012 R2_](https://blogs.technet.com/b/in_the_cloud/archive/tags/what_2700_s+new+in+2012+r2/) _archive_
