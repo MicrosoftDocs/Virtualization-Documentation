@@ -19,9 +19,9 @@ Virtualization Nation, If you've been following the VMware FUD fiasco, I just wa
 
 > **_If you indeed want to resolve this matter, then:_**
 
-    1. **_Take down the video._**
-    2. **_Send us a crashdump so we can take a look sooner rather than later. Send the crashdump to your Microsoft Technical Account Manager (TAM). If you need help, let us know and we'll follow-up._**
-    3. **_Pledge this won't happen again._**
+> 1. **_Take down the video._**
+> 2. **_Send us a crashdump so we can take a look sooner rather than later. Send the crashdump to your Microsoft Technical Account Manager (TAM). If you need help, let us know and we'll follow-up._**
+> 3. **_Pledge this won't happen again._**
 
 
 
