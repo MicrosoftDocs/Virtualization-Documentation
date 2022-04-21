@@ -97,7 +97,7 @@ Hyper-V Network Virtualization (HNV) allows Contoso to bring VMs with an IP addr
 In this example, HosterGW has two NICs one connected to “Internet” (131.107.0.101) and once connected to hoster internal network (192.168.1.101). HosterR1 has one NIC connected to hoster internal network(192.168.1.111). The following PS cmdlets need to be run on both **HosterGW and HosterR1** to configure HNV.
     
     
-    # Rename the NIC connected to internal network  as  “WnvNIC” and run the following cmdlets
+ # Rename the NIC connected to internal network  as  “WnvNIC” and run the following cmdlets
     
     
  $WnvNIC   = "WnvNIC"
@@ -106,7 +106,7 @@ In this example, HosterGW has two NICs one connected to “Internet” (131.107.
 $WnvDRV   = "ms_netwnv"
     
     
-     
+   
     
     
 Disable-NetAdapterBinding $WnvNIC -ComponentID $WnvDRV
@@ -114,17 +114,16 @@ Disable-NetAdapterBinding $WnvNIC -ComponentID $WnvDRV
     
 Enable-NetAdapterBinding  $WnvNIC -ComponentID $WnvDRV
     
-    
-     
-    
-    
-# Run the following cmdlets to enable Contoso virtual network
+   
     
     
-     
+#Run the following cmdlets to enable Contoso virtual network
     
     
-# ContosoCloudGW 10.6.0.2
+   
+    
+    
+#ContosoCloudGW 10.6.0.2
     
     
 New-NetVirtualizationLookupRecord -CustomerAddress "10.6.0.2"        -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "ContosoCloudGW-v4"
@@ -139,7 +138,7 @@ New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:ba::2"  -ProviderAd
 New-NetVirtualizationLookupRecord -CustomerAddress "::"              -ProviderAddress "192.168.1.101" -VirtualSubnetID "5001" -MACAddress "00155d05df03" -Rule "TranslationMethodEncap" -VMName "wildcard v6"
     
     
-     
+   
     
     
 #ContosoCloudDAServer
@@ -157,7 +156,7 @@ New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:ba::6"  -ProviderAd
 New-NetVirtualizationLookupRecord -CustomerAddress "::"              -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059701" -Rule "TranslationMethodEncap" -VMName "wildcard v6"
     
     
-     
+   
     
     
 #ContosoCloudDC
@@ -169,7 +168,7 @@ New-NetVirtualizationLookupRecord -CustomerAddress "10.6.0.3"        -ProviderAd
 New-NetVirtualizationLookupRecord -CustomerAddress "2001:db8:ba::3"  -ProviderAddress "192.168.1.111" -VirtualSubnetID "5001" -MACAddress "00155d059700" -Rule "TranslationMethodEncap" -VMName "ContosoCloudDC-v6"
     
     
-     
+   
     
     
 #Customer Routes for VSID 5001
@@ -226,7 +225,7 @@ $iface = Get-NetAdapter $WnvNIC
 New-NetVirtualizationProviderAddress -InterfaceIndex $iface.InterfaceIndex -ProviderAddress "192.168.1.101" -PrefixLength 24 
     
     
-     
+   
     
     
 #Make sure the adapter name is correct  Rename-VMNetworkAdapter -vmname ContosoCloudGW -Name "Network Adapter" -NewName "Wnv-CA-NIC"
@@ -251,7 +250,7 @@ New-NetVirtualizationProviderAddress -InterfaceIndex $iface.InterfaceIndex -Prov
 New-NetVirtualizationProviderRoute -InterfaceIndex $iface.ifIndex -DestinationPrefix "0.0.0.0/0" -NextHop "192.168.1.101"
     
     
-     
+   
     
     
 #Make sure the adapter name is correct 
@@ -263,7 +262,7 @@ Rename-VMNetworkAdapter -vmname ContosoCloudDAServer -Name "Network Adapter" -Ne
 Set-VMNetworkAdapter "ContosoCloudDAServer" -Name "Wnv-CA-NIC" -VirtualSubnetID 5001;
     
     
-     
+   
     
     
 #Make sure the adapter name is correct 
@@ -297,28 +296,28 @@ On **HosterGW:**
 
     
     
-    ipmo servermanger 
+ipmo servermanger 
     
     
-    add-windowsFeature -name routing -IncludeManagementTools 
+add-windowsFeature -name routing -IncludeManagementTools 
     
     
-    ipmo remoteaccess 
+ipmo remoteaccess 
     
     
-    install-remoteaccess -vpntype vpns2s –IPv6Prefix 2001:db8:6:200::/64 -IPAddressRange ("10.6.0.200","10.6.0.210") 
+install-remoteaccess -vpntype vpns2s –IPv6Prefix 2001:db8:6:200::/64 -IPAddressRange ("10.6.0.200","10.6.0.210") 
     
     
-    Add-VpnS2SInterface EDGE1 131.107.0.2 -Protocol IKEv2  -AuthenticationMethod PSKOnly -SharedSecret abc -IPv4Subnet10.2.0.0/24:100 –IPv6Subnet2001:db8:2::/48:100 
+Add-VpnS2SInterface EDGE1 131.107.0.2 -Protocol IKEv2  -AuthenticationMethod PSKOnly -SharedSecret abc -IPv4Subnet10.2.0.0/24:100 –IPv6Subnet2001:db8:2::/48:100 
     
     
-    ##On EDGE1  : 
+##On EDGE1  : 
     
     
-    Add-VpnS2SInterface 3-EDGE1 131.107.0.30 -Protocol IKEv2  -AuthenticationMethod PSKOnly -SharedSecret abc -IPv4Subnet 
+Add-VpnS2SInterface 3-EDGE1 131.107.0.30 -Protocol IKEv2  -AuthenticationMethod PSKOnly -SharedSecret abc -IPv4Subnet 
     
     
-    10.6.0.0/24:100 –IPv6Subnet 2001:db8:6::/48:100
+10.6.0.0/24:100 –IPv6Subnet 2001:db8:6::/48:100
 
   * The above steps ensure that  VMs of Contoso hosted @ the hoster are accessible from Contoso  Washington site and  Internet Via DirectAccesss from EDGE1.
 
