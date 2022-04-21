@@ -1,11 +1,17 @@
 ---
 title:      "Beware The VMware Core Tax & More"
+description: Two factors that have fueled virtualization have been the rise of 64-bit (x64) computing and the rapid growth of multi-core processors.
+author: scooley
+ms.author: scooley
 date:       2009-06-29 02:18:00
+ms.date: 06/29/2009
 categories: hp
 ---
+# Beware The VMware Core Tax & More
+
 Virtualization Nation,
 
-We'd like to again offer congratulations to [AMD on the release of their new 6-core Opteron ("Istanbul") processors](http://sites.amd.com/us/atwork/promo/Pages/six-core-opteron.aspx). [As Bryon mentioned](http://blogs.technet.com/virtualization/archive/2009/06/09/Windows-Server-2008-R2-Hyper_2D00_V-and-AMD_2700_s-6_2D00_core-Opteron.aspx), Hyper-V R2 goes hand in hand with these new processors with support for AMD's Rapid Virtualization Indexing, advanced power savings with Core Parking and, of course, more cores means compute resources to run more virtual machines. In fact, two factors that have fueled virtualization have been the rise of 64-bit (x64) computing and the rapid growth of multi-core processors.
+We'd like to again offer congratulations to [AMD on the release of their new 6-core Opteron ("Istanbul") processors](http://sites.amd.com/us/atwork/promo/Pages/six-core-opteron.aspx). [As Bryon mentioned](https://blogs.technet.com/virtualization/archive/2009/06/09/Windows-Server-2008-R2-Hyper_2D00_V-and-AMD_2700_s-6_2D00_core-Opteron.aspx), Hyper-V R2 goes hand in hand with these new processors with support for AMD's Rapid Virtualization Indexing, advanced power savings with Core Parking and, of course, more cores means compute resources to run more virtual machines. In fact, two factors that have fueled virtualization have been the rise of 64-bit (x64) computing and the rapid growth of multi-core processors.
 
 **Bring On The Cores**
 
@@ -87,7 +93,7 @@ I'll let you draw your own conclusions, but VMware's track record speaks for its
 
 **CUSTOMERS: FIRST & FOREMOST**
 
-**No Core Tax**. At Microsoft, we don't license per core, generally, we license per server or per processor. When we do license per processor, it's per _processor_ regardless of how many cores are present. I should also point out that the **_[FREE standalone Microsoft Hyper-V Server 2008 R2 supports up 8 physical processors whether there are 1, 2, 4, 6 or 8+ cores per processor](http://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx)_** ** __**as well.
+**No Core Tax**. At Microsoft, we don't license per core, generally, we license per server or per processor. When we do license per processor, it's per _processor_ regardless of how many cores are present. I should also point out that the **_[FREE standalone Microsoft Hyper-V Server 2008 R2 supports up 8 physical processors whether there are 1, 2, 4, 6 or 8+ cores per processor](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx)_** ** __**as well.
 
 Read that last sentence again.
 

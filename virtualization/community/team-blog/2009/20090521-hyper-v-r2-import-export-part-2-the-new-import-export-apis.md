@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V R2 Import/Export – Part 2 - The New Import/Export APIs"
-description: 
+description: We now have new ‘Ex’ versions of the Import/Export APIs along with settings data objects that allow the user to tweak the necessary parameters upon export or import.
 author: scooley
 ms.author: scooley
 date:       2009-05-21 12:51:00
