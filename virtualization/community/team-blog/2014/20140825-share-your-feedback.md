@@ -1,5 +1,6 @@
 ---
 title:      Share your feedback
+description: Learn how to share your opinion to help influence the future of secure virtual infrastructure.
 author: mattbriggs
 ms.author: mabrigg
 date:       2014-08-25 22:08:40
