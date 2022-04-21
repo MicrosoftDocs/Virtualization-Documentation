@@ -21,7 +21,7 @@ _======================================================_ _Preamble: The point of
   * Domain Controllers? 
   * Windows Server 2008 R2 [DirectAccess Servers](https://www.microsoft.com/windowsserver2008/en/us/R2-better-together.aspx)? 
   * Print Servers? 
-  * <insert your application here>
+  * \<insert your application here\>
 
 If you answered, “it depends,” you’re correct. There isn’t one simple answer to this question. Your mileage will vary based on your workload and business requirements for scale and performance. When we ask customers how they tackle this problem, here are a few of the common answers: 
   * “I give all servers [pick one: 2 GB, 4 GB, 8 GB] of memory and add more if users complain.”
