@@ -32,7 +32,7 @@ I spoke to a lot of folks at the show and the feedback was overwhelmingly positi
 
 **MMS 2010: Quick Refresher**
 
-For the second year in a row, all of the MMS Labs were 100% virtualized using Windows Server 2008 R2 Hyper-V and managed via System Center by our partners at XB Velocity and using HP servers and storage. [MMS 2010 was the first year all of the labs were provided via virtualization](http://blogs.technet.com/b/virtualization/archive/2010/05/06/mms-2010-labs-powered-by-hyper-v-system-center-hp.aspx). In previous years, the MMS Labs were all delivered using physical servers. To say moving from physical to virtual was a huge success would be an understatement. Here are a few apposite stats comparing MMS 2009 to MMS 2010 last year:
+For the second year in a row, all of the MMS Labs were 100% virtualized using Windows Server 2008 R2 Hyper-V and managed via System Center by our partners at XB Velocity and using HP servers and storage. [MMS 2010 was the first year all of the labs were provided via virtualization](https://blogs.technet.com/b/virtualization/archive/2010/05/06/mms-2010-labs-powered-by-hyper-v-system-center-hp.aspx). In previous years, the MMS Labs were all delivered using physical servers. To say moving from physical to virtual was a huge success would be an understatement. Here are a few apposite stats comparing MMS 2009 to MMS 2010 last year:
 
 Power reduction of 13.9x on the servers:
 

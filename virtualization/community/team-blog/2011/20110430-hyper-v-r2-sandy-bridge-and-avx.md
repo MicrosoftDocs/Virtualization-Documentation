@@ -15,7 +15,7 @@ Intel has recently released their new “Sandy Bridge” processors which is the
 
 I’m raising this topic because I want you to be aware of an issue with both Windows Server 2008 R2 Hyper-V and Microsoft Hyper-V Server 2008 R2 and the new Sandy Bridge processors and provide the solutions.
 
-**Issue** : When you attempt to start a VM running on a system with a Sandy Bridge processor, the virtual machine will not start. If you go to the Event Viewer you will see an error that states: “<VM Name> could not initialize” error.
+**Issue** : When you attempt to start a VM running on a system with a Sandy Bridge processor, the virtual machine will not start. If you go to the Event Viewer you will see an error that states: “\<VM Name\> could not initialize” error.
 
 **Cause** : Fundamentally, this is a chicken and egg problem. :-)
 

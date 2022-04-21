@@ -7,6 +7,8 @@ ms.date: 05/05/2011
 date:       2011-05-05 06:56:00
 categories: hyper-v
 ---
+# 5Nine Manager for Hyper-V
+
 Virtualization Nation,
 
 With the release of Microsoft Hyper-V Server 2008 R2 SP1, we have once again raised the bar for providing a robust, enterprise class virtualization platform at no cost. For example, did you realize that Microsoft Hyper-V Server 2008 R2 SP1 includes RemoteFX? This new feature provides Graphical Processing Unit (GPU) accelerated video _within a virtual machine_. VMware's flagship product VSphere Enterprise Plus ($3500 per processor) doesn't have this capability.
