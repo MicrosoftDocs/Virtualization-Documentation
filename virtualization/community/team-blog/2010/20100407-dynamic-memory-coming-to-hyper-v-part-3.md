@@ -1,8 +1,14 @@
 ---
 title:      "Dynamic Memory Coming to Hyper-V Part 3…"
+author: mattbriggs
+ms.author: mabrigg
+description: Dynamic Memory Coming to Hyper-V Part 3
+ms.date: 04/07/2010
 date:       2010-04-07 06:03:00
 categories: dynamic-memory
 ---
+# Dynamic Memory Coming to Hyper-V Part 3
+
 _======================================================_
 
 _Preamble: The point of this series, and the spirit in which it is written, is to take a holistic approach at the issues facing our customers, discuss the complexities with regard to memory management and explain why we’re taking the approach we are with Hyper-V Dynamic Memory. This isn’t meant to criticize anyone or technology, rather to have an open and transparent discussion about the problem space._
