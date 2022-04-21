@@ -1,8 +1,14 @@
 ---
 title:      "MMS 2010 Labs&#58; Powered by Hyper-V, System Center & HP..."
+description: We just wrapped up the Microsoft Management Summit 2010 in Las Vegas, which was a huge success from a number of standpoints.
+author: scooley
+ms.author: scooley
 date:       2010-05-06 08:32:24
+ms.date: 05/06/2010
 categories: uncategorized
 ---
+# MMS 2010 Labs: Powered by Hyper-V, System Center & HP
+
 (Pardon the interruption on the Dynamic Memory blogs, but I was busy at MMS 2010 and needed to blog this content. I'll have more on DM soon.)
 
 Virtualization Nation, 
