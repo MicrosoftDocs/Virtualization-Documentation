@@ -1,8 +1,14 @@
 ---
-title:      "Discrete Device Assignment -- Description and background"
+title: Discrete Device Assignment -- Description and background
+description: Learn about Discrete Device Assignment, a new feature with Windows Server 2016 for Hyper-V virtual machines.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-11-19 13:27:30
+ms.date: 11/19/2015
 categories: dda
 ---
+# Discrete Device Assignment -- Description and background
+
 With Windows Server 2016, we're introducing a new feature, called Discrete Device Assignment, in Hyper-V.  Users can now take some of the PCI Express devices in their systems and pass them through directly to a guest VM.  This is actually much of the same technology that we've used for SR-IOV networking in the past.  And because of that, instead of giving you a lot of background on how this all works, I'll just point to an excellent series of posts that John Howard did a few years ago about SR-IOV when used for networking.
 
 [Everything you wanted to know about SR-IOV in Hyper-V part 1](/b/jhoward/archive/2012/03/12/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-1.aspx "Everything you wanted to know about SR-IOV in Hyper-V part 1")
