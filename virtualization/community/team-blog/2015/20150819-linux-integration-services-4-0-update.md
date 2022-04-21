@@ -1,13 +1,19 @@
 ---
-title:      "Linux Integration Services 4.0 Update"
+title: Linux Integration Services 4.0 Update
+description: Learn more about the 4.0.11 update for Linux Integration Services on Hyper-V and Microsoft Azure.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-08-19 17:00:00
+ms.date: 08/19/2015
 categories: lis-hyperv-linux
 ---
+# Linux Integration Services 4.0 Update
+
 We are pleased to announce an update to Linux Integration Services (LIS) version 4.0: version 4.0.11. This updated release expands to Red Hat Enterprise Linux 6.7, CentOS 6.7, and Oracle Linux Red Hat Compatible Kernel 6.7. In addition to some bug fixes, this release continues improvements to networking performance on Hyper-V and Microsoft Azure.
 
 ## Download Location
 
-The LIS binaries are available either as a tar file that can be uploaded to your virtual machine or as an ISO that can be mounted. The files are available from the Microsoft Download Center here: <http://www.microsoft.com/en-us/download/details.aspx?id=46842>
+The LIS binaries are available either as a tar file that can be uploaded to your virtual machine or as an ISO that can be mounted. The files are available from the Microsoft Download Center here: <https://www.microsoft.com/en-us/download/details.aspx?id=46842>
 
 A ReadMe file has been provided to provide information on the installation procedure, feature set, and issues.
 
