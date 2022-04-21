@@ -1,6 +1,6 @@
 ---
 title:      "Installing Service Pack 1 on Microsoft Hyper-V Server 2008 R2"
-description: 
+description: Install the Beta of Service Pack 1 on Microsoft Hyper-V Server 2008 R2 to get the new capabilities of Dynamic Memory and RemoteFX.
 author: scooley
 ms.author: scooley
 date:       2010-07-16 13:09:00
