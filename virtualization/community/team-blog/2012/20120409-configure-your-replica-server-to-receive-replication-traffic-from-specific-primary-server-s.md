@@ -1,9 +1,15 @@
 ---
 title:      "Configure your Replica server to receive replication traffic from specific primary server(s)"
+author: mattbriggs
+ms.author: mabrigg
+description: Configure your Replica server to receive replication traffic from specific primary server(s)
+ms.date: 04/09/2012
 date:       2012-04-09 06:57:00
 categories: hvr
 ---
-Note: Update on 8th July 2012: This **cmdlets and UI** used in this article is applicable **only** for Windows Server "8" Beta. For Windows Server 2012 RC and beyond, see the updated post @ <http://blogs.technet.com/b/virtualization/archive/2012/07/08/hyper-v-replica-authorization-entries-windows-server-2012-rc.aspx>
+# Configure your Replica server to receive replication traffic from specific primary server(s)
+
+Note: Update on 8th July 2012: This **cmdlets and UI** used in this article is applicable **only** for Windows Server "8" Beta. For Windows Server 2012 RC and beyond, see the updated post @ <https://blogs.technet.com/b/virtualization/archive/2012/07/08/hyper-v-replica-authorization-entries-windows-server-2012-rc.aspx>
 
  
 
@@ -17,7 +23,7 @@ As part of setting up a Replica server  in Windows Server  “8”  Beta, y
 
 For better control and security, it is recommended to specify the list of authenticated servers that can replicate rather than allowing replication traffic from any authenticated server. While enabling a Replica server, there are two sets of inputs which are required - Authentication and Authorization. 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7455.image002.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7455.image002.png)
+[![Authentication and authorization](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7455.image002.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7455.image002.png)
 
 When allowing replication from specific servers, each entry in the list is called an "authorization entry". An authorization entry contains:
 
