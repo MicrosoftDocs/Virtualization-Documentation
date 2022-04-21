@@ -150,25 +150,23 @@ The default option is to schedule the resynchronization operation during off-pea
 The same can be configured in PowerShell using the [**Set-VMReplication**](https://technet.microsoft.com/library/hh848543.aspx) commandlet:
     
     
-# Manual resync
+## Manual resync
     
     
 Set-VMReplication -VMName  "RESYNC VM" -AutoResynchronizeEnabled 0
     
+   
     
-     
     
-    
-# Automatic resync
+## Automatic resync
     
     
 Set-VMReplication –VMName "RESYNC VM" -AutoResynchronizeEnabled 1 -AutoResynchronizeIntervalStart 00:00:00 -AutoResynchronizeIntervalEnd 23:59:59
     
     
-     
+
     
-    
-# Scheduled resync
+## Scheduled resync
     
     
 Set-VMReplication –VMName "RESYNC VM" -AutoResynchronizeEnabled 1 -AutoResynchronizeIntervalStart 00:00:00 -AutoResynchronizeIntervalEnd 06:00:00
