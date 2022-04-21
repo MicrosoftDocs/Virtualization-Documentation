@@ -97,7 +97,7 @@ Hyper-V Network Virtualization (HNV) allows Contoso to bring VMs with an IP addr
 In this example, HosterGW has two NICs one connected to “Internet” (131.107.0.101) and once connected to hoster internal network (192.168.1.101). HosterR1 has one NIC connected to hoster internal network(192.168.1.111). The following PS cmdlets need to be run on both **HosterGW and HosterR1** to configure HNV.
     
     
- # Rename the NIC connected to internal network  as  “WnvNIC” and run the following cmdlets
+ #Rename the NIC connected to internal network  as  “WnvNIC” and run the following cmdlets
     
     
  $WnvNIC   = "WnvNIC"
@@ -348,7 +348,7 @@ The following links illustrate on how to achieve this:
 Since EDGE1 is acting as DA server it will not allow any non-IPsec traffic thru it. In general customer deployment there would be an IPS device in front of EDGE1. In the above topology to allow HTTPS HVR traffic thru EDGE1, we need to disable IPsec dosp with the following cmdlet
     
     
-    netsh ipsecdosprotection set miscellaneous defaultblock=disable
+netsh ipsecdosprotection set miscellaneous defaultblock=disable
 
 As Hyper-V Replica takes on the end-server name (not IP address) as input, you could resolve the server name by making an entry in the host file of ContosP1. To achieve this, add an entry in %systemdrive%\drivers\etc\hosts
 
