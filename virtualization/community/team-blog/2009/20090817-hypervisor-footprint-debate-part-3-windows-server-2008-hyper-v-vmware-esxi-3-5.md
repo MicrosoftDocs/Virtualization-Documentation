@@ -94,7 +94,7 @@ Say it with me:
 
 **_>   Security is more than just disk footprint. <_**
 
-Quoting disk footprint size alone is a nice pithy, superficial phrase, but it's also a boat load of bollocks. The next time some VMware representative throws out that argument, point them to this blog and tell them Jeff sent you. If you've ever spent anytime with a security expert, one of the first things they will tell you is that **_security is not a one time exercise_**. **_Security is an ongoing process that should be embedded throughout the entire development lifecycle_**. It's that belief that drove us to [develop the Microsoft Secure Development Lifecycle (SDL) and is publicly available](https://msdn.microsoft.com/security/cc448177.aspx). 
+Quoting disk footprint size alone is a nice pithy, superficial phrase, but it's also a boat load of bollocks. The next time some VMware representative throws out that argument, point them to this blog and tell them Jeff sent you. If you've ever spent anytime with a security expert, one of the first things they will tell you is that **_security is not a one time exercise_**. **_Security is an ongoing process that should be embedded throughout the entire development lifecycle_**. It's that belief that drove us to [develop the Microsoft Secure Development Lifecycle (SDL) and is publicly available](https://www.microsoft.com/en-us/securityengineering/sdl). 
 
 **Microsoft Secure Development Lifecycle (SDL)**
 
@@ -114,7 +114,7 @@ Benefits of the Microsoft SDL:
 
 The SDL has played a critical role in embedding security and privacy into Microsoft software and culture, leading to measurable and widely [recognized security improvements](https://msdnlive.redmond.corp.microsoft.com/en-us/cc424866.aspx) in flagship products such as Windows and SQL Server and the proof is real. How about:
 
-  * **[Windows XP to Vista a 45% decrease](https://msdn.microsoft.com/security/cc424866.aspx)**
+  * **[Windows XP to Vista a 45% decrease](https://www.microsoft.com/en-us/securityengineering/sdl)**
 
   * **SQL Server 2000 to 2005 91% decrease**
 
@@ -151,7 +151,7 @@ So, where's the VMware Security Development Lifecycle?
 
 You're guess is as good as mine.
 
-I went to VMware's site and searched for their security development lifecycle. I found their [Security Center](http://www.vmware.com/security/advisories/) which lists their patches, but that's just one small aspect to a security development lifecycle. I Bing searched "VMware security development lifecycle" and was returned a sales pitch from VMware to buy something at $1500 per processor.
+I went to VMware's site and searched for their security development lifecycle. I found the [VMWare Security Center](http://www.vmware.com/security/advisories/) which lists their patches, but that's just one small aspect to a security development lifecycle. I Bing searched "VMware security development lifecycle" and was returned a sales pitch from VMware to buy something at $1500 per processor.
 
 No, I'm not kidding.
 
@@ -161,13 +161,13 @@ No, I'm not kidding.
 
 **Making The SDL Available To Our Partners**
 
-After a significant investment in time, money, manpower we've developed and want to give back to our partners. A great place to start is the [Microsoft SDL Homepage](https://msdn.microsoft.com/security/cc448177.aspx). Here you will find whitepapers, best practices, threat modeling tools, process guidance and much more. In addition, we recently released the Microsoft SDL Process Template for Visual Studio Team Systems. This template helps ease the adoption of the SDL, demonstrates security return on investment and provides auditable security requirements and status.
+After a significant investment in time, money, manpower we've developed and want to give back to our partners. A great place to start is the [Microsoft SDL Homepage](https://www.microsoft.com/en-us/securityengineering/sdl). Here you will find whitepapers, best practices, threat modeling tools, process guidance and much more. In addition, we recently released the Microsoft SDL Process Template for Visual Studio Team Systems. This template helps ease the adoption of the SDL, demonstrates security return on investment and provides auditable security requirements and status.
 
 I'd be remiss if I didn't point out an excellent book aptly titled, **Writing Secure Code Vol. 2** and point to the blog of one of the authors, [Michael Howard](https://blogs.msdn.com/michael_howard/). More links below.
 
-> _Microsoft SDL Homepage_ : <https://msdn.microsoft.com/security/cc448177.aspx>
+> _Microsoft SDL Homepage_ : <https://www.microsoft.com/en-us/securityengineering/sdl>
 > 
-> _Microsoft SDL Process Template for Visual Studio Team System_ : <https://msdn.microsoft.com/security/dd670265.aspx>
+> _Microsoft SDL Process Template for Visual Studio Team System_ : <https://www.microsoft.com/en-us/securityengineering/sdl>
 > 
 > _Writing Secure Code Volume 2:_<http://www.amazon.com/Writing-Secure-Second-Michael-Howard/dp/0735617228>
 > 
