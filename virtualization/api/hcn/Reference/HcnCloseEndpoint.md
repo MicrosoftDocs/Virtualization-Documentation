@@ -5,7 +5,6 @@ author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 10/31/2021
 api_name:
 - HcnCloseEndpoint
@@ -29,7 +28,8 @@ HRESULT
 WINAPI
 HcnCloseEndpoint(
     _In_ HCN_ENDPOINT Endpoint
-    );```
+    );
+```
 
 ## Parameters
 

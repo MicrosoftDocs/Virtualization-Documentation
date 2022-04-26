@@ -5,7 +5,6 @@ author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 10/31/2021
 api_name:
 - HcnCloseLoadBalancer
@@ -29,7 +28,8 @@ HRESULT
 WINAPI
 HcnCloseLoadBalancer(
     _In_ HCN_LOADBALANCER LoadBalancer
-    );```
+    );
+```
 
 ## Parameters
 
