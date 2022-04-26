@@ -3,10 +3,10 @@ title: Disclaimer
 description: post id 3993
 keywords: virtualization, blog
 author: scooley
+ms.author: scooley
 ms.date: 4/28/2006
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: aff2511e-76f4-48f3-976b-ff0a36b6e3ad
 ---
 
