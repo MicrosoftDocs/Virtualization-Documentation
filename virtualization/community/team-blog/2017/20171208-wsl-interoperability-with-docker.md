@@ -1,9 +1,15 @@
 ---
-title:      "WSL Interoperability with Docker"
+title: WSL Interoperability with Docker
+description: Learn about the supported features for calling the docker daemon under Windows using the Windows Subsystem for Linux.
+author: mattbriggs
+ms.author: mabrigg
 date:       2017-12-08 18:20:23
+ms.date: 12/08/2017
 categories: containers
 ---
-We frequently get asked about running docker from within the Windows Subsystem for Linux (WSL). We don’t support running the docker daemon directly in WSL. But what you _can_ do is call in to the daemon running under Windows from WSL. What does this let you do? You can create dockerfiles, build them, and run them in the daemon—Windows or Linux, depending on which runtime you have selected—all from the comfort of WSL. [![](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)
+# WSL Interoperability with Docker
+
+We frequently get asked about running docker from within the Windows Subsystem for Linux (WSL). We don’t support running the docker daemon directly in WSL. But what you _can_ do is call in to the daemon running under Windows from WSL. What does this let you do? You can create dockerfiles, build them, and run them in the daemon—Windows or Linux, depending on which runtime you have selected—all from the comfort of WSL. <!--[![](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)-->
 
 ### **Overview**
 
@@ -17,7 +23,7 @@ The daemon has very close ties to the kernel. Today in Windows, when you’re ru
 
 ### **What** **'s the** **Proposal?**
 
-This method is made available because of a tool built by John Starks ([@gigastarks](https://twitter.com/gigastarks)), a dev lead on Hyper-V, called **npiperelay**. Getting communication up and running between WSL and the daemon isn't new; there have been several great blog posts ([ this blog](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) by Nick Janetakis comes to mind) which recommend going a TCP-route by opening a port without TLS (like below): [![](https://msdnshared.blob.core.windows.net/media/2017/11/tls.png)](https://msdnshared.blob.core.windows.net/media/2017/11/tls.png) While I would consider the port 2375 method to be more robust than the tutorial we're about to walk through, you _do_ expose your system to potential attack vectors for malicious code. We don't like exposing attack vectors 🙂 What about opening another port to have docker listen on and protect _that_ with TLS? Well, Docker for Windows [ doesn’t support](https://github.com/docker/for-win/issues/453) the requirements needed to make this happen. So this brings up back to npiperelay.  _Note:_ the tool we are about to use works best with insider builds--it can be a little buggy on ver. 1709. Your mileage may vary.
+This method is made available because of a tool built by John Starks ([@gigastarks](https://twitter.com/gigastarks)), a dev lead on Hyper-V, called **npiperelay**. Getting communication up and running between WSL and the daemon isn't new; there have been several great blog posts ([ this blog](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) by Nick Janetakis comes to mind) which recommend going a TCP-route by opening a port without TLS. <!--(like below): [![](https://msdnshared.blob.core.windows.net/media/2017/11/tls.png)](https://msdnshared.blob.core.windows.net/media/2017/11/tls.png)--> While I would consider the port 2375 method to be more robust than the tutorial we're about to walk through, you _do_ expose your system to potential attack vectors for malicious code. We don't like exposing attack vectors 🙂 What about opening another port to have docker listen on and protect _that_ with TLS? Well, Docker for Windows [ doesn’t support](https://github.com/docker/for-win/issues/453) the requirements needed to make this happen. So this brings up back to npiperelay.  _Note:_ the tool we are about to use works best with insider builds--it can be a little buggy on ver. 1709. Your mileage may vary.
 
 ### Installing Go
 
@@ -33,7 +39,7 @@ With socat installed and the executable built, we just need to string a few thin
 
 ### Test it Out!
 
-Open a new WSL shell to ensure your group membership is reset. Launch the relay in the background: `sudo ~/docker-relay &` Now, run a docker command to test the waters. You should be greeted by the same output as if you ran the command from Windows (and note you don't need 'sudo' prefixed to the command, either!) [![](https://msdnshared.blob.core.windows.net/media/2017/12/npipetest.gif)](https://msdnshared.blob.core.windows.net/media/2017/12/npipetest.gif)
+Open a new WSL shell to ensure your group membership is reset. Launch the relay in the background: `sudo ~/docker-relay &` Now, run a docker command to test the waters. You should be greeted by the same output as if you ran the command from Windows (and note you don't need 'sudo' prefixed to the command, either!). <!--[![](https://msdnshared.blob.core.windows.net/media/2017/12/npipetest.gif)](https://msdnshared.blob.core.windows.net/media/2017/12/npipetest.gif)-->
 
 #### Volume Mounting
 
@@ -41,7 +47,7 @@ If you're wondering how volume mounting works with npiperelay, you'll need to us
 
 ### How Does it Work?
 
-There's a fundamental problem with getting the docker client running under WSL to communicate with Docker for Windows: the WSL client understands IPC via unix sockets, whereas Docker for Windows understands IPC via named pipes. This is where socat and npiperelay.exe come in to play--as the mediators between these two forms of disjoint IPC. Socat understands how to communicate via unix sockets and npiperelay understands how to communicate via named pipes. Socat and npiperelay both understand how to communicate via stdio, hence they can talk to each other. [![](https://msdnshared.blob.core.windows.net/media/2017/12/docker4win.png)](https://msdnshared.blob.core.windows.net/media/2017/12/docker4win.png)
+There's a fundamental problem with getting the docker client running under WSL to communicate with Docker for Windows: the WSL client understands IPC via unix sockets, whereas Docker for Windows understands IPC via named pipes. This is where socat and npiperelay.exe come in to play--as the mediators between these two forms of disjoint IPC. Socat understands how to communicate via unix sockets and npiperelay understands how to communicate via named pipes. Socat and npiperelay both understand how to communicate via stdio, hence they can talk to each other. <!--[![](https://msdnshared.blob.core.windows.net/media/2017/12/docker4win.png)](https://msdnshared.blob.core.windows.net/media/2017/12/docker4win.png)-->
 
 ### Conclusion
 
