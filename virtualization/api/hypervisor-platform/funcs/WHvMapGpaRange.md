@@ -1,3 +1,11 @@
+---
+title: WHvMapGpaRange
+description: Working with WHvMapGpaRange. Description on parameters, return value, and proper syntax.
+author: Juarezhm
+ms.author: hajuarez
+ms.date: 01/06/2019
+---
+
 # WHvMapGpaRange
 
 
