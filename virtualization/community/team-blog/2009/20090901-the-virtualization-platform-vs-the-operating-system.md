@@ -1,8 +1,14 @@
 ---
 title:      "The Virtualization platform vs. the Operating System"
+author: mattbriggs
+ms.author: mabrigg
+description: The Virtualization platform vs. the Operating System
+ms.date: 09/01/2009
 date:       2009-09-01 09:01:00
 categories: hyper-v
 ---
+# The Virtualization platform vs. the Operating System
+
 Day 1 at VMworld was mostly about Labs and content which builds up to the main event starting with the keynote on Tuesday morning. Looking forward to today.
 
 In the meanwhile I have been hearing about a concept being put forth that the virtualization platform is it and the OS is but relegated to the consigns of history. That’s an interesting argument, one that in my opinion is built around the myth that somehow the interface exposed by the virtualization platform is what applications are written to. The fact of the matter is that the “Virtual Machine” as exposed by the virtualization platform mimics the underlying hardware with all its diversity. An entity is still required to manage the hardware resources and provide the software abstractions to interact with incredibly diverse hardware. That is the operating system and that’s what applications are developed for.

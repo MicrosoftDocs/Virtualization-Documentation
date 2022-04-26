@@ -1,9 +1,15 @@
 ---
 title:      "Types of failover operations in Hyper-V Replica–Part II - Planned Failover"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 07/31/2012
 date:       2012-07-31 04:13:33
 categories: disaster-recovery
+description: Types of failover operations in Hyper-V Replica–Part II - Planned Failover
 ---
-In the [first part](http://blogs.technet.com/b/virtualization/archive/2012/07/26/types-of-failover-operations-in-hyper-v-replica.aspx) of this 3-part series, you learnt about Test Failover. In this part, I will talk about the Planned Failover (PFO). 
+# Planned failover in Hyper-V Replica
+
+In the [first part](https://blogs.technet.com/b/virtualization/archive/2012/07/26/types-of-failover-operations-in-hyper-v-replica.aspx) of this 3-part series, you learnt about Test Failover. In this part, I will talk about the Planned Failover (PFO). 
 
 #### 1\. What is Planned Failover? 
 
@@ -47,34 +53,36 @@ The above procedure can be achieved using Powershell using the following cmdlets
 
 Run these cmdlets on the primary side.
     
-    
-       1: Stop-VM VirtualMachine_Workload
-    
-    
-       2:  
+```markdown
+ 1: Stop-VM VirtualMachine_Workload
     
     
-       3: Start-VMFailover -VMName VirtualMachine_Workload –prepare
+ 2:  
+    
+    
+ 3: Start-VMFailover -VMName VirtualMachine_Workload –prepare
+```
 
 Run these cmdlets on the replica side.
     
-    
-       1: Start-VMFailover -VMName VirtualMachine_Workload
-    
-    
-       2:  
+```markdown
+ 1: Start-VMFailover -VMName VirtualMachine_Workload
     
     
-       3: Set-VMReplication -reverse -VMName VirtualMachine_Workload
+ 2:  
     
     
-       4:  
+ 3: Set-VMReplication -reverse -VMName VirtualMachine_Workload
     
     
-       5: Start-VM VirtualMachine_Workload
+ 4:  
+    
+    
+ 5: Start-VM VirtualMachine_Workload
+```
 
 On a cluster, these cmdlets should be run against the node which is currently owning the virtual machine.
 
-In the last part of this series, I will talk about [Unplanned Failover](http://blogs.technet.com/b/virtualization/archive/2012/08/08/types-of-failover-operations-in-hyper-v-replica-part-iii-unplanned-failover.aspx) and summarize the differences between these 3 failovers. Stay tuned!
+In the last part of this series, I will talk about [Unplanned Failover](https://blogs.technet.com/b/virtualization/archive/2012/08/08/types-of-failover-operations-in-hyper-v-replica-part-iii-unplanned-failover.aspx) and summarize the differences between these 3 failovers. Stay tuned!
 
 * * *

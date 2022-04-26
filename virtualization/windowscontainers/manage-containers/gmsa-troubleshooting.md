@@ -6,7 +6,7 @@ author: rpsqrd
 ms.author: jgerend
 ms.date: 10/03/2019
 ms.topic: troubleshooting
-ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
+
 ---
 # Troubleshoot gMSAs for Windows containers
 
@@ -231,7 +231,7 @@ nltest /sc_verify:contoso.com
 
     ```powershell
     Set-ADObject -Identity $gMSA -Replace @{ userAccountControl = ($gmsa.userAccountControl -band 0x7FFFC5FF) -bor 0x1000 }
-    ```
+
 
 ### Non-domain-joined container hosts: Use event logs to identify configuration issues
 
@@ -248,4 +248,3 @@ Event logging for using gMSA with non-domain-joined container hosts can be used 
 | 6 | Container Credential Guard failed to fetch credentials from the plug-in: %1. Error: %2 | This event indicates that the plug-in loaded but could not retrieve credentials needed to fetch the gMSA password from AD. You should verify that the input to the plugin is formatted correctly in the credential specification and that the container host has the necessary permissions to access the secret store used by the plug-in.   |
 | 7 | Container Credential Guard is refetching the credentials using the plug-in: %1 | This is an informational event. This event is generated when the gMSA password has expired and needs to be refreshed using the credentials fetched by the plug-in. |
 | 8 | Container Credential Guard failed to fetch gmsa credentials for %1 using plugin %2. Error reason: %3 | This event indicates that the credentials fetched using the plugin could not be used to fetch gMSA credentials from AD. You should verify that the account being fetched from the plug-in has permissions in AD to retrieve the gMSA credentials. |
-

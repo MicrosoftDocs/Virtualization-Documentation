@@ -3,6 +3,7 @@ title: Make your own integration services
 description: Windows 10 integration services.
 keywords: windows 10, hyper-v, HVSocket, AF_HYPERV
 author: scooley
+ms.author: scooley
 ms.date: 04/07/2017
 ms.topic: article
 ms.prod: windows-10-hyperv
@@ -22,7 +23,7 @@ This document walks through creating a simple program built on Hyper-V sockets.
 **Supported Guest OS**
 * Windows 10 and later
 * Windows Server 2016 and later
-* Linux guests with Linux Integration Services (see [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows))
+* Linux guests with Linux Integration Services (see [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows))
 > **Note:** A supported Linux guest must have kernel support for:
 > ```bash
 > CONFIG_VSOCKET=y
@@ -112,7 +113,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 
 In the most basic case, defining a socket requires an address family, connection type, and protocol.
 
-Here is a simple [socket definition](https://docs.microsoft.com/windows/desktop/api/winsock2/nf-winsock2-socket)
+Here is a simple [socket definition](/windows/desktop/api/winsock2/nf-winsock2-socket)
 
 ``` C
 // Windows
@@ -145,7 +146,7 @@ int sock = socket(AF_VSOCK, SOCK_STREAM, 0);
 
 Bind associates a socket with connection information.
 
-The function definition is copied below for convinience, read more about bind [here](https://docs.microsoft.com/windows/desktop/api/winsock/nf-winsock-bind).
+The function definition is copied below for convinience, read more about bind [here](/windows/desktop/api/winsock/nf-winsock-bind).
 
 ``` C
 // Windows
@@ -229,6 +230,6 @@ Listen()
 Accept()
 
 ## Useful links
-[Complete WinSock API](https://docs.microsoft.com/windows/desktop/WinSock/winsock-functions)
+[Complete WinSock API](/windows/desktop/WinSock/winsock-functions)
 
 [Hyper-V Integration Services reference](../reference/integration-services.md)

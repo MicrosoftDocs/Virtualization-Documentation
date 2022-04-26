@@ -1,8 +1,14 @@
 ---
-title:      "PowerShell Direct – Running PowerShell inside a virtual machine from the Hyper-V host"
+title: PowerShell Direct – Running PowerShell inside a virtual machine from the Hyper-V host
+description: Learn about running a Powershell command prompt inside a Hyper-V virtual machine host.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-05-14 13:01:00
+ms.date: 05/14/2015
 categories: automation
 ---
+# PowerShell Direct – Running PowerShell inside a virtual machine from the Hyper-V host
+
 Official PS Direct documentation is located here (<https://msdn.microsoft.com/virtualization/hyperv_on_windows/user_guide/vmsession.html>).
 
 At Ignite we announced PowerShell Direct, and briefly demoed it’s capabilities in the [“What’s New in Hyper-V” session](https://channel9.msdn.com/Events/Ignite/2015/BRK3461 ""What's New in Hyper-V" session").  This is a follow up so you can get started using PowerShell Direct in your own environment.
@@ -51,7 +57,7 @@ With that said, there are some PowerShell tools not available yet in PowerShell 
 
 I decided to make a picture of the most basic usage imaginable.
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3580.PSSessionAndInvokeCommand.PNG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3580.PSSessionAndInvokeCommand.PNG)
+<!-- [![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3580.PSSessionAndInvokeCommand.PNG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3580.PSSessionAndInvokeCommand.PNG) -->
 
   
 **.5 – Dependencies**  

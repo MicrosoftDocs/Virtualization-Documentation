@@ -1,8 +1,14 @@
 ---
 title:      "Announcing the availability of the updated Infrastructure Planning and Design Guides for Virtualization and System Center"
+author: mattbriggs
+ms.author: mabrigg
+description: Announcing the availability of the updated Infrastructure Planning and Design Guides for Virtualization and System Center
+ms.date: 09/24/2009
 date:       2009-09-24 10:03:00
 categories: application-virtualization
 ---
+# Announcing the availability of the updated Infrastructure Planning and Design Guides for Virtualization and System Center
+
 Microsoft has a comprehensive portfolio of technologies when it comes to Virtualization ranging from Presentation Virtualization with Remote Desktop Services to Server Virtualization using Hyper-V with many more in between as below.
 
 ·        **Server Hardware Virtualization**. Also known as a hypervisor, Server Hardware Virtualization runs a very lightweight core operating system. The hypervisor can host independent virtual machines (VMs). This form of virtualization requires hardware that has embedded virtualization awareness capabilities. Since the hypervisor is very lightweight, there is little overhead in the system, which allows for more scalability in the virtual machines.

@@ -1,11 +1,17 @@
 ---
 title:      "Hyper-V R2 Import/Export – Part 1 – The Case for New Import/Export Functionality"
+description: The first blog entry of a multi-part series talking about the scenarios enabled by the changes made to import/export in R2.
+author: scooley
+ms.author: scooley
 date:       2009-05-20 00:13:00
+ms.date: 05/20/2009
 categories: hyper-v
 ---
+# Hyper-V R2 Import/Export – Part 1
+
 This is the first blog entry of a multi-part series of blogs that addresses Import/Export in Windows Server 2008 R2. This blog talks about the scenarios enabled by the changes made to import/export in R2. Ben Armstrong had blogged earlier about the intricacies of Import and Export with v1 Hyper-V in his blog posts:  
-<http://blogs.msdn.com/virtual_pc_guy/archive/2008/08/26/hyper-v-export-import-part-1.aspx>   
-<http://blogs.msdn.com/virtual_pc_guy/archive/2008/08/27/hyper-v-export-import-part-2.aspx> Now, the big problem with how import export worked in v1 was that it just did not give the user enough control over the process of exporting and more significantly, importing a VM. Additionally, it was rather unforgiving. I bet many a user has been burnt trying to import a VM a second time only to find out that since he/she had imported it once already, the import folder could not be used anymore. 
+<https://blogs.msdn.com/virtual_pc_guy/archive/2008/08/26/hyper-v-export-import-part-1.aspx>   
+<https://blogs.msdn.com/virtual_pc_guy/archive/2008/08/27/hyper-v-export-import-part-2.aspx> Now, the big problem with how import export worked in v1 was that it just did not give the user enough control over the process of exporting and more significantly, importing a VM. Additionally, it was rather unforgiving. I bet many a user has been burnt trying to import a VM a second time only to find out that since he/she had imported it once already, the import folder could not be used anymore. 
 
 So, introducing the R2 version of Import Export: a lot more fine grained control on the entire process as well as added capabilities that are more in tune with user needs. Here is a list of capabilities enabled with the new Import Export functionality:
 

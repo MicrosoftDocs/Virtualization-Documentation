@@ -2,10 +2,9 @@
 title: Host Compute System Overview
 description: Host Compute System Overview
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - Host Compute System Overview
@@ -34,7 +33,7 @@ For both VMs and containers, the API provides the ability to start and interact 
 ## Life Cycle Management
 A client must configure the necessary resources in the host environment prior to calling the HCS APIs to create and configure the virtual machine. The HCS will not provide functionality to setup resources when creating the virtual machine.  
 
-The three main components include creating the virtual hard disk file (VHD) to act as the VM's disk, [configuring the networking](https://docs.microsoft.com/en-us/windows-server/networking/technologies/hcn/hcn-top), and [creating any Hyper-V sockets](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/make-integration-service#create-a-hyper-v-socket). The application configurations and properties will be stored in a JSON file which will then be passed through the HCS APIs to create the compute system. The following sections describes the necessary components and workflow. 
+The three main components include creating the virtual hard disk file (VHD) to act as the VM's disk, [configuring the networking](/windows-server/networking/technologies/hcn/hcn-top), and [creating any Hyper-V sockets](/virtualization/hyper-v-on-windows/user-guide/make-integration-service#create-a-hyper-v-socket). The application configurations and properties will be stored in a JSON file which will then be passed through the HCS APIs to create the compute system. The following sections describes the necessary components and workflow. 
 
 ## API References
 

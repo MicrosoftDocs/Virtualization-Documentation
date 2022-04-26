@@ -1,3 +1,11 @@
+---
+title: WHvSetPartitionProperty
+description: Understaning how to work with WHvSetPartitionProperty and its parameters, syntax, and return value
+author: Juarezhm
+ms.author: hajuarez
+ms.date: 05/31/2019
+---
+
 # WHvSetPartitionProperty
 
 

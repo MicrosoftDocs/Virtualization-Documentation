@@ -1,8 +1,14 @@
 ---
 title:      "Hyper-V R2 Import/Export – Part 3 – The UI"
+description: The Windows Server 2008 R2 UI has been modeled to enable a few new scenarios.
+author: scooley
+ms.author: scooley
 date:       2009-05-22 12:56:00
+ms.date: 05/22/2009
 categories: uncategorized
 ---
+# Hyper-V R2 Import/Export – Part 3 – The UI
+
 Given the rather compressed schedule of Windows Server 2008 R2, we did not have time to get too ambitious with the UI. However, the UI has been modeled to enable the following 3 scenarios:
 
 1\. Export VMs with data

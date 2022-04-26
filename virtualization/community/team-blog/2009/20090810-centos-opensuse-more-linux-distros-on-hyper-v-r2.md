@@ -1,9 +1,14 @@
 ---
 title:      "CentOS, OpenSUSE & More Linux Distros on Hyper-V R2!"
+description:  Comments and reviews from the source code contributions to the Linux kernel under GPL V2.
+author: mattbriggs
+ms.author: mabrigg
 date:       2009-08-10 01:53:02
+ms.date: 08/10/2009
 categories: hyper-v
 ---
-Virtualization Nation, Just a couple of weeks ago, we surprised a few folks by [contributing over 20,000 lines of source code to the Linux kernel under GPL V2](http://www.microsoft.com/presspass/features/2009/Jul09/07-20LinuxQA.mspx). Here are some quotes from the announcement: 
+# Linux Kernel GPL V2 Contribution Comments
+Virtualization Nation, Just a couple of weeks ago, we surprised a few folks by [contributing over 20,000 lines of source code to the Linux kernel under GPL V2](https://www.microsoft.com/presspass/features/2009/Jul09/07-20LinuxQA.mspx). Here are some quotes from the announcement: 
 
 > _Our work in this area is all about providing more flexibility and choice, and requests from our customers and partners were really the impetus behind those efforts. We are hearing more and more customers and open source partners telling us they see some of their best value when they deploy new open source software solutions on top of existing_ _Microsoft platforms. Today's release would have been unheard of from Microsoft a few years ago, but it's a prime example that customer demand is a powerful catalyst for change. - **Sam Ramji, Sr. Director, Server & Tools, Microsoft**_ ___Customers have told us that they would like to standardize on one virtualization platform, and the Linux device drivers will help customers who are running Linux to consolidate their Linux and Windows servers on a single virtualization platform, thereby reducing the complexity of their infrastructure. Consequently, they'll have more choices in how to develop and deploy solutions, while still managing their entire data center from a single management console. - **Tom Hanrahan, Director Open Source Technology Center, Microsoft**_
 

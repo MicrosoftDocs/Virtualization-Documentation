@@ -1,8 +1,14 @@
 ---
-title:      "Discrete Device Assignment -- GPUs"
+title: Discrete Device Assignment -- GPUs
+description: Learn about passing your GPU to a virtual machines using Discrete Device Assignment.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-11-23 11:41:54
+ms.date: 11/23/2015
 categories: dda
 ---
+# Discrete Device Assignment -- GPUs
+
 This is the third post in a four part series.  My previous two blog posts talked about Discrete Device Assignment ([link](/b/virtualization/archive/2015/11/19/discrete-device-assignment.aspx "Discrete Device Assignment -- Description and background")) and the machines and devices necessary ([link](/b/virtualization/archive/2015/11/20/discrete-device-assignment-machines-and-devices.aspx "Discrete Device Assignment -- Machines and devices")) to make it work in Windows Server 2016 TP4. This post goes into more detail, focusing on GPUs.
 
 There are those of you out there who want to get the most out of Photoshop, or CATIA, or some other thing that just needs a graphics processor, or GPU. If that’s you, and if you have GPUs in your machine that aren’t needed by the Windows management OS, then you can dismount them and pass them through to a guest VM.
@@ -15,7 +21,7 @@ We’re working with the GPU vendors to see if they want to support specific GPU
 
 So, if you’re still reading and you want to play around with GPUs in your VMs, you need to know a few other things. First, GPUs can have a lot of memory. And by default, we don’t reserve enough space in our virtual machines for that memory. (We reserve it for RAM that you might add through Dynamic Memory instead, which is the right choice for most users.) You can find out how much memory space your GPU uses by looking at it in Device Manager, or through scripts by looking at the WMI Win32_PnPAllocatedResource class.
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5873.ATIFireProV.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5873.ATIFireProV.png)
+<!--[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5873.ATIFireProV.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5873.ATIFireProV.png)-->
 
 The screen shot above is from the machine I’m using to type this. You can see two memory ranges listed, with beginning and end values expressed in hexadecimal. Doing the conversion to more straightforward numbers, the first range (the video memory, mostly) is 256MB and the second one (video setup and control registers) is 128KB. So any VM you wanted to use this GPU with would need at least 257MB of free space within it.
 

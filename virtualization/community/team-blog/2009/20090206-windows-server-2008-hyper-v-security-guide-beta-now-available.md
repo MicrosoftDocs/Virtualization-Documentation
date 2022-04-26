@@ -1,8 +1,14 @@
 ---
 title:      "Windows Server 2008 Hyper-V Security Guide – beta now available"
-date:       2009-02-06 01:32:00
+description: The guide provides authoritative guidance that relates to the following strategies for securing virtualized environments.
+author: scooley
+ms.author: scooley
+date: 2009-02-06 01:32:00
+ms.date: 02/06/2009
 categories: hyper-v
 ---
+# Windows Server 2008 Hyper-V Security Guide – beta now available
+
 **The Hyper-V Security Guide can help you elevate the security of virtualized Windows Server environments to meet your business-critical needs. This[accelerator](https://technet.microsoft.com/solutionaccelerators/default.aspx "MS.com site") provides IT professionals like you with recommendations to address your key security concerns around server virtualization. The guide provides authoritative guidance that relates to the following strategies for securing virtualized environments: 
 
   * Hardening Hyper-V. The guide provides prescriptive guidance for hardening the Hyper-V server role, including several best practices for installing and configuring Hyper-V with a focus on security. These best practices include measures for reducing the attack surface of Hyper-V as well as recommendations for properly configuring secure virtual networks and storage devices on a Hyper-V host server. 

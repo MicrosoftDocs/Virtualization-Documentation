@@ -1,8 +1,14 @@
 ---
-title:      "Use NGINX to load balance across your Docker Swarm cluster"
+title: Use NGINX to load balance across your Docker Swarm cluster
+description: Learn how to set up a containerized NGINX server to load balance traffic across a Docker swarm cluster.
+author: mattbriggs
+ms.author: mabrigg
 date:       2017-04-19 13:38:56
+ms.date: 04/19/2017
 categories: containers
 ---
+# Use NGINX to load balance across your Docker Swarm cluster
+
 ## A practical walkthrough, in six steps
 
 _This basic example demonstrates NGINX and swarm mode in action, to provide the foundation for you to apply these concepts to your own configurations._ This document walks through several steps for setting up a containerized NGINX server and using it to load balance traffic across a swarm cluster. For clarity, these steps are designed as an end-to-end tutorial for setting up a three node cluster and running two docker services on that cluster; by completing this exercise, you will become familiar with the general workflow required to use swarm mode and to load balance across Windows Container endpoints using an NGINX load balancer.
@@ -13,7 +19,7 @@ This exercise requires three container hosts--two of which will be joined to for
 
 ### System requirements
 
-**Three* or more computer systems** running either **Windows 10 Creators Update** or **Windows Server 2016** _with all of the latest updates_ *, setup as a container host (see the topic, [Windows Containers on Windows 10](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows Containers on Windows Server](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).\+
+**Three* or more computer systems** running either **Windows 10 Creators Update** or **Windows Server 2016** _with all of the latest updates_ *, setup as a container host (see the topic, [Windows Containers on Windows 10](/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows Containers on Windows Server](/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).\+
 
 * **Note** : Docker Swarm on Windows Server 2016 requires [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217)
 
@@ -36,17 +42,19 @@ _**Note:** To avoid having to transfer your container image later, complete the 
 
 NGINX is available for [download from nginx.org](http://nginx.org/en/download.html). An NGINX container image can be built using a simple Dockerfile that installs NGINX onto a Windows base container image and configures the container to run as an NGINX executable. The content of such a Dockerfile is shown below.
 
-
+```code
     FROM windows/servercore
     RUN powershell Invoke-webrequest http://nginx.org/download/nginx-1.12.0.zip -UseBasicParsing -outfile c:\\nginx.zip
     RUN powershell Expand-Archive c:\\nginx.zip -Dest c:\\nginx
     WORKDIR c:\\nginx\\nginx-1.12.0
     ENTRYPOINT powershell .\\nginx.exe
+```
 
 Create a Dockerfile from the content provided above, and save it to some location (e.g. C:\temp\nginx) on your NGINX container host machine. From that location, build the image using the following command:
 
-
+```code
     C:\temp\nginx> docker build -t nginx .
+```
 
 Now the image should appear with the rest of the docker images on your system (check using the ` docker images `command).
 
@@ -54,15 +62,17 @@ Now the image should appear with the rest of the docker images on your system (c
 
 First, run the container:
 
-
+```code
     C:\temp> docker run -it -p 80:80 nginx
+```
 
 Next, open a new cmdlet window and use the ` docker ps ` command to see that the container is running. Note its ID. The ID of your container is the value of ` <CONTAINERID> `in the next command. Get the container’s IP address:
 
-
+```code
     C:\temp> docker exec <CONTAINERID> ipconfig
+```
 
-For example, your container’s IP address may be 172.17.176.155, as in the example output shown below. [![nginxipconfig](https://msdnshared.blob.core.windows.net/media/2017/03/nginxipconfig.png)](https://msdnshared.blob.core.windows.net/media/2017/03/nginxipconfig.png) Next, open a browser on your container host and put your container’s IP address in the address bar. You should see a confirmation page, indicating that NGINX is successfully running in your container. [![nginxconfirmation](https://msdnshared.blob.core.windows.net/media/2017/03/nginxconfirmation.png)](https://msdnshared.blob.core.windows.net/media/2017/03/nginxconfirmation.png)  
+For example, your container’s IP address may be 172.17.176.155, as in the example output shown below. <!--[![nginxipconfig](https://msdnshared.blob.core.windows.net/media/2017/03/nginxipconfig.png)](https://msdnshared.blob.core.windows.net/media/2017/03/nginxipconfig.png)--> Next, open a browser on your container host and put your container’s IP address in the address bar. You should see a confirmation page, indicating that NGINX is successfully running in your container. <!--[![nginxconfirmation](https://msdnshared.blob.core.windows.net/media/2017/03/nginxconfirmation.png)](https://msdnshared.blob.core.windows.net/media/2017/03/nginxconfirmation.png)  -->
 
 ## Step 2: Build images for two containerized IIS Web services
 
@@ -74,26 +84,30 @@ _Note: Complete the instructions in this section on one of the container hosts t
 
 Below are the contents of a simple Dockerfile that can be used to create an IIS Web server image. The Dockerfile simply enables the[Internet Information Services (IIS)](https://www.iis.net/) Web server role within a windows/servercore container.
 
-
+```code
     FROM windows/servercore
     RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
+```
 
 Create a Dockerfile from the content provided above, and save it to some location (e.g. C:\temp\iis) on one of the host machines that you plan to use as a swarm node. From that location, build the image using the following command:
 
-
+```code
      C:\temp\iis> docker build -t iis-web .
+```
 
 ### (Optional) Confirm that your IIS Web server image is ready
 
 First, run the container:
 
-
+```code
      C:\temp> docker run -it -p 80:80 iis-web
+```
 
 Next, use the `docker ps` command to see that the container is running. Note its ID. The ID of your container is the value of `<CONTAINERID>` ``in the next command. Get the container's IP address:
 
-
+```code
     C:\temp> docker exec <CONTAINERID> ipconfig
+```
 
 Now open a browser on your container host and put your container’s IP address in the address bar. You should see a confirmation page, indicating that the IIS Web server role is successfully running in your container. [![iisconfirmation](https://msdnshared.blob.core.windows.net/media/2017/03/iisconfirmation1.png)](https://msdnshared.blob.core.windows.net/media/2017/03/iisconfirmation1.png)
 
@@ -101,27 +115,31 @@ Now open a browser on your container host and put your container’s IP address 
 
 In this step, we’ll be replacing the IIS landing/confirmation page that we saw above with custom HTML pages--two different images, corresponding to two different web container images. In a later step, we’ll be using our NGINX container to load balance across instances of these two images. _Because the images will be different, we will easily see the load balancing in action as it shifts between the content being served by the containers we’ll define in this step._ First, on your host machine create a simple file called, index_1.html. In the file type any text. For example, your index_1.html file might look like this: [![index1](https://msdnshared.blob.core.windows.net/media/2017/03/index1-500x191.png) ](https://msdnshared.blob.core.windows.net/media/2017/03/index1.png) Now create a second file, index_2.html. Again, in the file type any text. For example, your index_2.html file might look like this: [![index2](https://msdnshared.blob.core.windows.net/media/2017/03/index21-500x219.png)](https://msdnshared.blob.core.windows.net/media/2017/03/index21.png) Now we’ll use these HTML documents to make two custom web service images. If the iis-web container instance that you just built is not still running, run a new one, then get the ID of the container using:
 
-
+```code
     C:\temp> docker exec <CONTAINERID> ipconfig
+```
 
 Now, copy your index_1.html file from your host onto the IIS container instance that is running, using the following command:
 
-
+```code
     C:\temp> docker cp index_1.html <CONTAINERID>:C:\inetpub\wwwroot\index.html
+```
 
 Next, stop and commit the container in its current state. This will create a container image for the first web service. Let’s call this first image, "web_1."
 
-
+```code
     C:\> docker stop <CONTAINERID>
     C:\> docker commit <CONTAINERID> web_1
+```
 
 Now, start the container again and repeat the previous steps to create a second web service image, this time using your index_2.html file. Do this using the following commands:
 
-
+```code
     C:\> docker start <CONTAINERID>
     C:\> docker cp index_2.html <CONTAINERID>:C:\inetpub\wwwroot\index.html
     C:\> docker stop <CONTAINERID>
     C:\> docker commit <CONTAINERID> web_2
+```
 
 You have now created images for two unique web services; if you view the Docker images on your host by running `docker images`, you should see that you have two new container images—“web_1” and “web_2”.
 
@@ -137,8 +155,9 @@ As a result of the previous steps, one of your host machines should have the ngi
 
 
 
-
-    C:\temp> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADDRESS>:2377
+```code
+    `C:\temp> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADDRESS>:2377`
+```
 
 Now run the following command from each of the other host machines that you intend to use as swarm nodes, joining them to the swarm as a worker nodes.
 
@@ -147,50 +166,57 @@ Now run the following command from each of the other host machines that you inte
 
 
 
-
-    C:\temp> docker swarm join --token <WORKERJOINTOKEN> <MANAGERIPADDRESS>:2377
+```code
+    `C:\temp> docker swarm join --token <WORKERJOINTOKEN> <MANAGERIPADDRESS>:2377`
+```
 
 Your nodes are now configured to form a swarm cluster! You can see the status of the nodes by running the following command from your manage node:
 
-
+```code
     C:\temp> docker node ls
+```
 
 ## Step 4: Deploy services to your swarm
 
 _**Note:** Before moving on, `stop` and `remove` any NGINX or IIS containers running on your hosts. This will help avoid port conflicts when you define services. To do this, simply run the following commands for each container, replacing ` <CONTAINERID> `with the ID of the container you are stopping/removing:_
 
-
+```code
     C:\temp> docker stop <CONTAINERID>
     C:\temp> docker rm <CONTAINERID>
+```
 
 Next, we’re going to use the "web_1" and "web_2" container images that we created in previous steps of this exercise to deploy two container services to our swarm cluster. To create the services, run the following commands from your swarm manager node:
 
-
+```code
     C:\ > docker service create --name=s1 --publish mode=host,target=80 --endpoint-mode dnsrr web_1 powershell -command {echo sleep; sleep 360000;}
 
 
     C:\ > docker service create --name=s2 --publish mode=host,target=80 --endpoint-mode dnsrr web_2 powershell -command {echo sleep; sleep 360000;}
+```
 
 You should now have two services running, s1 and s2. You can view their status by running the following command from your swarm manager node:
 
-
+```code
     C:\ > docker service ls
+```
 
 Additionally, you can view information on the container instances that define a specific service with the following commands (where `<SERVICENAME>` is replaced with the name of the service you are inspecting (for example, `s1` or `s2`):
 
-
+```code
     # List all services
     C:\ > docker service ls
     # List info for a specific service
     C:\ > docker service ps <SERVICENAME>
+```
 
 ### (Optional) Scale your services
 
 The commands in the previous step will deploy one container instance/replica for each service, `s1` and `s2`. To scale the services to be backed by multiple replicas, run the following command:
 
-
+```code
     C:\ > docker service scale <SERVICENAME>=<REPLICAS>
     # e.g. docker service scale s1=3
+```
 
 ## Step 5: Configure your NGINX load balancer
 
@@ -200,7 +226,7 @@ Now that services are running on your swarm, you can configure the NGINX load ba
 
 First, the nginx.conf file for your load balancer must be configured with the IP addresses and service ports of your swarm nodes and services. The download for NGINX that was downloaded in step 1 as a part of building your NGINX container image includes an example nginx.conf file. For the purpose of this exercise, a version of that file was copied and adapted to create a simple template for you to adapt with your specific node/container information. **Get the template file[here](https://github.com/kallie-b/Microsoft-Samples/blob/master/NGINX-Sample/nginx.conf) and save it onto your NGINX container host machine.** In this step, we'll adapt the template file and use it to replace the default nginx.conf file that was originally downloaded onto your NGINX container image. You will need to adjust the file by adding the information for your hosts and container instances. The template nginx.conf file provided contains the following section:
 
-
+```code
     upstream appcluster {
          server <HOSTIP>:<HOSTPORT>;
          server <HOSTIP>:<HOSTPORT>;
@@ -209,6 +235,7 @@ First, the nginx.conf file for your load balancer must be configured with the IP
          server <HOSTIP>:<HOSTPORT>;
          server <HOSTIP>:<HOSTPORT>;
     }
+```
 
 To adapt the file for your configuration, you will need to adjust the `<HOSTIP>:<HOSTPORT>` entries in the config file. You will have an entry for each container endpoint that defines your web services. For any given container endpoint, the value of `<HOSTIP>` will be the IP address of the container host upon which that container is running. The value of `<HOSTPORT>` will be the port on the container host upon which the container endpoint has been published. _When the services, s1 and s2, were defined in the previous step of this exercise, the`--publish mode=host,target=80` parameter was included. This paramater specified that the container instances for the services should be exposed via published ports on the container hosts. More specifically, by including `--publish mode=host,target=80` in the service definitions, each service was configured to be exposed on port 80 of each of its container endpoints, as well as a set of automatically defined ports on the swarm hosts (i.e. one port for each container running on a given host)._
 
@@ -216,9 +243,10 @@ To adapt the file for your configuration, you will need to adjust the `<HOSTIP>:
 
 Before you can adjust your nginx.conf file, you must obtain the required information for the container endpoints that define your services. To do this, run the following commands (again, run these from your swarm manager node):
 
-
+```code
     C:\ > docker service ps s1
     C:\ > docker service ps s2
+```
 
 The above commands will return details on every container instance running for each of your services, across all of your swarm hosts.
 
@@ -227,7 +255,7 @@ The above commands will return details on every container instance running for e
 
 You now have the port information and node for each container endpoint. Next, use that information to populate the upstream field of your nginx.conf file; for each endpoint, add a server to the upstream field of the file, replacing the field with the IP address of each node (if you don’t have this, run ipconfig on each host machine to obtain it), and the field with the corresponding host port. For example, if you have two swarm hosts (IP addresses 172.17.0.10 and 172.17.0.11), each running three containers your list of servers will end up looking something like this:
 
-
+```code
     upstream appcluster {
          server 172.17.0.10:21858;
          server 172.17.0.11:64199;
@@ -236,7 +264,7 @@ You now have the port information and node for each container endpoint. Next, us
          server 172.17.0.11:35953;
          server 172.17.0.10:47364;
     }
-
+```
 
 Once you have changed your nginx.conf file, save it. Next, we'll copy it from your host to the NGINX container image itself.
 
@@ -244,23 +272,27 @@ Once you have changed your nginx.conf file, save it. Next, we'll copy it from yo
 
 If your nginx container is not already running on its host, run it now:
 
-
+```code
     C:\temp> docker run -it -p 80:80 nginx
+```
 
 Get the ID of the container using:
 
-
+```code
     C:\temp> docker exec <CONTAINERID> ipconfig
+```
 
 With the container running, use the following command to replace the default nginx.conf file with the file that you just configured (run the following command from the directory in which you saved your adjusted version of the nginx.conf on the host machine):
 
-
+```code
     C:\temp> docker cp nginx.conf <CONTAINERID>:C:\nginx\nginx-1.10.3\conf
+```
 
 Now use the following command to reload the NGINX server running within your container:
 
-
+```code
     C:\temp> docker exec <CONTAINERID> nginx.exe -s reload
+```
 
 ## Step 6: See your load balancer in action
 
@@ -269,7 +301,7 @@ Your load balancer should now be fully configured to distribute traffic across t
   * If accessing from the NGINX host machine: Type the IP address of the nginx container running on the machine into the browser address bar. (This is the value of `<CONTAINERID>` above).
   * If accessing from another host machine (with network access to the NGINX host machine): Type the IP address of the NGINX host machine into the browser address bar.
 
-Once you’ve typed the applicable address into the browser address bar, press enter and wait for the web page to load. Once it loads, you should see one of the HTML pages that you created in step 2. Now press refresh on the page. You may need to refresh more than once, but after just a few times you should see the other HTML page that you created in step 2. If you continue refreshing, you will see the two different HTML pages that you used to define the services, web_1 and web_2, being accessed in a round-robin pattern (round-robin is the default load balancing strategy for NGINX, [but there are others](http://nginx.org/en/docs/http/load_balancing.html)). The animated image below demonstrated the behavior that you should see. [![](https://msdnshared.blob.core.windows.net/media/2017/03/refresh.gif)](https://msdnshared.blob.core.windows.net/media/2017/03/refresh.gif) As a reminder, below is the full configuration with all three nodes. When you're refreshing your web page view, you're repeatedly accessing the NGINX node, which is distributing your GET request to the container endpoints running on the swarm nodes. Each time you resend the request, the load balancer has the opportunity to route you to a different endpoint, resulting in your being served a different web page, depending on whether or not your request was routed to an S1 or S2 endpoint. [![configuration_full](https://msdnshared.blob.core.windows.net/media/2017/03/configuration_full.png)](https://msdnshared.blob.core.windows.net/media/2017/03/configuration_full.png)
+Once you’ve typed the applicable address into the browser address bar, press enter and wait for the web page to load. Once it loads, you should see one of the HTML pages that you created in step 2. Now press refresh on the page. You may need to refresh more than once, but after just a few times you should see the other HTML page that you created in step 2. If you continue refreshing, you will see the two different HTML pages that you used to define the services, web_1 and web_2, being accessed in a round-robin pattern (round-robin is the default load balancing strategy for NGINX, [but there are others](http://nginx.org/en/docs/http/load_balancing.html)). The animated image below demonstrated the behavior that you should see. <!--[![](https://msdnshared.blob.core.windows.net/media/2017/03/refresh.gif)](https://msdnshared.blob.core.windows.net/media/2017/03/refresh.gif)--> As a reminder, below is the full configuration with all three nodes. When you're refreshing your web page view, you're repeatedly accessing the NGINX node, which is distributing your GET request to the container endpoints running on the swarm nodes. Each time you resend the request, the load balancer has the opportunity to route you to a different endpoint, resulting in your being served a different web page, depending on whether or not your request was routed to an S1 or S2 endpoint. <!--[![configuration_full](https://msdnshared.blob.core.windows.net/media/2017/03/configuration_full.png)](https://msdnshared.blob.core.windows.net/media/2017/03/configuration_full.png)-->
 
 ## Caveats and gotchas
 

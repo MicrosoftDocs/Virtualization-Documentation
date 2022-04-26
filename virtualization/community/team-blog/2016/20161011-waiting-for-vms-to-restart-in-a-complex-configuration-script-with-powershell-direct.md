@@ -1,12 +1,19 @@
 ---
-title:      "Waiting for VMs to restart in a complex configuration script with PowerShell Direct"
-date:       2016-10-11 19:52:55
+title: Waiting for VMs to restart in a complex configuration script with PowerShell Direct
+description: Blog post that discusses the process and what to learn from writing a PowerShell script that builds a demo environment from scratch.
+author: scooley
+ms.author: scooley
+date: 2016-10-11 19:52:55
+ms.date: 03/20/2019
 categories: hyper-v
 ---
+
+# Waiting for VMs to restart in a complex configuration script with PowerShell Direct
+
 Have you ever tried to automate the setup of a complex environment including the base OS, AD, SQL, Hyper-V and other components? For my demo at Ignite 2016 I did just that. I would like to share a few things I learned while writing a single PowerShell script that builds the demo environment from scratch. The script heavily uses [PowerShell Direct](https://msdn.microsoft.com/virtualization/hyperv_on_windows/user_guide/vmsession) and just requires the installation sources put into specific folders. In this blog post I’d like to provide solutions for two challenges that I came across: 
 
-  * Determining when a virtual machine is ready for customization using PowerShell Direct, and – as a variation of that theme –
-  * Determining when Active Directory is fully up and running in a fully virtualized PoC/demo environment.
+* Determining when a virtual machine is ready for customization using PowerShell Direct, and – as a variation of that theme –
+* Determining when Active Directory is fully up and running in a fully virtualized PoC/demo environment.
 
 
 

@@ -1,8 +1,13 @@
 ---
 title:      "Using data deduplication with Hyper-V Replica for storage savings"
-date:       2013-12-23 00:40:17
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 12/23/2013
 categories: hvr
+description: How users of Hypver-V Replica can save on data storage expenses with data deduplication.
 ---
+# Benefits of Data Deduplication with Hyper-V Replica
+
 Protection of data has always been a priority for customers, and disaster recovery allows the protection of data with better restore times and lower data loss at the time of failover. However, as with all protection strategies, additional storage is a cost that needs to be incurred. With storage usage growing exponentially, a strategy is needed to help enterprises control their spend on storage hardware. This is where data deduplication comes in. Deduplication itself has been around for years, but in this blog post we will talk about how users of Hyper-V Replica (HVR) can benefit from it. This blog post has been written collaboratively with the Windows Server Data Deduplication team.
 
 ### Deduplication considerations
@@ -13,11 +18,11 @@ To begin with, it is important to acknowledge the workloads that are suitable fo
 
 One of the most common deployment scenarios of VDI involves a golden image that is read-only. VDI virtual machines are built using diff-disks that have this golden image as the parent. The setup would look roughly like this:
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4186.image_thumb_14DBA75B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8738.image_57B7EBD5.png)
+[![Read-only golden image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4186.image_thumb_14DBA75B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8738.image_57B7EBD5.png)
 
 This deployment saves a significant amount of storage space. However, when Hyper-V Replica is used to replicate these VMs, each diff-disk chain is treated as a single unit and is replicated. So on the replica site there will be 3 copies of the golden image as a part of the replication.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3302.image_thumb_0F231E66.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5123.image_46D5D896.png)
+[![Copies of golden image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3302.image_thumb_0F231E66.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5123.image_46D5D896.png)
 
 Data deduplication becomes a great way to reclaim that space used.
 
@@ -27,15 +32,15 @@ Data deduplication is applicable at a volume level, and the volume can be made a
 
 #### 1\. SMB 3.0
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6758.image_thumb_7B5E9315.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2185.image_52C0270E.png)
+[![S M B 3.0](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6758.image_thumb_7B5E9315.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2185.image_52C0270E.png)
 
 #### 2\. CSVFS
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0842.image_thumb_534E74A7.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1488.image_0A94FBE3.png)
+[![C S V F S](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0842.image_thumb_534E74A7.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1488.image_0A94FBE3.png)
 
 #### 3\. NTFS
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6505.image_thumb_604AE569.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5582.image_2563B2A0.png)
+[![N T F S](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6505.image_thumb_604AE569.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5582.image_2563B2A0.png)
 
 Ensure that the VHD files that need to be deduplicated are placed in the right volume – and this can be done using [authorization entries](/b/virtualization/archive/2012/07/08/hyper-v-replica-authorization-entries-windows-server-2012-rc.aspx). Using HVR in conjunction with Windows Server Data Deduplication will require some additional planning to take into consideration possible performance impacts to HVR when running on a volume enabled for deduplication.
 
@@ -58,10 +63,9 @@ There are two mitigation steps suggested:
   1. **Defragment the deduplication-enabled volume** on a regular basis. This should be done at least once every 3 days, and preferably once a day.
   2. **Increase the frequency of deduplication optimization**. For instance, set the deduplication policy to optimize data older than 1 day instead of the default 3 days. Increasing the deduplication frequency will allow the deduplication service on the recovery server to keep up better with the changes made by HVR. This can be configured via the deduplication settings in Server Manager  –>File and Storage Services –> Volume –> Configure Data Deduplication, or via PowerShell:
 
-
-    
-    
+```markdown
     Set-DedupVolume <volume> -MinimumFileAgeDays 1
+```
 
 ### Other resources:
 

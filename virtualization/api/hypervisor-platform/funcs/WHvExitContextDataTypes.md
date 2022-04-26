@@ -1,3 +1,10 @@
+--- 
+title: Exit Context Data Types
+description: Describes exit context data types and provides syntax, remarks, and requirements.
+author: Juarezhm
+ms.author: hajuarez
+ms.date: 05/31/2019
+---
 # Exit Context Data Types
 
 

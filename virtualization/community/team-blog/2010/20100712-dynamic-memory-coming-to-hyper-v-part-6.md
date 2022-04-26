@@ -1,15 +1,20 @@
 ---
 title:      "Dynamic Memory Coming to Hyper-V Part 6…"
+description: Dynamic memory is an enhancement to Hyper-V R2 which pools all the memory available on a physical host and dynamically distributes it to virtual machines running on that host as necessary.
+author: scooley
+ms.author: scooley
 date:       2010-07-12 22:17:00
+ms.date: 07/12/2010
 categories: uncategorized
 ---
+# Dynamic Memory Coming to Hyper-V Part 6
 _======================================================_
 
 _Preamble: The point of this series, and the spirit in which it is written, is to take a holistic approach at the issues facing our customers, discuss the complexities with regard to memory management and explain why we ’re taking the approach we are with Hyper-V Dynamic Memory. This isn’t meant to criticize anyone or technology, rather to have an open and transparent discussion about the problem space._
 
 _======================================================_
 
-In the past few blogs we’ve covered Page Sharing and Second Level Paging. Today, let’s dig into what we’re delivering with Hyper-V Dynamic Memory in [Windows Server 2008 R2](http://blogs.technet.com/b/virtualization/archive/2009/07/22/windows-server-2008-r2-hyper-v-server-2008-r2-rtm.aspx) SP1 as well as our free hypervisor [Microsoft Hyper-V Server 2008 R2](http://blogs.technet.com/b/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx) SP1. So what is Dynamic Memory?
+In the past few blogs we’ve covered Page Sharing and Second Level Paging. Today, let’s dig into what we’re delivering with Hyper-V Dynamic Memory in [Windows Server 2008 R2](https://blogs.technet.com/b/virtualization/archive/2009/07/22/windows-server-2008-r2-hyper-v-server-2008-r2-rtm.aspx) SP1 as well as our free hypervisor [Microsoft Hyper-V Server 2008 R2](https://blogs.technet.com/b/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx) SP1. So what is Dynamic Memory?
 
 **Dynamic memory** is an enhancement to Hyper-V R2 which pools all the memory available on a physical host and dynamically distributes it to virtual machines running on that host as necessary. That means based on changes in workload, virtual machines will be able to receive new memory allocations _without a service interruption_ through Dynamic Memory Balancing. In short, Dynamic Memory is exactly what it ’s named.
 
@@ -21,7 +26,7 @@ Let’s dive in an explain how all this works starting with the new Dynamic Memo
 
 With Hyper-V (V1 & R2), memory is _statically_ assigned to a virtual machine. Meaning you assign memory to a virtual machine and when that virtual machine is turned on, Hyper-V allocates and provides that memory to the virtual machine. That memory is held while the virtual machine is running or paused. When the virtual machine is saved or shut down, that memory is released. Below is a screenshot for assigning memory to a virtual machine in Hyper-V V1/R2:
 
-[![Hyper-V V1/R2 Static Memory](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4743.clip_image001_60199CC8.png)](file:///C:\\Users\\jeffwoo\\AppData\\Local\\Temp\\WindowsLiveWriter1286139640\\supfilesFA7757F\\MemoryAssignmentCropped3.png)
+[![Hyper-V V1/R2 Static Memory](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4743.clip_image001_60199CC8.png)]
 
 With Hyper-V Dynamic Memory there are two values: **Startup RAM** and **Maximum RAM** and it looks like this: 
 
@@ -51,7 +56,7 @@ This takes us to the last Dynamic Memory setting, Memory Priority.
 
 **Memory Priority:** By default, all virtual machines are created equal in terms of memory prioritization. However, it ’s very likely you’ll want to prioritize memory allocation based on workload. For example, I can see a scenario where one would give domain controllers greater memory priority than a departmental print server. Memory Priority is a per virtual machine setting which indicates the relative priority of the virtual machine's memory needs measured against the needs of other virtual machines. The default is set to ‘medium’. If you find that you need to adjust this setting, you can adjust this setting on the fly while the virtual machine is running without downtime.
 
-  [![Hyper-V Dynamic Memory Priority](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5810.Win7VDIDynamicMemoryDMPriorityHighlight_thumb_29E7FEAC.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6708.Win7VDIDynamicMemoryDMPriorityHighlight_35E9EEE0.jpg)
+[![Hyper-V Dynamic Memory Priority](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5810.Win7VDIDynamicMemoryDMPriorityHighlight_thumb_29E7FEAC.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6708.Win7VDIDynamicMemoryDMPriorityHighlight_35E9EEE0.jpg)
 
 **Dynamic Memory Works Over Time With A Few VMs …**
 
@@ -67,15 +72,15 @@ I’ve explained the per VM settings and shown how this would work with a single
 
 **30 minutes later**. The Finance VM is running reports while the Engineering VM starts an analysis job. With Dynamic Memory, the Finance VM is allocated  2 GB of memory, the Engineering VM is allocated 3.5 GB of memory while the Sales VM remains at 1 GB and a fourth VM, Service VM is started using 1 GB of memory. System wide, the server is now using 7.5 GB of its 8 GB of memory for VMs. At this point the server is fully allocated in terms of memory and is using its memory most efficiently.
 
-[](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5672.image_7E73B7E4.png) 
+<!--- ![placeholder](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5672.image_7E73B7E4.png)  --->
 
-![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8765.DM%20Over%20Time%2030%20Minutes.jpg)
+<!--- ![image not found](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8765.DM%20Over%20Time%2030%20Minutes.jpg) --->
 
 At this point, the question I’m always asked is, “What now? What if a virtual machine still needs more memory? Does the parent start paging?”
 
 No.
 
-At this point, Dynamic Memory will attempt to reclaim pages from other virtual machines. However, in the absolute worst case where no free pages are available, the **guest operating** system will page as needed, not the parent. This is important because the guest operating system knows best what memory should and shouldn ’t be paged. (I covered this back in [Part 5](http://blogs.technet.com/b/virtualization/archive/2010/05/20/dynamic-memory-coming-to-hyper-v-part-5.aspx)...) Finally, when free memory does become available from other virtual machines, Dynamic Memory will move memory as needed.
+At this point, Dynamic Memory will attempt to reclaim pages from other virtual machines. However, in the absolute worst case where no free pages are available, the **guest operating** system will page as needed, not the parent. This is important because the guest operating system knows best what memory should and shouldn ’t be paged. (I covered this back in [Part 5](https://blogs.technet.com/b/virtualization/archive/2010/05/20/dynamic-memory-coming-to-hyper-v-part-5.aspx)...) Finally, when free memory does become available from other virtual machines, Dynamic Memory will move memory as needed.
 
 **Over-Subscription & the CPU Analogy**
 
@@ -119,10 +124,10 @@ Windows Server & Cloud, Virtualization
 
 P.S. Here are the links to all of the posts in this blog series:
 
-  * Part 1: <http://blogs.technet.com/virtualization/archive/2010/03/18/dynamic-memory-coming-to-hyper-v.aspx>
-  * Part 2: <http://blogs.technet.com/virtualization/archive/2010/03/25/dynamic-memory-coming-to-hyper-v-part-2.aspx>
-  * Part 3: <http://blogs.technet.com/virtualization/archive/2010/04/07/dynamic-memory-coming-to-hyper-v-part-3.aspx>
-  * Part 4: <http://blogs.technet.com/b/virtualization/archive/2010/04/21/dynamic-memory-coming-to-hyper-v-part-4.aspx>
-  * Part 5: <http://blogs.technet.com/b/virtualization/archive/2010/05/20/dynamic-memory-coming-to-hyper-v-part-5.aspx>
+  * Part 1: <https://blogs.technet.com/virtualization/archive/2010/03/18/dynamic-memory-coming-to-hyper-v.aspx>
+  * Part 2: <https://blogs.technet.com/virtualization/archive/2010/03/25/dynamic-memory-coming-to-hyper-v-part-2.aspx>
+  * Part 3: <https://blogs.technet.com/virtualization/archive/2010/04/07/dynamic-memory-coming-to-hyper-v-part-3.aspx>
+  * Part 4: <https://blogs.technet.com/b/virtualization/archive/2010/04/21/dynamic-memory-coming-to-hyper-v-part-4.aspx>
+  * Part 5: <https://blogs.technet.com/b/virtualization/archive/2010/05/20/dynamic-memory-coming-to-hyper-v-part-5.aspx>
 
 

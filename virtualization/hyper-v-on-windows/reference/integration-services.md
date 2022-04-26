@@ -3,10 +3,10 @@ title: Hyper-V Integration Services
 description: Reference for Hyper-V Integration Services
 keywords: windows 10, hyper-v, integration services, integration components
 author: scooley
+ms.author: scooley
 ms.date: 05/25/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 ---
 
@@ -17,7 +17,7 @@ Integration services (often called integration components), are services that al
 This article is a reference for each integration service available in Windows.  It will also act as a starting point for any information related to specific integration services or their history.
 
 **User Guides:**  
-* [Managing integration services](https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services)
+* [Managing integration services](/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services)
 
 
 ## Quick Reference
@@ -27,7 +27,7 @@ This article is a reference for each integration service available in Windows.  
 | [Hyper-V Heartbeat Service](#hyper-v-heartbeat-service) |  vmicheartbeat | hv_utils | Reports that the virtual machine is running correctly. | Varies |
 | [Hyper-V Guest Shutdown Service](#hyper-v-guest-shutdown-service) | vmicshutdown | hv_utils |  Allows the host to trigger virtual machines shutdown. | **High** |
 | [Hyper-V Time Synchronization Service](#hyper-v-time-synchronization-service) | vmictimesync | hv_utils | Synchronizes the virtual machine's clock with the host computer's clock. | **High** |
-| [Hyper-V Data Exchange Service (KVP)](#hyper-v-data-exchange-service-kvp) | vmickvpexchange | hv_kvp_daemon | Provides a way to exchange basic metadata b etween the virtual machine and the host. | Medium |
+| [Hyper-V Data Exchange Service (KVP)](#hyper-v-data-exchange-service-kvp) | vmickvpexchange | hv_kvp_daemon | Provides a way to exchange basic metadata between the virtual machine and the host. | Medium |
 | [Hyper-V Volume Shadow Copy Requestor](#hyper-v-volume-shadow-copy-requestor) | vmicvss | hv_vss_daemon | Allows Volume Shadow Copy Service to back up the virtual machine with out shutting it down. | Varies |
 | [Hyper-V Guest Service Interface](#hyper-v-powershell-direct-service) | vmicguestinterface | hv_fcopy_daemon | Provides an interface for the Hyper-V host to copy files to or from the virtual machine. | Low |
 | [Hyper-V PowerShell Direct Service](#hyper-v-powershell-direct-service) | vmicvmsession | not available | Provides a way to manage virtual machine with PowerShell without a network connection. | Low |  
@@ -47,7 +47,7 @@ When Hyper-V reports that a virtual machine state is "running" (see the example 
 
 ### Check heartbeat with PowerShell
 
-Run [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps) as Administrator to see a virtual machine's heartbeat:
+Run [Get-VM](/powershell/module/hyper-v/get-vm) as Administrator to see a virtual machine's heartbeat:
 ``` PowerShell
 Get-VM -VMName $VMName | select Name, State, Status
 ```
@@ -97,7 +97,7 @@ The data exchange service is a great tool for preserving information about the v
 
 
 **User Guides:**  
-* [Using key-value pairs to share information between the host and guest on Hyper-V](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn798287(v=ws.11)).  
+* [Using key-value pairs to share information between the host and guest on Hyper-V](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn798287(v=ws.11)).  
 
 
 ## Hyper-V Volume Shadow Copy Requestor
@@ -108,9 +108,9 @@ The data exchange service is a great tool for preserving information about the v
 **Added In:** Windows Server 2012, Windows 8  
 **Impact:** When disabled, the virtual machine can not be backed up while running (using VSS).  
 
-The Volume Shadow Copy Requestor integration service is required for Volume Shadow Copy Service ([VSS](https://docs.microsoft.com/windows/desktop/VSS/overview-of-processing-a-backup-under-vss)).  The Volume Shadow Copy Service (VSS) captures and copies images for backup on running systems, particularly servers, without unduly degrading the performance and stability of the services they provide.  This integration service makes that possible by coordinating the virtual machine's workloads with the host's backup process.
+The Volume Shadow Copy Requestor integration service is required for Volume Shadow Copy Service ([VSS](/windows/desktop/VSS/overview-of-processing-a-backup-under-vss)).  The Volume Shadow Copy Service (VSS) captures and copies images for backup on running systems, particularly servers, without unduly degrading the performance and stability of the services they provide.  This integration service makes that possible by coordinating the virtual machine's workloads with the host's backup process.
 
-Read more about Volume Shadow Copy [here](https://docs.microsoft.com/previous-versions/windows/desktop/virtual/backing-up-and-restoring-virtual-machines).
+Read more about Volume Shadow Copy [here](/previous-versions/windows/desktop/virtual/backing-up-and-restoring-virtual-machines).
 
 
 ## Hyper-V Guest Service Interface
@@ -119,7 +119,7 @@ Read more about Volume Shadow Copy [here](https://docs.microsoft.com/previous-ve
 **Linux Daemon Name:** hv_fcopy_daemon  
 **Description:** Provides an interface for the Hyper-V host to bidirectionally copy files to or from the virtual machine.  
 **Added In:** Windows Server 2012 R2, Windows 8.1  
-**Impact:** When disabled, the host can not copy files to and from the guest using `Copy-VMFile`.  Read more about the [Copy-VMFile cmdlet](https://docs.microsoft.com/powershell/module/hyper-v/copy-vmfile?view=win10-ps).  
+**Impact:** When disabled, the host can not copy files to and from the guest using `Copy-VMFile`.  Read more about the [Copy-VMFile cmdlet](/powershell/module/hyper-v/copy-vmfile).  
 
 **Notes:**  
 Disabled by default.  See [PowerShell Direct using Copy-Item](../user-guide/powershell-direct.md#copy-files-with-new-pssession-and-copy-item). 

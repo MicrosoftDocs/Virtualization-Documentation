@@ -1,12 +1,12 @@
 ---
-title: Nested Virtualization
-description: Nested Virtualization
+title: Run Hyper-V in a Virtual Machine with Nested Virtualization
+description: Learn about how to use nested virtualization to run Hyper-V in a virtual machine to emulate configurations that normally require multiple hosts.
 keywords: windows 10, hyper-v
 author: johncslack
+ms.author: johncslack
 ms.date: 9/9/2021
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 ---
 
@@ -16,7 +16,7 @@ Nested virtualization is a feature that allows you to run Hyper-V inside of a Hy
 
 >[!NOTE]
 > Nested Virtualization is supported both Azure and on-premises. However, if using a non-Microsoft hypervisor such as KVM, Microsoft can not provide end-to-end support please ensure your vendor supports this scenario.
-![](./media/HyperVNesting.png)
+![Screenshot of demonstrating nested virtualizations by running an emulator in another emulator.](./media/HyperVNesting.png)
 
 ## Prerequisites
 
@@ -87,8 +87,8 @@ Get-NetAdapter "vEthernet (VmNat)" | New-NetIPAddress -IPAddress 192.168.100.1 -
 Each nested virtual machine must have an IP address and gateway assigned to it. Note that the gateway IP must point to the NAT adapter from the previous step. You may also want to assign a DNS server:
 
 ``` PowerShell
-Get-NetAdapter "Ethernet" | New-NetIPAddress -IPAddress 192.168.100.2 -DefaultGateway 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
-Netsh interface ip add dnsserver “Ethernet” address=<my DNS server>
+Get-NetAdapter "vEthernet (VmNat)" | New-NetIPAddress -IPAddress 192.168.100.2 -DefaultGateway 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
+Netsh interface ip add dnsserver “vEthernet (VmNat)” address=<my DNS server>
 ```
 
 ## How nested virtualization works
@@ -99,11 +99,11 @@ Nested virtualization makes this hardware support available to guest virtual mac
 
 The diagram below shows Hyper-V without nesting.  The Hyper-V hypervisor takes full control of the hardware virtualization capabilities (orange arrow), and does not expose them to the guest operating system.
 
-![](./media/HVNoNesting.PNG)
+![Diagram of the levels of Hyper V with nested virtualization disabled.](./media/HVNoNesting.PNG)
 
 In contrast, the diagram below shows Hyper-V with nested virtualization enabled. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
 
-![](./media/HVNesting.png)
+![Diagram of the levels of Hyper V with nested virtualization enabled](./media/HVNesting.png)
 
 ## 3rd Party Virtualization Apps
 

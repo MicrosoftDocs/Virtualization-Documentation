@@ -1,8 +1,14 @@
 ---
 title:      "Tech Ed&#58; Windows Server 2008 R2 Hyper-V News!"
+description: Greetings from Tech Ed in Los Angeles! It's been a busy couple of days.
+author: scooley
+ms.author: scooley
 date:       2009-05-13 01:34:00
+ms.date: 05/13/2009
 categories: uncategorized
 ---
+# Tech Ed: Windows Server 2008 R2 Hyper-V News
+
 Virtualization Nation,
 
 Greetings from Tech Ed in Los Angeles! It's been a busy couple of days and you've probably heard the big news by now, Windows 7 and Windows Server 2008 R2 will be shipping for the holidays!

@@ -37,7 +37,7 @@
   - name: Supported Guest Operating Systems
     href: about/supported-guest-os.md
   - name: Hyper-V PowerShell
-    href: https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps
+    href: /powershell/module/hyper-v/index?view=win10-ps&preserve-view=true
   - name: Hyper-V Integration Services
     href: reference/integration-services.md
   - name: Hyper-V Architecture

@@ -1,15 +1,19 @@
 ---
 title:      "Guest post&#58; Virtualization drives $250,000 in real savings"
-date:       2009-02-09 01:00:00
+description: Virtualization using Hyper-V and System Center is the most exciting thing SBWH has been a part of since we started beta testing IIS 4.0 in 1997.
+date: 2009-02-09 01:00:00
+ms.date: 02/09/2009
 categories: esx
 ---
+# Guest post: Virtualization drives $250,000 in real savings
+
 I’m David Straede, president of SBWH.com, a Windows managed server provider.  Virtualization using Hyper-V and System Center is the most exciting thing SBWH has been a part of since we started beta testing IIS 4.0 in 1997. 
 
-![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/13/5434/00/00/03/19/92/87/SBWH97.JPG)  SBWH in 1999
+<!--- ![SBWH in 1999](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/13/5434/00/00/03/19/92/87/SBWH97.JPG)  SBWH in 1999 --->
 
 Twelve years ago we got 15 servers in a rack.  Today, we can put 960 in one rack! It’s easier than we expected, and it is saving us hundreds of thousands of dollars.  Let me explain why we moved to Hyper-V.  In late 2007 SBWH had been using HP BL20P Blade Servers for some time.  We were getting 48 servers per rack, and adding more racks as customers came our way.
 
-![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/13/5434/00/00/03/19/92/88/SBWH09.JPG)   SBWH in 2007
+<!--- ![SBWH in 2007](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/telligent.evolution.components.attachments/13/5434/00/00/03/19/92/88/SBWH09.JPG)   SBWH in 2007 --->
 
 Larger contracts can take months for customers to get approved, and a University had notified us they were ready to sign.  When we went to order a new rack and power for it, the facility we were in advised us they were at capacity.   To keep from losing the business, we suggested virtualization.  Since they were “using VMware," we priced out the costs to setup the host systems.   The VMware ESX solution came to over $30,000.  When we went back to the University, they laughed, and said “We can’t afford that, we just use the free version.  The features of ESX did not justify the cost.”    Since we knew they were six months away from a go live, and we had just started testing Hyper-V Beta 1, we offered them a deal to be a pilot customer. 
 
@@ -30,4 +34,4 @@ David Straede
 _For more  on how customers are saving with virtualization, _[_click here_](http://www.prnewswire.com/mnr/microsoft/36562/) _  and watch this video_:
 
   
-[Cost Savings with Microsoft Virtualization](http://www.microsoft.com/video/en/us/details/47304891-46fa-4763-95f4-65329870b7b7?vp_evt=eref&vp_video=Cost+Savings+with+Microsoft+Virtualization)
+[Cost Savings with Microsoft Virtualization](https://www.microsoft.com/video/en/us/details/47304891-46fa-4763-95f4-65329870b7b7?vp_evt=eref&vp_video=Cost+Savings+with+Microsoft+Virtualization)

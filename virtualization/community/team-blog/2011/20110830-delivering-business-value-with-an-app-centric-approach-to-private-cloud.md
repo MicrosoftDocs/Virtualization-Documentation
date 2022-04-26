@@ -1,8 +1,14 @@
 ---
 title:      "Delivering business value with an app-centric approach to Private Cloud"
+author: mattbriggs
+ms.author: mabrigg
+description: Delivering business value with an app-centric approach to Private Cloud
+ms.date: 08/30/2011
 date:       2011-08-30 10:07:59
 categories: uncategorized
 ---
+# Delivering business value with an app-centric approach to Private Cloud
+
 Hear more from Edwin Yuen, Director of Cloud and Virtualization Strategy, about Microsoft's approach to private cloud and how that differs from VMware's: Yesterday in his keynote, Paul Maritz’s said VMware’s “heart” is in infrastructure.  He also talked a lot about VMware’s focus on the cloud.  Well, if your heart is in infrastructure (read: virtualization), and you’re focused on the cloud, we think that leads to a virtualization-focused approach to cloud.  
     
 At Microsoft our approach to private cloud delivers business value through a focus on the application, not the infrastructure. And, we believe economics is a [fundamental benefit of cloud](http://bit.ly/ogFRab) – it is one that customers should benefit from, not just us.  

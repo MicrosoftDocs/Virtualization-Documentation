@@ -20,6 +20,11 @@ This article describes some of the new features when using Windows containers wi
 
 The size of an image is important when using containers because when you deploy a containerized application, you want it to start quickly. Before a container starts, the container image layers need to be downloaded and extracted on the container host. In Windows Server 2022, the size of the Server Core image is reduced, which allows the container to start faster than in previous Server Core versions.
 
+In Windows Server 2022, the Server Core container image RTM layer at the time of GA clocks in at 2.76 GB uncompressed on disk. Compared to the Windows Server 2019 RTM layer at the time of GA, which clocks in at 3.47 GB uncompressed on disk, that is 33% reduction in on-disk footprint for that layer. While you should not expect the **total** image size to be reduced by 33%, a smaller RTM layer size generally means the total image size will be smaller on the whole.
+
+> [!NOTE]
+> Remember that Windows container base images ship as two layers: an RTM layer and a patch layer containing the latest security fixes for OS libraries and binaries which gets overlaid onto the RTM layer. The patch layer's size fluctuates over the life of the container image's support cycle, growing or shrinking from month to month depending on the delta of changes in the binaries. When a Windows container base image is pulled on a new host, both layers must be pulled. 
+
 ### Longer support cycle for all Windows container images 
 
 Five years of mainstream support and an additional five years of extended support is now offered for all Windows Server 2022 images: Server Core, Nano Server, and the recently announced [Server image](https://techcommunity.microsoft.com/t5/containers/announcing-a-new-windows-server-container-image-preview/ba-p/2304897). This longer support cycle will ensure you have time to implement, use, and upgrade or migrate when appropriate for your organization. For more information, see [Windows containers base image lifecycles](../deploy-containers/base-image-lifecycle.md) and [Windows Server 2022 lifecycles](/lifecycle/products/windows-server-2022).
@@ -94,7 +99,7 @@ Windows Admin Center includes the following enhancements:
 
 Azure Migrate App Containerization is an end-to-end solution to containerize and move existing web applications to Azure Kubernetes Service. It’s step-by-step approach provides functionality to assess existing web servers, create a container image, push the image to ACR, create a Kubernetes deployment, and finally deploy it to AKS.
 
-For more information on using the Azure Migrate App ContainerizationAzure Migrate App Containerization tool, see the following topics:
+For more information on using the Azure Migrate App Containerization tool, see the following topics:
 
 [ASP.NET app containerization and migration to Azure Kubernetes Service](/azure/migrate/tutorial-app-containerization-aspnet-kubernetes)
 

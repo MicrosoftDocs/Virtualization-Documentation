@@ -1,3 +1,11 @@
+---
+title: WHvRequestInterrupt
+description: Description on WHvRequestInterrupt and understanding its syntax, parameters, and return value
+author: jstarks
+ms.author: jostarks
+ms.date: 06/06/2019
+---
+
 # WHvRequestInterrupt
 
 ## Syntax

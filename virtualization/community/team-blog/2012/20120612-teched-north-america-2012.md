@@ -1,13 +1,18 @@
 ---
 title:      "TechEd North America 2012"
+description: Key takeaways from Jeff Woolsey's presentation at TechEd North America 2012.
+author: mattbriggs
+ms.author: mabrigg
 date:       2012-06-12 22:52:39
+ms.date: 06/12/2012
 categories: hvr
 ---
+# TechEd North America 2012
 [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1106.image_thumb_0BB375C8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1108.image_19EF5E07.png) | 
 
 Posting this on behalf of **Jeff Woolsey** who delivered an amazing demo in the Day 1 Keynote address by **Satya Nadella.**
 
-The video is available [**here**](http://northamerica.msteched.com/#fbid=L8HIhUFmQC7) and the transcript for the keynote address is available [**here**](http://www.microsoft.com/en-us/news/Speeches/2012/06-11TechEdDay1.aspx).  
+The video is available [**here**](http://northamerica.msteched.com/#fbid=L8HIhUFmQC7) and the transcript for the keynote address is available [**here**](https://www.microsoft.com/en-us/news/Speeches/2012/06-11TechEdDay1.aspx).  
   
 ---|---  
   
