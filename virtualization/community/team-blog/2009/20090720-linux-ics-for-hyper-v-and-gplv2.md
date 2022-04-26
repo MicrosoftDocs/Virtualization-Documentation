@@ -1,9 +1,15 @@
 ---
 title:      "Linux ICs for Hyper-V and GPLv2"
+author: mattbriggs
+ms.author: mabrigg
+description: Learn about Linux ICs for Hyper-V and GPLv2
+ms.date: 07/20/2009
 date:       2009-07-20 13:06:00
 categories: hyper-v
 ---
-A funny thing happened on the way to work this morning ... the Hyper-V Linux integration components (ICs) appeared in [Greg Kroah-Hartman's](http://en.wikipedia.org/wiki/Greg_Kroah-Hartman "Wikipedia") tree (aka, the [Linux Driver Project](http://www.linuxdriverproject.org/twiki/bin/view "Linux Driver Project twiki")) of the Linux community. This is the first time Microsoft is contributing code to the Linux kernel; see the Q&A announcement [here](http://www.microsoft.com/presspass/features/2009/Jul09/07-20LinuxQA.mspx "PressPass Q&A article"). The Hyper-V Linux device drivers will be licensed under GPLv2. That's 20,000 lines of code that provide the synthetic device drivers and VM bus implementation needed for a Linux guest OS to run "enlightened" on either Windows Server 2008 Hyper-V or Microsoft Hyper-V Server 2008. Greg's tree is for all Linux device drivers being contributed to the community. I'm told that within 24-48 hours it will begin to be picked up by other developers in the community, and that it won't land in the mainline tree (Torvald's tree) until it has been generally accepted in other trees along the way. So what does this mean? Here are a few thoughts: 
+# Linux ICs for Hyper-V and GPLv2
+
+A funny thing happened on the way to work this morning ... the Hyper-V Linux integration components (ICs) appeared in [Greg Kroah-Hartman's](http://en.wikipedia.org/wiki/Greg_Kroah-Hartman "Wikipedia") tree (aka, the [Linux Driver Project](http://www.linuxdriverproject.org/twiki/bin/view "Linux Driver Project twiki")) of the Linux community. This is the first time Microsoft is contributing code to the Linux kernel; see the Q&A announcement [here](https://www.microsoft.com/presspass/features/2009/Jul09/07-20LinuxQA.mspx "PressPass Q&A article"). The Hyper-V Linux device drivers will be licensed under GPLv2. That's 20,000 lines of code that provide the synthetic device drivers and VM bus implementation needed for a Linux guest OS to run "enlightened" on either Windows Server 2008 Hyper-V or Microsoft Hyper-V Server 2008. Greg's tree is for all Linux device drivers being contributed to the community. I'm told that within 24-48 hours it will begin to be picked up by other developers in the community, and that it won't land in the mainline tree (Torvald's tree) until it has been generally accepted in other trees along the way. So what does this mean? Here are a few thoughts: 
 
   * I'll be waiting to see the reaction from the Linux community and commercial Linux companies. There should be some positive comments in there along with the expected conspiracy theories ;-)
   * there's a mutual benefit for Linux distis who want to broaden their work with Windows Server, and for customers to broaden the opportunity for Linux as a guest OS running on Hyper-V
