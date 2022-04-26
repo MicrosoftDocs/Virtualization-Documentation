@@ -2,10 +2,9 @@
 title: HDV_PCI_DEVICE_TEARDOWN
 description: HDV_PCI_DEVICE_TEARDOWN
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - HDV_PCI_DEVICE_TEARDOWN

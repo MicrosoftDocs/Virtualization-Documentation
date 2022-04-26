@@ -1,13 +1,19 @@
 ---
 title:      "Trying to achieve granularity of backups with the Hyper-V VSS Writer"
-date:       2009-03-09 01:36:00
+description: To work around the issue with backups on the Hyper-V VSS Writer, backup vendors have been looking into solutions for browsing/indexing the files in the in the VHD file.
+author: scooley
+ms.author: scooley
+date: 2009-03-09 01:36:00
+ms.date: 03/09/2009
 categories: hyper-v
 ---
+# Trying to achieve granularity of backups with the Hyper-V VSS Writer
+
 Another area of feedback on the Hyper-V VSS Writer is that it does not give much by way of granularity beyond the level of the virtual machine. As a result of that, backup applications are stuck to backing up the entire VHD file, which could easily end up being a rather onerous process, expesially if the administrator is backing up to a separate DR site.
 
  
 
-To work around this, backup vendors have been looking into solutions for browsing/indexing the files in the in the VHD file. In general, the user can mount the VHD as another drive on the host and browse its file system. The way to do this is not available via the UI in **Windows Server 2008 Hyper-V** , but is available via the WMI API. Ben Armstrong has a blog post on doing that via vbscript/powershell over [here](http://blogs.msdn.com/virtual_pc_guy/archive/2008/02/01/mounting-a-virtual-hard-disk-with-hyper-v.aspx). Given this avenue, the first approach is to follow the following steps:
+To work around this, backup vendors have been looking into solutions for browsing/indexing the files in the in the VHD file. In general, the user can mount the VHD as another drive on the host and browse its file system. The way to do this is not available via the UI in **Windows Server 2008 Hyper-V** , but is available via the WMI API. Ben Armstrong has a blog post on doing that via vbscript/powershell over [here](https://blogs.msdn.com/virtual_pc_guy/archive/2008/02/01/mounting-a-virtual-hard-disk-with-hyper-v.aspx). Given this avenue, the first approach is to follow the following steps:
 
 1\. Create VSS snapshot of that involves the VM
 

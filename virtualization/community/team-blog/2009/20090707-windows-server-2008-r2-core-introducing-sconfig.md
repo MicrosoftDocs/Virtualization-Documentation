@@ -1,11 +1,16 @@
 ---
 title:      "Windows Server 2008 R2 Core&#58; Introducing SCONFIG."
-date:       2009-07-07 09:27:00
+author: mattbriggs
+ms.author: mabrigg
+description: Windows Server 2008 R1 Core Deployment
+ms.date: 07/07/2009
 categories: hyper-v
 ---
+# Windows Server 2008 R1: Core Deployment
+
 Virtualization Nation, 
 
-It's been very busy in the world of Windows Server. With the launch of Windows Server 2008 R2 Release Candidate, Tech Ed and the announcement of several new [Hyper-V R2 capabilities such as 64 logical processor support and processor compatibility](http://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx), it's been pretty non-stop. In fact, it's been so busy, that we haven't even had a chance to introduce one more really cool new feature in Windows Server 2008 R2, but first, some background. 
+It's been very busy in the world of Windows Server. With the launch of Windows Server 2008 R2 Release Candidate, Tech Ed and the announcement of several new [Hyper-V R2 capabilities such as 64 logical processor support and processor compatibility](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx), it's been pretty non-stop. In fact, it's been so busy, that we haven't even had a chance to introduce one more really cool new feature in Windows Server 2008 R2, but first, some background. 
 
 **Windows Server 2008 R1: Core Deployment**
 
@@ -54,7 +59,7 @@ Pretty spartan.
 As you can see, there's no Start Menu. It's all command-line all the time. For enterprise customers, this isn't a big deal because very often they deploy Windows Server in an automated fashion. However, for small and mid-sized customers a command-line only interface can make some of the most rudimentary tasks a challenge. For example, here are the commands to rename your computer and then join a domain via a Windows Server 2008 core deployment. 
 
   1. **Rename your computer** : netdom renamecomputer %computername% /newname:<new_computername>
-  2. **Domain join** : netdom join %computername% /domain:<domain> /userd:<username> /passwordd:*
+  2. **Domain join** : netdom join %computername% /domain: \<domain\> /userd: \<username\> /passwordd:*
 
 
 
@@ -62,7 +67,7 @@ Not the easiest thing to remember. We knew we could do better.
 
 **Improving Usability**
 
-While Windows Server 2008 R1 was in development, a few of us were quietly working on the [Hyper-V Server 2008 standalone SKU](http://www.microsoft.com/hyper-v-server/en/us/default.aspx) which also uses a CLI. We spent time working on improving the server configuration experience with an easy to use CLI called HVCONFIG. Within hours of our first private releases of Hyper-V Server 2008 to testers, we received email asking/begging/pleading/cajoling/offering bribes for a similar tool for Windows Server as well. 
+While Windows Server 2008 R1 was in development, a few of us were quietly working on the [Hyper-V Server 2008 standalone SKU](https://www.microsoft.com/hyper-v-server/en/us/default.aspx) which also uses a CLI. We spent time working on improving the server configuration experience with an easy to use CLI called HVCONFIG. Within hours of our first private releases of Hyper-V Server 2008 to testers, we received email asking/begging/pleading/cajoling/offering bribes for a similar tool for Windows Server as well. 
 
 Happy to oblige. 
 

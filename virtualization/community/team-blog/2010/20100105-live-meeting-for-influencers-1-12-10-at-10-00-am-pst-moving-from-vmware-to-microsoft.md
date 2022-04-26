@@ -1,8 +1,14 @@
 ---
 title:      "Live Meeting for Influencers, 1.12.10 at 10&#58;00 am PST&#58; Moving from VMware to Microsoft"
+author: mattbriggs
+ms.author: mabrigg
+description: Live Meeting for Influencers, 1.12.10 at 8;00 am PST; Moving from VMware to Microsoft
+ms.date: 01/05/2010
 date:       2010-01-05 18:19:08
 categories: community
 ---
+# Live Meeting for Influencers, 1.12.10 at 8:00 am PST; Moving from VMware to Microsoft
+
 On **Tuesday, January 12, 2010 10:00 AM-11:00 AM.,** we are hosting a Live Meeting presentation for System Center influencers entitled, “So you Want To Move from a VMware Infrastructure to Microsoft,” presented by Kenon Owens, Microsoft Virtualization product manager.
 
 Please note: 

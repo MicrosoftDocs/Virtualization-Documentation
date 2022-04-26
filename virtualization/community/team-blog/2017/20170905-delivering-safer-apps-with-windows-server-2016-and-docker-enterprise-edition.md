@@ -1,8 +1,14 @@
 ---
-title:      "Delivering Safer Apps with Windows Server 2016 and Docker Enterprise Edition"
+title: Delivering Safer Apps with Windows Server 2016 and Docker Enterprise Edition
+description: Learn about some of the features of Windows Server 2016 and Docker Enterprise Edition and how they can help deploy IT applications efficiently.
+author: mattbriggs
+ms.author: mabrigg
 date:       2017-09-05 09:00:47
+ms.date: 09/05/2017
 categories: containers
 ---
+# Delivering Safer Apps with Windows Server 2016 and Docker Enterprise Edition
+
 _Windows Server 2016 and Docker Enterprise Edition are revolutionizing the way Windows developers can create, deploy, and manage their applications on-premises and in the cloud. Microsoft and Docker are committed to providing secure containerization technologies and enabling developers to implement security best practices in their applications. This blog post highlights some of the security features in Docker Enterprise Edition and Windows Server 2016 designed to help you deliver safer applications._ _For more information on Docker and Windows Server 2016 Container security, check out the[full whitepaper](https://goto.docker.com/rs/929-FJL-178/images/20170831-WP-Delivering-Safer-Apps.pdf) on Docker's site._
 
 ## Introduction
@@ -13,7 +19,7 @@ Today, many organizations are turning to Docker Enterprise Edition (EE) and Wind
   2. **Trusted Delivery:** Everything needed to run an application is delivered safely and guaranteed not to be tampered with.
   3. **Infrastructure Independent:** Application and security configurations are portable and can move between developer workstations, testing environments, and production deployments regardless of whether those environments are running in Azure or your own datacenter.
 
-![](https://msdnshared.blob.core.windows.net/media/2017/08/KeyComponentsOfContainerSecurity-500x262.png)
+<!--![](https://msdnshared.blob.core.windows.net/media/2017/08/KeyComponentsOfContainerSecurity-500x262.png)-->
 
 ## Usable Security
 

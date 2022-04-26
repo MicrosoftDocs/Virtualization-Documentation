@@ -1,8 +1,14 @@
 ---
-title:      "A great way to collect logs for troubleshooting"
+title: A great way to collect logs for troubleshooting
+description: Learn how to optimize your use of event logs to troubleshoot issues within a Hyper-V cluster.
+author: mattbriggs
+ms.author: mabrigg
 date:       2017-10-27 23:30:39
+ms.date: 10/27/2017
 categories: hyper-v
 ---
+# A great way to collect logs for troubleshooting
+
 Did you ever have to troubleshoot issues within a Hyper-V cluster or standalone environment and found yourself switching between different event logs? Or did you repro something just to find out not all of the important Windows event channels had been activated? To make it easier to collect the right set of event logs into a single evtx file to help with troubleshooting we have published a [HyperVLogs PowerShell module](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/HyperVLogs) on GitHub.  In this blog post I am sharing with you how to get the module and how to gather event logs using the functions provided. 
 
 ### Step 1: Download and import the PowerShell module

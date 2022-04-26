@@ -2,10 +2,9 @@
 title: HCS_OPERATION_TYPE
 description: HCS_OPERATION_TYPE
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - HCS_OPERATION_TYPE
@@ -49,7 +48,7 @@ typedef enum HCS_OPERATION_TYPE
 
 ## Constants
 
-|||
+|Name|Description|
 |---|---|
 |`HcsOperationTypeNone`|Return if the operation has not yet been used to track a function call.|
 |`HcsOperationTypeEnumerate`|Return if the operation is tracking function [HcsEnumerateComputeSystems](./HcsEnumerateComputeSystems.md).|

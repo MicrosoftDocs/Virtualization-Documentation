@@ -2,11 +2,11 @@
 title: Create a custom virtual machine gallery
 description: Build your own entries into the virtual machine gallery in Windows 10 Creators Update and later.
 keywords: windows 10, hyper-v, quick create, virtual machine, gallery
+author: scooley
 ms.author: scooley
 ms.date: 05/04/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: d9238389-7028-4015-8140-27253b156f37
 ---
 # Create a custom virtual machine gallery
@@ -55,12 +55,12 @@ The virtual machine gallery creates virtual machines using the same mechanism as
 To validate a virtual machine image will boot and run:
 
 1. Open the VM Gallery (Hyper-V Quick Create) and select **Local Installation Source**.
-  ![Button to use a local installation source](media/use-local-source.png)
+  ![Screenshot of the Local installation source button emphasized in the Create Virtual Machine dialog.](media/use-local-source.png)
 1. Select **Change Installation Source**.
-  ![Button to use a local installation source](media/change-source.png)
+  ![Screenshot of the Change installation source button emphasized in the Create Virtual Machine dialog.](media/change-source.png)
 1. Pick the .iso or .vhdx that will be used in the gallery.
 1. If the image is a Linux image, deselect the Secure Boot option.
-  ![Button to use a local installation source](media/toggle-secure-boot.png)
+  ![Screenshot of enabling Windows Secure Boot in the Create Virtual Machine dialog.](media/toggle-secure-boot.png)
 1. Create Virtual Machine.  If the virtual machine boots correctly, it's ready for the gallery.
 
 ## Build a new gallery source

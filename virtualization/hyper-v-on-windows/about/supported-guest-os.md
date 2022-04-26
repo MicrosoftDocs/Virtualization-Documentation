@@ -3,6 +3,7 @@ title: Supported Windows guests
 description: Supported Windows guests.
 keywords: windows 10, hyper-v
 author: scooley
+ms.author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
@@ -27,7 +28,7 @@ In order to be supported, all operating systems (guest and host) must be up to d
 
 ## Supported guest operating systems
 
-| Guest operating system |  Maximum number of virtual processors | Notes |
+| Guest operating system | Maximum number of virtual processors | Notes |
 |:-----|:-----|:-----|
 | Windows 10 | 32 |Enhanced Session Mode does not work on Windows 10 Home edition |
 | Windows 8.1 | 32 | |
@@ -35,8 +36,7 @@ In order to be supported, all operating systems (guest and host) must be up to d
 | Windows 7 with Service Pack 1 (SP 1) | 4 | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). |
 | Windows 7 | 4 | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). |
 | Windows Vista with Service Pack 2 (SP2) | 2 | Business, Enterprise, and Ultimate, including N and KN editions. |
-| - | | |
-| [Windows Server Semi-Annual Channel](https://docs.microsoft.com/windows-server/get-started/semi-annual-channel-overview) | 64 | |
+| [Windows Server Semi-Annual Channel](/windows-server/get-started/semi-annual-channel-overview) | 64 | |
 | Windows Server 2019 | 64 | |
 | Windows Server 2016 | 64 | |
 | Windows Server 2012 R2 | 64 | |
@@ -50,13 +50,13 @@ In order to be supported, all operating systems (guest and host) must be up to d
 
 ## Supported Linux and FreeBSD
 
-| Guest operating system |  |
-|:-----|:------|
-| [CentOS and Red Hat Enterprise Linux](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-CentOS-and-Red-Hat-Enterprise-Linux-virtual-machines-on-Hyper-V) | |
-| [Debian virtual machines on Hyper-V](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Debian-virtual-machines-on-Hyper-V) | |
-| [SUSE](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-SUSE-virtual-machines-on-Hyper-V) | |
-| [Oracle Linux](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Oracle-Linux-virtual-machines-on-Hyper-V)  | |
-| [Ubuntu](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Ubuntu-virtual-machines-on-Hyper-V) | |
-| [FreeBSD](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-FreeBSD-virtual-machines-on-Hyper-V) | |
+| Guest operating system |
+|:-----|
+| [CentOS and Red Hat Enterprise Linux](/windows-server/virtualization/hyper-v/Supported-CentOS-and-Red-Hat-Enterprise-Linux-virtual-machines-on-Hyper-V) |
+| [Debian virtual machines on Hyper-V](/windows-server/virtualization/hyper-v/Supported-Debian-virtual-machines-on-Hyper-V) |
+| [SUSE](/windows-server/virtualization/hyper-v/Supported-SUSE-virtual-machines-on-Hyper-V) |
+| [Oracle Linux](/windows-server/virtualization/hyper-v/Supported-Oracle-Linux-virtual-machines-on-Hyper-V)  |
+| [Ubuntu](/windows-server/virtualization/hyper-v/Supported-Ubuntu-virtual-machines-on-Hyper-V) |
+| [FreeBSD](/windows-server/virtualization/hyper-v/Supported-FreeBSD-virtual-machines-on-Hyper-V) |
 
-For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows).
+For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows).
