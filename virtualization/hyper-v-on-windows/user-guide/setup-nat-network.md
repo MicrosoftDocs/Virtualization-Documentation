@@ -3,10 +3,10 @@ title: Set up a NAT network
 description: Set up a NAT network
 keywords: windows 10, hyper-v
 author: jmesser81
+ms.author: jamesser
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
 ---
 
@@ -32,7 +32,7 @@ Network Address Translation (NAT) is a networking mode designed to conserve IP a
 
 Additionally, NAT allows multiple virtual machines to host applications that require identical (internal) communication ports by mapping these to unique external ports.
 
-For all of these reasons, NAT networking is very common for container technology (see [Container Networking](https://docs.microsoft.com/virtualization/windowscontainers/container-networking/architecture)).
+For all of these reasons, NAT networking is very common for container technology (see [Container Networking](/virtualization/windowscontainers/container-networking/architecture)).
 
 
 ## Create a NAT virtual network
@@ -65,7 +65,7 @@ Let's walk through setting up a new NAT network.
 
     The internal switch will have a name like `vEthernet (SwitchName)` and an Interface Description of `Hyper-V Virtual Ethernet Adapter`. Take note of its `ifIndex` to use in the next step.
 
-4. Configure the NAT gateway using [New-NetIPAddress](https://docs.microsoft.com/powershell/module/nettcpip/New-NetIPAddress).  
+4. Configure the NAT gateway using [New-NetIPAddress](/powershell/module/nettcpip/New-NetIPAddress).  
 
     Here is the generic command:
     ```powershell
@@ -93,7 +93,7 @@ Let's walk through setting up a new NAT network.
     New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
     ```
 
-5. Configure the NAT network using [New-NetNat](https://docs.microsoft.com/powershell/module/netnat/New-NetNat).  
+5. Configure the NAT network using [New-NetNat](/powershell/module/netnat/New-NetNat).  
 
     Here is the generic command:
 

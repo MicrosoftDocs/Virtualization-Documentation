@@ -1,15 +1,16 @@
 ---
-title: Create a Virtual Machine with Hyper-V
+title: Create a Virtual Machine with Hyper-V on Windows 10 Creators Update
 description: Create a new virtual machine with Hyper-V on Windows 10 Creators Update
 keywords: windows 10, hyper-v, virtual machine
 author: scooley
+ms.author: scooley
 ms.date: 04/07/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: f1e75efa-8745-4389-b8dc-91ca931fe5ae
 ---
 
-# Create a Virtual Machine with Hyper-V
+# Create a Virtual Machine with Hyper-V on Windows 10 Creators Update
 
 Create a virtual machine and install its operating system.
 
@@ -39,10 +40,10 @@ To create a new virtual machine in Fall Creators Update:
 
     1. If you want to use your own image to create the virtual machine, select **Local Installation Source**.
     1. Select **Change Installation Source**.
-      ![Button to use a local installation source](media/change-source.png)
+      ![Screenshot of the Create Virtual Machine screen, showing the Select an operating system pane.](media/change-source.png)
     1. Pick the .iso or .vhdx that you want to turn into a new virtual machine.
     1. If the image is a Linux image, deselect the Secure Boot option.
-      ![Button to use a local installation source](media/toggle-secure-boot.png)
+      ![Screenshot of the Create Virtual Machine screen with the Change installation source option being highlighted.](media/toggle-secure-boot.png)
 
 1. Select "Create Virtual Machine"
 

@@ -2,10 +2,9 @@
 title: HdvInitializeDeviceHost function
 description: HdvInitializeDeviceHost function
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - HdvInitializeDeviceHost function

@@ -3,11 +3,12 @@ title: Hyper-V on Windows 10
 description: Hyper-V on Windows 10 
 keywords: windows 10, hyper-v
 author: scooley
+ms.author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
+
 ---
 
 # Hyper-V on Windows 10 
@@ -34,4 +35,4 @@ The following documents provide a quick and guided introduction to Hyper-V on Wi
 Additional technical support and community resources.
 
 * [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/home?forum=winserverhyperv)
-* [Community Resources for Hyper-V and Windows Containers](/virtualization/community/index.md)
+* [Community Resources for Hyper-V and Windows Containers](/virtualization/community/)
