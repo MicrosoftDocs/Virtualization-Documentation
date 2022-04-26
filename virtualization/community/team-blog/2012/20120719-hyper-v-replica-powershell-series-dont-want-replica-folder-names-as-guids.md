@@ -1,11 +1,17 @@
 ---
 title:      "Hyper-V Replica Powershell Series&#58; Don’t want Replica folder names as GUIDs!"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 07/19/2012
 date:       2012-07-19 23:04:00
 categories: authorization-table
+description: This article discusses how files are named in the Replica virtual machine and how to change them.
 ---
+# Changing folder names
+
 When you enable replication on a virtual machine, the Replica virtual machine files are created under the location specified by you in the Replica server configuration on the Replica side. Under the specified location, the files are created under a folder structure that looks like:
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7127.image_thumb_04F85A16.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0513.image_79AF45D8.png)
+[![Folder structure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7127.image_thumb_04F85A16.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0513.image_79AF45D8.png)
 
 The folders are named using GUIDs.
 
@@ -15,7 +21,7 @@ The folders are named using GUIDs.
 
 Instead of this default folder structure, you may want to have a simpler folder structure as you are sure that you will not get such name conflicts in your setup. You may want a folder structure that looks like:
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8130.image_thumb_0EFCD574.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4314.image_5C0D450C.png)
+[![Simpler folder structure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8130.image_thumb_0EFCD574.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4314.image_5C0D450C.png)
 
 The good news is that you can achieve this using simple steps ![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1754.wlEmoticon-smile_2647D9E5.png). Here are the steps that could accomplish this for you:
 
@@ -28,10 +34,10 @@ The good news is that you can achieve this using simple steps ![Smile](https://m
 
 
 
-You can do the same steps using Powershell. Here is a sample script that accomplishes this task for you. This script assumes both primary and replica sides to be clustered setups. This script also assumes [certificate-based authentication](http://blogs.technet.com/b/virtualization/archive/2012/07/16/hyper-v-replica-certificate-based-authentication-in-windows-server-2012-rc.aspx) being used. You can easily customize the script if you have a different environment.
+You can do the same steps using Powershell. Here is a sample script that accomplishes this task for you. This script assumes both primary and replica sides to be clustered setups. This script also assumes [certificate-based authentication](https://blogs.technet.com/b/virtualization/archive/2012/07/16/hyper-v-replica-certificate-based-authentication-in-windows-server-2012-rc.aspx) being used. You can easily customize the script if you have a different environment.
     
-    
-    Function Enable-VMReplicationCustomStorageOneLocationUsingCertificate
+```markdown
+Function Enable-VMReplicationCustomStorageOneLocationUsingCertificate
     
     
         {
@@ -248,13 +254,13 @@ You can do the same steps using Powershell. Here is a sample script that accompl
     
     
         }
-
- 
+```
 
 Once you run this script on you primary cluster, you will get a function that can then be used to enable replication to get the desired folder structure on the Replica cluster. Here is an example usage for this script:
     
-    
-    Enable-VMReplicationCustomStorageOneLocationUsingCertificate -VMName MyVM -PrimaryCluster MySeattleCluster -ReplicaCluster MyLondonCluster -AllowedPrimaryServer MySeattleBroker.contoso.com
+```markdown
+Enable-VMReplicationCustomStorageOneLocationUsingCertificate -VMName MyVM -PrimaryCluster MySeattleCluster -ReplicaCluster MyLondonCluster -AllowedPrimaryServer MySeattleBroker.contoso.com
+```
 
 Here **MySeattleCluster** is the name of the primary cluster, **MyLondonCluster** is the name of the replica cluster, and **MyLondonCluster** authorizes **MySeattleCluster** to replicate by an authorization entry where **AllowedPrimaryServer** value is **MySeattleBroker.contoso.com**
 
@@ -262,8 +268,8 @@ The certificate for replication is queried from the installed certificates. The 
 
 Here is a sample script for stand-alone primary replicating to stand-alone replica server using kerberos authentication:
     
-    
-    Function Enable-VMReplicationCustomStorageOneLocation
+```markdown
+Function Enable-VMReplicationCustomStorageOneLocation
     
     
         {
@@ -393,8 +399,7 @@ Here is a sample script for stand-alone primary replicating to stand-alone repli
     
     
         }
-
- 
+```
 
 For both these scripts, if your Replica side allows any authenticated server to replicate, as opposed to allowing specific servers, you should skip the **AllowedPrimaryServer** parameter. The script will then use the default storage location returned by the Get-VMReplicationServer cmdlet as the base path for creating the Replica virtual machine files.
 
@@ -402,19 +407,21 @@ Here are some cmdlets that will help you query how you have set up the Replica s
 
 > On the Replica side, you could have authorized all authenticated servers to replicate, in which case the location where Replica virtual machine files will get created can be queried using the Get-VMReplicationServer cmdlet:
 >     
->     
->     Get-VMReplicationServer -ComputerName MySeattle.contoso.com | Select ReplicationAllowedFromAnyServer, DefaultStorageLocation | fl
+```markdown
+>Get-VMReplicationServer -ComputerName MySeattle.contoso.com | Select ReplicationAllowedFromAnyServer, DefaultStorageLocation | fl
+```
 > 
 > If the ReplicationAllowedFromAnyServer value returned by this cmdlet is **FALSE** , then you have chosen to allow only specific primary servers to replicate to the given Replica server (or cluster). In this case, the default location for creating Replica virtual machine files can be queried using the Get-VMReplicationAuthorizationEntry:
 >     
->     
->     Get-VMReplicationAuthorizationEntry -ComputerName MySeattle.contoso.com
+```markdown
+>Get-VMReplicationAuthorizationEntry -ComputerName MySeattle.contoso.com
+```
 > 
 > This will return all authorization entries on the specified Replica server. To query the authorization entry corresponding to a specific primary server, you can filter the query using the –AllowedPrimaryServer parameter. Specify the value that corresponds to the primary server from which you would be replicating virtual machines, e.g., 
 >     
->     
->     Get-VMReplicationAuthorizationEntry -ComputerName MySeattle -AllowedPrimaryServer MyLondon.contoso.com
-
+```markdown
+>Get-VMReplicationAuthorizationEntry -ComputerName MySeattle -AllowedPrimaryServer MyLondon.contoso.com
+```
  
 
 You can customize the scripts are per your specific setup. Keep watching this space for more such utility scripts.

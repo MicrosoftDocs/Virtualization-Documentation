@@ -1,8 +1,14 @@
 ---
 title:      "Types of failover operations in Hyper-V Replica – Part I – Test Failover"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 07/25/2012
 date:       2012-07-25 16:15:00
 categories: clustering
+description: Types of failover operations in Hyper-V Replica – Part I – Test Failover
 ---
+# Test failover in Hyper-V Replica
+
 If you are wondering “ _I have enabled replication and it looks like everything is in progress, but how do I know that I am truly protected_ ”, then keep reading the next few posts as we walk you through the various types of failover, how and when to use them and the gotchas in different deployments.
 
 At a high level, Hyper-V Replica supports three types of Failover:
@@ -47,9 +53,9 @@ After this, a NEW virtual machine is spun up on the replica site. The name of th
 
 [![TFO-Machines](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7725.TFO-Machines_thumb_55D4740C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3603.TFO-Machines_71E2A246.png)
 
-The TFO virtual machine should then be started in an isolated network and client tests can be run against the same to validate replication. You can pre-assign a network and an IP address using the [guest IP address ](http://blogs.technet.com/b/virtualization/archive/2012/05/29/inject-ip-address-into-the-vm-during-failover.aspx)[injection](http://blogs.technet.com/b/virtualization/archive/2012/05/29/inject-ip-address-into-the-vm-during-failover.aspx) feature. Once satisfied that replication is kosher, you should do **“Stop Test Failover”** on the Replica virtual machine, which will clean up the duplicate virtual machine. 
+The TFO virtual machine should then be started in an isolated network and client tests can be run against the same to validate replication. You can pre-assign a network and an IP address using the [guest IP address ](https://blogs.technet.com/b/virtualization/archive/2012/05/29/inject-ip-address-into-the-vm-during-failover.aspx)[injection](https://blogs.technet.com/b/virtualization/archive/2012/05/29/inject-ip-address-into-the-vm-during-failover.aspx) feature. Once satisfied that replication is kosher, you should do **“Stop Test Failover”** on the Replica virtual machine, which will clean up the duplicate virtual machine. 
 
-Since Test Failover does NOT impact your production workload and does NOT impact your ongoing replication, it is recommended that you perform TFO regularly. There are a couple of mechanisms which help you track the frequency of this event – BPA rules and [replication health](http://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx).
+Since Test Failover does NOT impact your production workload and does NOT impact your ongoing replication, it is recommended that you perform TFO regularly. There are a couple of mechanisms which help you track the frequency of this event – BPA rules and [replication health](https://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx).
 
 The above procedure can be achieved using Powershell using the following cmdlets.
 
@@ -62,4 +68,4 @@ The above procedure can be achieved using Powershell using the following cmdlets
 
 
 
-The next post will cover [Planned Failover](http://blogs.technet.com/b/virtualization/archive/2012/07/31/types-of-failover-operations-in-hyper-v-replica-part-ii-planned-failover.aspx) and the last in the series will cover the [Unplanned Failover](http://blogs.technet.com/b/virtualization/archive/2012/08/08/types-of-failover-operations-in-hyper-v-replica-part-iii-unplanned-failover.aspx).
+The next post will cover [Planned Failover](https://blogs.technet.com/b/virtualization/archive/2012/07/31/types-of-failover-operations-in-hyper-v-replica-part-ii-planned-failover.aspx) and the last in the series will cover the [Unplanned Failover](https://blogs.technet.com/b/virtualization/archive/2012/08/08/types-of-failover-operations-in-hyper-v-replica-part-iii-unplanned-failover.aspx).

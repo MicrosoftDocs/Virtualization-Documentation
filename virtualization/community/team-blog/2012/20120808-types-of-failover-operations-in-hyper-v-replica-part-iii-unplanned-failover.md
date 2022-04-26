@@ -1,9 +1,15 @@
 ---
 title:      "Types of failover operations in Hyper-V Replica–Part III - Unplanned Failover"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 08/08/2012
 date:       2012-08-08 12:21:56
 categories: disaster-recovery
+description: Types of failover operations in Hyper-V Replica–Part III - Unplanned Failover
 ---
-In the first two parts of this 3-part series, you learnt about [Test Failover](http://blogs.technet.com/b/virtualization/archive/2012/07/26/types-of-failover-operations-in-hyper-v-replica.aspx) (TFO) and [Planned Failover](http://blogs.technet.com/b/virtualization/archive/2012/07/31/types-of-failover-operations-in-hyper-v-replica-part-ii-planned-failover.aspx) (PFO). In this closing part of the series, I will talk about unplanned failover and summarize the differences of these 3.
+# Unplanned failover in Hyper-V Replica
+
+In the first two parts of this 3-part series, you learnt about [Test Failover](https://blogs.technet.com/b/virtualization/archive/2012/07/26/types-of-failover-operations-in-hyper-v-replica.aspx) (TFO) and [Planned Failover](https://blogs.technet.com/b/virtualization/archive/2012/07/31/types-of-failover-operations-in-hyper-v-replica-part-ii-planned-failover.aspx) (PFO). In this closing part of the series, I will talk about unplanned failover and summarize the differences of these 3.
 
 ### 1\. What is Unplanned Failover? 
 
@@ -30,20 +36,21 @@ After you have validated that the failed over VM is kosher, you should do a **�
 
 The above procedure can be achieved using Powershell using the following cmdlets. Use Complete-VMFailover only after ensuring that the failed over VM serves the purpose.
     
-    
-       1: $snapshots = Get-VMSnapshot -VMName VirtualMachine_Workload -SnapshotType Replica
-    
-    
-       2:  
+```markdown
+ 1: $snapshots = Get-VMSnapshot -VMName VirtualMachine_Workload -SnapshotType Replica
     
     
-       3: Start-VMFailover -Confirm:$false -VMRecoverySnapshot $snapshots[0]
+ 2:  
     
     
-       4:  
+ 3: Start-VMFailover -Confirm:$false -VMRecoverySnapshot $snapshots[0]
     
     
-       5: Complete-VMFailover -VMName VirtualMachine_Workload -Confirm:$false
+ 4:  
+    
+    
+ 5: Complete-VMFailover -VMName VirtualMachine_Workload -Confirm:$false
+```
 
 ****
 
