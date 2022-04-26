@@ -1,3 +1,11 @@
+---
+title: WHvSetupPartition
+description: Description for working with and understanding syntax, parameters, and remarks for WHvSetupPartition
+author: Juarezhm
+ms.author: hajuarez
+ms.date: 05/31/2019
+---
+
 # WHvSetupPartition
 
 ## Syntax
