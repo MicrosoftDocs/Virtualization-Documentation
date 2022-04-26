@@ -1,11 +1,16 @@
 ---
 title:      "Replica Clusters behind a NAT"
-date:       2013-10-10 23:06:00
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 10/10/2013
 categories: hvr
+description: Reaching the Replica server in a port based NAT environment.
 ---
+# How to Redirect Traffic with a NAT
+
 When a Hyper-V Replica Broker is configured in your DR site to accept replication traffic, Hyper-V along with Failover Clustering intelligently percolates these settings to all the nodes of the clusters. A network listener is started in each node of the cluster on the configured port.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1425.image_thumb_1B90E806.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2627.image_22AD93CD.png)
+[![TN Blogs FS image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1425.image_thumb_1B90E806.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2627.image_22AD93CD.png)
 
 While this seamless configuration works for a majority of our customers, we have heard from customers on the need to bring up the network listener in different ports in **each** of the replica server (eg: port 8081 in R1.contoso.com, port 8082 in R2.contoso.com and so on). One such scenario is around placing a NAT in front of the Replica cluster which has port based rules to redirect traffic to appropriate servers. 
 
@@ -66,7 +71,7 @@ So, how do we address this problem – Consider the following 3 node cluster wit
 
 4) **NAT Table:** Configure the NAT device with the same mapping as provided in the enable replication server cmdlet. The below picture is applicable for a RRAS based NAT device – similar configuration can be done in any vendor of your choice. The screen shot below captures the mapping for the Hyper-V Replica Broker. Similar mapping needs to be done for each of the replica servers.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1680.image_thumb_728E2FB8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5751.image_37A46C3E.png)
+[![Image from TN Blogs FS](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1680.image_thumb_728E2FB8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5751.image_37A46C3E.png)
 
 5) Ensure that the primary server can resolve the replica servers and broker to the public IP address of the NAT device and ensure that the appropriate firewall rules have been enabled.
 

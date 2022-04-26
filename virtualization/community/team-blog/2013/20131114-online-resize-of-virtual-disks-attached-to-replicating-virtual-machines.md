@@ -1,8 +1,13 @@
 ---
 title:      "Online resize of virtual disks attached to replicating virtual machines"
-date:       2013-11-14 02:30:00
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 11/14/2013
 categories: hvr
+description: How to resize a virtual disk while the VM is running and its benefits.
 ---
+# Resizing virtual disks attached to replicating virtual machines
+
 In Windows Server 2012 R2, Hyper-V added the ability to [resize the virtual disks attached to a running virtual machine](https://technet.microsoft.com/library/dn282286.aspx) without having to shutdown the virtual machine. In this blog post we will talk about how this feature works with Hyper-V Replica, the benefits of this capability, and how to make the most of it.
 
 ### Works better with Hyper-V Replica
@@ -30,7 +35,7 @@ The resize of the virtual disks need to be done on each site separately, and res
 
 Voila! That’s it. Nothing extraordinary required for replicating VMs. Sounds too good to be true? Well, it is :). In fact, you can automate steps 1 and 2 using some nifty PowerShell scripting.
     
-    
+```markdown
     param (
     
     
@@ -98,6 +103,7 @@ Voila! That’s it. Nothing extraordinary required for replicating VMs. Sounds t
     
     
     }
+```
 
 ### Handling error scenarios
 
@@ -125,6 +131,5 @@ If you keep additional recovery points for your replicating VM, there are some k
 
 This behavior is seen because failing over to an older point only changes the content on the disk – and not the disk itself. Irrespective, in all cases, failing over to the latest point is not impacted by the resize operations.
 
-### 
 
 Hope this post has been useful! We welcome you to share your experience and feedback with us. 
