@@ -1,8 +1,14 @@
 ---
 title:      "City of Frisco (Texas) saves big with Hyper-V and NetApp"
+author: mattbriggs
+ms.author: mabrigg
+description: City of Frisco (Texas) saves big with Hyper-V and NetApp
+ms.date: 12/01/2009
 date:       2009-12-01 15:52:00
 categories: events
 ---
+# City of Frisco (Texas) saves big with Hyper-V and NetApp
+
 Hi, I'm Jim Schwartz, a director of virtualization solutions marketing in Redmond. 
 
 A great example of why companies are adopting virtualization and the resulting benefits can be seen in Texas, at the [City of Frisco](http://en.wikipedia.org/wiki/Frisco,_Texas "Wikipedia entry"). The city, one of the fastest growing in America, needed to scale a siloed IT infrastructure to accommodate data growth of 200-300% year. 

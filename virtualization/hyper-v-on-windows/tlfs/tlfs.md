@@ -3,7 +3,7 @@ title: Hypervisor Specification
 description: Hypervisor Specification
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv
@@ -13,7 +13,7 @@ ms.prod: windows-10-hyperv
 
 The Hyper-V Hypervisor Top-Level Functional Specification (TLFS) describes the hypervisor's guest-visible behavior to other operating system components. This specification is meant to be useful for guest operating system developers.
 
-> This specification is provided under the Microsoft Open Specification Promise.  Read the following for further details about the [Microsoft Open Specification Promise](https://docs.microsoft.com/openspecs/dev_center/ms-devcentlp/51a0d3ff-9f77-464c-b83f-2de08ed28134).
+> This specification is provided under the Microsoft Open Specification Promise.  Read the following for further details about the [Microsoft Open Specification Promise](/openspecs/dev_center/ms-devcentlp/51a0d3ff-9f77-464c-b83f-2de08ed28134).
 
 Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in these materials. Except as expressly provided in the Microsoft Open Specification Promise, the furnishing of these materials does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
 

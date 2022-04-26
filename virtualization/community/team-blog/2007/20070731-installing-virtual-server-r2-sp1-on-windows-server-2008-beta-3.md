@@ -3,10 +3,10 @@ title: Installing Virtual Server R2 SP1 on Windows Server 2008 Beta 3
 description: post id 3923
 keywords: virtualization, virtual server, blog
 author: scooley
+ms.author: scooley
 ms.date: 7/31/2007
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: c5ab90f3-e7fa-442f-bd82-3c8f34a6a61d
 ---
 

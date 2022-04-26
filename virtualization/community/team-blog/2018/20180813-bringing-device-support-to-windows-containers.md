@@ -1,15 +1,17 @@
 ---
 title: Bringing Device Support to Windows Containers
 keywords: virtualization, containers, windows containers, dda, devices, blog
+description: Learn about the improvements to Windows Server containers and how they bring more support in enabling IoT workloads. 
 author: cwilhit
+ms.author: crwilhit
 ms.date: 8/13/2018
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 
 ---
+# Bringing Device Support to Windows Containers
 
-When we introduced containers to Windows with the release of Windows Server 2016, our primary goal was to support traditional server-oriented applications and workloads. As time has progressed and the utility of containers as a technology is becoming fully realized, we’re now seeing containers playing an important role in enabling Internet of Things (IoT) workloads [through Azure IoT Edge](https://docs.microsoft.com/azure/iot-edge/quickstart). We’ve seen new types of workloads getting containerized—workloads that rely on talking to peripheral devices and sensors (a problem for Windows containers). We’re introducing support for certain host device access from Windows Server containers, beginning in Insider Build 17735 to enable new [Windows IoT](https://developer.microsoft.com/en-us/windows/iot) use cases and transform capabilities for existing server workloads. **We’re introducing support for _select_ host device access from Windows Server containers (see table below).**
+When we introduced containers to Windows with the release of Windows Server 2016, our primary goal was to support traditional server-oriented applications and workloads. As time has progressed and the utility of containers as a technology is becoming fully realized, we’re now seeing containers playing an important role in enabling Internet of Things (IoT) workloads [through Azure IoT Edge](/azure/iot-edge/quickstart). We’ve seen new types of workloads getting containerized—workloads that rely on talking to peripheral devices and sensors (a problem for Windows containers). We’re introducing support for certain host device access from Windows Server containers, beginning in Insider Build 17735 to enable new [Windows IoT](https://developer.microsoft.com/en-us/windows/iot) use cases and transform capabilities for existing server workloads. **We’re introducing support for _select_ host device access from Windows Server containers (see table below).**
 
 We’ve contributed these changes back to the Open Containers Initiative (OCI) specification for Windows. We will be submitting changes to Docker to enable this functionality soon. Watch the video below for a simple example of this work in action (hint: maximize the video). 
 
@@ -35,7 +37,7 @@ For example, if you wanted to pass a COM port to your container:
 docker run --device="class/86E0D1E0-8089-11D0-9CE4-08003E301F73" mcr.microsoft.com/windowsservercore-insider:latest
 ```
 
-The value we’re passing to the _device_ argument is simple: it looks for an **IdType** and an **Id.** For this coming release of Windows , we only support an IdType of “class”. For Id, this is a [device interface class GUID](https://docs.microsoft.com/windows-hardware/drivers/install/overview-of-device-interface-classes). The values are delimited by a slash, “/”. Whereas in Linux a user assigns individual devices by specifying a file path in the "/dev/" namespace, in Windows we’re adding support for a user to specify an _interface_ _class_ , and all devices which identify as implementing this class will be plumbed into the container.
+The value we’re passing to the _device_ argument is simple: it looks for an **IdType** and an **Id.** For this coming release of Windows , we only support an IdType of “class”. For Id, this is a [device interface class GUID](/windows-hardware/drivers/install/overview-of-device-interface-classes). The values are delimited by a slash, “/”. Whereas in Linux a user assigns individual devices by specifying a file path in the "/dev/" namespace, in Windows we’re adding support for a user to specify an _interface_ _class_ , and all devices which identify as implementing this class will be plumbed into the container.
 
 If a user wants to specify multiple classes to assign to a container:
 
@@ -50,7 +52,7 @@ docker run --device="class/86E0D1E0-8089-11D0-9CE4-08003E301F73" --device="class
 **We support a distinct list of devices:** In this release, we targeted enabling a _specific_ set of features and a _specific_ set of host device classes. We're starting with simple buses. The complete list that we currently support is below.
 
 **Device Type** | **Interface Class** **GUID**  
----|---  
+--- | ---  
 _GPIO_ |  916EF1CB-8426-468D-A6F7-9AE8076881B3  
 _I2C Bus_ |  A11EE3C6-8421-4202-A3E7-B91FF90188E4  
 _COM Port_ |  86E0D1E0-8089-11D0-9CE4-08003E301F73  

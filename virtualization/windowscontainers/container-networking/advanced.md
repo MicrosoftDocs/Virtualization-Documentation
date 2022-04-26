@@ -4,11 +4,13 @@ description: Advanced networking for Windows containers.
 keywords: docker, containers
 author: jmesser81
 ms.author: jgerend
-ms.date: 03/27/2018
+ms.date: 10/20/2021
 ms.topic: how-to
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 # Advanced Network Options in Windows
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Several network driver options are supported to take advantage of Windows-specific capabilities and features.
 

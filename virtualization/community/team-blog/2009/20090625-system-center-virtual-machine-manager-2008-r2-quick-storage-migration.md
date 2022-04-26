@@ -1,8 +1,14 @@
 ---
 title:      "System Center Virtual Machine Manager 2008 R2 - Quick Storage Migration"
+description: I'd like to discuss another type of migration being added to System Center Virtual Machine Manager 2008 R2, Quick Storage Migration.
+author: scooley
+ms.author: scooley
 date:       2009-06-25 09:30:00
+ms.date: 06/25/2009
 categories: hyper-v
 ---
+# System Center Virtual Machine Manager 2008 R2 - Quick Storage Migration
+
 Hi, I'm Edwin Yuen, a Senior Technical Product Manager at Microsoft's Integrated Virtualization team. In today's blog, I'd like to discuss another type of migration being added to System Center Virtual Machine Manager 2008 R2, Quick Storage Migration. 
 
 **Quick Storage Migration (QSM) In Brief**
@@ -174,13 +180,11 @@ QSM relies on Windows Server 2008 R2 Hyper-V and Background Intelligent Transfer
   * VM can remain running for the almost the entire duration of the transfer of its virtual disks from once storage location to another 
   * VM is put into save-state for a brief interval to migrate its memory state and associated differencing disks. 
 
-  
-  
-### 
+
 
 Note on Processor Compatibility Mode: 
 
-To increase the mobility of a running virtual machine across hosts with different processor versions (with in the same processor family), Windows Server 2008 R2 Hyper-V offers Processor Compatibility Mode. This feature masks processor feature differences between the source and destination hosts. With this enabled, you can migrate a virtual machine from a host with Pentium 4 VT processors to a host with Nehalem processors. Processor Compatibility Mode does **not** require advanced processor features like Intel VT Flex Migration or AMD-V Extended Migration. For more on Processor Compatibility Mode, check out Jeff's Blog a few weeks ago where he goes into detail [here](http://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx).
+To increase the mobility of a running virtual machine across hosts with different processor versions (with in the same processor family), Windows Server 2008 R2 Hyper-V offers Processor Compatibility Mode. This feature masks processor feature differences between the source and destination hosts. With this enabled, you can migrate a virtual machine from a host with Pentium 4 VT processors to a host with Nehalem processors. Processor Compatibility Mode does **not** require advanced processor features like Intel VT Flex Migration or AMD-V Extended Migration. For more on Processor Compatibility Mode, check out Jeff's Blog a few weeks ago where he goes into detail [here](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx).
 
 **How QSM Works**
 
@@ -190,13 +194,13 @@ _**Scenario 1: VM Storage Migration: VM Compute Stays on the Same Server and the
 
 1\. In the SCVMM console, a new action labeled Storage Migration is now available.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_2.png)
+<!--- [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_2.png) --->
 
  
 
 2\. When the user right-clicks on a running virtual machine and selects the **_Migrate Storage_** action, a wizard is presented. The user provides the path to the new location to be used by the VM. If all the VMs files (configuration and VHD files) are to be placed in a single location the user has only to provide the " ** _Virtual Machine Path_** ". If one or more VHD files for the VM need to be placed at a separate location, the user can explicitly change the location of each VHD by selecting it from the list under " ** _Disks_** " and clicking the "Browse" button next to it to specify the path for the VHD.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_4.png)
+<!--- [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_4.png) --->
 
  
 
@@ -220,17 +224,17 @@ _**Scenario 1: VM Storage Migration: VM Compute Stays on the Same Server and the
 
 11\. The diagram below illustrates the steps performed by QSM on a Hyper-V R2 host.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb_2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_6.png)
+<!--- [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb_2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_6.png) --->
 
 **_Scenario 2: VM Migration (Relocation): VM Compute Moves to a News Server AND VM Storage Moves from One Storage to Another_**
 
 1\. In the SCVMM console, the user right-clicks on a running virtual machine and selects the Migrate action, a wizard is presented to help with the migration. The Migrate action initiates the migration of a VM from one host to another host. As part of the VM migration, all of the VMs files are moved to storage that is attached to the destination host. Storage Migration technology enhances the experience by allowing the move for a running virtual machine and limiting the down time of the VM to just the window required to move the save state files (as explained below).
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb_3.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_8.png)
+<!--- [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb_3.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_8.png) --->
 
 2\. The user first selects the destination host based on the desired star rating presented by Intelligent Placement. The user then provides a destination folder for the configuration file and the associated virtual disks. By default, the wizard will put all disks in the same location as the configuration file. After completing the wizard, the migration job is submitted.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb_4.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_10.png)
+<!--- [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_thumb_4.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/SystemCenterVirtualMachineManager2008R2Q_B002/image_10.png) --->
 
 3\. SCVMM creates a placeholder virtual machine on the destination host. The virtual machine is not powered on so there is no need to reserve CPU or memory resources at this time. Intelligent placement has already accounted for the impact on the destination host of the VM being migrated.
 
@@ -363,7 +367,7 @@ Not Applicable
   
 **Microsoft: Driving Down Costs**
 
-One thing our customers have been telling us loud and clear is that they are very, very happy [we are offering Live Migration for FREE with Hyper-V R2](http://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx) **.** With Quick Storage Migration, we knew we had another opportunity to drive down the costs for storage migration capability that has been largely priced out of the reach of most customers. Specifically, VMware Storage VMotion is only available in their Enterprise/Enterprise Plus SKUs ( **$2875 & $3495 per processor respectively**). Contrast this with the fact that Quick Storage Migration is **included** with System Center Virtual Machine Manager 2008 R2 both the Enterprise Edition **and** the Workgroup Edition which will be available for starting at about $500.
+One thing our customers have been telling us loud and clear is that they are very, very happy [we are offering Live Migration for FREE with Hyper-V R2](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx) **.** With Quick Storage Migration, we knew we had another opportunity to drive down the costs for storage migration capability that has been largely priced out of the reach of most customers. Specifically, VMware Storage VMotion is only available in their Enterprise/Enterprise Plus SKUs ( **$2875 & $3495 per processor respectively**). Contrast this with the fact that Quick Storage Migration is **included** with System Center Virtual Machine Manager 2008 R2 both the Enterprise Edition **and** the Workgroup Edition which will be available for starting at about $500.
 
 For a small five node cluster consisting of two and four processors servers, that would cost at a minimum:
 
@@ -374,34 +378,12 @@ For a small five node cluster consisting of two and four processors servers, tha
 | 
 
 **VMware**  
-  
----|---|---  
-Three Nodes;  
-Two Processor Servers | 
 
-~$500
-
-| 
-
-$11,500  
-  
-Five Nodes;  
-Two Processor Servers | 
-
-~$500
-
-| 
-
-$28,750  
-  
-Five Nodes  
-Four Processor Servers | 
-
-~$500
-
-| 
-
-$57,500  
+| Specs | Price | Price |
+|---|---|---|  
+|Three Nodes; Two Processor Servers|~$500|$11,500|
+|Five Nodes; Two Processor Servers|~$500|$28,750| 
+|Five Nodes; Four Processor Servers|~$500|$57,500|
   
 That's customer focus.
 

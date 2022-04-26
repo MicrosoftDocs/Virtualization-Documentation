@@ -1,8 +1,14 @@
 ---
 title:      "MDOP 2010 Launches, with 64-bit version of App-V 4.6"
+author: mattbriggs
+ms.author: mabrigg
+description: MDOP 2010 Launches, with 64-bit version of App-V 4.6
+ms.date: 02/22/2010
 date:       2010-02-22 21:09:00
 categories: application-virtualization
 ---
+# MDOP 2010 Launches, with 64-bit version of App-V 4.6
+
 Earlier today we [announced](http://windowsteamblog.com/blogs/business/default.aspx "MDOP blog post") important updates for IT pros considering Windows 7 deployment. Specifically, we released **Microsoft Desktop Optimization Pack (MDOP) 2010** , which includes **App-V 4.6** , supporting Windows Server 2008 R2 x64 for RDS and Office 2010. The App-V support for Office 2010 means you can do a one-touch deployment and don't have to wait for Office 2010 to deploy Windows 7.
 
  
@@ -15,7 +21,7 @@ For more information about App-V and MED-V, check out the following blogs.
 
   * [Springboard site](http://windowsteamblog.com/blogs/springboard/default.aspx)
 
-  * Karri offers some details of App-V 4.6 on the [MDOP team blog](http://blogs.technet.com/mdop/archive/2010/02/19/app-v-4-6-and-med-v-1-0-sp1-rc-are-here.aspx "MDOP team blog post") 
+  * Karri offers some details of App-V 4.6 on the [MDOP team blog](https://blogs.technet.com/mdop/archive/2010/02/19/app-v-4-6-and-med-v-1-0-sp1-rc-are-here.aspx "MDOP team blog post") 
 
   * Ment Van Der Plas talks [App-V deployment with System Center Configuration Manager](http://desktopcontrol.blogspot.com/) and [Sequencing Office 2010](http://www.softgridblog.com/).
 

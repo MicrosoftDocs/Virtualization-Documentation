@@ -1,3 +1,11 @@
+---
+title: WHvGetVirtualProcessorRegisters
+description: Description on working with parameters, return value, and syntax for WHvGetVirtualProcessorRegisters
+author: Juarezhm
+ms.author: hajuarez
+ms.date: 06/22/2018
+---
+
 # WHvGetVirtualProcessorRegisters
 
 ## Syntax

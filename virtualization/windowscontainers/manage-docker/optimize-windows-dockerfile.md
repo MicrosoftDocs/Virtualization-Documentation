@@ -3,6 +3,7 @@ title: Optimize Windows Dockerfiles
 description: Optimize Dockerfiles for Windows containers.
 keywords: docker, containers
 author: cwilhit
+ms.author: crwilhit
 ms.date: 05/03/2019
 ms.topic: tutorial
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
@@ -137,7 +138,7 @@ RUN powershell -Command \
 
   Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
   Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-  start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
+  Start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
 
   # Remove unneeded files ; \
 
@@ -170,7 +171,7 @@ RUN powershell -Command \
 RUN powershell -Command \
     $ErrorActionPreference = 'Stop'; \
     wget "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist.exe ; \
-    start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
+    Start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
     Remove-Item c:\vcredist.exe -Force
 
 RUN powershell -Command \
@@ -291,7 +292,7 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell -Command \
     $ErrorActionPreference = 'Stop'; \
-    start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
+    Start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
     Remove-Item c:\vcredist_x86.exe -Force ; \
     New-Item c:\config.ini
 ```

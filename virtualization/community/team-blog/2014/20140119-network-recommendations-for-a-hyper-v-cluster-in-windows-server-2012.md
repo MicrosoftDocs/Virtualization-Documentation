@@ -1,8 +1,13 @@
 ---
 title:      "Network Recommendations for a Hyper-V Cluster in Windows Server 2012"
-date:       2014-01-19 06:23:00
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 01/19/2014
 categories: hvr
+description: Basic information about configuring your network for a Hyper-V Cluster in Windows Server 2012.
 ---
+# Hyper-V Clusters in Windows Server 2012
+
 We recently published a TechNet document <https://technet.microsoft.com/library/dn550728.aspx> which provides guidance on configuring your network for a Hyper-V Cluster in Windows Server 2012.
 
 A snip of the summary from the document:

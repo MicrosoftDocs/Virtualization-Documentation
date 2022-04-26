@@ -1,9 +1,15 @@
 ---
 title:      "Replication Health Mailer"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 05/13/2014
 date:       2014-05-13 05:13:14
 categories: uncategorized
+description: This article shares a script used to mail replication health in a cluster in a dashboard format.
 ---
-One of our Engineers, **Sangeeth** , has come up with a nifty PowerShell script which mails the replication health in a host or  in a cluster in a nice dashboard format. We thought it would be of help to our customers to get the status of the replicating VMs and their foot print on CPU and in Memory. You can download the script [here.](http://gallery.technet.microsoft.com/Replication-Health-Mailer-4066632c#content)
+# Replication Health Mailer
+
+One of our Engineers, **Sangeeth** , has come up with a nifty PowerShell script which mails the replication health in a host or  in a cluster in a nice dashboard format. We thought it would be of help to our customers to get the status of the replicating VMs and their foot print on CPU and in Memory. You can download the script [here.](https://gallery.technet.microsoft.com/Replication-Health-Mailer-4066632c#content)
 
 The sample output from the script looks like this. You can add as many recipients as you wish ![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/wlEmoticon-smile_2664E472.png)
 

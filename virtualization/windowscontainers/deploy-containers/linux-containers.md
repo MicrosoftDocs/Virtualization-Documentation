@@ -3,6 +3,7 @@ title: Linux Containers on Windows 10
 description: Learn about different ways you can use Hyper-V to run Linux containers on Windows 10 as if they're native.
 keywords: linux containers, docker, containers, windows 10
 author: scooley
+ms.author: scooley
 ms.date: 09/17/2019
 ms.topic: overview
 ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
@@ -29,3 +30,8 @@ In this model, all Linux containers share a single Linux-based container host an
 It also means the Linux container host (Moby VM) needs to be running Docker Daemon and all of Docker Daemon's dependencies.
 
 To see if you're running with Moby VM, check Hyper-V Manager for Moby VM using either the Hyper-V Manager UI or by running `Get-VM` in an elevated PowerShell window.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Set up Linux Containers](../quick-start/quick-start-windows-10-linux.md)

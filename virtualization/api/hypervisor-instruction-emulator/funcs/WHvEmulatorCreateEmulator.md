@@ -1,3 +1,11 @@
+---
+title: WHvEmulatorCreateEmulator method
+description: Learn about the WHvEmulatorCreateEmulator method. 
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/19/2022
+---
+
 # WHvEmulatorCreateEmulator
 
 

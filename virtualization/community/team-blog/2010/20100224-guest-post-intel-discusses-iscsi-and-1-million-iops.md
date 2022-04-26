@@ -1,11 +1,17 @@
 ---
 title:      "Guest post&#58; Intel discusses iSCSI and 1 million IOPs"
+author: mattbriggs
+ms.author: mabrigg
+description: Intel discusses iSCSI and 1 million IOPs
+ms.date: 02/24/2010
 date:       2010-02-24 22:48:00
 categories: guest-blog-post
 ---
+# Guest post: Intel discusses iSCSI and 1 million IOPs
+
 Hi, I'm Jordan Plawner, storage networking product planner from Intel. 
 
-Today I'm doing a recap of the [Intel Server and Ethernet Adapters and Windows 2008 R2 1m iSCSI IOPs announcement and HyperV performance webcast](http://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?culture=en-US&EventID=1032432957&CountryCode=US "Webcast link").  The number of comments and ongoing discussions by end users have been impressive.  There were two themes that ran through the blog questions and comments that I want to address.
+Today I'm doing a recap of the [Intel Server and Ethernet Adapters and Windows 2008 R2 1m iSCSI IOPs announcement and HyperV performance webcast](https://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?culture=en-US&EventID=1032432957&CountryCode=US "Webcast link").  The number of comments and ongoing discussions by end users have been impressive.  There were two themes that ran through the blog questions and comments that I want to address.
 
 1st:   What does 1 million IOPs on a single 10GbE port performance mean?  What this performance means is that you do not have to worry about iSCSI performance.  There is no server I/O bottleneck.  If you are going with an iSCSI SAN use the native infrastructure built into the server, OS and adapter.  If you are deciding between iSCSI and FC, know that at the very least the performance on the client side is a wash.  Server-side ease-of-use and cost if unquestionably in ISCSI’s favor. 
 

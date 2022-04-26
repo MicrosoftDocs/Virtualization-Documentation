@@ -2,60 +2,41 @@
 title: Windows Container Version Compatibility
 description: Version compatibility for containers built from different versions of Windows Server and Windows.
 keywords: metadata, containers, version
-author: taylorb-microsoft
-ms.author: jgerend
+author: brasmith-ms
+ms.author: brasmith-ms
 ms.topic: conceptual
+ms.date: 03/15/2022
 ---
 # Windows container version compatibility
 
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+
 Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were the first Windows releases that could build and run Windows Server containers. Containers built using these versions can run on newer releases, but there are a few things you need to know before you start.
 
-As we've been improving the Windows container features, we've had to make some changes that can affect compatibility. Older containers will run the same on newer hosts with [Hyper-V isolation](../manage-containers/hyperv-container.md), and will use the same (older) kernel version. However, if you want to run a container based on a newer Windows build, it can only run on the newer host build.
+The architecture of Windows differs vastly from that of Linux. Linux has a monolithic kernel, while in Windows User and Kernel mode are more tightly bound. Until the introduction of containers, Windows User and Kernel mode were shipped in synchrony, thus resulting in container compatibility requirements on Windows that differ from the norm in Linux. 
+
+Decoupling the User/Kernel boundary in Windows is a monumental task and highly non-trivial, however, we have been working hard to stabilize this boundary across all of Windows to provide our customers the flexibility to run down-level containers. **Starting with Windows 11 and Windows Server 2022 we are enabling the ability to run process-isolated WS2022 containers on Windows 11 hosts.** We've done our best to capture the areas which break the boundary, but now want to open the feature to developers on Windows 11 for feedback. We are committed to enabling this experience for you, so please [let us know when you experience issues](https://github.com/microsoft/Windows-Containers).
+
+For any other scenario where there is a mismatch in host/guest Windows versioning compatibility between User/Kernel mode is possible, but not guaranteed, and thus the container image will be prevented from running on the host. For any mismatched version, running with [Hyper-V isolation](../manage-containers/hyperv-container.md) provides the container with a set of matching Kernel binaries and does not depend on the version of the host. See the tables below for a detailed compatibility matrix.
 
 ## Windows Server host OS compatibility
 
 <!-- start tab view -->
+# [Windows Server 2022](#tab/windows-server-2022)
+
+|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server, version 2022|&#10004;|&#10004;|
+|Windows Server, version 20H2|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
+
 # [Windows Server, version 20H2](#tab/windows-server-20H2)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10004;|&#10004;|
-|Windows Server, version 2004|&#10004;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows Server, version 2004](#tab/windows-server-2004)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10004;|&#10004;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows Server, version 1909](#tab/windows-server-1909)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10004;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows Server, version 1903](#tab/windows-server-1903)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10004;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -63,10 +44,8 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10004;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -74,72 +53,42 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10060;|&#10060;|
 |Windows Server 2019|&#10060;|&#10060;|
 |Windows Server 2016|&#10004;|&#10004;|
 
 ---
 <!-- stop tab view -->
 
-## Windows 10 host OS compatibility
+## Windows Client host OS compatibility
 
 <!-- start tab view -->
+
+# [Windows 11, version 21H2](#tab/windows-11-21H2)
+
+|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server, version 2022|&#10004;|&#10004;|
+|Windows Server, version 20H2|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
+
+# [Windows 10, version 21H1](#tab/windows-10-21H1)
+
+|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server, version 2022|&#10004;|&#10060;|
+|Windows Server, version 20H2|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
 # [Windows 10, version 20H2](#tab/windows-10-20H2)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
+|Windows Server, version 2022|&#10060;|&#10060;|
 |Windows Server, version 20H2|&#10004;|&#10004;|
-|Windows Server, version 2004|&#10004;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 2004](#tab/windows-10-2004)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10004;|&#10004;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 1909](#tab/windows-10-1909)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10004;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 1903](#tab/windows-10-1903)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 1809](#tab/windows-10-1809)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 20H2|&#10060;|&#10060;|
-|Windows Server, version 2004|&#10060;|&#10060;|
-|Windows Server, version 1909|&#10060;|&#10060;|
-|Windows Server, version 1903|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -150,23 +99,19 @@ As we've been improving the Windows container features, we've had to make some c
 
 ### Windows Server containers
 
-Because Windows Server containers and the underlying host share a single kernel, the container's base image OS version must match that of the host. If the versions are different, the container may start, but full functionally isn't guaranteed. The Windows operating system has four levels of versioning: major, minor, build and revision. For example, version 10.0.14393.103 would have a major version of 10, a minor version of 0, a build number of 14393, and a revision number of 103. The build number only changes when new versions of the OS are published, such as version 1709, 1903, and so on. The revision number is updated as Windows updates are applied.
-
 #### Build number (new release of Windows)
 
-Windows Server containers are blocked from starting when the build number between the container host and the container image are different. For example, when the container host is version 10.0.14393.* (Windows Server 2016) and container image is version 10.0.16299.* (Windows Server version 1709), the container won't start.
+The Windows operating system has four levels of versioning: major, minor, build and revision. For example, version 10.0.14393.103 would have a major version of 10, a minor version of 0, a build number of 14393, and a revision number of 103. The build number only changes when new versions of the OS are published, and the revision number is updated as Windows updates are applied.
 
-#### Revision number (patching)
+With the exception of WS2022 + Windows 11, Windows Server containers are blocked from starting when the build number between the container host and the container image are different. For example, when the container host is version 10.0.14393.* (Windows Server 2016) and you attempt to run a container with an image version 10.0.16299.* (Windows Server version 1709) the OS compute service will return a version incompatibility error.
 
-Windows Server containers currently don't support scenarios where Windows Server 2016-based containers run in a system where the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.**1914** (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.**1944** (Windows Server 2016 with KB4053579 applied), then the image might not start.
+#### Windows Server 2016 Restrictions
 
-However, for hosts or images using Windows Server version 1809 and later, this rule doesn't apply, and the host and container image don't need to have matching revisions.
+Windows Server 2016-based containers will not run in a system where the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.**1914** (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.**1944** (Windows Server 2016 with KB4053579 applied), then the image might not start.
 
-We recommend you keep your systems (host and container) up-to-date with the latest patches and updates to stay secure.
+**For hosts or images using Windows Server version 1809 and later, this rule doesn't apply** - the host and container image do not need matching **revisions**.
 
 >[!NOTE]
->You might encounter issues when using Windows Server containers with the February 11, 2020 security update release (also called "2B") or later monthly security update releases. See [this article](https://support.microsoft.com/help/4542617/you-might-encounter-issues-when-using-windows-server-containers-with-t) for more details.
->
 >We strongly recommend you update both your host and containers with the latest patches and updates to stay secure and compatible. For important guidance for how to update Windows containers, see [Update Windows Server containers](update-containers.md).
 
 #### Practical application
@@ -254,7 +199,7 @@ FROM mcr.microsoft.com/windows/nanoserver:10.0.17763.437
 ...
 ```
 
-The Server Core base images based on Windows Server 2019 and Windows Server 2016 are [Long-Term Servicing Channel (LTSC)](/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) releases. If you for instance want Windows Server 2019 as your Server Core image's container OS and want to have the latest patches for it, you can specify LTSC releases like so:
+The Server Core base images based on Windows Server 2022 and Windows Server 2019 are [Long-Term Servicing Channel (LTSC)](/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) releases. If you for instance want Windows Server 2019 as your Server Core image's container OS and want to have the latest patches for it, you can specify LTSC releases like so:
 
 ```dockerfile
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
@@ -330,9 +275,7 @@ In this case, you should use the method described in [Errors from mismatched ver
 
 ### Mitigation - Use Hyper-V isolation with Docker Swarm
 
-There is a proposal to support using Hyper-V isolation on a per-container basis, but the code is not done yet. You can follow progress on [GitHub](https://github.com/moby/moby/issues/31616). Until that's done, the hosts would need to be configured to always run with Hyper-V isolation.
-
-This requires changing the Docker service configuration, then restarting the Docker engine.
+Windows containers supports using Hyper-V isolation on a per-container basis, which requires changing the Docker service configuration, and then restarting the Docker engine.
 
 1. Edit `C:\ProgramData\docker\config\daemon.json`
 2. Add a line with `"exec-opts":["isolation=hyperv"]`

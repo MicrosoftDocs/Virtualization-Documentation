@@ -3,7 +3,7 @@ title: HV_MESSAGE
 description: HV_MESSAGE
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv
@@ -31,9 +31,9 @@ typedef struct
 typedef struct
 {
     HV_MESSAGE_TYPE MessageType;
-    UINT16 Reserved;
-    HV_MESSAGE_FLAGS MessageFlags;
     UINT8 PayloadSize;
+    HV_MESSAGE_FLAGS MessageFlags;
+    UINT16 Reserved;
     union
     {
         UINT64 OriginationId;

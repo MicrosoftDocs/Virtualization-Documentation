@@ -1,9 +1,15 @@
 ---
 title:      "Microsoft Acquires Opalis Software"
+author: mattbriggs
+ms.author: mabrigg
+description: Microsoft Acquires Opalis Software
+ms.date: 12/11/2009
 date:       2009-12-11 07:29:00
 categories: cloud-computing
 ---
-Good news for a Friday. [Brad's post](http://blogs.technet.com/systemcenter/archive/2009/12/11/microsoft-acquires-opalis-software.aspx "Brad's blog post") (with video interview) announces the acquisition of Opalis Software. Why is this important to virtualization projects? Thoughts below, but first some background on the business. 
+# Microsoft Acquires Opalis Software
+
+Good news for a Friday. [Brad's post](https://blogs.technet.com/systemcenter/archive/2009/12/11/microsoft-acquires-opalis-software.aspx "Brad's blog post") (with video interview) announces the acquisition of Opalis Software. Why is this important to virtualization projects? Thoughts below, but first some background on the business. 
 
 > Microsoft’s Server and Tools Business (STB) is a $14.1 billion business.  
 > 

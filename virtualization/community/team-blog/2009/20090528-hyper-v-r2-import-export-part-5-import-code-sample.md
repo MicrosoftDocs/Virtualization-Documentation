@@ -1,11 +1,17 @@
 ---
 title:      "Hyper-V R2 Import/Export – Part 5 – Import code sample"
+description: This code sample shows a basic import of a VM using the new Import API.
+author: scooley
+ms.author: scooley
 date:       2009-05-28 12:33:00
+ms.date: 05/28/2009
 categories: uncategorized
 ---
+# Hyper-V R2 Import/Export – Part 5 – Import code sample
+
 In the following sample, we do a basic import of a VM using the new Import API. This script essentially does what the import UI does; it assumes all the necessary files are present in the import folder and imports from that directory. In a later blog, there will be a sample that will utilize the fine grained capabilities of import in Hyper-V R2. Many thanks to Madhan Gajendran and Dinesh Kumar Govindasamy again for writing this script:
     
-    
+```
     option explicit 
     
     
@@ -484,3 +490,4 @@ In the following sample, we do a basic import of a VM using the new Import API. 
     
     
     End Function
+```

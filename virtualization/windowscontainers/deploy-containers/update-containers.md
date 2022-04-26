@@ -3,12 +3,14 @@ title: Update Windows Server containers
 description: How Windows can run build and run containers across multiple versions
 keywords: metadata, containers, version
 author: heidilohr
-ms. author: helohr
+ms.author: helohr
 manager: lizross
 ms.topic: conceptual
-ms.date: 03/10/2020
+ms.date: 10/20/2021
 ---
 # Update Windows Server containers
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 As part of servicing Windows Server each month, we publish updated Windows Server Base OS container images on a regular basis. With these updates, you can automate building updated container images or manually update them by pulling the latest version. Windows Server containers don't have a servicing stack like Windows Server. You can't get updates within a container like you do with Windows Server. Therefore, every month we rebuild the Windows Server Base OS container images with the updates and publish the updated container images.
 

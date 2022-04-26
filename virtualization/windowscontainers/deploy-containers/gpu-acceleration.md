@@ -2,7 +2,9 @@
 title: GPU Acceleration in Windows Containers
 description: What level of GPU acceleration exists in Windows containers
 keywords: docker, containers, devices, hardware
-author: cwilhit
+author: v-susbo
+ms.author: v-susbo
+ms.date: 12/29/2020
 ms.topic: how-to
 ---
 
@@ -26,7 +28,7 @@ For this feature to work, your environment must meet the following requirements:
 
 To check the WDDM version of your display drivers, run the DirectX Diagnostic Tool (dxdiag.exe) on your container host. In the tool’s “Display” tab, look in the “Drivers” section as indicated below.
 
-![Dxdiag](media/dxdiag.png)
+![Screenshot of the Driver Model found in the Display tab.](media/dxdiag.png)
 
 ## Run a container with GPU acceleration
 

@@ -1,9 +1,15 @@
 ---
 title:      "Configure your Replica server to receive replication traffic from specific primary server(s)"
+author: mattbriggs
+ms.author: mabrigg
+description: Configure your Replica server to receive replication traffic from specific primary server(s)
+ms.date: 04/09/2012
 date:       2012-04-09 06:57:00
 categories: hvr
 ---
-Note: Update on 8th July 2012: This **cmdlets and UI** used in this article is applicable **only** for Windows Server "8" Beta. For Windows Server 2012 RC and beyond, see the updated post @ <http://blogs.technet.com/b/virtualization/archive/2012/07/08/hyper-v-replica-authorization-entries-windows-server-2012-rc.aspx>
+# Configure your Replica server to receive replication traffic from specific primary server(s)
+
+Note: Update on 8th July 2012: This **cmdlets and UI** used in this article is applicable **only** for Windows Server "8" Beta. For Windows Server 2012 RC and beyond, see the updated post @ <https://blogs.technet.com/b/virtualization/archive/2012/07/08/hyper-v-replica-authorization-entries-windows-server-2012-rc.aspx>
 
  
 
@@ -17,7 +23,7 @@ As part of setting up a Replica server  in Windows Server  “8”  Beta, y
 
 For better control and security, it is recommended to specify the list of authenticated servers that can replicate rather than allowing replication traffic from any authenticated server. While enabling a Replica server, there are two sets of inputs which are required - Authentication and Authorization. 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7455.image002.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7455.image002.png)
+[![Authentication and authorization](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7455.image002.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7455.image002.png)
 
 When allowing replication from specific servers, each entry in the list is called an "authorization entry". An authorization entry contains:
 
@@ -61,7 +67,7 @@ How is this useful? Hyper-V Replica allows replication to continue seamlessly wh
 
 For the Replica server to allow replication traffic for a Replica virtual machine from a set of primary servers (the servers amongst which the primary virtual machine can move), those set of primary servers should be grouped into the same trust zone i,e the same security tag. 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0640.image003.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0640.image003.jpg)
+[![Grouped into the same trust zone](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0640.image003.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0640.image003.jpg)
 
 The security tag can be used for another scenario - in the above picture, servers in **“ Trust Zone 2”** (say, security tag "TZ-2") will be able to send replication traffic for Replica virtual machines that were created by any of the servers in that trust zone. A server in **“ Trust Zone 2”** will **not** be able to send replication traffic for a Replica virtual machine that was created by a server in **“ Trust Zone 1”** (say, security tag "TZ-1"). This will ensure that in case a server from trust zone 2 gets compromised, the attacker cannot use replication to tamper the Replica virtual machine belonging to **“ Trust Zone 1”**.
 

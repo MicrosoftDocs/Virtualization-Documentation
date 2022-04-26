@@ -1,8 +1,14 @@
 ---
 title:      "Resynchronization of virtual machines in Hyper-V Replica"
+author: mattbriggs
+ms.author: mabrigg
+description: Resynchronization of virtual machines in Hyper-V Replica
+ms.date: 05/10/2013
 date:       2013-05-10 07:27:00
 categories: hvr
 ---
+# Resynchronization of virtual machines in Hyper-V Replica
+
 ## What is resynchronization and why is it needed?
 
 Hyper-V Replica provides protection to VMs by tracking and replicating changes to the virtual hard disks (VHDs) of the VM. Hyper-V Replica runs 24 hours, 365 days in a year; for any VM that has been enabled for replication it ensures that the data on the primary site and the Replica site are kept as closely in sync as supported. 
@@ -119,15 +125,15 @@ You will be presented with the screen to schedule the resynchronization operatio
 To start the resync operation from PowerShell, use the [**Resume-VMReplication**](https://technet.microsoft.com/library/hh848510.aspx) commandlet:
     
     
-    Resume-VMReplication –VMName “RESYNC VM” -Resynchronize –ResynchronizeStartTime “04/15/2013 12:00:00”
+Resume-VMReplication –VMName “RESYNC VM” -Resynchronize –ResynchronizeStartTime “04/15/2013 12:00:00”
 
 User-initiated resynchronization is also possible, but unless absolutely necessary it should be avoided. In order to explicitly force resynchronization on a VM that is not in the _“Resynchronization Required”_ state, first suspend the replication and then initiate resync:
     
     
-    Suspend-VMReplication -VMName  "RESYNC VM"
+Suspend-VMReplication -VMName  "RESYNC VM"
     
     
-    Resume-VMReplication -VMName "RESYNC VM" -Resynchronize
+Resume-VMReplication -VMName "RESYNC VM" -Resynchronize
 
 The scheduling of the resynchronization operation can be configured for each VM:
 
@@ -144,33 +150,31 @@ The default option is to schedule the resynchronization operation during off-pea
 The same can be configured in PowerShell using the [**Set-VMReplication**](https://technet.microsoft.com/library/hh848543.aspx) commandlet:
     
     
-    # Manual resync
+## Manual resync
     
     
-    Set-VMReplication -VMName  "RESYNC VM" -AutoResynchronizeEnabled 0
+Set-VMReplication -VMName  "RESYNC VM" -AutoResynchronizeEnabled 0
+    
+   
     
     
-     
+## Automatic resync
     
     
-    # Automatic resync
+Set-VMReplication –VMName "RESYNC VM" -AutoResynchronizeEnabled 1 -AutoResynchronizeIntervalStart 00:00:00 -AutoResynchronizeIntervalEnd 23:59:59
     
     
-    Set-VMReplication –VMName "RESYNC VM" -AutoResynchronizeEnabled 1 -AutoResynchronizeIntervalStart 00:00:00 -AutoResynchronizeIntervalEnd 23:59:59
+
+    
+## Scheduled resync
     
     
-     
-    
-    
-    # Scheduled resync
-    
-    
-    Set-VMReplication –VMName "RESYNC VM" -AutoResynchronizeEnabled 1 -AutoResynchronizeIntervalStart 00:00:00 -AutoResynchronizeIntervalEnd 06:00:00
+Set-VMReplication –VMName "RESYNC VM" -AutoResynchronizeEnabled 1 -AutoResynchronizeIntervalStart 00:00:00 -AutoResynchronizeIntervalEnd 06:00:00
 
 To see the resynchronization settings in PowerShell, use the [**Get-VMReplication**](https://technet.microsoft.com/library/hh848570.aspx) commandlet and look for the _AutoResynchronizeEnabled_ , _AutoResynchronizeIntervalStart_ , and _AutoResynchronizeIntervalEnd_ fields: 
     
     
-    Get-VMReplication -VMname "RESYNC VM" | fl *
+Get-VMReplication -VMname "RESYNC VM" | fl *
 
 ## The process of resynchronization
 

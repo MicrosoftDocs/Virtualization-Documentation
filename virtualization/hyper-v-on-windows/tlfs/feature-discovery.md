@@ -3,7 +3,7 @@ title: Feature and Interface Discovery
 description: Hypervisor Feature and Interface Discovery
 keywords: hyper-v
 author: alexgrest
-ms.author: alegre
+ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
 ms.prod: windows-10-hyperv
@@ -138,7 +138,17 @@ EAX and EBX indicate which features are available to the partition based upon th
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EBX       |       | Corresponds to bits 63-32 of HV_PARTITION_PRIVILEGE_MASK                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
-| ECX       |       |                                                                                       |
+| ECX       | 4-0   | Reserved
++           +-------+---------------------------------------------------------------------------------------+
+|           | 5     | Invariant Mperf is available                                                          |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 6     | Supervisor shadow stack is available                                                  |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 7     | Architectural PMU is available                                                        |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 8     | Exception trap intercept is available                                                 |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 31-9  | Reserved                                                                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EDX       | 0     | Deprecated (previously indicated availability of the MWAIT command).                  |
 +           +-------+---------------------------------------------------------------------------------------+
@@ -527,7 +537,31 @@ Indicates which hardware-specific features have been detected and are currently 
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 9     | Synthetic timers are volatile                                                         |
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 31-10 | Reserved                                                                              |
+|           | 13-10 | The hypervisor level of the current guest - '0' if non-nested.                        |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 14    | Physical destination mode required                                                    |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 15    | Reserved                                                                              |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 16    | Support for hardware memory zeroing is present.                                       |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 17    | Support for Unrestricted Guest is present.                                            |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 18    | Support for resource allocation (RDT-A, PQOS-A) is present.                           |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 19    | Support for resource monitoring (RDT-M, PQOS-M) is present.                           |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 20    | Support for guest virtual PMU is present.                                             |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 21    | Support for guest virtual LBR is present.                                             |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 22    | Support for guest virtual IPT is present.                                             |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 23    | Support for APIC emulation is present.                                                |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 24    | ACPI WDAT table is detected and in use by the hypervisor.                             |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 31-25 | Reserved                                                                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EBX       | Reserved                                                                                      |
 +-----------+-----------------------------------------------------------------------------------------------+
@@ -546,7 +580,7 @@ Indicates which hardware-specific features have been detected and are currently 
     </thead>
     <tbody>
         <tr>
-            <td rowspan="11">EAX</td>
+            <td rowspan="23">EAX</td>
             <td>0</td>
             <td>Support for APIC overlay assist is detected and in use.</td>
         </tr>
@@ -587,7 +621,55 @@ Indicates which hardware-specific features have been detected and are currently 
             <td>Synthetic timers are volatile.</td>
         </tr>
         <tr>
-            <td>31-10</td>
+            <td>13-10</td>
+            <td>The hypervisor level of the current guest - '0' if non-nested.</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>Physical destination mode required.</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>Reserved</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>Support for hardware memory zeroing is present.</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>Support for Unrestricted Guest is present.</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>Support for resource allocation (RDT-A, PQOS-A) is present.</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td>Support for resource monitoring (RDT-M, PQOS-M) is present.</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>Support for guest virtual PMU is present.</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>Support for guest virtual LBR is present.</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>Support for guest virtual IPT is present.</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>Support for APIC emulation is present.</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td>ACPI WDAT table is detected and in use by the hypervisor.</td>
+        </tr>
+        <tr>
+            <td>31-25</td>
             <td>Reserved</td>
         </tr>
         <tr>
@@ -757,11 +839,17 @@ Indicates which nested virtualization optimizations are available to a nested hy
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 17    | Indicates support for direct virtual flush hypercalls                                 |
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 18    | Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls
+|           | 18    | Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls (on Intel platforms)
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 19    | Indicates support for using an enlightened MSR bitmap.                                |
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 31-20 | Reserved                                                                              |
+|           | 20    | Indicates support for combining virtualization exceptions in the page fault exception class.
++           +-------+---------------------------------------------------------------------------------------+
+|           | 21    | Reserved.                                                                             |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 22    | Indicates support for the enlightened TLB on AMD platforms. ASID flushes do not affect TLB entries derived from the NPT. Hypercalls must be used to invalidate NPT TLB entries. Also indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls.
++           +-------+---------------------------------------------------------------------------------------+
+|           | 31-23 | Reserved                                                                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EBX       | Reserved                                                                                      |
 +-----------+-----------------------------------------------------------------------------------------------+
@@ -780,7 +868,7 @@ Indicates which nested virtualization optimizations are available to a nested hy
     </thead>
     <tbody>
         <tr>
-            <td rowspan="8">EAX</td>
+            <td rowspan="10">EAX</td>
             <td>7-0</td>
             <td>Enlightened VMCS version (low)</td>
         </tr>
@@ -798,7 +886,7 @@ Indicates which nested virtualization optimizations are available to a nested hy
         </tr>
         <tr>
             <td>18</td>
-            <td>Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls.</td>
+            <td>Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls (on Intel platforms).</td>
         </tr>
         <tr>
             <td>19</td>
@@ -807,6 +895,14 @@ Indicates which nested virtualization optimizations are available to a nested hy
         <tr>
             <td>20</td>
             <td>Indicates support for combining virtualization exceptions in the page fault exception class.</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>Reserved</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>Indicates support for the enlightened TLB on AMD platforms. ASID flushes do not affect TLB entries derived from the NPT. Hypercalls must be used to invalidate NPT TLB entries. Also indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls.</td>
         </tr>
         <tr>
             <td>31-21</td>
