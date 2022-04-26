@@ -2,10 +2,9 @@
 title: JSON Schema Reference
 description: JSON Schema Reference
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - JSON Schema Reference
@@ -18,14 +17,14 @@ topic_type:
 ---
 # JSON Schema Reference
 
-# Agenda
+## Agenda
 - [Enums](#enums)
 - [Structs](#structs)
 - [JSON type table](#JSON-type)
 - [Version Map](#Schema-Version-Map)
 ---
 <a name = "enums"></a>
-# Enums
+## Enums
 Note: all variants listed should be used as string
 <a name = "ApplySecureBootTemplateType"></a>
 ## ApplySecureBootTemplateType
@@ -554,7 +553,7 @@ Referenced by: [OperationInfo](#OperationInfo)
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"None"`<br>|[](#Schema-Version-Map)||
+|`"None"`<br>|[2.6](#Schema-Version-Map)||
 |`"Construct"`<br>|[2.6](#Schema-Version-Map)|HcsCreateComputeSystem|
 |`"Start"`<br>|[2.6](#Schema-Version-Map)|HcsStartComputeSystem|
 |`"Pause"`<br>|[2.6](#Schema-Version-Map)|HcsPauseComputeSystem|
@@ -1212,7 +1211,7 @@ Enum for xsave processor features
 ---
 
 <a name = "structs"></a>
-# Structs
+## Structs
 <a name = "Attachment"></a>
 ## Attachment
 Referenced by: [Scsi](#Scsi)
