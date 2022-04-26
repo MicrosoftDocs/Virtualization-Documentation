@@ -1,3 +1,11 @@
+---
+title: APIC EOI
+description: Learn about context data for an exit caused by an APIC EOI of a level-triggered interrupt.
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/20/2022
+---
+
 # APIC EOI
 
 

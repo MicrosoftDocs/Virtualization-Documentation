@@ -1,8 +1,14 @@
 ---
-title:      "PSA&#58; VMs with saved state from builds 10560-10567 will not restore on 10568 and above."
+title: PSA - VMs with saved state from builds 10560-10567 will not restore on 10568 and above
+description: Details about how virtual machines with save state builds might not restore if they were created on Windows 8/1 or Windows 10 hosts.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-10-30 11:30:00
+ms.date: 10/30/2015
 categories: hyper-v
 ---
+# PSA - VMs with saved state from builds 10560-10567 will not restore on 10568 and above
+
 Windows Insiders might hit a bug if they try to restore a VM with recent saved state. This is especially true for VMs created on Windows 8.1 and Windows 10 hosts. We recommend that you take action before upgrading past 10567.
 
  **Problem**

@@ -1,9 +1,15 @@
 ---
 title:      "Announcing the availability of the Beta version of Linux Integration Services for Hyper-V with SMP support"
+author: mattbriggs
+ms.author: mabrigg
+description: Announcing the availability of the Beta version of Linux Integration Services for Hyper-V with SMP support
+ms.date: 03/31/2010
 date:       2010-03-31 02:00:00
 categories: hyper-v-linux-novell-red-hat
 ---
-[Windows Server 2008 R2 Hyper-V](http://www.microsoft.com/virtualization/en/us/products-server.aspx) and [Microsoft Hyper-V Server 2008 R2](http://www.microsoft.com/hyper-v-server/en/us/default.aspx) provide robust virtualization for [customers](http://www.microsoft.com/virtualization/en/us/case-studies-featured.aspx) who have appreciated the capabilities that this solution provides. Virtualization decouples the operating system from the underlying hardware, and this decoupling creates a flexible and dynamic IT infrastructure. Customers who have a heterogeneous operating system environment desire their virtualization platform to provide support for all operating systems that they have in their datacenters. We have supported Linux as a guest operating system on our virtualization platform from the days of Virtual Server and continue to enhance our support in that regard. In July of last year, we submitted our Linux Integration Services for Hyper-V to the Linux community so that they can be included in the Linux kernel.  We have seen great support from the community, having received over 200 patches. As part of our continuing efforts to support Linux as a guest on Hyper-V, we are announcing the availability of the beta version of Linux Integration Services for Hyper-V (version 2.1). In addition to the existing features (networking, storage, and fastpath boot), the 2.1 release adds the following:
+# Announcing the availability of the Beta version of Linux Integration Services for Hyper-V with SMP support
+
+[Windows Server 2008 R2 Hyper-V](https://www.microsoft.com/virtualization/en/us/products-server.aspx) and [Microsoft Hyper-V Server 2008 R2](https://www.microsoft.com/hyper-v-server/en/us/default.aspx) provide robust virtualization for [customers](https://www.microsoft.com/virtualization/en/us/case-studies-featured.aspx) who have appreciated the capabilities that this solution provides. Virtualization decouples the operating system from the underlying hardware, and this decoupling creates a flexible and dynamic IT infrastructure. Customers who have a heterogeneous operating system environment desire their virtualization platform to provide support for all operating systems that they have in their datacenters. We have supported Linux as a guest operating system on our virtualization platform from the days of Virtual Server and continue to enhance our support in that regard. In July of last year, we submitted our Linux Integration Services for Hyper-V to the Linux community so that they can be included in the Linux kernel.  We have seen great support from the community, having received over 200 patches. As part of our continuing efforts to support Linux as a guest on Hyper-V, we are announcing the availability of the beta version of Linux Integration Services for Hyper-V (version 2.1). In addition to the existing features (networking, storage, and fastpath boot), the 2.1 release adds the following:
 
  
 

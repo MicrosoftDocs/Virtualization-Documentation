@@ -1,13 +1,19 @@
 ---
 title:      "Hyper-V Replica - Prerequisites for certificate based deployments"
+author: mattbriggs
+ms.author: mabrigg
+description: Hyper-V Replica - Prerequisites for certificate based deployments
+ms.date: 03/13/2012
 date:       2012-03-13 03:06:00
 categories: hvr
 ---
+# Hyper-V Replica - Prerequisites for certificate based deployments
+
 An often asked question from early HVR deployments has been about the product’s certificate requirements. This post captures the pre-requisites for enabling replication using certificate based authentication.
 
 HVR uses machine level mutual authentication, which requires you to install the certificates in the Personal certificate store of the local computer.
 
-# View/Import Certificates
+## View/Import Certificates
 
 To view or to import the certificates ****
 
@@ -19,15 +25,15 @@ To view or to import the certificates ****
 
  
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2626.CertSnapIn_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2626.CertSnapIn_1.png)
+[![Choose Computer Account in the Certificate snap-in pop up](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2626.CertSnapIn_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2626.CertSnapIn_1.png)
 
  
 
      iv.   Open the **Certificates** store under the **Personal** store.
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7558.CertMgr_1.PNG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7558.CertMgr_1.PNG)****
+[![Open the Certificates store under the Personal Store](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7558.CertMgr_1.PNG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7558.CertMgr_1.PNG)****
 
-# **Primary Server Certificate** **Requirements**
+## **Primary Server Certificate** **Requirements**
 
 To setup a replication relationship, the certificate in the **primary server** must meet the following conditions:
 
@@ -35,7 +41,7 @@ To setup a replication relationship, the certificate in the **primary server** m
 
 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5518.EKU.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5518.EKU.png)
+[![Enhanced Key Usage must support both client and server authentication](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5518.EKU.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5518.EKU.png)
 
  
 
@@ -45,14 +51,12 @@ To setup a replication relationship, the certificate in the **primary server** m
 
 
 (or)
-
-    * Subject field can contain a wildcard (e.g.: _*.department.contoso.com_ ).
+* Subject field can contain a wildcard (e.g.: _*.department.contoso.com_ ).
 
 
 
  (or)
-
-    * For a SAN certificate, set the Subject Alternative Name’s DNS Name to the primary server name (e.g.: _primary1.contoso.com_ ). If the primary server is part of a cluster, the Subject Alternative Name of the certificate should contain the FQDN of the HVR Broker (install this certificate on all the nodes of the cluster).
+* For a SAN certificate, set the Subject Alternative Name’s DNS Name to the primary server name (e.g.: _primary1.contoso.com_ ). If the primary server is part of a cluster, the Subject Alternative Name of the certificate should contain the FQDN of the HVR Broker (install this certificate on all the nodes of the cluster).
 
 
 
@@ -76,14 +80,12 @@ To enable a server to receive replication traffic, the certificate in the replic
 
 
 (or)
-
-    * Set the Subject field to the replica server name (e.g.: _replica1.contoso.com_ ). If the replica server is part of cluster, ensure that a certificate with the subject field set to the FQDN of the HVR Broker is installed on  **all** the nodes of the cluster.
+* Set the Subject field to the replica server name (e.g.: _replica1.contoso.com_ ). If the replica server is part of cluster, ensure that a certificate with the subject field set to the FQDN of the HVR Broker is installed on  **all** the nodes of the cluster.
 
 
 
 (or)
-
-    * Subject field can contain a wildcard (e.g.: _*.department.contoso.com_ )
+ * Subject field can contain a wildcard (e.g.: _*.department.contoso.com_ )
 
 
 
@@ -94,7 +96,7 @@ To enable a server to receive replication traffic, the certificate in the replic
 
 
 
-# **Validate using certutil**
+## **Validate using certutil**
 
 After the certificate is installed, run the following command from the command prompt on both the primary and replica server:
 

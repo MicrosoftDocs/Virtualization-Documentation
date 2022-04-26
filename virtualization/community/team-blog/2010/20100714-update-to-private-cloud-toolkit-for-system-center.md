@@ -1,13 +1,19 @@
 ---
 title:      "Update to private cloud toolkit for System Center"
+description: A couple updates were announced Monday at our Worldwide Partner Conference.
+author: scooley
+ms.author: scooley
 date:       2010-07-14 10:43:30
+ms.date: 07/14/2010
 categories: cloud-computing
 ---
-Back in February we started working with partners and TAP customers on a toolkit to create private cloud environment.  See our [February blog](http://blogs.technet.com/b/ddcalliance/archive/2010/02/16/dynamic-infrastructure-toolkit-for-system-center-dit-sc-sneak-peek-into-on-boarding.aspx) about the Dynamic Infrastructure Toolkit for System Center.
+# Update to private cloud toolkit for System Center
 
-A couple updates were announced Monday at our [Worldwide Partner Conference](http://digitalwpc.com/). First, the tool has a new name: [System Center Virtual Machine Manager Self-Service Portal 2.0](http://www.microsoft.com/virtualization/en/us/private-cloud.aspx) (the portal). Second, we reached the release candidate milestone. You can download it [here](http://www.microsoft.com/downloads/details.aspx?FamilyID=fef38539-ae5a-462b-b1c9-9a02238bb8a7&displaylang=en). _A release candidate milestone means it ’s feature complete, and is nearing completion._ We expect the portal to be finalized and released to the web in calendar Q4.
+Back in February we started working with partners and TAP customers on a toolkit to create private cloud environment.  See our [February blog](https://blogs.technet.com/b/ddcalliance/archive/2010/02/16/dynamic-infrastructure-toolkit-for-system-center-dit-sc-sneak-peek-into-on-boarding.aspx) about the Dynamic Infrastructure Toolkit for System Center.
 
-You can read more about the self-service portal tool over at the System Center team blog ([here](http://blogs.technet.com/b/systemcenter/archive/2010/07/13/microsoft-system-center-virtual-machine-manager-self-service-portal-2-0-release-candidate-now-available.aspx "System Center team blog about SCVMM SSP")). Here's an excerpt:
+A couple updates were announced Monday at our [Worldwide Partner Conference](http://digitalwpc.com/). First, the tool has a new name: [System Center Virtual Machine Manager Self-Service Portal 2.0](https://www.microsoft.com/virtualization/en/us/private-cloud.aspx) (the portal). Second, we reached the release candidate milestone. You can download it [here](https://www.microsoft.com/downloads/details.aspx?FamilyID=fef38539-ae5a-462b-b1c9-9a02238bb8a7&displaylang=en). _A release candidate milestone means it ’s feature complete, and is nearing completion._ We expect the portal to be finalized and released to the web in calendar Q4.
+
+You can read more about the self-service portal tool over at the System Center team blog ([here](https://blogs.technet.com/b/systemcenter/archive/2010/07/13/microsoft-system-center-virtual-machine-manager-self-service-portal-2-0-release-candidate-now-available.aspx "System Center team blog about SCVMM SSP")). Here's an excerpt:
 
 _The self-service portal provides the following features that are exposed through a web-based user interface:_
 

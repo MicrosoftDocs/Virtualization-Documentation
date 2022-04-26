@@ -1,3 +1,11 @@
+---
+title: Execution canceled from the host
+description: Learn about context data for an exit caused by a cancellation from the host.
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/20/2022
+---
+
 # Execution Canceled
 
 ## Syntax

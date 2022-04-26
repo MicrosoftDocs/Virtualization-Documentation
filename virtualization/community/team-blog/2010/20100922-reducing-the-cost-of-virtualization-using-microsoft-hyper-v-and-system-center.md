@@ -1,11 +1,17 @@
 ---
 title:      "Reducing the cost of virtualization using Microsoft Hyper-V and System Center"
+description: The \"War on Cost team\" works to understand the recurring labor costs in managing and operating Microsoft Hyper-V versus VMware’s competing platforms.
+author: scooley
+ms.author: scooley
 date:       2010-09-22 11:23:00
+ms.date: 09/22/2010
 categories: esx
 ---
-My name is [Elliott Morris](http://blogs.technet.commailto:elliott.morris@microsoft.com?subject=Contacting%20you%20about%20your%20virtualization%20blog%20post), manager of what's known within Microsoft’s Server and Tools Business as the "War on Cost team." The team’s role is to collect operational data from business and public sector customers to understand their costs for deploying, operating and managing Microsoft server and desktop software. We use this information to improve our products, and we also use the opportunity to share our findings, as appropriate, with our customers and partners, such as this [whitepaper on optimizing desktops](http://download.microsoft.com/download/a/4/4/a4474b0c-57d8-41a2-afe6-32037fa93ea6/IDC_windesktop_IO_whitepaper.pdf) and [this whitepaper on managing servers](https://partner.microsoft.com/40097421). Why do I tell you this? To help you understand our role within Microsoft and to demonstrate Microsoft’s commitment to help our customers operate Microsoft software as efficiently as possible.
+# Reducing the cost of virtualization using Microsoft Hyper-V and System Center
 
-One of our recent studies was to understand the recurring labor costs in managing and operating Microsoft Hyper-V versus VMware’s competing platforms. The licensing costs of these products are an important consideration for customers, as are the benefits of physical-to-virtual server consolidations. Both items are often discussed to some length in the industry. However, I’ve seen no significant published research that compared the more important recurring operational costs of managing production virtual servers. Our study was originally intended to be used internally within Microsoft to feed into our product planning process, but the results were so eye-opening that they have been made public, which you can download [here](http://download.microsoft.com/download/1/F/8/1F8BD4EF-31CC-4059-9A65-4A51B3B4BC98/Hyper-V-vs-VMware-ESX-and-vShpere-WP.pdf). 
+My name is [Elliott Morris](https://blogs.technet.commailto:elliott.morris@microsoft.com?subject=Contacting%20you%20about%20your%20virtualization%20blog%20post), manager of what's known within Microsoft’s Server and Tools Business as the "War on Cost team." The team’s role is to collect operational data from business and public sector customers to understand their costs for deploying, operating and managing Microsoft server and desktop software. We use this information to improve our products, and we also use the opportunity to share our findings, as appropriate, with our customers and partners, such as this [whitepaper on optimizing desktops](https://download.microsoft.com/download/a/4/4/a4474b0c-57d8-41a2-afe6-32037fa93ea6/IDC_windesktop_IO_whitepaper.pdf) and [this whitepaper on managing servers](https://partner.microsoft.com/40097421). Why do I tell you this? To help you understand our role within Microsoft and to demonstrate Microsoft’s commitment to help our customers operate Microsoft software as efficiently as possible.
+
+One of our recent studies was to understand the recurring labor costs in managing and operating Microsoft Hyper-V versus VMware’s competing platforms. The licensing costs of these products are an important consideration for customers, as are the benefits of physical-to-virtual server consolidations. Both items are often discussed to some length in the industry. However, I’ve seen no significant published research that compared the more important recurring operational costs of managing production virtual servers. Our study was originally intended to be used internally within Microsoft to feed into our product planning process, but the results were so eye-opening that they have been made public, which you can download [here](https://download.microsoft.com/download/1/F/8/1F8BD4EF-31CC-4059-9A65-4A51B3B4BC98/Hyper-V-vs-VMware-ESX-and-vShpere-WP.pdf). 
 
  
 
@@ -51,7 +57,7 @@ Feel free to leave questions in the comments section below, and I’ll do my bes
 
 Elliott 
 
-Team's blog: <http://blogs.technet.com/b/itbizval/>
+Team's blog: <https://blogs.technet.com/b/itbizval/>
 
  
 

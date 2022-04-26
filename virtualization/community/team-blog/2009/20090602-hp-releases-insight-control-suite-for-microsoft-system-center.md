@@ -1,9 +1,15 @@
 ---
 title:      "HP releases Insight Control suite for Microsoft System Center"
+description: Some exciting news related to Microsoft’s virtualization and System Center offerings and HP’s Insight Control Suite for System Center.
+author: scooley
+ms.author: scooley
 date:       2009-06-02 05:00:00
+ms.date: 06/02/2009
 categories: hp
 ---
-Hello - I’m Zane Adam, senior director of System Center and Virtualization marketing at Microsoft. I wanted to share some exciting news related to Microsoft’s virtualization and System Center offerings and HP’s Insight Control Suite for System Center.  [With the official release today of Insight Control Suite for System Center](http://blogs.technet.com/systemcenter/archive/2009/06/02/guest-blog-post-hp-delivers-industry-first-management-capabilities-for-microsoft-system-center.aspx "HP Insight Control suite for System Center announcement"), HP has taken a significant step in advancing the dynamic datacenter for customers with HP ProLiant and HP BladeSystem platforms by enabling HP Insight Control capabilities to be invoked directly from the Microsoft System Center consoles.
+# HP releases Insight Control suite for Microsoft System Center
+
+Hello - I’m Zane Adam, senior director of System Center and Virtualization marketing at Microsoft. I wanted to share some exciting news related to Microsoft’s virtualization and System Center offerings and HP’s Insight Control Suite for System Center.  [With the official release today of Insight Control Suite for System Center](https://blogs.technet.com/systemcenter/archive/2009/06/02/guest-blog-post-hp-delivers-industry-first-management-capabilities-for-microsoft-system-center.aspx "HP Insight Control suite for System Center announcement"), HP has taken a significant step in advancing the dynamic datacenter for customers with HP ProLiant and HP BladeSystem platforms by enabling HP Insight Control capabilities to be invoked directly from the Microsoft System Center consoles.
 
  
 
@@ -23,7 +29,7 @@ We believe the combination of the System Center suite, Microsoft’s virtualizat
 
 }  All backed by the power of the HP Services organization with 30,000 Microsoft-trained professionals
 
-Congratulations to HP on bringing this offering to market and providing these powerful capabilities to our mutual customers.  Be sure to check out the [guest blog post on the System Center blog](http://blogs.technet.com/systemcenter/archive/2009/06/02/guest-blog-post-hp-delivers-industry-first-management-capabilities-for-microsoft-system-center.aspx "HP Insight Control suite for System Center guest blog post") from Scott Farrand of HP.
+Congratulations to HP on bringing this offering to market and providing these powerful capabilities to our mutual customers.  Be sure to check out the [guest blog post on the System Center blog](https://blogs.technet.com/systemcenter/archive/2009/06/02/guest-blog-post-hp-delivers-industry-first-management-capabilities-for-microsoft-system-center.aspx "HP Insight Control suite for System Center guest blog post") from Scott Farrand of HP.
 
  
 

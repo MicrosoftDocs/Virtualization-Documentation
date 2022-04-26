@@ -1,8 +1,14 @@
 ---
 title:      "Headed to WPC? Don't miss this great offer!"
+author: mattbriggs
+ms.author: mabrigg
+description: Headed to WPC? Don't miss this great offer!
+ms.date: 07/08/2011
 date:       2011-07-08 12:21:58
 categories: uncategorized
 ---
+# Headed to WPC? Don't miss this great offer!
+
 Everyone is talking about the Cloud. At next week’s Worldwide Partner Conference, you and 12,000 other partners will be encouraged to take the cloud conversation to the next level from traditional virtualization to cloud-based computing.  As your customer’s trusted advisor, you will best be able to propose solutions when you understand opportunities around private clouds and public clouds. At WPC 2011, you’ll learn about our Hyper-V based Private Clouds and Windows Azure-based Public Clouds that can be managed by System Center 2012.  Most importantly, you’ll learn how Microsoft can help you ramp up on cloud technologies, generate new revenue streams, and ultimately take your Infrastructure practice to the next level.   We look forward to seeing you at WPC. Please read on for more event-specific information. Cheers, Kevin McCuistion Director of Partner Marketing, Server and Tools Business   
 **Take Advantage of the Microsoft Virtualization and System Center offer from Global Knowledge** Global Knowledge, 2011 Microsoft Learning Competency Partner of the Year, is offering partners who visit our booth a discount of at least 20% off the list price on qualifying Microsoft Virtualization and Systems Center courses. Make sure to come to our Microsoft Private Cloud and Server Platforms booth #1221 in the Solutions Innovation Center to learn more! **Don ’t miss our sessions led by our executives on Tuesday, July 12th.** **Title**
 

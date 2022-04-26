@@ -1,13 +1,19 @@
 ---
 title:      "Repost&#58; Resellers and SIs check out our virtualization partner profitability toolkit"
+description: Microsoft channel partners who read this blog will want to check out our new virtualization partner profitability toolkit.
+author: scooley
+ms.author: scooley
 date:       2010-05-25 19:33:00
+ms.date: 05/25/2010
 categories: application-virtualization
 ---
-This post is for all the Microsoft channel partners who read this blog. You'll want to check out our new virtualization partner profitability toolkit ([here](http://www.partners-psp.com/sites/profitability/Pages/index.aspx "partner toolkit page")). David Greschler's blog [here](http://www.microsoftpartnernetwork.com/RedmondView/Permalink/Microsoft-Releases-Virtualization-Partner-Profitability-Toolkit "Microsoft partner network blog") sums it up better than I could. Here's an excerpt:  _Every partner knows about the great opportunity to sell virtualization technology and services. For a while, that meant one thing: working exclusively with VMware._
+# Repost: Resellers and SIs check out our virtualization partner profitability toolkit
+
+This post is for all the Microsoft channel partners who read this blog. You'll want to check out our new virtualization partner profitability toolkit ([here](http://www.partners-psp.com/sites/profitability/Pages/index.aspx "partner toolkit page")). David Greschler's blog [here](https://www.microsoftpartnernetwork.com/RedmondView/Permalink/Microsoft-Releases-Virtualization-Partner-Profitability-Toolkit "Microsoft partner network blog") sums it up better than I could. Here's an excerpt:  _Every partner knows about the great opportunity to sell virtualization technology and services. For a while, that meant one thing: working exclusively with VMware._
 
 _Times have changed._
 
-_Microsoft ’s virtualization technology is more affordable and _[_seen by many as technically comparable_](http://www.networkworld.com/community/blog/five-arguments-microsoft-upgrade?inform=) _, and the company is gaining market share. Indeed, Microsoft Hyper-V continued its ascent in Q409, growing 215 percent year over year, according to the market research firm,_[ _IDC._](http://blogs.technet.com/virtualization/archive/2010/05/05/idc-updates-server-virtualization-market-numbers-virtualize-first-is-here.aspx)
+_Microsoft ’s virtualization technology is more affordable and _[_seen by many as technically comparable_](http://www.networkworld.com/community/blog/five-arguments-microsoft-upgrade?inform=) _, and the company is gaining market share. Indeed, Microsoft Hyper-V continued its ascent in Q409, growing 215 percent year over year, according to the market research firm,_[ _IDC._](https://blogs.technet.com/virtualization/archive/2010/05/05/idc-updates-server-virtualization-market-numbers-virtualize-first-is-here.aspx)
 
 _Nearly every VMware partner we talk to recognizes that Microsoft is a major player in virtualization and tells us they would like an opportunity to build a virtualization practice that includes both VMware and Microsoft. They recognize that having a dual practice allows them to become more trusted advisors to their customers. But they want a way to better understand the economic model._
 
@@ -21,6 +27,6 @@ _"There will always be cases where if a customer already has investment in VMwar
 
 _Kathi Grumke, VandenBoom's colleague and another solution specialist at CDW, concurred. "Customers are looking for agnostic analysis so they can make a decision of what makes sense so whatever tools we can deploy help us have that conversation with the customer," she said. "They may have invested in VMware already. Maybe it's coming up for renewal. Should they go for that or look at Hyper-V? The toolset gives us the opportunity to have that trusted adviser conversation."  _
 
- While you check out the toolkit, don't forget that [dynamic memory](http://blogs.technet.com/virtualization/archive/2010/04/21/dynamic-memory-coming-to-hyper-v-part-4.aspx "Jeff's part 4 blog post") and [RemoteFX ](http://blogs.technet.com/virtualization/archive/2010/04/25/Microsoft-RemoteFX_3A00_-Closing-the-User-Experience-Gap.aspx "Max's blog about RemoteFX")are coming with SP1 of WS08 R2 (a no cost addition if you have R2).
+ While you check out the toolkit, don't forget that [dynamic memory](https://blogs.technet.com/virtualization/archive/2010/04/21/dynamic-memory-coming-to-hyper-v-part-4.aspx "Jeff's part 4 blog post") and [RemoteFX ](https://blogs.technet.com/virtualization/archive/2010/04/25/Microsoft-RemoteFX_3A00_-Closing-the-User-Experience-Gap.aspx "Max's blog about RemoteFX")are coming with SP1 of WS08 R2 (a no cost addition if you have R2).
 
 Patrick

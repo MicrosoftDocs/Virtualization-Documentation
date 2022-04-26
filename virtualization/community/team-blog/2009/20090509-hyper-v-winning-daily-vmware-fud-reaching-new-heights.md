@@ -1,11 +1,17 @@
 ---
-title:      "Hyper-V Winning Daily/VMware FUD Reaching New Heights."
+title: "Hyper-V Winning Daily/VMware FUD Reaching New Heights."
+description: I prefer to spend my time talking about the great things we're doing with Hyper-V and Microsoft virtualization. Unfortunately, I need to take a moment to respond to some VMware FUD circulating the web.
+author: scooley
+ms.author: scooley
 date:       2009-05-09 10:08:00
+ms.date: 05/09/2009
 categories: uncategorized
 ---
+# Hyper-V Winning Daily/VMware FUD Reaching New Heights
+
 Virtualization Nation,
 
-I prefer to spend my time talking about the great things we're doing with Hyper-V and Microsoft virtualization. We have a lot of very happy customers today with Hyper-V R1 and the upcoming R2 release delivers even more in terms of scalability, performance and new features like [Live Migration](http://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx) and much, much more. Unfortunately, I need to take a moment to respond to some VMware FUD circulating the web.
+I prefer to spend my time talking about the great things we're doing with Hyper-V and Microsoft virtualization. We have a lot of very happy customers today with Hyper-V R1 and the upcoming R2 release delivers even more in terms of scalability, performance and new features like [Live Migration](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx) and much, much more. Unfortunately, I need to take a moment to respond to some VMware FUD circulating the web.
 
 Out on the web, there's an "anonymous" video purporting to show a Hyper-V crash. When I heard, I was surprised and immediately wanted to know more. I haven't heard of _any_ such incidents with Hyper-V and the Hyper-V R1 release has been incredibly stable and reliable. So, what did I find? 
 
@@ -19,7 +25,7 @@ So, _why_ would someone create such a video? Let's dig a little deeper.
 
 The poster, who doesn't appear on the video, doesn't state what company he works for or provide any context. Gee, I wonder where he works?
 
-<drum roll please>
+\<drum roll please>
 
 Introducing Scott Drummonds, VMware Product Marketing.
 
@@ -37,7 +43,7 @@ Looks like I'll need to provide the facts here.
 
   1. In the first 7 months of Hyper-V RTM availability, we've had over **750,000 downloads of Hyper-V gold bits**. 
   2. **Hyper-V is the fastest growing x86/x64 hypervisor in history**. We are laser focused on our customers and providing high performance, high quality virtualization for everyone from small business to Fortune 500 customers. 
-  3. We have hundreds of [**Hyper-V case studies from customers worldwide**](http://www.microsoft.com/virtualization/default.mspx) and we're winning new customers **daily**. 
+  3. We have hundreds of [**Hyper-V case studies from customers worldwide**](https://www.microsoft.com/virtualization/default.mspx) and we're winning new customers **daily**. 
   4. Hyper-V continues to power MSDN, TechNet and Microsoft.com as well as numerous other MS properties. Microsoft.com continues to receive over a BILLION hits per month and there **has been no downtime to any of these internet properties running atop Hyper-V**. **Period**. 
   5. Of those 750,000+ downloads, the number of support calls we have received on **Hyper-V is less than .02%**. (Yes, a minimal fraction of a percent.)
 
