@@ -70,6 +70,9 @@ Get-KdsRootKey
 
 If the command returns a key ID, you're all set and can skip ahead to the [create a group managed service account](#create-a-group-managed-service-account) section. Otherwise, continue on to create the KDS root key.
 
+> [!IMPORTANT]
+> You should only create one KDS root key per forest. If multiple KDS root keys are created, it will cause the gMSA to start failing after the gMSA password is rotated.
+
 In a production environment or test environment with multiple domain controllers, run the following cmdlet in PowerShell as a Domain Administrator to create the KDS root key.
 
 ```powershell
