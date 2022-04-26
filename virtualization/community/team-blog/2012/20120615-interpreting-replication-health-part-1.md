@@ -1,8 +1,13 @@
 ---
 title:      "Interpreting Replication Health – Part 1"
+description: Describes how administrators can monitor the health of the replicating VM's using the Replication Health attribute - Part 1. 
+author: mattbriggs
+ms.author: mabrigg
 date:       2012-06-15 03:33:00
+ms.date: 06/15/2012
 categories: hvr
 ---
+# Interpreting Replication Health – Part 1
 In Windows Server 2012 Release Candidate, Hyper-V administrators can monitor the ‘health’ of the replicating VMs using the **Replication Health** attribute **.** This ** ** property allows administrators to answer common questions such as:
 
   * When did the primary and replica VMs last synchronize?
@@ -367,11 +372,10 @@ Correct, this health indicates that replication has the following characteristic
   * The average latency is less than or equal to 5mins
 
 **Primary VM** | [![image_thumb2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2100.image_thumb2_thumb_75F12BEE.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6320.image_thumb2_328699DB.png)  
----|---  
-  |    
+| --- | --- |
 **Replica VM** | [![image_thumb41](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7065.image_thumb41_thumb_09A336E5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6087.image_thumb41_1C559FEB.png)  
         
 
 #### That’s neat! Tell me more…
 
-We will cover further details such as PowerShell cmdlets, tips to extend the platform capability to monitor the health by setting up alerts, interpreting the attribute in the Replication Health view, concept of a monitoring interval, monitoring start time etc., in the [next post](http://blogs.technet.com/b/virtualization/archive/2012/06/21/interpreting-replication-health-part-2.aspx).
+We will cover further details such as PowerShell cmdlets, tips to extend the platform capability to monitor the health by setting up alerts, interpreting the attribute in the Replication Health view, concept of a monitoring interval, monitoring start time etc., in the [next post](https://blogs.technet.com/b/virtualization/archive/2012/06/21/interpreting-replication-health-part-2.aspx).
