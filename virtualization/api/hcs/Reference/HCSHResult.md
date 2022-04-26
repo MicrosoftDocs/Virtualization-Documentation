@@ -2,10 +2,9 @@
 title: HCS Error Code
 description: HCS Error Code
 author: faymeng
-ms.author: qiumeng
+ms.author: mabrigg
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 06/09/2021
 api_name:
 - HCS Error Code
@@ -18,7 +17,7 @@ topic_type:
 ---
 # HCS Error Code
 
-Most of the the HCS functions use `HRESULT` return codes. These return codes can be found in the [Winerror.h](https://docs.microsoft.com/en-us/windows/win32/api/winerror/) header file. The following table shows HCS specific error codes:
+Most of the the HCS functions use `HRESULT` return codes. These return codes can be found in the [Winerror.h](/windows/win32/api/winerror/) header file. The following table shows HCS specific error codes:
 
 
 
