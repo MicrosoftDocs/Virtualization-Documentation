@@ -1,3 +1,11 @@
+---
+title: The LocateSavedStateFiles function
+description: Locates the saved state file(s) for a given VM and/or snapshot.
+ms.date: 04/19/2022
+author: mattbriggs
+ms.author: mabrigg
+---
+
 # LocateSavedStateFiles function
 
 Locates the saved state file(s) for a given VM and/or snapshot. This function uses WMI and the V1 or V2 virtualization namespace. So this is expected to fail if ran on a machine without Hyper-V installed.
