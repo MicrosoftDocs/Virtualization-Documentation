@@ -1,8 +1,14 @@
 ---
 title:      "HP whitepapers on NIC Teaming for Hyper-V"
-date:       2009-03-02 16:30:00
+description: HP has published 2 white papers describing their NIC teaming support for Hyper-V.
+author: scooley
+ms.author: scooley
+date: 2009-03-02 16:30:00
+ms.date: 03/02/2009
 categories: high-availability
 ---
+# HP whitepapers on NIC Teaming for Hyper-V
+
 HP has published 2 white papers describing their NIC teaming support for Hyper-V. 
 
 [First](http://h20000.www2.hp.com/bc/docs/support/SupportManual/c01663264/c01663264.pdf "HP whitepaper") is a 5-page "how to" document specific to HP ProLiant. Here's the abstract:

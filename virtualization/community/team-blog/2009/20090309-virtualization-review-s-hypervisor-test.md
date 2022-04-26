@@ -1,8 +1,14 @@
 ---
 title:      "Virtualization Review's hypervisor test"
+description: "A comparative performance test of three hypervisors: VMware ESX 3.5, Windows Server 2008 Hyper-V and Citrix XenServer."
+author: scooley
+ms.author: scooley
 date:       2009-03-09 16:09:00
+ms.date: 03/09/2009
 categories: citrix
 ---
+# Virtualization Review's hypervisor test
+
 The other day, Virtualization Review published a comparative performance test of three hypervisors: VMware ESX 3.5, Windows Server 2008 Hyper-V and Citrix XenServer. You can see it [here](http://virtualizationreview.com/features/article.aspx?editorialsid=2641 "Virt Review test"). **NOTE** \- there are few independent, published performance reviews of hypervisors because including ESX in the review without VMware's permission violates the VMware EULA about posting benchmarks. VMark doesn't count as independent. Amongst reviewers, this EULA restriction is well-known and am told  serves as a deterrent to try to do performance comparatives. Rick Vanover and his editor, Keith Ward, deserve kudos for [securing VMware approval](http://virtualizationreview.com/blogs/weblog.aspx?blog=3556 "Keith Ward's editorial") for the performance comparison without jeopardizing journalistic integrity. Way to go! 
 
 OK, back to Rick Vanover's test. His test objectives:
