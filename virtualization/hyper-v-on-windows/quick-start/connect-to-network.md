@@ -3,10 +3,10 @@ title: Create a Virtual Network
 description: Create a Virtual Switch 
 keywords: windows 10, hyper-v, networking
 author: scooley
+ms.author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09
 ---
 
@@ -42,11 +42,11 @@ If search doesn't find Hyper-V Manager, Hyper-V or the Hyper-V management tools 
 
 9. Select the physical network card to be paired with the new virtual switch. This is the network card that is physically connected to the network.  
 
-    ![](media/newSwitch_upd.png)
+    ![Screenshot of the Virtual Switch Properties section of the Virtual Switch Manager pane.](media/newSwitch_upd.png)
 
 10. Select **Apply** to create the virtual switch. At this point you will most likely see the following message. Click **Yes** to continue.
 
-    ![](media/pen_changes_upd.png)  
+    ![Screenshot of the Apply Networking Changes message with a focus on the Yes option.](media/pen_changes_upd.png)  
 
 11. Select **OK** to close the Virtual Switch Manager Window.
 
