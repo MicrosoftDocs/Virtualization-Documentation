@@ -5,7 +5,6 @@ author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
 ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 10/31/2021
 api_name:
 - HcnOpenEndpoint
@@ -31,7 +30,8 @@ HcnOpenEndpoint(
     _In_ REFGUID Id,
     _Out_ PHCN_ENDPOINT Endpoint,
     _Outptr_opt_ PWSTR* ErrorRecord
-    );```
+    );
+```
 
 ## Parameters
 
