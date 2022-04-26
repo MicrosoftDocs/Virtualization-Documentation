@@ -1,8 +1,14 @@
 ---
 title:      "MMS 2011 LABS POWERED BY HYPER-V, SYSTEM CENTER & HP..."
+author: mattbriggs
+ms.author: mabrigg
+description: MMS 2011 Labs powered by Hyper-V, System Center, and HP
+ms.date: 03/28/2011
 date:       2011-03-28 23:10:00
 categories: hyper-v
 ---
+# MMS 2011 Labs powered by Hyper-V, System Center, and HP
+
 Virtualization Nation,
 
 We just completed a great week at MMS 2011 in Las Vegas. To say it was a busy week would be a huge understatement. To everyone that attended, our sincere thanks. 
@@ -26,7 +32,7 @@ I spoke to a lot of folks at the show and the feedback was overwhelmingly positi
 
 **MMS 2010: Quick Refresher**
 
-For the second year in a row, all of the MMS Labs were 100% virtualized using Windows Server 2008 R2 Hyper-V and managed via System Center by our partners at XB Velocity and using HP servers and storage. [MMS 2010 was the first year all of the labs were provided via virtualization](http://blogs.technet.com/b/virtualization/archive/2010/05/06/mms-2010-labs-powered-by-hyper-v-system-center-hp.aspx). In previous years, the MMS Labs were all delivered using physical servers. To say moving from physical to virtual was a huge success would be an understatement. Here are a few apposite stats comparing MMS 2009 to MMS 2010 last year:
+For the second year in a row, all of the MMS Labs were 100% virtualized using Windows Server 2008 R2 Hyper-V and managed via System Center by our partners at XB Velocity and using HP servers and storage. [MMS 2010 was the first year all of the labs were provided via virtualization](https://blogs.technet.com/b/virtualization/archive/2010/05/06/mms-2010-labs-powered-by-hyper-v-system-center-hp.aspx). In previous years, the MMS Labs were all delivered using physical servers. To say moving from physical to virtual was a huge success would be an understatement. Here are a few apposite stats comparing MMS 2009 to MMS 2010 last year:
 
 Power reduction of 13.9x on the servers:
 
@@ -80,7 +86,7 @@ Hyper-V Dynamic Memory rocks!
 
 By making these changes, the team reduced the number of racks from 3 to 2. Here’s the side-by-side comparison of MMS 2010 versus MMS 2011 from a server standpoint:
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8551.snip1.JPG)
+ ![side-by-side comparison of MMS 2010 versus MMS 2011 from a server standpoint](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8551.snip1.JPG)
 
 You can see that across the board and in every possible metric, the MMS 2011 servers are a significant improvement over last year. The systems are more powerful, offer greater scalability, improved performance, reduced power consumption, and fewer cables to manage; and they reduced the physical footprint by a third.
 
@@ -105,7 +111,7 @@ This new storage strategy resulted in massive improvements. Using the HP I/O Acc
 
 Here’s the side-by-side comparison of MMS 2010 versus MMS 2011 from a storage standpoint:
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8004.snip2.JPG)
+ ![side-by-side comparison of MMS 2010 versus MMS 2011 from a storage standpoint](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8004.snip2.JPG)
 
 The results were simply jaw-dropping.
 
@@ -115,11 +121,11 @@ The results were simply jaw-dropping.
 
 Here’s a picture of the two racks powering all of the MMS 2011 Labs. You can see them behind the Plexiglas. What you don’t see are the crowds gathered around pointing, snapping pictures, and gazing longingly…
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2818.snip3.jpg)
+ ![two racks powering all of the MMS 2011 Labs](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2818.snip3.jpg)
 
 Here’s a diagram of the rack with the front of the rack on the left and the back of the rack on the right. The blue lines are network cables and orange lines are fiber channel. Remember, last year we had 82 network cables; this year a total of 12 cables, 8 for Ethernet and 4 for Fiber Channel.
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1157.snip4.jpg)
+ ![a diagram of the rack with the front of the rack on the left and the back of the rack on the right](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1157.snip4.jpg)
 
 **MMS 2011: Management with System Center**. Naturally, the MMS team used System Center to manage all the labs, specifically Operations Manager, Virtual Machine Manager, Configuration Manager, and Service Manager.
 
@@ -136,7 +142,7 @@ Operations Manager 2012 Pre-Release was used to monitor the health and performan
 
 It looks like this:
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4403.snip5.jpg)
+ ![Operations Manager 2012 Pre-Release](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4403.snip5.jpg)
 
   * Virtual Machine Manager 2008 R2 was used to provision and manage the entire virtualized lab delivery infrastructure and monitor and report on all the virtual machines in the system. It should go without saying that to support a lab of this scale and with only a few minutes between the end of one lab and the beginning of the next, automation is a key precept. (In case you’re wondering, there wasn’t enough time to use the VMM 2012 Beta…)
 
@@ -178,7 +184,7 @@ One cool application that the Lab team wrote is called Hyper-V Mosaic. Hyper-V M
 
  Here’s a screenshot:
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8787.snip6.jpg)
+ ![Hyper-V Mosaic](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8787.snip6.jpg)
 
 **MMS 2011: Let ’s Take this to 11**
 
@@ -193,13 +199,13 @@ After a few days of running thousands of VMs in hundreds labs without issue and 
 
 Here’s a screen shot from PerfMon:
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4846.snip7.jpg)
+ ![screen shot from PerfMon](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4846.snip7.jpg)
 
 **MMS: Physical Footprint Over the Years …**
 
 In terms of physical footprint, the team was allocated 500 sq. feet for MMS 2011 Labs and needed only **_17 sq. feet_**. Here ’s how the footprint has dropped in the last three years:
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0284.snip8.JPG)
+ ![how the footprint has dropped in the last three years](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0284.snip8.JPG)
 
 **MMS 2011: Success!**
 
@@ -230,16 +236,16 @@ Windows Server & Cloud
 
  Here’s a close up of one of the racks:
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7206.snip9.jpg)
+ ![a close up of one of the racks](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7206.snip9.jpg)
 
 HP knew there was going to be a lot of interest, so they created full size cardboard replicas diagraming the hardware in use. Here’s the front:
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8475.snip10.jpg)
+ ![full size cardboard replicas diagraming the hardware in use - front](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8475.snip10.jpg)
 
 …and here’s the back…
 
-![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8625.snip11.jpg) 
+![full size cardboard replicas diagraming the hardware in use - back](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8625.snip11.jpg) 
 
 During the show, there was a huge display (made up of a 3x3 grid of LCDs). This display was located at the top of the elevator going from the first to the second floor at the Mandalay Bay Convention Center. Throughout the week it was used for messaging and hot items of the day. On the last day, the event switched the big display screen at the top of the elevator over to show the Hyper-V Mosaic display. This turned out to be a huge hit. People came up the elevator, stopped, stared and took pictures of the display screen. The only problem is that we inadvertently created a traffic jam at the top of the elevators. Here’s the picture: 
 
-![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2577.snip12.jpg) 
+![display during the show](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2577.snip12.jpg) 

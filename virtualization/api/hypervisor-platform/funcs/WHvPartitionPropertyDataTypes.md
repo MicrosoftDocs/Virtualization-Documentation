@@ -1,3 +1,11 @@
+---
+title: Partition Property Data Types
+description: Descriptive content for managing WHvPartitionPropertyDataTypes and understanding its requirements and remarks. 
+author: Juarezhm
+ms.author: hajuarez
+ms.date: 05/31/2019
+---
+
 # Partition Property Data Types
 
 

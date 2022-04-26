@@ -1,8 +1,14 @@
 ---
 title:      "Save network bandwidth by using Out-of-Band Initial Replication method in Hyper-V Replica"
+author: mattbriggs
+ms.author: mabrigg
+description: Save network bandwidth by using Out-of-Band Initial Replication method in Hyper-V Replica
+ms.date: 06/28/2013
 date:       2013-06-28 07:41:00
 categories: hvr
 ---
+# Save network bandwidth by using Out-of-Band Initial Replication method in Hyper-V Replica
+
 In our recent conversation with customers about Hyper-V Replica, the questions that came up from a few customers was –
 
   * Is there a way to perform the Initial Replication (IR) for VMs without stressing our organizations internet bandwidth?
@@ -46,12 +52,12 @@ The same steps can be achieved using PowerShell:
 First enable replication for the VM using the following command-let
     
     
-    Enable-VMReplication –VMName SQLDB_MyApplication –ReplicaServerName ReplicaServer.Contoso.com –ReplicaServerPort 80 –AuthenticationType Kerberos 
+Enable-VMReplication –VMName SQLDB_MyApplication –ReplicaServerName ReplicaServer.Contoso.com –ReplicaServerPort 80 –AuthenticationType Kerberos 
 
 Then export the Initial Replica using the following command-let
     
     
-    Start-VMInitialReplication –VMName SQLDB_MyApplication –DestinationPath F:\VirtualMachineData\ 
+Start-VMInitialReplication –VMName SQLDB_MyApplication –DestinationPath F:\VirtualMachineData\ 
 
 ### Steps to take on the Replica Site
 
@@ -71,6 +77,6 @@ The same steps can be achieved using PowerShell
 Copy the Initial Replica onto a local drive on the replica server (say D:\VirtualMachineData\\) and then run the below command-let to import the initial replica.
     
     
-    Import-VMInitialReplication –VMName SQLDB_Application_Payroll  -Path D:\VirtualMachineData\ SQLDB_MyApplication_A60B7520-724D-4708-8C09-56F6438930D9 
+Import-VMInitialReplication –VMName SQLDB_Application_Payroll  -Path D:\VirtualMachineData\ SQLDB_MyApplication_A60B7520-724D-4708-8C09-56F6438930D9 
 
 Hyper V Replica offers one more method for Initial Replication that utilizes a backup copy of the VM to seed the replication, will cover that in our next blog post.

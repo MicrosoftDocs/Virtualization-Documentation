@@ -1,3 +1,11 @@
+---
+title: WHvGetVirtualProcessorXsaveState
+description: Description on working with WHvGetVirtualProcessorXsaveState, including parameters, syntax, and return value.
+author: jstarks
+ms.author: jostarks
+ms.date: 06/06/2019
+---
+
 # WHvGetVirtualProcessorXsaveState
 
 ## Syntax

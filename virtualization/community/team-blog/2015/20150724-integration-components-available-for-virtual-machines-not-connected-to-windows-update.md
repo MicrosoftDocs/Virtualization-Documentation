@@ -1,8 +1,14 @@
 ---
-title:      "Integration components available for virtual machines not connected to Windows Update"
+title: Integration components available for virtual machines not connected to Windows Update
+description: Learn about the available integration components for virtual machines not connected to a Windows update using Hyper-V.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-07-24 10:42:00
+ms.date: 07/24/2015
 categories: hyper-v
 ---
+# Integration components available for virtual machines not connected to Windows Update
+
 In Technical Preview, Hyper-V began delivering integration components through Windows Update ([see blog for more information](/b/virtualization/archive/2014/11/11/hyper-v-integration-components-are-available-through-windows-update.aspx "see blog for more information")). Pushing updates through Windows Update was a good first step -- it is the easiest way to keep integration components up to date. There are situations, however, where the virtual machine isn't connected to Windows Update and sometimes it is more convenient to patch an offline (turned off) virtual machine. Now, in addition to receiving integration component updates automatically through Windows Update, you can also update integration components on virtual machines that aren't running or aren't connected to Windows Update using the cab files available in [KB3071740](https://support.microsoft.com/en-us/kb/3071740). (Last time I looked, the download links weren't working. The downloads are [here](https://www.microsoft.com/en-us/search/Results.aspx?q=kb3071740&form=DLC)). ****** **Note:** Everything in this blog post applies to Server 2016 Technical Preview or Windows 10 and associated preview builds or later. The instructions here should work for virtual machines on Server 2012R2/Windows 8.1 but that is not tested or supported! ** 
 
 ## Updating integration components on an virtual machine that is not turned on

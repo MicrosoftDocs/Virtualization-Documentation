@@ -1,8 +1,14 @@
 ---
 title:      "Introduction to Resource Metering"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 08/16/2012
 date:       2012-08-16 10:37:00
 categories: cloud-computing
+description: Introduction to Resource Metering
 ---
+# Resource Metering
+
 Hi, I’m Lalithra Fernando, a program manager on the Hyper-V team, working in various areas including clustering and authorization, as well as with our Hyper-V MVPs. In this post, I’ll be talking about resource metering, a new feature in Hyper-V in Windows Server 2012. As you’ve probably heard by now, Windows Server 2012 is a great platform for the private cloud. When we began planning this release, we realized that one of the things you need in order to run a cloud is to be able to charge your users for the resources they use. This is the need resource metering fills. It allows you to measure the resource utilization of your virtual machines. You can use this information as a platform for your own dynamic chargeback solutions, where you can charge customers based on the resources they use instead of a flat upfront cost, or to plan your hosting capacity appropriately. There are four resources that you can measure: your CPU, memory, network, and storage utilization. We measure these resources over the period of time between when you measure and when you last reset metering. 
 
 **CPU** (MHz): We report the average utilization in megahertz.
@@ -37,22 +43,21 @@ The most important breakdown you will want is how much traffic does the virtual 
 
 So how do we provide these breakdowns? We use ACLs set on the virtual machine’s network adapter. Each ACL has
 
-    * Direction
+```markdown
+* Direction
 
-      * “Inbound” or “Outbound”
+    * “Inbound” or “Outbound”
 
-    * Remote IP Address
+* Remote IP Address
 
-      * The source or destination of the network packet, depending on direction
+    * The source or destination of the network packet, depending on direction
 
-      * For example, 10.0.0.0/8
+    * For example, 10.0.0.0/8
 
-    * Action
+  * Action
 
-      * Allow, Deny, or Meter
-
-
-
+    * Allow, Deny, or Meter
+```
 
 These ACLs are used for more than just resource metering; note the Allow and Deny actions. For our purposes, you set the action to “Meter”.
 

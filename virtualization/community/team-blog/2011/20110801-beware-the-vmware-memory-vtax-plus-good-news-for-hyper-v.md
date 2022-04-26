@@ -1,8 +1,14 @@
 ---
 title:      "BEWARE THE VMWARE MEMORY VTAX; PLUS--GOOD NEWS FOR HYPER-V..."
+author: mattbriggs
+ms.author: mabrigg
+description: Beware the VMware memory vTax, plus good news for Hyper-V
+ms.date: 08/01/2011
 date:       2011-08-01 05:28:00
 categories: blogs
 ---
+# Beware the VMware memory vTax, plus good news for Hyper-V
+
 Virtualization Nation,
 
 The last few weeks have been buzzing with virtualization news. Just two examples are the Windows Server “ _8_ ” Hyper-V Sneak Peek at the Microsoft Worldwide Partner Conference (WPC) and VMware’s creation of the Memory vTax.
@@ -100,7 +106,7 @@ A few days after the appearance of VMware press releases on the vSphere 5 launch
 
 6\. Ars Technica: [What Will the VMware vSphere 5 Licensing Changes Mean For You](http://arstechnica.com/business/news/2011/07/what-will-the-vmware-vsphere-5-licensing-changes-mean-for-you.ars?comments=1#comments-bar)
 
-> Comment: _“ We literally just deployed a few million dollars worth of Cisco B230 M2 blades with dual E7-2850s and 256GB each. We're already pushing north of 20:1 consolidation ratio and if this licensing stands, our VMware bill will _more than double_. <Expletive Deleted> VMware.”_
+> Comment: _“ We literally just deployed a few million dollars worth of Cisco B230 M2 blades with dual E7-2850s and 256GB each. We're already pushing north of 20:1 consolidation ratio and if this licensing stands, our VMware bill will _more than double_. \<Expletive Deleted\> VMware.”_
 
 The preceding links and quotes are just a few from industry sites. There are plenty more. Customers on VMware’s community forums are generally supportive. In this case—not so much.
 
@@ -192,7 +198,7 @@ Also, from the [VMware Community Forum](http://communities.vmware.com/thread/320
 
 **Comment #7** : Here’s another comment from [VMware’s public blog](http://blogs.vmware.com/virtualreality/2011/07/setting-microsoft-straight-on-the-vmware-service-provider-program-vspp.html#comments):
 
-> _VMware, I know you ’re looking for ANY reason to divert attention from the vsphere 5 Licensing Disaster, but this article isn’t going to do it. Can we just call a spade a spade? The vsphere 5 licensing change is a plain money grab/<expletive deleted> customers by VMware and you guys are pitching this as good for me. STOP INSULTING MY INTELLIGENCE._
+> _VMware, I know you ’re looking for ANY reason to divert attention from the vsphere 5 Licensing Disaster, but this article isn’t going to do it. Can we just call a spade a spade? The vsphere 5 licensing change is a plain money grab/ \<expletive deleted\> customers by VMware and you guys are pitching this as good for me. STOP INSULTING MY INTELLIGENCE._
 > 
 > _You have stated that most people will not be affected. Is anyone from VMware reading their own forums? There are 50+ pages of ticked off VMware customers. Twitter has started numerous hash tags including VTAX and the VMware response is, “no really, it’s not that bad” or “it’s your fault right size your vms,” or “scale out not up.”_
 > 
@@ -200,7 +206,7 @@ Also, from the [VMware Community Forum](http://communities.vmware.com/thread/320
 > 
 > _If you think about what you ’re saying, the guidance vmware has been giving their customers for years and how vmware is marketed you realize just how ridiculous, misguided and insulting this licensing is to customers._
 > 
-> _VMware says the new VTAX/Memory Tax is “really not that bad.” This is simply not true. Read your own forums. We’ve done the math and we’re going to see just over a 300% increase. 300%. My boss is <expletive deleted> beyond words._
+> _VMware says the new VTAX/Memory Tax is “really not that bad.” This is simply not true. Read your own forums. We’ve done the math and we’re going to see just over a 300% increase. 300%. My boss is \<expletive deleted\> beyond words._
 > 
 > _Vmware states “Vsphere 5 for desktops is great for VDI.” Haven’t looked and don’t even care. The last thing we’re going to do is even consider VMware for VDI (or anything else) after this. NOT A CHANCE. We’re not going to take the chance of deploying vmware for VDI only to have you jack up the price the next time around._
 > 
@@ -344,7 +350,7 @@ Personally, here’s what I think is happening. It looks like VMware decided to 
   
 ---|---|---|---|---|---  
   
-# of vSphere 4.1 Enterprise Plus licenses
+Number of vSphere 4.1 Enterprise Plus licenses
 
 | 
 
@@ -366,7 +372,7 @@ Personally, here’s what I think is happening. It looks like VMware decided to 
 
 2  
   
-# of vSphere 5.0 Enterprise Plus licenses
+Number of vSphere 5.0 Enterprise Plus licenses
 
 | 
 
@@ -402,11 +408,11 @@ Now let’s do some comparisons of vSphere 5, Microsoft Hyper-V Server 2008 R2 S
 
 Let’s compare a _single server_ populated with various memory configurations.
 
-In this first comparison, let’s analyze the effect of the VMware Memory Tax and focus on the hypervisor layer. For this comparison, I’m going to use VMware vSphere 5.0 and [Microsoft Hyper-V Server 2008 R2 SP1](http://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx). This comparison allows us to focus on the ability of the hypervisor to fully utilize memory resources in a physical server for virtual machines. Let me preface this example by stating, this comparison doesn’t include hardware, guest operating system licenses, storage, networking or systems management.
+In this first comparison, let’s analyze the effect of the VMware Memory Tax and focus on the hypervisor layer. For this comparison, I’m going to use VMware vSphere 5.0 and [Microsoft Hyper-V Server 2008 R2 SP1](https://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx). This comparison allows us to focus on the ability of the hypervisor to fully utilize memory resources in a physical server for virtual machines. Let me preface this example by stating, this comparison doesn’t include hardware, guest operating system licenses, storage, networking or systems management.
 
 This comparison includes VMware’s Support and Subscription (SnS) licensing. I was going to be charitable and omit the SnS subscription, but then I read in the VMware vSphere 5.0 Licensing, Pricing and Packaging whitepaper at the bottom of pages 3-11 in the fine print it states, “ _SnS is required for all vSphere purchases_. ” Thus, I included the SnS License per VMware’s requirement. It should be noted that because the VMware Memory Tax requires purchasing more licenses for larger memory footprints and because " _a  Support and Subscription (SnS) contract is required for every vSphere Edition purchase"_, the SnS requirement acts as a subtle, additional tax even if the user is purchasing the extra license for vRAM capacity.
 
- The first comparison is vSphere 5 to [Microsoft Hyper-V Server 2008 R2 SP1](http://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx).
+ The first comparison is vSphere 5 to [Microsoft Hyper-V Server 2008 R2 SP1](https://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx).
 
  
 
@@ -1535,7 +1541,7 @@ VMware’s Licensing changes lay the foundation to lock customers into high pric
 
 What’s unfathomable is that we’re having this conversation at all. Increased hardware utilization, better density and lower costs are why people gravitated to virtualization in the first place. This is Virtualization 101.
 
-VMware also fails to recognize what is important in virtualized environments today, especially as we move towards private cloud solutions. Aspects such as management and monitoring of applications and cross-platform support have been overlooked, and with vCloud Director, VMware’s private cloud story is still focused on VMware-only infrastructures. vSphere 5 is the latest VMware toll booth erected on the road to the private cloud in a history where increased licensing costs are a regular occurrence. Two years ago it was the [Core Tax](http://blogs.technet.com/b/virtualization/archive/2009/06/28/beware-the-vmware-core-tax-and-more.aspx) where many saw there licensing increase over 200% and now it’s the Memory Tax where many are seeing licensing increases of upwards of 200-400% and higher.
+VMware also fails to recognize what is important in virtualized environments today, especially as we move towards private cloud solutions. Aspects such as management and monitoring of applications and cross-platform support have been overlooked, and with vCloud Director, VMware’s private cloud story is still focused on VMware-only infrastructures. vSphere 5 is the latest VMware toll booth erected on the road to the private cloud in a history where increased licensing costs are a regular occurrence. Two years ago it was the [Core Tax](https://blogs.technet.com/b/virtualization/archive/2009/06/28/beware-the-vmware-core-tax-and-more.aspx) where many saw there licensing increase over 200% and now it’s the Memory Tax where many are seeing licensing increases of upwards of 200-400% and higher.
 
 With Microsoft, customers can build scalable virtualized infrastructures on Hyper-V and with System Center, accelerate their progression towards private cloud environments with deep application monitoring, protection and management along with rich self-service capabilities. All of this, without the restrictive licensing that accompanies vSphere, ensures that a Microsoft private cloud provides the greatest value at the lowest costs.
 

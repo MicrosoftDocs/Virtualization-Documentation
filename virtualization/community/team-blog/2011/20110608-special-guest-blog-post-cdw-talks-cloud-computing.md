@@ -1,8 +1,14 @@
 ---
 title:      "Special Guest Blog Post&#58; CDW talks Cloud Computing"
+author: mattbriggs
+ms.author: mabrigg
+description: Special Guest Blog Post; CDW talks Cloud Computing
+ms.date: 06/08/2011
 date:       2011-06-08 14:13:48
 categories: uncategorized
 ---
+# Special Guest Blog Post; CDW talks Cloud Computing
+
 _**Guest post courtesy of Derrek at CDW:**_
 
 It is an interesting time for the IT industry right now; a pivotal point in IT history that has a profound effect on our lifestyle. The “Cloud” has reached mainstream status, infiltrating everyday life with offerings from email to minute by minute status updates on aspects of our personal lives. Cloud services are changing how we deploy and use technology more and more. There are many customers I speak with who are either saying it is just another XaaS (substitute X to make your favorite offering as a Service) or believe it simply means running servers in a 3rd-party datacenter. Though a vast number of IT professionals are still digesting the cloud’s potential, those on the leading edge or those that have a mature IT services model as a pervasive part of an operational framework understand that the Cloud promises to be the most compelling IT story yet. 
@@ -15,11 +21,11 @@ Cloud’s potential impact on driving efficiencies and cost savings is not yet w
 
 It is interesting to note that 50% of the respondents indicate they have not put together a cloud strategy, providing them with an opportunity to take advantage of the many flavors of cloud offerings including SaaS, IaaS or PaaS.
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/8204.Strategic%20plan.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/8204.Strategic%20plan.jpg)
+[![50% of the respondents indicate they have not put together a cloud strategy](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/8204.Strategic%20plan.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/8204.Strategic%20plan.jpg)
 
 Business and IT leaders will dictate their rate of progression to the cloud based on organizational goals. In fact, many organizations have already moved one of their most critical applications to the cloud, email. This is a good indication of an organization’s wiliness to enable seamless remote access to a critical application running in the cloud. 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/4331.First%20Step%20Single%20Cloud%20Application.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/4331.First%20Step%20Single%20Cloud%20Application.jpg)
+[![Business and IT leaders will dictate their rate of progression to the cloud based on organizational goals](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/4331.First%20Step%20Single%20Cloud%20Application.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/4331.First%20Step%20Single%20Cloud%20Application.jpg)
 
 There are many services beyond email that can benefit from moving to the cloud. Expect to see many other offerings from major software vendors in the near future. While the public cloud has dominated the offerings from major providers, we shouldn’t overlook the private and hybrid cloud approaches.
 
@@ -45,4 +51,4 @@ In CY 2011 Q1 Microsoft announced the release schedule for an overall update to 
 
 Thanks for your time - Derrek
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/0842.derrek.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/0842.derrek.jpg)
+[![Final image of this blog post](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/0842.derrek.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/84/60/0842.derrek.jpg)

@@ -1,11 +1,11 @@
 ---
-title: WHV_EMULATOR_CALLBACKS
-description: WHV_EMULATOR_CALLBACKS 
-author: Juarezhm
-ms.author: hajuarez
-ms.date: 04/19/2018
-
+title: WHV_EMULATOR_CALLBACKS method
+description: Learn about the WHV_EMULATOR_CALLBACKS method. 
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/19/2022
 ---
+
 # WHV_EMULATOR_CALLBACKS
 
 

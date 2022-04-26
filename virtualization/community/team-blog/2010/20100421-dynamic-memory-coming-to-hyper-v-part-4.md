@@ -1,8 +1,14 @@
 ---
 title:      "Dynamic Memory Coming to Hyper-V Part 4"
+author: mattbriggs
+ms.author: mabrigg
+description: Dynamic Memory Coming to Hyper-V Part 4
+ms.date: 04/21/2010
 date:       2010-04-21 07:39:00
 categories: dynamic-memory
 ---
+# Dynamic Memory Coming to Hyper-V Part 4
+
 _=====================================================================_ _Preamble: The point of this series, and the spirit in which it is written, is to take a holistic approach at the issues facing our customers, discuss the complexities with regard to memory management and explain why we're taking the approach we are with Hyper-V Dynamic Memory. This isn't meant to criticize anyone or technology, rather to have an open and transparent discussion about the problem space._ _=====================================================================_ In my last blog, we discussed Page Sharing in depth. To say this was a popular blog post would be a gross understatement. We received a lot of great feedback and a number of questions. So, I thought we'd close the loop on these questions about Page Sharing before getting to Second Level Paging in the next blog. **Questions** Q: When you say that Hyper-V R2 supports Large Memory Pages does that mean Hyper-V uses 2 MB memory page allocations or does that it mean it provides Large Memory Pages to the guest or both? A: Both. 
 
   1. Hyper-V R2 supports Large Memory Pages meaning that if the underlying hardware platform provides this capability, Hyper-V R2 will automatically take advantage of this feature in its memory allocations. It's important to note that by virtue of Hyper-V R2 running on Large Memory Page capable platforms, virtualized workloads will benefit and don't have to be large page aware to benefit from Hyper-V's usage of Large Pages to back guest RAM. 
@@ -26,8 +32,8 @@ Today, the impact of ASLR on Page Sharing is relatively low ~10% compared to Lar
 
 P.S. Here are the links to all of the posts in this blog series:
 
-  * Part 1: <http://blogs.technet.com/virtualization/archive/2010/03/18/dynamic-memory-coming-to-hyper-v.aspx>
-  * Part 2: <http://blogs.technet.com/virtualization/archive/2010/03/25/dynamic-memory-coming-to-hyper-v-part-2.aspx>
-  * Part 3: <http://blogs.technet.com/virtualization/archive/2010/04/07/dynamic-memory-coming-to-hyper-v-part-3.aspx>
+  * Part 1: <https://blogs.technet.com/virtualization/archive/2010/03/18/dynamic-memory-coming-to-hyper-v.aspx>
+  * Part 2: <https://blogs.technet.com/virtualization/archive/2010/03/25/dynamic-memory-coming-to-hyper-v-part-2.aspx>
+  * Part 3: <https://blogs.technet.com/virtualization/archive/2010/04/07/dynamic-memory-coming-to-hyper-v-part-3.aspx>
 
 

@@ -1,8 +1,13 @@
 ---
 title:      "Inject IP address into the VM during failover"
+description: Post discussing how to configure the static IP address of the Replica VM before it has failed over.
+author: mattbriggs
+ms.author: mabrigg
 date:       2012-05-28 22:11:00
+ms.date: 05/28/2012
 categories: hvr
 ---
+# Inject IP address into the Replica VM before it has failed over
 Hyper-V Replica reduces the Recovery Time Objective (RTO) providing the ability to configure the static IP address of the Replica VM before it is failed over. This IP address setting is injected into the failed over VM. This post written by **Vinod** **Atal** who is one of the developers in the Hyper-V team demonstrates this feature.
 
 ## Network Adapter status on Replica VM
@@ -50,7 +55,7 @@ Few points to note:
 
 The above functionality can be achieved using PowerShell as well. To set a IPv4 **Failover TCP/IP** settings on the replica VM, issue the following cmdlet:  
     
-    
+```powershell
     Set-VMNetworkAdapterFailoverConfiguration 'Windows 8 SQL Server' 
     
     
@@ -61,17 +66,17 @@ The above functionality can be achieved using PowerShell as well. To set a IPv4 
     
     
     -IPv4DefaultGateway 192.168.31.1
-
+```
  
 
 To connect the VM to a different switch which would be used for Test Failover, use the following cmdlet:
     
-    
+```powershell
     Set-VMNetworkAdapter 'Windows 8 SQL Server' 
     
     
     -TestReplicaSwitchName 'Private Test Network'
-
+```
 where ‘Private Test Network’ is the name of a virtual switch which provides an isolated network environment.
 
 **Inject IP address using WMI**
@@ -79,8 +84,8 @@ where ‘Private Test Network’ is the name of a virtual switch which provides 
 A frequent question which we get is around providing the ability to inject **multiple** IP addresses on the same network adapter.
 
 Though this cannot be achieved using UI or PowerShell, the same can be achieved in WMI. This address set is represented by WMI class [Msvm_FailoverNetworkAdapterSettingData](https://msdn.microsoft.com/library/hh850154\(v=vs.85\).aspx). A WMI snippet is given below which allows you to achieve the above functionality:
-    
-    
+
+```wmi
     #Get vm object 
     
     
@@ -209,8 +214,8 @@ Though this cannot be achieved using UI or PowerShell, the same can be achieved 
     
     $replicationService.SetFailoverNetworkAdapterSettings($vm.Path, {$settingForFirstAdapter.GetText(1)}) 
     
-    
-     
+```
+
 
  
 

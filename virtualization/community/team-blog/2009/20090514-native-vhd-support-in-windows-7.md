@@ -1,8 +1,14 @@
 ---
 title:      "Native VHD Support in Windows 7"
+description: This blog entry describes the support in Windows 7 and Windows Server 2008 R2 for creating and managing Virtual Hard Disk (VHD) files as a native format.
+author: scooley
+ms.author: scooley
 date:       2009-05-14 01:00:00
+ms.date: 05/14/2009
 categories: hyper-v
 ---
+# Native VHD Support in Windows 7
+
 _This blog entry describes the support in Windows 7 and Windows Server 2008 R2 for creating and managing Virtual Hard Disk (VHD) files as a native format, and booting a physical machine from a  VHD file.  Native VHD support helps our enterprise customers and developer community use a common image format and common tools to manage and deploy Windows images that run either in Hyper-V virtual machines or on physical machines._
 
 The Microsoft Virtual Hard Disk file format (VHD) is a publicly available format specification that specifies a virtual hard disk encapsulated in a single file, capable of hosting native file systems and supporting standard disk operations. VHD files are used by Microsoft Windows Server 2008 Hyper-V, Microsoft Virtual Server and Microsoft Virtual PC for virtual disks connected to a virtual machine.   VHDs are useful containers and the VHD file format is also used by Microsoft Data Protection Manager, Windows Server Backup as well as many other Microsoft and Non-Microsoft solutions.  To create a VHD on Windows Server 2008, you install the Hyper-V Server role and use the Hyper-V Manager to create a VHD file, and then install a version of Windows onto a partition in the VHD. 
@@ -73,7 +79,7 @@ The Windows 7 boot manager and loader can now read the files required to start t
 
 To put a Windows 7 or Windows Server 2008 R2 operating system image in the VHD file, you have to _apply_ an image to the partition in the VHD file. Running Setup from the install DVD and selecting a partition in a VHD file for installation is **_not_** supported. Here are two ways you can apply a  WIM image to a VHD: 
 
-  1. Use the [Install-WindowsImage](http://code.msdn.microsoft.com/InstallWindowsImage) Powershell script from the MSDN Code Gallery.  
+  1. Use the [Install-WindowsImage](https://code.msdn.microsoft.com/InstallWindowsImage) Powershell script from the MSDN Code Gallery.  
 
   2. Or use the Imagex deployment tool from the Windows Automated Installation Kit (WAIK).
 
@@ -81,7 +87,7 @@ To put a Windows 7 or Windows Server 2008 R2 operating system image in the VHD f
 
 The Install-WindowsImage Powershell script uses the wimgapi.dll in Windows 7 to apply a WIM to a VHD. Use the script if you are not familiar with the WAIK and Imagex.exe tool, or do not have the WAIK available.
 
-See the document _[Using Install-WindowsImage](http://code.msdn.microsoft.com/InstallWindowsImage/Release/ProjectReleases.aspx?ReleaseId=2662)_ , on the Install-WindowsImage site for step-by-step instructions on how to create a VHD and apply a WIM image for VHD boot.
+See the document _[Using Install-WindowsImage](https://code.msdn.microsoft.com/InstallWindowsImage/Release/ProjectReleases.aspx?ReleaseId=2662)_ , on the Install-WindowsImage site for step-by-step instructions on how to create a VHD and apply a WIM image for VHD boot.
 
 IT professionals will be interested in using the WAIK deployment tools to customize and capture a reference Windows image and deploy the image in VHD format to either physical or virtual machines. The [basic deployment steps](https://technet.microsoft.com/library/dd349348.aspx) for the IT Administrator to prepare a custom Windows image includes the following:
 
