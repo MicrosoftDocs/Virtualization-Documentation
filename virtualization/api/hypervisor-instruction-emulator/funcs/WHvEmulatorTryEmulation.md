@@ -1,3 +1,11 @@
+---
+title: WHvEmulatorTryIoEmulation and WHvEmulatorTryMmioEmulation methods
+description: Learn about the WHvEmulatorTryIoEmulation and WHvEmulatorTryMmioEmulation methods. 
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/19/2022
+---
+
 # WHvEmulatorTryIoEmulation and WHvEmulatorTryMmioEmulation
 
 
