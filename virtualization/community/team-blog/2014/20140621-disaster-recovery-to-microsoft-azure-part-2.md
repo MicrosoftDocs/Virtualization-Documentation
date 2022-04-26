@@ -1,11 +1,15 @@
 ---
 title:      "Disaster Recovery to Microsoft Azure – Part 2"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 06/21/2014
 date:       2014-06-21 04:34:03
 categories: asr
+description: This article discusses protecting, replicating, and failover VMs directly to Microsoft Azure, Part 2.
 ---
- 
+# Disaster Recover to Microsoft Azure - Part 2
 
-Continuing from the previous [blog](http://blogs.technet.com/b/virtualization/archive/2014/06/20/disaster-recovery-to-microsoft-azure.aspx) \- check out the recent TechEd NA 2014 talk @ <https://channel9.msdn.com/Events/TechEd/NorthAmerica/2014/DCIM-B322> which includes a cool demo of this product. 
+Continuing from the previous [blog](https://blogs.technet.com/b/virtualization/archive/2014/06/20/disaster-recovery-to-microsoft-azure.aspx) \- check out the recent TechEd NA 2014 talk @ <https://channel9.msdn.com/Events/TechEd/NorthAmerica/2014/DCIM-B322> which includes a cool demo of this product. 
 
 Love it??? Talk about it, try it and share your comments. 
 
@@ -28,13 +32,13 @@ Top of my head, the key features in the product are:
 
 
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0017_thumb_3F5A80E6.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0017_095601D9.jpg)
+[![Replication from a System Center 2012 R2 Virtual Machine Manager cloud to Azure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0017_thumb_3F5A80E6.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0017_095601D9.jpg)
 
   * Replication frequency of **30seconds, 5mins or 15mins –** just like the on-premises product, you can replicate to Azure at 30seconds. 
 
 
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0019_thumb_5A2937A3.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0019_039D78E4.jpg)
+[![Replicate to Azure at 30 seconds](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0019_thumb_5A2937A3.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0019_039D78E4.jpg)
 
   * Additional **24 additional recovery points** to choose during failover – You can configure upto 24 additional recovery points at an hourly granularity. 
 
@@ -46,13 +50,13 @@ Top of my head, the key features in the product are:
 
 
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00111_thumb_3FEB5F30.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00111_097AAD2E.jpg)
+[![Encryption at rest](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00111_thumb_3FEB5F30.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00111_097AAD2E.jpg)
 
   * Self-service DR with **Planned, Unplanned and Test Failover** – Need I say more – everything is in your hands and at your convenience. 
 
 
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00113_thumb_05FEACF5.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00113_7D7B4DAA.jpg)
+[![Self-service DR with planned, unplanned, and test failover](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00113_thumb_05FEACF5.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00113_7D7B4DAA.jpg)
 
   * One click app-level failover using Recovery Plans 
   * Audit and compliance reporting 
@@ -64,6 +68,6 @@ The documentation explaining the end to end workflows is available @ <https://az
 
 The landing page for this service is @ <https://azure.microsoft.com/services/site-recovery/>
 
-If you have questions when using the product, post them @ <http://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr> or in this blog.
+If you have questions when using the product, post them @ <https://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr> or in this blog.
 
 Keep watching this blog space for more information on this capability. 
