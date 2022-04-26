@@ -2,7 +2,7 @@
 title: WHvSetVirtualProcessorRegisters
 description: Description for WHvSetVirtualProcessorRegisters and understaning how to work with its parameters and syntax. 
 author: Juarezhm
-ms.author: hajuaez
+ms.author: hajuarez
 ms.date: 06/22/2018
 ---
 
