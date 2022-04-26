@@ -28,7 +28,7 @@ For this feature to work, your environment must meet the following requirements:
 
 To check the WDDM version of your display drivers, run the DirectX Diagnostic Tool (dxdiag.exe) on your container host. In the tool’s “Display” tab, look in the “Drivers” section as indicated below.
 
-![Dxdiag](media/dxdiag.png)
+![Screenshot of the Driver Model found in the Display tab.](media/dxdiag.png)
 
 ## Run a container with GPU acceleration
 
