@@ -1,3 +1,11 @@
+---
+title: WHvSetVirtualProcessorRegisters
+description: Description for WHvSetVirtualProcessorRegisters and understaning how to work with its parameters and syntax. 
+author: Juarezhm
+ms.author: hajuaez
+ms.date: 06/22/2018
+---
+
 # WHvSetVirtualProcessorRegisters
 
 ## Syntax
