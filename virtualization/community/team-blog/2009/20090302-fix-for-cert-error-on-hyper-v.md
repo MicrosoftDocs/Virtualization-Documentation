@@ -6,7 +6,9 @@ ms.author: scooley
 date:       2009-03-02 20:08:00
 ms.date: 03/02/2009
 categories: hyper-v
+
 ---
+
 # Fix for Cert Error on Hyper-V
 
 Bryon over at the [Windows Server Division blog](https://blogs.technet.com/windowsserver/ "Windows Server Div blog") pointed out a certificate error that can occur for those of you running WS08 Hyper-V and connect using vmconnect. The cert error results in the inability to start or connect to VMs running on WS08 Hyper-V or MS Hyper-V Server 2008. Here's an excerpt: 

@@ -20,7 +20,7 @@ Here's an excerpt:
 > 
 
 > 
-> **Processor Compatibility Mode for Live Migration  **
+> **Processor Compatibility Mode for Live Migration**
 > 
 > Live Migration is the killer-feature in Windows Server 2008 R2!  Previous to the RC build of Windows Server 2008 R2, identical CPUs were needed across every node in the cluster in order to perform a live migration.  As we came closer to the RC milestone we got feedback from customers and partners asking, "What if I deploy additional nodes that contain newer processors with features not contained in the original nodes?"  Well, we've solved that problem due to tremendous effort by the Hyper-V development team. 
 > 

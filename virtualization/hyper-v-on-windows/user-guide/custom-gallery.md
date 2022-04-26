@@ -1,5 +1,5 @@
 ---
-title: Create a custom virtual machine galllery
+title: Create a custom virtual machine gallery
 description: Build your own entries into the virtual machine gallery in Windows 10 Creators Update and later.
 keywords: windows 10, hyper-v, quick create, virtual machine, gallery
 author: scooley

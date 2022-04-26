@@ -41,7 +41,7 @@ Hello, this is Bryon Surace again.  I’m a senior program manager on the Windo
 
 **
 
-  * **Easily   manage more complex test configurations **
+  * **Easily   manage more complex test configurations**
 
     * Lab environment as a first class entity for managing multi-machine test environments
 
