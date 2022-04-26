@@ -1,11 +1,10 @@
 ---
-title:      "How to install integration services when the virtual machine is not running"
-description: How to install integration services when the virtual machine is not running
-ms.date:       04/18/2013
+title: "How to install integration services when the virtual machine is not running"
+description: How to install integration services when the virtual machine is not running.
+ms.date: 04/18/2013
 categories: hyper-v
 author: scooley
 ms.author: scooley
-
 ---
 
 # How to install integration services when the virtual machine is not running
@@ -15,7 +14,7 @@ Update for people running Windows 10, Technical Preview, Server 16 or later: [Re
   * Windows6.x-HyperVIntegrationServices-x64.cab corresponds with Windows 7 and earlier guests. Tested: Server 2008 R2, Windows 7 (enterprise and enterprise sp1).
   * Windows6.2-HyperVIntegrationServices-x64.cab corresponds with windows 8 and Server 2012 guests. Tested: Server 2012, Windows 8.
 
-_Note: this process only works for Windows 2008R2 / Windows 7 and later operating systems. It works with both vhd and vhdx files._ You will need the path to this file. From here on out I'll refer to it as $integrationServicesCabPath. If you pick the wrong one it will fail a version check without harming the guest.  $integrationServicesCabPath="C:\Windows\vmguest\support\amd64\Windows6.2-HyperVIntegrationServices-x64.cab" [![This resource doesn't exist.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0250.shot1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0250.shot1.png) The next step is to apply the cab to the offline VM. First, you'll need the path to your VM image, I'm going to refer to this as $virtualHardDiskToUpdate. 
+_Note: this process only works for Windows 2008R2 / Windows 7 and later operating systems. It works with both vhd and vhdx files._ You will need the path to this file. From here on out I'll refer to it as $integrationServicesCabPath. If you pick the wrong one it will fail a version check without harming the guest.  $integrationServicesCabPath="C:\Windows\vmguest\support\amd64\Windows6.2-HyperVIntegrationServices-x64.cab" <!--[![This resource doesn't exist.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0250.shot1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0250.shot1.png)--> The next step is to apply the cab to the offline VM. First, you'll need the path to your VM image, I'm going to refer to this as $virtualHardDiskToUpdate. 
 
 $virtualHardDiskToUpdate="D:\client_professional_en-us_vl.vhd"
 
@@ -37,7 +36,7 @@ You should see a blue progress bar at the top of PowerShell. Enjoy watching the 
 
 Dismount-VHD -Path $virtualHardDiskToUpdate
 
-[![This image is missing.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1121.shot2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1121.shot2.png)
+<!--[![This image is missing.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1121.shot2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1121.shot2.png)-->
 
 Here's a more reasonable, consolidated, PowerShell Script: 
 
@@ -53,4 +52,4 @@ $virtualHardDiskToUpdate="D:\client_professional_en-us_vl.vhd" $integrationServi
 
 #Dismount the VHD Dismount-VHD -Path $virtualHardDiskToUpdate
 
-Thank you to Taylor Brown (<https://blogs.msdn.com/b/taylorb>), for the script! Cheers, Sarah Cooley
+Thank you to [Taylor Brown](https://blogs.msdn.com/b/taylorb), for the script! Cheers, Sarah Cooley
