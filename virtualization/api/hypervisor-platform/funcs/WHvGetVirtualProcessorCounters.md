@@ -1,3 +1,11 @@
+---
+title: WHvGetVirtualProcessorCounters
+description: Description on parameters and return value for the WHvGetVirtualProcessorCounters, which includes a code snippet for syntax reference. 
+authors: jstarks
+ms.authors: jostarks
+date: 06/06/2019
+---
+
 # WHvGetVirtualProcessorCounters
 
 ## Syntax

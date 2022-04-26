@@ -1,3 +1,11 @@
+---
+title: WHvGetPartitionProperty
+description: Explains different parameters and the return value for the GetPartitionProperty, including a syntax sample. 
+author: Juarezhm 
+ms.author: hajuarez
+date: 07/18/2018
+---
+
 # WHvGetPartitionProperty
 
 

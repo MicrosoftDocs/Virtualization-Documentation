@@ -1,3 +1,11 @@
+---
+title: WHvGetVirtualProcessorInterruptControllerState
+description: Description for working with the WHvGetVirtualProcessorInterruptControllerState, including its parameters, syntax and return value.  
+authors: jstarks
+ms.authors: jostarks
+date: 06/06/2019
+---
+
 # WHvGetVirtualProcessorInterruptControllerState
 
 ## Syntax
