@@ -1,11 +1,16 @@
 ---
 title:      "Hypervisor Footprint Debate Part 1&#58; Microsoft Hyper-V Server 2008 & VMware ESXi 3.5"
+description: Comparison, analysis, and debate of the Hypervisor disk footprint Part 1
+author: mattbriggs
+ms.author: mabrigg
 date:       2009-08-12 11:13:00
+ms.date: 08/12/2009
 categories: esx
 ---
+# Hypervisor Footprint Debate Part 1: Microsoft Hyper-V Server 2008 & VMware ESXi 3.5
 Virtualization Nation,
 
-After my [recent blog discussing the release of Microsoft Hyper-V Server 2008 R2](http://blogs.technet.com/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx), we received _overwhelmingly positive feedback._ At the same time, there's still some skepticism about free Live Migration and almost daily we keep hearing, "This is too good to be true, is Live Migration really free? Is High Availability also free? What's the catch?" Yes, both Live Migration and HA are free. [Check out this earlier blog for details](http://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx).
+After my [recent blog discussing the release of Microsoft Hyper-V Server 2008 R2](https://blogs.technet.com/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx), we received _overwhelmingly positive feedback._ At the same time, there's still some skepticism about free Live Migration and almost daily we keep hearing, "This is too good to be true, is Live Migration really free? Is High Availability also free? What's the catch?" Yes, both Live Migration and HA are free. [Check out this earlier blog for details](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx).
 
 At the same time, we've also received questions about Windows Server 2008 Hyper-V, Microsoft Hyper-V Server 2008 and VMware ESX/ESXi in terms of disk footprint. The disk footprint argument is a favorite bit of FUD by VMware which appears to making the rounds again in the blogosphere. In the past couple of weeks, I've seen a few articles reprinting this pabulum almost verbatim. So today, I thought we'd analyze the whole disk footprint argument and, as usual, **let's analyze the facts**.
 
@@ -13,7 +18,7 @@ At the same time, we've also received questions about Windows Server 2008 Hyper-
 
 Rather than attempt to restate VMware's argument, let's just use their exact verbiage. From VMware's website:
 
-[![image_thumb4](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HyperVESXESXiFootprintDebatePart1_EAF7/image_thumb4_ffbc2d6a-6984-47e4-900f-91d590a920e0.png)](file:///C:/Users/jeffwoo/AppData/Local/Temp/1/WindowsLiveWriter1286139640/supfilesE40CEB/image9.png)
+[![image_thumb4](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HyperVESXESXiFootprintDebatePart1_EAF7/image_thumb4_ffbc2d6a-6984-47e4-900f-91d590a920e0.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HyperVESXESXiFootprintDebatePart1_EAF7/image_thumb4_ffbc2d6a-6984-47e4-900f-91d590a920e0.png)
 
 It's interesting to point out that VMware uses **ESX & ESXi 3.5** in the column title, but then only uses ESXi for comparison in the right hand column and then rushes to compares ESXi to Windows Server 2008 Hyper-V.
 
@@ -77,7 +82,7 @@ Yes, I said over **_2.7 GB_**. To put it another way,
 
 
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HypervisorFootprintDebatePart1Microsof.5_6ED2/image_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HypervisorFootprintDebatePart1Microsof.5_6ED2/image_2.png) 
+[![Microsoft Hyper-V Server 2008 and V M ware E S X i 3.5 footprint comparison image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HypervisorFootprintDebatePart1Microsof.5_6ED2/image_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HypervisorFootprintDebatePart1Microsof.5_6ED2/image_2.png) 
 
 So much for the disk footprint argument. How can the ESXi patch footprint be so huge?
 
@@ -107,7 +112,7 @@ _**For those you who may not know, code running in a guest operating system that
 
 Something to consider when VMware wants to host your data in "their cloud."
 
-Now consider the fact that there were two significant quality and reliability issues with two major updates **_in a row_** (ESX/ESXi Update 2  & Update 3). While the initial Microsoft Hyper-V Server 2008 release didn't offer Live Migration ([MS Hyper-V Server 2008 R2 now includes Live Migration/HA for free](http://blogs.technet.com/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx)), it didn't include two days of potential downtime and virtual machines unexpectedly rebooting either. For those that track availability in terms of nines (five nines is 5.26 minutes of downtime a year) VMware Update ESXi 3.5 Update 2 dropped customers to "two nines" of availability.
+Now consider the fact that there were two significant quality and reliability issues with two major updates **_in a row_** (ESX/ESXi Update 2  & Update 3). While the initial Microsoft Hyper-V Server 2008 release didn't offer Live Migration ([MS Hyper-V Server 2008 R2 now includes Live Migration/HA for free](https://blogs.technet.com/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx)), it didn't include two days of potential downtime and virtual machines unexpectedly rebooting either. For those that track availability in terms of nines (five nines is 5.26 minutes of downtime a year) VMware Update ESXi 3.5 Update 2 dropped customers to "two nines" of availability.
 
 **_Using VMware's own metrics, Microsoft Hyper-V Server 2008 is clearly the winner over ESXi 3.5._**
 
@@ -125,7 +130,7 @@ To see a 17 MB change in just a few days would be cause for concern and an immed
 
 Maybe that's just me.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HypervisorFootprintDebatePart1Microsof.5_6ED2/image_thumb_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HypervisorFootprintDebatePart1Microsof.5_6ED2/image_4.png)
+[![Hypervisor footprint debate image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HypervisorFootprintDebatePart1Microsof.5_6ED2/image_thumb_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HypervisorFootprintDebatePart1Microsof.5_6ED2/image_4.png)
 
 In my next blog, we'll compare Windows Server 2008 Hyper-V and VMware ESX 3.5.
 

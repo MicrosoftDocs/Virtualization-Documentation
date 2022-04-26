@@ -1,11 +1,17 @@
 ---
-title:      "Windows Server 2008 R2 & Hyper-V Server 2008 R2 RTM!!!!"
+title:      "Windows Server 2008 R2 & Hyper-V Server 2008 R2 RTM"
+description: Windows Server 2008 R2 Hyper-V provides access to high performance hypervisor based virtualization.
+author: mattbriggs
+ms.author: mabrigg
 date:       2009-07-22 16:40:00
+ms.date: 07/22/2009
 categories: high-availability
 ---
+# Windows Server 2008 R2 & Hyper-V Server 2008 R2 RTM Blog
+
 Virtualization Nation,
 
-Today is a really big day at Microsoft and more importantly for **_our customers_**. Both [Windows Server 2008 R2](http://blogs.technet.com/virtualization/archive/2009/01/16/winserver-2k8-hyper-v-is-alive.aspx) and [Microsoft Hyper-V Server 2008 R2 (our FREE standalone Hyper-V Server)](http://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx) have both been Released To Manufacturing (RTM)!! If you haven't seen the [announcement on the main Windows Server blog, be sure to check it out](http://blogs.technet.com/windowsserver/archive/2009/07/22/windows-server-2008-r2-rtm.aspx). In this blog, I'm going to focus on the **Windows Server 2008 R2 Hyper-V release** , I will follow-up with a blog on the standalone Microsoft Hyper-V Server 2008 R2 soon.
+Today is a really big day at Microsoft and more importantly for **_our customers_**. Both [Windows Server 2008 R2](https://blogs.technet.com/virtualization/archive/2009/01/16/winserver-2k8-hyper-v-is-alive.aspx) and [Microsoft Hyper-V Server 2008 R2 (our FREE standalone Hyper-V Server)](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx) have both been Released To Manufacturing (RTM)!! If you haven't seen the [announcement on the main Windows Server blog, be sure to check it out](https://blogs.technet.com/windowsserver/archive/2009/07/22/windows-server-2008-r2-rtm.aspx). In this blog, I'm going to focus on the **Windows Server 2008 R2 Hyper-V release** , I will follow-up with a blog on the standalone Microsoft Hyper-V Server 2008 R2 soon.
 
 These R2 releases continue to highlight one of our core goals for Hyper-V. Simply:
 
@@ -21,7 +27,7 @@ After the initial Hyper-V R1 release, we went back to our valued customers and a
 
 **"Keep Reducing Costs"**
 
-Server consolidation continues to be the driving force behind virtualization and the fundamental reason is to **_reduce costs_**. In this economy, customers need to maximize their investments. [Green IT](http://www.microsoft.com/environment/our_commitment/articles/green_guide.aspx) has been important the past few years, but we've seen an even greater focus in the last year. In addition, it doesn't matter how small or how large your business is, __everyone pays a power bill__ , it's a constant cost, so anything we can do to reduce power use has an impact on everyone's bottom line.
+Server consolidation continues to be the driving force behind virtualization and the fundamental reason is to **_reduce costs_**. In this economy, customers need to maximize their investments. [Green IT](https://www.microsoft.com/environment/our_commitment/articles/green_guide.aspx) has been important the past few years, but we've seen an even greater focus in the last year. In addition, it doesn't matter how small or how large your business is, __everyone pays a power bill__ , it's a constant cost, so anything we can do to reduce power use has an impact on everyone's bottom line.
 
 With Hyper-V R1, we already help customers reduce their cost for power, here are a few examples: 
 
@@ -29,7 +35,7 @@ With Hyper-V R1, we already help customers reduce their cost for power, here are
 > 
 > _**"The work that Microsoft has done in these areas-particularly the ability to shift workloads across CPUs-is doing wonders for reducing our energy consumption."** _ Secure Endpoints 
 > 
-> _**"89% Energy Savings with Microsoft Virtualization"[-Kroll Factual Data](http://www.microsoft.com/casestudies/Case_Study_Detail.aspx?CaseStudyID=4000004036)**_
+> _**"89% Energy Savings with Microsoft Virtualization"[-Kroll Factual Data](https://www.microsoft.com/casestudies/Case_Study_Detail.aspx?CaseStudyID=4000004036)**_
 
 With Hyper-V R2, we continue to drive down power usage when servers are idle (usually nights and weekends) **AND now we drive down server power usage _even under load_ throughout the day through new enhancements like Core Parking, Timer Coalescing and more.**
 
@@ -39,7 +45,7 @@ With Hyper-V R2, we continue to drive down power usage when servers are idle (us
 
 Today, the majority of servers ship with up to 16 logical processors. However, our customers watch the industry closely and point out that AMD and Intel are continuing to increase core counts quickly. In addition, Intel has reintroduced Symmetric Multi-Threading (SMT) with their Nehalem processors which doubles the thread count. As our customers plan their capital investments over the next 12-24 months, they want to make sure to invest in a virtualization platform _today_ that will take advantage of the latest hardware capabilities _tomorrow_. Hyper-V R2 is that platform. 
 
-**CPU**. From a compute standpoint, Hyper-V R2 scales to run on systems with up 64 logical processors (up to 384 running virtual machines) and takes advantage of the latest processor enhancements such as [AMD's Rapid Virtualization Indexing (RVI)](http://blogs.amd.com/virtualization/2009/03/23/rapid-virtualization-indexing-with-windows-server-2008-r2-hyper-v/) and [Intel's Extended Page Tables (EPT).](http://blogs.technet.com/virtualization/archive/2008/10/28/Guest-Post_3A00_-Intel-Inside-for-Hyper_2D00_V-Virtualization.aspx) This provides performance improvements across the board when these processor capabilities are present. It also means that when folks decide to move up to larger servers with more counts Hyper-V R2 is ready out of the box. [No core tax here.](http://blogs.technet.com/virtualization/archive/2009/06/28/Beware-the-VMware-Core-Tax-and-More.aspx) (BTW: Let me point out that Hyper-V R2 works with RVI and EPT, but does not _require_ it. If you have older hardware without those capabilities, Hyper-V R2 will run just fine on those too.) 
+**CPU**. From a compute standpoint, Hyper-V R2 scales to run on systems with up 64 logical processors (up to 384 running virtual machines) and takes advantage of the latest processor enhancements such as [AMD's Rapid Virtualization Indexing (RVI)](http://blogs.amd.com/virtualization/2009/03/23/rapid-virtualization-indexing-with-windows-server-2008-r2-hyper-v/) and [Intel's Extended Page Tables (EPT).](https://blogs.technet.com/virtualization/archive/2008/10/28/Guest-Post_3A00_-Intel-Inside-for-Hyper_2D00_V-Virtualization.aspx) This provides performance improvements across the board when these processor capabilities are present. It also means that when folks decide to move up to larger servers with more counts Hyper-V R2 is ready out of the box. [No core tax here.](https://blogs.technet.com/virtualization/archive/2009/06/28/Beware-the-VMware-Core-Tax-and-More.aspx) (BTW: Let me point out that Hyper-V R2 works with RVI and EPT, but does not _require_ it. If you have older hardware without those capabilities, Hyper-V R2 will run just fine on those too.) 
 
 **Networking**. From a networking standpoint, Hyper-V includes significant networking improvements. For 1 Gb/E networks, Hyper-V R2 now includes Jumbo Frame Support. For 10 Gb/E networks, Hyper-V R2 adds support for Chimney support and Virtual Machine Queue (VMQ). These two technologies allows Hyper-V R2 to take advantage of network offload technologies so instead of a core on the CPU processing network packets, these packets can be shunted to the offload engine on the 10 Gb NIC which helps free up processor usage and improves performance. Support for these technologies ensures the most efficient use of your server resources. For our customers who haven't made the investment in 10 Gb/E quite yet, no worries. Hyper-V R2 is ready when you are. 
 
@@ -75,7 +81,7 @@ While SLES and RHEL are the two most requested Linux distros supported within Hy
 
 We wanted to do more. 
 
-Thus, [the big Monday announcement](http://www.microsoft.com/presspass/features/2009/Jul09/07-20LinuxQA.mspx). In case you missed it, on Monday, _we released 20,000 lines of device driver code to the Linux community under GPLv2_. The code, which includes three Linux device drivers, has been submitted to the Linux kernel community for inclusion in the Linux tree. The drivers will be available to the Linux community and customers alike, and will enhance the performance of the Linux operating system when virtualized on Hyper-V R1/Hyper-V R2. 
+Thus, [the big Monday announcement](https://www.microsoft.com/presspass/features/2009/Jul09/07-20LinuxQA.mspx). In case you missed it, on Monday, _we released 20,000 lines of device driver code to the Linux community under GPLv2_. The code, which includes three Linux device drivers, has been submitted to the Linux kernel community for inclusion in the Linux tree. The drivers will be available to the Linux community and customers alike, and will enhance the performance of the Linux operating system when virtualized on Hyper-V R1/Hyper-V R2. 
 
 I've read numerous articles and blogs on the Linux IC GPL announcement (most using phrases like "pigs with wings" or "hell experiencing snow flurries") and while there has been some interesting conjecture out there, let me be clear: Microsoft is committed to interoperability and providing our customers the solutions that meet their needs. Releasing these device drivers for Linux is another example of that commitment. 
 
@@ -83,7 +89,7 @@ I've read numerous articles and blogs on the Linux IC GPL announcement (most usi
 
 **Live Migration**. Customers appreciate the flexibility that virtualization provides (deploy virtualized workloads in a fraction of the time versus physical) and wanted us to continue to improve in this area. To that end, the number #1 customer requested feature was Live Migration. 
 
-Done. Included. **_[Live Migration Built-In](http://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx)_**.
+Done. Included. **_[Live Migration Built-In](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx)_**.
 
 We weren't done there. One thing that customers would always follow-up with is, "Do the processors have to be _exactly the same?_ Can you ease that restriction a little?" 
 
@@ -91,13 +97,13 @@ You got it.
 
 **Processor Compatibility Mode**. With Hyper-V R2's new processor compatibility mode, we're able to easily LIVE MIGRATE between four different generations of Intel hardware. From an Intel Pentium 4 VT circa 2005 to an Intel Core i7 circa 2009.
 
-![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/TechEdWindowsServer2008R2ShippingfortheH_146F6/image_2.png)
+![Illustrates Hyper-V R 2's new processor compatibility mode.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/TechEdWindowsServer2008R2ShippingfortheH_146F6/image_2.png)
 
 Just by checking a checkbox: 
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_thumb_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_4.png)
+[![Illustrates how easy live migration can be.](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_thumb_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_4.png)
 
-That's flexibility. You can also move virtual machines between different generations of AMD processors as well. Just so we're clear: Processor Compatibility still means AMD<->AMD and Intel<->Intel. It does **not** mean you can Live Migrate between different processor vendors AMD <->Intel or vice versa. For more info about processor compatibility mode, check out my earlier blog post [here](http://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx). 
+That's flexibility. You can also move virtual machines between different generations of AMD processors as well. Just so we're clear: Processor Compatibility still means AMD<->AMD and Intel<->Intel. It does **not** mean you can Live Migrate between different processor vendors AMD <->Intel or vice versa. For more info about processor compatibility mode, check out my earlier blog post [here](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx). 
 
 **Dynamic Storage**. Another request to increase flexibility from our customers was to be able to hot add/remove virtual storage. Think about it, you're running a virtualized SQL server or file server and you need additional storage, but don't want to bring down the VM. No problem, with Hyper-V R2 you can hot add/remove storage while the VM is running __without downtime__. 
 
@@ -124,7 +130,7 @@ One big reason is that in the past, RDP was more focused on lower bandwidth conn
 
 How good is the remoting? I recently tested the new RDP enhancements by doing the following. I used my **three year old laptop** running Windows 7 RTM and the built-in Remote Desktop Connection client. I went to the Experience tab and set Performance for WAN settings.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_thumb_3.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_8.png)
+[![Illustrates remoting into a virtual machine running Windows 7](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_thumb_3.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_8.png)
 
 I then remoted into a virtual machine running Windows 7 (the VM was allocated 1 GB of memory) and then fired up _**three videos running within the VM simultaneously.** _ Specifically ** _,_**
 
@@ -138,16 +144,16 @@ Here's a screenshot from my laptop running the Window 7 inbox RDP client and thi
 
 **These RDP enhancements are big folks. Really big**.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_thumb_2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_6.png) 
+[![Illustrates Remote Desktop Procedure enhancements](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_thumb_2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_6.png) 
 
 **_Windows Server 2008 R2 Hyper-V_**
 
 With our customers input first and foremost, we developed Hyper-V R2 to meet their requirements.
 
-**Live Migration **![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_thumb.png)****
+**Live Migration **:::image type="icon" source="https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2HyperVRTM_926B/image_thumb.png":::****
 
   * #1 Customer Requested Feature 
-  * [Processor Compatibility Mode](http://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)
+  * [Processor Compatibility Mode](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)
 
 
 
@@ -158,9 +164,9 @@ With our customers input first and foremost, we developed Hyper-V R2 to meet the
 
 
 
-**[Enhanced Scalability (4x Improvement)](http://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)**
+**[Enhanced Scalability (4x Improvement)](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)**
 
-  * [Support for 64 Logical Processors](http://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)
+  * [Support for 64 Logical Processors](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)
   * Support for up to 384 Running VMs or up to 512 virtual processors 
   * Greater VM Density 
   * Lower TCO
@@ -183,7 +189,7 @@ With our customers input first and foremost, we developed Hyper-V R2 to meet the
 
   **Usability Enhancements**
 
-  * [SCONFIG for Server Core](http://blogs.technet.com/virtualization/archive/2009/07/07/windows-server-2008-r2-core-introducing-sconfig.aspx)
+  * [SCONFIG for Server Core](https://blogs.technet.com/virtualization/archive/2009/07/07/windows-server-2008-r2-core-introducing-sconfig.aspx)
 
 
 
