@@ -1,8 +1,15 @@
 ---
-title:      "Live Migration via Constrained Delegation with Kerberos in Windows Server 2016"
-date:       2017-02-01 01:16:48
+title: Live Migration via Constrained Delegation with Kerberos in Windows Server 2016
+description: Blog post that describes the root cause of a constrained delegation error and discusses how to fix the issue.
+author: scooley
+ms.author: scooley
+date: 2017-02-01 01:16:48
+ms.date: 07/31/2019
 categories: hyper-v
 ---
+
+# Live Migration via Constrained Delegation with Kerberos in Windows Server 2016
+
 #### Introduction
 
 Many Hyper-V customers have run into new challenges when trying to use constrained delegation with Kerberos to Live Migrate VMs in Windows Server 2016. When attempting to migrate, they would see errors with messages like "no credentials are available in the security package," or "the Virtual Machine Management Service failed to authenticate the connection for a Virtual Machine migration at the source host: no suitable credentials available." After investigating, we have determined the root cause of the issue and have updated guidance for how to configure constrained delegation. 
@@ -11,12 +18,11 @@ Many Hyper-V customers have run into new challenges when trying to use constrain
 
 Resolving this issue is a simple configuration change in Active Directory when setting up constrained delegation. In [our documentation](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/deploy/set-up-hosts-for-live-migration-without-failover-clustering), when you reach the fifth instruction in Step 1, select "use any authentication protocol" instead of "use Kerberos only." The other instructions have not changed. 
 
-[![constrained_delegation](https://msdnshared.blob.core.windows.net/media/2017/02/constrained_delegation.png)](https://msdnshared.blob.core.windows.net/media/2017/02/constrained_delegation.png)
+<!--[![constrained_delegation](https://msdnshared.blob.core.windows.net/media/2017/02/constrained_delegation.png)](https://msdnshared.blob.core.windows.net/media/2017/02/constrained_delegation.png)-->
 
 #### Root Cause
-    
-    
-    Warning: the next two sections go a bit deep into the internal workings of Hyper-V.
+
+> Warning: the next two sections go a bit deep into the internal workings of Hyper-V.
 
 The root cause of this issue is an under the hood change in Hyper-V remoting. Between Windows Server 2012R2 and Windows Server 2016, we shifted from using the Hyper-V WMI Provider *v1* over *DCOM* to the Hyper-V WMI Provider *v2* over *WinRM*. This is a good thing: it unifies Hyper-V remoting with other Windows remoting tools (e.g. PowerShell Remoting). This change matters for constrained delegation because: 
 
