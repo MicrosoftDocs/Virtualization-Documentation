@@ -1,8 +1,14 @@
 ---
 title:      "Why Does Microsoft exhibit at VMworld?"
+description: A virtualization industry insider wrote, I really don't get why you guys insist on exhibiting at VMworld. The number of people stopping by must be huge to justify it.
+author: scooley
+ms.author: scooley
 date:       2010-08-24 10:23:34
+ms.date: 08/24/2010
 categories: citrix
 ---
+# Why Does Microsoft exhibit at VMworld?
+
 I’ll be posting more this week about what you’ll see when you visit the Microsoft booth (#1431) at VMworld 2010 U.S. conference next week. You can read an overview at [NetworkWorld](http://www.networkworld.com/news/2010/081910-microsoft-virtualization-conference.html?t51hb&hpg1=mp).
 
 But last week a virtualization industry insider and consultant who has followed Microsoft virtualization for 5+ years and has met with Microsoft at the last 5-6 VMworld conferences, wrote the following to me: 
@@ -21,13 +27,13 @@ We first chose to exhibit at VMworld in 2005 because it was marketed as an indus
 
 ·        At VMworld 2005, attendees kicked the tires on Virtual Server, and Diane Greene stopped by the booth to thank us for being there. This was the only time a VMware executive came to our booth.
 
-·        At VMworld 2006, the booth was so crowded we gave out 1,500 t-shirts in 150 minutes on Day 1; we handed out 4,600 t-shirts during the entire show. We generated 300+ sales leads. See a recap [here](http://blogs.technet.com/b/windowsserver/archive/2006/11/07/la-traffic-_2d00_-1_2c00_500-shirts-in-150-minutes.aspx).
+·        At VMworld 2006, the booth was so crowded we gave out 1,500 t-shirts in 150 minutes on Day 1; we handed out 4,600 t-shirts during the entire show. We generated 300+ sales leads. See a recap [here](https://blogs.technet.com/b/windowsserver/archive/2006/11/07/la-traffic-_2d00_-1_2c00_500-shirts-in-150-minutes.aspx).
 
-·        At VMworld 2007, we had 200+ sales leads and a busy booth with people interested in “Viridian” and “SoftGrid.” See blog post [here](http://blogs.technet.com/b/windowsserver/archive/2007/09/13/vmworld-2007_3a00_-ms-booth-noise.aspx).
+·        At VMworld 2007, we had 200+ sales leads and a busy booth with people interested in “Viridian” and “SoftGrid.” See blog post [here](https://blogs.technet.com/b/windowsserver/archive/2007/09/13/vmworld-2007_3a00_-ms-booth-noise.aspx).
 
 ·        At VMworld 2008 Europe, we launched Windows Server 2008 and gave out 2,000 copies of the launch kit. It was the first time European customers saw us at VMworld, and we received over 200 sales leads. See Mike Neil’s interview [here](http://virtualization.com/video-audio-vodcast-vlog/2008/02/27/video-interview-with-mike-neil-virtual-machine-technologies-product-unit-manager-with-microsoft-vmworld-europe-2008/).
 
-·        At VMworld 2008, we [reached](http://blogs.technet.com/b/virtualization/archive/2008/09/16/a-warm-welcome-to-vmworld-from-microsoft.aspx) 3,800 attendees in less than 90 minutes, which translated into 175K visits in 7 days to a marketing website. We also co-presented with VMware about the Server Virtualization Validation Program, and met with representatives of 55 VMware partners. 
+·        At VMworld 2008, we [reached](https://blogs.technet.com/b/virtualization/archive/2008/09/16/a-warm-welcome-to-vmworld-from-microsoft.aspx) 3,800 attendees in less than 90 minutes, which translated into 175K visits in 7 days to a marketing website. We also co-presented with VMware about the Server Virtualization Validation Program, and met with representatives of 55 VMware partners. 
 
 ·        At VMworld 2009 Europe, over 250 people attended our session. We handed out 500 copies of eval software, and met with representatives of 30 VMware partners.
 

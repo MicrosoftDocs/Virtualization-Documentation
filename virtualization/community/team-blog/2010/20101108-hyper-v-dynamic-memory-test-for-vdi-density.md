@@ -1,8 +1,14 @@
 ---
 title:      "Hyper-V Dynamic Memory test for VDI density"
+description: Dynamic Memory, a new feature in Windows Server 2008 R2 SP1, can increase Virtual Desktop Infrastructure (VDI) densities by 40%.
+author: scooley
+ms.author: scooley
 date:       2010-11-08 01:30:00
+ms.date: 11/08/2010
 categories: dell
 ---
+# Hyper-V Dynamic Memory test for VDI density
+
 Hi, I’m Michael Kleef, senior technical product manager within the Windows Server and Cloud division. 
 
 As Brad Anderson and I discussed at the [TechEd Europe keynote today](http://www.msteched.com/), Dynamic Memory, a new feature in Windows Server 2008 R2 SP1, can increase Virtual Desktop Infrastructure (VDI) densities by 40% compared to Hyper-V in Windows Server 2008 R2 and also well above a leading industry solution. It’s also not just a benefit to VDI. Our Technology Adoption Program (TAP) customer data also highlights that other server workloads benefit from Dynamic Memory with gains of between 25% and 50% depending on the specific workload and usage pattern.
@@ -11,7 +17,7 @@ This data point came from a series of tests, on different hardware vendor platfo
 
 **Scope**
 
-[ From previous capacity planning data](http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=bd24503e-b8b7-4b5b-9a86-af03ac5332c8) we already knew that Disk IO is the first bottleneck to be hit in VDI performance, followed by memory as a ceiling to density (not necessarily performance), and finally processor, last of all. 
+[ From previous capacity planning data](https://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=bd24503e-b8b7-4b5b-9a86-af03ac5332c8) we already knew that Disk IO is the first bottleneck to be hit in VDI performance, followed by memory as a ceiling to density (not necessarily performance), and finally processor, last of all. 
 
 Our primary goal was simply to understand how Dynamic Memory influences the memory ceiling to density, and realistically, by how much. Secondary goals were to understand how [XenDesktop 4](http://www.citrix.com/English/ps2/products/product.asp?contentID=163057%20&ntref=mainxdvanityurl) functioned with Hyper-V R2 SP1 and its different approach to storage using Citrix Provisioning Services.
 
@@ -29,7 +35,7 @@ We tested Dell’s M1000e blade chassis, configured with 16 M610 blades and each
 
  
 
-![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6278.e1000.jpg) 
+<!--- ![The density tests we ran against the Dell blades had several phases](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6278.e1000.jpg) --->
 
  
 
@@ -61,7 +67,7 @@ There’s no point in scaling up significantly, if the hypervisor and hardware c
 
  
 
- ![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5078.chart2.png)
+<!--- ![LoginVSI test chart –HP DL 380 G5 reference test](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5078.chart2.png) --->
 
 **Figure 2: LoginVSI test chart –HP DL 380 G5 reference test**
 
@@ -69,7 +75,7 @@ This test result was reproduced with the Dell M610 blades [and improved with Cit
 
 **Closing**
 
-Dynamic Memory can add significant density to all workloads. While today we have shown you how VDI benefits significantly from Dynamic Memory, shortly you will see case studies from us that show in various workloads customers can expect to see between 25% to 50% increases in density in production deployments. For further information on Dynamic Memory, Jeff Woolsey [has made some great comments on this already](http://blogs.technet.com/b/virtualization/archive/2010/04/07/dynamic-memory-coming-to-hyper-v-part-3.aspx), and just how much better its architecture is in comparison to the competition.
+Dynamic Memory can add significant density to all workloads. While today we have shown you how VDI benefits significantly from Dynamic Memory, shortly you will see case studies from us that show in various workloads customers can expect to see between 25% to 50% increases in density in production deployments. For further information on Dynamic Memory, Jeff Woolsey [has made some great comments on this already](https://blogs.technet.com/b/virtualization/archive/2010/04/07/dynamic-memory-coming-to-hyper-v-part-3.aspx), and just how much better its architecture is in comparison to the competition.
 
 Watch out for the whitepaper which we will also announce via this blog in the near future.
 

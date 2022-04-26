@@ -1,8 +1,12 @@
 ---
 title:      "Guest post&#58; Storage Loves Dynamic Memory"
+description: A guest post by Alex Miroshnichenko of Virsto Software, about Dynamic Memory.
 date:       2010-09-14 09:32:00
+ms.date: 09/14/2010
 categories: dynamic-memory
 ---
+# Guest post: Storage Loves Dynamic Memory
+
 Hi, I’m [Alex Miroshnichenko](http://virsto.com/about/management-team), chief technology officer of [Virsto Software](http://virsto.com/). One of the most exciting events of my summer was the announcement of Microsoft Windows Server 2008 R2 Service Pack 1 (SP1). Though still in beta, SP1’s stability has lived up to production standards in Virsto’s test labs.
 
 SP1 brings [Dynamic Memory](http://www.msteched.com/2010/NorthAmerica/VIR304) to Microsoft Hyper-V.  In practical terms, you should be able to run meaningfully more virtual machines on the same server hardware, since static memory limits are gone.
