@@ -1,11 +1,12 @@
 ---
 title: Hyper-V symbols for debugging
 keywords: virtualization, containers, windows containers, dda, devices, blog
+description: Learn about the different Hyper-V symbols for debugging.
 author: cwilhit
+ms.author: crwilhit
 ms.date: 4/25/2018
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 
 ---
 
