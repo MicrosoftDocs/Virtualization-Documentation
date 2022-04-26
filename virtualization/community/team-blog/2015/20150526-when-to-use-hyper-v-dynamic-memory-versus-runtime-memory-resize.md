@@ -1,8 +1,14 @@
 ---
-title:      "When to use Hyper-V Dynamic Memory versus Runtime Memory Resize"
+title: When to use Hyper-V Dynamic Memory versus Runtime Memory Resize
+description: Learn about the appropriate situations when to use Hyper-V Dynamic Memory or Runtime Memory Resize.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-05-26 14:30:14
+ms.date: 05/26/2015
 categories: dynamic-memory
 ---
+# When to use Hyper-V Dynamic Memory versus Runtime Memory Resize
+
 Starting in Windows 10/Windows Server Technical Preview, Hyper-V allows you to resize virtual machine memory without shutting down the virtual machine.  You might be thinking, “Hyper-V already has dynamic memory… what is this about?”.  I get a lot of questions about why you would use memory resize if enabling dynamic memory already automatically adds or removes memory to meet only the virtual machine's needs.  To answer this, I’d like to tell a story about when I asked a similar question of my college roommate. 
 
  
@@ -57,21 +63,19 @@ Notes:
 
 
 
-####   
-Virtual Machine Settings
+#### Virtual Machine Settings
 
 To adjust the amount of memory in a running virtual machine (without dynamic memory enabled), first open virtual machine settings. Enter the desired amount of memory in the “Startup RAM” field. The virtual machine’s memory should adjust to the new value. In the screenshot below, note that the virtual machine is running but you can still adjust “Startup RAM”.
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/OnlineResizeUI.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/OnlineResizeUI.png)
+<!-- [![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/OnlineResizeUI.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/OnlineResizeUI.png) -->
 
-####   
-PowerShell
+#### PowerShell
 
 To resize a virtual machine’s memory in PowerShell, use the following cmdlet (example below):
 
 Set-VMMemory -StartupBytes 
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/OnlineResizePS.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/OnlineResizePS.png)
+<!-- [![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/OnlineResizePS.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/OnlineResizePS.png) -->
 
 Theo Thompson  
 Hyper-V Team
