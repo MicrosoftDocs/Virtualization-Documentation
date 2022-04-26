@@ -3,7 +3,7 @@ title: Lift and shift to containers
 description: Learn how to migrate existing applications to containers
 keywords: containers, migrate
 author: IngridAtMicrosoft
-ms.author: v-susbo
+ms.author: inhenkel
 ms.date: 09/01/2021
 ms.topic: quickstart
 ---  

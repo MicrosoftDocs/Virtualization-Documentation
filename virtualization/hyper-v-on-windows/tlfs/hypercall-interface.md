@@ -76,7 +76,7 @@ Callers specify a hypercall by a 64-bit value called a hypercall input value. It
 | Rep Count               | 43-32   | Total number of reps (for rep call, must be zero otherwise) |
 | RsvdZ                   | 47-44   | Must be zero                                                |
 | Rep Start Index         | 59-48   | Starting index (for rep call, must be zero otherwise)       |
-| RsvdZ                   | 64-60   | Must be zero                                                |
+| RsvdZ                   | 63-60   | Must be zero                                                |
 
 For rep hypercalls, the rep count field indicates the total number of reps. The rep start index indicates the particular repetition relative to the start of the list (zero indicates that the first element in the list is to be processed). Therefore, the rep count value must always be greater than the rep start index.
 
