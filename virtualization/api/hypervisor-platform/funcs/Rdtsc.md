@@ -1,10 +1,18 @@
+---
+title: Exit caused by an rdtsc(p) instruction
+description: Learn about context data for an exit caused by an rdtsc(p) instruction.
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/20/2022
+---
+
 # RDTSC(P)
 
 
 ## Syntax
 ```C
 //
-// Context data for an exit caused by a rdtsc(p) instruction
+// Context data for an exit caused by an rdtsc(p) instruction
 // (WHvRunVpExitReasonX64Rdtsc)
 //
 typedef union WHV_X64_RDTSC_INFO
