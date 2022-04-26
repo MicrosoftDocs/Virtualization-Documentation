@@ -1,6 +1,6 @@
 # [Overview](./index.md)
 
-# [Hyper-V WMI provider](https://docs.microsoft.com/windows/win32/hyperv_v2/windows-virtualization-portal)
+# [Hyper-V WMI provider](/windows/win32/hyperv_v2/windows-virtualization-portal)
 
 # Host Compute System API
 ## [Overview](./hcs/overview.md)
@@ -93,7 +93,7 @@
 ### [Virtual Machine Utilities](./hcs/Reference/UtilityFunctionSample.md)
 
 # Host Compute Network API
-## [Overview](https://docs.microsoft.com/windows-server/networking/technologies/hcn/hcn-top)
+## [Overview](/windows-server/networking/technologies/hcn/hcn-top)
 ### Data Types
 #### [HCN Error Codes](./hcn/Reference/HCNHResult.md)
 #### [HCN\_NOTIFICATIONS](./hcn/Reference/HCN_NOTIFICATIONS.md)
@@ -202,7 +202,7 @@
 ## [WHvUnmapGpaRange](./hypervisor-platform/funcs/WHvUnmapGpaRange.md)
 
 # Virtualization Related Tools
-## [Virtual Hard Disk Interface](https://docs.microsoft.com/windows/win32/api/virtdisk/)
+## [Virtual Hard Disk Interface](/windows/win32/api/virtdisk/)
 
 ## [Hypervisor Instruction Emulator API](./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md)
 ### Instruction Emulation
