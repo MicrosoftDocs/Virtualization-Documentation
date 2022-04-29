@@ -29,6 +29,6 @@ This command line tool gives users easier granular control over network items th
 
  
 
-See John Howard’s blog [[here](https://docs.microsoft.com/en-us/archive/blogs/jhoward/announcing-nvspbind "John Howard blog")] for more details:
+See John Howard’s blog [[here](/archive/blogs/jhoward/announcing-nvspbind "John Howard blog")] for more details:
 
   Paul Despe
