@@ -1,3 +1,11 @@
+---
+title: Virtual Processor Register Names and Values
+description: Describes virtual processor register names and values and provides syntax, remarks, requirements, and feedback.
+author: juarezhm
+ms.author: hajuarez
+ms.date: 05/31/2019
+---
+
 # Virtual Processor Register Names and Values
 
 ## Syntax

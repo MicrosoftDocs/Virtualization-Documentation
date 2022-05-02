@@ -1,3 +1,10 @@
+---
+title: WHvSuspendPartitionTime
+description: Describes virtual processor SuspendPartitionTime and provides parameters, return value, remarks, and requirements.
+author: nschonni
+ms.date: 06/03/2019
+---
+
 # WHvSuspendPartitionTime
 
 ## Syntax
