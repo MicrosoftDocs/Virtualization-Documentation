@@ -23,7 +23,7 @@ Exchange Server: [https://msexchangeteam.com/](https://msexchangeteam.com/)
 
 SQL Server: [https://blogs.technet.com/dataplatforminsider/default.aspx](https://blogs.technet.com/dataplatforminsider/default.aspx)
 
-SharePoint: [https://blogs.msdn.com/sharepoint](https://blogs.msdn.com/sharepoint)
+SharePoint: [https://blogs.msdn.com/sharepoint](https://techcommunity.microsoft.com/t5/microsoft-sharepoint-blog/bg-p/SPBlog)
 
  
 

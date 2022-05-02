@@ -1,3 +1,11 @@
+---
+title: WHvTranslateGva
+description: Describes flags used by WHvTranslateGva and provides syntax, parameters, return value, and remarks.
+author: juarezhm
+ms.author: hajuarez
+ms.date: 03/19/2019
+---
+
 # WHvTranslateGva
 
 ## Syntax
@@ -65,7 +73,7 @@ Specifies the index of the virtual processor for which the virtual address is tr
 
 Specifies the virtual address that is translated
 
-`TranslateFlages`
+`TranslateFlags`
 
 Specifies flags for the translation 
 

@@ -21,7 +21,7 @@ Also today, we announced a collaboration agreement with Citrix, which will enabl
 
  
 
-With SP1 just now being announced (see [Oliver's blog](https://blogs.technet.com/windowsserver/ "Oliver Rist blog on March 18")) but not available for a while, there will be many more details I will be able to share with you as we progress. This is just the beginning of an exciting time for centralized desktop computing and the benefits of the user experience enhancements that Microsoft RemoteFX will deliver for that architecture. Please stay tuned for great things to come, and check in on my blog every once in a while for the latest news. Meanwhile, I would encourage you to read up more on [today’s announcements](http://www.desktopvirtualizationhour.com/ "MS news release").
+With SP1 just now being announced (see [Oliver's blog](https://blogs.technet.com/windowsserver/ "Oliver Rist blog on March 18")) but not available for a while, there will be many more details I will be able to share with you as we progress. This is just the beginning of an exciting time for centralized desktop computing and the benefits of the user experience enhancements that Microsoft RemoteFX will deliver for that architecture. Please stay tuned for great things to come, and check in on my blog every once in a while for the latest news. Meanwhile, I would encourage you to read up more on [today’s announcements](/windows-server/virtualization/hyper-v/deploy/deploy-graphics-devices-using-remotefx-vgpu "MS news release").
 
 Max
 

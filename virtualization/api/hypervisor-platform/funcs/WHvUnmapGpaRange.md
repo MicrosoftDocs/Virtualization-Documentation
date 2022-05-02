@@ -1,3 +1,11 @@
+---
+title: WHvUnmapGpaRange
+description: Describes WHvUnmapGpaRange and provides syntax, parameters, remarks, and feedback. Parameters include Partition, GuestAddress, and SizeInBytes.
+author: juarezhm
+ms.author: hajuarez
+ms.date: 06/22/2018
+---
+
 # WHvUnmapGpaRange
 
 ## Syntax
