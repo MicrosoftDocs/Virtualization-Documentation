@@ -17,7 +17,7 @@ Back in time such as of the [Manchester Mark 1](http://en.wikipedia.org/wiki/Man
 
 An interesting debate but mostly put out to confuse our customers who are fundamentally interested in running an efficient IT infrastructure that provides them the flexibility and ability to meet the business goals and be a strategic asset to their organizations. Customers are running a multitude of applications such as SQL, Sharepoint, Exchange, CRM, home grown line of business applications etc. Our partners and us are committed and focused to make sure that it happens. 
 
-By the way talking of partners, it was great to our partner [Leostream](http://www.leostream.com/news/pr_08_31_09.php) announce their connection broker for Windows Server 2008 R2 and System Center Virtual machine Manager 2008 R2. In talking to our partner here at VMworld, it’s been wonderful to see the incredible innovation on their part based on the Microsoft platform. Thanks, this is what the Microsoft platform the best for our customers with its breadth and partner solutions. 
+By the way talking of partners, it was great to our partner [Leostream](http://www.leostream.com) announce their connection broker for Windows Server 2008 R2 and System Center Virtual machine Manager 2008 R2. In talking to our partner here at VMworld, it’s been wonderful to see the incredible innovation on their part based on the Microsoft platform. Thanks, this is what the Microsoft platform the best for our customers with its breadth and partner solutions. 
 
 Vijay Tewari
 

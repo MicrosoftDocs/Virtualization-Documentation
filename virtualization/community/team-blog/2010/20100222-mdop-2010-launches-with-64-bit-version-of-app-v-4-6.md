@@ -23,7 +23,7 @@ For more information about App-V and MED-V, check out the following blogs.
 
   * Karri offers some details of App-V 4.6 on the [MDOP team blog](https://blogs.technet.com/mdop/archive/2010/02/19/app-v-4-6-and-med-v-1-0-sp1-rc-are-here.aspx "MDOP team blog post") 
 
-  * Ment Van Der Plas talks [App-V deployment with System Center Configuration Manager](http://desktopcontrol.blogspot.com/) and [Sequencing Office 2010](http://www.softgridblog.com/).
+  * Ment Van Der Plas talks [App-V deployment with System Center Configuration Manager](/mem/configmgr/apps/get-started/deploying-app-v-virtual-applications#:~:text=App%2DV%20virtual%20environments%20in,next%20evaluate%20their%20installed%20applications.) and [Sequencing Office 2010](http://www.softgridblog.com/).
 
   * Tim Managan talks about App-V and Windows7 integration on his [blog](http://www.tmurgent.com/TmBlog/?p=151).
 
