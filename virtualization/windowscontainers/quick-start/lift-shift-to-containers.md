@@ -61,7 +61,7 @@ As of August 2021, the following applications are not supported for Windows cont
   - Containers must be able to resolve each other using NETBIOS name. This can be accomplished by adding the name and IP address of containers to each other's HOSTS file. 
   - The UUID for MSDTC must be unique. You can determine the UUID using the Get-DTC PowerShell cmdlet. If the UUIDs are not unique, you can resolve this by uninstalling and then reinstalling MSDTC on the containers.
   - For more information, see the [GitHub issues](https://github.com/MicrosoftDocs/Virtualization-Documentation/issues/494) page.
-- Microsoft Office currently does not support containers. For more information, see the [UserVoice request forum](https://windowsserver.uservoice.com/forums/304624-containers/suggestions/19686220-provide-office-support-for-containers).  
+- Microsoft Office currently does not support containers.
 - Client apps with a visual user interface are not supported.  
 - Windows infrastructure roles are not supported. This includes DNS, DHCP, DC, NTP, print services, file server, and identity and access management (IAM).  
   
