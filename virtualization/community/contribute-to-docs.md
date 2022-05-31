@@ -126,7 +126,7 @@ This is broken into three sections:
    ```
    C:\Users\plang\Source\Repos\Virtualization-Documentation [master]> git pull
    Please enter your GitHub credentials for https://github.com/
-   username: plang@microsoft.com
+   username: <username>@contoso.com
    password:
    authcode (app): 562689
    ```
