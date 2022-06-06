@@ -1,6 +1,8 @@
 ---
 title:      "Guest post&#58; Virtualization drives $250,000 in real savings"
 description: Virtualization using Hyper-V and System Center is the most exciting thing SBWH has been a part of since we started beta testing IIS 4.0 in 1997.
+author: mabriggs
+ms.author: mabrigg
 date: 2009-02-09 01:00:00
 ms.date: 02/09/2009
 categories: esx

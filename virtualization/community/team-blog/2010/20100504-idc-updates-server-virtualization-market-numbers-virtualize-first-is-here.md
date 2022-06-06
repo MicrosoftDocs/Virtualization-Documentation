@@ -1,6 +1,8 @@
 ---
 title:      "IDC updates server virtualization market numbers&#58; “Virtualize first” is here"
 description: IDC published their worldwide quarterly server virtualization tracker report, a news release, where VMware, Microsoft and Citrix were the only vendors called out.
+author: mabriggs
+ms.author: mabrigg
 date:       2010-05-04 22:08:00
 ms.date: 05/04/2010
 categories: citrix

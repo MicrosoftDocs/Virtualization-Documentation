@@ -3,7 +3,7 @@ title: Windows Server containers events
 description: Recent events for Windows Server containers
 keywords: windows containers, containers, events
 author: v-susbo
-ms.author: v-susbo
+ms.author: mabrigg
 ms.date: 02/11/2021
 ms.topic: reference
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f

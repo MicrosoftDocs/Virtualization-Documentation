@@ -2,6 +2,7 @@
 title: WHvSuspendPartitionTime
 description: Describes virtual processor SuspendPartitionTime and provides parameters, return value, remarks, and requirements.
 author: nschonni
+ms.author: mabrigg
 ms.date: 06/03/2019
 ---
 

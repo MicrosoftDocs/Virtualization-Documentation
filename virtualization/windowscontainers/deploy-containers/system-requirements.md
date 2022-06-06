@@ -3,7 +3,7 @@ title: Windows Container Requirements
 description: Windows Container Requirements.
 keywords: metadata, containers
 author: v-susbo
-ms.author: v-susbo
+ms.author: mabrigg
 ms.date: 10/20/2021
 ms.topic: conceptual
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed

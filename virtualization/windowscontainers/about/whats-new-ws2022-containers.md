@@ -3,7 +3,7 @@ title: What's new for Windows containers in Windows Server 2022
 description: Find out what is new when using Windows containers in Windows Server 2022
 keywords: containers, windows
 author: v-susbo
-ms.author: v-susbo
+ms.author: mabrigg
 ms.date: 08/18/2021
 ms.topic: conceptual
 ---  
