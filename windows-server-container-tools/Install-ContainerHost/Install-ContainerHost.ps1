@@ -38,21 +38,21 @@
         
     .PARAMETER HyperV 
         If passed, prepare the machine for Hyper-V containers
+        
+    .PARAMETER NATSubnet 
+        Use to override the default Docker NAT Subnet when in NAT mode.
 
     .PARAMETER NoRestart
         If a restart is required the script will terminate and will not reboot the machine
 
     .PARAMETER SkipImageImport
-        Skips import of the base WindowsServerCore image.
+        Ignored.
 
     .PARAMETER TransparentNetwork
         If passed, use DHCP configuration.  Otherwise, will use default docker network (NAT). (alias -UseDHCP)
 
-    .PARAMETER WimPath
-        Path to .wim file that contains the base package image
-
-    .PARAMETER NatNet
-        Alternative network/mask to use for Docker NAT (fixed-cidr) instead of default 172.16.0.0/12
+    .PARAMETER TarPath
+        Path to the .tar that is the base image to load into Docker.
 
     .EXAMPLE
         .\Install-ContainerHost.ps1
@@ -64,23 +64,23 @@
 param(
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "https://aka.ms/tp5/b/docker",
+    $DockerPath = "https://master.dockerproject.org/windows/amd64/docker.exe",
 
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerDPath = "https://aka.ms/tp5/b/dockerd",
+    $DockerDPath = "https://master.dockerproject.org/windows/amd64/dockerd.exe",
 
     [string]
     $ExternalNetAdapter,
 
     [switch]
     $Force,
-    
-    [switch]
-    $IgnoreClient,
 
     [switch]
     $HyperV,
+
+    [string]
+    $NATSubnet,
 
     [switch]
     $NoRestart,
@@ -102,10 +102,7 @@ param(
 
     [string]
     [ValidateNotNullOrEmpty()]
-    $WimPath,
-
-    [string]
-    $NatNet = ""
+    $TarPath
 )
 
 $global:RebootRequired = $false
@@ -264,19 +261,11 @@ Install-ContainerHost
 
     if (Test-Client)
     {
-        if (-not $IgnoreClient)
+        if (-not $HyperV)
         {
-            Write-Warning "We recommend that you use the steps outlined in our documentation at https://aka.ms/windowscontainers/hypervonwin10. If you would like to proceed with this script, include the flag -IgnoreClient."
-            throw "Ran on client without -IgnoreClient flag."
-        }
-        else
-        {
-            if (-not $HyperV)
-            {
-                Write-Output "Enabling Hyper-V containers by default for Client SKU"
-                $HyperV = $true
-            }
-        }  
+            Write-Output "Enabling Hyper-V containers by default for Client SKU"
+            $HyperV = $true
+        }    
     }
     #
     # Validate required Windows features
@@ -312,10 +301,6 @@ Install-ContainerHost
     #
     if ($($PSCmdlet.ParameterSetName) -ne "Staging")
     {
-        Write-Output "Configuring ICMP firewall rules for containers..."
-        netsh advfirewall firewall add rule name="ICMP for containers" dir=in protocol=icmpv4 action=allow | Out-Null
-        netsh advfirewall firewall add rule name="ICMP for containers" dir=out protocol=icmpv4 action=allow | Out-Null
-
         if ($TransparentNetwork)
         {
             Write-Output "Waiting for Hyper-V Management..."
@@ -387,160 +372,26 @@ Install-ContainerHost
     }
     else
     {
-        Install-Docker -DockerPath $DockerPath -DockerDPath $DockerDPath
-    }
-
-    $newBaseImages = @()
-
-    if (-not $SkipImageImport)
-    {        
-        if ($WimPath -eq "")
+        if ($NATSubnet)
         {
-            $imageName = "WindowsServerCore"
-
-            if ($HyperV -or (Test-Nano))
-            {
-                $imageName = "NanoServer"
-            }
-
-            #
-            # Install the base package
-            #
-            if (Test-InstalledContainerImage $imageName)
-            {
-                Write-Output "Image $imageName is already installed on this machine."
-            }
-            else
-            {
-                Test-ContainerImageProvider
-
-                $hostBuildInfo = (gp "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").BuildLabEx.Split(".")
-                $version = $hostBuildInfo[0]
-
-                $InstallParams = @{
-                    ErrorAction = "Stop"
-                    Name = $imageName
-                }
-
-                if ($version -eq "14300")
-                {
-                    $InstallParams.Add("MinimumVersion", "10.0.14300.1000")
-                    $InstallParams.Add("MaximumVersion", "10.0.14300.1016")
-                    $versionString = "-MinimumVersion 10.0.14300.1000 -MaximumVersion 10.0.14300.1016"
-                }
-                else
-                {
-                    if (Test-Client)
-                    {
-                        $versionString = " [latest version]"
-                    }
-                    else
-                    {
-                        $qfe = $hostBuildInfo[1]
-
-                        $InstallParams.Add("RequiredVersion", "10.0.$version.$qfe")
-                        $versionString = "-RequiredVersion 10.0.$version.$qfe"
-                    }                    
-                }
-
-                Write-Output "Getting Container OS image ($imageName $versionString) from OneGet (this may take a few minutes)..."
-                #
-                # TODO: expect the follow to have default ErrorAction of stop
-                #
-                Install-ContainerImage @InstallParams
-            
-                Write-Output "Container base image install complete."
-                $newBaseImages += $imageName
-            }
+            Install-Docker -DockerPath $DockerPath -DockerDPath $DockerDPath -NATSubnet $NATSubnet
         }
         else
         {
-            Write-Output "Installing Container OS image from $WimPath (this may take a few minutes)..."
-
-            if (Test-Path $WimPath)
-            {
-                #
-                # .wim is present and local
-                #
-            }
-            elseif (($WimPath -as [System.URI]).AbsoluteURI -ne $null)
-            {
-                #
-                # .wim is on a URI and must be downloaded
-                #
-                $localWimPath = "$pwd\ContainerBaseImage.wim"
-
-                Copy-File -SourcePath $WimPath -DestinationPath $localWimPath
-
-                $WimPath = $localWimPath
-            }
-            else
-            {
-                throw "Cannot copy from invalid WimPath $WimPath"
-            }
-
-            $imageName = (get-windowsimage -imagepath $WimPath -LogPath ($env:temp+"dism_$(random)_GetImageInfo.log") -Index 1).imagename
-
-            if ($PSDirect -and (Test-Nano))
-            {
-                #
-                # This is a gross hack for TP5 to avoid a CoreCLR issue
-                #
-                $modulePath = "$($env:Temp)\Containers2.psm1"
-
-                $cmdletContent = gc $env:windir\System32\WindowsPowerShell\v1.0\Modules\Containers\1.0.0.0\Containers.psm1
-
-                $cmdletContent = $cmdletContent.replace('Set-Acl $fileToReAcl -AclObject $acl', '[System.IO.FileSystemAclExtensions]::SetAccessControl($fileToReAcl, $acl)')
-                $cmdletContent = $cmdletContent.replace('function Install-ContainerOSImage','function Install-ContainerOSImage2')
-
-                $cmdletContent | sc $modulePath
-
-                Import-Module $modulePath -DisableNameChecking
-                Install-ContainerOSImage2 -WimPath $WimPath -Force
-                Remove-Item $modulePath
-            }
-            else
-            {
-                Install-ContainerOsImage -WimPath $WimPath -Force
-            }
-
-            $newBaseImages += $imageName
-        }
-
-        #
-        # Optionally OneGet the Hyper-V container image if it isn't just installed
-        #
-        if ($HyperV -and (-not (Test-Nano)))
-        {
-            if ((Test-InstalledContainerImage $global:HyperVImage))
-            {
-                Write-Output "OS image ($global:HyperVImage) is already installed."
-            }
-            else
-            {
-                Test-ContainerImageProvider
-
-                Write-Output "Getting Container OS image ($global:HyperVImage) from OneGet (this may take a few minutes)..."
-                Install-ContainerImage $global:HyperVImage
-
-                $newBaseImages += $global:HyperVImage
-            }
+            Install-Docker -DockerPath $DockerPath -DockerDPath $DockerDPath
         }
     }
 
-    if ($newBaseImages.Count -gt 0)
+    if ($TarPath)
     {
-        foreach ($baseImage in $newBaseImages)
-        {
-            Write-DockerImageTag -BaseImageName $baseImage
-        }
+        cmd /c "docker load -i `"$TarPath`""
     }
 
     Remove-Item $global:ErrorFile
 
     Write-Output "Script complete!"
 }$global:AdminPriviledges = $false
-$global:DockerData = "$($env:ProgramData)\docker"
+$global:DockerDataPath = "$($env:ProgramData)\docker"
 $global:DockerServiceName = "docker"
 
 function
@@ -614,60 +465,6 @@ Copy-File
 
 
 function 
-Expand-ArchiveNano
-{
-    [CmdletBinding()]
-    param 
-    (
-        [string] $Path,
-        [string] $DestinationPath
-    )
-
-    [System.IO.Compression.ZipFile]::ExtractToDirectory($Path, $DestinationPath)
-}
-
-
-function 
-Expand-ArchivePrivate
-{
-    [CmdletBinding()]
-    param 
-    (
-        [Parameter(Mandatory=$true)]
-        [string] 
-        $Path,
-
-        [Parameter(Mandatory=$true)]        
-        [string] 
-        $DestinationPath
-    )
-        
-    $shell = New-Object -com Shell.Application
-    $zipFile = $shell.NameSpace($Path)
-    
-    $shell.NameSpace($DestinationPath).CopyHere($zipFile.items())
-    
-}
-
-
-function
-Test-InstalledContainerImage
-{
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [string]
-        [ValidateNotNullOrEmpty()]
-        $BaseImageName
-    )
-
-    $path = Join-Path (Join-Path $env:ProgramData "Microsoft\Windows\Images") "*$BaseImageName*"
-    
-    return Test-Path $path
-}
-
-
-function 
 Test-Admin()
 {
     # Get the ID and security principal of the current user account
@@ -690,24 +487,6 @@ Test-Admin()
         # Exit from the current, unelevated, process
         #
         throw "You must run this script as administrator"   
-    }
-}
-
-
-function 
-Test-ContainerImageProvider()
-{
-    if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
-    {   
-        Wait-Network
-
-        Write-Output "Installing ContainerImage provider..."
-        Install-PackageProvider ContainerImage -Force | Out-Null
-    }
-
-    if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
-    {
-        throw "Could not install ContainerImage provider"
     }
 }
 
@@ -763,27 +542,6 @@ Wait-Network()
 }
 
 
-function
-Get-DockerImages
-{
-    return docker images
-}
-
-function
-Find-DockerImages
-{
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [string]
-        [ValidateNotNullOrEmpty()]
-        $BaseImageName
-    )
-
-    return docker images | Where { $_ -match $BaseImageName.tolower() }
-}
-
-
 function 
 Install-Docker()
 {
@@ -791,11 +549,15 @@ Install-Docker()
     param(
         [string]
         [ValidateNotNullOrEmpty()]
-        $DockerPath = "https://aka.ms/tp5/docker",
+        $DockerPath = "https://master.dockerproject.org/windows/x86_64/docker.exe",
 
         [string]
         [ValidateNotNullOrEmpty()]
-        $DockerDPath = "https://aka.ms/tp5/dockerd"
+        $DockerDPath = "https://master.dockerproject.org/windows/x86_64/dockerd.exe",
+                
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $NATSubnet
     )
 
     Test-Admin
@@ -805,6 +567,13 @@ Install-Docker()
         
     Write-Output "Installing Docker daemon..."
     Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
+    
+    $dockerConfigPath = Join-Path $global:DockerDataPath "config"
+    
+    if (!(Test-Path $dockerConfigPath))
+    {
+        md -Path $dockerConfigPath | Out-Null
+    }
 
     #
     # Register the docker service.
@@ -812,7 +581,7 @@ Install-Docker()
     #
     $daemonSettings = New-Object PSObject
         
-    $certsPath = Join-Path $global:DockerData "certs.d"
+    $certsPath = Join-Path $global:DockerDataPath "certs.d"
 
     if (Test-Path $certsPath)
     {
@@ -827,17 +596,17 @@ Install-Docker()
         # Default local host
         $daemonSettings | Add-Member NoteProperty hosts @("npipe://")
     }
-    
-    if ($NatNet -ne "")
+
+    if ($NATSubnet -ne "")
     {
-        $daemonSettings | Add-Member NoteProperty fixed-cidr $NatNet
+        $daemonSettings | Add-Member NoteProperty fixed-cidr $NATSubnet
     }
 
-    & dockerd --register-service --service-name $global:DockerServiceName
-
-    $daemonSettingsFile = "$global:DockerData\config\daemon.json"
+    $daemonSettingsFile = Join-Path $dockerConfigPath "daemon.json"
 
     $daemonSettings | ConvertTo-Json | Out-File -FilePath $daemonSettingsFile -Encoding ASCII
+    
+    & dockerd --register-service --service-name $global:DockerServiceName
 
     Start-Docker
 
@@ -847,13 +616,11 @@ Install-Docker()
     Wait-Docker
 
     Write-Output "The following images are present on this machine:"
-    foreach ($image in (Get-DockerImages))
-    {
-        Write-Output "    $image"
-    }
+    
+    docker images -a | Write-Output
+
     Write-Output ""
 }
-
 
 function 
 Start-Docker()
@@ -912,65 +679,6 @@ Wait-Docker()
         }
     }
     Write-Output "Successfully connected to Docker Daemon."
-}
-
-
-function 
-Write-DockerImageTag()
-{
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [string]
-        $BaseImageName
-    )
-
-    $dockerOutput = Find-DockerImages $BaseImageName
-
-    if ($dockerOutput.Count -gt 1)
-    {
-        Write-Output "Base image is already tagged:"
-    }
-    else
-    {
-        if ($dockerOutput.Count -lt 1)
-        {
-            #
-            # Docker restart required if the image was installed after Docker was 
-            # last started
-            #
-            Stop-Docker
-            Start-Docker
-
-            $dockerOutput = Find-DockerImages $BaseImageName
-
-            if ($dockerOutput.Count -lt 1)
-            {
-                throw "Could not find Docker image to match '$BaseImageName'"
-            }
-        }
-
-        if ($dockerOutput.Count -gt 1)
-        {
-            Write-Output "Base image is already tagged:"
-        }
-        else
-        {
-            #
-            # Register the base image with Docker
-            #
-            $imageId = ($dockerOutput -split "\s+")[2]
-
-            Write-Output "Tagging new base image ($imageId)..."
-            
-            docker tag $imageId "$($BaseImageName.tolower()):latest"
-            Write-Output "Base image is now tagged:"
-
-            $dockerOutput = Find-DockerImages $BaseImageName
-        }
-    }
-    
-    Write-Output $dockerOutput
 }
 
 try
