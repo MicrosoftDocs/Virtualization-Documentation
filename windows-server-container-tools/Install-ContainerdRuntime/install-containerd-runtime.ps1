@@ -16,7 +16,7 @@ Copy-Item -Path ".\nerdctl.exe" -Destination $ContainerdPath -Recurse -Force
 $OldPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name path).path
 if(!($OldPath -contains "*containerd*")) {
     $NewPath = "$OldPath;$ContainerdPath"
-    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newpath
+    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $NewPath
     $env:Path = $NewPath
 } else {
     echo "$ContainerdPath already in PATH"
