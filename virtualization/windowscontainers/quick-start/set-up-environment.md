@@ -101,6 +101,9 @@ The Mirantis Container Runtime, formally known as Docker EE, provides the same f
 
 Please head over to the [Mirantis site](https://www.mirantis.com/software/container-runtime/) for more information.
 
+> [!NOTE]
+> If you have read this guide and would like additional guidance from the Windows Containers product team, you can reach us at [github/Windows-Containers](https://github.com/microsoft/Windows-Containers) where you will find information about getting time on the product team’s calendar to chat.
+
 # [Containerd](#tab/containerd)
 
 [Containerd](https://github.com/containerd/containerd) is an industry-standard container runtime with an emphasis on simplicity, robustness and portability. It is available as a daemon for Linux and Windows, which can manage the complete container lifecycle of its host systemW: image transfer and storage, container execution and supervision, low-level storage and network attachments, etc.
