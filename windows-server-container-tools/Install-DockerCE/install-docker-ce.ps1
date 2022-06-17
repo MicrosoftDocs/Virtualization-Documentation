@@ -45,8 +45,8 @@
     .PARAMETER NoRestart
         If a restart is required the script will terminate and will not reboot the machine
 
-    .PARAMETER SkipImageImport
-        Ignored.
+    .PARAMETER ContainerBaseImage
+        Use this to specifiy the URI of the container base image you wish to pull
 
     .PARAMETER TransparentNetwork
         If passed, use DHCP configuration.  Otherwise, will use default docker network (NAT). (alias -UseDHCP)
@@ -90,7 +90,7 @@ param(
     $PSDirect,
 
     [switch]
-    $SkipImageImport,
+    $ContainerBaseImage,
 
     [Parameter(ParameterSetName="Staging", Mandatory)]
     [switch]
@@ -557,7 +557,10 @@ Install-Docker()
                 
         [string]
         [ValidateNotNullOrEmpty()]
-        $NATSubnet
+        $NATSubnet,
+
+        [string]
+        $ContainerBaseImage
     )
 
     Test-Admin
@@ -579,6 +582,8 @@ Install-Docker()
     # Register the docker service.
     # Configuration options should be placed at %programdata%\docker\config\daemon.json
     #
+    Write-Output "Configuring the docker service..."
+
     $daemonSettings = New-Object PSObject
         
     $certsPath = Join-Path $global:DockerDataPath "certs.d"
@@ -614,6 +619,11 @@ Install-Docker()
     # Waiting for docker to come to steady state
     #
     Wait-Docker
+
+    if(-not [string]::IsNullOrEmpty($ContainerBaseImage)) {
+        Write-Output "Attempting to pull specified base image: $ContainerBaseImage"
+        nerdctl pull $ContainerBaseImage
+    }
 
     Write-Output "The following images are present on this machine:"
     

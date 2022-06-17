@@ -3,20 +3,23 @@ title: Prep Windows operating system containers
 description: Set up Windows or Windows Server for containers, then move on to running your first container image.
 keywords: docker, containers, LCOW
 author: v-susbo
-ms.author: brasmith, viniap
+ms.author: brasmith-ms, viniap
 ms.date: 06/17/2022
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Get started: Prep Windows for containers
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016, Windows 10 and 11
 
 This tutorial describes how to:
 
-- [Set up Windows 10/11 or Windows Server for containers](#prerequisites)
-- [Install the Container Runtime](#install-the-container-runtime)
+- [Set up Windows 10/11 and Windows Server for containers](#prerequisites)
 - [Build container-ready Azure VMs](#container-ready-azure-vms)
+- [Install the Container Runtime](#install-the-container-runtime)
+    - [Windows 10 & 11](#windows-10-and-11-1)
+    - [Windows Admin Center](#windows-admin-center)
+    - [Windows Server - Moby, Mirantis, & Containerd](#windows-server-1)
 - [Run your first container image](./run-your-first-container.md)
 - [Containerize a simple .NET core application](./building-sample-app.md)
 
@@ -70,6 +73,9 @@ Azure image builder, however, can be more complex to implement and there are mor
 
 To get started with building your own Windows Server VM image, we have [created a guide which details the process step-by step](https://docs.microsoft.com/azure/virtual-machines/windows/image-builder). The powershell scripts mentioned below can be utilized alongside this guide to install your container runtime of choice.
 
+> [!TIP]
+> Make sure to cache the container images you plan to use locally on the VM! This will help improve the container start time after deployment. The [scripts below](#windows-server-1) will help you do this.
+
 ##### Custom Script Extensions
 
 Custom Script Extensions are quicker to implement and the cost is only in the nominal price to store the script in Azure or GitHub. However, the script may only execute after a VM has been provisioned, so you must budget for additional time being spent to properly prep the VM at scale-out time.
@@ -114,6 +120,10 @@ Docker Community Edition (CE) provides a standard runtime environment for contai
 
 To get started with Docker on Windows Server we have created [a powershell script](../../../windows-server-container-tools/Install-ContainerHost/Install-ContainerHost.ps1) which configures your environment to enable container-related OS features and install the Docker runtime.
 
+```powershell
+install-docker-ce.ps1
+```
+
 For more configuration details, see [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md).
 
 # [Mirantis Container Runtime](#tab/mirantiscontainerruntime)
@@ -139,18 +149,20 @@ We have created [an installation script](../../../windows-server-container-tools
 install-containerd-runtime.ps1
 ```
 
-This script does install the [Windows CNI plugins](https://github.com/microsoft/windows-container-networking) as well.
+This script does install the [Windows CNI plugins](https://github.com/microsoft/windows-container-networking) as well, however, you will need to configure ctr/nerdctl to use the CNI configuration that best suits you.
 
 - [Instructions for installing containerd on Windows.](https://github.com/containerd/containerd/blob/main/docs/getting-started.md#installing-containerd-on-windows)
+- [Instructions on how to install and configure containerd](https://www.jamessturtevant.com/posts/Windows-Containers-on-Windows-10-without-Docker-using-Containerd/#setting-up-network)
 - [Instructions for installing nerdctl on Windows.](https://github.com/containerd/nerdctl#install)
-
-> [!NOTE]
-> If you have read this guide and would like additional guidance from the Windows Containers product team, you can reach us at [github/Windows-Containers](https://github.com/microsoft/Windows-Containers) where you will find information about getting time on the product team’s calendar to chat.
+- [More advanced community installer for containerd](https://github.com/lippertmarkus/containerd-installer)
 
 ---
 <!-- stop tab view -->
 
 ## Next steps
+
+> [!NOTE]
+> If you have read this guide and would like additional guidance from the Windows Containers product team, you can reach us at [github/Windows-Containers](https://github.com/microsoft/Windows-Containers) where you will find information about getting time on the product team’s calendar to chat.
 
 Now that your environment has been configured correctly, follow the link to learn how to run a container.
 

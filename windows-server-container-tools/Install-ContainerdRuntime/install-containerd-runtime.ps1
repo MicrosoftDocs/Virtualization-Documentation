@@ -40,8 +40,8 @@
     .PARAMETER NoRestart
         If a restart is required the script will terminate and will not reboot the machine
 
-    .PARAMETER SkipImageImport
-        Ignored.
+    .PARAMETER ContainerBaseImage
+        Use this to specifiy the URI of the container base image you wish to pull
 
     .PARAMETER TransparentNetwork
         If passed, use DHCP configuration. (alias -UseDHCP)
@@ -82,8 +82,8 @@ param(
     [switch]
     $PSDirect,
 
-    [switch]
-    $SkipImageImport,
+    [string]
+    $ContainerBaseImage,
 
     [Parameter(ParameterSetName="Staging", Mandatory)]
     [switch]
@@ -334,7 +334,7 @@ Install-ContainerDHost
                         }
 
                         $netAdapter = $netAdapters[0]
-                        $transparentNetwork = $networks |Where-Object { $_.NetworkAdapterName -eq $netAdapter.InterfaceDescription }
+                        $transparentNetwork = $networks | Where-Object { $_.NetworkAdapterName -eq $netAdapter.InterfaceDescription }
 
                         if ($null-eq $transparentNetwork)
                         {
@@ -361,7 +361,7 @@ Install-ContainerDHost
     }
     else
     {
-        Install-Containerd -ContainerDVersion $ContainerDVersion -NerdCTLVersion $NerdCTLVersion
+        Install-Containerd -ContainerDVersion $ContainerDVersion -NerdCTLVersion $NerdCTLVersion -ContainerBaseImage $ContainerBaseImage
     }
 
     Remove-Item $global:ErrorFile
@@ -534,7 +534,10 @@ Install-Containerd()
 
         [string]
         [ValidateNotNullOrEmpty()]
-        $WinCNIVersion = "0.3.0"
+        $WinCNIVersion = "0.3.0",
+
+        [string]
+        $ContainerBaseImage
     )
 
     Test-Admin
@@ -606,6 +609,11 @@ Install-Containerd()
     #
     Wait-Containerd
 
+    if(-not [string]::IsNullOrEmpty($ContainerBaseImage)) {
+        Write-Output "Attempting to pull specified base image: $ContainerBaseImage"
+        nerdctl pull $ContainerBaseImage
+    }
+
     Write-Output "The following images are present on this machine:"
     
     nerdctl images -a | Write-Output
@@ -629,8 +637,8 @@ Remove-Containerd()
 {
     Stop-Containerd
     (Get-WmiObject -Class Win32_Service -Filter "Name='containerd'").delete()
-    Remove-Item "$Env:ProgramFiles\containerd"
-    Remove-Item "$Env:ProgramFiles\nerdctl"
+    Remove-Item -r -Force "$Env:ProgramFiles\containerd"
+    Remove-Item -r -Force "$Env:ProgramFiles\nerdctl"
 }
 
 function 
