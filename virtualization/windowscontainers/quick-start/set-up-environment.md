@@ -78,6 +78,30 @@ Using the scripts offered below you can configure your VM scale sets to install 
 
 ## Install the Container Runtime
 
+### Windows 10 and 11
+
+You can install Docker on Windows 10 or 11 Professional and Enterprise editions by using the following steps.
+
+1. Download and install [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) and create a Docker account if you don't already have one. You can create a free Docker account for personal or small business users, however, for larger businesses, there is a monthly fee. For more details, see the [Docker documentation](https://docs.docker.com/docker-for-windows/install).
+
+2. During installation, set the default container type to Windows containers. To switch after installation completes, you can use either the Docker item in the Windows system tray (as shown below), or the following command in a PowerShell prompt:
+
+   ```console
+   & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
+   ```
+
+   ![Docker system tray menu showing the "Switch to Windows containers" command](./media/docker-for-win-switch.png)
+
+### Windows Admin Center
+
+You can use Windows Admin Center to properly set up a Windows Server machine as a container host. To get started, ensure you have the latest Containers extension installed on your Windows Admin Center instance. For more information on how to install and configure extensions, check out the Windows Admin Center [documentation](/windows-server/manage/windows-admin-center/overview). With the Containers extension installed, target the Windows Server machine you want to configure and select the Containers option:
+
+![Install Docker](./media/WAC-InstallDocker.png)
+
+Click the **Install** button. Windows Admin Center will start the configuration of Windows Server and Docker in the background. After the process is complete, you can refresh the page and see the other functionalities of the Containers extension.
+
+![Container images](./media/WAC-Images.png)  
+
 ### Windows Server
 To run a Windows container you must have a supported container runtime available on your machine. The runtimes currently supported on Windows are [containerd](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd), [Moby](https://mobyproject.org/), and the [Mirantis Container Runtime](https://info.mirantis.com/docker-engine-support).
 
@@ -117,30 +141,6 @@ After running this script you will still need to [run a container networking int
 - [Instructions for installing nerdctl on Windows.](https://github.com/containerd/nerdctl#install)
 
 ---
-
-### Windows Admin Center
-
-You can use Windows Admin Center to properly set up a Windows Server machine as a container host. To get started, ensure you have the latest Containers extension installed on your Windows Admin Center instance. For more information on how to install and configure extensions, check out the Windows Admin Center [documentation](/windows-server/manage/windows-admin-center/overview). With the Containers extension installed, target the Windows Server machine you want to configure and select the Containers option:
-
-![Install Docker](./media/WAC-InstallDocker.png)
-
-Click the **Install** button. Windows Admin Center will start the configuration of Windows Server and Docker in the background. After the process is complete, you can refresh the page and see the other functionalities of the Containers extension.
-
-![Container images](./media/WAC-Images.png)  
-
-### Windows 10 and 11
-
-You can install Docker on Windows 10 or 11 Professional and Enterprise editions by using the following steps.
-
-1. Download and install [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) and create a Docker account if you don't already have one. You can create a free Docker account for personal or small business users, however, for larger businesses, there is a monthly fee. For more details, see the [Docker documentation](https://docs.docker.com/docker-for-windows/install).
-
-2. During installation, set the default container type to Windows containers. To switch after installation completes, you can use either the Docker item in the Windows system tray (as shown below), or the following command in a PowerShell prompt:
-
-   ```console
-   & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
-   ```
-
-   ![Docker system tray menu showing the "Switch to Windows containers" command](./media/docker-for-win-switch.png)
 <!-- stop tab view -->
 
 ## Next steps
