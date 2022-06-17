@@ -3,10 +3,10 @@ title: Community Resources
 description: Community Resources 
 keywords: windows 10, hyper-v, container, docker
 author: scooley
+ms.author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 731ed95a-ce13-4c6e-a450-49563bdc498c
 ---
 
@@ -19,17 +19,17 @@ ms.assetid: 731ed95a-ce13-4c6e-a450-49563bdc498c
 1. Find the doc you'd like to edit.  
 
 2. Select **Contribute to this topic**  
-  ![](media/editDoc.png)
+  ![This will automatically redirect you to the markdown file in GitHub associated with this file.](media/editDoc.png)
   
   This will automatically redirect you to the markdown file in GitHub associated with this file.
   
   Make sure you are signed into GitHub.  If not, either sign in or create a GitHub account.
   
-  ![](media/GitHubView.png)
+  ![Make sure you are signed into GitHub.  If not, either sign in or create a GitHub account.](media/GitHubView.png)
   
 3. Select the edit icon to edit with the in browser editor.
   
-  ![](media/GitHubEdit.png)
+  ![Select the edit icon to edit with the in browser editor.](media/GitHubEdit.png)
 
 4. Make changes inline.
   
@@ -38,11 +38,11 @@ ms.assetid: 731ed95a-ce13-4c6e-a450-49563bdc498c
   2. Preview changes
   3. Rename the file (it's very unlikely you'll want to do this)
   
-  ![](media/GitHubEditor.png)
+  ![Make changes inline.](media/GitHubEditor.png)
   
 5. Propose your changes as a pull request
   
-  ![](media/GitHubProposeChange.png)
+  ![Propose your changes as a pull request](media/GitHubProposeChange.png)
 
 6. Review your changes
   
@@ -51,7 +51,7 @@ ms.assetid: 731ed95a-ce13-4c6e-a450-49563bdc498c
   * Spelling/grammar are correct
   * Logical location in the documentation
     
-  ![](media/GitHubCreatePR.png)
+  ![Review your changes](media/GitHubCreatePR.png)
 
 7. Create a [pull request](contribute-to-docs.md#pull-requests)  
 
@@ -90,7 +90,7 @@ This is broken into three sections:
   **Adjusting your PATH environment**
   Use Git from the Windows Command Prompt
 
-  ![](media/GitFromWinCMD.png)
+  ![This lets you use git commands in the PowerShell console/in any Windows console.](media/GitFromWinCMD.png)
 
   This lets you use git commands in the PowerShell console/in any Windows console.
 
@@ -126,7 +126,7 @@ This is broken into three sections:
    ```
    C:\Users\plang\Source\Repos\Virtualization-Documentation [master]> git pull
    Please enter your GitHub credentials for https://github.com/
-   username: plang@microsoft.com
+   username: <username>@contoso.com
    password:
    authcode (app): 562689
    ```

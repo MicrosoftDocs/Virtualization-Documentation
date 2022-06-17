@@ -138,7 +138,17 @@ EAX and EBX indicate which features are available to the partition based upon th
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EBX       |       | Corresponds to bits 63-32 of HV_PARTITION_PRIVILEGE_MASK                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
-| ECX       |       |                                                                                       |
+| ECX       | 4-0   | Reserved
++           +-------+---------------------------------------------------------------------------------------+
+|           | 5     | Invariant Mperf is available                                                          |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 6     | Supervisor shadow stack is available                                                  |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 7     | Architectural PMU is available                                                        |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 8     | Exception trap intercept is available                                                 |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 31-9  | Reserved                                                                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EDX       | 0     | Deprecated (previously indicated availability of the MWAIT command).                  |
 +           +-------+---------------------------------------------------------------------------------------+
@@ -829,11 +839,17 @@ Indicates which nested virtualization optimizations are available to a nested hy
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 17    | Indicates support for direct virtual flush hypercalls                                 |
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 18    | Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls
+|           | 18    | Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls (on Intel platforms)
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 19    | Indicates support for using an enlightened MSR bitmap.                                |
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 31-20 | Reserved                                                                              |
+|           | 20    | Indicates support for combining virtualization exceptions in the page fault exception class.
++           +-------+---------------------------------------------------------------------------------------+
+|           | 21    | Reserved.                                                                             |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 22    | Indicates support for the enlightened TLB on AMD platforms. ASID flushes do not affect TLB entries derived from the NPT. Hypercalls must be used to invalidate NPT TLB entries. Also indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls.
++           +-------+---------------------------------------------------------------------------------------+
+|           | 31-23 | Reserved                                                                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EBX       | Reserved                                                                                      |
 +-----------+-----------------------------------------------------------------------------------------------+
@@ -852,7 +868,7 @@ Indicates which nested virtualization optimizations are available to a nested hy
     </thead>
     <tbody>
         <tr>
-            <td rowspan="8">EAX</td>
+            <td rowspan="10">EAX</td>
             <td>7-0</td>
             <td>Enlightened VMCS version (low)</td>
         </tr>
@@ -870,7 +886,7 @@ Indicates which nested virtualization optimizations are available to a nested hy
         </tr>
         <tr>
             <td>18</td>
-            <td>Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls.</td>
+            <td>Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls (on Intel platforms).</td>
         </tr>
         <tr>
             <td>19</td>
@@ -879,6 +895,14 @@ Indicates which nested virtualization optimizations are available to a nested hy
         <tr>
             <td>20</td>
             <td>Indicates support for combining virtualization exceptions in the page fault exception class.</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>Reserved</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>Indicates support for the enlightened TLB on AMD platforms. ASID flushes do not affect TLB entries derived from the NPT. Hypercalls must be used to invalidate NPT TLB entries. Also indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls.</td>
         </tr>
         <tr>
             <td>31-21</td>

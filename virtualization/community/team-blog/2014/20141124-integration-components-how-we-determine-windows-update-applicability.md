@@ -1,11 +1,17 @@
 ---
-title:      "Integration components&#58; How we determine Windows Update applicability"
+title: Integration components - How we determine Windows Update applicability
+description: Learn about how we determine the Windows update applicability of integration components for Hyper-V.
+author: mattbriggs
+ms.author: mabrigg
 date:       2014-11-24 08:48:06
+ms.date: 11/24/2014
 categories: hyper-v
 ---
+# Integration components - How we determine Windows Update applicability
+
 Last week we began [distributing integration components through Windows Update](/b/virtualization/archive/2014/11/11/hyper-v-integration-components-are-available-through-windows-update.aspx).  In the November rollup, integration components were made available to Windows Server 2012/2008R2 virtual machines along with Windows 8/7 virtual machines running on Windows Technical Preview hosts.
 
-Ben wrote a great [blog post](http://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updating-integration-components-over-windows-update.aspx) outlining how to update the integration components.
+Ben wrote a great [blog post](https://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updating-integration-components-over-windows-update.aspx) outlining how to update the integration components.
 
 Using Windows Update to apply integration components brought to light an interesting set of challenges with our standard servicing tools.  Unlike other Windows Updates, integration components are tied to the host version not just the installed OS.  How should we check that Windows is running in a virtual machine on a Technical Preview Hyper-V host?
 
@@ -13,7 +19,7 @@ We settled on the KVP (Hyper-V data exchange) integration component.  KVP provi
 
 See HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Virtual Machine/Guest/Parameters:
 
- [![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Picture1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Picture1.png)
+<!--  [![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Picture1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Picture1.png) -->
 
 We were particularly interested in the HostSystemOSMajor and HostSystemOSMinor for determining integration component applicability.  Windows version is 6.4 is Technical Preview.
 
@@ -31,7 +37,7 @@ The integration component changes we distributed in November are compatible with
 
 While I in no way endorse this and it certainly isn’t supported, if one were to run the following:
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Picture2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Picture2.png)
+<!-- [![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Picture2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/Picture2.png) -->
 
 They may find that Windows Update updates the integration components in their VM to the correct version for Windows Server 2012 R2/Windows 8.1.
 

@@ -1,3 +1,12 @@
+---
+title: Hyper-v Architecture
+description: Describes the Hyper-V architecture and its role in virtualization and provides an overview and glossary of the architecture.
+author: v-thepet
+ms.author: v-thepet
+ms.date: 09/14/2020
+ms.topic: article
+ms.prod: windows-10-hyperv
+---
 # Hyper-V Architecture
 
 Hyper-V is a hypervisor-based virtualization technology for certain x64 versions of Windows.  The hypervisor is core to virtualization.  It is the processor-specific virtualization platform that allows multiple isolated operating systems to share a single hardware platform.
@@ -12,7 +21,7 @@ Virtual Devices can also take advantage of a Windows Server Virtualization featu
 
 The following diagram provides a high-level overview of the architecture of a Hyper-V environment.
 
-![](./media/hv_architecture.png)
+![Diagram of the Hyper V High Level Architecture, showing the four partitions and Hypervisor sections.](./media/hv_architecture.png)
 
 ## Glossary
 * **APIC** – Advanced Programmable Interrupt Controller – A device which allows priority levels to be assigned to its interrupt outputs.

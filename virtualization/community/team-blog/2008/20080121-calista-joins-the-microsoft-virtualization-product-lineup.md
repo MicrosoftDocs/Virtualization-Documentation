@@ -3,10 +3,10 @@ title: Calista joins the Microsoft virtualization product lineup
 description: post id 3823
 keywords: virtualization, virtual server, virtual pc, blog
 author: scooley
+ms.author: scooley
 ms.date: 1/21/2008
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 
 ---
 
@@ -24,7 +24,7 @@ Some people in the industry seem to think that RDP and multimedia don’t go ver
 
 These are probably just some of the reasons why Microsoft decided to put out a bid to acquire Calista. Another really important one is the outstanding caliber of the people that work at Calista. In fact, there was a lot of interest in Calista, and the most prominent players in the virtualization space all showed an interest in the company. As a result, we entertained multiple offers, and determined that Microsoft was the best fit because of their vision, distribution channels and ability to execute on the deal. I really believe that Microsoft can make the most of our technologies to deliver customers a superior virtualization experience.
 
-I am looking forward to a great future at Microsoft, for me personally, for the Calista team and for our technologies. Please stay tuned for great things to come, and check in on my blog every once in a while for the latest news. Meanwhile, I would encourage you to read up more on [today’s announcements](http://www.microsoft.com/presspass/press/2008/jan08/01-21VirtualizationAdoptionPR.mspx).
+I am looking forward to a great future at Microsoft, for me personally, for the Calista team and for our technologies. Please stay tuned for great things to come, and check in on my blog every once in a while for the latest news. Meanwhile, I would encourage you to read up more on [today’s announcements](https://www.microsoft.com/presspass/press/2008/jan08/01-21VirtualizationAdoptionPR.mspx).
 
 Neal
 

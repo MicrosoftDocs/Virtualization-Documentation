@@ -1,9 +1,14 @@
 ---
 title:      "Interpreting Replication Health - Part 2"
+description: Describes how administrators can monitor the health of the replicating VM's using the Replication Health attribute - Part 2.
+author: mattbriggs
+ms.author: mabrigg
 date:       2012-06-21 05:20:00
+ms.date: 06/21/2012
 categories: hvr
 ---
-#### Continuing from where we left off the last [time](http://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx)…
+# Interpreting Replication Health – Part 2
+#### Continuing from where we left off the last [time](https://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx)…
 
 #### Q1: The Replication Health pane has loads of information, how do I  interpret these attributes?
 
@@ -18,7 +23,7 @@ I thought you would never ask ![Smile](https://msdnshared.blob.core.windows.net/
 
 
 
-> Replication State | Refers to the **current** state of the replicating VM. The set of values are captured in Q3 under the **UI** column, in the previous [post](http://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx)  
+> Replication State | Refers to the **current** state of the replicating VM. The set of values are captured in Q3 under the **UI** column, in the previous [post](https://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx)  
 > ---|---  
 > Replication Type | Indicates whether the VM a Primary VM or a Replica VM  
 > Current Primary Server | Provides the FQDN of the server on which the primary VM resides  
@@ -74,18 +79,18 @@ Due to network or storage issues or due to excessive churn in the VM, the replic
 
 The monitoring interval is a server level attribute which refers to the interval for which the replication statistics are captured and computed. This attribute can be viewed from **Get-VMReplicationServer**
     
-    
+```powershell
     PS C:\Windows\system32> Get-VMReplicationServer | select monitoringinterval, monitoringstarttime
-
+```
 The **MonitoringInterval** refers to the time interval for which the replication statistics should be collected. By default this is set to 12 hrs. The minimum value which can be set is 1hr and the maximum value is 7 days. It is recommended that a reasonably high value is used as smaller intervals might lead to incorrect conclusions.
 
 The **MonitoringStartTime** refers to the time at which Hyper-V Replica should start monitoring the replicating VM. The input is denoted in a 24hr clock and is set to 9AM local time by default.
 
 Both these values can be changed using the **Set-VMReplicationServer.** Eg: To modify the Monitoring interval to 12hrs and start time to 6AM, issue the following cmdlet:
     
-    
+```powershell
     Set-VMReplicationServer -MonitoringStartTime 06:00:00 -MonitoringInterval 12:00:00
-
+```
 In this example, when a VM is enabled for replication at 2pm, statistics are collected from 2pm to 6pm on the same day and health is reflected for this interval. The statistics are then reset and collected 6pm to 6am the next day and health is reflected for this interval.
 
 #### Q4: Are the statistics from the previous monitoring intervals available?
@@ -122,7 +127,7 @@ You can add the column ‘Replication Health’ from the Add/Remove Column optio
 
 Yup, **Measure-VMReplication** captures the health and state related information
     
-    
+```powershell
     PS E:\Windows\system32> Measure-VMReplication -vmname SampleVM | select ReplicationHealth, ReplicationHealthDetails | fl
     
     
@@ -145,17 +150,14 @@ Yup, **Measure-VMReplication** captures the health and state related information
     
     
                                'SampleVM' is behind the primary by more than an hour.}
-
+```
 #### Q9: Is this sufficient to build an alerting mechanism?
 
 Yes, using the cmdlet, you can set up custom warnings, send mail, run it frequently from Task scheduler etc. The options are limitless.
 
 Our resident PS expert **Rahul Razdan,** has this nifty PS script which sends out a mail detailing the health of the replicating VM.
-    
-    
-     
-    
-    
+
+```powershell
     Add-PSSnapin Microsoft.Exchange.Management.Powershell.Admin -erroraction silentlyContinue
     
     
@@ -406,7 +408,7 @@ Our resident PS expert **Rahul Razdan,** has this nifty PS script which sends ou
     
     
         }
-
+```
 The script which works for a standalone node can be easily extended to query across a cluster (using **Get-ClusterNode** ) **.** Give it a shot in your deployment!
 
 In summary, it is extremely important to monitor the health of the replicating VMs. The system has inbuilt retry semantics to address transient issues (eg: network outage) but there are certain events which require your intervention (eg: disk issues). Analyzing the replication health from time to time will help you identify and fix these issues.

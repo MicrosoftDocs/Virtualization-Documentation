@@ -1,5 +1,9 @@
 ---
 title:      "MMS 2013 Labs&#58; Powered by Microsoft/HP Private Cloud..."
+author: mattbriggs
+ms.author: mabrigg
+description: MMS 2013 Labs, Powered by Microsoft/HP Private Cloud
+ms.date: 05/29/2013
 date:       2013-05-29 06:54:00
 categories: uncategorized
 ---
@@ -11,13 +15,13 @@ A few weeks ago we held the annual 2013 Microsoft Management Summit in Las Vegas
 
 As usual, the hands-on labs and instructor-led labs continue to be some of the most popular offerings at MMS. MMS Labs offer folks the opportunity to kick the tires on a wide array of Microsoft technologies and products. As usual the lines started early. For the fourth year in a row, all of the MMS Labs were 100% virtualized using Windows Server Hyper-V and managed via System Center by our partners at Xtreme Consulting Group and using HP servers and storage. Of course, this year we upgraded to the latest version so everything was running on a Microsoft Cloud powered by Windows Server 2012 Hyper-V and System Center 2012 SP1.
 
-(BTW, I’ve blogged about this topic in the past years, if you’re interested the links are [here](http://blogs.technet.com/b/virtualization/archive/2010/05/06/mms-2010-labs-powered-by-hyper-v-system-center-hp.aspx) and [here](http://blogs.technet.com/b/virtualization/archive/2011/03/29/mms-2011-labs-powered-by-hyper-v-system-center-amp-hp.aspx).) Before I jump into the Microsoft Private Cloud, let me provide some context about the labs themselves.
+(BTW, I’ve blogged about this topic in the past years, if you’re interested the links are [here](https://blogs.technet.com/b/virtualization/archive/2010/05/06/mms-2010-labs-powered-by-hyper-v-system-center-hp.aspx) and [here](https://blogs.technet.com/b/virtualization/archive/2011/03/29/mms-2011-labs-powered-by-hyper-v-system-center-amp-hp.aspx).) Before I jump into the Microsoft Private Cloud, let me provide some context about the labs themselves.
 
 **What is a MMS  Hand On Lab?**
 
 One of the reasons the MMS Hands on Labs are so popular is because it’s a firsthand opportunity to evaluate and work with Windows Server and System Center in a variety of scenarios at your own pace. Here’s a picture of some of the lab stations…
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8182.1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8182.1.png) 
+[![Picture of lab stations](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8182.1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8182.1.png) 
 
 With the hands on labs, we’ve done all the work to create these scenarios based on your areas of interest. So, what does one of these labs look like on the backend? Let’s be clear, none of these labs are a single VM. That’s easy. Been there, done that. When you sit down and **_request_** a specific lab, the cloud infrastructure provisions the lab on **_highly available_** infrastructure and deploys **_services_** that can be anywhere from 4  – 12 virtual machines in your lab in **_seconds_**. There are over 650 different lab stations and we have to account for all types of deployment scenarios. For example,
 
@@ -43,7 +47,7 @@ Let’s start off with a relatively simple lab. This first lab is a Service Deli
 
 …and here’s what each virtual machine is running…
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3187.2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3187.2.png)
+[![what each virtual machine is running](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3187.2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3187.2.png)
 
  
 
@@ -57,7 +61,7 @@ Interested in creating virtualizing applications to deploy to your desktops, tab
 
 
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2703.3.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2703.3.png)
+ [![What te lab uses](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2703.3.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2703.3.png)
 
 How about configuring a web farm for multi-tenant applications? Here’s the lab which uses:
 
@@ -69,7 +73,7 @@ How about configuring a web farm for multi-tenant applications? Here’s the lab
 
 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5707.4.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5707.4.png) 
+[![Configuring a web farm for multi-tenant applications](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5707.4.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5707.4.png) 
 
  
 
@@ -83,7 +87,7 @@ Ever wanted to enable secure remote access with RemoteApp, DirectAccess and Dyna
 
 
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3716.5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3716.5.png)
+ [![Enabling secure remote access](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3716.5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3716.5.png)
 
 Again, these are just a few of the dozens of labs ready for you at the hands on labs. ****
 
@@ -116,7 +120,7 @@ As you can see, the 3Par includes SSD, 15k and 7200k disks. This is so the 3Par 
 
 Here’s a picture of the racks powering all of the MMS 2013 Labs. The two racks on the left with the yellow signs are the 3Par storage while the two racks on the right contain all of the compute nodes (32 blades) and management nodes (a two node System Center 2012 SP1 cluster). What you don’t see are the crowds gathered around pointing, snapping pictures, and gazing longingly…
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1588.6.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1588.6.png)
+[![the racks powering all of the MMS 2013 Labs](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1588.6.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1588.6.png)
 
  
 
@@ -132,13 +136,13 @@ Operations Manager was used to monitor the health and performance of all the Hyp
 
 In addition, 3Par has management packs that plug right into System Center, so Operations Manager was used to manage the 3Par storage as well…
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6371.7.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6371.7.png)
+ [![In addition, 3Par has management packs that plug right into System Center, so Operations Manager was used to manage the 3Par storage as well](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6371.7.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/6371.7.png)
 
  
 
 …having System Center integration with the 3Par storage came in handy when one of the drives died and Operations Manager was able to pinpoint exactly what disk failed and in what chassis…
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7612.8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7612.8.png)
+[![having System Center integration with the 3Par storage came in handy when one of the drives died and Operations Manager was able to pinpoint exactly what disk failed and in what chassis](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7612.8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7612.8.png)
 
  
 
@@ -146,13 +150,13 @@ Of course, everything in this Private Cloud solution is fully redundant so we di
 
 In terms of managing the overall solution, here’s a view of some of the real time monitoring we were displaying and where many folks just sat and watched.
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4628.9.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4628.9.png)
+[![real time monitoring](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4628.9.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4628.9.png)
 
  
 
 Virtual Machine Manager was used to provision and manage the entire virtualized lab delivery infrastructure and monitor and report on all the virtual machines in the system. In addition, HP has written a Virtual Machine Manager plug-in so you can view the HP Fabric from within System Center Virtual Machine Manager. Check this out:
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5734.10.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5734.10.png)
+ [![Virtual machine manager](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5734.10.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5734.10.png)
 
  
 
@@ -168,7 +172,7 @@ As you may know, Windows Server 2012 Hyper-V supports up to 64 nodes and 8,000 v
 
 
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2018.11.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2018.11.png) 
+[![Over the course of the week, over 48,000 virtual machines were provisioned](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2018.11.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2018.11.png) 
 
   * Average CPU Utilization across the entire pool of servers during labs hovered around 15%. Peaks were recorded a few times at ~20%. In short, even with thousands of Hyper-V VMs running on a 32 node cluster, we were barely taxing this well architected and balanced system.
   * While each blade was populated with 256 GB, they weren’t maxed. Each blade can take up to 384 GB.
@@ -206,23 +210,23 @@ P.S. Hope to see you at the Hands on Lab at TechEd!
 
 Here’s a close up of one of the racks. This rack has one of the c7000 chassis with 16 nodes for Hyper-V. It also includes the two managements heads clustered used for System Center. At the bottom of the rack are the Uninterruptible Power Supplies.
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5824.12.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5824.12.png)
+ [![a close up of one of the racks](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5824.12.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5824.12.png)
 
  
 
  …and here’s the back of one of the racks that held a c7000…
 
- [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5807.13.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5807.13.png)
+ [![the back of one of the racks that held a c7000](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5807.13.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5807.13.png)
 
  
 
 HP knew there was going to be a lot of interest, so they created full size cardboard replicas diagraming the hardware in use.
 
-[![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2630.14.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2630.14.png)
+[![full size cardboard replicas diagraming the hardware in use](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2630.14.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2630.14.png)
 
 …and here’s one more…
 
-  [![](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1258.15.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1258.15.png)
+  [![more of the full size cardboard replicas diagraming the hardware in use](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1258.15.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1258.15.png)
 
  
 

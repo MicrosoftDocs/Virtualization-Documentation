@@ -99,8 +99,7 @@ For a deeper look at the HCS, watch [John Stark’s DockerCon presentation](http
 ## containerd/cri
 
 > [!IMPORTANT]
-> CRI support is only available in Server 2019/Windows 10 1809 and later.  We're also still actively developing containerd for Windows.
-> Dev/test only.
+> CRI support is only available in Server 2019/Windows 10 1809 and later.
 
 While OCI specs defines a single container, [CRI](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto) (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can contain one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
 

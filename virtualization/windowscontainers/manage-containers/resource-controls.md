@@ -10,6 +10,8 @@ ms.assetid: 8ccd4192-4a58-42a5-8f74-2574d10de98e
 ---
 # Implementing resource controls for Windows containers
 
+> Applies to: Windows Server 2022, Windows Server 2019
+
 There are several resource controls that can be implemented on a per-container and per-resource basis.  By default, containers run are subject to typical Windows resource management, which in general is fair-share based but though configuration of these controls a developer or administrator can limit or influence resource usage.  Resources that can be controlled include: CPU/Processor, Memory/RAM, Disk/Storage and Networking/Throughput.
 
 Windows containers utilize [job objects](/windows/desktop/ProcThread/job-objects) to group and track processes associated with each container.  Resource controls are implemented on the parent job object associated with the container.
@@ -26,7 +28,7 @@ For each resource this section provides a mapping between the Docker command lin
 |-----|------|
 | Docker interface | [--memory](https://docs.docker.com/engine/admin/resource_constraints/#memory) |
 | HCS interface | [MemoryMaximumInMB](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Shared Kernel | [JOB_OBJECT_LIMIT_JOB_MEMORY](/windows/desktop/api/winnt/ns-winnt-_jobobject_basic_limit_information) |
+| Shared Kernel | [JOB_OBJECT_LIMIT_JOB_MEMORY](/windows/win32/api/winnt/ns-winnt-jobobject_basic_limit_information) |
 | Hyper-V isolation | Virtual machine memory |
 
 >[!NOTE]
@@ -38,7 +40,7 @@ For each resource this section provides a mapping between the Docker command lin
 |---|---|
 | Docker interface | [--cpus](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
 | HCS interface | [ProcessorCount](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Shared Kernel | Simulated with [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information)* |
+| Shared Kernel | Simulated with [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](/windows/win32/api/winnt/ns-winnt-jobobject_cpu_rate_control_information)* |
 | Hyper-V isolation | Number of virtual processors exposed |
 
 ### CPU (percent)
@@ -47,7 +49,7 @@ For each resource this section provides a mapping between the Docker command lin
 |---|---|
 | Docker interface | [--cpu-percent](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
 | HCS interface | [ProcessorMaximum](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Shared Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information) |
+| Shared Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](/windows/win32/api/winnt/ns-winnt-jobobject_cpu_rate_control_information) |
 | Hyper-V isolation | Hypervisor limits on virtual processors |
 
 ### CPU (shares)
@@ -56,7 +58,7 @@ For each resource this section provides a mapping between the Docker command lin
 |---|---|
 | Docker interface | [--cpu-shares](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
 | HCS interface | [ProcessorWeight](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Shared Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED](/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information) |
+| Shared Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED](/windows/win32/api/winnt/ns-winnt-jobobject_cpu_rate_control_information) |
 | Hyper-V isolation | Hypervisor virtual processors weights |
 
 ### Storage (image)

@@ -1,8 +1,14 @@
 ---
 title:      "TechEd, Day 1 Musings"
+description: 11,000 attendees, press, analysts and speakers here at TechEd is a testimony to the passion, and excitement that this generates amongst our customers and partners.
+author: scooley
+ms.author: scooley
 date:       2010-06-08 08:00:00
+ms.date: 06/08/2010
 categories: calista-technologies
 ---
+# TechEd 2010, Day 1 Musings
+
 Wow, 11,000 attendees, press, analysts and speakers here at TechEd. That’s a testimony to the passion, and excitement that this generates amongst our customers and partners. 
 
  

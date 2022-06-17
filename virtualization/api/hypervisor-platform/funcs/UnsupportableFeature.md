@@ -1,3 +1,11 @@
+---
+title: Exit caused by an unsupported processor feature
+description: Learn about context data for an exit caused by an unsupported processor feature.
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/20/2022
+---
+
 # Unsupported Feature
 
 

@@ -3,10 +3,10 @@ title: Happy holidays! windows server 2008 RC1 with hyper-v beta now available
 description: post id 3843
 keywords: virtualization, blog
 author: scooley
+ms.author: scooley
 ms.date: 12/13/2007
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 
 ---
 
@@ -16,7 +16,7 @@ Greetings!  Jeff Woolsey here from the virtualization team.
 
 We have some big news today! We just released the Windows Hyper-V BETA! The Hyper-V beta is a _major_ step forward from the Preview release we provided just a couple of months ago.
 
-This beta is publicly available and you can download it [here](http://www.microsoft.com/downloads/details.aspx?FamilyId=8F22F69E-D1AF-49F0-8236-2B742B354919&displaylang=en).
+This beta is publicly available and you can download it [here](https://www.microsoft.com/downloads/details.aspx?FamilyId=8F22F69E-D1AF-49F0-8236-2B742B354919&displaylang=en).
 
 Some of the new features added since the Windows Hyper-V CTP include:
 

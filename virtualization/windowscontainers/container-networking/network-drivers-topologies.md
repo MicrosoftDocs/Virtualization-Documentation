@@ -3,11 +3,14 @@ title: Windows container network drivers
 description: Network drivers and topologies for Windows containers.
 keywords: docker, containers
 author: daschott
-ms.date: 08/13/2020
+ms.author: daschott
+ms.date: 10/20/2021
 ms.topic: conceptual
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 # Windows container network drivers
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 In addition to leveraging the default 'nat' network created by Docker on Windows, users can define custom container networks. User-defined networks can be created using the Docker CLI [`docker network create -d <NETWORK DRIVER TYPE> <NAME>`](https://docs.docker.com/engine/reference/commandline/network_create/) command. On Windows, the following network driver types are available:
 
@@ -79,7 +82,7 @@ Containers attached to a network created with the 'l2bridge' driver will be conn
 
 To create a new l2bridge network with subnet `10.244.0.0/24`, gateway `10.244.0.1`, DNS server `10.244.0.7` and VLAN ID 7:
 ```powershell
-docker network create -d "l2bridge" --subnet 10.244.0.0/24 --gateway 10.244.0.1 -o com.docker.network.windowsshim.vlanid=7 -o com.docker.network.windowsshim.dnsservers="10.244.0.7" my_transparent
+docker network create -d "l2bridge" --subnet 10.244.0.0/24 --gateway 10.244.0.1 -o com.docker.network.windowsshim.vlanid=7 -o com.docker.network.windowsshim.dnsservers="10.244.0.7" my_l2bridge
 ```
 
   >[!TIP]

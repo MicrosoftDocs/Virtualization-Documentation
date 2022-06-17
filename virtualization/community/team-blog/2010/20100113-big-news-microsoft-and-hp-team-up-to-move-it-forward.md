@@ -1,13 +1,19 @@
 ---
 title:      "Big news&#58;  Microsoft and HP team up to move IT forward"
+author: mattbriggs
+ms.author: mabrigg
+description: Microsoft and HP team up to move IT forward
+ms.date: 01/13/2010
 date:       2010-01-13 08:11:00
 categories: application-virtualization
 ---
+# Big news, Microsoft and HP team up to move IT forward
+
 This morning Microsoft and HP announced a three-year, $250 million agreement to jointly deliver a new infrastructure-to-application model, advance cloud computing and generally reduce the costs and complexities of IT.   
 
  
 
-The press release, executive videos and other information about the agreement are available [here](http://www.microsoft.com/presspass/presskits/infrastructure/).
+The press release, executive videos and other information about the agreement are available [here](https://www.hp.com/us-en/hp-news/press-release.html?id=168065#.YmwJyO3MK70).
 
  
 
@@ -27,7 +33,7 @@ Virtualization is (of course) at the center of the partnership.  New solutions 
 
  
 
-Together we’ll provide heterogeneous data center management solutions for virtualized environments through deep integration of [HP’s Insight Software](http://www.hp.com/go/insightsoftware) and [Business Technology Optimization software](http://www.hp.com/go/btosoftware) with the System Center suite. You will be able to automate the provisioning, monitoring and ongoing maintenance of virtualized IT services in a mixed datacenter.  We’ll simplify initial deployment, hardware monitoring and power management while providing performance optimization of HP ProLiant servers and HP BladeSystem infrastructure. 
+Together we’ll provide heterogeneous data center management solutions for virtualized environments through deep integration of [HP’s Insight Software](https://www.hp.com/hk-en/hp-news/press-release.html?id=103725#.YmwKbe3MK71) and [Business Technology Optimization software](https://www.hp.com/hpinfo/newsroom/press/2008/080617xa.html) with the System Center suite. You will be able to automate the provisioning, monitoring and ongoing maintenance of virtualized IT services in a mixed datacenter.  We’ll simplify initial deployment, hardware monitoring and power management while providing performance optimization of HP ProLiant servers and HP BladeSystem infrastructure. 
 
  
 
@@ -47,7 +53,7 @@ Over the course of the next three years the two companies will work together on 
 
  
 
-·         Help customers implement private cloud by combining HP’s virtualization infrastructure expertise with the [Microsoft Dynamic Datacenter Toolkit](http://www.microsoft.com/hosting/dynamicdatacenter/Home.html). 
+·         Help customers implement private cloud by combining HP’s virtualization infrastructure expertise with the [Microsoft Dynamic Datacenter Toolkit](https://www.microsoft.com/hosting/dynamicdatacenter/Home.html). 
 
  
 

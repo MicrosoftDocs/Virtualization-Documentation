@@ -1,3 +1,11 @@
+---
+title: WHvQueryGpaRangeDirtyBitmap
+description: Description for understanding parameters, return value and remarks when working with WHvQueryGpaRangeDirtyBitmap
+author: jstarks
+ms.author: jostarks
+ms.date: 06/06/2019
+---
+
 # WHvQueryGpaRangeDirtyBitmap
 
 ## Syntax

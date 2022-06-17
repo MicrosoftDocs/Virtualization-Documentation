@@ -1,8 +1,14 @@
 ---
 title:      "Guest post&#58; NetApp and Microsoft See Virtualization Success Together"
+description: Microsoft and NetApp have been helping customers get the most out of their virtualized infrastructure.
+author: mabriggs
+ms.author: mabrigg
 date:       2010-05-27 12:51:27
+ms.date: 05/27/2010
 categories: citrix
 ---
+# Guest post: NetApp and Microsoft See Virtualization Success Together
+
 Hi, I’m Friea Berg from NetApp’s Virtualization Solutions team. Today, I’d like to share how Microsoft and NetApp have been helping customers get the most out of their virtualized infrastructure. Microsoft is a leader in applications, Windows, and management while NetApp leads in highly efficient and flexible storage. By integrating our solutions and joining forces, we provide the virtualized infrastructure building blocks that enable customer success. 
 
 There are significant challenges and capabilities required at each layer of an end-to-end virtualization solution.  Our engineers have worked with Microsoft engineers for more than four years as Microsoft developed first Hyper-V and then R2, and we’ve built on our expertise with Microsoft technologies to deliver products tightly integrated with Hyper-V, System Center Operations Manager, System Center Virtual Machine Manager, Microsoft dynamic datacenter toolkits and Microsoft enterprise applications.  
@@ -31,7 +37,7 @@ We believe so strongly in the benefits of our joint virtualization solution that
 
 
 
-  * Customers are now embarking on larger and more ambitious data center projects. Hosting provider **nGenX** , for example, has built a cloud computing offering that provides a single portal for customers to manage their virtual and physical environments in any of five data centers and developed an automated geo-diverse disaster recovery strategy. The company expects to add 1,000 VMs this year while reducing support costs by up to 40%. ([details](http://www.microsoft.com/casestudies/Case_Study_Detail.aspx?CaseStudyID=4000006911))  
+  * Customers are now embarking on larger and more ambitious data center projects. Hosting provider **nGenX** , for example, has built a cloud computing offering that provides a single portal for customers to manage their virtual and physical environments in any of five data centers and developed an automated geo-diverse disaster recovery strategy. The company expects to add 1,000 VMs this year while reducing support costs by up to 40%. ([details](https://www.microsoft.com/casestudies/Case_Study_Detail.aspx?CaseStudyID=4000006911))  
 
 
 

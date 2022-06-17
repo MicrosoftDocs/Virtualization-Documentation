@@ -1,8 +1,14 @@
 ---
 title:      "Welcome to TechEd 2010 - Server Virtualization and Managment Sessions"
+description: There is something surreal in being able to blog from an aircraft at 37,000 feet.
+author: scooley
+ms.author: scooley
 date:       2010-06-07 07:19:00
+ms.date: 06/07/2010
 categories: uncategorized
 ---
+# Welcome to TechEd 2010 - Server Virtualization and Managment Sessions
+
 Hi, as I type this post while flying over the country, it just amazes me how far we have come from the days of original computing machines. There is something surreal in being able to blog from an aircraft at 37,000 feet. 
 
 I will be at TechEd in New Orleans starting this Monday Jun 7, 2010. We are really excited with the content that we have available for our customers. Besides the two big announcements on RemoteFX and Dynamic Memory there are a host of other sessions that we have for you. Below you will find a list of breakout sessions that are relevant to folks interested in delving into Server Virtualization and Management. Don’t forget that we also have some great hands-on labs and sessions on App-V, MED-V and a host of other technologies and solutions as well. Note that session times sometime change due to unavoidable circumstances so please check the latest schedules at the venue. 

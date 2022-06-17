@@ -2,11 +2,18 @@
 title: HcsGetLayerVhdMountPath
 description: HcsGetLayerVhdMountPath
 author: faymeng
-ms.author: qiumeng
-ms.topic: article
+ms.author: mabrigg
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
 ms.date: 06/09/2021
+api_name:
+- HcsGetLayerVhdMountPath
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
 ---
 # HcsGetLayerVhdMountPath
 
@@ -32,7 +39,7 @@ The handle to a mounted virtual hard disk on the host.
 
 `mountPath`
 
-Receives the volume path for the layer. It is the caller's responsibility to release the returned string buffer using [`LocalFree`](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-localfree).
+Receives the volume path for the layer. It is the caller's responsibility to release the returned string buffer using [`LocalFree`](/windows/win32/api/winbase/nf-winbase-localfree).
 
 ## Return Values
 

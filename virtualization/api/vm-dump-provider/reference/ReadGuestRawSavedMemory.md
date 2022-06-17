@@ -1,3 +1,11 @@
+---
+title: The ReadGuestRawSavedMemory function
+description: Reads raw memory from the saved state file. This function reads raw memory from the saved state file as if it were a flat memory layout, regardless of the guest memory layout.
+ms.date: 04/19/2022
+author: mattbriggs
+ms.author: mabrigg
+---
+
 # ReadGuestRawSavedMemory function
 
 Reads raw memory from the saved state file. This function reads raw memory from the saved state file as if it were a flat memory layout, regardless of the guest memory layout. If BytesRead returns something lower than BufferSize, then the end of memory has been reached.

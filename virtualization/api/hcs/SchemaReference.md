@@ -2,22 +2,29 @@
 title: JSON Schema Reference
 description: JSON Schema Reference
 author: faymeng
-ms.author: qiumeng
-ms.topic: article
+ms.author: mabrigg
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
 ms.date: 06/09/2021
+api_name:
+- JSON Schema Reference
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
 ---
 # JSON Schema Reference
 
-# Agenda
+## Agenda
 - [Enums](#enums)
 - [Structs](#structs)
 - [JSON type table](#JSON-type)
 - [Version Map](#Schema-Version-Map)
 ---
 <a name = "enums"></a>
-# Enums
+## Enums
 Note: all variants listed should be used as string
 <a name = "ApplySecureBootTemplateType"></a>
 ## ApplySecureBootTemplateType
@@ -128,6 +135,18 @@ Referenced by: [Device](#Device)
 
 ---
 
+<a name = "EnlightenmentModifications"></a>
+## EnlightenmentModifications
+Enum for enlightenment modifications
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Unreported"`<br>|[2.5](#Schema-Version-Map)||
+|`"FavorAutoEoi"`<br>|[2.5](#Schema-Version-Map)||
+|`"RsvdZ1"`<br>|[2.5](#Schema-Version-Map)||
+
+---
+
 <a name = "EventDataType"></a>
 ## EventDataType
 Referenced by: [EventData](#EventData)
@@ -152,6 +171,22 @@ Data types for event data elements, based on EVT_VARIANT_TYPE
 |`"Boolean"`<br>|[2.1](#Schema-Version-Map)||
 |`"Binary"`<br>|[2.1](#Schema-Version-Map)||
 |`"Guid"`<br>|[2.1](#Schema-Version-Map)||
+
+---
+
+<a name = "ExitInitiator"></a>
+## ExitInitiator
+Referenced by: [SystemExit](#SystemExit); [WorkerExit](#WorkerExit)
+
+Initiator of an exit (guest, management client, etc.)
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"None"`<br>|[2.4](#Schema-Version-Map)||
+|`"GuestOS"`<br>|[2.4](#Schema-Version-Map)|Initiated by the guest OS (e.g. guest OS shutdown)|
+|`"Client"`<br>|[2.4](#Schema-Version-Map)|Initiated by the management client|
+|`"Internal"`<br>|[2.4](#Schema-Version-Map)|Initiated internally (e.g. due to an error) by the virtual machine or HCS.|
+|`"Unknown"`<br>|[2.4](#Schema-Version-Map)|Initiator is unknown, e.g. a process was terminated or crashed.|
 
 ---
 
@@ -225,6 +260,42 @@ Referenced by: [GpuConfiguration](#GpuConfiguration)
 
 ---
 
+<a name = "IntegrationComponentOperatingStateReason"></a>
+## IntegrationComponentOperatingStateReason
+Referenced by: [IntegrationComponentStatus](#IntegrationComponentStatus)
+
+Possible reason for integration component's state
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Unknown"`<br>|[2.5](#Schema-Version-Map)||
+|`"AppsInCriticalState"`<br>|[2.5](#Schema-Version-Map)||
+|`"CommunicationTimedOut"`<br>|[2.5](#Schema-Version-Map)||
+|`"FailedCommunication"`<br>|[2.5](#Schema-Version-Map)||
+|`"HealthyApps"`<br>|[2.5](#Schema-Version-Map)||
+|`"ProtocolMismatch"`<br>|[2.5](#Schema-Version-Map)||
+
+---
+
+<a name = "IntegrationComponentOperationalState"></a>
+## IntegrationComponentOperationalState
+Referenced by: [IntegrationComponentStatus](#IntegrationComponentStatus)
+
+Operational status for integration component
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Unknown"`<br>|[2.5](#Schema-Version-Map)||
+|`"Degraded"`<br>|[2.5](#Schema-Version-Map)||
+|`"Dormant"`<br>|[2.5](#Schema-Version-Map)||
+|`"Error"`<br>|[2.5](#Schema-Version-Map)||
+|`"LostCommunication"`<br>|[2.5](#Schema-Version-Map)||
+|`"NonRecoverableError"`<br>|[2.5](#Schema-Version-Map)||
+|`"NoContact"`<br>|[2.5](#Schema-Version-Map)||
+|`"Ok"`<br>|[2.5](#Schema-Version-Map)||
+
+---
+
 <a name = "InterfaceClassType"></a>
 ## InterfaceClassType
 Referenced by: [InterfaceClass](#InterfaceClass)
@@ -239,6 +310,23 @@ Enum used to specify how the interface class should be treated when applying a d
 
 ---
 
+<a name = "InterruptModerationMode"></a>
+## InterruptModerationMode
+Referenced by: [IovSettings](#IovSettings)
+
+The valid interrupt moderation modes for I/O virtualization (IOV) offloading.
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Default"`<br>|[2.4](#Schema-Version-Map)||
+|`"Adaptive"`<br>|[2.4](#Schema-Version-Map)||
+|`"Off"`<br>|[2.4](#Schema-Version-Map)||
+|`"Low"`<br>|[2.4](#Schema-Version-Map)||
+|`"Medium"`<br>|[2.4](#Schema-Version-Map)||
+|`"High"`<br>|[2.4](#Schema-Version-Map)||
+
+---
+
 <a name = "JobTerminationPolicy"></a>
 ## JobTerminationPolicy
 Referenced by: [JobNamespace](#JobNamespace)
@@ -249,6 +337,20 @@ Referenced by: [JobNamespace](#JobNamespace)
 |---|---|---|
 |`"PermanentQuiescent"`<br>|[2.3](#Schema-Version-Map)||
 |`"KillOnHandleClose"`<br>|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "KvpSource"></a>
+## KvpSource
+Referenced by: [KvpQuery](#KvpQuery)
+
+The source sets the location of the key-value pairs stored depending on the type of the key-value pairs
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"KvpSetByHost"`<br>|[2.5](#Schema-Version-Map)|This source specifies to use the location of the key-value pairs set by host|
+|`"KvpSetByGuest"`<br>|[2.5](#Schema-Version-Map)|This source specifies to use the location of the key-value pairs set by guest|
+|`"GuestOSInfo"`<br>|[2.5](#Schema-Version-Map)|This source specifies to use the location of the populated information about guest's oeprating system|
 
 ---
 
@@ -350,6 +452,20 @@ Enumeration of different supported service processor modification requests
 
 ---
 
+<a name = "NonArchitecturalCoreSharing"></a>
+## NonArchitecturalCoreSharing
+Referenced by: [ProcessorCapabilitiesInfo](#ProcessorCapabilitiesInfo); [VmProcessorRequirements](#VmProcessorRequirements)
+
+Enum for non architecture core sharing
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Unreported"`<br>|[2.5](#Schema-Version-Map)||
+|`"Off"`<br>|[2.5](#Schema-Version-Map)||
+|`"On"`<br>|[2.5](#Schema-Version-Map)||
+
+---
+
 <a name = "NotificationType"></a>
 ## NotificationType
 Referenced by: [Properties](#Properties); [SystemExitStatus](#SystemExitStatus)
@@ -394,6 +510,68 @@ Referenced by: [ObjectSymlink](#ObjectSymlink)
 
 ---
 
+<a name = "OperationFailureDetail"></a>
+## OperationFailureDetail
+Referenced by: [OperationFailure](#OperationFailure)
+
+
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Invalid"`<br>|[2.4](#Schema-Version-Map)||
+|`"CreateInternalError"`<br>|[2.4](#Schema-Version-Map)||
+|`"ConstructStateError"`<br>|[2.4](#Schema-Version-Map)||
+|`"RuntimeOsTypeMismatch"`<br>|[2.4](#Schema-Version-Map)||
+|`"Construct"`<br>|[2.4](#Schema-Version-Map)|HcsCreateComputeSystem|
+|`"Start"`<br>|[2.4](#Schema-Version-Map)|HcsStartComputeSystem|
+|`"Pause"`<br>|[2.4](#Schema-Version-Map)|HcsPauseComputeSystem|
+|`"Resume"`<br>|[2.4](#Schema-Version-Map)|HcsResumeComputeSystem|
+|`"Shutdown"`<br>|[2.4](#Schema-Version-Map)|HcsShutdownComputeSystem|
+|`"Terminate"`<br>|[2.4](#Schema-Version-Map)|HcsTerminateComputeSystem|
+|`"Save"`<br>|[2.4](#Schema-Version-Map)|HcsSaveComputeSystem|
+|`"GetProperties"`<br>|[2.4](#Schema-Version-Map)|HcsGetComputeSystemProperties|
+|`"Modify"`<br>|[2.4](#Schema-Version-Map)|HcsModifyComputeSystem|
+|`"Crash"`<br>|[2.4](#Schema-Version-Map)|HcsCrashComputeSystem|
+|`"GuestCrash"`<br>|[2.4](#Schema-Version-Map)|A guest OS crash occurred during an HCS API call.|
+|`"LifecycleNotify"`<br>|[2.4](#Schema-Version-Map)||
+|`"ExecuteProcess"`<br>|[2.4](#Schema-Version-Map)|HcsCreateProcess|
+|`"GetProcessInfo"`<br>|[2.4](#Schema-Version-Map)|HcsGetProcessInfo|
+|`"WaitForProcess"`<br>|[2.4](#Schema-Version-Map)||
+|`"SignalProcess"`<br>|[2.4](#Schema-Version-Map)|HcsSignalProcess|
+|`"ModifyProcess"`<br>|[2.4](#Schema-Version-Map)|HcsModifyProcess|
+|`"PrepareForHosting"`<br>|[2.4](#Schema-Version-Map)||
+|`"RegisterHostedSystem"`<br>|[2.4](#Schema-Version-Map)||
+|`"UnregisterHostedSystem"`<br>|[2.4](#Schema-Version-Map)||
+|`"PrepareForClone"`<br>|[2.4](#Schema-Version-Map)||
+|`"GetCloneTemplate"`<br>|[2.4](#Schema-Version-Map)||
+
+---
+
+<a name = "OperationType"></a>
+## OperationType
+Referenced by: [OperationInfo](#OperationInfo)
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"None"`<br>|[2.6](#Schema-Version-Map)||
+|`"Construct"`<br>|[2.6](#Schema-Version-Map)|HcsCreateComputeSystem|
+|`"Start"`<br>|[2.6](#Schema-Version-Map)|HcsStartComputeSystem|
+|`"Pause"`<br>|[2.6](#Schema-Version-Map)|HcsPauseComputeSystem|
+|`"Resume"`<br>|[2.6](#Schema-Version-Map)|HcsResumeComputeSystem|
+|`"Shutdown"`<br>|[2.6](#Schema-Version-Map)|HcsShutdownComputeSystem|
+|`"Terminate"`<br>|[2.6](#Schema-Version-Map)|HcsTerminateComputeSystem|
+|`"Save"`<br>|[2.6](#Schema-Version-Map)|HcsSaveComputeSystem|
+|`"GetProperties"`<br>|[2.6](#Schema-Version-Map)|HcsGetComputeSystemProperties|
+|`"Modify"`<br>|[2.6](#Schema-Version-Map)|HcsModifyComputeSystem|
+|`"Crash"`<br>|[2.6](#Schema-Version-Map)|HcsCrashComputeSystem|
+|`"ExecuteProcess"`<br>|[2.6](#Schema-Version-Map)|HcsCreateProcess|
+|`"GetProcessInfo"`<br>|[2.6](#Schema-Version-Map)|HcsGetProcessInfo|
+|`"SignalProcess"`<br>|[2.6](#Schema-Version-Map)|HcsSignalProcess|
+|`"ModifyProcess"`<br>|[2.6](#Schema-Version-Map)|HcsModifyProcess|
+|`"CancelOperation"`<br>|[2.6](#Schema-Version-Map)|HcsCancelOperation|
+
+---
+
 <a name = "OsLayerType"></a>
 ## OsLayerType
 Referenced by: [OsLayerOptions](#OsLayerOptions)
@@ -409,7 +587,7 @@ Referenced by: [OsLayerOptions](#OsLayerOptions)
 
 <a name = "OsType"></a>
 ## OsType
-Referenced by: [Properties](#Properties)
+Referenced by: [ComputeSystemProperties](#ComputeSystemProperties); [Properties](#Properties)
 
 
 
@@ -460,6 +638,158 @@ Referenced by: [PauseOptions](#PauseOptions)
 |`"MemoryLow"`<br>|[2.0](#Schema-Version-Map)||
 |`"MemoryMedium"`<br>|[2.0](#Schema-Version-Map)||
 |`"MemoryHigh"`<br>|[2.0](#Schema-Version-Map)||
+
+---
+
+<a name = "ProcessorFeature"></a>
+## ProcessorFeature
+Referenced by: [ProcessorCapabilitiesInfo](#ProcessorCapabilitiesInfo); [ProcessorFeatureSet](#ProcessorFeatureSet); [VmProcessorRequirements](#VmProcessorRequirements)
+
+Enum for processor features
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Sse3"`<br>|[2.5](#Schema-Version-Map)||
+|`"LahfSahf"`<br>|[2.5](#Schema-Version-Map)||
+|`"Ssse3"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sse4_1"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sse4_2"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sse4A"`<br>|[2.5](#Schema-Version-Map)||
+|`"Xop"`<br>|[2.5](#Schema-Version-Map)||
+|`"Popcnt"`<br>|[2.5](#Schema-Version-Map)||
+|`"Cmpxchg16B"`<br>|[2.5](#Schema-Version-Map)||
+|`"Altmovcr8"`<br>|[2.5](#Schema-Version-Map)||
+|`"Lzcnt"`<br>|[2.5](#Schema-Version-Map)||
+|`"Misalignsse"`<br>|[2.5](#Schema-Version-Map)||
+|`"MmxExt"`<br>|[2.5](#Schema-Version-Map)||
+|`"Amd3Dnow"`<br>|[2.5](#Schema-Version-Map)||
+|`"ExtAmd3Dnow"`<br>|[2.5](#Schema-Version-Map)||
+|`"Page1Gb"`<br>|[2.5](#Schema-Version-Map)||
+|`"AmdAes"`<br>|[2.5](#Schema-Version-Map)||
+|`"Pclmulqdq"`<br>|[2.5](#Schema-Version-Map)||
+|`"Pcid"`<br>|[2.5](#Schema-Version-Map)||
+|`"Fma4"`<br>|[2.5](#Schema-Version-Map)||
+|`"F16C"`<br>|[2.5](#Schema-Version-Map)||
+|`"Rdrand"`<br>|[2.5](#Schema-Version-Map)||
+|`"Rdwrfsgs"`<br>|[2.5](#Schema-Version-Map)||
+|`"Smep"`<br>|[2.5](#Schema-Version-Map)||
+|`"EnhancedFastString"`<br>|[2.5](#Schema-Version-Map)||
+|`"Bmi1"`<br>|[2.5](#Schema-Version-Map)||
+|`"Bmi2"`<br>|[2.5](#Schema-Version-Map)||
+|`"Movbe"`<br>|[2.5](#Schema-Version-Map)||
+|`"Npiep1"`<br>|[2.5](#Schema-Version-Map)||
+|`"DepX87FpuSave"`<br>|[2.5](#Schema-Version-Map)||
+|`"Rdseed"`<br>|[2.5](#Schema-Version-Map)||
+|`"Adx"`<br>|[2.5](#Schema-Version-Map)||
+|`"IntelPrefetch"`<br>|[2.5](#Schema-Version-Map)||
+|`"Smap"`<br>|[2.5](#Schema-Version-Map)||
+|`"Hle"`<br>|[2.5](#Schema-Version-Map)||
+|`"Rtm"`<br>|[2.5](#Schema-Version-Map)||
+|`"Rdtscp"`<br>|[2.5](#Schema-Version-Map)||
+|`"Clflushopt"`<br>|[2.5](#Schema-Version-Map)||
+|`"Clwb"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sha"`<br>|[2.5](#Schema-Version-Map)||
+|`"X87PointersSaved"`<br>|[2.5](#Schema-Version-Map)||
+|`"Invpcid"`<br>|[2.5](#Schema-Version-Map)||
+|`"Ibrs"`<br>|[2.5](#Schema-Version-Map)||
+|`"Stibp"`<br>|[2.5](#Schema-Version-Map)||
+|`"Ibpb"`<br>|[2.5](#Schema-Version-Map)||
+|`"UnrestrictedGuest"`<br>|[2.5](#Schema-Version-Map)||
+|`"Mdd"`<br>|[2.5](#Schema-Version-Map)||
+|`"FastShortRepMov"`<br>|[2.5](#Schema-Version-Map)||
+|`"L1DCacheFlush"`<br>|[2.5](#Schema-Version-Map)||
+|`"RdclNo"`<br>|[2.5](#Schema-Version-Map)||
+|`"IbrsAll"`<br>|[2.5](#Schema-Version-Map)||
+|`"SkipL1Df"`<br>|[2.5](#Schema-Version-Map)||
+|`"SsbNo"`<br>|[2.5](#Schema-Version-Map)||
+|`"RsbaNo"`<br>|[2.5](#Schema-Version-Map)||
+|`"VirtSpecCtrl"`<br>|[2.5](#Schema-Version-Map)||
+|`"Rdpid"`<br>|[2.5](#Schema-Version-Map)||
+|`"Umip"`<br>|[2.5](#Schema-Version-Map)||
+|`"MbsNo"`<br>|[2.5](#Schema-Version-Map)||
+|`"MbClear"`<br>|[2.5](#Schema-Version-Map)||
+|`"TaaNo"`<br>|[2.5](#Schema-Version-Map)||
+|`"TsxCtrl"`<br>|[2.5](#Schema-Version-Map)||
+|`"AcountMcount"`<br>|[2.5](#Schema-Version-Map)||
+|`"TscInvariant"`<br>|[2.5](#Schema-Version-Map)||
+|`"Clzero"`<br>|[2.5](#Schema-Version-Map)||
+|`"Rdpru"`<br>|[2.5](#Schema-Version-Map)||
+|`"La57"`<br>|[2.5](#Schema-Version-Map)||
+|`"Mbec"`<br>|[2.5](#Schema-Version-Map)||
+|`"NestedVirt"`<br>|[2.5](#Schema-Version-Map)||
+|`"Psfd"`<br>|[2.5](#Schema-Version-Map)||
+|`"CetSs"`<br>|[2.5](#Schema-Version-Map)||
+|`"CetIbt"`<br>|[2.5](#Schema-Version-Map)||
+|`"VmxExceptionInject"`<br>|[2.5](#Schema-Version-Map)||
+|`"UmwaitTpause"`<br>|[2.5](#Schema-Version-Map)||
+|`"Movdiri"`<br>|[2.5](#Schema-Version-Map)||
+|`"Movdir64b"`<br>|[2.5](#Schema-Version-Map)||
+|`"Cldemote"`<br>|[2.5](#Schema-Version-Map)||
+|`"Serialize"`<br>|[2.5](#Schema-Version-Map)||
+|`"TscDeadlineTmr"`<br>|[2.5](#Schema-Version-Map)||
+|`"TscAdjust"`<br>|[2.5](#Schema-Version-Map)||
+|`"FZLRepMovsb"`<br>|[2.5](#Schema-Version-Map)||
+|`"FSRepStosb"`<br>|[2.5](#Schema-Version-Map)||
+|`"FSRepCmpsb"`<br>|[2.5](#Schema-Version-Map)||
+|`"SentinelAmd"`<br>|[2.5](#Schema-Version-Map)||
+|`"Asid16"`<br>|[2.5](#Schema-Version-Map)||
+|`"TGran16"`<br>|[2.5](#Schema-Version-Map)||
+|`"TGran64"`<br>|[2.5](#Schema-Version-Map)||
+|`"Haf"`<br>|[2.5](#Schema-Version-Map)||
+|`"Hdbs"`<br>|[2.5](#Schema-Version-Map)||
+|`"Pan"`<br>|[2.5](#Schema-Version-Map)||
+|`"AtS1E1"`<br>|[2.5](#Schema-Version-Map)||
+|`"Uao"`<br>|[2.5](#Schema-Version-Map)||
+|`"El0Aarch32"`<br>|[2.5](#Schema-Version-Map)||
+|`"Fp"`<br>|[2.5](#Schema-Version-Map)||
+|`"FpHp"`<br>|[2.5](#Schema-Version-Map)||
+|`"AdvSimd"`<br>|[2.5](#Schema-Version-Map)||
+|`"AdvSimdHp"`<br>|[2.5](#Schema-Version-Map)||
+|`"GicV3V4"`<br>|[2.5](#Schema-Version-Map)||
+|`"PmuV3"`<br>|[2.5](#Schema-Version-Map)||
+|`"PmuV3ArmV81"`<br>|[2.5](#Schema-Version-Map)||
+|`"PmuV3ArmV84"`<br>|[2.5](#Schema-Version-Map)||
+|`"ArmAes"`<br>|[2.5](#Schema-Version-Map)||
+|`"PolyMul"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sha1"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sha256"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sha512"`<br>|[2.5](#Schema-Version-Map)||
+|`"Crc32"`<br>|[2.5](#Schema-Version-Map)||
+|`"Atomic"`<br>|[2.5](#Schema-Version-Map)||
+|`"Rdm"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sha3"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sm3"`<br>|[2.5](#Schema-Version-Map)||
+|`"Sm4"`<br>|[2.5](#Schema-Version-Map)||
+|`"Dp"`<br>|[2.5](#Schema-Version-Map)||
+|`"Fhm"`<br>|[2.5](#Schema-Version-Map)||
+|`"DcCvap"`<br>|[2.5](#Schema-Version-Map)||
+|`"DcCvadp"`<br>|[2.5](#Schema-Version-Map)||
+|`"ApaBase"`<br>|[2.5](#Schema-Version-Map)||
+|`"ApaEp"`<br>|[2.5](#Schema-Version-Map)||
+|`"ApaEp2"`<br>|[2.5](#Schema-Version-Map)||
+|`"ApaEp2Fp"`<br>|[2.5](#Schema-Version-Map)||
+|`"ApaEp2Fpc"`<br>|[2.5](#Schema-Version-Map)||
+|`"Jscvt"`<br>|[2.5](#Schema-Version-Map)||
+|`"Fcma"`<br>|[2.5](#Schema-Version-Map)||
+|`"RcpcV83"`<br>|[2.5](#Schema-Version-Map)||
+|`"RcpcV84"`<br>|[2.5](#Schema-Version-Map)||
+|`"Gpa"`<br>|[2.5](#Schema-Version-Map)||
+|`"L1ipPipt"`<br>|[2.5](#Schema-Version-Map)||
+|`"DzPermitted"`<br>|[2.5](#Schema-Version-Map)||
+|`"SentinelArm"`<br>|[2.5](#Schema-Version-Map)||
+
+---
+
+<a name = "ProcessorFeatureSetMode"></a>
+## ProcessorFeatureSetMode
+Referenced by: [ProcessorFeatureSet](#ProcessorFeatureSet)
+
+Enum for setting Strict/Flexible configuration mode
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Strict"`<br>|[2.5](#Schema-Version-Map)|Default mode that throws error when feature values not supported by the host are configured|
+|`"Permissive"`<br>|[2.5](#Schema-Version-Map)|mode that filters and leaves out the feature values not supported by the host|
 
 ---
 
@@ -541,9 +871,36 @@ Referenced by: [Uefi](#Uefi)
 
 ---
 
+<a name = "ShutdownMechanism"></a>
+## ShutdownMechanism
+Referenced by: [ShutdownOptions](#ShutdownOptions)
+
+Different mechanisms to perform a shutdown operation
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"GuestConnection"`<br>|[2.5](#Schema-Version-Map)||
+|`"IntegrationService"`<br>|[2.5](#Schema-Version-Map)||
+
+---
+
+<a name = "ShutdownType"></a>
+## ShutdownType
+Referenced by: [ShutdownOptions](#ShutdownOptions)
+
+Different operations that are related or classified as a type of shutdown
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Shutdown"`<br>|[2.5](#Schema-Version-Map)||
+|`"Hibernate"`<br>|[2.5](#Schema-Version-Map)||
+|`"Reboot"`<br>|[2.5](#Schema-Version-Map)||
+
+---
+
 <a name = "State"></a>
 ## State
-Referenced by: [Properties](#Properties)
+Referenced by: [ComputeSystemProperties](#ComputeSystemProperties); [Properties](#Properties)
 
 Compute system state which is exposed to external clients
 
@@ -555,6 +912,20 @@ Compute system state which is exposed to external clients
 |`"Stopped"`<br>|[2.1](#Schema-Version-Map)||
 |`"SavedAsTemplate"`<br>|[2.1](#Schema-Version-Map)||
 |`"Unknown"`<br>|[2.1](#Schema-Version-Map)||
+
+---
+
+<a name = "StateOverride"></a>
+## StateOverride
+Referenced by: [KvpExchange](#KvpExchange); [NetworkAdapter](#NetworkAdapter)
+
+
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Default"`<br>|[2.4](#Schema-Version-Map)|Use the default mode specified by the system|
+|`"Disabled"`<br>|[2.4](#Schema-Version-Map)||
+|`"Enabled"`<br>|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -570,6 +941,21 @@ Referenced by: [CloseHandle](#CloseHandle)
 |`"StdOut"`<br>|[2.0](#Schema-Version-Map)||
 |`"StdErr"`<br>|[2.0](#Schema-Version-Map)||
 |`"All"`<br>|[2.1](#Schema-Version-Map)||
+
+---
+
+<a name = "SubnodeType"></a>
+## SubnodeType
+Referenced by: [Subnode](#Subnode)
+
+
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Any"`<br>|[2.4](#Schema-Version-Map)||
+|`"Socket"`<br>|[2.4](#Schema-Version-Map)||
+|`"Cluster"`<br>|[2.4](#Schema-Version-Map)||
+|`"L3"`<br>|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -590,9 +976,26 @@ Compute system property types. The properties will be returned as a Schema.Respo
 
 ---
 
+<a name = "SystemExitDetail"></a>
+## SystemExitDetail
+Referenced by: [SystemExit](#SystemExit)
+
+
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Invalid"`<br>|[2.4](#Schema-Version-Map)||
+|`"HcsApiFatalError"`<br>|[2.4](#Schema-Version-Map)|An non-recoverable error occurred during an HCS API call.|
+|`"ServiceStop"`<br>|[2.4](#Schema-Version-Map)|Forced exit due to stopping the vmcompute service.|
+|`"Shutdown"`<br>|[2.4](#Schema-Version-Map)|If the initiator is ExitInitiator::Client, the exit is due to HcsShutdownComputeSystem If the initiator is ExitInitiator::GuestOS, the exit was initiated by the guest OS.|
+|`"Terminate"`<br>|[2.4](#Schema-Version-Map)|Forced exit due to HcsTerminateComputeSystem|
+|`"UnexpectedExit"`<br>|[2.4](#Schema-Version-Map)|The system exited unexpectedly, other attribution records may provide more information.|
+
+---
+
 <a name = "SystemType"></a>
 ## SystemType
-Referenced by: [Properties](#Properties); [SystemQuery](#SystemQuery)
+Referenced by: [ComputeSystemProperties](#ComputeSystemProperties); [Properties](#Properties); [SystemQuery](#SystemQuery)
 
 
 
@@ -615,6 +1018,43 @@ Referenced by: [UefiBootEntry](#UefiBootEntry)
 |`"VmbFs"`<br>|[2.0](#Schema-Version-Map)||
 |`"Network"`<br>|[2.0](#Schema-Version-Map)||
 |`"File"`<br>|[2.1](#Schema-Version-Map)||
+
+---
+
+<a name = "VirtualDeviceFailureDetail"></a>
+## VirtualDeviceFailureDetail
+Referenced by: [VirtualDeviceFailure](#VirtualDeviceFailure)
+
+Provides detail on the context in which a virtual device failed. These values are informational only. Clients should not take a dependency on them
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"None"`<br>|[2.4](#Schema-Version-Map)||
+|`"Create"`<br>|[2.4](#Schema-Version-Map)||
+|`"Initialize"`<br>|[2.4](#Schema-Version-Map)||
+|`"StartReservingResources"`<br>|[2.4](#Schema-Version-Map)||
+|`"FinishReservingResources"`<br>|[2.4](#Schema-Version-Map)||
+|`"FreeReservedResources"`<br>|[2.4](#Schema-Version-Map)||
+|`"SaveReservedResources"`<br>|[2.4](#Schema-Version-Map)||
+|`"PowerOnCold"`<br>|[2.4](#Schema-Version-Map)||
+|`"PowerOnRestore"`<br>|[2.4](#Schema-Version-Map)||
+|`"PowerOff"`<br>|[2.4](#Schema-Version-Map)||
+|`"Save"`<br>|[2.4](#Schema-Version-Map)||
+|`"Resume"`<br>|[2.4](#Schema-Version-Map)||
+|`"Pause"`<br>|[2.4](#Schema-Version-Map)||
+|`"EnableOptimizations"`<br>|[2.4](#Schema-Version-Map)||
+|`"StartDisableOptimizations"`<br>|[2.4](#Schema-Version-Map)||
+|`"FinishDisableOptimizations"`<br>|[2.4](#Schema-Version-Map)||
+|`"Reset"`<br>|[2.4](#Schema-Version-Map)||
+|`"PostReset"`<br>|[2.4](#Schema-Version-Map)||
+|`"Teardown"`<br>|[2.4](#Schema-Version-Map)||
+|`"SaveCompatibilityInfo"`<br>|[2.4](#Schema-Version-Map)||
+|`"MetricRestore"`<br>|[2.4](#Schema-Version-Map)||
+|`"MetricEnumerate"`<br>|[2.4](#Schema-Version-Map)||
+|`"MetricEnumerateForSave"`<br>|[2.4](#Schema-Version-Map)||
+|`"MetricReset"`<br>|[2.4](#Schema-Version-Map)||
+|`"MetricEnable"`<br>|[2.4](#Schema-Version-Map)||
+|`"MetricDisable"`<br>|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -661,8 +1101,117 @@ Indicated the progress of a Windows memory dump in a WindowsCrashReport.
 
 ---
 
+<a name = "WorkerExitDetail"></a>
+## WorkerExitDetail
+Referenced by: [WorkerExit](#WorkerExit)
+
+Detailed reasons for a VM stop. These values are informational only. Clients should not take a dependency on them
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Invalid"`<br>|[2.4](#Schema-Version-Map)||
+|`"PowerOff"`<br>|[2.4](#Schema-Version-Map)||
+|`"PowerOffCritical"`<br>|[2.4](#Schema-Version-Map)||
+|`"Reset"`<br>|[2.4](#Schema-Version-Map)||
+|`"GuestCrash"`<br>|[2.4](#Schema-Version-Map)||
+|`"GuestFirmwareCrash"`<br>|[2.4](#Schema-Version-Map)||
+|`"TripleFault"`<br>|[2.4](#Schema-Version-Map)||
+|`"DeviceFatalApicRequest"`<br>|[2.4](#Schema-Version-Map)||
+|`"DeviceFatalMsrRequest"`<br>|[2.4](#Schema-Version-Map)||
+|`"DeviceFatalException"`<br>|[2.4](#Schema-Version-Map)||
+|`"DeviceFatalError"`<br>|[2.4](#Schema-Version-Map)||
+|`"DeviceMachineCheck"`<br>|[2.4](#Schema-Version-Map)||
+|`"EmulatorError"`<br>|[2.4](#Schema-Version-Map)||
+|`"VidTerminate"`<br>|[2.4](#Schema-Version-Map)||
+|`"ProcessUnexpectedExit"`<br>|[2.4](#Schema-Version-Map)||
+|`"InitializationFailure"`<br>|[2.4](#Schema-Version-Map)||
+|`"InitializationStartTimeout"`<br>|[2.4](#Schema-Version-Map)||
+|`"ColdStartFailure"`<br>|[2.4](#Schema-Version-Map)||
+|`"ResetStartFailure"`<br>|[2.4](#Schema-Version-Map)||
+|`"FastRestoreStartFailure"`<br>|[2.4](#Schema-Version-Map)||
+|`"RestoreStartFailure"`<br>|[2.4](#Schema-Version-Map)||
+|`"FastSavePreservePartition"`<br>|[2.4](#Schema-Version-Map)||
+|`"FastSavePreservePartitionHandleTransfer"`<br>|[2.4](#Schema-Version-Map)||
+|`"FastSave"`<br>|[2.4](#Schema-Version-Map)||
+|`"CloneTemplate"`<br>|[2.4](#Schema-Version-Map)||
+|`"Save"`<br>|[2.4](#Schema-Version-Map)||
+|`"Migrate"`<br>|[2.4](#Schema-Version-Map)||
+|`"MigrateFailure"`<br>|[2.4](#Schema-Version-Map)||
+|`"CannotReferenceVm"`<br>|[2.4](#Schema-Version-Map)||
+|`"MgotUnregister"`<br>|[2.4](#Schema-Version-Map)||
+|`"FastSavePreservePartitionHandleTransferStorage"`<br>|[2.5](#Schema-Version-Map)|deprecated; use FastSavePreservePartitionWithHandleTransfer|
+|`"FastSavePreservePartitionHandleTransferNetworking"`<br>|[2.5](#Schema-Version-Map)|deprecated; see above|
+|`"FastSavePreservePartitionHandleTransferStorageAndNetworking"`<br>|[2.5](#Schema-Version-Map)|deprecated; see above|
+|`"FastSavePreservePartitionHsr"`<br>|[2.5](#Schema-Version-Map)||
+|`"FastSavePreservePartitionWithHandleTransfer"`<br>|[2.5](#Schema-Version-Map)||
+|`"FastSaveWithHandleTransfer"`<br>|[2.5](#Schema-Version-Map)||
+
+---
+
+<a name = "WorkerExitType"></a>
+## WorkerExitType
+Referenced by: [WorkerExit](#WorkerExit)
+
+
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"None"`<br>|[2.4](#Schema-Version-Map)||
+|`"InitializationFailed"`<br>|[2.4](#Schema-Version-Map)|VM Failed to initialize.|
+|`"Stopped"`<br>|[2.4](#Schema-Version-Map)|VM shutdown after complete stop|
+|`"Saved"`<br>|[2.4](#Schema-Version-Map)|VM shutdown after complete save|
+|`"StoppedOnReset"`<br>|[2.4](#Schema-Version-Map)|VM reset and the VM was configured to stop on reset|
+|`"UnexpectedStop"`<br>|[2.4](#Schema-Version-Map)|VM worker process exited unexpectedly|
+|`"ResetFailed"`<br>|[2.4](#Schema-Version-Map)|VM exit after failing to reset|
+|`"UnrecoverableError"`<br>|[2.4](#Schema-Version-Map)|VM stopped because of an unrecoverable error (e.g., storage failure)|
+
+---
+
+<a name = "XsaveProcessorFeature"></a>
+## XsaveProcessorFeature
+Referenced by: [ProcessorCapabilitiesInfo](#ProcessorCapabilitiesInfo); [ProcessorFeatureSet](#ProcessorFeatureSet); [VmProcessorRequirements](#VmProcessorRequirements)
+
+Enum for xsave processor features
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Xsave"`<br>|[2.5](#Schema-Version-Map)||
+|`"Xsave_Opt"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx2"`<br>|[2.5](#Schema-Version-Map)||
+|`"Fma"`<br>|[2.5](#Schema-Version-Map)||
+|`"Mpx"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512Dq"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512Cd"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512Bw"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512Vl"`<br>|[2.5](#Schema-Version-Map)||
+|`"Xsave_Comp"`<br>|[2.5](#Schema-Version-Map)||
+|`"Xsave_Supervisor"`<br>|[2.5](#Schema-Version-Map)||
+|`"Xcr1"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512_Bitalg"`<br>|[2.5](#Schema-Version-Map)||
+|`"AVX512_Ifma"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512_Vbmi"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512_Vbmi2"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512_Vnni"`<br>|[2.5](#Schema-Version-Map)||
+|`"Gfni"`<br>|[2.5](#Schema-Version-Map)||
+|`"Vaes"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512_Vpopcntdq"`<br>|[2.5](#Schema-Version-Map)||
+|`"Vpclmulqdq"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512_Bf16"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512_Vp2Intersect"`<br>|[2.5](#Schema-Version-Map)||
+|`"Avx512Fp16"`<br>|[2.5](#Schema-Version-Map)||
+|`"Xfd"`<br>|[2.5](#Schema-Version-Map)||
+|`"AmxTile"`<br>|[2.5](#Schema-Version-Map)||
+|`"AmxBf16"`<br>|[2.5](#Schema-Version-Map)||
+|`"AmxInt8"`<br>|[2.5](#Schema-Version-Map)||
+|`"AvxVnni"`<br>|[2.5](#Schema-Version-Map)||
+|`"SentinelAmdXsave"`<br>|[2.5](#Schema-Version-Map)||
+
+---
+
 <a name = "structs"></a>
-# Structs
+## Structs
 <a name = "Attachment"></a>
 ## Attachment
 Referenced by: [Scsi](#Scsi)
@@ -676,15 +1225,26 @@ Referenced by: [Scsi](#Scsi)
 |**CachingMode**<br>|[CachingMode](#CachingMode)|[2.1](#Schema-Version-Map)||
 |**ReadOnly**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**SupportCompressedVolumes**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**AlwaysAllowSparseFiles**<br>|[bool](#JSON-type)|[2.6](#Schema-Version-Map)||
+|**SupportEncryptedFiles**<br>|[bool](#JSON-type)|[2.6](#Schema-Version-Map)||
 
 ---
 
 <a name = "AttributionRecord"></a>
 ## AttributionRecord
+Referenced by: [ResultError](#ResultError); [SystemExitStatus](#SystemExitStatus)
 
 
 
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**WorkerExit**<br>|[WorkerExit](#WorkerExit)|[2.4](#Schema-Version-Map)||
+|**GuestCrash**<br>|[GuestCrash](#GuestCrash)|[2.4](#Schema-Version-Map)||
+|**TripleFault**<br>|[TripleFault](#TripleFault)|[2.4](#Schema-Version-Map)||
+|**InjectNonMaskableInterrupt**<br>|[InjectNonMaskableInterrupt](#InjectNonMaskableInterrupt)|[2.4](#Schema-Version-Map)||
+|**OperationFailure**<br>|[OperationFailure](#OperationFailure)|[2.4](#Schema-Version-Map)||
+|**SystemExit**<br>|[SystemExit](#SystemExit)|[2.4](#Schema-Version-Map)||
+|**VirtualDeviceFailure**<br>|[VirtualDeviceFailure](#VirtualDeviceFailure)|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -722,6 +1282,7 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 |**BaseBoardSerialNumber**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ChassisSerialNumber**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ChassisAssetTag**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**EnableHibernation**<br>|[bool](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**UseUtc**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**LinuxKernelDirect**<br>|[LinuxKernelDirect](#LinuxKernelDirect)|[2.2](#Schema-Version-Map)||
 
@@ -736,6 +1297,7 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 |**ImagePath**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
 |**FileSystemName**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
 |**VolumeGuid**<br>|[Guid](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**MountFlags**<br>|[uint32](#JSON-type)|[2.5](#Schema-Version-Map)|MountFlags are the flags that are used to alter the behaviour of a mounted cim. These values are defined by the CIMFS API. The value passed for this field will be forwarded to the the CimMountImage call.|
 
 ---
 
@@ -792,6 +1354,48 @@ Describes the configuration of a compute system to create with all of the necess
 
 ---
 
+<a name = "ComputeSystemProperties"></a>
+## ComputeSystemProperties
+An object consisting of basic system properties for a compute system
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Id**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
+|**Name**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
+|**SystemType**<br>|[SystemType](#SystemType)|[2.5](#Schema-Version-Map)||
+|**State**<br>|[State](#State)|[2.5](#Schema-Version-Map)||
+|**Owner**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
+|**RuntimeId**<br>|[Guid](#JSON-type)|[2.5](#Schema-Version-Map)||
+|**RuntimeOsType**<br>|[OsType](#OsType)|[2.5](#Schema-Version-Map)||
+|**HostingSystemId**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
+|**IsDummy**<br>|[bool](#JSON-type)|[2.5](#Schema-Version-Map)||
+|**ObRoot**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
+|**RuntimeTemplateId**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
+
+---
+
+<a name = "ConsoleImage"></a>
+## ConsoleImage
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Image**<br>|[ByteArray](#JSON-type)|[2.5](#Schema-Version-Map)||
+
+---
+
+<a name = "ConsoleImageQuery"></a>
+## ConsoleImageQuery
+A query to request a screenshot of the console of the virtual machine
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Width**<br>|[uint16](#JSON-type)|[2.5](#Schema-Version-Map)|Requested width of the resulting image|
+|**Height**<br>|[uint16](#JSON-type)|[2.5](#Schema-Version-Map)|Requested height of the resulting image|
+|**Flags**<br>|[uint32](#JSON-type)|[2.5](#Schema-Version-Map)|Flags that determine certain characteristics of the output of the returned image 0x00000001ul: The image data is returned in the OctetString format defined by the DMTF. The first four bytes of the data contains the number of octets (bytes), including the four-byte length, in the big-endian format|
+
+---
+
 <a name = "ConsoleSize"></a>
 ## ConsoleSize
 Referenced by: [ProcessModifyRequest](#ProcessModifyRequest)
@@ -824,6 +1428,7 @@ Configuration of a Windows Server Container, used during its creation to set up 
 |**ContainerCredentialGuard**<br>|[ContainerCredentialGuardState](#ContainerCredentialGuardState)|[2.1](#Schema-Version-Map)|Optional configuration and description of credentials forwarded to the container guest from the container host.|
 |**RegistryChanges**<br>|[RegistryChanges](#RegistryChanges)|[2.0](#Schema-Version-Map)|List of Windows registry key/value changes applied on the container on creation.|
 |**AssignedDevices**<br>|<[Device](#Device)> array|[2.1](#Schema-Version-Map)|Optional list of direct device assignment configurations.|
+|**AdditionalDeviceNamespace**<br>|[ContainersDef_Device](#ContainersDef_Device)|[2.3](#Schema-Version-Map)|Optional list of container device extensions to use during device assignment scenarios.|
 
 ---
 
@@ -976,6 +1581,8 @@ Referenced by: [FilesystemNamespace](#FilesystemNamespace)
 
 <a name = "ContainersDef_Device"></a>
 ## ContainersDef_Device
+Referenced by: [Container](#Container)
+
 
 
 |Field|Type|NewInVersion|Description|
@@ -986,6 +1593,8 @@ Referenced by: [FilesystemNamespace](#FilesystemNamespace)
 
 <a name = "CpuGroup"></a>
 ## CpuGroup
+Referenced by: [VirtualMachine_Processor](#VirtualMachine_Processor)
+
 CPU groups allow Hyper-V administrators to better manage and allocate the host's CPU resources across guest virtual machines
 
 |Field|Type|NewInVersion|Description|
@@ -1018,6 +1627,7 @@ Referenced by: [CpuGroupConfigurations](#CpuGroupConfigurations)
 |**GroupId**<br>|[Guid](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**Affinity**<br>|[CpuGroupAffinity](#CpuGroupAffinity)|[2.1](#Schema-Version-Map)||
 |**GroupProperties**<br>|<[CpuGroupProperty](#CpuGroupProperty)> array|[2.1](#Schema-Version-Map)||
+|**HypervisorGroupId**<br>|[uint64](#JSON-type)|[2.5](#Schema-Version-Map)|Hypervisor CPU group IDs exposed to clients|
 
 ---
 
@@ -1065,6 +1675,9 @@ Crash information reported through HcsEventSystemCrashInitiated and HcsEventSyst
 |**WindowsCrashInfo**<br>|[WindowsCrashReport](#WindowsCrashReport)|[2.1](#Schema-Version-Map)|Additional Windows specific crash report information. This information is only present in HcsEventSystemCrashReport and only if the GuestCrashReporting device has been configured in the Devices as well as the Windows guest OS.|
 |**CrashParameters**<br>|<[uint64](#JSON-type)> array|[2.3](#Schema-Version-Map)|Crash parameters as reported by the guest OS. For Windows these correspond to the bug check code followed by 4 bug check code specific values. The CrashParameters are available in both HcsEventSystemCrashInitiated and HcsEventSystemCrashReport events.|
 |**CrashLog**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)|An optional string provided by the guest OS. Currently only used by Linux guest OSes with Hyper-V Linux Integration Services configured.|
+|**Status**<br>|[int32](#JSON-type)|[2.4](#Schema-Version-Map)|Provides overall status on crash reporting, S_OK indicates success, other HRESULT values on error.|
+|**PreOSId**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Opaque guest OS reported ID.|
+|**CrashStackUnavailable**<br>|[bool](#JSON-type)|[2.4](#Schema-Version-Map)|If true, the guest OS reported that a crash dump stack/handler was unavailable or could not be invoked.|
 
 ---
 
@@ -1187,47 +1800,6 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 
 ---
 
-<a name = "DownlevelFixups"></a>
-## DownlevelFixups
-Referenced by: [DownlevelSku](#DownlevelSku)
-
-
-
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**build_number**<br>|[uint32](#JSON-type)|[2.3](#Schema-Version-Map)||
-|**lcu**<br>|[uint32](#JSON-type)|[2.3](#Schema-Version-Map)||
-|**file**<br>|<[string](#JSON-type)> array|[2.3](#Schema-Version-Map)||
-
----
-
-<a name = "DownlevelNamespace"></a>
-## DownlevelNamespace
-Referenced by: [Namespace](#Namespace)
-
-
-
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**base_image_path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
-|**sandbox_path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
-|**sku**<br>|<[DownlevelSku](#DownlevelSku)> array|[2.3](#Schema-Version-Map)||
-
----
-
-<a name = "DownlevelSku"></a>
-## DownlevelSku
-Referenced by: [DownlevelNamespace](#DownlevelNamespace)
-
-
-
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
-|**fixups**<br>|<[DownlevelFixups](#DownlevelFixups)> array|[2.3](#Schema-Version-Map)||
-
----
-
 <a name = "EnhancedModeVideo"></a>
 ## EnhancedModeVideo
 Referenced by: [Devices](#Devices)
@@ -1242,6 +1814,8 @@ Referenced by: [Devices](#Devices)
 
 <a name = "ErrorEvent"></a>
 ## ErrorEvent
+Referenced by: [ResultError](#ResultError)
+
 Error descriptor that provides the info of an error object
 
 |Field|Type|NewInVersion|Description|
@@ -1344,6 +1918,7 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 |---|---|---|---|
 |**UseVsock**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|When true, use Vsock rather than Hyper-V sockets to communicate with the guest service.|
 |**UseConnectedSuspend**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|When true, don't disconnect the guest connection when pausing the virtual machine.|
+|**UseHostTimeZone**<br>|[bool](#JSON-type)|[2.4](#Schema-Version-Map)|when true, set the guest's time zone to that of the host.|
 
 ---
 
@@ -1363,10 +1938,13 @@ Information about the guest.
 
 <a name = "GuestCrash"></a>
 ## GuestCrash
+Referenced by: [AttributionRecord](#AttributionRecord)
 
 
 
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**CrashParameters**<br>|<[uint64](#JSON-type)> array|[2.4](#Schema-Version-Map)|Crash parameters as reported by the guest.|
 
 ---
 
@@ -1422,6 +2000,8 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 
 <a name = "Heartbeat"></a>
 ## Heartbeat
+Referenced by: [Services](#Services)
+
 
 
 
@@ -1451,7 +2031,6 @@ Referenced by: [Namespace](#Namespace)
 |**base_image_path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
 |**sandbox_path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
 |**file**<br>|<[string](#JSON-type)> array|[2.3](#Schema-Version-Map)||
-|**optionalfile**<br>|<[string](#JSON-type)> array|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -1517,6 +2096,8 @@ Referenced by: [Container_HvSocket](#Container_HvSocket); [VirtualMachine_HvSock
 
 <a name = "InjectNonMaskableInterrupt"></a>
 ## InjectNonMaskableInterrupt
+Referenced by: [AttributionRecord](#AttributionRecord)
+
 A non-maskable interrupt (NMI) was inject by the host management client or other tool.
 
 
@@ -1528,8 +2109,11 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 ## IntegrationComponentStatus
 
 
-
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**IsEnabled**<br>|[bool](#JSON-type)|[2.5](#Schema-Version-Map)|If IC is enabled on this compute system|
+|**State**<br>|[IntegrationComponentOperationalState](#IntegrationComponentOperationalState)|[2.5](#Schema-Version-Map)|The current state of the IC inside the VM|
+|**Reason**<br>|[IntegrationComponentOperatingStateReason](#IntegrationComponentOperatingStateReason)|[2.5](#Schema-Version-Map)|Explanation for the State|
 
 ---
 
@@ -1549,10 +2133,15 @@ Referenced by: [DeviceCategory](#DeviceCategory); [DeviceInstance](#DeviceInstan
 
 <a name = "IovSettings"></a>
 ## IovSettings
+Referenced by: [NetworkAdapter](#NetworkAdapter)
 
 
 
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**OffloadWeight**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|The weight assigned to this port for I/O virtualization (IOV) offloading. Setting this to 0 disables IOV offloading.|
+|**QueuePairsRequested**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|The number of queue pairs requested for this port for I/O virtualization (IOV) offloading.|
+|**InterruptModeration**<br>|[InterruptModerationMode](#InterruptModerationMode)|[2.4](#Schema-Version-Map)|The interrupt moderation mode for I/O virtualization (IOV) offloading.|
 
 ---
 
@@ -1620,6 +2209,31 @@ Referenced by: [Devices](#Devices)
 
 ---
 
+<a name = "KvpExchange"></a>
+## KvpExchange
+Referenced by: [Services](#Services)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**EnableHostOSInfoKvpItems**<br>|[StateOverride](#StateOverride)|[2.5](#Schema-Version-Map)||
+|**EntriesToBeAdded**<br>|[Map](#JSON-type)<[string](#JSON-type), [string](#JSON-type)>|[2.5](#Schema-Version-Map)||
+|**EntriesToBeRemoved**<br>|<[string](#JSON-type)> array|[2.5](#Schema-Version-Map)||
+
+---
+
+<a name = "KvpQuery"></a>
+## KvpQuery
+Query information to request from the key-value exchange integration component
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Source**<br>|[KvpSource](#KvpSource)|[2.5](#Schema-Version-Map)|The location of the key-value pairs depending on the type of the key-value pairs|
+|**Keys**<br>|<[string](#JSON-type)> array|[2.5](#Schema-Version-Map)|Keys in the key-value pair to be used for the query depending on the operation|
+
+---
+
 <a name = "Layer"></a>
 ## Layer
 Referenced by: [CombinedLayers](#CombinedLayers); [LayerData](#LayerData); [Storage](#Storage)
@@ -1673,6 +2287,7 @@ Referenced by: [ProcessorTopology](#ProcessorTopology)
 |**PackageId**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**CoreId**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**RootVpIndex**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Subnodes**<br>|<[Subnode](#Subnode)> array|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -1721,7 +2336,7 @@ Object that describes a named pipe that is requested to be mapped into a compute
 ## MemoryInformationForVm
 Referenced by: [Properties](#Properties)
 
-The response of memory information for virtual machine when query memory propery of compute system
+The response of memory information for virtual machine when query memory property of compute system
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
@@ -1846,7 +2461,6 @@ Referenced by: [ContainersDef_Container](#ContainersDef_Container); [DeviceExten
 |**registry**<br>|[RegistryNamespace](#RegistryNamespace)|[2.3](#Schema-Version-Map)||
 |**network**<br>|[NetworkNamespace](#NetworkNamespace)|[2.3](#Schema-Version-Map)||
 |**device**<br>|[DeviceNamespace](#DeviceNamespace)|[2.3](#Schema-Version-Map)||
-|**downlevel**<br>|[DownlevelNamespace](#DownlevelNamespace)|[2.3](#Schema-Version-Map)||
 |**hostfiles**<br>|[HostFiles](#HostFiles)|[2.3](#Schema-Version-Map)||
 
 ---
@@ -1861,6 +2475,10 @@ Referenced by: [Devices](#Devices)
 |---|---|---|---|
 |**EndpointId**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**MacAddress**<br>|[MacAddress](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**InstanceId**<br>|[Guid](#JSON-type)|[2.4](#Schema-Version-Map)||
+|**DisableInterruptBatching**<br>|[bool](#JSON-type)|[2.4](#Schema-Version-Map)|Disable interrupt batching (MNF) for network to decrease latency and increase throughput, at per-interrupt processing cost.|
+|**IovSettings**<br>|[IovSettings](#IovSettings)|[2.4](#Schema-Version-Map)|The I/O virtualization (IOV) offloading configuration.|
+|**ConnectionState**<br>|[StateOverride](#StateOverride)|[2.4](#Schema-Version-Map)|When updating a network adapter, indicates whether the adapter should be connected, disconnected, or updated in place.|
 
 ---
 
@@ -1940,7 +2558,53 @@ Referenced by: [ObjectDirectory](#ObjectDirectory); [ObjectNamespace](#ObjectNam
 
 <a name = "OperationFailure"></a>
 ## OperationFailure
+Referenced by: [AttributionRecord](#AttributionRecord)
 
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Detail**<br>|[OperationFailureDetail](#OperationFailureDetail)|[2.4](#Schema-Version-Map)||
+
+---
+
+<a name = "OperationFailureInfo"></a>
+## OperationFailureInfo
+Referenced by: [OperationInfo](#OperationInfo)
+
+/ Contains information describing a failure in an operation on a compute system.
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Result**<br>|[int32](#JSON-type)|[2.6](#Schema-Version-Map)||
+
+---
+
+<a name = "OperationInfo"></a>
+## OperationInfo
+/ Information about an operation on a compute system. / An operation is typically an HCS API call but can also be something like / a compute system exit or crash.
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Operation**<br>|[OperationType](#OperationType)|[2.6](#Schema-Version-Map)|/ Type of the operation|
+|**StartTimestamp**<br>|[DateTime](#JSON-type)|[2.6](#Schema-Version-Map)|/ Start time of the opertation|
+|**EndTimestamp**<br>|[DateTime](#JSON-type)|[2.6](#Schema-Version-Map)|/ End time of the opertation|
+|**FailureInfo**<br>|[OperationFailureInfo](#OperationFailureInfo)|[2.6](#Schema-Version-Map)|/ Contains extra information if the operation failed. / If this field is not present, the operation succeeded.|
+
+---
+
+<a name = "OperationNotificationInfo"></a>
+## OperationNotificationInfo
+Payload for an operation notification
+
+
+**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+
+---
+
+<a name = "OperationProgress"></a>
+## OperationProgress
+Information about the progress of an operation
 
 
 **Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
@@ -1955,6 +2619,7 @@ Referenced by: [ObjectDirectory](#ObjectDirectory); [ObjectNamespace](#ObjectNam
 |---|---|---|---|
 |**Type**<br>|[OsLayerType](#OsLayerType)|[2.1](#Schema-Version-Map)||
 |**DisableCiCacheOptimization**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**SkipUpdateBcdForBoot**<br>|[bool](#JSON-type)|[2.5](#Schema-Version-Map)||
 
 ---
 
@@ -2040,12 +2705,44 @@ Passed to HcsRpc_ModifyProcess
 
 ---
 
+<a name = "ProcessorCapabilitiesInfo"></a>
+## ProcessorCapabilitiesInfo
+Host specific processor feature capabilities
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**ProcessorFeatures**<br>|<[ProcessorFeature](#ProcessorFeature)> array|[2.5](#Schema-Version-Map)|Processor features|
+|**XsaveProcessorFeatures**<br>|<[XsaveProcessorFeature](#XsaveProcessorFeature)> array|[2.5](#Schema-Version-Map)|Xsave processor features|
+|**CacheLineFlushSize**<br>|[uint64](#JSON-type)|[2.5](#Schema-Version-Map)|Processor cache line flush size|
+|**ImplementedPhysicalAddressBits**<br>|[uint64](#JSON-type)|[2.5](#Schema-Version-Map)|Processor physical address bits|
+|**NonArchitecturalCoreSharing**<br>|[NonArchitecturalCoreSharing](#NonArchitecturalCoreSharing)|[2.5](#Schema-Version-Map)|Processor non architectural core sharing|
+
+---
+
+<a name = "ProcessorFeatureSet"></a>
+## ProcessorFeatureSet
+Referenced by: [VirtualMachine_Processor](#VirtualMachine_Processor)
+
+VM specific processor feature requirements
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**ProcessorFeatures**<br>|<[ProcessorFeature](#ProcessorFeature)> array|[2.5](#Schema-Version-Map)|Processor features|
+|**XsaveProcessorFeatures**<br>|<[XsaveProcessorFeature](#XsaveProcessorFeature)> array|[2.5](#Schema-Version-Map)|Xsave processor features|
+|**ProcessorFeatureSetMode**<br>|[ProcessorFeatureSetMode](#ProcessorFeatureSetMode)|[2.5](#Schema-Version-Map)|Processor feature set mode|
+
+---
+
 <a name = "ProcessorLimits"></a>
 ## ProcessorLimits
 Used when modifying processor scheduling limits of a virtual machine.
 
-
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Limit**<br>|[uint64](#JSON-type)|[2.4](#Schema-Version-Map)|Maximum amount of host CPU resources that the virtual machine can use.|
+|**Weight**<br>|[uint64](#JSON-type)|[2.4](#Schema-Version-Map)|Value describing the relative priority of this virtual machine compared to other virtual machines.|
+|**Reservation**<br>|[uint64](#JSON-type)|[2.4](#Schema-Version-Map)|Minimum amount of host CPU resources that the virtual machine is guaranteed.|
+|**MaximumFrequencyMHz**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Provides the target maximum CPU frequency, in MHz, for a virtual machine.|
 
 ---
 
@@ -2133,6 +2830,20 @@ Provided in the EventData parameter of an HcsEventProcessExited HCS_EVENT.
 |**HostingSystemId**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**SharedMemoryRegionInfo**<br>|<[SharedMemoryRegionInfo](#SharedMemoryRegionInfo)> array|[2.1](#Schema-Version-Map)||
 |**GuestConnectionInfo**<br>|[GuestConnectionInfo](#GuestConnectionInfo)|[2.1](#Schema-Version-Map)||
+|**PropertyResponses**<br>|[Map](#JSON-type)<[string](#JSON-type), [PropertyResponse](#PropertyResponse)>|[2.5](#Schema-Version-Map)|This is a new response object, introduced in version 2.5, which maps the requested property names to their associated response objects.|
+
+---
+
+<a name = "PropertyResponse"></a>
+## PropertyResponse
+Referenced by: [Properties](#Properties); [ServiceProperties](#ServiceProperties)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Error**<br>|[ResultError](#ResultError)|[2.5](#Schema-Version-Map)||
+|**Response**<br>|[Any](#JSON-type)|[2.5](#Schema-Version-Map)||
 
 ---
 
@@ -2237,6 +2948,7 @@ Referenced by: [RegistryHiveStack](#RegistryHiveStack)
 |**readonly**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
 |**immutable**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
 |**inherittrustclass**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**trustedhive**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**writethrough**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
 |**fileaccesstoken**<br>|[uint64](#JSON-type)|[2.3](#Schema-Version-Map)|The FileAccessToken field should only be used in-memory and not serialized/deserialized, since it refers to a token handle.|
 
@@ -2352,12 +3064,16 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 
 <a name = "ResultError"></a>
 ## ResultError
+Referenced by: [PropertyResponse](#PropertyResponse)
+
 Extended error information returned by the HCS
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Error**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)|HRESULT error code|
 |**ErrorMessage**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Error message|
+|**ErrorEvents**<br>|<[ErrorEvent](#ErrorEvent)> array|[2.4](#Schema-Version-Map)|Error event details|
+|**Attribution**<br>|<[AttributionRecord](#AttributionRecord)> array|[2.4](#Schema-Version-Map)|Attribution record|
 
 ---
 
@@ -2381,6 +3097,7 @@ Object describing a SCSI controller.
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Attachments**<br>|[Map](#JSON-type)<[uint32](#JSON-type), [Attachment](#Attachment)>|[2.0](#Schema-Version-Map)|Map of attachments, where the key is the integer LUN number on the controller.|
+|**DisableInterruptBatching**<br>|[bool](#JSON-type)|[2.4](#Schema-Version-Map)|Disable interrupt batching (MNF) for storage to decrease latency and increase throughput, at per-interrupt processing cost.|
 
 ---
 
@@ -2391,6 +3108,7 @@ Structure used to perform property query
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**PropertyTypes**<br>|<[GetPropertyType](#GetPropertyType)> array|[2.1](#Schema-Version-Map)|Specifies the property array to query|
+|**PropertyQueries**<br>|[Map](#JSON-type)<[string](#JSON-type), [Any](#JSON-type)>|[2.5](#Schema-Version-Map)||
 
 ---
 
@@ -2401,15 +3119,22 @@ Properties of the host
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Properties**<br>|<[Any](#JSON-type)> array|[2.1](#Schema-Version-Map)|The service properties will be returned as an array corresponding to the requested property types.|
+|**PropertyResponses**<br>|[Map](#JSON-type)<[string](#JSON-type), [PropertyResponse](#PropertyResponse)>|[2.5](#Schema-Version-Map)|This is a response object, introduced in version 2.5, which takes the name of the property and its associated query object if needed|
 
 ---
 
 <a name = "Services"></a>
 ## Services
+Referenced by: [VirtualMachine](#VirtualMachine)
 
 
 
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Heartbeat**<br>|[Heartbeat](#Heartbeat)|[2.5](#Schema-Version-Map)|Heartbeat integration component that is used to detect if a VM is operational|
+|**Shutdown**<br>|[Shutdown](#Shutdown)|[2.5](#Schema-Version-Map)|Shutdown integration component that is used for any shutdown-related actions|
+|**Timesync**<br>|[Timesync](#Timesync)|[2.5](#Schema-Version-Map)|Timesync integration component that syncs time guest's time based on host's time|
+|**KvpExchange**<br>|[KvpExchange](#KvpExchange)|[2.5](#Schema-Version-Map)|Key-value exchange integration component to exchange key-value pairs between host and guests|
 
 ---
 
@@ -2463,6 +3188,30 @@ Referenced by: [Properties](#Properties)
 |---|---|---|---|
 |**SectionName**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**GuestPhysicalAddress**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+
+---
+
+<a name = "Shutdown"></a>
+## Shutdown
+Referenced by: [Services](#Services)
+
+
+
+
+**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+
+---
+
+<a name = "ShutdownOptions"></a>
+## ShutdownOptions
+Options for HcsShutdownComputeSystem
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Mechanism**<br>|[ShutdownMechanism](#ShutdownMechanism)|[2.5](#Schema-Version-Map)|What kind of mechanism used to perform the shutdown operation|
+|**Type**<br>|[ShutdownType](#ShutdownType)|[2.5](#Schema-Version-Map)|What is the type of the shutdown operation|
+|**Force**<br>|[bool](#JSON-type)|[2.5](#Schema-Version-Map)|If this shutdown is forceful or not|
+|**Reason**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)|Reason for the shutdown|
 
 ---
 
@@ -2535,6 +3284,19 @@ Storage runtime statistics
 
 ---
 
+<a name = "Subnode"></a>
+## Subnode
+Referenced by: [LogicalProcessor](#LogicalProcessor)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Type**<br>|[SubnodeType](#SubnodeType)|[2.4](#Schema-Version-Map)||
+|**Id**<br>|[uint64](#JSON-type)|[2.4](#Schema-Version-Map)||
+
+---
+
 <a name = "System_PropertyQuery"></a>
 ## System_PropertyQuery
 By default the basic properties will be returned. This query provides a way to request specific properties.
@@ -2542,15 +3304,20 @@ By default the basic properties will be returned. This query provides a way to r
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**PropertyTypes**<br>|<[System_PropertyType](#System_PropertyType)> array|[2.1](#Schema-Version-Map)||
+|**Queries**<br>|[Map](#JSON-type)<[string](#JSON-type), [Any](#JSON-type)>|[2.5](#Schema-Version-Map)|This is a new property request object, introduced in version 2.5, which takes the names of the properties and their associated query objects if needed.|
 
 ---
 
 <a name = "SystemExit"></a>
 ## SystemExit
+Referenced by: [AttributionRecord](#AttributionRecord)
 
 
 
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Detail**<br>|[SystemExitDetail](#SystemExitDetail)|[2.4](#Schema-Version-Map)||
+|**Initiator**<br>|[ExitInitiator](#ExitInitiator)|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -2562,6 +3329,7 @@ Document provided in the EventData parameter of an HcsEventSystemExited HCS_EVEN
 |---|---|---|---|
 |**Status**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)|Exit status (HRESULT) for the system.|
 |**ExitType**<br>|[NotificationType](#NotificationType)|[2.2](#Schema-Version-Map)|Exit type for the system.|
+|**Attribution**<br>|<[AttributionRecord](#AttributionRecord)> array|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -2607,6 +3375,17 @@ Referenced by: [TimeZoneInformation](#TimeZoneInformation)
 
 ---
 
+<a name = "Timesync"></a>
+## Timesync
+Referenced by: [Services](#Services)
+
+
+
+
+**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+
+---
+
 <a name = "TimeZoneInformation"></a>
 ## TimeZoneInformation
 
@@ -2638,10 +3417,13 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 
 <a name = "TripleFault"></a>
 ## TripleFault
+Referenced by: [AttributionRecord](#AttributionRecord)
 
 
 
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**ErrorType**<br>|[uint64](#JSON-type)|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -2680,7 +3462,7 @@ Referenced by: [Uefi](#Uefi)
 
 <a name = "Version"></a>
 ## Version
-Referenced by: [BasicInformation](#BasicInformation); [ComputeSystem](#ComputeSystem); [GuestConnectionInfo](#GuestConnectionInfo); [HostedSystem](#HostedSystem); [LayerData](#LayerData)
+Referenced by: [BasicInformation](#BasicInformation); [ComputeSystem](#ComputeSystem); [GuestConnectionInfo](#GuestConnectionInfo); [HostedSystem](#HostedSystem); [LayerData](#LayerData); [VirtualMachine](#VirtualMachine)
 
 Object that describes a version with a Major.Minor format.
 
@@ -2725,17 +3507,23 @@ Referenced by: [VirtioSerial](#VirtioSerial)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**NamedPipe**<br>|[string](#JSON-type)|[2.2](#Schema-Version-Map)||
-|**Name**<br>|[string](#JSON-type)|[2.2](#Schema-Version-Map)||
+|**NamedPipe**<br>|[string](#JSON-type)|[2.2](#Schema-Version-Map)|Pipe name to connect to this port from the host.|
+|**Name**<br>|[string](#JSON-type)|[2.2](#Schema-Version-Map)|Friendly name provided to the guest.|
 
 ---
 
 <a name = "VirtualDeviceFailure"></a>
 ## VirtualDeviceFailure
+Referenced by: [AttributionRecord](#AttributionRecord)
+
 Provides information on failures originated by a virtual device.
 
-
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**Detail**<br>|[VirtualDeviceFailureDetail](#VirtualDeviceFailureDetail)|[2.4](#Schema-Version-Map)||
+|**Name**<br>|[string](#JSON-type)|[2.4](#Schema-Version-Map)|Friendly name of the virtual device.|
+|**DeviceId**<br>|[Guid](#JSON-type)|[2.4](#Schema-Version-Map)|Id of the virtual device.|
+|**InstanceId**<br>|[Guid](#JSON-type)|[2.4](#Schema-Version-Map)|Instance Id of the virtual device.|
 
 ---
 
@@ -2747,10 +3535,12 @@ Configuration of a virtual machine, used during its creation to set up and/or us
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
+|**Version**<br>|[Version](#Version)|[2.5](#Schema-Version-Map)|The virtual machine's version that defines which virtual device's features and which virtual machine features the virtual machine supports. If a version isn't specified, the latest version will be used.|
 |**StopOnReset**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)|When set to true, the virtual machine will treat a reset as a stop, releasing resources and cleaning up state.|
 |**Chipset**<br>|[Chipset](#Chipset)|[2.0](#Schema-Version-Map)|An object describing the chipset settings, including boot settings.|
 |**ComputeTopology**<br>|[Topology](#Topology)|[2.0](#Schema-Version-Map)|An object describing the processor and memory configuration of a virtual machine.|
 |**Devices**<br>|[Devices](#Devices)|[2.0](#Schema-Version-Map)|Nested objects describing the set of devices attached to the virtual machine.|
+|**Services**<br>|[Services](#Services)|[2.5](#Schema-Version-Map)|An object that configures the different guest services the virtual machine will support. Most of these are Windows specific.|
 |**GuestState**<br>|[GuestState](#GuestState)|[2.1](#Schema-Version-Map)|An optional object describing files used to back guest state. When omitted, guest state is transient and kept purely in memory.|
 |**RestoreState**<br>|[RestoreState](#RestoreState)|[2.0](#Schema-Version-Map)|An optional object describing the state the virtual machine should restore from as part of start.|
 |**RegistryChanges**<br>|[RegistryChanges](#RegistryChanges)|[2.0](#Schema-Version-Map)|A set of changes applied to a Windows guest's registry at boot time.|
@@ -2782,6 +3572,8 @@ Referenced by: [Topology](#Topology)
 |**SizeInMB**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**AllowOvercommit**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|If enabled, then the VM's memory is backed by the Windows pagefile rather than physically backed, statically allocated memory.|
 |**BackingPageSize**<br>|[MemoryBackingPageSize](#MemoryBackingPageSize)|[2.2](#Schema-Version-Map)|The preferred page size unit (chunk size) used when allocating backing pages for the VM.|
+|**FaultClusterSizeShift**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Fault clustering size for primary RAM. Backported to windows 10 version 2004|
+|**DirectMapFaultClusterSizeShift**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Fault clustering size for direct mapped memory. Backported to windows 10 version 2004|
 |**PinBackingPages**<br>|[bool](#JSON-type)|[2.2](#Schema-Version-Map)|If enabled, then each backing page is physically pinned on first access.|
 |**ForbidSmallBackingPages**<br>|[bool](#JSON-type)|[2.2](#Schema-Version-Map)|If enabled, then backing page chunks smaller than the backing page size are never used unless the system is under extreme memory pressure. If the backing page size is Small, then it is forced to Large when this option is enabled.|
 |**EnableHotHint**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)|If enabled, then the memory hot hint feature is exposed to the VM, allowing it to prefetch pages into its working set. (if supported by the guest operating system).|
@@ -2805,11 +3597,18 @@ Referenced by: [Topology](#Topology)
 |**Count**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Limit**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**Weight**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Reservation**<br>|[uint64](#JSON-type)|[2.4](#Schema-Version-Map)||
+|**MaximumFrequencyMHz**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Provides the target maximum CPU frequency, in MHz, for a virtual machine.|
 |**ExposeVirtualizationExtensions**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**EnablePerfmonPmu**<br>|[bool](#JSON-type)|[2.2](#Schema-Version-Map)||
+|**EnablePerfmonArchPmu**<br>|[bool](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**EnablePerfmonPebs**<br>|[bool](#JSON-type)|[2.2](#Schema-Version-Map)||
 |**EnablePerfmonLbr**<br>|[bool](#JSON-type)|[2.2](#Schema-Version-Map)||
 |**EnablePerfmonIpt**<br>|[bool](#JSON-type)|[2.2](#Schema-Version-Map)||
+|**EnablePageShattering**<br>|[bool](#JSON-type)|[2.5](#Schema-Version-Map)|Useful to enable if you want to protect against the Intel Processor Machine Check Error vulnerability (CVE-2018-12207). For instance, if you have some virtual machines that you trust that won't cause denial of service on the virtualization hosts and some that you don't trust. Additionally, disabling this may improve guest performance for some workloads. This feature does nothing on non-Intel machines or on Intel machines that are not vulnerable to CVE-2018-12207.|
+|**DisableSpeculationControls**<br>|[bool](#JSON-type)|[2.5](#Schema-Version-Map)|Hides the presence of speculation controls commonly used by guest operating systems as part of side channel vulnerability mitigations. Additionally, these mitigations are often detrimental to guest operating system performance|
+|**ProcessorFeatureSet**<br>|[ProcessorFeatureSet](#ProcessorFeatureSet)|[2.5](#Schema-Version-Map)|Processor features object with processor features bit fields|
+|**CpuGroup**<br>|[CpuGroup](#CpuGroup)|[2.5](#Schema-Version-Map)|An optional object that configures the CPU Group to which a Virtual Machine is going to bind to.|
 
 ---
 
@@ -2850,6 +3649,7 @@ Referenced by: [VirtualPciDevice](#VirtualPciDevice)
 |---|---|---|---|
 |**DeviceInstancePath**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
 |**VirtualFunction**<br>|[uint16](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**AllowDirectTranslatedP2P**<br>|[bool](#JSON-type)|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -2951,6 +3751,7 @@ Referenced by: [VirtualSmbShare](#VirtualSmbShare)
 |**PseudoDirnotify**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|Enable pseudo directory change notifications|
 |**SingleFileMapping**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|Block directory enumeration, renames, and deletes.|
 |**SupportCloudFiles**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)|Support Cloud Files functionality|
+|**FilterEncryptionAttributes**<br>|[bool](#JSON-type)|[2.4](#Schema-Version-Map)|Filter EFS attributes from the guest|
 
 ---
 
@@ -2969,6 +3770,20 @@ Referenced by: [MemoryInformationForVm](#MemoryInformationForVm)
 |**SlpActive**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**BalancingEnabled**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**DmOperationInProgress**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
+
+---
+
+<a name = "VmProcessorRequirements"></a>
+## VmProcessorRequirements
+VM specific processor feature requirements
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**ProcessorFeatures**<br>|<[ProcessorFeature](#ProcessorFeature)> array|[2.5](#Schema-Version-Map)|Processor features|
+|**XsaveProcessorFeatures**<br>|<[XsaveProcessorFeature](#XsaveProcessorFeature)> array|[2.5](#Schema-Version-Map)|Xsave processor features|
+|**CacheLineFlushSize**<br>|[uint64](#JSON-type)|[2.5](#Schema-Version-Map)|Processor cache line flush size|
+|**ImplementedPhysicalAddressBits**<br>|[uint64](#JSON-type)|[2.5](#Schema-Version-Map)|Processor physical address bits|
+|**NonArchitecturalCoreSharing**<br>|[NonArchitecturalCoreSharing](#NonArchitecturalCoreSharing)|[2.5](#Schema-Version-Map)|Processor non architectural core sharing|
 
 ---
 
@@ -3008,10 +3823,16 @@ Referenced by: [GuestCrashReporting](#GuestCrashReporting)
 
 <a name = "WorkerExit"></a>
 ## WorkerExit
+Referenced by: [AttributionRecord](#AttributionRecord)
 
 
 
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**ExitCode**<br>|[uint32](#JSON-type)|[2.4](#Schema-Version-Map)|Exit code of the virtual machine worker process.|
+|**Type**<br>|[WorkerExitType](#WorkerExitType)|[2.4](#Schema-Version-Map)||
+|**Detail**<br>|[WorkerExitDetail](#WorkerExitDetail)|[2.4](#Schema-Version-Map)||
+|**Initiator**<br>|[ExitInitiator](#ExitInitiator)|[2.4](#Schema-Version-Map)||
 
 ---
 
@@ -3049,5 +3870,8 @@ The table shows the mapping from type name for field of classes to JSON type, it
 |2.1|Windows 10 SDK, version 1809 (10.0.17763.0)|
 |2.2|Windows 10 SDK, version 1903 (10.0.18362.1)|
 |2.3|Windows 10 SDK, version 2004 (10.0.19041.0)|
+|2.4|Windows Server 2022 (OS build 20348.169)|
+|2.5|Windows Server 2022 (OS build 20348.169)|
+|2.6|Windows 11 SDK, version 21H2 (10.0.22000.194)|
 
 ---

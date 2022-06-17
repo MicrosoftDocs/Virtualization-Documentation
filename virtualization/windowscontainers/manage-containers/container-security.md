@@ -3,12 +3,14 @@ title: Secure Windows containers
 description: Learn how to define the security boundaries of Windows containers
 keywords: docker, containers, security, windows, isolation, boundary, privacy, kubernetes, linux
 author: brasmith
-ms.author: v-susbo
+ms.author: brasmith
 ms.date: 03/23/2020
 ms.topic: conceptual
 ms.assetid: 
 ---
 # Secure Windows containers
+
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Containers lend their reduced image size to the fact that they can rely on the host to provide limited access to various resources. If the container knows that the host will be able to provide the functionality needed to perform a specific set of actions, then the container does not need to include the relevant software in its base image. The extent of resource sharing that occurs, however, can have a significant impact on both the performance and security of the container. If too many resources are shared, then the application may as well just run as a process on the host. If the resources are shared too little, then the container becomes indistinguishable from a VM. Both configurations are applicable to many scenarios, but most people using containers generally opt for something in the middle.
 
@@ -34,7 +36,7 @@ Microsoft is committed to patching all exploits and escapes that break the estab
 
 Multi-tenant environments exist when multiple workloads are operating on shared infrastructure and resources. If one or more workloads running on an infrastructure cannot be trusted, then the multi-tenant environment is considered hostile. Both Windows Server and Linux containers share the host kernel, so any exploit performed on a single container can impact all other workloads running on the shared infrastructure.
 
-You can take steps to reduce the chance that an exploit will occur, for example, by using pod security policies, AppArmor, and role-based access control (RBAC), but they do not provide guaranteed protection against an attacker. We recommend you follow our [best practices for cluster isolation](https://docs.microsoft.com/azure/aks/operator-best-practices-cluster-isolation) for any multi-tenant scenario.
+You can take steps to reduce the chance that an exploit will occur, for example, by using pod security policies, AppArmor, and role-based access control (RBAC), but they do not provide guaranteed protection against an attacker. We recommend you follow our [best practices for cluster isolation](/azure/aks/operator-best-practices-cluster-isolation) for any multi-tenant scenario.
 
 ## When to use ContainerAdmin and ContainerUser user accounts
 

@@ -1,11 +1,17 @@
 ---
 title:      "Beware the VMware Memory vTax Part 2…"
+author: mattbriggs
+ms.author: mabrigg
+description: Beware the VMware Memory vTax Part 2
+ms.date: 08/15/2011
 date:       2011-08-15 06:46:00
 categories: uncategorized
 ---
+# Beware the VMware Memory vTax Part 2
+
 Virtualization Nation,
 
-In my last blog, [Beware the VMware Memory Tax; Plus Good News for Hyper-V…](http://blogs.technet.com/b/virtualization/archive/2011/08/01/beware-the-vmware-memory-vtax-plus-good-news-for-hyper-v.aspx), I responded to the flood of emails we’ve received about the VMware Memory Tax introduced in vSphere 5. We discussed the changes in the new vSphere 5 Licensing model and reviewed a number of additional items including:
+In my last blog, [Beware the VMware Memory Tax; Plus Good News for Hyper-V…](https://blogs.technet.com/b/virtualization/archive/2011/08/01/beware-the-vmware-memory-vtax-plus-good-news-for-hyper-v.aspx), I responded to the flood of emails we’ve received about the VMware Memory Tax introduced in vSphere 5. We discussed the changes in the new vSphere 5 Licensing model and reviewed a number of additional items including:
 
   * Reaction from the industry
   * Feedback from VMware customers
@@ -74,16 +80,22 @@ Below is a table from VMware detailing the new memory entitlements with _[vSpher
 #####  New vRAM Entitlement
 
 ##### _(vSphere 5 2.0 Licensing)_  
-  
----|---|---  
-**vSphere Enterprise+** |  48 GB | 96 GB  
-**vSphere Enterprise** |  32 GB | 64 GB  
-**vSphere Standard** |  24 GB | 32 GB  
-**vSphere Essentials+** |  24 GB | 32 GB  
-**vSphere Essentials** |  24 GB | 32 GB  
-**Free vSphere Hypervisor** |  8 GB | 32 GB[[ii]](http://blogs.vmware.com/rethinkit/2011/08/changes-to-the-vram-licensing-model-introduced-on-july-12-2011.html#_edn2)  
-**vSphere Desktop** |  Unlimited | Unlimited  
-  
+ 
+
+
+ 
+|Name|Size|Size|
+|---|---|---|  
+|**vSphere Enterprise+** |  48 GB | 96 GB | 
+|**vSphere Enterprise** |  32 GB | 64 GB  |
+|**vSphere Standard** |  24 GB | 32 GB  |
+|**vSphere Essentials+** |  24 GB | 32 GB|  
+|**vSphere Essentials** |  24 GB | 32 GB  |
+|**Free vSphere Hypervisor** |  8 GB | 32 GB[ii]|  
+|**vSphere Desktop** |  Unlimited | Unlimited  |
+
+
+ 
 [[ii]](http://blogs.vmware.com/rethinkit/2011/08/changes-to-the-vram-licensing-model-introduced-on-july-12-2011.html#_ednref2) this limit is GB of physical RAM per physical server
 
 While an improvement, the memory entitlements are still a tax on memory. In addition, VMware fails to recognize or even acknowledge that, from a memory standpoint, vSphere 5 is a **_downgrade_** _._ No matter how hard VMware tries to spin this change, folks see right through this.
@@ -194,8 +206,8 @@ And…
 
 [http://arstechnica.com/business/news/2011/08/vmware-capitulates-over-vsphere-5-pricing-kinda.ars](http://arstechnica.com/business/news/2011/08/vmware-capitulates-over-vsphere-5-pricing-kinda.ars)
 
-_[BulkRate](http://arstechnica.com/civis/memberlist.php?mode=viewprofile&u=23019&sid=71a0e7cac15d6a30b06a002a92413fc9)_ _Registered: Sep 9, 2003_ _Posts: 511_ __| _[Posted: Fri Jul 29, 2011 2:10 pm](http://arstechnica.com/civis/viewtopic.php?p=21904689&sid=71a0e7cac15d6a30b06a002a92413fc9#p21904689)_ __  
----|---  
+_[BulkRate](http://arstechnica.com/civis/memberlist.php?mode=viewprofile&u=23019&sid=71a0e7cac15d6a30b06a002a92413fc9)_ _Registered: Sep 9, 2003_ _Posts: 511_ __ _[Posted: Fri Jul 29, 2011 2:10 pm](http://arstechnica.com/civis/viewtopic.php?p=21904689&sid=71a0e7cac15d6a30b06a002a92413fc9#p21904689)_ __  
+
 _It still feels like a money-grab, now with a hamfisted manipulation attempt added in via the "piss 'em off with the crazy limits first, then announce the ones we'd intended all along" approach. It means I'm not actualy regarded as one of VMware's customers, nor are my needs or strategies based upon their product taken into account in any meaninful way._ _This change repairs some of the damage to our existing Essentials+ cluster's operational lifetime plan (RAM upgrade in 1+ year), but I'm still not seeing whether the Hypervisor standalone product remains capped into uselessness at 8GB, or bumps up to 12GB in line with the other changes._ _Either way, they've tried this once and will likely do so again. Damage done and now they're on my "Vendors to Anticipate Screwage From" list. Next version (v3) of Hyper-V gets an honest evaluation spot in our environment plus migration plan. When our support's up in about 2 years we'll be ready._ __  
   
 **Ars Technica Comment 1:**
@@ -341,7 +353,7 @@ So, for the analysis below, I’m going to make the _rash_ assumption that you w
     * 4 Active Nodes + 1 Passive Node
     * 8 Active Nodes + 2 Passive Nodes
     * Etc.
-  * You only want to target 60%/75%/<insert your own value here> of physical memory use per node
+  * You only want to target 60%/75%/ \<insert your own value here\> of physical memory use per node
 
 
 
@@ -357,11 +369,11 @@ The analysis below is all based on the _vSphere 5 Licensing 2.0 Terms_ announced
 
 Let’s compare a _single server_ populated with various memory configurations.
 
-In this first comparison, let’s analyze the effect of the VMware Memory Tax and focus on the hypervisor layer. For this comparison, I’m going to use VMware vSphere 5.0 and [Microsoft Hyper-V Server 2008 R2 SP1](http://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx). Microsoft Hyper-V Server 2008 R2 SP1 is our stand-alone hypervisor available as a free download. This comparison allows us to focus on the ability of the hypervisor to fully utilize memory resources in a physical server for virtual machines. Let me preface this example by stating, this comparison doesn’t include hardware, guest operating system licenses, storage, networking, or systems management.
+In this first comparison, let’s analyze the effect of the VMware Memory Tax and focus on the hypervisor layer. For this comparison, I’m going to use VMware vSphere 5.0 and [Microsoft Hyper-V Server 2008 R2 SP1](https://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx). Microsoft Hyper-V Server 2008 R2 SP1 is our stand-alone hypervisor available as a free download. This comparison allows us to focus on the ability of the hypervisor to fully utilize memory resources in a physical server for virtual machines. Let me preface this example by stating, this comparison doesn’t include hardware, guest operating system licenses, storage, networking, or systems management.
 
 This comparison includes VMware’s Support and Subscription (SnS) licensing. I was going to be charitable and omit the SnS subscription, but then I read in the VMware vSphere 5.0 Licensing, Pricing and Packaging whitepaper at the bottom of pages 3-11 in the fine print it states, “SnS is required for all vSphere purchases.” Thus, I included the SnS License per VMware’s requirement. It should be noted that because the VMware Memory Tax requires purchasing more licenses for larger memory footprints and because "a Support and Subscription (SnS) contract is required for every vSphere Edition purchase", the SnS requirement acts as a subtle, additional tax even if the user is purchasing the extra license for vRAM capacity.
 
-The first comparison is vSphere 5 to [Microsoft Hyper-V Server 2008 R2 SP1](http://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx).
+The first comparison is vSphere 5 to [Microsoft Hyper-V Server 2008 R2 SP1](https://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx).
 
 | **VSphere 5.0 Standard** ****| **VSphere 5.0 Enterprise** ****| **VSphere 5.0 Enterprise Plus** ****| **Microsoft Hyper-V Server 2008 R2 SP1** ****  
 ---|---|---|---|---  
@@ -508,7 +520,7 @@ Here’s a quick overview of the past three VMware releases, how it impacts you 
 
 
 
-**[VMware Virtual Infrastructure 3.x (VI3) –> VMware vSphere 4.x](http://blogs.technet.com/b/virtualization/archive/2009/06/28/beware-the-vmware-core-tax-and-more.aspx)**
+**[VMware Virtual Infrastructure 3.x (VI3) –> VMware vSphere 4.x](https://blogs.technet.com/b/virtualization/archive/2009/06/28/beware-the-vmware-core-tax-and-more.aspx)**
 
   * VMware adds a Core Tax
     * Standard & Enterprise Editions limited to 6 cores per processor
@@ -524,7 +536,7 @@ Here’s a quick overview of the past three VMware releases, how it impacts you 
 
   * VMware removes the Core Tax and Adds a Memory Tax
     * vSphere 5 Licensing Terms 1.0
-      * [VMware introduces new, unspeakably awful licensing terms. Customers outraged](http://blogs.technet.com/b/virtualization/archive/2011/08/01/beware-the-vmware-memory-vtax-plus-good-news-for-hyper-v.aspx).
+      * [VMware introduces new, unspeakably awful licensing terms. Customers outraged](https://blogs.technet.com/b/virtualization/archive/2011/08/01/beware-the-vmware-memory-vtax-plus-good-news-for-hyper-v.aspx).
     * vSphere 5 Licensing Terms 2.0
       * VMware tweaks the terms in hopes to appease customers and ignores the fundamental issue of the tax on memory
   * The new VMware Memory vTax Licensing model also means that many vSphere 4.x customers who were licensed to fully utilize the memory in their systems cannot anymore without paying for an upgrade because the Memory Entitlements don’t fully cover the amount of physical memory in the existing system. The net effect is that customers are seeing a downgrade in the amount of memory they can use due to the new memory restrictions.
@@ -546,7 +558,7 @@ In contrast, let’s compare the previous three Microsoft Hyper-V Server 2008 re
   * Microsoft Hyper-V Server 2008
     * Released in October 2008
     * High performance, single purpose hypervisor
-  * [Microsoft Hyper-V Server 2008 R2](http://blogs.technet.com/b/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx)
+  * [Microsoft Hyper-V Server 2008 R2](https://blogs.technet.com/b/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx)
     * Released July 2009
     * **_Per customer feedback_** we added:
       * Live Migration (aka VMotion)
@@ -555,11 +567,11 @@ In contrast, let’s compare the previous three Microsoft Hyper-V Server 2008 re
       * Support for VMs with up to 64 GB of memory each
       * Core Parking to further reduce power consumption
       * …and more…
-  * [Microsoft Hyper-V Server 2008 R2 SP1](http://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx)
+  * [Microsoft Hyper-V Server 2008 R2 SP1](https://blogs.technet.com/b/virtualization/archive/2011/04/12/microsoft-hyper-v-server-2008-r2-sp1-released.aspx)
     * Released August 2011
     * **_Per customer feedback_** we added:
       * Dynamic Memory
-      * [RemoteFX](http://blogs.technet.com/b/virtualization/archive/2011/05/05/5nine-manager-for-hyper-v.aspx)
+      * [RemoteFX](https://blogs.technet.com/b/virtualization/archive/2011/05/05/5nine-manager-for-hyper-v.aspx)
 
 
 
@@ -635,7 +647,7 @@ There’s very little to say that hasn’t already been said by VMware’s own c
 
 What’s unfathomable is that we’re having this conversation at all. Increased hardware utilization, better density, and lower costs are why people gravitated to virtualization in the first place. This is Virtualization 101.
 
-VMware also fails to recognize what is important in virtualized environments today, especially as we move towards private cloud solutions. Aspects such as management and monitoring of applications and cross-platform support have been overlooked, and with vCloud Director, VMware’s private cloud story is still focused on VMware-only infrastructures. vSphere 5 is the latest VMware toll booth erected on the road to the private cloud in a history where increased licensing costs are a regular occurrence. Two years ago it was the [Core Tax](http://blogs.technet.com/b/virtualization/archive/2009/06/28/beware-the-vmware-core-tax-and-more.aspx) where many saw there licensing increase over 200%, and now it’s the Memory Tax where many VMware customers are seeing licensing costs increase again.
+VMware also fails to recognize what is important in virtualized environments today, especially as we move towards private cloud solutions. Aspects such as management and monitoring of applications and cross-platform support have been overlooked, and with vCloud Director, VMware’s private cloud story is still focused on VMware-only infrastructures. vSphere 5 is the latest VMware toll booth erected on the road to the private cloud in a history where increased licensing costs are a regular occurrence. Two years ago it was the [Core Tax](https://blogs.technet.com/b/virtualization/archive/2009/06/28/beware-the-vmware-core-tax-and-more.aspx) where many saw there licensing increase over 200%, and now it’s the Memory Tax where many VMware customers are seeing licensing costs increase again.
 
 With Microsoft, customers can build scalable virtualized infrastructures on Hyper-V and with System Center, accelerate their progression towards private cloud environments with deep application monitoring, protection and management along with rich self-service capabilities. All of this, without the restrictive licensing that accompanies vSphere, ensures that a Microsoft private cloud provides the greatest value at the lowest costs. 
 

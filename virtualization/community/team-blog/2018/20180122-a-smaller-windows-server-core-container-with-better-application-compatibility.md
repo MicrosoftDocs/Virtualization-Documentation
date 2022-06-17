@@ -3,10 +3,10 @@ title: Windows Server Insider Preview Build 17074
 description: Learn more about new container building blocks available in Windows.
 keywords: windows server, azure, virtualization, blog
 author: scooley
+ms.author: scooley
 ms.date: 01/22/2018
 ms.topic: article
 ms.prod: windows-containers
-ms.service: virtualization
 ---
 
 # Windows Server Insider Preview Build 17074

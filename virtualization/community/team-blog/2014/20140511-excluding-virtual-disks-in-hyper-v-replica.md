@@ -1,9 +1,15 @@
 ---
 title:      "Excluding virtual disks in Hyper-V Replica"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 05/11/2014
 date:       2014-05-11 04:00:00
 categories: hvr
+description: This article covers disk exclusion scenarios and its impacts in Hyper-V Replica.
 ---
-Since its introduction in Windows Server 2012, Hyper-V Replica has provided a way for users to exclude specific virtual disks from being replicated. This option is rarely exercised but can have a significant benefits when used correctly. This blog post covers the disk exclusion scenarios and the impact this has on the various operations done during the lifecycle of VM replication. This blog post has been co-authored by [**Priyank Gaharwar**](http://social.technet.microsoft.com/profile/priyank%20gaharwar%20%5Bmsft%5D) of the Hyper-V Replica test team. 
+# Disk Exclusion in Hyper-V Replica
+
+Since its introduction in Windows Server 2012, Hyper-V Replica has provided a way for users to exclude specific virtual disks from being replicated. This option is rarely exercised but can have a significant benefits when used correctly. This blog post covers the disk exclusion scenarios and the impact this has on the various operations done during the lifecycle of VM replication. This blog post has been co-authored by [**Priyank Gaharwar**](https://social.technet.microsoft.com/profile/priyank%20gaharwar%20%5Bmsft%5D) of the Hyper-V Replica test team. 
 
 ## Why exclude disks?
 
@@ -16,9 +22,7 @@ Excluding disks from replication is done because:
 
 Point #1 is worth elaborating on a little. What data isn't “important”? The lens used to judge the importance of replicated data is its usefulness at the time of Failover. Data that is not replicated _should_ also not be needed at the time of failover. Lack of this data would then also not impact the Recovery Point Objective (RPO) in any material way.
 
-#### 
 
-#### 
 
 There are some specific examples of data churn that can be easily identified and are great candidates for exclusion – for example, _page file writes_. Depending on the workload and the storage subsystem, the page file can register a significant amount churn. However, replicating this data from the primary site to the replica site would be resource intensive and yet completely worthless. Thus the replication of a VM with a single virtual disk having both the OS and the page file can be optimized by:
 
@@ -35,24 +39,25 @@ The first step in using this feature is to first isolate the superfluous churn o
 
 At the end, an additional disk should surface up in the guest. Appropriate configuration changes should be done in the application to change the location of the temporary files to point to the newly added disk. 
 
-_Figure 1:   Changing the location of the System Page File to another disk/volume_[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_79240B70.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_49D295E6.png)
+_Figure 1:   Changing the location of the System Page File to another disk/volume_[![Figure 1](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_79240B70.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_49D295E6.png)
 
 #### Excluding disks in the Hyper-V Replica UI
 
 Right-click on a VM and select “ **Enable Replication…** ”. This will bring up the wizard that walks you through the various inputs required to enable replication on the VM. The screen titled “ **Choose Replication VHDs** ” is where you deselect the virtual disks that you do not want to replicate. By default, all virtual disks will be selected for replication.
 
-_Figure 2:   Excluding the page file virtual disk from a virtual machine_[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_61D7DC94.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_7E523DC3.png)
+_Figure 2:   Excluding the page file virtual disk from a virtual machine_[![Figure 2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_61D7DC94.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_7E523DC3.png)
 
 #### Excluding disks using PowerShell
 
 The **Enable-VMReplication** commandlet provides two optional parameters: **–ExcludedVhd** and **–ExcludedVhdPath**. These parameters should be used to exclude the virtual disks at the time of enabling replication.
     
-    
-    PS C:\Windows\system32> Enable-VMReplication -VMName SQLSERVER -ReplicaServerName repserv01.contoso.com -AuthenticationType Kerberos -ReplicaServerPort 80 -ExcludedVhdPath  'D:\Primary-Site\Hyper-V\Virtual Hard Disks\SQL-PageFile.vhdx'
+```markdown
+PS C:\Windows\system32> Enable-VMReplication -VMName SQLSERVER -ReplicaServerName repserv01.contoso.com -AuthenticationType Kerberos -ReplicaServerPort 80 -ExcludedVhdPath  'D:\Primary-Site\Hyper-V\Virtual Hard Disks\SQL-PageFile.vhdx'
+```
 
 After running this command, you will be able to see the excluded disks under **VM Settings** > **Replication** > **Replication** **VHDs**. 
 
-_Figure 3:   List of disks included for and excluded from replication _[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_2590D184.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_5CD4C80E.png)
+_Figure 3:   List of disks included for and excluded from replication _[![Figure 3](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_2590D184.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_5CD4C80E.png)
 
 ## Impact of disk exclusion
 
@@ -85,8 +90,8 @@ There are two ways of making a virtual disk available for use at the time of fai
 
 When possible, option #2 is preferred over option #1 because of the resources saved from not having to copy the disk. The following PowerShell script can be used to green-light option #2, focusing on meeting the prerequisites to ensure that the Replica VM is exactly the same as the primary VM from a virtual disk perspective:
     
-    
-    param (
+```markdown
+param (
     
     
         [string]$VMNAME,
@@ -246,6 +251,7 @@ When possible, option #2 is preferred over option #1 because of the resources sa
     
     
     }
+```
 
 The script can also be customized for use with [Azure Hyper-V Recovery Manager](https://azure.microsoft.com/services/recovery-manager/), but we’ll save that for another post! 
 
@@ -253,7 +259,7 @@ The script can also be customized for use with [Azure Hyper-V Recovery Manager](
 
 The Capacity Planner for Hyper-V Replica allows you to forecast your resource needs. It allows you to be more precise about the replication inputs that impact the resource consumption – such as the disks that will be replicated and the disks that will not be replicated. 
 
-_Figure 4:   Disks excluded for capacity planning_[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_4EF6A4B0.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_0400A330.png)
+_Figure 4:   Disks excluded for capacity planning_[![Figure 4](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_4EF6A4B0.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_0400A330.png)
 
 ## Key Takeaways
 

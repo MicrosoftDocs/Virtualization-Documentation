@@ -1,3 +1,20 @@
+---
+title: HdvCreateDeviceInstance
+description: HdvCreateDeviceInstance
+author: faymeng
+ms.author: mabrigg
+ms.topic: reference
+ms.prod: virtualization
+ms.date: 06/09/2021
+api_name:
+- HdvCreateDeviceInstance
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
+---
 # HdvCreateDeviceInstance
 
 ## Description
@@ -24,7 +41,7 @@ HdvCreateDeviceInstance(
 |Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`DeviceHost` | Handle to the device host in which to create the new device.|
-|`DeviceType` | Specifies the [HDV_DEVICE_TYPE](./HdvDeviceType) type of the device instance to create.|
+|`DeviceType` | Specifies the [HDV_DEVICE_TYPE](HdvDeviceType.md) type of the device instance to create.|
 |`DeviceClassId` | Supplies the client-defined class ID of the device instance to create.|
 |`DeviceInterface` | Supplies the client-defined instance ID of the device instance to create.|
 |`DeviceInterface` | Supplies a function table representing the interface exposed by the device instance. The actual type of this parameter is implied by the DeviceType parameter.|

@@ -1,3 +1,20 @@
+---
+title: HdvReadGuestMemory
+description: HdvReadGuestMemory
+author: faymeng
+ms.author: mabrigg
+ms.topic: reference
+ms.prod: virtualization
+ms.date: 06/09/2021
+api_name:
+- HdvReadGuestMemory
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
+---
 # HdvReadGuestMemory
 
 ## Description

@@ -2,11 +2,18 @@
 title: HcsGrantVmGroupAccess
 description: HcsGrantVmGroupAccess
 author: faymeng
-ms.author: qiumeng
-ms.topic: article
+ms.author: mabrigg
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
 ms.date: 06/09/2021
+api_name:
+- HcsGrantVmGroupAccess
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
 ---
 # HcsGrantVmGroupAccess
 
@@ -37,8 +44,8 @@ The function returns [HRESULT](./HCSHResult.md).
 
 |Parameter|Description|
 |---|---|
-| **Minimum supported client** | Windows 10, version 1809 |
-| **Minimum supported server** | Windows Server 2019 |
+| **Minimum supported client** | Windows 10, version 2004 |
+| **Minimum supported server** | Windows Server 2022 |
 | **Target Platform** | Windows |
 | **Header** | ComputeCore.h |
 | **Library** | ComputeCore.lib |

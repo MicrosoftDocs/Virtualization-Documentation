@@ -3,6 +3,7 @@ title: Remote Management of a Windows Docker Host
 description: How to securly manage a remote Docker host running Windows Server.
 keywords: docker, containers
 author: taylorb-microsoft
+ms.author: mabrigg
 ms.date: 02/14/2017
 ms.topic: how-to
 ms.assetid: 0cc1b621-1a92-4512-8716-956d7a8fe495

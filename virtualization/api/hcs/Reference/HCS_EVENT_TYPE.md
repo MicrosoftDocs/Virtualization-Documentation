@@ -2,11 +2,18 @@
 title: HCS_EVENT_TYPE
 description: HCS_EVENT_TYPE
 author: faymeng
-ms.author: qiumeng
-ms.topic: article
+ms.author: mabrigg
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
 ms.date: 06/09/2021
+api_name:
+- HCS_EVENT_TYPE
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
 ---
 # HCS_EVENT_TYPE
 
@@ -34,7 +41,7 @@ typedef enum HCS_EVENT_TYPE
 
 ## Constants
 
-|||
+|Name|Description|
 |---|---|
 |`HcsEventInvalid`|The event is invalid.|
 |`HcsEventSystemExited`|The notification of `HCS_SYSTEM` handle for system exited.|

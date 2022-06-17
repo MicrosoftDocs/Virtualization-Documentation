@@ -1,3 +1,20 @@
+---
+title: HDV_DEVICE_TYPE Structure
+description: HDV_DEVICE_TYPE Structure
+author: faymeng
+ms.author: mabrigg
+ms.topic: reference
+ms.prod: virtualization
+ms.date: 06/09/2021
+api_name:
+- HDV_DEVICE_TYPE Structure
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
+---
 # HDV_DEVICE_TYPE Structure
 
 Device emulation callbacks for PCI devices, passed by the emulated device to HdvCreateDeviceInstance.

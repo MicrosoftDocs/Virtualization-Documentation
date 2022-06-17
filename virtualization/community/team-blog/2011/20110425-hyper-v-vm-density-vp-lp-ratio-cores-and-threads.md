@@ -1,8 +1,14 @@
 ---
 title:      "Hyper-V VM Density, VP&#58;LP Ratio, Cores and Threads..."
+author: mattbriggs
+ms.author: mabrigg
+description: Hyper-V VM Density, LP Ratio, Cores and Threads...
+ms.date: 04/25/2011
 date:       2011-04-25 06:18:00
 categories: dynamic-memory
 ---
+# Hyper-V VM Density, LP Ratio, Cores and Threads...
+
 Virtualization Nation,
 
  

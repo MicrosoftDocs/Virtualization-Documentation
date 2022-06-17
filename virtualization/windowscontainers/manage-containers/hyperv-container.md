@@ -3,23 +3,53 @@ title: Isolation Modes
 description: Explanation of how Hyper-V isolation differ from process isolated containers.
 keywords: docker, containers
 author: cwilhit
-ms.date: 09/26/2019
+ms.author: crwilhit
+ms.date: 06/01/2021
 ms.topic: conceptual
 ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
 ---
 
 # Isolation Modes
 
+> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+
 Windows containers offer two distinct modes of runtime isolation: `process` and `Hyper-V` isolation. Containers running under both isolation modes are created, managed, and function identically. They also produce and consume the same container images. The difference between the isolation modes is to what degree of isolation is created between the container, the host operating system, and all of the other containers running on that host.
 
 ## Process Isolation
 
-This is the "traditional" isolation mode for containers and is what is described in the [Windows containers overview](../about/index.md). With process isolation, multiple container instances run concurrently on a given host with isolation provided through namespace, resource control, and process isolation technologies. When running in this mode, containers share the same kernel with the host as well as each other.  This is approximately the same as how Linux containers run.
+This is the "traditional" isolation mode for containers and is what is described in the [Windows containers overview](../about/index.md). With process isolation, multiple container instances run concurrently on a given host with isolation provided through namespace, resource control, and other process isolation technologies. When running in this mode, containers share the same kernel with the host as well as each other.  This is approximately the same as how Linux containers run.
 
 ![A diagram showing a container full of applications being isolated from the OS and hardware.](media/container-arch-process.png)
 
+### What gets isolated
+
+Windows containers virtualize access to various operating system namespaces. A namespace provides access to information, objects, or resources via a name. For example, the file system is probably the best-known namespace. There are numerous namespaces on Windows that get isolated on a per-container basis:
+
+- file system
+- registry
+- network ports
+- process and thread ID space
+- Object Manager namespace
+
+### Piercing the isolation boundary
+
+There are cases when it is useful to pierce the isolation boundary. These operations must be deliberately requested by the user and should be done with careful consideration since it may compromise the security posture of the container. Windows containers support the following:
+
+- [mapping shared files or volumes from host into the container](./persistent-storage.md)
+- mapping a named pipe from host into the container
+- mapping a port from the host into the container
+- [customizing and sharing the network namespace](../container-networking/network-isolation-security.md#kubernetes-pods)
+- [sharing host device visibility into the container](../deploy-containers/hardware-devices-in-containers.md)
+
+Windows containers don't currently support:
+
+- shared memory
+- sharing synchronization objects (semaphores, mutexes, etc)
+- shared process namespaces
+
 ## Hyper-V isolation
-This isolation mode offers enhanced security and broader compatibility between host and container versions. With Hyper-V isolation, multiple container instances run concurrently on a host; However, each container runs inside of a highly optimized virtual machine and effectively gets its own kernel. The presence of the virtual machine provides hardware-level isolation between each container as well as the container host.
+
+This isolation mode offers enhanced security and broader compatibility between host and container versions. With Hyper-V isolation, multiple container instances run concurrently on a host; however, each container runs inside of a highly optimized virtual machine and effectively gets its own kernel. The presence of the virtual machine provides hardware-level isolation between each container as well as the container host.
 
 ![A diagram of a container being isolated within an OS on a visual machine that's running on an OS within a physical machine.](media/container-arch-hyperv.png)
 
@@ -27,7 +57,7 @@ This isolation mode offers enhanced security and broader compatibility between h
 
 ### Create container
 
-Managing Hyper-V-isolated containers with Docker is nearly identical to managing process-isolated containers. To create a container with Hyper-V isolation thorough Docker, use the `--isolation` parameter to set `--isolation=hyperv`.
+Managing Hyper-V-isolated containers with Docker is nearly identical to managing process-isolated containers. To create a container with Hyper-V isolation using Docker, use the `--isolation` parameter to set `--isolation=hyperv`.
 
 ```cmd
 docker run -it --isolation=hyperv mcr.microsoft.com/windows/servercore:ltsc2019 cmd

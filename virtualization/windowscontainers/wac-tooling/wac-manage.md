@@ -10,7 +10,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Manage Container images on Windows Admin Center
 
-This topic describes how to manage container images on Windows Admin Center. Container images are used to create new containers on Windows machines or other cloud services, such as Azure Kubernetes Service. For more information on Windows images, see the [Container images overview](https://docs.microsoft.com/virtualization/windowscontainers/about/#container-images).
+This topic describes how to manage container images on Windows Admin Center. Container images are used to create new containers on Windows machines or other cloud services, such as Azure Kubernetes Service. For more information on Windows images, see the [Container images overview](../about/index.md#container-images).
 
 ## Pull container images
 
@@ -20,7 +20,7 @@ After deploying a container host, the next step is to pull (or download) contain
 
 In the **Pull Container Image** settings, provide the image URL and the tag for the image you want to pull. You can also select the option to pull all tagged images on that repository.
 
-If the image you want to pull is on a private repository, provide the username and password to authenticate against that repository. If your repository is hosted on Azure Container Registry, use the native Azure authentication on Windows Admin Center to access the image. This requires the Windows Admin Center instance to be connected to Azure and authenticated with your Azure account. For more information on how to connect a Windows Admin Center instance to Azure, see [Configuring Azure integration](https://docs.microsoft.com/windows-server/manage/windows-admin-center/azure/azure-integration).
+If the image you want to pull is on a private repository, provide the username and password to authenticate against that repository. If your repository is hosted on Azure Container Registry, use the native Azure authentication on Windows Admin Center to access the image. This requires the Windows Admin Center instance to be connected to Azure and authenticated with your Azure account. For more information on how to connect a Windows Admin Center instance to Azure, see [Configuring Azure integration](/windows-server/manage/windows-admin-center/azure/azure-integration).
 
 If you aren't certain which image to pull, Windows Admin Center provides a list of common images from Microsoft. Select the **Common Windows images** dropdown to see a list of base images that are commonly pulled. Select the image you want to pull, and Windows Admin Center will fill in the repository and tag fields.
 
@@ -37,4 +37,4 @@ In the **Push Container Image** settings, you can change the image name and tag 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Create new containers on Windows Admin Center](./wac-images.md) 
+> [Create new containers on Windows Admin Center](./wac-images.md)

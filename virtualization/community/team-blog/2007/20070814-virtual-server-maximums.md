@@ -3,10 +3,10 @@ title: Virtual Server Maximums
 description: post id 3903
 keywords: virtualization, virtual server, blog
 author: scooley
+ms.author: scooley
 ms.date: 8/14/2007
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: f6dca287-3422-4445-a8b3-4d8b722f6f68
 ---
 
@@ -21,7 +21,7 @@ If you’re like most folks who are using virtualization for server consolidatio
 Cheers,  
 Jeff
 
-|Virtual Machine Maximums| |
+|Virtual Machine Maximums|Number|
 |:----|:----|
 |SCSI controllers per virtual machine | 4 |
 |Devices per SCSI controller | 7 |
@@ -35,7 +35,7 @@ Jeff
 |Number of parallel ports per virtual machine | 1 |
 |Number of serial ports per virtual machine | 2 |
 
-|Virtual Server Maximums | |
+|Virtual Server Maximums |Number|
 |:----|:----|
 |Number of virtual networks | 128 |
 |Maximum physical memory addressable for virtualization | 256 GB |

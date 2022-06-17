@@ -1,3 +1,20 @@
+---
+title: Device Virtualization
+description: Device Virtualization
+author: faymeng
+ms.author: mabrigg
+ms.topic: reference
+ms.prod: virtualization
+ms.date: 06/09/2021
+api_name:
+- Device Virtualization
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
+---
 # Device Virtualization
 
 ## Overview
@@ -9,10 +26,10 @@ The following section contains the definitions of the APIs for device virtualiza
 ## Compute System Opterations
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[HdvInitializeDeviceHost](reference/HdvInitializeDeviceHost.md)|Create a compute system|
-|[HdvTeardownDeviceHost](reference/HdvTeardownDeviceHost.md)| Query a compute system's properties|
-|[HdvCreateDeviceInstance](reference/HdvCreateDeviceInstance.md)|Modify a compute system|
-|[HdvReadGuestMemory](reference/HdvReadGuestMemory.md)|Open a compute system|
-|[HdvWriteGuestMemory](reference/HdvWriteGuestMemory.md)|Pause a compute system|
-|[HdvCreateGuestMemoryAperture](reference/HdvCreateGuestMemoryAperture.md)|Resume a compute system|
-|[HdvDeliverGuestInterrupt](reference/HdvDeliverGuestInterrupt.md)|Save a compute system|
+|[HdvInitializeDeviceHost](./HdvPciDeviceInitialize.md)|Create a compute system|
+|[HdvTeardownDeviceHost](./HdvTeardownDeviceHost.md)| Query a compute system's properties|
+|[HdvCreateDeviceInstance](./HdvCreateDeviceInstance.md)|Modify a compute system|
+|[HdvReadGuestMemory](./HdvReadGuestMemory.md)|Open a compute system|
+|[HdvWriteGuestMemory](./HdvWriteGuestMemory.md)|Pause a compute system|
+|[HdvCreateGuestMemoryAperture](./HdvCreateGuestMemoryAperture.md)|Resume a compute system|
+|[HdvDeliverGuestInterrupt](./HdvDeliverGuestInterrupt.md)|Save a compute system|

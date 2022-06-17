@@ -1,8 +1,14 @@
 ---
 title:      "Hyper-V Network Command Line Tool NVSPBIND Now Available Externally"
+author: mattbriggs
+ms.author: mabrigg
+description: Hyper-V Network Command Line Tool NVSPBIND Now Available Externally
+ms.date: 01/25/2010
 date:       2010-01-25 16:51:00
 categories: community
 ---
+# Hyper-V Network Command Line Tool NVSPBIND Now Available Externally
+
 Hello all,
 
  
@@ -15,7 +21,7 @@ Until now, Hyper-V administrators using Server Core installs of Windows Server 2
 
  
 
-I'm pleased to announce one of our developers on the Hyper-V team, Keith Mange, recently addressed this gap with the release of his (previously Microsoft internal-only) networking tool NVSPBIND.EXE publicly on. See it [here](http://code.msdn.microsoft.com/nvspbind "tool on MSDN"). 
+I'm pleased to announce one of our developers on the Hyper-V team, Keith Mange, recently addressed this gap with the release of his (previously Microsoft internal-only) networking tool NVSPBIND.EXE publicly on. See it [here](https://code.msdn.microsoft.com/nvspbind "tool on MSDN"). 
 
 < p style="MARGIN: 0in 0in 0pt" class="MsoNormal">   
 
@@ -23,6 +29,6 @@ This command line tool gives users easier granular control over network items th
 
  
 
-See John Howard’s blog [[here](http://blogs.technet.com/jhoward/archive/2010/01/25/announcing-nvspbind.aspx "John Howard blog")] for more details:
+See John Howard’s blog [[here](/archive/blogs/jhoward/announcing-nvspbind "John Howard blog")] for more details:
 
   Paul Despe

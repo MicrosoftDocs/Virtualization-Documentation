@@ -2,11 +2,18 @@
 title: HcsGetOperationResultAndProcessInfo
 description: HcsGetOperationResultAndProcessInfo
 author: faymeng
-ms.author: qiumeng
-ms.topic: article
+ms.author: mabrigg
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
 ms.date: 06/09/2021
+api_name:
+- HcsGetOperationResultAndProcessInfo
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
 ---
 # HcsGetOperationResultAndProcessInfo
 
@@ -43,7 +50,7 @@ If the operation finished, regardless of success or failure, receives the result
 On failure, it can optionally receive an error JSON document represented by a [ResultError](./../SchemaReference.md#ResultError); it's not guaranteed to be always returned and depends on the function call the operation was tracking.
 
 
-The caller is responsible for releasing the returned string using [`LocalFree`](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-localfree).
+The caller is responsible for releasing the returned string using [`LocalFree`](/windows/win32/api/winbase/nf-winbase-localfree).
 
 ## Return Values
 

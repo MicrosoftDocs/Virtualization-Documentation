@@ -1,9 +1,19 @@
+---
+title: Windows Hypervisor Platform API Definitions
+description: Describes Windows Hypervisor Platform API definitions and provides a high-level overview of the third-party architecture.
+author: juarezhm
+ms.author: hajuarez
+ms.date: 06/07/2021
+---
+
 # Windows Hypervisor Platform API Definitions
 >**This API is available starting in the Windows April 2018 Update.**
 
 The following diagram provides a high-level overview of the third-party architecture.
 
-![](./../media/windows-hypervisor-platform-architecture.png)
+
+
+![Diagram of a high-level overview of the third-party architecture. Shows relationship between root partition and guest partition.](./../media/windows-hypervisor-platform-architecture.png)
 
 
 

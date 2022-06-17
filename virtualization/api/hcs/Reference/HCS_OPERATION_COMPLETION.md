@@ -1,14 +1,21 @@
 ---
-title: HCS_OPERATION_TYPE
-description: HCS_OPERATION_TYPE
+title: HCS_OPERATION_COMPLETION
+description: About HCS_OPERATION_COMPLETION
 author: faymeng
-ms.author: qiumeng
-ms.topic: article
+ms.author: mabrigg
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
 ms.date: 06/09/2021
+api_name:
+- HCS_OPERATION_TYPE
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
 ---
-# HCS_OPERATION_TYPE
+# About HCS_OPERATION_COMPLETION
 
 ## Description
 

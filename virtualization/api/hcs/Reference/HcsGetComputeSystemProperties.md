@@ -2,11 +2,18 @@
 title: HcsGetComputeSystemProperties
 description: HcsGetComputeSystemProperties
 author: faymeng
-ms.author: qiumeng
-ms.topic: article
+ms.author: mabrigg
+ms.topic: reference
 ms.prod: virtualization
-ms.service: virtualization
 ms.date: 06/09/2021
+api_name:
+- HcsGetComputeSystemProperties
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
 ---
 # HcsGetComputeSystemProperties
 
@@ -51,8 +58,8 @@ The return value of [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md
 
 | Operation Result Value | Description |
 | -- | -- |
-| `S_OK` | The operation was finished successfully, the result document returned by the hcs operation is a JSON document representing a compute system's [Properties](./../SchemaReference.md#Properties) |
- 
+| `S_OK` | The operation was finished successfully, the result document returned by the hcs operation is a JSON document representing a compute system's [Properties](./../SchemaReference.md#Properties). Compute system Id and [SystemType](./../SchemaReference.md#SystemType) will always be returned.|
+
 ## Requirements
 
 |Parameter|Description|

@@ -1,14 +1,20 @@
 ---
-title:      "Hyper-V virtual machine gallery and networking improvements"
+title: Hyper-V virtual machine gallery and networking improvements
+description: Learn about the the Hyper-V virtual machine gallery and related networking improvements.
+author: mattbriggs
+ms.author: mabrigg
 date:       2017-07-26 01:42:39
+ms.date: 07/26/2017
 categories: hyper-v
 ---
+# Hyper-V virtual machine gallery and networking improvements
+
 In January, [we added Quick Create](https://blogs.technet.microsoft.com/virtualization/2017/01/10/cool-new-things-for-hyper-v-on-desktop/ "Quick Create") to Hyper-V manager in Windows 10. Quick Create is a single-page wizard for fast, easy, virtual machine creation. Starting in the latest fast-track Windows Insider builds (16237+) we’re expanding on that idea in two ways. Quick Create now includes: 
 
   1. A virtual machine gallery with downloadable, pre-configured, virtual machines.
   2. A default virtual switch to allow virtual machines to share the host’s internet connection using NAT.
 
-[![image](https://msdnshared.blob.core.windows.net/media/2017/07/image_thumb118.png)](https://msdnshared.blob.core.windows.net/media/2017/07/image139.png) To launch Quick Create, open Hyper-V Manager and click on the “Quick Create…” button (1). From there you can either create a virtual machine from one of the pre-built images available from Microsoft (2) or use a local installation source. Once you’ve selected an image or chosen installation media, you’re done! The virtual machine comes with a default name and a pre-made network connection using NAT (3) which can be modified in the “more options” menu. Click “Create Virtual Machine” and you’re ready to go – granted downloading the virtual machine will take awhile. 
+<!--[![image](https://msdnshared.blob.core.windows.net/media/2017/07/image_thumb118.png)](https://msdnshared.blob.core.windows.net/media/2017/07/image139.png)--> To launch Quick Create, open Hyper-V Manager and click on the “Quick Create…” button (1). From there you can either create a virtual machine from one of the pre-built images available from Microsoft (2) or use a local installation source. Once you’ve selected an image or chosen installation media, you’re done! The virtual machine comes with a default name and a pre-made network connection using NAT (3) which can be modified in the “more options” menu. Click “Create Virtual Machine” and you’re ready to go – granted downloading the virtual machine will take awhile. 
 
 ### Details about the Default Switch
 

@@ -1,9 +1,15 @@
 ---
 title:      "How to Use Resource Metering With PowerShell"
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 08/20/2012
 date:       2012-08-20 10:30:00
 categories: cloud-computing
+description: How to Use Resource Metering With PowerShell
 ---
-Hey, it's Lalithra again. In the last [part](http://blogs.technet.com/b/virtualization/archive/2012/08/16/introduction-to-resource-metering.aspx), we talked about what resource metering is. Now, we’ll get into how to use it with PowerShell. _A quick note: if this is your first foray into PowerShell, here are some resources you may find helpful to go through. First, a couple of posts from the Scripting Guy to give you a good overview:[An Introduction](http://blogs.technet.com/b/heyscriptingguy/archive/2009/04/20/windows-powershell-an-introduction.aspx) and [PowerShell and Pipelining](http://blogs.technet.com/b/heyscriptingguy/archive/2009/04/21/windows-powershell-and-pipelining.aspx). Also, check out the [Windows PowerShell for the Busy Admin](http://blogs.technet.com/b/heyscriptingguy/archive/2012/03/06/windows-powershell-for-the-busy-admin.aspx) series of webcasts by Scripting Guy Ed Wilson. Highly recommended._ Let ’s get started. First, let’s find the cmdlets we’re looking for. 
+# Use resource metering with PowerShell
+
+Hey, it's Lalithra again. In the last [part](https://blogs.technet.com/b/virtualization/archive/2012/08/16/introduction-to-resource-metering.aspx), we talked about what resource metering is. Now, we’ll get into how to use it with PowerShell. _A quick note: if this is your first foray into PowerShell, here are some resources you may find helpful to go through. First, a couple of posts from the Scripting Guy to give you a good overview:[An Introduction](https://blogs.technet.com/b/heyscriptingguy/archive/2009/04/20/windows-powershell-an-introduction.aspx) and [PowerShell and Pipelining](https://blogs.technet.com/b/heyscriptingguy/archive/2009/04/21/windows-powershell-and-pipelining.aspx). Also, check out the [Windows PowerShell for the Busy Admin](https://blogs.technet.com/b/heyscriptingguy/archive/2012/03/06/windows-powershell-for-the-busy-admin.aspx) series of webcasts by Scripting Guy Ed Wilson. Highly recommended._ Let ’s get started. First, let’s find the cmdlets we’re looking for. 
 
 PS C:> [Get-Command](https://technet.microsoft.com/library/hh849711.aspx) *VM* This prints out a list of cmdlets with VM in their names. If we look through this list for something related to resource metering, we’ll find the cmdlets we’re looking for.
 
@@ -53,7 +59,7 @@ LocalAddress RemoteAddress Direction TotalTraffic(M)
              *.*           Outbound  308  
              *:*           Inbound   6047  
              *.*           Inbound   3883  
-             *:*           Outbound  2637 What if I want to add another ACL? As we talked about on the last [post](http://blogs.technet.com/b/virtualization/archive/2012/08/16/introduction-to-resource-metering.aspx), ACLs, set on a virtual machine’s network adapter, allow you measure traffic that uses your internet versus your intranet, or any other division you choose.
+             *:*           Outbound  2637 What if I want to add another ACL? As we talked about on the last [post](https://blogs.technet.com/b/virtualization/archive/2012/08/16/introduction-to-resource-metering.aspx), ACLs, set on a virtual machine’s network adapter, allow you measure traffic that uses your internet versus your intranet, or any other division you choose.
 
 PS C:> [Add-VMNetworkAdapterAcl](https://technet.microsoft.com/library/hh848505) –VMName Greendale-VM –Action Meter –Direction Inbound –RemoteIpAddress 10.0.0.0/8 If I want to remove it, simply swap the verb:
 

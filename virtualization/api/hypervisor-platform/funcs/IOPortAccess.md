@@ -1,3 +1,11 @@
+---
+title: Exit caused by an I/O port access
+description: Learn about context data for an exit caused by an I/O port access.
+author: mattbriggs
+ms.author: mabrigg
+ms.date: 04/20/2022
+---
+
 # I/O Port Access
 
 

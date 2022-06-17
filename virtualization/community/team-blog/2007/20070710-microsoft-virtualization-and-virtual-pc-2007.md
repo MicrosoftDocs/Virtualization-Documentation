@@ -3,10 +3,10 @@ title: Microsoft Virtualization and Virtual PC 2007
 description: post id 3963
 keywords: virtualization, virtual server, virtual pc, blog
 author: scooley
+ms.author: scooley
 ms.date: 7/10/2007
 ms.topic: article
 ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 0c36290a-0790-4f64-ae63-0c5e90be116f
 ---
 
@@ -18,7 +18,7 @@ I'm Jeff Woolsey, a Senior Program Manager at Microsoft focused on Microsoft Vir
 
 I have the pleasure of regularly meeting with customers and partners and one bit of feedback I receive often is that folks want to hear more about what we're doing in terms of virtualization. With this in mind, I thought I'd take some time to start blogging about Microsoft virtualization. The focus of my blogs will be Virtual Server and our new hypervisor based virtualization in Windows Server 2008, but for this first article I thought I'd remind folks about one of our hottest downloads, Virtual PC 2007. Virtual PC 2007 was released in February 2007 and within the first 60 days **had over 1.8 million downloads**. We've hit well over 2 million downloads now and still climbing!
 
-Virtual PC 2007 can be freely downloaded from [here](http://www.microsoft.com/windows/products/winfamily/virtualpc/default.mspx).
+Virtual PC 2007 can be freely downloaded from [here](https://www.microsoft.com/windows/products/winfamily/virtualpc/default.mspx).
 
 Here's a list of some of the new features:
 
@@ -39,7 +39,7 @@ Here's a list of some of the new features:
 
 6. For more details, check out the release notes.
 
-Generally, I'm going to focus on server virtualization so I'll be discussing Virtual Server and Windows Server virtualization. I may touch on Virtual PC now and then, but Ben Armstrong (VPC GUY) has done such a great job blogging on Virtual PC, that I'd rather point you to his excellent blog [here](http://blogs.msdn.com/virtual_pc_guy/default.aspx).
+Generally, I'm going to focus on server virtualization so I'll be discussing Virtual Server and Windows Server virtualization. I may touch on Virtual PC now and then, but Ben Armstrong (VPC GUY) has done such a great job blogging on Virtual PC, that I'd rather point you to his excellent blog [here](https://blogs.msdn.com/virtual_pc_guy/default.aspx).
 
 Finally, to our millions of customers who have downloaded Virtual PC, a huge THANKS. It's your feedback that drove this release.
 

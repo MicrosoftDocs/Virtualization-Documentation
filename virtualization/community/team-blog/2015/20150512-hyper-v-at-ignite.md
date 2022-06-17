@@ -1,8 +1,14 @@
 ---
-title:      "Hyper-V at Ignite"
+title: Hyper-V at Ignite
+description: Find articles about announcement and new information on Hyper-V revealed at Ignite 2015.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-05-12 18:11:00
+ms.date: 05/12/2015
 categories: hyper-v
 ---
+# Hyper-V at Ignite
+
 Ignite 2015 was full of new information about Hyper-V.  Check out some of the many talks about (or related to) Hyper-V.  I'm sure I inevitably missed a few talks/interviews.  If there are any great ones I'm missing, leave a link in the comments.
 
  _* See also:[Information about Windows containers from Build and Ignite](/b/virtualization/archive/2015/05/11/windows-server-containers-and-hyper-v-containers-debut-at-ignite-and-build.aspx "Information about Windows containers from Build and Ignite")  

@@ -1,8 +1,15 @@
 ---
-title:      "Linux Integration Services 4.1"
-date:       2016-03-21 18:46:30
+title: Linux Integration Services 4.1
+description: Blog post that announces the availability of Linux Integration Services 4.1 and describes the bug fixes and performance improvements in the update.
+author: scooley
+ms.author: scooley
+date: 2016-03-21 18:46:30
+ms.date: 07/31/2019
 categories: linux
 ---
+
+# Linux Integration Services 4.1
+
 We are pleased to announce the availability of Linux Integration Services (LIS) 4.1. This new release expands supported releases to Red Hat Enterprise Linux, CentOS, and Oracle Linux with Red Hat Compatible Kernel 5.2, 5.3, 5.4, and 7.2. In addition to the latest bug fixes and performance improvements for Linux guests running on Hyper-V this release includes the following new features: 
 
   * Hyper-V Sockets (Windows Server Technical Preview)

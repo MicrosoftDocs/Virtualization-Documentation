@@ -1,8 +1,14 @@
 ---
-title:      "Hyper-V receives Red Hat certification"
+title: Hyper-V receives Red Hat certification
+description: Learn about how Hyper-V now supports Red Hat certificates.
+author: kelleymh
+ms.author: mikelley
 date:       2015-02-23 09:25:00
+ms.date: 02/23/2015
 categories: hyper-v
 ---
+# Hyper-V receives Red Hat certification
+
 If you run Red Hat Enterprise Linux (RHEL) as a guest OS on Hyper-V, you will be interested to know that Red Hat certifies Hyper-V as a supported hypervisor for running RHEL.  The support services you get from Red Hat via your RHEL subscription are fully available when running RHEL in an on-premises installation of Hyper-V.
 
 Microsoft recently obtained certification for the RHEL 7.0 release on Windows Server 2008 R2 Hyper-V, Windows Server 2012 Hyper-V, and Windows Server 2012 R2 Hyper-V.  The 2012 R2 Hyper-V certification includes both Generation 1 and Generation 2 VMs.

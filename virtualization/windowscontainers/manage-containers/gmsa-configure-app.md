@@ -3,20 +3,23 @@ title: Configure your app to use a Group Managed Service Account
 description: How to configure apps to use Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, apps, applications, group managed service account, group managed service accounts, configuration
 author: rpsqrd
+ms.author: ryanpu
 ms.date: 09/10/2019
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 # Configure your app to use a gMSA
 
-In the typical configuration, a container is only given one Group Managed Service Account (gMSA) that is used whenever the container computer account tries to authenticate to network resources. This means your app will need to run as **Local System** or **Network Service** if it needs to use the gMSA identity.
+> Applies to: Windows Server 2022, Windows Server 2019
+
+In the typical configuration, a container is only given one Group Managed Service Account (gMSA) that is used whenever the container computer account tries to authenticate to network resources. This means your app will need to run as **Local System** or **Network Service** if it needs to use the gMSA identity. Containers can also be configured with additional gMSAs, in case you want to run a service or application in the container as a different identity from the container computer account.
 
 ## Run an IIS app pool as Network Service
 
 If you're hosting an IIS website in your container, all you need to do to leverage the gMSA is set your app pool identity to **Network Service**. You can do that in your Dockerfile by adding the following command:
 
 ```dockerfile
-RUN %windir%\system32\inetsrv\appcmd.exe set AppPool DefaultAppPool -processModel.identityType:NetworkService
+RUN %windir%\system32\inetsrv\appcmd.exe set AppPool DefaultAppPool -'processModel.identityType':NetworkService
 ```
 
 If you previously used static user credentials for your IIS App Pool, consider the gMSA as the replacement for those credentials. You can change the gMSA between dev, test, and production environments and IIS will automatically pick up the current identity without having to change the container image.

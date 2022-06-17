@@ -1,3 +1,11 @@
+---
+title: WHvGetCapability
+description: Describes and gives instructions for API implementation, including syntax, parameters, return values, and remarks. 
+author: Juarezhm
+ms.author: hajuarez
+ms.date: 5/31/2019
+---
+
 # WHvGetCapability
 
 

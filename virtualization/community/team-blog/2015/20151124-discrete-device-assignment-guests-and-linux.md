@@ -1,8 +1,14 @@
 ---
-title:      "Discrete Device Assignment -- Guests and Linux"
+title: Discrete Device Assignment -- Guests and Linux
+description: Learn about supporting Linux guest virtual machines using Discrete Device Assignment.
+author: mattbriggs
+ms.author: mabrigg
 date:       2015-11-24 14:46:02
+ms.date: 11/24/2015
 categories: dda
 ---
+# Discrete Device Assignment -- Guests and Linux
+
 In my previous three posts, I outlined a new feature in Windows Server 2016 TP4 called Discrete Device Assignment. This post talks about support for Linux guest VMs, and it’s more of a description of my personal journey rather than a straight feature description. If it were just a description, I could do that in one line: We’re contributing code to Linux to make this work, and it will eventually hit a distro near you.
 
 Microsoft has cared a lot about supporting Linux in a Hyper-V VM for a while now. We have an entire team of people dedicated to making that work better. Microsoft Azure, which uses Hyper-V, hosts many different kinds of Linux, and they’re constantly tuning to make that even better. What’s new for me is that I built the Linux front-end code for PCI Express pass-through, rather than asking a separate team to do it. I also built PCI Express pass-through for Windows (along with a couple of other people) for Windows Server 2012, which showed up as SR-IOV for networking, and Discrete Device Assignment for Windows Server 2016 TP4, which is built on the same underpinnings.

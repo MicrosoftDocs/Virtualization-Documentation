@@ -39,6 +39,12 @@
         "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/breadcrumb/toc.yml",
         "tlfs/datatypes/**/*.md": "tlfs/datatypes/breadcrumb/toc.yml"          
       },
+      "ms.topic": {
+        "**/*.md": "article"
+      },
+      "ms.prod": {
+        "**/*.md": "windows-10-hyperv"
+      },
       "extendBreadcrumb": {
         "tlfs/hypercalls/**/*.md": false,
         "tlfs/datatypes/**/*.md": false              

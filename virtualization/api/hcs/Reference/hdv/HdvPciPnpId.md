@@ -1,3 +1,20 @@
+---
+title: HDV_PCI_PNP_ID structure
+description: HDV_PCI_PNP_ID structure
+author: faymeng
+ms.author: mabrigg
+ms.topic: reference
+ms.prod: virtualization
+ms.date: 06/09/2021
+api_name:
+- HDV_PCI_PNP_ID structure
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
+---
 # HDV_PCI_PNP_ID structure
 
 PnP ID definition for a virtual device.

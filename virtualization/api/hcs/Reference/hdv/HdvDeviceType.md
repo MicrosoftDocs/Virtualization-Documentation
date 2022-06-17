@@ -1,3 +1,20 @@
+---
+title: HDV_DEVICE_TYPE
+description: HDV_DEVICE_TYPE
+author: faymeng
+ms.author: mabrigg
+ms.topic: reference
+ms.prod: virtualization
+ms.date: 06/09/2021
+api_name:
+- HDV_DEVICE_TYPE
+api_location:
+- computecore.dll
+api_type:
+- DllExport
+topic_type: 
+- apiref
+---
 # HDV_DEVICE_TYPE
 
 ## Description
