@@ -60,9 +60,6 @@ There are three things to keep in mind when considering the following options. I
 
 Each of these methods are provided as an option to make the experience of constructing your container-ready Azure VMs as smooth as possible. The following subsections will detail the pros and cons of each option alongside how to get started.
 
-> [!NOTE]
-> It is recommended when setting up your own VMs that you cache your container images at build time to prevent pull delays at run time.
-
 ##### Azure Image Builder
 
 The benefit to using Image Builder is that the configuration is done during a build time and would not have any effect on
@@ -122,7 +119,7 @@ To get started with Docker on Windows Server we have created [a powershell scrip
 
 ```powershell
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1" -o install-docker-ce.ps1
-install-docker-ce.ps1
+.\install-docker-ce.ps1
 ```
 
 For more configuration details, see [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md).
@@ -135,7 +132,7 @@ The Mirantis Container Runtime, formally known as Docker EE, provides the same f
 
 ```powershell
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-MirantisContainerRuntime/install-mirantis-container-runtime.ps1" -o install-mirantis-container-runtime.ps1
-install-mirantis-container-runtime.ps1
+.\install-mirantis-container-runtime.ps1
 ```
 
 Please head over to the [Mirantis site](https://www.mirantis.com/software/container-runtime/) for more information.
@@ -149,7 +146,7 @@ Please head over to the [Mirantis site](https://www.mirantis.com/software/contai
 We have created [an installation script](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-ContainerdRuntime/install-containerd-runtime.ps1) which installs both for you at the same time alongside container related OS features.
 ```powershell
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-ContainerdRuntime/install-containerd-runtime.ps1" -o install-containerd-runtime.ps1
-install-containerd-runtime.ps1
+.\install-containerd-runtime.ps1
 ```
 
 This script does install the [Windows CNI plugins](https://github.com/microsoft/windows-container-networking) as well, however, you will need to configure ctr/nerdctl to use the CNI configuration that best suits you.
