@@ -118,9 +118,10 @@ This section will detail the process of installing each on your specific copy of
 
 Docker Community Edition (CE) provides a standard runtime environment for containers with a common API and command-line interface (CLI). It is managed by the open source community as part of the [Moby Project](https://mobyproject.org/).
 
-To get started with Docker on Windows Server we have created [a powershell script](../../../windows-server-container-tools/Install-ContainerHost/Install-ContainerHost.ps1) which configures your environment to enable container-related OS features and install the Docker runtime.
+To get started with Docker on Windows Server we have created [a powershell script](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1) which configures your environment to enable container-related OS features and install the Docker runtime.
 
 ```powershell
+Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1" -o install-docker-ce.ps1
 install-docker-ce.ps1
 ```
 
@@ -130,9 +131,10 @@ For more configuration details, see [Docker Engine on Windows](../manage-docker/
 
 The Mirantis Container Runtime, formally known as Docker EE, provides the same functionality as Docker CE plus extra features built specifically for enterprise deployments.
 
-[Included here is a script](../../../windows-server-container-tools/Install-MirantisContainerRuntime/install-mirantis-container-runtime.ps1) which calls the Mirantis Container Runtime [installation script](https://docs.mirantis.com/mcr/20.10/install/mcr-windows.html) and reboots the computer.
+[Included here is a script](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-MirantisContainerRuntime/install-mirantis-container-runtime.ps1) which calls the Mirantis Container Runtime [installation script](https://docs.mirantis.com/mcr/20.10/install/mcr-windows.html) and reboots the computer.
 
 ```powershell
+Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-MirantisContainerRuntime/install-mirantis-container-runtime.ps1" -o install-mirantis-container-runtime.ps1
 install-mirantis-container-runtime.ps1
 ```
 
@@ -144,8 +146,9 @@ Please head over to the [Mirantis site](https://www.mirantis.com/software/contai
 
 [nerdctl](https://github.com/containerd/nerdctl) is a Docker-compatible CLI for containerd.
 
-We have created [an installation script](../../../windows-server-container-tools/Install-ContainerdRuntime/install-containerd-runtime.ps1) which installs both for you at the same time alongside container related OS features.
+We have created [an installation script](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-ContainerdRuntime/install-containerd-runtime.ps1) which installs both for you at the same time alongside container related OS features.
 ```powershell
+Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-ContainerdRuntime/install-containerd-runtime.ps1" -o install-containerd-runtime.ps1
 install-containerd-runtime.ps1
 ```
 
