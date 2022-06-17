@@ -54,9 +54,9 @@ Ultimately, our goal is to remove the container runtime from the list of things 
 
 There are three things to keep in mind when considering the following options. It is up to your organization to decide which aspect you want to optimize around:
 
-1.How complex is it to implement?
-2.What is the cost?
-3.How does it impact my workload in production?
+1. How complex is it to implement?
+2. What is the cost?
+3. How does it impact my workload in production?
 
 Each of these methods are provided as an option to make the experience of constructing your container-ready Azure VMs as smooth as possible. The following subsections will detail the pros and cons of each option alongside how to get started.
 
