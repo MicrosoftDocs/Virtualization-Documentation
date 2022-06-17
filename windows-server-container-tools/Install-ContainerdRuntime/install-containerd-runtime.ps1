@@ -26,6 +26,8 @@
     .PARAMETER NerdCTLVersion
         Version of nerdctl to use
 
+    .PARAMETER WinCNIVersion
+
     .PARAMETER ExternalNetAdapter
         Specify a specific network adapter to bind to a DHCP network
 
@@ -59,6 +61,10 @@ param(
     [string]
     [ValidateNotNullOrEmpty()]
     $NerdCTLVersion = "0.20.0",
+
+    [string]
+    [ValidateNotNullOrEmpty()]
+    $WinCNIVersion = "0.3.0",
 
     [string]
     $ExternalNetAdapter,
@@ -225,11 +231,11 @@ New-ContainerTransparentNetwork
 {
     if ($ExternalNetAdapter)
     {
-        $netAdapter = (Get-NetAdapter |? {$_.Name -eq "$ExternalNetAdapter"})[0]
+        $netAdapter = (Get-NetAdapter | Where-Object {$_.Name -eq "$ExternalNetAdapter"})[0]
     }
     else
     {
-        $netAdapter = (Get-NetAdapter |? {($_.Status -eq 'Up') -and ($_.ConnectorPresent)})[0]
+        $netAdapter = (Get-NetAdapter |Where-Object {($_.Status -eq 'Up') -and ($_.ConnectorPresent)})[0]
     }
 
     Write-Output "Creating container network (Transparent)..."
@@ -274,7 +280,7 @@ Install-ContainerDHost
     #
     # Unregister the bootstrap task, if it was previously created
     #
-    if ((Get-ScheduledTask -TaskName $global:BootstrapTask -ErrorAction SilentlyContinue) -ne $null)
+    if ($null -ne (Get-ScheduledTask -TaskName $global:BootstrapTask -ErrorAction SilentlyContinue))
     {
         Unregister-ScheduledTask -TaskName $global:BootstrapTask -Confirm:$false
     }
@@ -309,9 +315,9 @@ Install-ContainerDHost
             {
                 Write-Output "Networking is already configured.  Confirming configuration..."
                 
-                $transparentNetwork = $networks |? { $_.Mode -eq "Transparent" }
+                $transparentNetwork = $networks |Where-Object { $_.Mode -eq "Transparent" }
 
-                if ($transparentNetwork -eq $null)
+                if ($null -eq $transparentNetwork)
                 {
                     Write-Output "We didn't find a configured external network; configuring now..."
                     New-ContainerTransparentNetwork
@@ -320,7 +326,7 @@ Install-ContainerDHost
                 {
                     if ($ExternalNetAdapter)
                     {
-                        $netAdapters = (Get-NetAdapter |? {$_.Name -eq "$ExternalNetAdapter"})
+                        $netAdapters = (Get-NetAdapter | Where-Object {$_.Name -eq "$ExternalNetAdapter"})
 
                         if ($netAdapters.Count -eq 0)
                         {
@@ -328,9 +334,9 @@ Install-ContainerDHost
                         }
 
                         $netAdapter = $netAdapters[0]
-                        $transparentNetwork = $networks |? { $_.NetworkAdapterName -eq $netAdapter.InterfaceDescription }
+                        $transparentNetwork = $networks |Where-Object { $_.NetworkAdapterName -eq $netAdapter.InterfaceDescription }
 
-                        if ($transparentNetwork -eq $null)
+                        if ($null-eq $transparentNetwork)
                         {
                             throw "One or more external networks are configured, but not on the requested adapter ($ExternalNetAdapter)"
                         }
@@ -386,7 +392,7 @@ Copy-File
     {
         Copy-Item -Path $SourcePath -Destination $DestinationPath
     }
-    elseif (($SourcePath -as [System.URI]).AbsoluteURI -ne $null)
+    elseif ($null -ne ($SourcePath -as [System.URI]).AbsoluteURI)
     {
         if (Test-Nano)
         {
@@ -406,7 +412,7 @@ Copy-File
                     $copyStreamOp = $response.Content.CopyToAsync($downloadedFileStream)
                     $copyStreamOp.Wait()
                     $downloadedFileStream.Close()
-                    if ($copyStreamOp.Exception -ne $null)
+                    if ($null -ne $copyStreamOp.Exception)
                     {
                         throw $copyStreamOp.Exception
                     }      
@@ -419,7 +425,7 @@ Copy-File
             # We disable progress display because it kills performance for large downloads (at least on 64-bit PowerShell)
             #
             $ProgressPreference = 'SilentlyContinue'
-            wget -Uri $SourcePath -OutFile $DestinationPath -UseBasicParsing
+            Invoke-WebRequest -Uri $SourcePath -OutFile $DestinationPath -UseBasicParsing
             $ProgressPreference = 'Continue'
         }
         else
@@ -484,9 +490,9 @@ Test-Nano()
 function 
 Wait-Network()
 {
-    $connectedAdapter = Get-NetAdapter |? ConnectorPresent
+    $connectedAdapter = Get-NetAdapter | Where-Object ConnectorPresent
 
-    if ($connectedAdapter -eq $null)
+    if ($null -eq $connectedAdapter)
     {
         throw "No connected network"
     }
@@ -496,9 +502,9 @@ Wait-Network()
 
     while ($($timeElapsed).TotalMinutes -lt 5)
     {
-        $readyNetAdapter = $connectedAdapter |? Status -eq 'Up'
+        $readyNetAdapter = $connectedAdapter | Where-Object Status -eq 'Up'
 
-        if ($readyNetAdapter -ne $null)
+        if ($null -ne $readyNetAdapter)
         {
             return;
         }
@@ -524,42 +530,65 @@ Install-Containerd()
 
         [string]
         [ValidateNotNullOrEmpty()]
-        $NerdCTLVersion = "0.20.0"
+        $NerdCTLVersion = "0.20.0",
+
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $WinCNIVersion = "0.3.0"
     )
 
     Test-Admin
 
-    Write-Output "Downloading containerd and nerdCTL binaries..."
-
-    # Download and extract desired containerd Windows binaries
-    curl.exe -L https://github.com/containerd/containerd/releases/download/v$ContainerDVersion/containerd-$ContainerDVersion-windows-amd64.tar.gz -o containerd-windows-amd64.tar.gz
-    tar.exe xvf .\containerd-windows-amd64.tar.gz
-
-    curl.exe -L https://github.com/containerd/nerdctl/releases/download/v$NerdCTLVersion/nerdctl-$NerdCTLVersion-windows-amd64.tar.gz -o nerdctl-windows-amd64.tar.gz
-    tar.exe xfv .\nerdctl-windows-amd64.tar.gz
+    Write-Output "Downloading containerd, nerdCTL, and Windows CNI binaries..."
 
     $ContainerdPath = "$Env:ProgramFiles\containerd"
+    $NerdCTLPath = "$Env:ProgramFiles\nerdctl"
+    $WinCNIPath = "$ContainerdPath\cni\bin"
 
-    Write-Output "Installing Containerd + NerdCTL"
+    # Download and extract desired containerd Windows binaries
+    if (!(Test-Path $ContainerdPath)) { mkdir -Force -Path $ContainerdPath | Out-Null }
+    if (!(Test-Path $NerdCTLPath)) { mkdir -Force -Path $NerdCTLPath | Out-Null }
+    if (!(Test-Path $WinCNIPath)) { mkdir -Force -Path $WinCNIPath | Out-Null }
 
-    # Copy and add to path
-    Copy-Item -Path ".\bin\" -Destination $ContainerdPath -Recurse -Force
-    Copy-Item -Path ".\nerdctl.exe" -Destination $ContainerdPath -Recurse -Force
+    $ContainerdZip = "containerd-$ContainerDVersion-windows-amd64.tar.gz"
+    Copy-File "https://github.com/containerd/containerd/releases/download/v$ContainerDVersion/$ContainerdZip" "$ContainerdPath\$ContainerdZip"
+    tar.exe -xvf "$ContainerdPath\$ContainerdZip" -C $ContainerdPath
+    Write-Output "Containerd binaries added to $ContainerdPath"
 
-    Write-Output "Adding $env:ProgramFiles\containerd to the path"
+    #Download and extract nerdctl binaries
+    $NerdCTLZip = "nerdctl-$NerdCTLVersion-windows-amd64.tar.gz"
+    Copy-File "https://github.com/containerd/nerdctl/releases/download/v$NerdCTLVersion/$NerdCTLZip" "$NerdCTLPath\$NerdCTLZip"
+    tar.exe -xvf "$NerdCTLPath\$NerdCTLZip" -C $NerdCTLPath
+    Write-Output "NerdCTL binary added to $NerdCTLPath"
 
-    $OldPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name path).path
-    if(!($OldPath -contains "*containerd*")) {
-        $NewPath = "$OldPath;$ContainerdPath"
-        Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $NewPath
-        $env:Path = $NewPath
-    } else {
+    #Download and extract win cni binaries
+    $WinCNIZip = "windows-container-networking-cni-amd64-v$WinCNIVersion.zip"
+    Copy-File "https://github.com/microsoft/windows-container-networking/releases/download/v$WinCNIVersion/$WinCNIZip" "$WinCNIPath\$WinCNIZip"
+    tar.exe -xvf "$WinCNIPath\$WinCNIZip" -C $WinCNIPath
+    Write-Output "CNI plugin binaries added to $WinCNIPath"
+
+    Write-Output "Adding $ContainerdPath, $NerdCTLPath, $WinCNIPath to the path"
+
+    $NewPath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name path).path
+    if($NewPath.contains("containerd")) {
         Write-Output "$ContainerdPath already in PATH"
+    } else {
+        $NewPath = "$NewPath;$ContainerdPath\bin;"
     }
+
+    if($NewPath.contains("nerdctl")) {
+        Write-Output "$NerdCTLPath already in PATH"
+    } else {
+        $NewPath = "$NewPath;$NerdCTLPath;"
+    }
+
+    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $NewPath
+    $env:Path = $NewPath
+
 
     Write-Output "Configuring the containerd service"
 
-    #Configure
+    #Configure containerd service
     containerd.exe config default | Out-File $ContainerdPath\config.toml -Encoding ascii
 
     # Review the configuration. Depending on setup you may want to adjust:
@@ -580,9 +609,6 @@ Install-Containerd()
     Write-Output "The following images are present on this machine:"
     
     nerdctl images -a | Write-Output
-
-    Write-Output ""
-    Write-Output "NOTE: This script does not yet install a CNI plugin, you will need this to run containers."
 }
 
 function 
@@ -598,13 +624,21 @@ Stop-Containerd()
     Stop-Service -Name $global:ContainerdServiceName
 }
 
+function
+Remove-Containerd() 
+{
+    Stop-Containerd
+    (Get-WmiObject -Class Win32_Service -Filter "Name='containerd'").delete()
+    Remove-Item "$Env:ProgramFiles\containerd"
+    Remove-Item "$Env:ProgramFiles\nerdctl"
+}
 
 function 
 Test-Containerd()
 {
     $service = Get-Service -Name $global:ContainerdServiceName -ErrorAction SilentlyContinue
 
-    return ($service -ne $null)
+    return ($null -ne $service)
 }
 
 

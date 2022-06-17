@@ -55,7 +55,7 @@ There are three things to keep in mind when considering the following options. I
 2.What is the cost?
 3.How does it impact my workload in production?
 
-Each of these methods are provided as an option to make the experience of constructing your container-ready Azure VMs as smooth as possible. The following sections will detail the pros and cons of each option alongside how to get started.
+Each of these methods are provided as an option to make the experience of constructing your container-ready Azure VMs as smooth as possible. The following subsections will detail the pros and cons of each option alongside how to get started.
 
 > [!NOTE]
 > It is recommended when setting up your own VMs that you cache your container images at build time to prevent pull delays at run time.
@@ -122,10 +122,11 @@ The Mirantis Container Runtime, formally known as Docker EE, provides the same f
 
 [Included here is a script](../../../windows-server-container-tools/Install-MirantisContainerRuntime/install-mirantis-container-runtime.ps1) which calls the Mirantis Container Runtime [installation script](https://docs.mirantis.com/mcr/20.10/install/mcr-windows.html) and reboots the computer.
 
-Please head over to the [Mirantis site](https://www.mirantis.com/software/container-runtime/) for more information.
+```powershell
+install-mirantis-container-runtime.ps1
+```
 
-> [!NOTE]
-> If you have read this guide and would like additional guidance from the Windows Containers product team, you can reach us at [github/Windows-Containers](https://github.com/microsoft/Windows-Containers) where you will find information about getting time on the product team’s calendar to chat.
+Please head over to the [Mirantis site](https://www.mirantis.com/software/container-runtime/) for more information.
 
 # [Containerd](#tab/containerd)
 
@@ -133,12 +134,18 @@ Please head over to the [Mirantis site](https://www.mirantis.com/software/contai
 
 [nerdctl](https://github.com/containerd/nerdctl) is a Docker-compatible CLI for containerd.
 
-We have created an installation script which installs both for you at the same time alongside container related OS features.
+We have created [an installation script](../../../windows-server-container-tools/Install-ContainerdRuntime/install-containerd-runtime.ps1) which installs both for you at the same time alongside container related OS features.
+```powershell
+install-containerd-runtime.ps1
+```
 
-After running this script you will still need to [run a container networking interface (CNI) plugin](https://github.com/microsoft/windows-container-networking) before you can run your first container.
+This script does install the [Windows CNI plugins](https://github.com/microsoft/windows-container-networking) as well.
 
 - [Instructions for installing containerd on Windows.](https://github.com/containerd/containerd/blob/main/docs/getting-started.md#installing-containerd-on-windows)
 - [Instructions for installing nerdctl on Windows.](https://github.com/containerd/nerdctl#install)
+
+> [!NOTE]
+> If you have read this guide and would like additional guidance from the Windows Containers product team, you can reach us at [github/Windows-Containers](https://github.com/microsoft/Windows-Containers) where you will find information about getting time on the product team’s calendar to chat.
 
 ---
 <!-- stop tab view -->
