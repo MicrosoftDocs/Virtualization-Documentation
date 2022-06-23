@@ -1,6 +1,8 @@
 ---
 title:      "Guest post&#58; Storage Loves Dynamic Memory"
 description: A guest post by Alex Miroshnichenko of Virsto Software, about Dynamic Memory.
+author: mabriggs
+ms.author: mabrigg
 date:       2010-09-14 09:32:00
 ms.date: 09/14/2010
 categories: dynamic-memory

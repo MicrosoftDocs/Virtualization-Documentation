@@ -3,6 +3,7 @@ title: Hyper-V APIs
 description: Hyper-V APIs
 keywords: windows 10, hypervisor
 author: jterry75
+ms.author: mabrigg
 ms.date: 12/19/2017
 ms.topic: article
 ms.prod: virtualization

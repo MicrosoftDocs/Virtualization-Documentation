@@ -33,4 +33,4 @@ The TLFS fully describes all aspects of the Microsoft-specific hypervisor archit
 
 #### Download
 
-[Requirements for Implementing the Microsoft Hypervisor Interface.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Requirements%20for%20Implementing%20the%20Microsoft%20Hypervisor%20Interface.pdf)
+[Requirements for Implementing the Microsoft Hypervisor Interface](https://download.microsoft.com/download/F/B/0/FB0D01A3-8E3A-4F5F-AA59-08C8026D3B8A/requirements-for-implementing-microsoft-hypervisor-interface.docx)

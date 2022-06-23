@@ -1,6 +1,8 @@
 ---
 title:      "Guest post&#58; Moving Virtualization into the Mainstream"
 description: Both AMD and Microsoft are continually asked if virtualization can really become a sustainable technology in the mainstream computing market.
+author: mabriggs
+ms.author: mabrigg
 date: 2009-03-20 16:41:00
 ms.date: 03/20/2009
 categories: dell
