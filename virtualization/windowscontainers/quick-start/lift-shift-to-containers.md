@@ -55,13 +55,13 @@ To help you decide which applications to lift and shift and develop a plan for h
 
 As of August 2021, the following applications are not supported for Windows containers:
 
-- MSMQ is supported for all scenarios except those that require AD DS authentication. To learn more about supported scenarios for using Microsoft Message Queuing (MSMQ) and Windows containers, see the [MSMQ and Windows Containers](https://techcommunity.microsoft.com/t5/containers/msmq-and-windows-containers/ba-p/1981414) Microsoft Tech Community article. To review additional information, see the [Windows Server discussion forum](https://windowsserver.uservoice.com/forums/304624-containers/suggestions/15719031-create-base-container-image-with-msmq-server) and the [Microsoft Developer Network forum](https://social.msdn.microsoft.com/Forums/bce99a7d-aa60-44fa-a348-450855650810/msmqserver-is-it-supported?forum=windowscontainers). 
+- MSMQ is supported for all scenarios except those that require AD DS authentication. To learn more about supported scenarios for using Microsoft Message Queuing (MSMQ) and Windows containers, see the [MSMQ and Windows Containers](https://techcommunity.microsoft.com/t5/containers/msmq-and-windows-containers/ba-p/1981414) Microsoft Tech Community article. To review additional information, see the [Windows Server discussion forum](https://techcommunity.microsoft.com/t5/windows-server/ct-p/Windows-Server) and the [Microsoft Developer Network forum](https://social.msdn.microsoft.com/Forums/bce99a7d-aa60-44fa-a348-450855650810/msmqserver-is-it-supported?forum=windowscontainers). 
 - Microsoft Distributed Transaction Coordinator (MSDTC) is supported in limited scenarios.
   - When creating the container, be sure to pass the -name parameter to the docker run command. If using gMSA, the container name must match the gMSA name.
   - Containers must be able to resolve each other using NETBIOS name. This can be accomplished by adding the name and IP address of containers to each other's HOSTS file. 
   - The UUID for MSDTC must be unique. You can determine the UUID using the Get-DTC PowerShell cmdlet. If the UUIDs are not unique, you can resolve this by uninstalling and then reinstalling MSDTC on the containers.
   - For more information, see the [GitHub issues](https://github.com/MicrosoftDocs/Virtualization-Documentation/issues/494) page.
-- Microsoft Office currently does not support containers. For more information, see the [UserVoice request forum](https://windowsserver.uservoice.com/forums/304624-containers/suggestions/19686220-provide-office-support-for-containers).  
+- Microsoft Office currently does not support containers. For more information, see the [UserVoice request forum](https://support.microsoft.com/en-us/office/uservoice-pages-430e1a78-e016-472a-a10f-dc2a3df3450a).  
 - Client apps with a visual user interface are not supported.  
 - Windows infrastructure roles are not supported. This includes DNS, DHCP, DC, NTP, print services, file server, and identity and access management (IAM).  
   
