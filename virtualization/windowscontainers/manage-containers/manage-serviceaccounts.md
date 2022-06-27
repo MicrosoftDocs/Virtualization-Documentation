@@ -119,7 +119,7 @@ Once you've decided on the name for your gMSA, run the following cmdlets in Powe
 
 > [!TIP]
 > You'll need to use an account that belongs to the **Domain Admins** security group or has been delegated the **Create msDS-GroupManagedServiceAccount objects** permission to run the following commands.
-> The [New-ADServiceAccount](/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps&preserve-view=true) cmdlet is part of the AD PowerShell Tools from [Remote Server Administration Tools](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools).
+> The [New-ADServiceAccount](/powershell/module/activedirectory/new-adserviceaccount) cmdlet is part of the AD PowerShell Tools from [Remote Server Administration Tools](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools).
 
 We recommend you create separate gMSA accounts for your development, test, and production environments.
 

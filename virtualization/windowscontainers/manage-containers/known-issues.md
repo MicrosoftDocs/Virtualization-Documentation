@@ -3,7 +3,7 @@ title: Known Issues
 description: Known Issues for Windows Server containers
 keywords: metadata, containers, version,
 author: taylob
-ms.author: taylob
+ms.author: mabrigg
 ms.topic: reference
 ms.date: 07/21/2021
 ---

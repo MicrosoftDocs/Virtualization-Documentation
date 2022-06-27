@@ -1,6 +1,8 @@
 ---
 title:      "Guest Blog&#58; The Role of IT in an Economic Downturn&#58; Spend Smarter, Not Smaller"
 description: Whether my clients are technology centric or technology supported, IT can play a huge role in making the business more profitable and more efficient.
+author: mabriggs
+ms.author: mabrigg
 date:       2009-06-23 05:30:00
 ms.date: 06/23/2009
 categories: guest-blog-post

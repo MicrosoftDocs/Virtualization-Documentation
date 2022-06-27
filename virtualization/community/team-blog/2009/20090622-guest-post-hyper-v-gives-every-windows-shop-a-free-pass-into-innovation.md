@@ -1,6 +1,8 @@
 ---
 title:      "Guest post&#58; Hyper-V gives every Windows shop a free pass into “innovation”"
 description: A guest post by Matt Lavallee, the Director of Technology at MLS Property Information Network, Inc., based in Massachusetts.
+author: mabriggs
+ms.author: mabrigg
 date:       2009-06-22 14:39:00
 ms.date: 06/22/2009
 categories: guest-blog-post

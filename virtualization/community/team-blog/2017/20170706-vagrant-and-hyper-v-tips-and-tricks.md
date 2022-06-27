@@ -43,8 +43,8 @@ Vagrant.configure(2) do |config|
     config.vm.network "public_network"
     end
 ```
-One additional trick here: `vagrant init` will create a file that will appear to be full of commented out items. However, there is one line not commented out: [caption id="attachment_10185" align="aligncenter" width="879"]
-![asdf](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog-1024x784.png)](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog.png) There is one line not commented.[/caption] Make sure you delete that line! Otherwise, you'll end up with an error like this:
+One additional trick here: `vagrant init` will create a file that will appear to be full of commented out items. However, there is one line not commented out: `[caption id="attachment_10185" align="aligncenter" width="879"]`
+<!--![asdf](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog-1024x784.png)](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog.png)--> There is one line not commented.[/caption] Make sure you delete that line! Otherwise, you'll end up with an error like this:
 
 ```csharp
     Bringing machine 'default' up with 'hyperv' provider...

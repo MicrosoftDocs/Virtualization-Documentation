@@ -169,7 +169,7 @@ Get-HnsNetwork | ? Name -ieq "vxlan0"
 Get-NetAdapter | ? Name -Like "vEthernet (Ethernet*"
 ```
 
-Often it is worthwhile to modify the [InterfaceName](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/start.ps1#L6) parameter of the start.ps1 script, in cases where the host's network adapter isn't "Ethernet". Otherwise, consult the output of the `start-kubelet.ps1` script to see if there are errors during virtual network creation.
+Often it is worthwhile to modify the InterfaceName parameter of the start.ps1 script, in cases where the host's network adapter isn't "Ethernet". Otherwise, consult the output of the `start-kubelet.ps1` script to see if there are errors during virtual network creation.
 
 
 ### I am still seeing problems. What should I do? ###
