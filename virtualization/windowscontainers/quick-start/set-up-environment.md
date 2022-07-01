@@ -3,7 +3,7 @@ title: Prep Windows operating system containers
 description: Set up Windows or Windows Server for containers, then move on to running your first container image.
 keywords: docker, containers, LCOW
 author: v-susbo
-ms.author: brasmith-ms, viniap
+ms.author: brasmith-ms
 ms.date: 06/17/2022
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
@@ -49,8 +49,8 @@ For many applications and orchestration paradigms it is necessary to build and d
 
 Azure will continue to offer a complete and fully managed end-to-end experience through the Azure Kubernetes Service both in the cloud and on-premises. AKS and AKS-HCI are fully managed services with lower management overhead than what you are used to with custom deployments. Support for the container runtime is included within the AKS and AKS-HCI services under your Azure subscription.
 
-- [Getting Started with Windows on AKS](https://docs.microsoft.com/azure/aks/windows-container-cli)
-- [Getting Started with Windows on AKS-HCI](https://docs.microsoft.com/azure-stack/aks-hci/kubernetes-walkthrough-powershell)
+- [Getting Started with Windows on AKS](/azure/aks/windows-container-cli)
+- [Getting Started with Windows on AKS-HCI](/azure-stack/aks-hci/kubernetes-walkthrough-powershell)
 
 There are three things to keep in mind when considering the following options. It is up to your organization to decide which aspect you want to optimize around:
 
@@ -66,9 +66,9 @@ The benefit to using Image Builder is that the configuration is done during a bu
 your workload at runtime; when the VM scale set instantiates a new VM from your custom image, the image will have already
 been prepped so no time must be spent here and it will be immediately ready to run containers.
 
-Azure image builder, however, can be more complex to implement and there are more steps involved than with script extensions. Additionally, while the Image Builder service is free, you must manage for the compute, storage, and networking usage associated with the build process (additional details [here](https://docs.microsoft.com/azure/virtual-machines/image-builder-overview#costs))
+Azure image builder, however, can be more complex to implement and there are more steps involved than with script extensions. Additionally, while the Image Builder service is free, you must manage for the compute, storage, and networking usage associated with the build process (additional details [here](/azure/virtual-machines/image-builder-overview#costs))
 
-To get started with building your own Windows Server VM image, we have [created a guide which details the process step-by step](https://docs.microsoft.com/azure/virtual-machines/windows/image-builder). The powershell scripts mentioned below can be utilized alongside this guide to install your container runtime of choice.
+To get started with building your own Windows Server VM image, we have [created a guide which details the process step-by step](/azure/virtual-machines/windows/image-builder). The powershell scripts mentioned below can be utilized alongside this guide to install your container runtime of choice.
 
 > [!TIP]
 > Make sure to cache the container images you plan to use locally on the VM! This will help improve the container start time after deployment. The [scripts below](#windows-server-1) will help you do this.
@@ -77,7 +77,7 @@ To get started with building your own Windows Server VM image, we have [created 
 
 Custom Script Extensions are quicker to implement and the cost is only in the nominal price to store the script in Azure or GitHub. However, the script may only execute after a VM has been provisioned, so you must budget for additional time being spent to properly prep the VM at scale-out time.
 
-Using the scripts offered below you can configure your VM scale sets to install the container runtime of your choice upon provisioning. [Follow our guide](http://ttps//docs.microsoft.com/azure/virtual-machine-scale-sets/tutorial-install-apps-cli) learn how to set a custom script extension.
+Using the scripts offered below you can configure your VM scale sets to install the container runtime of your choice upon provisioning. [Follow our guide](/azure/virtual-machine-scale-sets/tutorial-install-apps-cli) learn how to set a custom script extension.
 
 ## Install the Container Runtime
 
