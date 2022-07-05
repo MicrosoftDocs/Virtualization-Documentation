@@ -2,8 +2,8 @@
 title: Prep Windows operating system containers
 description: Set up Windows or Windows Server for containers, then move on to running your first container image.
 keywords: docker, containers, LCOW
-author: v-susbo
-ms.author: brasmith-ms
+author: brasmith-ms
+ms.author: brasmith
 ms.date: 06/17/2022
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
