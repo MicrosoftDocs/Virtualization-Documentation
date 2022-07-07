@@ -185,9 +185,10 @@ typedef struct
      } EnlightenmentsControl;
 
     UINT32 VpId;
+    UINT32 Rsvd5;
     UINT64 VmId;
     UINT64 PartitionAssistPage;
-    UINT64 Rsvd5[4];
+    UINT64 Rsvd6[4];
 
     UINT64 GuestBndcfgs;
     UINT64 GuestPerfGlobalCtrl;
@@ -195,7 +196,7 @@ typedef struct
     UINT64 GuestSsp;
     UINT64 GuestInterruptSspTableAddr;
     UINT64 GuestLbrCtl;
-    UINT64 Rsvd6[2];
+    UINT64 Rsvd7[2];
 
     UINT64 XssExitingBitmap;
     UINT64 EnclsExitingBitmap;
@@ -204,7 +205,7 @@ typedef struct
     UINT64 HostSCet;
     UINT64 HostSsp;
     UINT64 HostInterruptSspTableAddr;
-    UINT64 Rsvd7;
+    UINT64 Rsvd8;
 } HV_VMX_ENLIGHTENED_VMCS;
  ```
 
