@@ -479,7 +479,7 @@ Shared registers:
 - Rax, Rbx, Rcx, Rdx, Rsi, Rdi, Rbp
 - CR2
 - R8 – R15
-- DR0 – DR5
+- DR0 – DR3
 - X87 floating point state
 - XMM state
 - AVX state
