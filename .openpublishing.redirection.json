@@ -162,7 +162,7 @@
     },
     {
       "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_export_import.md",
-      "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
+      "redirect_url": "/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
       "redirect_document_id": false
     },
     {
@@ -197,17 +197,17 @@
     },
     {
       "source_path": "virtualization/hyper-v-on-windows/user_guide/export_import.md",
-      "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
+      "redirect_url": "/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
       "redirect_document_id": false
     },
     {
       "source_path": "virtualization/hyper-v-on-windows/user_guide/managing_ics.md",
-      "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services",
+      "redirect_url": "/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services",
       "redirect_document_id": false
     },
     {
       "source_path": "virtualization/hyper-v-on-windows/user_guide/migrating_vms.md",
-      "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/Upgrade-virtual-machine-version-in-Hyper-V-on-Windows-or-Windows-Server",
+      "redirect_url": "/windows-server/virtualization/hyper-v/deploy/Upgrade-virtual-machine-version-in-Hyper-V-on-Windows-or-Windows-Server",
       "redirect_document_id": false
     },
     {
@@ -217,7 +217,7 @@
     },
     {
       "source_path": "virtualization/hyper-v-on-windows/user_guide/remote_host_management.md",
-      "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Remotely-manage-Hyper-V-hosts",
+      "redirect_url": "/windows-server/virtualization/hyper-v/manage/Remotely-manage-Hyper-V-hosts",
       "redirect_document_id": false
     },
     {
