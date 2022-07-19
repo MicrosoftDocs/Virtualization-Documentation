@@ -36,8 +36,8 @@
     },
     "fileMetadata": {
       "breadcrumb_path": {
-        "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/breadcrumb/toc.json",
-        "tlfs/datatypes/**/*.md": "tlfs/datatypes/breadcrumb/toc.json"          
+        "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/breadcrumb/toc.yml",
+        "tlfs/datatypes/**/*.md": "tlfs/datatypes/breadcrumb/toc.yml"          
       },
       "ms.topic": {
         "**/*.md": "article"
