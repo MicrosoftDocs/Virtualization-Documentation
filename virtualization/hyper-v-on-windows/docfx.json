@@ -28,7 +28,7 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "breadcrumb_path": "/virtualization/toc.yml",
+      "breadcrumb_path": "/virtualization/toc.json",
       "extendBreadcrumb": true, 
       "feedback_system": "GitHub", 
       "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
@@ -36,8 +36,8 @@
     },
     "fileMetadata": {
       "breadcrumb_path": {
-        "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/breadcrumb/toc.yml",
-        "tlfs/datatypes/**/*.md": "tlfs/datatypes/breadcrumb/toc.yml"          
+        "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/breadcrumb/toc.json",
+        "tlfs/datatypes/**/*.md": "tlfs/datatypes/breadcrumb/toc.json"          
       },
       "ms.topic": {
         "**/*.md": "article"
