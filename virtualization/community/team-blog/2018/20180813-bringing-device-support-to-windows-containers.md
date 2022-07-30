@@ -3,7 +3,7 @@ title: Bringing Device Support to Windows Containers
 keywords: virtualization, containers, windows containers, dda, devices, blog
 description: Learn about the improvements to Windows Server containers and how they bring more support in enabling IoT workloads. 
 author: cwilhit
-ms.author: crwilhit
+ms.author: scooley 
 ms.date: 8/13/2018
 ms.topic: article
 ms.prod: virtualization

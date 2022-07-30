@@ -2,7 +2,7 @@
 title: Sneak Peek - Taking a Spin with Enhanced Linux VMs
 description: Learn about the efforts to support Unix-based virtual machines on a computer running the Windows operating system.
 author: cwilhit
-ms.author: crwilhit
+ms.author: scooley
 date:       2018-02-28 22:31:29
 ms.date: 02/28/2018
 categories: enhanced-session-mode
