@@ -56,7 +56,7 @@ In a way, Hyper-V isolation mode is almost like a hybrid of a VM and container, 
 - Not all tools work natively with Hyper-V isolation.
 - Neither Azure Kubernetes Service (AKS) nor AKS on Azure Stack HCI support Hyper-V isolation at this moment.
 
-You can read more about how the two isolation modes are implemented in the topic [Isolation Modes](../windowscontainers/manage-containers/hyperv-container.md). When you first containerize an app, you'll need to choose between the two modes. Fortunately, it's very easy to change from one mode to another later, as it doesn't require any changes to either the application or the container. But be aware that, when you containerize an app, choosing between the two modes is one of the first things you'll have to do.
+You can read more about how the two isolation modes are implemented in the topic [Isolation Modes](../manage-containers/hyperv-container.md). When you first containerize an app, you'll need to choose between the two modes. Fortunately, it's very easy to change from one mode to another later, as it doesn't require any changes to either the application or the container. But be aware that, when you containerize an app, choosing between the two modes is one of the first things you'll have to do.
 
 ### Container orchestration
 
@@ -273,7 +273,7 @@ Windows containers are built on the same base as Windows instances running on ph
 - Container user account. By default, applications inside Windows containers run with elevated privileged under the ContainerAdmin user account. This is helpful for installing and configuring the necessary components inside the container image. However, you should consider changing the user account to ContainerUser when running an application that does not require the elevated privileges. For specific scenarios, you can also create a new account with the appropriate privileges.
 - Image and runtime scanning. Containers require that images on repositories and containers instances are secure. Microsoft recommends that you use Microsoft Defender for Containers for image scanning and runtime scanning. Defender for Containers supports Windows containers for vulnerability assessment with registry scan and runtime protection with threat detection.
 
-More information on the above topics can be found in the Windows containers [documentation page](../windowscontainers/manage-containers/container-security.md).
+More information on the above topics can be found in the Windows containers [documentation page](../manage-containers/container-security.md).
 
 #### Backup of Windows containers
 
@@ -292,10 +292,10 @@ After you've assessed your application's readiness for containerizing, use the f
 
 1. Determine the Windows operating system base image you need: [Windows Server Core](https://hub.docker.com/_/microsoft-windows-servercore), [Nano Server](https://hub.docker.com/_/microsoft-windows-nanoserver), [Windows](https://hub.docker.com/_/microsoft-windows), or [Server](https://hub.docker.com/_/microsoft-windows-server) images.
 2. Determine the type of isolation mode for the container: choose between process or Hyper-V isolation modes.
-Note: Currently, AKS and AKS on Azure Stack HCI support only process-isolated containers. In a future release, both AKS and AKS on Azure Stack HCI will also support Hyper-V-isolated containers. For more information, see [Isolation Modes](../windowscontainers/manage-containers/hyperv-container.md).
+Note: Currently, AKS and AKS on Azure Stack HCI support only process-isolated containers. In a future release, both AKS and AKS on Azure Stack HCI will also support Hyper-V-isolated containers. For more information, see [Isolation Modes](../manage-containers/hyperv-container.md).
 3. Choose the right Windows Server version for your application for app-compat purposes. The minimal Windows Server version for containers is Windows Server 2016, but Windows Server 2019 and Windows Server 2022 are the only container host operating systems supported on AKS and AKS on Azure Stack HCI.
 4. Ensure your company's security policies are in place for the container environment. This includes adapting to container specific requirements, such as registry scanning and threat detection.
 5. Consider load-balancing needs. Containers themselves don't move; you can use an orchestrator instead to automatically start or stop containers on cluster nodes, or to manage changes in load and availability with automatic horizontal scale.
-6. Consider orchestration needs. Once containerized, your application likely needs automated management available with tools such as Kubernetes, AKS, or AKS on Azure Stack HCI. See [Windows Container orchestration overview](../windowscontainers/about/overview-container-orchestrators.md) for a full discussion and guide to choosing among the tools.
+6. Consider orchestration needs. Once containerized, your application likely needs automated management available with tools such as Kubernetes, AKS, or AKS on Azure Stack HCI. See [Windows Container orchestration overview](../about/overview-container-orchestrators.md) for a full discussion and guide to choosing among the tools.
 7. Containerize the app.
 8. Push the app to an image repository. This will allow the container hosts to download the image in any environment, including dev, test, and production.
