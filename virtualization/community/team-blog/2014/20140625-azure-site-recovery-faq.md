@@ -6,6 +6,7 @@ ms.date: 06/25/2014
 date:       2014-06-25 18:48:00
 categories: asr
 description: This article address frequently asked questions about Azure Site Recovery.
+ms.service: site-recovery
 ---
 # Azure Site Recovery frequently asked questions
 

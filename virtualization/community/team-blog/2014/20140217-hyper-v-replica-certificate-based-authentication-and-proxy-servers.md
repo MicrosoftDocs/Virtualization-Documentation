@@ -5,6 +5,8 @@ ms.author: mabrigg
 ms.date: 02/17/2014
 categories: hvr
 description: This article explains how to resolve errors while using Hyper-V Replica Certificate based authentication and Proxy servers.
+ms.prod: windows-server
+ms.technology: hyper-v
 ---
 # Errors in Hyper-V Replica 
 

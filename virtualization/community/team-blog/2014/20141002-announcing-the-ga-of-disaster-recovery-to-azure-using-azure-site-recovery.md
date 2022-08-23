@@ -6,6 +6,7 @@ ms.author: mabrigg
 date:       2014-10-02 12:48:32
 ms.date: 10/02/2014
 categories: azure-site-recovery
+ms.service: site-recovery
 ---
 # Announcing the GA of Disaster Recovery to Azure using Azure Site Recovery
 

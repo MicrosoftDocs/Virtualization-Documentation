@@ -6,6 +6,7 @@ ms.author: mabrigg
 date:       2015-02-15 22:58:27
 ms.date: 02/16/2015
 categories: asr
+ms.service: site-recovery
 ---
 # Replicate Azure Pack IaaS Workloads to Azure using ASR
 

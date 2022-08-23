@@ -6,6 +6,7 @@ ms.date: 07/06/2014
 date:       2014-07-06 21:55:00
 categories: asr
 description: This article discusses the network connection error in Azure Site Recovery.
+ms.service: site-recovery
 ---
 # Network connection failure error
 
