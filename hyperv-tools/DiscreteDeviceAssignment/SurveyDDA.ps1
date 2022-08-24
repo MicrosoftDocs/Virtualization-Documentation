@@ -4,6 +4,8 @@
 # look for pciprop.h.  All of these are contained in that file.
 #
 $devpkey_PciDevice_DeviceType = "{3AB22E31-8264-4b4e-9AF5-A8D2D8E33E62}  1"
+$devpkey_PciDevice_BaseClass = "{3AB22E31-8264-4b4e-9AF5-A8D2D8E33E62}  3"
+$devpkey_PciDevice_SubClass = "{3AB22E31-8264-4b4e-9AF5-A8D2D8E33E62}  4"
 $devpkey_PciDevice_RequiresReservedMemoryRegion = "{3AB22E31-8264-4b4e-9AF5-A8D2D8E33E62}  34"
 $devpkey_PciDevice_AcsCompatibleUpHierarchy = "{3AB22E31-8264-4b4e-9AF5-A8D2D8E33E62}  31"
 
@@ -27,6 +29,16 @@ $devprop_PciDevice_AcsCompatibleUpHierarchy_NotSupported             =   0
 $devprop_PciDevice_AcsCompatibleUpHierarchy_SingleFunctionSupported  =   1
 $devprop_PciDevice_AcsCompatibleUpHierarchy_NoP2PSupported           =   2
 $devprop_PciDevice_AcsCompatibleUpHierarchy_Supported                =   3
+
+#
+# These values are defined in the PCI spec, and are also published in wdm.h
+# of the Windows Driver Kit headers.
+#
+$devprop_PciDevice_BaseClass_Pre20                                   =   0
+$devprop_PciDevice_BaseClass_DisplayCtlr                             =   3
+
+$devprop_PciDevice_SubClass_Pre20Vga                                 =   1
+$devprop_PciDevice_SubClass_VidVgaCtlr                               =   0
 
 
 write-host "Generating a list of PCI Express endpoint devices"
@@ -56,6 +68,18 @@ foreach ($pcidev in $pcidevs) {
     } else {
         if ($devtype -eq $devprop_PciDevice_DeviceType_PciExpressRootComplexIntegratedEndpoint) {
             Write-Host "Embedded Endpoint -- less secure."
+        } elseif ($devtype -eq $devprop_PciDevice_DeviceType_PciExpressLegacyEndpoint) {
+            $devBaseClass = ($pcidev | Get-PnpDeviceProperty $devpkey_PciDevice_BaseClass).Data
+            $devSubClass = ($pcidev | Get-PnpDeviceProperty $devpkey_PciDevice_SubClass).Data
+
+            if (($devBaseClass -eq $devprop_PciDevice_BaseClass_Pre20) -and ($devSubClass -eq $devprop_PciDevice_SubClass_Pre20Vga)) {
+                Write-Host "Legacy Express Endpoint -- allowed for historical reasons."
+            } elseif (($devBaseClass -eq $devprop_PciDevice_BaseClass_DisplayCtlr) -and ($devSubClass -eq $devprop_PciDevice_SubClass_VidVgaCtlr)) {
+                Write-Host "Legacy Express Endpoint -- allowed for historical reasons."
+            } else {
+                Write-Host -ForegroundColor Red -BackgroundColor Black "Legacy, non-VGA PCI device.  Not assignable."
+                continue
+            }
         } else {
             if ($devtype -eq $devprop_PciDevice_DeviceType_PciExpressTreatedAsPci) {
                 Write-Host -ForegroundColor Red -BackgroundColor Black "BIOS kept control of PCI Express for this device.  Not assignable."
