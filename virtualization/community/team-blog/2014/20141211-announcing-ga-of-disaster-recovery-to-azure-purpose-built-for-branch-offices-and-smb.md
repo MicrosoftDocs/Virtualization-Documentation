@@ -6,7 +6,6 @@ ms.author: mabrigg
 date:       2014-12-11 11:05:00
 ms.date: 12/11/2014
 categories: asr
-ms.service: site-recovery
 ---
 # Announcing GA of Disaster Recovery to Azure - Purpose-Built for Branch Offices and SMB
 

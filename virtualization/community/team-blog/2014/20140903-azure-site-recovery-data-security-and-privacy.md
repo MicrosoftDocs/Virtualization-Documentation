@@ -6,7 +6,6 @@ ms.author: mabrigg
 date:       2014-09-03 01:56:45
 ms.date: 09/03/2014
 categories: azure-site-recovery
-ms.service: site-recovery
 ---
 # Azure Site Recovery - Data Security and Privacy
 

@@ -6,7 +6,6 @@ ms.date: 07/17/2014
 date:       2014-07-17 01:14:44
 categories: asr
 description: This article shares how Azure Site Recovery acquired InMage Systems Inc. 
-ms.service: site-recovery
 ---
 # InMage Systems Inc Acquisition
 

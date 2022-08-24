@@ -6,7 +6,6 @@ ms.date: 07/20/2014
 date:       2014-07-20 13:00:00
 categories: asr
 description: This article discusses the addition of ExpressRoute to Azure Site Recovery.
-ms.service: site-recovery
 ---
 # ExpressRoute + ASR = Efficient DR solution
 
