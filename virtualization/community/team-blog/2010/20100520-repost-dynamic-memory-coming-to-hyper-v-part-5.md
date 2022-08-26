@@ -6,6 +6,7 @@ ms.author: scooley
 date:       2010-05-20 05:52:00
 ms.date: 05/20/2010
 categories: dynamic-memory
+ms.service: virtual-machines
 ---
 # Repost: Dynamic Memory Coming to Hyper-V Part 5
 
