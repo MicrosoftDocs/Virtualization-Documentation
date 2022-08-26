@@ -6,7 +6,7 @@ ms.author: mabrigg
 date:       2011-02-09 02:00:00
 ms.date: 02/09/2011
 categories: aslr
-ms.service: virtual-machines
+ms.prod: virtualization
 ---
 # Windows 7 and Windows Server 2008 R2 SP1 Add New Virtualization Innovations
 Virtualization Nation,
