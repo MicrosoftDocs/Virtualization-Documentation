@@ -28,7 +28,7 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "breadcrumb_path": "/virtualization/toc.yml",
+      "breadcrumb_path": "/virtualization/toc.json",
       "extendBreadcrumb": true, 
       "feedback_system": "GitHub", 
       "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
