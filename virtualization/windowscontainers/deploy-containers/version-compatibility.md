@@ -69,7 +69,7 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10004;|&#10004;|
+|Windows Server, version 2022|&#10004;|preview|
 |Windows Server, version 20H2|&#10004;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
