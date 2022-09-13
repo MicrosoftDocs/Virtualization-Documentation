@@ -80,7 +80,7 @@ using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&HcsCloseComputeS
                         "Attachments": {
                             "0": {
                                 "Type": "VirtualDisk",
-                                "Path": c:\\HCS_Test\\utilityvm.vhdx"
+                                "Path": "c:\\HCS_Test\\utilityvm.vhdx"
                             }
                         }
                     }
