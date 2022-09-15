@@ -6,6 +6,7 @@ description: Dynamic Memory Coming to Hyper-V Part 2
 ms.date: 03/25/2010
 date:       2010-03-25 06:53:00
 categories: dynamic-memory
+ms.prod: virtualization
 ---
 # Dynamic Memory Coming to Hyper-V Part 2
 

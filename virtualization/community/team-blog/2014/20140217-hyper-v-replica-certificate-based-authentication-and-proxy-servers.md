@@ -5,8 +5,10 @@ ms.author: mabrigg
 ms.date: 02/17/2014
 categories: hvr
 description: This article explains how to resolve errors while using Hyper-V Replica Certificate based authentication and Proxy servers.
+ms.prod: windows-server
+ms.technology: hyper-v
 ---
-# Errors in Hyper-V Replica 
+# Hyper-V Replica Errors
 
 Continuing from where we left [off](https://blogs.technet.com/b/virtualization/archive/2014/02/09/proxy-server-on-primary-site.aspx), I have a small lab deployment which consists of a AD, DNS, Proxy server (Forefront TMG 2010 on WS 2008 R2 SP1), primary servers and replica servers. When the primary server is behind the proxy (forward proxy) and when I tried to enable replication using certificate based authentication, I got the following error message: _The handle is in the wrong state for the requested operation (0x00002EF3)_
 

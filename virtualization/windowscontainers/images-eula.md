@@ -3,7 +3,7 @@ title: Microsoft Software EULA Windows Containers
 description: License agreement for Windows container base images.
 keywords: docker, containers, eula
 author: cwilhit
-ms.author: crwilhit
+ms.author: scooley
 ms.date: 08/11/2020
 ms.topic: article
 ---
