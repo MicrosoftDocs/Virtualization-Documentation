@@ -5,7 +5,7 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 
 # Virtualization-Documentation
 
-Content published to [Virtualization documentation](https://docs.microsoft.com/virtualization/).
+Content published to [Virtualization documentation](https://learn.microsoft.com/virtualization/).
 
 Place to store our documentation, code samples, etc for public consumption and contributions.
 
@@ -19,13 +19,13 @@ Digging into the repo structure a little:
 
 ### Virtualization -- Contribute docs here! --
 
-This is a mirrored copy of the documentation available on [Virtualization documentation](https://docs.microsoft.com/virtualization/).
+This is a mirrored copy of the documentation available on [Virtualization documentation](https://learn.microsoft.com/virtualization/).
 
 The folder structure matched the URL structure for the website.
 
 **For example:**  Say you want to edit the user guide article for working with checkpoints.
 
-Microsoft Docs location: [Using checkpoints to revert virtual machines to a previous state](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/checkpoints)
+Microsoft Docs location: [Using checkpoints to revert virtual machines to a previous state](https://learn.microsoft.com/virtualization/hyper-v-on-windows/user-guide/checkpoints)
 
 Doc location:
 `virtualization/hyperv_on_windows/user_guide/checkpoints.md`
@@ -47,4 +47,3 @@ Scripts to automate Hyper-V/Windows Container things.
 ### Code of Conduct
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
