@@ -84,10 +84,10 @@ conceptualContent:
         - url: /windows-server/manage/windows-admin-center/use/manage-virtual-machines
           itemType: how-to-guide
           text: Windows Admin Center
-        - url: https://docs.microsoft.com/system-center/vmm/overview
+        - url: /system-center/vmm/overview
           itemType: overview
           text: System Center Virtual Machine Manager
-        - url: https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps
+        - url: /powershell/module/hyper-v/index?view=win10-ps
           itemType: reference
           text: PowerShell
     # Card
@@ -117,9 +117,9 @@ conceptualContent:
         - url: https://www.microsoft.com/evalcenter/evaluate-hyper-v-server-2019
           itemType: download
           text: Download Hyper-V Server 2019
-        - url: https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/mt169373(v=ws.11)
+        - url: /previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/mt169373(v=ws.11)
           itemType: overview
           text: Windows Server 2012 R2 and 2012
-        - url: https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753637(v=ws.10)
+        - url: /previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753637(v=ws.10)
           itemType: overview
           text: Windows Server 2008 R2

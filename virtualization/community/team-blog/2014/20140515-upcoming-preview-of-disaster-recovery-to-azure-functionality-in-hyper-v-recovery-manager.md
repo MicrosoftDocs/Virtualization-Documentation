@@ -6,6 +6,8 @@ ms.date: 05/15/2014
 date:       2014-05-15 06:02:35
 categories: uncategorized
 description: This article discusses the upcoming preview of 'Disaster Recovery to Azure' Functionality in Hyper-V Recovery Manager.
+ms.prod: windows-server
+ms.technology: hyper-v
 ---
 # New functionality in Hyper-V Recovery Manager
 

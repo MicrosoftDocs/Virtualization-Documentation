@@ -6,6 +6,7 @@ ms.author: scooley
 date: 2017-01-27 20:59:02
 ms.date: 03/20/2019
 categories: hyper-v
+ms.prod: virtualization
 ---
 
 # Introducing VMConnect dynamic resize

@@ -3,7 +3,7 @@ title: Insider preview - Windows container image
 keywords: virtualization, containers, windows containers, dda, devices, blog
 description: Learn about the new Windows container images based on requirements workloads and how to get the new feature.
 author: cwilhit
-ms.author: crwilhit
+ms.author: scooley 
 ms.date: 6/27/2018
 ms.topic: article
 ms.prod: virtualization
