@@ -13,7 +13,7 @@ ms.date: 03/15/2022
 
 Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were the first Windows releases that could build and run Windows Server containers. Containers built using these versions can run on newer releases, but there are a few things you need to know before you start.
 
-The architecture of Windows differs vastly from that of Linux. Linux has a monolithic kernel, while in Windows User and Kernel mode are more tightly bound. Until the introduction of containers, Windows User and Kernel mode were shipped in synchrony, thus resulting in container compatibility requirements on Windows that differ from the norm in Linux. 
+The architecture of Windows differs vastly from that of Linux. Linux has a monolithic kernel, while in Windows User and Kernel mode are more tightly bound. Until the introduction of containers, Windows User and Kernel mode were shipped in synchrony, thus resulting in container compatibility requirements on Windows that differ from the norm in Linux.
 
 Decoupling the User/Kernel boundary in Windows is a monumental task and highly non-trivial, however, we have been working hard to stabilize this boundary across all of Windows to provide our customers the flexibility to run down-level containers. **Starting with Windows 11 and Windows Server 2022 we are enabling the ability to run process-isolated WS2022 containers on Windows 11 hosts.** We've done our best to capture the areas which break the boundary, but now want to open the feature to developers on Windows 11 for feedback. We are committed to enabling this experience for you, so please [let us know when you experience issues](https://github.com/microsoft/Windows-Containers).
 
@@ -26,17 +26,7 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10004;|&#10004;|
-|Windows Server, version 20H2|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows Server, version 20H2](#tab/windows-server-20H2)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10004;|&#10004;|
+|Windows Server 2022|&#10004;|&#10004;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -44,8 +34,7 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
+|Windows Server 2022|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10004;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -53,8 +42,7 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
+|Windows Server 2022|&#10060;|&#10060;|
 |Windows Server 2019|&#10060;|&#10060;|
 |Windows Server 2016|&#10004;|&#10004;|
 
@@ -65,30 +53,19 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 <!-- start tab view -->
 
-# [Windows 11, version 21H2](#tab/windows-11-21H2)
+# [Windows 11](#tab/windows-11)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10004;|&#10004;|
-|Windows Server, version 20H2|&#10004;|&#10060;|
+|Windows Server 2022|&#10004;|&#10004;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# [Windows 10, version 21H1](#tab/windows-10-21H1)
+# [Windows 10](#tab/windows-10)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10004;|&#10060;|
-|Windows Server, version 20H2|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 20H2](#tab/windows-10-20H2)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10004;|&#10004;|
+|Windows Server 2022|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
