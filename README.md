@@ -25,7 +25,7 @@ The folder structure matched the URL structure for the website.
 
 **For example:**  Say you want to edit the user guide article for working with checkpoints.
 
-Microsoft Docs location: [Using checkpoints to revert virtual machines to a previous state](https://learn.microsoft.com/virtualization/hyper-v-on-windows/user-guide/checkpoints)
+Published location: [Using checkpoints to revert virtual machines to a previous state](https://learn.microsoft.com/virtualization/hyper-v-on-windows/user-guide/checkpoints)
 
 Doc location:
 `virtualization/hyperv_on_windows/user_guide/checkpoints.md`
