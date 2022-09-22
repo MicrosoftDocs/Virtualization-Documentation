@@ -1,7 +1,7 @@
 ---
 layout: HubPage
 hide_bc: true
-title: Virtualization on Windows | Microsoft Docs
+title: Virtualization on Windows
 description: Landing page for documentation related to virtualization on Windows
 keywords: windows 10, hyper-v, container, docker
 author: scooley
