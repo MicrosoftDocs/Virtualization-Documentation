@@ -126,14 +126,7 @@ For more configuration details, see [Docker Engine on Windows](../manage-docker/
 
 # [Mirantis Container Runtime](#tab/mirantiscontainerruntime)
 
-The Mirantis Container Runtime, formally known as Docker EE, provides the same functionality as Docker CE plus extra features built specifically for enterprise deployments.
-
-[Included here is a script](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-MirantisContainerRuntime/install-mirantis-container-runtime.ps1) which calls the Mirantis Container Runtime [installation script](https://docs.mirantis.com/mcr/20.10/install/mcr-windows.html) and reboots the computer.
-
-```powershell
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-MirantisContainerRuntime/install-mirantis-container-runtime.ps1" -o install-mirantis-container-runtime.ps1
-.\install-mirantis-container-runtime.ps1
-```
+The Mirantis Container Runtime, formally known as Docker EE, provides the same functionality as Docker CE plus extra features built specifically for enterprise deployments. To install this runtime please head over to the Mirantis website for instructions on how to install: [https://www.mirantis.com/docker-engine-enterprise-support/](https://www.mirantis.com/docker-engine-enterprise-support/).
 
 Please head over to the [Mirantis site](https://www.mirantis.com/software/container-runtime/) for more information.
 
