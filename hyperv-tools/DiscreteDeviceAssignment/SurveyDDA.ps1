@@ -35,6 +35,19 @@ $devprop_PciDevice_AcsCompatibleUpHierarchy_Supported                =   3
 #
 $devprop_PciDevice_BaseClass_DisplayCtlr                             =   3
 
+#
+# Check to see if gwmi is a valid alias on the system.
+# If it is not, make it one for the current PowerShell session.
+#
+if ($(Get-Alias -Name gwmi).Count -eq 0) { 
+    Set-Alias -Name gwmi -Value Get-WmiObject
+    if ($?) {
+        Write-Host -ForegroundColor Yellow -BackgroundColor Black "Created a temporary alias for the current session with the following command:"
+        Write-Host "    Set-Alias -Name gwmi -Value Get-WmiObject"
+	Write-Host ""
+    }
+}
+
 Write-Host "Executing SurveyDDA.ps1, revision 1"
 
 write-host "Generating a list of PCI Express endpoint devices"
