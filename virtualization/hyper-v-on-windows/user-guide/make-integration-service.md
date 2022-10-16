@@ -229,6 +229,12 @@ Send()
 Listen()
 Accept()
 
+### HvSocket Socket Options
+
+| Name | Type | Description |
+|:-----|:-----|:-----|
+| HVSOCKET_CONNECTED_SUSPEND | ULONG | When this socket option is set to a non-zero value sockets do not disconnect when the virtual machine is paused.  |
+
 ## Useful links
 [Complete WinSock API](/windows/desktop/WinSock/winsock-functions)
 
