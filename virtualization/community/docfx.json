@@ -1,4 +1,4 @@
-﻿{
+{
   "build": {
     "content": [
       {
@@ -48,7 +48,7 @@
         "team-blog/2009/20090316-system-center-virtual-machine-manager-2008-r2-beta-available.md": "system-center",
         "team-blog/2009/20090320-guest-post-moving-virtualization-into-the-mainstream.md": "windows-server-2008",
         "team-blog/2009/20090416-register-for-is-there-a-cloud-in-your-future-webcast.md": "system-center",
-        "team-blog/2009/20090504-vmware-vsphere-pricing-meet-the-new-price-same-as-the-old-price-only-more.md": "microsoft-hyper-v-server-2012-R2-and-hyper-v-server-2012",
+        "team-blog/2009/20090504-vmware-vsphere-pricing-meet-the-new-price-same-as-the-old-price-only-more.md": "microsoft-hyper-v-server-2008-R2",
         "team-blog/2009/20090514-native-vhd-support-in-windows-7.md": "windows",
         "team-blog/2009/20090520-hyper-v-r2-import-export-part-1-the-case-for-new-import-export-functionality.md": "windows-server-2008",
         "team-blog/2009/20090521-hyper-v-r2-import-export-part-2-the-new-import-export-apis.md": "powershell",
