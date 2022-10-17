@@ -12,12 +12,8 @@ Hyper-V allows you to backup virtual machines, from the host operating system, w
 ## Hyper-V VSS Writer
 Hyper-V implements a VSS writer on all versions of Windows Server where Hyper-V is supported.  This VSS writer allows developers to utilize the existing VSS infrastructure to backup virtual machines.  However, it is designed for small scale backup operations where all virtual machines on a server are backed up simultaneously.
 
-To understand this architecture better – refer to this presentation: https://channel9.msdn.com/Events/TechEd/NorthAmerica/2010/VIR322
 ## Hyper-V WMI Based Backup
 Starting in Windows Server 2016, Hyper-V started supporting backup through the Hyper-V WMI API.  This approach still utilizes VSS inside the virtual machine for backup purposes, but no longer uses VSS in the host operating system.  Instead, a combination of reference points and resilient change tracking (RCT) is used to allow developers to access the information about backed up virtual machines in an efficient manner.  This approach is more scalable than using VSS in the host, however it is only available on Windows Server 2016 and later.
-
-To understand this architecture better – refer to this presentation:
-https://channel9.msdn.com/Events/TechEd/Europe/2014/CDP-B318 
 
 There is also an example on how to use these APIs available here:
 https://www.powershellgallery.com/packages/xHyper-VBackup
