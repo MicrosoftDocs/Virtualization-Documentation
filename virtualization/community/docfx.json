@@ -1,4 +1,4 @@
-﻿{
+{
   "build": {
     "content": [
       {
@@ -30,6 +30,10 @@
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
     "fileMetadata": {
+      "ms.technology": {
+        "team-blog/2011/20110608-special-guest-blog-post-cdw-talks-cloud-computing.md": "microsoft-mpi",
+        "team-blog/2017/20170419-use-nginx-to-load-balance-across-your-docker-swarm-cluster.md": "microsoft-mpi"
+      },
       "ms.topic": {
         "team-blog/**/*.md": "article"
       },
@@ -124,7 +128,7 @@
         "team-blog/2011/20110506-uncle-teched-wants-you.md": "windows-server",
         "team-blog/2011/20110516-new-hyper-v-cloud-fast-track-partners-double-down-on-private-cloud-vision.md": "windows-server-2008",
         "team-blog/2011/20110519-microsofts-hyper-v-cloud-fast-track-accelerates-private-cloud-deployment.md": "powershell",
-        "team-blog/2011/20110608-special-guest-blog-post-cdw-talks-cloud-computing.md": "windows-server-dev",
+        "team-blog/2011/20110608-special-guest-blog-post-cdw-talks-cloud-computing.md": "windows",
         "team-blog/2011/20110713-take-your-business-to-the-next-level-with-new-partner-programs-and-incentives-for-private-cloud-computing.md": "system-center",
         "team-blog/2011/20110715-simplify-your-customers-cloud-migration-planning-with-map-6-0.md": "windows",
         "team-blog/2011/20110801-beware-the-vmware-memory-vtax-plus-good-news-for-hyper-v.md": "windows-server",
@@ -224,7 +228,7 @@
         "team-blog/2017/20170209-overlay-network-driver-with-support-for-docker-swarm-mode-now-available-to-windows-insiders-on-windows-10.md": "windows",
         "team-blog/2017/20170413-what-s-new-in-hyper-v-for-the-windows-10-creators-update.md": "w10",
         "team-blog/2017/20170418-windows-server-2016-adds-native-overlay-network-driver-enabling-mixed-linux-windows-docker-swarm-mode-clusters.md": "windows",
-        "team-blog/2017/20170419-use-nginx-to-load-balance-across-your-docker-swarm-cluster.md": "windows-server-dev",
+        "team-blog/2017/20170419-use-nginx-to-load-balance-across-your-docker-swarm-cluster.md": "windows",
         "team-blog/2017/20170420-making-it-easier-to-revert.md": "windows",
         "team-blog/2017/20170706-vagrant-and-hyper-v-tips-and-tricks.md": "w10",
         "team-blog/2017/20170718-copying-files-into-a-hyper-v-vm-with-vagrant.md": "powershell",
