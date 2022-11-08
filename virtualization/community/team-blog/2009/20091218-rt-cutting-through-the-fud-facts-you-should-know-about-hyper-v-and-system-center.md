@@ -1,5 +1,5 @@
 ---
-title:      "RT &#34;Cutting through the FUD&#58; Facts you should know about Hyper-V and System Center&#34;"
+title:      "RT Cutting through the FUD Facts; you should know about Hyper-V and System Center"
 author: mattbriggs
 ms.author: mabrigg
 description: Cutting through the FUD; Facts you should know about Hyper-V and System Center
