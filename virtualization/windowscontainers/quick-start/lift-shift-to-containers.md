@@ -133,7 +133,7 @@ If your application requires .NET, your ability to containerize depends entirely
 
 ### Apps using third-party (non-Microsoft) frameworks
 
-Generally speaking, Microsoft is unable to certify third-party frameworks or applications, or support them running on Windows containers – or physical and virtual machines for that matter. However, Microsoft does perform its own internal testing for usability of multiple third-party frameworks and tools, including Apache, Cassadra, Chocolatey, Datadog, Django, Flask, Git, Golang, JBoss, Jenkins, Rust, Nodejs, Pearl, Python, Ruby, Tomcat, and many others. 
+Generally speaking, Microsoft is unable to certify third-party frameworks or applications, or support them running on Windows containers – or physical and virtual machines for that matter. However, Microsoft does perform its own internal testing for usability of multiple third-party frameworks and tools, including Apache, Cassandra, Chocolatey, Datadog, Django, Flask, Git, Golang, JBoss, Jenkins, Rust, Nodejs, Pearl, Python, Ruby, Tomcat, and many others. 
 
 For any third-party framework or software, please validate its supportability on Windows containers with the vendor that supplies it.
 
@@ -161,7 +161,7 @@ The following table presents a quick summary of the components/features of appli
 |Windows feature/component requiring special handling | Reason|
 |---|---|
 |Microsoft Messaging Queueing (MSMQ) | MSMQ originated long before containers and not all of its deployment models for message queues are compatible with container architecture.|
-|Microsoft Distributed Transaction Coordinator (MSTDC) | Name resolution between MSTDC and the container requires special consideration.|
+|Microsoft Distributed Transaction Coordinator (MSDTC) | Name resolution between MSDTC and the container requires special consideration.|
 |IIS | IIS is the same as in a VM, but there are important considerations when running it in a container environment, such as certificate management, database connection strings, and more.|
 |Scheduled tasks | Windows containers can run scheduled tasks, just like any Windows instance. However, you might need to run a foreground task to keep the container instance running. Depending on the application, you might want to consider an event driven approach.|
 |Background services | Since containers run as ephemeral processes, you'll need additional handling to keep the container running|
@@ -201,6 +201,21 @@ A few notes about these supported scenarios, which have been validated by Micros
 When you put these considerations together with the table above, you can see that the only scenario that isn't supported is for queues that require authentication with Active Directory. The integration of gMSAs (Group Managed Service Accounts) with MSMQ is currently not supported as MSMQ has dependencies on Active Directory that are not yet in place.
 
 Alternatively, use Azure Service Bus instead of MSMQ. Azure Service Bus is a fully managed enterprise message broker with message queues and publish-subscribe topics (in a namespace). Switching from MSMQ to Azure Service Bus requires code changes and application re-architecture, but will give you the agility to move to a modern platform.
+
+#### MSDTC
+
+Microsoft Distributed Transaction Coordinator (MSDTC) is heavily used in Windows legacy applications among large enterprises. MSDTC can be installed on Windows Containers but there are certain scenarios that do not work and are not able to be reproduced on Windows Containers.
+
+- When creating the container, be sure to pass in the --name parameter to the docker run command. This name parameter is what allows the containers to communicate over the docker network. If using gMSA the name must match the hostname which must match the gMSA account name.
+  - Here is an example of the run command with gMSA:
+
+```powershell
+docker run -d --security-opt "credentialspec=file://contoso_webapp01.json" --hostname webapp01 -- name webapp01 mcr.microsoft.com/windows/servercore:ltsc2022
+```
+
+- Containers must be able to resolve each other using NETBIOS name. If there is any difficulty with this the best way to resolve is to add the name and ip of the containers to each others host files.
+- The uuid for msdtc on both containers must be unique. The uuid can be found by running “Get-Dtc” in PowerShell on the containers. If they are not unique, one way to resolve is by uninstalling and reinstalling msdtc on one of the containers. These powershelll commands can be used – “uninstall-dtc”, “install-dtc”.
+- Currently, MSDTC is not supported on Azure Kubernetes Services. If you have a specific need to run MSDTC on AKS, please let the Windows containers team know by opening am issue on the [Windows containers repo](https://github.com/microsoft/Windows-Containers/issues/) on GitHub.
 
 #### How IIS works in a container vs. a VM
 
