@@ -18,7 +18,7 @@ This page serves as an overview for getting started with Kubernetes on Windows.
 
 ### Try out Kubernetes on Windows
 
-See [deploying Kubernetes on Windows](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/adding-windows-nodes/) for instructions on how to manually install Kubernetes on Windows in the environment of your choice.
+See [deploying Kubernetes on Windows](/azure/aks/hybrid/aks-hci-evaluation-guide) for instructions on how to manually install Kubernetes on Windows in the environment of your choice.
 
 
 ### Scheduling Windows containers
