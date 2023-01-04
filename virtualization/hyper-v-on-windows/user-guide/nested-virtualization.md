@@ -108,3 +108,5 @@ In contrast, the diagram below shows Hyper-V with nested virtualization enabled.
 ## 3rd Party Virtualization Apps
 
 Virtualization applications other than Hyper-V are not supported in Hyper-V virtual machines, and are likely to fail. This includes any software that requires hardware virtualization extensions.
+
+Third party hypervisors such as [Proxmox VE](https://pve.proxmox.com/wiki/Install_Proxmox_VE_on_Debian_11_Bullseye) built on [Azure Debian](https://wiki.debian.org/Cloud/MicrosoftAzure) run with minimal issues (tested on [Proxmox VE 7.3](https://pve.proxmox.com/wiki/Roadmap#Proxmox_VE_7.3)), however [QEMU/KVM](https://pve.proxmox.com/wiki/Qemu/KVM_Virtual_Machines) guest VM's within the nested hypervisor have been seen to have stability issues when using virtio storage drivers. The Default (LSI 53C895A) SCSI controller is a suitable alternative.
