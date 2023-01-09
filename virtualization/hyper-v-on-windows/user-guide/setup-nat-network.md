@@ -73,8 +73,8 @@ Let's walk through setting up a new NAT network.
     ```
 
     In order to configure the gateway, you'll need a bit of information about your network:  
-    * **IPAddress** -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP.  
-      The generic form will be a.b.c.1 (e.g. 172.16.0.1).  While the final position doesn’t have to be .1, it usually is (based on prefix length)
+    * **IPAddress** -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP. 
+      The generic form will be a.b.c.1 (e.g. 172.16.0.1).  While the final position doesn’t have to be .1, it usually is (based on prefix length). This IP address is in the range of addresses used by the guest virtual machines. For example if the guest VMs use IP range 172.16.0.0, then you can use an IP address 172.16.0.100 as the NAT Gateway. 
 
       A common gateway IP is 192.168.0.1  
 
