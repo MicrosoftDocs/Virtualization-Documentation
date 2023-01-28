@@ -79,7 +79,7 @@ This SMB global mapping support is SMB client-side feature which can work on top
 - 3rd party implementation of SMB protocol (ex: NAS appliances)
 
 > [!NOTE]
-> SMB global mapping does not support DFS, DFSN, DFSR shares in Windows Server version 1709.
+> SMB global mapping does not support DFS Namespaces (DFSN) folders. For example, if you map a DFSN root share with `New-SmbGlobalMapping -LocalPath Z: -RemotePath \\contoso.com\share1'`, reading that root's folder targets will return error "The network location cannot be reached."
 
 ## Named Volumes
 
