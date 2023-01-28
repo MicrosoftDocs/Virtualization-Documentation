@@ -1,6 +1,6 @@
 ﻿---
 title: Windows container networking
-description: Gentle intro to architecture of Windows container networks.
+description: Introduction to architecture of Windows container networks.
 keywords: docker, containers
 author: daschott
 ms.author: jgerend

@@ -1,6 +1,6 @@
 ---
 title: Implementing resource controls
-description: Details regarding resource controls for Windows containers
+description: Details regarding resource controls for Windows containers.
 keywords: docker, containers, cpu, memory, disk, resources
 author: taylorb-microsoft
 ms.author: jgerend

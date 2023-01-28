@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "../../Azure-Sphere-Docs-pr"
+		},
+		{
+			"path": "../../accel-AppSamples"
+		}
+	],
+	"settings": {
+		"markdownlint.config": {
+			"MD028": false,
+			"MD025": {
+				"front_matter_title": ""
+			}
+		}
+	}
+}

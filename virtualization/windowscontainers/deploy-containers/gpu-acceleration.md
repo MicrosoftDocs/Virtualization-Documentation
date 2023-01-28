@@ -1,6 +1,6 @@
 ---
-title: GPU Acceleration in Windows Containers
-description: What level of GPU acceleration exists in Windows containers
+title: GPU acceleration in Windows containers
+description: Learn about the level of GPU acceleration in Windows containers.
 keywords: docker, containers, devices, hardware
 author: v-susbo
 ms.author: mabrigg
@@ -8,7 +8,7 @@ ms.date: 12/29/2020
 ms.topic: how-to
 ---
 
-# GPU Acceleration in Windows containers
+# GPU acceleration in Windows containers
 
 For many containerized workloads, CPU compute resources provide sufficient performance. However, for a certain class of workload, the massively parallel compute power offered by GPUs (graphics processing units) can speed up operations  by orders of magnitude, bringing down cost and improving throughput immensely.
 

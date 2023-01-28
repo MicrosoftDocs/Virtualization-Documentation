@@ -1,6 +1,6 @@
 ---
 title: Windows Server containers events
-description: Recent events for Windows Server containers
+description: Recent events for Windows Server containers.
 keywords: windows containers, containers, events
 author: v-susbo
 ms.author: mabrigg

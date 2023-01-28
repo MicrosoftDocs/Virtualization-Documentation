@@ -1,11 +1,11 @@
 ---
-title: Print Spooler in Windows Containers
-description: Explains current working behavior for the print spooler service in Windows containers
+title: Print spooler in Windows containers
+description: Learn about current working behavior for the print spooler service in Windows containers.
 keywords: docker, containers, printer, spooler
 author: cwilhit
 ms.author: lizross
 ms.date: 10/22/2019
-ms.topic: tutorial
+ms.topic: how-to
 ---
 
 # Print Spooler in Windows Containers
