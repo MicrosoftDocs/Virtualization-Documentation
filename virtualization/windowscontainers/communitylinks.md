@@ -5,7 +5,7 @@ keywords: docker, containers, windows, samples
 author: taylorb-microsoft
 ms.author: mabrigg
 ms.date: 12/19/2016
-ms.topic: resource
+ms.topic: resources
 ms.assetid: cfbb2542-fead-48e7-8318-4da92a7b5b6f
 ---
 # Community Videos and Blogs
