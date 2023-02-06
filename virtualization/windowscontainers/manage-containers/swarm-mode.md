@@ -158,9 +158,9 @@ C:\> docker service ps <SERVICENAME>
 ## Linux+Windows mixed-OS clusters
 
 Recently, a member of our team posted a short, three-part demo on how to set up a Windows+Linux mixed-OS application using Docker Swarm. It's a great place to get started if you're new to Docker Swarm, or to using it to run mixed-OS applications. Check it out now:
-- [Use Docker Swarm to run a Windows+Linux containerized application (Part 1/3)](https://www.youtube.com/watch?v=ZfMV5JmkWCY&t=170s)
-- [Use Docker Swarm to run a Windows+Linux containerized application (Part 2/3)](https://www.youtube.com/watch?v=VbzwKbcC_Mg&t=406s)
-- [Use Docker Swarm to run a Windows+Linux containerized application (Part 3/3)](https://www.youtube.com/watch?v=I9oDD78E_1E&t=354s)
+- [Use Docker Swarm to run a Windows+Linux containerized application (Part 1/3)](https://www.youtube.com/watch?v=ZfMV5JmkWCY)
+- [Use Docker Swarm to run a Windows+Linux containerized application (Part 2/3)](https://www.youtube.com/watch?v=VbzwKbcC_Mg)
+- [Use Docker Swarm to run a Windows+Linux containerized application (Part 3/3)](https://www.youtube.com/watch?v=I9oDD78E_1E)
 
 ### Initializing a Linux+Windows mixed-OS Cluster
 Initializing a mixed-OS swarm cluster is easy--as long as your firewall rules are properly configured and your hosts have access to one another, all you need to add a Linux host to a swarm is the standard `docker swarm join` command:
