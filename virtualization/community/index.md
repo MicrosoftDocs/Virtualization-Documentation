@@ -53,4 +53,4 @@ Follow the latest stories, developments, and projects from the Hyper-V team, fol
 ### Articles 
 * [Virtual Machines and Containers in Azure](/virtualization/windowscontainers/about/containers-vs-vm)
 * [New Windows Server containers and Azure support for Docker](https://azure.microsoft.com/blog/new-windows-server-containers-and-azure-support-for-docker/)
-* [Microsoft Announces New Container Technologies for the Next Generation Cloud]/archive/blogs/)
+* [Microsoft Announces New Container Technologies for the Next Generation Cloud](/archive/blogs/)
