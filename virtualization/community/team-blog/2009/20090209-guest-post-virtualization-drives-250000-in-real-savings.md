@@ -33,7 +33,4 @@ We are testing Windows Server 2008 R2 now with Live Migration.  Need I say more
 
 David Straede
 
-_For more  on how customers are saving with virtualization, _[_click here_](http://www.prnewswire.com/mnr/microsoft/36562/) _  and watch this video_:
-
-  
-[Cost Savings with Microsoft Virtualization](https://www.microsoft.com/video/en/us/details/47304891-46fa-4763-95f4-65329870b7b7?vp_evt=eref&vp_video=Cost+Savings+with+Microsoft+Virtualization)
+_For more  on how customers are saving with virtualization, _[_click here_](https://www.prnewswire.com/) 

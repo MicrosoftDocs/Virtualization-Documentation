@@ -9,13 +9,13 @@ categories: hyper-v
 ---
 # Microsoft and EMC renew their (virtualization) vows
 
-Big happenings in NYC yesterday as SteveB and EMC's CEO Joe Tucci met with a room-full of IT execs to talk about an extended 3-year alliance. The announcement is [here](https://www.microsoft.com/presspass/press/2009/feb09/02-03EMCRenewPR.mspx "Microsoft/EMC news release"). In short, the companies are going to work more closely together in the areas of data loss prevention, collaboration and virtualization. What's that you say? EMC - 80% owner of VMware - working more closely with Microsoft around virtualization? Here's an excerpt from the joint announcement: 
+Big happenings in NYC yesterday as SteveB and EMC's CEO Joe Tucci met with a room-full of IT execs to talk about an extended 3-year alliance. In short, the companies are going to work more closely together in the areas of data loss prevention, collaboration and virtualization. What's that you say? EMC - 80% owner of VMware - working more closely with Microsoft around virtualization? Here's an excerpt from the joint announcement: 
 
 > Microsoft offers one of the fastest-growing and most cost-effective virtualization solutions from the desktop to the datacenter, including the ability to manage both physical and virtual environments from a centralized management console. EMC’s technology solutions enable storage, protection and management of information in Microsoft virtualized environments including Windows Server 2008 Hyper-V, Microsoft System Center, and jointly supported mission-critical workloads such as Microsoft Exchange Server, Microsoft SQL Server and Microsoft SharePoint Server. EMC Consulting’s Application Practice, a thousand-person strong team with deep Microsoft knowledge, provides expertise in assessing, planning and implementing Microsoft’s technologies in a wide array of virtualization solutions.
 
 That's all well and good - 1,000 EMC consultants trained on WS08 Hyper-V, System Center and key Microsoft applications that will be virtualized. But can those 1,000 consultants really look past VMware? 
 
- Thankfully [CNET interviewed Steve and Joe](http://news.cnet.com/8301-10805_3-10156015-75.html?part=rss&subj=news&tag=2547-1_3-0-5 "CNET article") and asked them about it. Here's the excerpt:
+ Thankfully CNET interviewed Steve and Joe and asked them about it. Here's the excerpt:
 
 > **In the agreement, one of the areas you talked about working more closely in is virtualization. VMware is affiliated with EMC, which is probably Microsoft's biggest competitor in virtualization. So how credible is the notion that your companies can work together? And where do you draw the lines of cooperation? And how does that benefit customers?**  
 > 
