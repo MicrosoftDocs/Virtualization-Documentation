@@ -50,15 +50,13 @@ __Just so we're clear: this still means AMD <->AMD and Intel<->Intel. It does **
 
 In addition, you may be aware that both AMD and Intel have provided similar capabilities in hardware, Extended Migration and Flex Migration respectively. Extended and Flex Migration are cool technologies available on relatively recent processors, but this is a case where providing the solution in software allows us to be more flexible and provide this capability to older systems too. Processor Compatibility also makes it easier to upgrade to the newest server hardware. In addition, Hyper-V Processor Compatibility can be done on a per VM basis (it's a checkbox) and doesn't require any BIOS changes.
 
-![clip_image001](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/TechEdWindowsServer2008R2ShippingfortheH_146F6/clip_image001_thumb.jpg)
+
 
 **Processor Compatibility In Action**
 
 Here's an example of a cluster we've been testing. This is a 4 node cluster **using 4 generations of Intel Processors with VT** all attached to a small iSCSI SAN over 1 Gb/E. We have a script that _continuously_ Live Migrates VMs from one node to the next every 15 seconds. We've been running this test for about a week and have successfully completed over 110,000 Live Migrations. Looks kinda like this.
 
  
-
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/TechEdWindowsServer2008R2ShippingfortheH_146F6/image_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/TechEdWindowsServer2008R2ShippingfortheH_146F6/image_2.png)
 
  
 
