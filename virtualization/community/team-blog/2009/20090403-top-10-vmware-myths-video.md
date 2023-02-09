@@ -23,8 +23,6 @@ Edwin and David recently sat down in front of a video camera to talk about the t
   * Why pay VMWare's virtualization tax?
 
 
-  
-[Microsoft Mythbusters: Top 10 VMware Myths](/virtualization/community/team-blog/2009/20090403-top-10-vmware-myths-video)
 
   Patrick
 
