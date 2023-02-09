@@ -63,20 +63,11 @@ Here's an example of a cluster we've been testing. This is a 4 node cluster **us
 **Time To Get Uber-Geeky**
 
 Now that I've explained what processor compatibility mode does and the flexibility provides, I'm guessing there are a few propeller heads who want to go further and know exactly what a "normalized processor" means from a processor feature standpoint. Happy to oblige. When a VM in processor compatibility mode is started, the following processor features are hidden from the VM:
-
-**Host running AMD based processor**
-
-| 
-
-**Host running Intel based processor**  
   
----|---  
-  
-SSSE3, SSE4.1, SSE4.A, SSE5, POPCNT, LZCNT, Misaligned SSE, AMD 3DNow!, Extended AMD 3DNow!
 
-| 
-
-SSSE3, SSE4.1, SSE4.2, POPCNT, Misaligned SSE, XSAVE, AVX  
+| **Host running AMD based processor** | **Host running Intel based processor** |
+| --- | --- |
+|SSSE3, SSE4.1, SSE4.A, SSE5, POPCNT, LZCNT, Misaligned SSE, AMD 3DNow!, Extended AMD 3DNow! | SSSE3, SSE4.1, SSE4.2, POPCNT, Misaligned SSE, XSAVE, AVX | 
   
 **FAQ**
 

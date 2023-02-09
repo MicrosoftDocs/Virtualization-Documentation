@@ -24,55 +24,15 @@ So, as you can see, there are a few different options depending on your needs an
   * Templates, Clones, Sysprep Integration 
   * Performance Resource Optimization (PRO)
 
-.and a lot, lot more. But, I digress. **_$$$ Comparison_** Let's take a look at a few cluster configurations and compare costs for Live Migration and High Availability functionality.    | 
-
-**Hyper-V Server 2008 R2**
-
-| 
-
-**VMware vSphere**  
+.and a lot, lot more. But, I digress. **_$$$ Comparison_** Let's take a look at a few cluster configurations and compare costs for Live Migration and High Availability functionality.   
   
----|---|---  
-  
-3 Node Cluster; 2 Socket Servers
 
-| 
-
-Free
-
-| 
-
-$13,470  
-  
-3 Node Cluster; 4 Socket Servers
-
-| 
-
-Free
-
-| 
-
-$26,940  
-  
-5 Node Cluster; 2 Socket Servers
-
-| 
-
-Free
-
-| 
-
-$22,450  
-  
-5 Node Cluster; 4 Socket Servers
-
-| 
-
-Free
-
-| 
-
-$44,900  
+|**Hyper-V Server 2008 R2** | **VMware vSphere** |  
+| --- | --- | --- |
+|3 Node Cluster; 2 Socket Servers | Free | $13,470 |
+|3 Node Cluster; 4 Socket Servers | Free | $26,940 |  
+|5 Node Cluster; 2 Socket Servers | Free | $22,450 |
+|5 Node Cluster; 4 Socket Servers | Free | $44,900 |
   
 You may be wondering, "Did he choose the most expensive VMware configuration?" On the contrary, I chose the _least expensive_ _configuration ($2245 per processor)_ that offers both Live Migration and High Availability. You may be wondering, "Why isn't System Center management represented here?" In this example, I simply wanted to compare the lowest cost for Live Migration and High Availability functionality from Microsoft and VMware with some real world configurations that a small/medium business may use. I will post a follow-up blog that adds management for small/medium businesses. As for enterprise customers, they typically have larger server farms with more sophisticated management requirements. That's another blog for another time. You may also be wondering, "Why isn't the cost of guest operating systems included here?" Simple, neither Microsoft Hyper-V Server 2008 R2 nor VMware include any guest operating system licenses so if you need to run 4 copies of Windows Server, you need to purchase the appropriate license. That cost is the same whether you're running Hyper-V Server 2008 R2 or VMware so I didn't bother to include it. While VMware claims to be more affordable the facts are clear and the value of Microsoft Hyper-V Server 2008 R2 is undeniable. Microsoft offers exceptional value especially for small and mid-market customers who have told us for years how they would like Live Migration/High Availability functionality and simply can't afford it. Those days are over. At this point you may be thinking we're _crazy_ to provide virtualization live migration and high availability at no cost. Well, I wish we could say we were first, but the folks at Xen have been providing free Live Migration and HA for a few months. In fact, the only one still charging for Live Migration and High Availability ($2245+ per socket) is VMware. Now that's crazy. _Jeff Woolsey_ _Principal Group Program Manager_
 
