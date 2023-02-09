@@ -27,7 +27,7 @@ So, as you can see, there are a few different options depending on your needs an
 .and a lot, lot more. But, I digress. **_$$$ Comparison_** Let's take a look at a few cluster configurations and compare costs for Live Migration and High Availability functionality.   
   
 
-|**Hyper-V Server 2008 R2** | **VMware vSphere** |  
+|**Hyper-V Server 2008 R2** | **VMware vSphere** |  |
 | --- | --- | --- |
 |3 Node Cluster; 2 Socket Servers | Free | $13,470 |
 |3 Node Cluster; 4 Socket Servers | Free | $26,940 |  
