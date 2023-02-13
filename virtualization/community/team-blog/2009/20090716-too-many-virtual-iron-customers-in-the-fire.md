@@ -9,7 +9,7 @@ categories: esx
 ---
 # Too many Virtual Iron customers in the fire?
 
-With the recent announcement by Oracle to [stop](http://www.dabcc.com/article.aspx?id=10900) Virtual Iron development and sales, the past few weeks have certainly been eventful for Virtual Iron customers.  A [related announcement came out from VMware](http://www.virtualization.info/2009/07/oracle-and-vmware-dispute-virtual-iron.html) about a program to offer Virtual Iron customers discounts to move over.  But a closer look at the VMware offer shows some serious limitations.  These include:<?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /> 
+With the recent announcement by Oracle to stop Virtual Iron development and sales, the past few weeks have certainly been eventful for Virtual Iron customers.  A related announcement came out from VMware) about a program to offer Virtual Iron customers discounts to move over.  But a closer look at the VMware offer shows some serious limitations.  These include:
 
 ·         Only Virtual Iron 4.0 or newer customers are eligible
 
