@@ -18,7 +18,7 @@ In my last two blog posts ([Part 1](https://techcommunity.microsoft.com/t5/virtu
 
 Using VMware's own metrics:
 
-  * [In part 1, Microsoft Hyper-V Server 2008 clearly won over VMware ESXi 3.5](h/virtualization/community/team-blog/2009/20090812-hypervisor-footprint-debate-part-1-microsoft-hyper-v-server-2008-vmware-esxi-3-5)
+  * [In part 1, Microsoft Hyper-V Server 2008 clearly won over VMware ESXi 3.5](/virtualization/community/team-blog/2009/20090812-hypervisor-footprint-debate-part-1-microsoft-hyper-v-server-2008-vmware-esxi-3-5)
   * [In part 2, Windows Server 2008 Hyper-V clearly won over VMware ESX 3.5](/virtualization/community/team-blog/2009/20090814-hypervisor-footprint-debate-part-2-windows-server-2008-hyper-v-vmware-esx-3-5)
 
 
