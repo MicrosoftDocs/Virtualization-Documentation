@@ -17,7 +17,7 @@ There’s been some speculative statements made in the press and blogs in the pa
 
 1.       Microsoft will be exhibiting at VMworld 2009. Can't wait! We have a 10x10 booth, #2422. If you have a chance, please stop by booth. It's right next to the Blogger lounge. See more below. 
 
-2.       Unlike prior [VMworld conferences](https://blogs.technet.com/windowsserver/archive/2007/09/13/VMworld-2007_3A00_-MS-booth-noise.aspx "VMworld 2007 blog"), we’re no longer allowed to sponsor the event. We can only be an exhibitor. Why? Let's look at excerpts from VMworld’s rules (my highlights):
+2.       Unlike prior VMworld conferences, we’re no longer allowed to sponsor the event. We can only be an exhibitor. Why? Let's look at excerpts from VMworld’s rules (my highlights):
 
  
 
@@ -69,7 +69,7 @@ So what is Microsoft doing at VMworld? 
 
  
 
-We’ve learned over the course of 4 years attending VMworld (first was Vegas 2005) that there are many attendees who use, admin, manage, sell, support Windows Server, SQL Server, Exchange Server, Windows XP/Vista, System Center, etc. They want the [opportunity to engage](https://blogs.technet.com/windowsserver/archive/2006/11/07/LA-Traffic-_2D00_-1_2C00_500-Shirts-in-150-minutes.aspx "VMworld 2006") and receive information from Microsoft virtualization experts. So we’ll have Microsoft virtualization experts in the booth. These experts will be there to answer your questions. They’ll also be Tweeting about their experiences and impressions as they talk to customers and attend sessions. I encourage you to follow them on Twitter -  see the table below for their usernames. 
+We’ve learned over the course of 4 years attending VMworld (first was Vegas 2005) that there are many attendees who use, admin, manage, sell, support Windows Server, SQL Server, Exchange Server, Windows XP/Vista, System Center, etc. They want the opportunity to engage and receive information from Microsoft virtualization experts. So we’ll have Microsoft virtualization experts in the booth. These experts will be there to answer your questions. They’ll also be Tweeting about their experiences and impressions as they talk to customers and attend sessions. I encourage you to follow them on Twitter -  see the table below for their usernames. 
 
  
 
