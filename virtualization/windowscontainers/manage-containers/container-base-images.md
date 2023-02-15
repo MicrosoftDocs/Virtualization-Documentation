@@ -1,6 +1,6 @@
 ---
-title: Windows Container Base Images
-description: An overview of the Windows container base images and when to use them.
+title: Windows container base images
+description: Overview of the Windows container base images and when to use them.
 keywords: docker, containers, hashes
 author: mattbriggs
 ms.author: mabrigg

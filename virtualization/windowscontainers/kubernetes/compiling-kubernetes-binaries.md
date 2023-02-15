@@ -1,5 +1,5 @@
 ---
-title: Compiling Kubernetes Binaries
+title: Compiling Kubernetes binaries
 author: daschott
 ms.author: daschott
 ms.date: 08/13/2020

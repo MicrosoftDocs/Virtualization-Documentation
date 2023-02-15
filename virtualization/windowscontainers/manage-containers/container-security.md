@@ -1,6 +1,6 @@
 ---
 title: Secure Windows containers
-description: Learn how to define the security boundaries of Windows containers
+description: Learn how to define the security boundaries of Windows containers.
 keywords: docker, containers, security, windows, isolation, boundary, privacy, kubernetes, linux
 author: brasmith
 ms.author: brasmith

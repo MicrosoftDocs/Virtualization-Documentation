@@ -1,11 +1,11 @@
 ---
 title: Manage container images on Windows Admin Center
-description: Manage container images on WAC
+description: Manage container images on Windows Admin Center.
 keywords: docker, containers, Windows Admin Center
 author: vrapolinario
 ms.author: viniap
 ms.date: 12/23/2020
-ms.topic: quickstart
+ms.topic: how-to
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Manage Container images on Windows Admin Center

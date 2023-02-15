@@ -1,6 +1,6 @@
 ---
-title: Persistent Storage in Containers
-description: How Windows containers can persistent storage
+title: Persistent storage in containers
+description: How Windows containers can use persistent storage.
 keywords: containers, volume, storage, mount, bindmount
 author: cwilhit
 ms.author: lizross

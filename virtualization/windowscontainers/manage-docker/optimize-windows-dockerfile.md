@@ -5,7 +5,7 @@ keywords: docker, containers
 author: cwilhit
 ms.author: lizross
 ms.date: 05/03/2019
-ms.topic: tutorial
+ms.topic: how-to
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
 ---
 # Optimize Windows Dockerfiles

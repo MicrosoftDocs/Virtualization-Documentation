@@ -1,6 +1,6 @@
 ---
-title: Configure the Containers extension on Windows Admin Center
-description: Container extension on Windows Admin Center
+title: Configure the containers extension on Windows Admin Center
+description: Configure container extensions on Windows Admin Center.
 keywords: docker, containers, Windows Admin Center
 author: vrapolinario
 ms.author: viniap

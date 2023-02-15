@@ -1,6 +1,6 @@
 ---
-title: Getting Started with Swarm Mode
-description: Intializing a swarm cluster, creating an overlay network, and attaching a service to the network.
+title: Get started with swarm mode
+description: Initialize a swarm cluster, creating an overlay network, and attaching a service to the network.
 keywords: docker, containers, swarm, orchestration
 author: kallie-b
 ms.author: jgerend
@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
 ---
 
-# Getting Started with Swarm Mode
+# Get started with swarm mode
 
 > Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 

@@ -4,7 +4,7 @@ description: Learn how to configure the time zone in a container.
 keywords: containers, timezone, virtualization
 author: brasmith-ms
 ms.author: brasmith
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/15/2021
 ---
 

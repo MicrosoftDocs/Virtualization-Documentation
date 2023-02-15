@@ -1,11 +1,11 @@
 ---
 title: Manage Azure Container Registry on Windows Admin Center
-description: Azure Container Registry on Windows Admin Center
+description: Learn about Azure Container Registry on Windows Admin Center.
 keywords: docker, containers, Windows Admin Center
 author: vrapolinario
 ms.author: viniap
 ms.date: 12/24/2020
-ms.topic: tutorial
+ms.topic: how-to
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Manage Azure Container Registry using Windows Admin Center

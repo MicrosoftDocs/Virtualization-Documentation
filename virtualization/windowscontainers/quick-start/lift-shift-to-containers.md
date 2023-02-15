@@ -1,11 +1,11 @@
 ---
 title: Lift and shift to containers
-description: Learn how to migrate existing applications to containers
+description: Learn how to migrate existing applications to containers.
 keywords: containers, migrate
 author: robinharwood
 ms.author: roharwoo
 ms.date: 08/01/2022
-ms.topic: quickstart
+ms.topic: conceptual
 ---  
 
 # Using Windows Containers to "Containerize" Existing Applications

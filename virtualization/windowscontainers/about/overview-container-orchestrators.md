@@ -1,5 +1,5 @@
 ---
-title: Windows Container Orchestration Overview
+title: Windows container orchestration overview
 description: Learn about Windows container orchestrators.
 keywords: docker, containers
 author: Heidilohr
