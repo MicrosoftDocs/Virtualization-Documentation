@@ -38,16 +38,16 @@ So what is Microsoft doing at VMworld?  
 We’ve learned over the course of 4 years attending VMworld (first was Vegas 2005) that there are many attendees who use, admin, manage, sell, support Windows Server, SQL Server, Exchange Server, Windows XP/Vista, System Center, etc. They want the opportunity to engage and receive information from Microsoft virtualization experts. So we’ll have Microsoft virtualization experts in the booth. These experts will be there to answer your questions. They’ll also be Tweeting about their experiences and impressions as they talk to customers and attend sessions. I encourage you to follow them on Twitter -  see the table below for their usernames.  
 
 
-| **Expert in** | **Name** | **Twitter Username** |  
-| --- | --- | --- |  
-| **Disaster Recovery, Backup** | Allen Stewart | dynamic_dc |  
-| **Desktop Virtualization** | Ben Armstrong | virtualpcguy |  
-| **App & Desktop Virtualization** | Jeff Johnson | JJ_VDI |  
-| **Virtualization Management** | Stuart Schaefer | Sshaffer_MS |  
-| **Cloud** | Isaac Roybal | DDACloudGuy |  
-| **Business value** | Edwin Yuen | edwinyuen |  
-| **Workloads, partners, licensing** | Kenon Owen | MS_Int_Virt |  
-| **Server Virtualization** | Vijay Tewari | vtango |  
+| **Expert in** | **Name** | **Twitter Username** |
+| --- | --- | --- |
+| **Disaster Recovery, Backup** | Allen Stewart | dynamic_dc |
+| **Desktop Virtualization** | Ben Armstrong | virtualpcguy |
+| **App & Desktop Virtualization** | Jeff Johnson | JJ_VDI |
+| **Virtualization Management** | Stuart Schaefer | Sshaffer_MS |
+| **Cloud** | Isaac Roybal | DDACloudGuy |
+| **Business value** | Edwin Yuen | edwinyuen |
+| **Workloads, partners, licensing** | Kenon Owen | MS_Int_Virt |
+| **Server Virtualization** | Vijay Tewari | vtango |
  
 
 We’ll also have two customers in the booth at different times. I’ll be there. See you there!
