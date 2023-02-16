@@ -17,7 +17,12 @@ Good news for a Friday. [Brad's post](https://techcommunity.microsoft.com/t5/vir
 > 
 > Financial terms of the acquisition won’t be disclosed. Opalis recently reported 104% increase in new license bookings for calendar Q3 (compared to Q3 2008), selling to enterprise and managed service provider customers. 
 
-So how is Opalis Software used? Here's some examples:  •        Incident response standardize and automate triage, diagnose and repair processes to reduce the number of incidents. •        Provisioning orchestrate datacenter tools to configure, deploy, and verify IT services in response to an incident or change request. Provision server, storage, or network resources across physical, virtual or cloud environments.  •        Virtual service management automate virtual lifecycle management to control server sprawl and extend management best practices, such as incident management and provisioning, to your virtual environments.  •        Run book procedures automate re-occurring maintenance and administrative tasks, such as data and file handling, database and application support. •        Cloud Computing automate cloud lifecycle management, to request, provision, release and track costs of cloud resources.
+So how is Opalis Software used? Here's some examples:  
+ •        Incident response standardize and automate triage, diagnose and repair processes to reduce the number of incidents.  
+ •        Provisioning orchestrate datacenter tools to configure, deploy, and verify IT services in response to an incident or change request. Provision server, storage, or network resources across physical, virtual or cloud environments.  
+ •        Virtual service management automate virtual lifecycle management to control server sprawl and extend management best practices, such as incident management and provisioning, to your virtual environments.  
+ •        Run book procedures automate re-occurring maintenance and administrative tasks, such as data and file handling, database and application support.  
+ •        Cloud Computing automate cloud lifecycle management, to request, provision, release and track costs of cloud resources.  
 
 So there's a summary. Brad says much more in his video interview. An analyst at Gartner forecasted that, by end of 2010, at least 50% of the automation and workflow management tasks in support of virtual server infrastructures will be supported by next-gen Run Book Automation-based tools. That's exactly what Opalis has created, and will become part of System Center.
 
