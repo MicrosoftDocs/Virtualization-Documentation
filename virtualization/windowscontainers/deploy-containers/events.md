@@ -5,7 +5,7 @@ keywords: windows containers, containers, events
 author: v-susbo
 ms.author: mabrigg
 ms.date: 02/11/2021
-ms.topic: resources
+ms.topic: conceptual
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Windows containers events and slideshows
