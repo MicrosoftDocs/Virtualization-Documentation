@@ -24,7 +24,7 @@ When it comes to virtualization and memory, I regularly hear the term “memory 
 
 So, to avoid any confusion, here’s the definition of overcommit according to the Merriam Webster dictionary online:
 
-> <http://www.merriam-webster.com/dictionary/overcommit>
+> <https://www.merriam-webster.com/dictionary/overcommit>
 > 
 > Main Entry: **over·com·mit**
 > 
@@ -53,7 +53,7 @@ Page Sharing is a well understood memory technique and there are a number of fac
 
 To discuss Large Memory Page Support and its implications on Page Sharing, let’s take a step back and level set. For that, I’m going to reference an excellent article written by Alan Zeichick from AMD in 2006. While the focus of this article discusses the implications of large memory pages and java virtual machines, it also applies to machine virtualization. I’m going to reference specific sections, but if you’d like to read the full article it is here:
 
-<http://developer.amd.com/documentation/articles/pages/2142006111.aspx>
+`<http://developer.amd.com/documentation/articles/pages/2142006111.aspx>`
 
 > _All x86 processors and modern 32-bit and 64-bit operating systems allocate physical and virtual memory in pages. The page table maps virtual address to physical address for each native application and "walking" it to look up address mappings takes time. To speed up that process, modern processors use the translation lookaside buffer (TLB), to cache the most recently accessed mappings between physical and virtual memory._
 > 
@@ -92,7 +92,7 @@ I expanded on Mr. Zeichick’s physical memory to page table entry example and c
 512 GB | 128 million pages  
 1 TB | 256 million pages  
   
-When you consider that servers have supported 32/64 GB of memory for years now and that many industry standard servers shipping today, like the [HP DL 385 G6, support up to 192 GB](http://h10010.www1.hp.com/wwpc/us/en/sm/WF06a/15351-15351-3328412-241644-241475-3884082.html) of memory per server today you can quickly see that the time for larger memory page support is overdue. Take a look at the recently released Nehalem EX processor. The Nehalem EX supports up to _**256 GB of memory _per socket_.** _ You could theoretically have a 4 socket server with 1 TB of physical memory. Do you really want to access all this memory 4k at a time?
+When you consider that servers have supported 32/64 GB of memory for years now and that many industry standard servers shipping today, like the HP DL 385 G6, support up to 192 GB of memory per server today you can quickly see that the time for larger memory page support is overdue. Take a look at the recently released Nehalem EX processor. The Nehalem EX supports up to _**256 GB of memory _per socket_.** _ You could theoretically have a 4 socket server with 1 TB of physical memory. Do you really want to access all this memory 4k at a time?
 
 (Even with just 64 GB of physical memory in a server, think of this as filling up an Olympic size swimming pool with water one 8 ounce cup at a time and it just gets worse as you add and use more memory…)
 
@@ -130,7 +130,7 @@ _From VMware:_
 
 > _The only problem is that when large pages is used, Page Sharing needs to find identical 2M chunks (as compared to 4K chunks when small pages is used) and the likelihood of finding this is less (unless guest writes all zeroes to 2M chunk) so ESX does not attempt collapses large pages and thats [sic] why memory savings due to TPS goes down when all the guest pages are mapped by large pages by the hypervisor._
 > 
-> <http://communities.vmware.com/message/1262016#1262016>
+> <https://communities.vmware.com/message/1262016#1262016>
 
 **_Bottom Line: Page Sharing works in a legacy 4k Memory Page world, but provides almost no benefit in a modern 2MB Memory Page world._**
 
@@ -150,7 +150,6 @@ In addition to Large Page Memory, another factor impacting the efficacy of Page 
 
 One aspect of page sharing most people may not know is that the greatest benefit of page sharing comes from sharing zeroed pages. Let’s assume for a moment that I have a Windows XP system with 2GB of memory. As you can see in the screenshot below from a freshly booted system running Windows XP with no apps, the OS is using ~375MB of memory while the remaining memory ~1.8GB is unused and unfortunately wasted.
 
-[![XP-Just Booted 2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/DynamicMemoryComingtoHyperVPart3_A923/XP-Just%20Booted%202_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/DynamicMemoryComingtoHyperVPart3_A923/XP-Just%20Booted%202_2.png)
 
 In reality, you want the operating system to take full advantage of all the memory in the system and use it as an intelligent cache to improve system performance and responsiveness. If you’re going to buy a brand new system (I see an online ad today for a brand new quad core system with 8 GB of memory for $499) don’t you want the OS to use that memory? Of course you do. That’s why we created SuperFetch.
 
@@ -158,7 +157,6 @@ In reality, you want the operating system to take full advantage of all the memo
 
 OK, so how is RAM usage affected? You may have noticed that Windows 7 tends to use a much greater percentage of system RAM than on Windows XP. It is not uncommon to view Task Manager on a Windows 7 system with several GB of RAM installed and less than 100MB of the RAM shows up as free. For instance, here is a screenshot of Task Manager from the machine I am working on now.
 
-[![Win 7 Task Manager #2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/DynamicMemoryComingtoHyperVPart3_A923/Win%207%20Task%20Manager%20_2_thumb_bcd1746d-4a8f-4e5b-b83d-19d89dfbff6f.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/DynamicMemoryComingtoHyperVPart3_A923/Win%207%20Task%20Manager%20_2_2b5a8dfc-8897-423f-8e8f-cffd90e0a97a.png)
 
 As you can see, this system has 8GB of physical memory and is using 3.29 GB. I'm running Windows 7 x64 Edition, Outlook, One Note, Word, Excel, PowerPoint, Windows Live Writer, Live Photo Gallery, several instances of IE with over a dozen tabs open and other day to day tools and you can see that it shows 0 MB of free physical memory. At first glance, this would seem to be something to worry about, but once you consider the impact of SuperFetch this condition becomes less of a concern. Notice that ~5827MB is being used for cache. 
 
