@@ -33,99 +33,14 @@ The bummer was when we lost Internet connectivity for a while at the convention 
 
 Day 2 has a plethora of sessions on Virtualization and Management. Below is what we have in store for you today. Today’s is the big day for details on Dynamic Memory and RemoteFX.
 
-Tuesday, Jun 08, 2010 
 
-8.00 - 9.15 am
+| Tuesday, Jun 08, 2010  8.00 - 9.15 am | WSV305: Deploying, Virtualizing, and Managing Linux and UNIX with Hyper-V | VIR318: Datacenter Virtualization: It's More than a Hypervisor |  |
+| --- | --- | --- | --- | --- |
+| Tuesday, Jun 08 2010 9.45 – 11 am | WSV307: Windows Server 2008 R2 SP1 | VIR06-Int (Interactive Session: Failover Clustering with Hyper-V Unleashed with Windows Server 2008 R2 | VIR305: Microsoft RemoteFX: Rich Windows Desktop Experience for VDI and Session Virtualization |
+| Tuesday, Jun 08, 2010 1.30 – 2.45 pm | VIR304: Hyper-V and Dynamic Memory in Depth | VIR311: Planning and Deploying Microsoft VDI with Management Technologies |  |
+| Tuesday, Jun 08, 2010 3.15 – 4.30 pm | VIR307: Getting the Most out of Windows Server 2008 R2 Hyper-V with the Integration of the System Center Suite |   |   |
+| Tuesday, Jun 08, 2010 5.00 – 6.15 pm | VIR310: Networking and Windows Server 2008 R2 Hyper-V: Deployment Considerations |   |   |
 
-| 
-
-WSV305: Deploying, Virtualizing, and Managing Linux and UNIX with Hyper-V
-
-| 
-
-VIR318: Datacenter Virtualization: It's More than a Hypervisor
-
-| 
-
- 
-
-| 
-
-   
-  
----|---|---|---|---  
-  
-Tuesday, Jun 08 2010 9.45 – 11 am
-
-| 
-
-WSV307: Windows Server 2008 R2 SP1
-
-| 
-
-VIR06-Int (Interactive Session: Failover Clustering with Hyper-V Unleashed with Windows Server 2008 R2
-
-| 
-
-VIR305: Microsoft RemoteFX: Rich Windows Desktop Experience for VDI and Session Virtualization
-
-| 
-
-   
-  
-Tuesday, Jun 08, 2010 1.30 – 2.45 pm
-
-| 
-
-VIR304: Hyper-V and Dynamic Memory in Depth
-
-| 
-
-VIR311: Planning and Deploying Microsoft VDI with Management Technologies
-
-| 
-
- 
-
-| 
-
-   
-  
-Tuesday, Jun 08, 2010 3.15 – 4.30 pm
-
-| 
-
-VIR307: Getting the Most out of Windows Server 2008 R2 Hyper-V with the Integration of the System Center Suite
-
-| 
-
- 
-
-| 
-
- 
-
-| 
-
-   
-  
-Tuesday, Jun 08, 2010 5.00 – 6.15 pm
-
-| 
-
-VIR310: Networking and Windows Server 2008 R2 Hyper-V: Deployment Considerations
-
-| 
-
- 
-
-| 
-
- 
-
-| 
-
-   
   
  
 
