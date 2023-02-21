@@ -33,7 +33,7 @@ We believe so strongly in the benefits of our joint virtualization solution that
 
 
 
-  * Channel partner **DM Consultants** recently blogged about an Exchange 2010 installation involving 750 mailboxes, heavy usage profile, and 3 Mailbox Databases of approximately 150GB each, stored on a NetApp iSCSI solution and running without any issues.  “Stunning.” ([details](hhttps://techgenix.com/running-exchange-2010-on-hyper-v-r2/))  
+  * Channel partner **DM Consultants** recently blogged about an Exchange 2010 installation involving 750 mailboxes, heavy usage profile, and 3 Mailbox Databases of approximately 150GB each, stored on a NetApp iSCSI solution and running without any issues.  “Stunning.” ([details](https://techgenix.com/running-exchange-2010-on-hyper-v-r2/))  
 
 
 
