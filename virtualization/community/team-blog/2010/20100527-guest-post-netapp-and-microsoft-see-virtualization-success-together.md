@@ -17,23 +17,23 @@ As a result, NetApp and Microsoft have developed a unique virtualization solutio
 
  
 
-The strength of our joint solution led Microsoft to name NetApp it’s Storage Solutions Partner of the Year and to establish a 3-year [strategic alliance](http://blogs.netapp.com/msenviro/2009/12/microsoft-and-netapp-strategic-alliance.html) with virtualization as a major area of focus. Microsoft VDI partners Citrix and Quest have integrated directly into NetApp to leverage our native storage array-based cloning features to enable mass provisioning of desktop VMs, and Cisco recently published an [Exchange 2010 on Hyper-V with NetApp](http://www.cisco.com/en/US/docs/solutions/Enterprise/Data_Center/App_Networking/hypervexchange.html) validated design. Just this week, Microsoft and NetApp were named one of the [top 10 cloud computing collaborations](http://www.crn.com/software/225100010;jsessionid=ZIIVBLGLTJJ2BQE1GHRSKH4ATMY32JVN?pgno=7) to watch. 
+The strength of our joint solution led Microsoft to name NetApp it’s Storage Solutions Partner of the Year and to establish a 3-year [strategic alliance](https://blogs.netapp.com/msenviro/2009/12/microsoft-and-netapp-strategic-alliance.html) with virtualization as a major area of focus. Microsoft VDI partners Citrix and Quest have integrated directly into NetApp to leverage our native storage array-based cloning features to enable mass provisioning of desktop VMs, and Cisco recently published an [Exchange 2010 on Hyper-V with NetApp](https://www.cisco.com/en/US/docs/solutions/Enterprise/Data_Center/App_Networking/hypervexchange.html) validated design. Just this week, Microsoft and NetApp were named one of the top 10 cloud computing collaborations to watch. 
 
-We believe so strongly in the benefits of our joint virtualization solution that in early 2009 NetApp was the first partner to guarantee that joint Microsoft and NetApp virtualization customers will use [50% less storage](http://www.netapp.com/guarantee). Today, our customers and partners are the biggest advocates of our joint virtualization solution and have realized substantial cost-savings, improved SLAs, accelerated deployments and more. Below are a few examples: 
+We believe so strongly in the benefits of our joint virtualization solution that in early 2009 NetApp was the first partner to guarantee that joint Microsoft and NetApp virtualization customers will use [50% less storage](https://www.netapp.com/). Today, our customers and partners are the biggest advocates of our joint virtualization solution and have realized substantial cost-savings, improved SLAs, accelerated deployments and more. Below are a few examples: 
 
-  * Law firm **Miller & Martin** is headquartered in a 1917 building and had completely maxed out the power grid. By combining Windows Server 2008 R2 Hyper-V with NetApp efficiency technologies such as deduplication, the firm was able to cut its physical footprint 66% and reclaim 50% of used storage. Most importantly, physical space savings plus reducing power consumption by a third enabled the firm to avoid having to seriously pursue a costly datacenter expansion project. ([details](http://blogs.netapp.com/msenviro/2010/01/hyperv-webcast.html))  
-
-
-
-  * In Texas, one of the fastest growing cities in the country replaced 40 servers with just 4 and cut capex 54%. Deploying Microsoft virtualization with NetApp storage didn’t just enable **City of Frisco** to significantly cut costs but also to dramatically speed provisioning of new applications and facilitate interagency information-sharing to support groundbreaking initiatives. Where provisioning servers for a new project used to take 6-8 weeks working through procurement, it ’s now done in minutes. **** ([details](http://blogs.netapp.com/msenviro/2009/11/city-in-texas-saves-big-with-hyper-v-netapp.html))  
+  * Law firm **Miller & Martin** is headquartered in a 1917 building and had completely maxed out the power grid. By combining Windows Server 2008 R2 Hyper-V with NetApp efficiency technologies such as deduplication, the firm was able to cut its physical footprint 66% and reclaim 50% of used storage. Most importantly, physical space savings plus reducing power consumption by a third enabled the firm to avoid having to seriously pursue a costly datacenter expansion project. ([details](https://blogs.netapp.com/msenviro/2010/01/hyperv-webcast.html))  
 
 
 
-  * In Austria, for the **Vienna Chamber of Labor** virtualizing SharePoint 2010 with Hyper-V and NetApp storage has yielded a very flexible, scalable infrastructure with substantial efficiency and data protection benefits including the ability to restore even to an individual item. ([ details](http://sharepoint-blog.at/post/2010/02/28/Erste-SharePoint-2010-Referenz-Arbeiterkammer-Wien-startet-zentrale-Wissensplattform-mit-NetApp-SAN-Microsoft-Hyper-V-und-SharePoint-Server-2010.aspx))  
+  * In Texas, one of the fastest growing cities in the country replaced 40 servers with just 4 and cut capex 54%. Deploying Microsoft virtualization with NetApp storage didn’t just enable **City of Frisco** to significantly cut costs but also to dramatically speed provisioning of new applications and facilitate interagency information-sharing to support groundbreaking initiatives. Where provisioning servers for a new project used to take 6-8 weeks working through procurement, it ’s now done in minutes. **** ([details](https://blogs.netapp.com/msenviro/2009/11/city-in-texas-saves-big-with-hyper-v-netapp.html))  
 
 
 
-  * Channel partner **DM Consultants** recently blogged about an Exchange 2010 installation involving 750 mailboxes, heavy usage profile, and 3 Mailbox Databases of approximately 150GB each, stored on a NetApp iSCSI solution and running without any issues.  “Stunning.” ([details](http://www.msexchange.org/articles_tutorials/exchange-server-2010/migration-deployment/running-exchange-2010-on-hyper-v-r2.html))  
+  * In Austria, for the **Vienna Chamber of Labor** virtualizing SharePoint 2010 with Hyper-V and NetApp storage has yielded a very flexible, scalable infrastructure with substantial efficiency and data protection benefits including the ability to restore even to an individual item.  
+
+
+
+  * Channel partner **DM Consultants** recently blogged about an Exchange 2010 installation involving 750 mailboxes, heavy usage profile, and 3 Mailbox Databases of approximately 150GB each, stored on a NetApp iSCSI solution and running without any issues.  “Stunning.” ([details](hhttps://techgenix.com/running-exchange-2010-on-hyper-v-r2/))  
 
 
 

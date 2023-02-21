@@ -13,9 +13,7 @@ Wow, 11,000 attendees, press, analysts and speakers here at TechEd. That’s a t
 
  
 
-Day 1 got off to a flying start with Bob Muglia and his inimitable style.  For those who did not get a chance to view the keynote you can catch the recording at 
-
-[http://www.msteched.com/2010/NorthAmerica/Keynote01](http://www.msteched.com/2010/NorthAmerica/Keynote01). Some really cool demos of System Center Virtual Machine Manager vNext and how we are taking our learning’s from running our datacenters and providing that technology to you (@ the 16 minute mark). 
+Day 1 got off to a flying start with Bob Muglia and his inimitable style.  For those who did not get a chance to view the keynote you can catch the recording at `www.msteched.com/2010/NorthAmerica/Keynote01`. Some really cool demos of System Center Virtual Machine Manager vNext and how we are taking our learning’s from running our datacenters and providing that technology to you (@ the 16 minute mark). 
 
  
 
@@ -25,7 +23,7 @@ I was at the booth for almost the entire day and the traffic was great. We had l
 
 There were a few questions from customers on network failover and load balancing. I want to take this opportunity to point out that our partners such as 
 
-[Intel](http://www.intel.com/support/network/sb/cs-009747.htm) and Broadcom have powerful solutions for NIC teaming. 
+[Intel](https://www.intel.com/) and Broadcom have powerful solutions for NIC teaming. 
 
  
 
