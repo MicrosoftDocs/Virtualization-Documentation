@@ -50,4 +50,4 @@ Feel free to leave questions in the comments section below, and I’ll do my bes
 
 Elliott 
 
-[Team's blog](archive/blogs/itbizval/)
+[Team's blog](/archive/blogs/itbizval/)
