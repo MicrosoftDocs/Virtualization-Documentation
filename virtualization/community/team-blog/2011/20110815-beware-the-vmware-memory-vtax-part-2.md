@@ -43,7 +43,7 @@ In a word, NO. Let me confirm and reiterate emphatically, that we have no intent
 
 **\---------------------------------------------------------------------------------------**
 
-For a full description of the changes in the vSphere Licensing 2.0 Terms, you can read their [announcement](http://blogs.vmware.com/rethinkit/2011/08/changes-to-the-vram-licensing-model-introduced-on-july-12-2011.html). Here’s an abridged version summarizing the changes:
+For a full description of the changes in the vSphere Licensing 2.0 Terms, you can read their announcement. Here’s an abridged version summarizing the changes:
 
 > _… we are announcing three changes to the vSphere 5 licensing model that address the three most recurring areas of customer feedback:_
 > 
@@ -63,7 +63,7 @@ Let’s take a closer look at each one of these changes.
 
 **\---------------------------------------------------------------------------------------**
 
-Below is a table from VMware detailing the new memory entitlements with _[vSphere 5 Licensing 2.0 Terms](http://blogs.vmware.com/partner/2011/08/vmware-vsphere-5-licensing-and-pricing-update.html)_. BTW, I ’ve seen it reported in a number of places that VMware doubled the memory entitlements. That’s partially true. vSphere Standard only got an 8 GB bump, only Enterprise and Enterprise Plus were doubled. Here are the changes from VMware:
+Below is a table from VMware detailing the new memory entitlements with _vSphere 5 Licensing 2.0 Terms)_. BTW, I ’ve seen it reported in a number of places that VMware doubled the memory entitlements. That’s partially true. vSphere Standard only got an 8 GB bump, only Enterprise and Enterprise Plus were doubled. Here are the changes from VMware:
 
 > _“ To recap, here is a comparison of the previously announced and the currently unveiled vSphere 5 vRAM entitlements per vSphere edition.”_
 
@@ -96,7 +96,7 @@ Below is a table from VMware detailing the new memory entitlements with _[vSpher
 
 
  
-[[ii]](http://blogs.vmware.com/rethinkit/2011/08/changes-to-the-vram-licensing-model-introduced-on-july-12-2011.html#_ednref2) this limit is GB of physical RAM per physical server
+[ii] this limit is GB of physical RAM per physical server
 
 While an improvement, the memory entitlements are still a tax on memory. In addition, VMware fails to recognize or even acknowledge that, from a memory standpoint, vSphere 5 is a **_downgrade_** _._ No matter how hard VMware tries to spin this change, folks see right through this.
 
@@ -156,7 +156,7 @@ With the _vSphere 5 Licensing 2.0 Terms_ has anything fundamentally changed? No.
 
 If you’re wondering if VMware’s vTaxes are here to stay, wonder no more. This statement says it all:
 
-> _[“ We are confident that our vSphere 5 licensing model based on pooled vRAM is the right one for the cloud computing era.”](http://blogs.vmware.com/rethinkit/2011/08/changes-to-the-vram-licensing-model-introduced-on-july-12-2011.html) \- **Bogomil Balkansky, VMware VP**_
+> _“ We are confident that our vSphere 5 licensing model based on pooled vRAM is the right one for the cloud computing era.” \- **Bogomil Balkansky, VMware VP**_
 
 Despite customers explicitly telling VMware in no uncertain terms that **_the vTax model is the problem_** , VMware has reiterated that the new vTax model is here to stay. Considering VMware’s regular licensing increases, one can easily expect further vTaxes in the future. Today, it’s the VMware Memory vTax. I wouldn’t be surprised to see additional taxes in the future such as a:
 
@@ -212,7 +212,7 @@ _It still feels like a money-grab, now with a hamfisted manipulation attempt add
   
 **Ars Technica Comment 1:**
 
-[![clip_image002](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4403.clip_image002_thumb_33360A8A.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8306.clip_image002_0C823A53.jpg)
+
 
 **Ars Technica Comment 2:**
 
@@ -224,13 +224,12 @@ _It still feels like a money-grab, now with a hamfisted manipulation attempt add
 
 **Ars Technica Comment 4:**
 
-[![clip_image003](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7043.clip_image003_thumb_3910AE23.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1460.clip_image003_19E84D59.png)
+
 
 [ http://www.gabesvirtualworld.com/vmware-changes-vram-licensing-on-vsphere-5-after-customer-feedback-on-vtax/](http://www.gabesvirtualworld.com/vmware-changes-vram-licensing-on-vsphere-5-after-customer-feedback-on-vtax/)
 
-[![clip_image005](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4810.clip_image005_thumb_05D474BA.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7635.clip_image005_5D504EBB.jpg)
 
-[http://www.crn.com/news/data-center/231300048/vmware-changing-vsphere-5-licensing-to-allow-monster-vms.htm;jsessionid=Va3NR0st+JroIy7vS9Iyug**.ecappj01](http://www.crn.com/news/data-center/231300048/vmware-changing-vsphere-5-licensing-to-allow-monster-vms.htm;jsessionid=Va3NR0st+JroIy7vS9Iyug**.ecappj01)
+
 
 > _Given the amount of heat VMware[ took from customers and partners](http://www.crn.com/news/data-center/231001634/vmware-customers-fuming-over-vsphere-5-licensing-changes.htm) after revealing the vSphere 5 licensing changes, it's not surprising to see VMware change its terms, one channel partner told CRN. _
 > 
@@ -255,39 +254,37 @@ With the release of the updated _vSphere 5 Licensing 2.0 Terms_ and VMware promi
 
 **Comment 1:**
 
-[![clip_image006](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5086.clip_image006_thumb_048FDBDB.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6558.clip_image006_71696B44.png)
+
 
 **Comment 2:**
 
-[![clip_image007](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6567.clip_image007_thumb_74A09716.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0207.clip_image007_42377FAD.png)
 
 **Comment 3:**
 
-[![clip_image008](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5700.clip_image008_thumb_5340F17A.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6253.clip_image008_4F315FBE.png)
+
 
 **Comment 4:**
 
-[![clip_image009](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1680.clip_image009_thumb_3828226C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0714.clip_image009_5578364C.png)
+
 
 **Comment 5:**
 
-[![clip_image010](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1261.clip_image010_thumb_1583E3F1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7242.clip_image010_0DB6AD65.png)
+
 
 **Comment 6:**
 
-[![clip_image011](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5074.clip_image011_thumb_1A19EEAB.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2845.clip_image011_25DA17C0.png)
+
 
 **Comment 7:**
 
-[![clip_image012](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2742.clip_image012_thumb_3817FC9F.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5187.clip_image012_374A7898.png)
 
 **Comment 8:**
 
-[![clip_image013](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7115.clip_image013_thumb_1DD7937B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7651.clip_image013_729DDE56.png)
+
 
 **Comment 9:**
 
-[![clip_image014](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8611.clip_image014_thumb_344A3202.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5078.clip_image014_0AC148B2.png)
+
 
 This last comment got me wondering if VMware has any licensing sessions at the upcoming VMworld 2011 conference (in a couple weeks) to further explain and clarify the new licensing model and listen to any additional customer feedback.
 
@@ -301,7 +298,6 @@ I did a quick search in the VMworld Session Builder to check and yes, there is a
 
 Unfortunately, it’s a session in the _Partner Track_ and customers aren ’t allowed. I suppose VMware isn’t interested in anymore feedback. Maybe next time.
 
-[![clip_image016](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5875.clip_image016_thumb_18C52FFF.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5504.clip_image016_09E8E2C8.jpg)
 
 **\---------------------------------------------------------------------------------------**
 
@@ -321,7 +317,7 @@ In the preceding blog, “Beware the VMware Memory Tax,” I wrote this:
 
 I revisit this topic up because I read this post in VMware’s Community Blog which appears to confirm my suspicion. Note the highlighted area.
 
-[![clip_image017](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6052.clip_image017_thumb_3B39BEBA.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8233.clip_image017_102FB956.png)
+
 
 BTW, I was mistaken about one thing, the timeline. It’s now abundantly clear that VMware is trying to sweep this under the rug as quickly as possible **_and before VMworld_** so Mr. Maritz and VMware can avoid the vTax topic altogether.
 
@@ -581,7 +577,7 @@ In addition, Microsoft Hyper-V Server’s has a [publicly documented management 
 
 Here’s a table to illustrate just a few of the improvements over the last three versions.
 
-[![clip_image019](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1667.clip_image019_thumb_33CDD940.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3343.clip_image019_681D0A36.jpg)
+
 
 Microsoft Hyper-V Server 2008 has been flying under the radar for quite some time, but adoption is steadily and quietly increasing. More on this in a future blog.
 
@@ -593,7 +589,6 @@ Microsoft Hyper-V Server 2008 has been flying under the radar for quite some tim
 
 The first version of the _vSphere 5.0 Licensing 1.0 Terms_ contained this text in a number of places. It has been quietly removed in _vSphere 5.0 Licensing 2.0 Terms_.
 
-[![clip_image020](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5481.clip_image020_thumb_7D7CB130.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3750.clip_image020_79213819.png)
 
 It’s pretty obvious why this text was removed. These statements don’t ring true.
 
@@ -635,7 +630,7 @@ Here’s the crux of the problem and why VMware wants to move you to these new t
 
 Read that last paragraph again.
 
-Show your boss. Show your CFO. Ask them if this is the long term strategic decision your company wants to make. Make sure you go into this new licensing model with your eyes open. Because, like the last three releases, VMware will raise their licensing again. [Even VMware’s own Experts believe the new model is fundamental flawed](http://blog.peacon.co.uk/vsphere-5-where-were-at-with-licensing/).
+Show your boss. Show your CFO. Ask them if this is the long term strategic decision your company wants to make. Make sure you go into this new licensing model with your eyes open. Because, like the last three releases, VMware will raise their licensing again. Even VMware’s own Experts believe the new model is fundamental flawed
 
 **\---------------------------------------------------------------------------------------**
 
@@ -653,7 +648,7 @@ With Microsoft, customers can build scalable virtualized infrastructures on Hype
 
 As for scalability, you should know that scalability and performance are ongoing development priorities at Microsoft. Scalability and performance work is _never_ complete. If you look at Windows Server, we have improved the scalability, performance, and capabilities in every release. Needless to say, the next version of Windows Server will improve on these numbers, and you can expect even more capabilities.
 
-At Microsoft’s Worldwide Partner Conference 2011, we demonstrated some of the new capabilities of **Windows Server “ _8_ ,” specifically around Hyper-V**.  **With an ability to create VMs with more than 16 virtual processors and built-in replication with Hyper-V Replica,** Microsoft is showcasing its deep commitment to its customers, and our relentless pursuit to provide even more value, at no extra cost.  **These are just 2 of the _hundreds_ of features coming in the Microsoft Private Cloud, of which you ’ll be able to find out more about at **[**Microsoft ’s BUILD conference**](http://www.buildwindows.com/) **, September 13 th-16th in Anaheim, CA.**
+At Microsoft’s Worldwide Partner Conference 2011, we demonstrated some of the new capabilities of **Windows Server “ _8_ ,” specifically around Hyper-V**.  **With an ability to create VMs with more than 16 virtual processors and built-in replication with Hyper-V Replica,** Microsoft is showcasing its deep commitment to its customers, and our relentless pursuit to provide even more value, at no extra cost.  **These are just 2 of the _hundreds_ of features coming in the Microsoft Private Cloud, of which you ’ll be able to find out more about at **Microsoft ’s BUILD conference**, September 13 th-16th in Anaheim, CA.**
 
 Finally, I don’t understand how VMware can claim a memory tax benefits customers. I’ve had the privilege of working on virtualization for over a decade and **_not once_** has a customer told me,  “I really wish you would license virtualization by the memory assigned to a VM.”
 
@@ -669,7 +664,7 @@ Per VM taxes are what virtualization vendors do, not strategic cloud providers.
 
 YES, the amount of memory in a Hyper-V “ _8_ ” VM is going to go up. Way up.
 
-See you at [Build](http://www.buildwindows.com/),
+
 
 Jeff Woolsey
 
