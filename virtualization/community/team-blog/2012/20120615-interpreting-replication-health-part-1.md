@@ -124,10 +124,6 @@ Correct, this health indicates that replication has the following characteristic
   * The last synchronization point was less than an hour
   * The average latency is less than or equal to 5mins
 
-**Primary VM** | 
-| --- | --- |
-**Replica VM** | [
-        
 
 #### That’s neat! Tell me more…
 
