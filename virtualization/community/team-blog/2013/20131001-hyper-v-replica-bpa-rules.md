@@ -14,7 +14,7 @@ A frequent question from our customers is on whether there are standard “best 
 
 From the Server Manager Dashboard, click on **Hyper-V,** scroll down to the **Best Practices Analyzer** option, click on **Tasks** , followed by **Start BPA Run**
 
-[![BPA_3](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2313.BPA_3_thumb_7E7DF293.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1057.BPA_3_2D411A85.png)
+<!-- [![BPA_3](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2313.BPA_3_thumb_7E7DF293.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1057.BPA_3_2D411A85.png) -->
 
 Once the scan is complete, you can filter the issues based on Warning or Errors, Excluded Results, Compliant Results.
 
