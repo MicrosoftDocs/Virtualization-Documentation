@@ -25,18 +25,9 @@ The two-part FAQ post explains the concept of Replication Health and provides gu
 
   * Click on the replicating VM and choose ‘ **View Replication Health …**’ from either the Hyper-V Manager or Failover Cluster Manager
 
-[![image31_thumb2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2677.image31_thumb2_thumb_2F6D4B7A.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5807.image31_thumb2_102813F6.png) |   | [![image18_thumb5](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0488.image18_thumb5_thumb_00408145.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3618.image18_thumb5_40E03D03.png)  
----|---|---  
-  
-[![image_thumb\[1\]](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6740.image_thumb1_thumb_17FCDA0D.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8015.image_thumb1_589C95CB.png)
 
   * (or) Click on the **Replication** tab in the bottom pane of the Hyper-V Manager to get a summary view
 
-
-
- 
-
-[![image_thumb21](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0181.image_thumb21_thumb_78DC4DDD.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8400.image_thumb21_74CF6F5A.png)
 
 #### Q2: What is the ‘Replication State’ and what are the values?
 
@@ -46,197 +37,27 @@ The two-part FAQ post explains the concept of Replication Health and provides gu
 
   * UI – As seen in the above picture
   * PowerShell – Using the **Measure-VMReplication** cmdlet.
-  * WMI – From ** **[ **Msvm_ComputerSystem**](https://msdn.microsoft.com/library/hh850116\(v=vs.85\)) **** class where ReplicationState is a property
-
-
-
-The table below captures the states as seen in WMI, UI and PowerShell.
-
-**WMI**
-
-| 
-
-**UI**
-
-| 
-
-**PowerShell**
-
-| 
-
-**Notes**  
-  
----|---|---|---  
-  
-0
-
-| 
-
-Not enabled
-
-| 
-
-NA
-
-| 
-
-VM is **not** enabled for replication.  
-  
-1
-
-| 
-
-Pending Initial Replication
-
-| 
-
-ReadyForInitialReplication
-
-| 
-
-Replication relationship has been created but **Initial Replication** has not been initiated. This is seen on the primary VM only.  
-  
-2
-
-| 
-
-Pending Initial Replication
-
-| 
-
-WaitingForInitialReplication
-
-| 
-
-The replica VM enters this state when a replication relationship has been created but **Initial Replication** has not been initiated (or) **Initial Replication** is in progress.
-
-The primary VM enters this state when **Initial Replication** is in progress.  
-  
-3
-
-| 
-
-Replication Enabled
-
-| 
-
-Replicating
-
-| 
-
-This state (on  both the primary and replica VM) indicates that the replication is ‘ **Normal** ’.  
-  
-4
-
-           | 
-
-Prepared for planned failover
-
-| 
-
-SyncedReplicationComplete
-
-| 
-
-This state is applicable only for the primary VM. It indicates that **Planned Failover** is complete and that the VM is locked from powering up.  
-  
-5
-
-| 
-
-Failover Complete
-
-| 
-
-FailOverWaitingCompletion
-
-| 
-
-**Failover** has been initiated on the replica VM but has not been completed. The Failover operation is considered to be complete only when the VM is either reverse replicated (or) when additional recovery points are removed.  
-  
-6
-
-| 
-
-Failover Complete
-
-| 
-
-FailedOver
-
-| 
-
-The replica VM enters this state once the **Failover** operation has been completed.  
-  
-7
-
-| 
-
-Replication Paused
-
-| 
-
-Suspended
-
-| 
-
-The VM enters this state when replication is **Paused**. This state is applicable on both the primary and replica VM  
-  
-8
-
-| 
-
-Replication Error
-
-| 
-
-Error
-
-| 
-
-This state is applicable on both the primary and replica VM and indicates that replication is not occurring on either VM. Usually administrator intervention is required to restore replication.  
-  
-9
-
-| 
-
-Resynchronization required
-
-| 
-
-WaitingForStartResynchronize
-
-| 
-
-The primary VM enters this state when it needs to be resynchronized.  
-  
-10
-
-| 
-
-Resynchronizing
-
-| 
-
-Resynchronizing
-
-| 
-
-Resynchronization has been initiated on the primary VM.  
-  
-11
-
-| 
-
-Resynchronize Suspended
-
-| 
-
-ResynchronizeSuspended
-
-| 
-
-If the primary VM suspends the resynchronization operation, the VM enters this state.  
+  * WMI – From ** **[ **Msvm_ComputerSystem**](/windows/win32/hyperv_v2/msvm-computersystem) **** class where ReplicationState is a property
+
+
+
+The table below captures the states as seen in WMI, UI and PowerShell.  
+
+
+| **WMI** | **UI** | **PowerShell** | **Notes** |  
+| --- | --- | --- | --- |
+| 0 | Not enabled | NA | VM is **not** enabled for replication.|
+| 1 | Pending Initial Replication | ReadyForInitialReplication | Replication relationship has been created but **Initial Replication** has not been initiated. This is seen on the primary VM only. |
+| 2 | Pending Initial Replication | WaitingForInitialReplication | The replica VM enters this state when a replication relationship has been created but **Initial Replication** has not been initiated (or) **Initial Replication** is in progress. The primary VM enters this state when **Initial Replication** is in progress. |
+| 3 | Replication Enabled | Replicating | This state (on  both the primary and replica VM) indicates that the replication is ‘ **Normal** ’.|
+| 4 | Prepared for planned failover | SyncedReplicationComplete | This state is applicable only for the primary VM. It indicates that **Planned Failover** is complete and that the VM is locked from powering up. |
+| 5 | Failover Complete | FailOverWaitingCompletion | **Failover** has been initiated on the replica VM but has not been completed. The Failover operation is considered to be complete only when the VM is either reverse replicated (or) when additional recovery points are removed. |
+| 6 | Failover Complete | FailedOver | The replica VM enters this state once the **Failover** operation has been completed. |
+| 7 | Replication Paused | Suspended | The VM enters this state when replication is **Paused**. This state is applicable on both the primary and replica VM |
+| 8 | Replication Error | Error | This state is applicable on both the primary and replica VM and indicates that replication is not occurring on either VM. Usually administrator intervention is required to restore replication. |
+| 9 | Resynchronization required | WaitingForStartResynchronize | The primary VM enters this state when it needs to be resynchronized. |
+| 10 | Resynchronizing | Resynchronizing | Resynchronization has been initiated on the primary VM. |
+| 11 | Resynchronize Suspended | ResynchronizeSuspended | If the primary VM suspends the resynchronization operation, the VM enters this state. |
   
  
 
@@ -256,83 +77,18 @@ Hyper-V Replica aggregates these events into 3 potential values which can be que
 
   * UI – As seen in Q1 (above)
   * PowerShell – Using the **Measure-VMReplication** cmdlet.
-  * WMI – From ** **[ **Msvm_ComputerSystem,**](https://msdn.microsoft.com/library/hh850116\(v=vs.85\)) where ReplicationHealth is a property
+  * WMI – From ** **[ **Msvm_ComputerSystem,**](/windows/win32/hyperv_v2/msvm-computersystem) where ReplicationHealth is a property
 
 
 
 The table below captures the states as seen in WMI, UI and PowerShell.
 
-**WMI**
-
-| 
-
-**UI**
-
-| 
-
-**PowerShell**
-
-| 
-
-**Notes**  
-  
----|---|---|---  
-  
-0
-
-| 
-
-Not enabled
-
-| 
-
-NA
-
-| 
-
-This state is observed when the VM which is not enabled for replication.  
-  
-1
-
-| 
-
-Normal
-
-| 
-
-Normal
-
-| 
-
-Replication is normal, see Q7 for more details.  
-  
-2
-
-| 
-
-Warning
-
-| 
-
-Warning
-
-| 
-
-Replication is not normal. See Q6 for more details on how to interpret this state.  
-  
-3
-
-| 
-
-Critical
-
-| 
-
-Critical
-
-| 
-
-Replication is not normal or optimal. Administrators need to intervene to fix and resume the replication. See Q5 for more details.  
+| **WMI** | **UI** | **PowerShell** | **Notes** |
+| --- | --- | --- | --- |
+| 0 | Not enabled | NA | This state is observed when the VM which is not enabled for replication. |
+| 1 | Normal | Normal | Replication is normal, see Q7 for more details. |  
+| 2 | Warning | Warning | Replication is not normal. See Q6 for more details on how to interpret this state. |
+| 3 | Critical | Critical | Replication is not normal or optimal. Administrators need to intervene to fix and resume the replication. See Q5 for more details. |
   
  
 
@@ -347,9 +103,6 @@ The Replication Health is flagged as Critical if one of the following occurs:
 
 In the Replication Health pane, click on ‘ **View Events** ’ to see a filtered set of events corresponding to this VM which helps you root-cause the issue.
 
-[![image_thumb5](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6835.image_thumb5_thumb_1098A6A6.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7506.image_thumb5_4A8558E1.png)
-
- 
 
 #### Q6: When is Replication Health flagged as ‘Warning’?
 
@@ -371,11 +124,11 @@ Correct, this health indicates that replication has the following characteristic
   * The last synchronization point was less than an hour
   * The average latency is less than or equal to 5mins
 
-**Primary VM** | [![image_thumb2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2100.image_thumb2_thumb_75F12BEE.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6320.image_thumb2_328699DB.png)  
+**Primary VM** | 
 | --- | --- |
-**Replica VM** | [![image_thumb41](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7065.image_thumb41_thumb_09A336E5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6087.image_thumb41_1C559FEB.png)  
+**Replica VM** | [
         
 
 #### That’s neat! Tell me more…
 
-We will cover further details such as PowerShell cmdlets, tips to extend the platform capability to monitor the health by setting up alerts, interpreting the attribute in the Replication Health view, concept of a monitoring interval, monitoring start time etc., in the [next post](https://blogs.technet.com/b/virtualization/archive/2012/06/21/interpreting-replication-health-part-2.aspx).
+We will cover further details such as PowerShell cmdlets, tips to extend the platform capability to monitor the health by setting up alerts, interpreting the attribute in the Replication Health view, concept of a monitoring interval, monitoring start time etc., in the [next post](https://techcommunity.microsoft.com/t5/virtualization/interpreting-replication-health-part-2/ba-p/381948).

@@ -9,7 +9,7 @@ categories: hvr
 ---
 # Why is the Hyper-V Replica Broker required?
 
-Hyper-V Replica requires the Failover Clustering role **Hyper-V** **Replica Broker** to be configured if either the primary or replica Hyper-V server is part of a cluster. The [Understanding and Troubleshooting guide](https://www.microsoft.com/download/en/details.aspx?id=29016) for Hyper-V Replica covers the steps required to configure this role. This post builds on top of the guide and explains ***why*** the broker is required and captures its high level  behavior.
+Hyper-V Replica requires the Failover Clustering role **Hyper-V** **Replica Broker** to be configured if either the primary or replica Hyper-V server is part of a cluster. The Understanding and Troubleshooting guide for Hyper-V Replica covers the steps required to configure this role. This post builds on top of the guide and explains ***why*** the broker is required and captures its high level  behavior.
 
 The following example will be used through the rest of the article:
 
@@ -25,10 +25,6 @@ The following example will be used through the rest of the article:
   * **_R-Broker-CAP.contoso.com_** – the client access point of the broker on **_Cluster-R_**
 
 
-
-Click on the image below:
-
-[![Example image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3056.Cluster_new_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3056.Cluster_new_1.png)
 
 **Unified View**
 
