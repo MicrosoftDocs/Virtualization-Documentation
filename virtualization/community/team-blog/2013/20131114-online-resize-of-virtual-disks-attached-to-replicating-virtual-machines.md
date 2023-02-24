@@ -8,7 +8,7 @@ description: How to resize a virtual disk while the VM is running and its benefi
 ---
 # Resizing virtual disks attached to replicating virtual machines
 
-In Windows Server 2012 R2, Hyper-V added the ability to [resize the virtual disks attached to a running virtual machine](https://technet.microsoft.com/library/dn282286.aspx) without having to shutdown the virtual machine. In this blog post we will talk about how this feature works with Hyper-V Replica, the benefits of this capability, and how to make the most of it.
+In Windows Server 2012 R2, Hyper-V added the ability to [resize the virtual disks attached to a running virtual machine](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn282286(v=ws.11)) without having to shutdown the virtual machine. In this blog post we will talk about how this feature works with Hyper-V Replica, the benefits of this capability, and how to make the most of it.
 
 ### Works better with Hyper-V Replica
 
@@ -24,7 +24,7 @@ Naturally, we made sure that it all went away in the Windows Server 2012 R2 rele
 
 The resize of the virtual disks need to be done on each site separately, and resizing the primary site virtual disks doesn’t automatically resize the replica site virtual disks. Here is the suggested workflow for making this happen:
 
-  1. On the primary site, select the virtual disk that needs to be resized and use the _Edit disk wizard_ to increase/decrease the size of the disk. You can also use the [Resize-VHD](https://technet.microsoft.com/library/hh848535.aspx) PowerShell commandlet. At this point, replication isn’t really impacted and continues uninterrupted. This is because the newly created space shows up as “Unallocated”. That is, it has not been formatted and presented to the guest workload to use, and so there are no writes to that region that need to be tracked and replicated.
+  1. On the primary site, select the virtual disk that needs to be resized and use the _Edit disk wizard_ to increase/decrease the size of the disk. You can also use the [Resize-VHD](/powershell/module/hyper-v/resize-vhd) PowerShell commandlet. At this point, replication isn’t really impacted and continues uninterrupted. This is because the newly created space shows up as “Unallocated”. That is, it has not been formatted and presented to the guest workload to use, and so there are no writes to that region that need to be tracked and replicated.
 
   2. On the replica site, select the corresponding virtual disk and resize it using the _Edit disk wizard_ or the Resize-VHD PowerShell commandlet. Not resizing the replica site virtual disk can cause replication errors in the future – and we will cover that in greater detail.
 
@@ -109,7 +109,7 @@ Voila! That’s it. Nothing extraordinary required for replicating VMs. Sounds t
 
 If the resized virtual disk on the primary is consumed before the replica has been resized, then you can expect the replica site to throw up errors. This is because the changes on the primary site cannot be applied correctly on the replica site. Fortunately, the error message is friendly enough to put you on the right track to fixing it: “ _An out-of-bounds write was encountered on the Replica virtual machine. The primary server VHD might have been resized. Ensure that the disk sizes of the Primary and Replica virtual machines are the same.”_
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2337.image_thumb_37016519.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7585.image_5DCCEAA8.png)
+<!--[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2337.image_thumb_37016519.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7585.image_5DCCEAA8.png)-->
 
 The fix is just as simple:
 

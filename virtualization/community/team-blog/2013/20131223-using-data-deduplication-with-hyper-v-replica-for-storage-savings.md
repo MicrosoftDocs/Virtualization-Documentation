@@ -12,17 +12,17 @@ Protection of data has always been a priority for customers, and disaster recove
 
 ### Deduplication considerations
 
-To begin with, it is important to acknowledge the workloads that are suitable for deduplication using Windows Server 2012 R2. There is an excellent [TechNet article](https://technet.microsoft.com/library/hh831700.aspx) that covers this aspect and would be applicable in the case of Hyper-V Replica as well. It is important to remember that deduplication of running virtual machines is only officially supported starting with Windows Server 2012 R2 for Virtual Desktop Infrastructure (VDI) workloads with VHDs running on a remote file server. Generic VM (non-VDI) workloads may run on a deduplication enabled volume but the performance is not guaranteed. Windows Server 2012 deduplication is only supported for cold data (files not open).
+To begin with, it is important to acknowledge the workloads that are suitable for deduplication using Windows Server 2012 R2. There is an excellent [TechNet article](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831700(v=ws.11)) that covers this aspect and would be applicable in the case of Hyper-V Replica as well. It is important to remember that deduplication of running virtual machines is only officially supported starting with Windows Server 2012 R2 for Virtual Desktop Infrastructure (VDI) workloads with VHDs running on a remote file server. Generic VM (non-VDI) workloads may run on a deduplication enabled volume but the performance is not guaranteed. Windows Server 2012 deduplication is only supported for cold data (files not open).
 
 ### Why use deduplication with Hyper-V Replica?
 
 One of the most common deployment scenarios of VDI involves a golden image that is read-only. VDI virtual machines are built using diff-disks that have this golden image as the parent. The setup would look roughly like this:
 
-[![Read-only golden image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4186.image_thumb_14DBA75B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8738.image_57B7EBD5.png)
+<!--[![Read-only golden image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4186.image_thumb_14DBA75B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8738.image_57B7EBD5.png)-->
 
 This deployment saves a significant amount of storage space. However, when Hyper-V Replica is used to replicate these VMs, each diff-disk chain is treated as a single unit and is replicated. So on the replica site there will be 3 copies of the golden image as a part of the replication.
 
-[![Copies of golden image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3302.image_thumb_0F231E66.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5123.image_46D5D896.png)
+<!--[![Copies of golden image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3302.image_thumb_0F231E66.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5123.image_46D5D896.png)-->
 
 Data deduplication becomes a great way to reclaim that space used.
 
@@ -32,17 +32,17 @@ Data deduplication is applicable at a volume level, and the volume can be made a
 
 #### 1\. SMB 3.0
 
-[![S M B 3.0](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6758.image_thumb_7B5E9315.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2185.image_52C0270E.png)
+<!--[![S M B 3.0](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6758.image_thumb_7B5E9315.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2185.image_52C0270E.png)-->
 
 #### 2\. CSVFS
 
-[![C S V F S](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0842.image_thumb_534E74A7.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1488.image_0A94FBE3.png)
+<!--[![C S V F S](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0842.image_thumb_534E74A7.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1488.image_0A94FBE3.png)-->
 
 #### 3\. NTFS
 
-[![N T F S](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6505.image_thumb_604AE569.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5582.image_2563B2A0.png)
+<!--[![N T F S](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6505.image_thumb_604AE569.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5582.image_2563B2A0.png)-->
 
-Ensure that the VHD files that need to be deduplicated are placed in the right volume – and this can be done using [authorization entries](/b/virtualization/archive/2012/07/08/hyper-v-replica-authorization-entries-windows-server-2012-rc.aspx). Using HVR in conjunction with Windows Server Data Deduplication will require some additional planning to take into consideration possible performance impacts to HVR when running on a volume enabled for deduplication.
+Ensure that the VHD files that need to be deduplicated are placed in the right volume – and this can be done using authorization entries. Using HVR in conjunction with Windows Server Data Deduplication will require some additional planning to take into consideration possible performance impacts to HVR when running on a volume enabled for deduplication.
 
 ### Deduplication on the Primary site
 
@@ -67,8 +67,3 @@ There are two mitigation steps suggested:
     Set-DedupVolume <volume> -MinimumFileAgeDays 1
 ```
 
-### Other resources:
-
-[http://blogs.technet.com/b/filecab/archive/2013/07/31/extending-data-deduplication-to-new-workloads-in-windows-server-2012-r2.aspx](/b/filecab/archive/2013/07/31/extending-data-deduplication-to-new-workloads-in-windows-server-2012-r2.aspx "http://blogs.technet.com/b/filecab/archive/2013/07/31/extending-data-deduplication-to-new-workloads-in-windows-server-2012-r2.aspx")
-
-[http://blogs.technet.com/b/filecab/archive/2013/07/31/deploying-data-deduplication-for-vdi-storage-in-windows-server-2012-r2.aspx](/b/filecab/archive/2013/07/31/deploying-data-deduplication-for-vdi-storage-in-windows-server-2012-r2.aspx "http://blogs.technet.com/b/filecab/archive/2013/07/31/deploying-data-deduplication-for-vdi-storage-in-windows-server-2012-r2.aspx")
