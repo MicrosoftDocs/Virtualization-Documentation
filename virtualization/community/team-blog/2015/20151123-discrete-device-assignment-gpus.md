@@ -9,7 +9,7 @@ categories: dda
 ---
 # Discrete Device Assignment -- GPUs
 
-This is the third post in a four part series.  My previous two blog posts talked about Discrete Device Assignment ([link](/b/virtualization/archive/2015/11/19/discrete-device-assignment.aspx "Discrete Device Assignment -- Description and background")) and the machines and devices necessary ([link](/b/virtualization/archive/2015/11/20/discrete-device-assignment-machines-and-devices.aspx "Discrete Device Assignment -- Machines and devices")) to make it work in Windows Server 2016 TP4. This post goes into more detail, focusing on GPUs.
+This is the third post in a four part series.  My previous two blog posts talked about Discrete Device Assignment and the machines and devices necessary to make it work in Windows Server 2016 TP4. This post goes into more detail, focusing on GPUs.
 
 There are those of you out there who want to get the most out of Photoshop, or CATIA, or some other thing that just needs a graphics processor, or GPU. If that’s you, and if you have GPUs in your machine that aren’t needed by the Windows management OS, then you can dismount them and pass them through to a guest VM.
 

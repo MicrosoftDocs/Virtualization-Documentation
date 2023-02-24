@@ -10,7 +10,7 @@ categories: dda
 
 # Discrete Device Assignment -- Machines and devices
 
-In [my last post](/b/virtualization/archive/2015/11/19/discrete-device-assignment.aspx "Discrete Device Assignment -- Description and background"), I talked about a new feature of Windows Server 2016, Discrete Device Assignment. This post will discuss the machines and devices necessary for making this feature work.
+In my last post, I talked about a new feature of Windows Server 2016, Discrete Device Assignment. This post will discuss the machines and devices necessary for making this feature work.
 
 First, we're not supporting Discrete Device Assignment in Hyper-V in Windows 10. Only Server versions of Windows support this. This isn't some wanton play for more of your hard-earned cash but rather just a side effect of being comfortable supporting server-class machines. They tend to work and be quite stable.
 
@@ -97,6 +97,6 @@ virtual machine.
 
 Use the "-force" options only with extreme caution, and only when you have some deep knowledge of the device involved. You have been warned.
 
-Read the next post in this series:[ Discrete Device Assignment -- GPUs](/virtualization/community/team-blog/2015/20151123-discrete-device-assignment-gpus)
+Read the next post in this series:[Discrete Device Assignment -- GPUs](/virtualization/community/team-blog/2015/20151123-discrete-device-assignment-gpus)
 
 \-- Jake Oshins
