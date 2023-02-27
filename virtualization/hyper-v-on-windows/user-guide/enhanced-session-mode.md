@@ -38,9 +38,9 @@ You can check to see what type of connection you have using the Enhanced Session
 
 | icon | connection state |
 |:-----|:---------|
-|:::image type="icon" source="/hyper-v-on-windows/user-guide/media/esm-basic.png":::| You are currently running in enhanced session mode.  Clicking this icon will reconnect to your virtual machine in basic mode. |
-|:::image type="icon" source="/hyper-v-on-windows/user-guide/media/esm-connect.png":::| You are currently running in basic session mode but enhanced session mode is available.  Clicking this icon will reconnect to your virtual machine in enhanced session mode.  |
-|:::image type="icon" source="/hyper-v-on-windows/user-guide/media/esm-stop.png":::| You are currently running in basic mode.  Enhanced session mode isn't available for this virtual machine. |
+|:::image type="icon" source="media/esm-basic.png":::| You are currently running in enhanced session mode.  Clicking this icon will reconnect to your virtual machine in basic mode. |
+|:::image type="icon" source="media/esm-connect.png":::| You are currently running in basic session mode but enhanced session mode is available.  Clicking this icon will reconnect to your virtual machine in enhanced session mode.  |
+|:::image type="icon" source="media/esm-stop.png":::| You are currently running in basic mode.  Enhanced session mode isn't available for this virtual machine. |
 
 ## Configure VM for Remote Desktop
 
