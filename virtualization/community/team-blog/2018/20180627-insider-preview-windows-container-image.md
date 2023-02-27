@@ -14,7 +14,7 @@ ms.assetid:
 
 Earlier this year at Microsoft Build 2018, we announced a third container base image for applications that have additional API dependencies beyond _nano server_ and _Windows Server Core_. Now the time has finally come and the _Windows_ container image is available for Windows Insiders.
 
-![New Windows container images announcement](https://msdnshared.blob.core.windows.net/media/2018/06/windowscontainerbuild2018.png)
+<!--![New Windows container images announcement](https://msdnshared.blob.core.windows.net/media/2018/06/windowscontainerbuild2018.png)-->
 
 ## Why another container image?
 

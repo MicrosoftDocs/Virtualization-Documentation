@@ -115,8 +115,8 @@ containerd/cri enables the following compatibility matrix for pods:
 
 Links to the CRI spec:
 
-* [RunPodSandbox](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L24) - Pod Spec
-* [CreateContainer](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L47) - Workload Spec
+* [RunPodSandbox](https://github.com/kubernetes/kubernetes) - Pod Spec
+* [CreateContainer](https://github.com/kubernetes/kubernetes) - Workload Spec
 
 ![Containerd based container environments](media/containerd-platform.png)
 

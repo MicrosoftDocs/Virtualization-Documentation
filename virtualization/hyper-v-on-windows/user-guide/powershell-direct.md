@@ -249,7 +249,7 @@ Enter-PSSession : The credential is invalid.
 * The guest credentials couldn't be validated
   * The supplied credentials were incorrect.
   * There are no user accounts in the guest (the OS hasn't booted before)
-  * If connecting as Administrator:  Administrator has not been set as an active user.  Learn more [here](/previous-versions/windows/it-pro/windows-8.1-and-8/hh825104(v=win.10)&preserve-view=true).
+  * If connecting as Administrator:  Administrator has not been set as an active user.  Learn more [here](/previous-versions/windows/it-pro/windows-8.1-and-8/hh825104(v=win.10)).
   
 ### Error: The input VMName parameter does not resolve to any virtual machine.
 
