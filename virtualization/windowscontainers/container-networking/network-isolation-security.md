@@ -1,7 +1,6 @@
 ﻿---
 title: Network isolation and security
 description: Network isolation and security within Windows containers.
-keywords: docker, containers
 author: daschott
 ms.author: daschott
 ms.date: 10/20/2021

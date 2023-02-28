@@ -1,7 +1,6 @@
 ---
 title: Get started with swarm mode
 description: Initialize a swarm cluster, creating an overlay network, and attaching a service to the network.
-keywords: docker, containers, swarm, orchestration
 author: kallie-b
 ms.author: jgerend
 ms.date: 02/9/2017

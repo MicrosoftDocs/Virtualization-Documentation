@@ -5,7 +5,6 @@ ms.author: daschott
 ms.date: 08/13/2020
 ms.topic: overview
 description: Getting started with Kubernetes on Windows.
-keywords: kubernetes, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 # Kubernetes on Windows

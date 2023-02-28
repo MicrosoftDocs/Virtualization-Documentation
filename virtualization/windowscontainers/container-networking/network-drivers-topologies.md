@@ -1,7 +1,6 @@
 ---
 title: Windows container network drivers
 description: Network drivers and topologies for Windows containers.
-keywords: docker, containers
 author: daschott
 ms.author: daschott
 ms.date: 10/20/2021
@@ -50,7 +49,7 @@ docker network create -d "transparent" --subnet 10.244.0.0/24 --gateway 10.244.0
 ```
 
 
-### Overlay network driver 
+### Overlay network driver
 
 Popularly used by containers orchestrators such as Docker Swarm and Kubernetes, containers attached to an overlay network can communicate with other containers attached to the same network across multiple container hosts. Each overlay network is created with its own IP subnet, defined by a private IP prefix. The overlay network driver uses VXLAN encapsulation to achieve network traffic isolation between tenant container networks and enables re-using IP addresses across overlay networks.
   > Requires: Make sure your environment satisfies these required [prerequisites](https://docs.docker.com/network/overlay/#operations-for-all-overlay-networks) for creating overlay networks.

@@ -1,12 +1,11 @@
 ---
 title: Lift and shift to containers
 description: Learn how to migrate existing applications to containers.
-keywords: containers, migrate
 author: robinharwood
 ms.author: roharwoo
 ms.date: 08/01/2022
 ms.topic: conceptual
----  
+---
 
 # Using Windows Containers to "Containerize" Existing Applications
 
@@ -133,7 +132,7 @@ If your application requires .NET, your ability to containerize depends entirely
 
 ### Apps using third-party (non-Microsoft) frameworks
 
-Generally speaking, Microsoft is unable to certify third-party frameworks or applications, or support them running on Windows containers – or physical and virtual machines for that matter. However, Microsoft does perform its own internal testing for usability of multiple third-party frameworks and tools, including Apache, Cassandra, Chocolatey, Datadog, Django, Flask, Git, Golang, JBoss, Jenkins, Rust, Nodejs, Pearl, Python, Ruby, Tomcat, and many others. 
+Generally speaking, Microsoft is unable to certify third-party frameworks or applications, or support them running on Windows containers – or physical and virtual machines for that matter. However, Microsoft does perform its own internal testing for usability of multiple third-party frameworks and tools, including Apache, Cassandra, Chocolatey, Datadog, Django, Flask, Git, Golang, JBoss, Jenkins, Rust, Nodejs, Pearl, Python, Ruby, Tomcat, and many others.
 
 For any third-party framework or software, please validate its supportability on Windows containers with the vendor that supplies it.
 
@@ -238,7 +237,7 @@ With a microservices approach, however, you have a few options to avoid keeping 
 
 #### Background services
 
-Although containers are generally for ephemeral processes, you can containerize a background, long-running application provided you create a foreground process to both kick it off and keep it running.  
+Although containers are generally for ephemeral processes, you can containerize a background, long-running application provided you create a foreground process to both kick it off and keep it running.
 
 A great example of this is ServiceMonitor, which is a Windows executable designed to be used as an entry-point process when running IIS in containers.  Although it was built for IIS, the ServiceMonitor tool offers a model that can also be used to monitor other services, with some limitations.
 

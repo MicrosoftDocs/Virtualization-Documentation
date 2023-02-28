@@ -1,7 +1,6 @@
 ---
 title: Use gMSA on Azure Kubernetes service in Windows containers
 description: Learn how to use gMSA on Azure Kubernetes service in Windows containers.
-keywords: gMSA, containers, PowerShell
 author: vrapolinario
 ms.author: viniap
 ms.date: 04/09/2022
@@ -18,7 +17,7 @@ Group Managed Service Accounts (gMSA) can be used on Azure Kubernetes Service (A
 In order to deploy gMSA on AKS, you will need the following:
 
 - An AKS cluster with Windows nodes up and running. If you don't have an AKS cluster ready, checkout the [Azure Kubernetes Service documentation](/azure/aks/windows-container-cli).
-    - Your cluster must be authorized for the gMSA on AKS. For more information, see [Enable Group Managed Service Accounts (GMSA) for your Windows Server nodes on your Azure Kubernetes Service (AKS) cluster](/azure/aks/use-group-managed-service-accounts). 
+    - Your cluster must be authorized for the gMSA on AKS. For more information, see [Enable Group Managed Service Accounts (GMSA) for your Windows Server nodes on your Azure Kubernetes Service (AKS) cluster](/azure/aks/use-group-managed-service-accounts).
 - An Active Directory environment properly configured for gMSA. Details on how to configure your domain will provided below.
     - Your Windows nodes on AKS must be able to connect to your Active Directory Domain Controllers.
 - Active Directory domain credentials with delegated authorization to setup the gMSA and a standard domain user. This task can be delegated to authorized people (if needed).

@@ -1,7 +1,6 @@
 ---
 title: Upgrade a Windows container to a new build version
 description: Learn about concepts for upgrading a Windows container to a newer build version.
-keywords: metadata, containers, version, upgrade
 author: v-susbo
 ms.author: mabrigg
 ms.topic: how-to
@@ -18,7 +17,7 @@ This topic describes how to upgrade Windows containers to a new Windows or Windo
 2. Create new container instances using the new operating system version.
 
 > [!NOTE]
-> If you just need to _update_ (or patch) your current Windows base OS container image, see [update your containers](../deploy-containers/update-containers.md) to pull the latest patch image for your containers. 
+> If you just need to _update_ (or patch) your current Windows base OS container image, see [update your containers](../deploy-containers/update-containers.md) to pull the latest patch image for your containers.
 
 ## Upgrade the container host
 
@@ -81,7 +80,7 @@ Once the Dockerfile is updated, you need to build and run the app image.
 
 1. Use [docker build](https://docs.docker.com/engine/reference/commandline/build/) to build your image as shown below:
 
-   ```powershell 
+   ```powershell
    docker build -t iss .
    ```
 
@@ -99,7 +98,7 @@ To allow other hosts to reuse the new image, you should tag and then push the co
 
    ```powershell
    docker tag mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2022 <login-server>/iss
-   ``` 
+   ```
 
 2. Use [docker push](https://docs.docker.com/engine/reference/commandline/push/) to push the image to the container registry as follows:
 

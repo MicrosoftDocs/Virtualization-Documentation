@@ -4,9 +4,7 @@ author: daschott
 ms.author: daschott
 ms.date: 08/13/2020
 ms.topic: how-to
-
 description: Compiling and cross-compiling Kubernetes binaries from source.
-keywords: kubernetes, 1.12, linux, compile
 ---
 
 # Compiling Kubernetes Binaries

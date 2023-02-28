@@ -1,7 +1,6 @@
 ---
 title: Windows container orchestration overview
 description: Learn about Windows container orchestrators.
-keywords: docker, containers
 author: Heidilohr
 ms.author: helohr
 ms.date: 09/22/2021
@@ -26,7 +25,7 @@ Orchestrators perform the following tasks:
 
 ## Orchestrator types
 
-Azure offers the following container orchestrators: 
+Azure offers the following container orchestrators:
 
 [Azure Kubernetes Service (AKS)](/azure/aks/) makes it simple to create, configure, and manage a cluster of virtual machines preconfigured to run containerized applications. This enables you to use your existing skills and draw upon a large and growing body of community expertise to deploy and manage container-based applications on Microsoft Azure. By using AKS, you can take advantage of the enterprise-grade features of Azure while still maintaining application portability through Kubernetes and the Docker image format.
 

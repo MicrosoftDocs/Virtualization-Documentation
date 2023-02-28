@@ -1,7 +1,6 @@
 ---
 title: Windows container requirements
 description: Learn about Windows container requirements.
-keywords: metadata, containers
 author: v-susbo
 ms.author: mabrigg
 ms.date: 10/20/2021

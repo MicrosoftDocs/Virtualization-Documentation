@@ -1,7 +1,6 @@
 ---
 title: Set up Linux containers on Windows 10
 description: Linux container deployment quickstart.
-keywords: docker, containers, LCOW
 author: taylorb-microsoft
 ms.author: jgerend
 ms.date: 08/16/2019

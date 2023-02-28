@@ -1,7 +1,6 @@
 ---
 title: Advanced network options in Windows
 description: Advanced networking for Windows containers.
-keywords: docker, containers
 author: jmesser81
 ms.author: jgerend
 ms.date: 10/20/2021

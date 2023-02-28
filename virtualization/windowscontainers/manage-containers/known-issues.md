@@ -1,7 +1,6 @@
 ---
 title: Known issues
 description: Known issues for Windows Server containers.
-keywords: metadata, containers, version,
 author: taylob
 ms.author: mabrigg
 ms.topic: reference
@@ -12,7 +11,7 @@ ms.date: 07/21/2021
 ## Known issues with Windows Server, version 2004
 
 ### Performance Issue on Server Core container
-In prepping for general availability of Windows Server, version 2004 release, we identified a potential performance issue with .NET Team on the current Server Core container image in the May 27, 2020 release when compared to the performance improvements as discussed in this December 2019 [blog post](https://techcommunity.microsoft.com/t5/containers/making-windows-server-core-containers-40-smaller/ba-p/1058874) and on the [.NET Team blog](https://devblogs.microsoft.com/dotnet/we-made-windows-server-core-container-images-40-smaller/). At that time, the performance analysis was performed on a Windows Server, version 2004, Insider Preview release Server Core container image. 
+In prepping for general availability of Windows Server, version 2004 release, we identified a potential performance issue with .NET Team on the current Server Core container image in the May 27, 2020 release when compared to the performance improvements as discussed in this December 2019 [blog post](https://techcommunity.microsoft.com/t5/containers/making-windows-server-core-containers-40-smaller/ba-p/1058874) and on the [.NET Team blog](https://devblogs.microsoft.com/dotnet/we-made-windows-server-core-container-images-40-smaller/). At that time, the performance analysis was performed on a Windows Server, version 2004, Insider Preview release Server Core container image.
 
 The performance issues that we observed are:
 
