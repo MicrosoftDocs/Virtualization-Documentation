@@ -13,7 +13,6 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 
 In addition to leveraging the default 'nat' network created by Docker on Windows, users can define custom container networks. User-defined networks can be created using the Docker CLI [`docker network create -d <NETWORK DRIVER TYPE> <NAME>`](https://docs.docker.com/engine/reference/commandline/network_create/) command. On Windows, the following network driver types are available:
 
-
 ### NAT network driver
 
 Containers attached to a network created with the 'nat' driver will be connected to an *internal* Hyper-V switch and receive an IP address from the user-specified (``--subnet``) IP prefix. Port forwarding / mapping from the container host to container endpoints is supported.
@@ -31,7 +30,6 @@ To create a new NAT network with subnet `10.244.0.0/24`:
 docker network create -d "nat" --subnet "10.244.0.0/24" my_nat
 ```
 
-
 ### Transparent network driver
 
 Containers attached to a network created with the 'transparent' driver will be directly connected to the physical network through an *external* Hyper-V switch. IPs from the physical network can be assigned statically (requires user-specified ``--subnet`` option) or dynamically using an external DHCP server.
@@ -47,7 +45,6 @@ To create a new transparent network with subnet `10.244.0.0/24`, gateway `10.244
 ```powershell
 docker network create -d "transparent" --subnet 10.244.0.0/24 --gateway 10.244.0.1 -o com.docker.network.windowsshim.vlanid=7 -o com.docker.network.windowsshim.dnsservers="10.244.0.7" my_transparent
 ```
-
 
 ### Overlay network driver
 
@@ -68,7 +65,6 @@ To create a new overlay network with subnet `10.244.0.0/24`, DNS server `168.63.
 docker network create -d "overlay" --attachable --subnet "10.244.0.0/24" -o com.docker.network.windowsshim.dnsservers="168.63.129.16" -o com.docker.network.driver.overlay.vxlanid_list="4096" my_overlay
 ```
 
-
 ### L2bridge network driver
 
 Containers attached to a network created with the 'l2bridge' driver will be connected to the physical network through an *external* Hyper-V switch. In l2bridge, container network traffic will have the same MAC address as the host due to Layer-2 address translation (MAC re-write) operation on ingress and egress. In datacenters, this helps alleviate the stress on switches having to learn MAC addresses of sometimes short-lived containers. L2bridge networks can be configured in 2 different ways:
@@ -87,11 +83,9 @@ docker network create -d "l2bridge" --subnet 10.244.0.0/24 --gateway 10.244.0.1 
   >[!TIP]
   >L2bridge networks are highly programmable; More details on how to configure l2bridge can be found [here](https://techcommunity.microsoft.com/t5/networking-blog/l2bridge-container-networking/ba-p/1180923).
 
-
 ### L2tunnel network driver
 
 Creation is identical to l2bridge, however _this driver should only be used in a Microsoft Cloud Stack (Azure)_. The only difference over l2bridge is that all container traffic is sent to the virtualization host where SDN policy is applied, thereby enabling features such as [Azure Network Security Groups](/azure/virtual-network/security-overview) for containers.
-
 
 ## Network topologies and IPAM
 

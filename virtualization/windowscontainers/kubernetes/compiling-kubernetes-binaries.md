@@ -13,7 +13,7 @@ Compilation of Kubernetes requires a working Go environment. This page goes thro
 > [!NOTE]
 > This page is completely voluntary and only included for interested Kubernetes developers who want to experiment with the latest & greatest source code.
 
-> [!tip]
+> [!TIP]
 > To receive notifications about the newest developments you can subscribe to [@kubernetes-announce](https://groups.google.com/forum/#!forum/kubernetes-announce).
 
 ## Installing Go
@@ -97,4 +97,3 @@ cp _output/dockerized/bin/windows/amd64/kube*.exe ${DIST_DIR}
 
 ls ${DIST_DIR}
 ```
-

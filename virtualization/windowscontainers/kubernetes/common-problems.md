@@ -61,7 +61,7 @@ To use HostPort feature, please ensure your CNI plugins are [v0.8.6](https://git
 
 This error can occur when making custom modifications to HNS objects or installing new Windows Update that introduce changes to HNS without tearing down old HNS objects. It indicates that a HNS object which was previously created before an update is incompatible with the currently installed HNS version.
 
-On Windows Server 2019 (and below), users can delete HNS objects by deleting the HNS.data file
+On Windows Server 2019 (and earlier), users can delete HNS objects by deleting the HNS.data file
 ```
 Stop-Service HNS
 rm C:\ProgramData\Microsoft\Windows\HNS\HNS.data
@@ -203,11 +203,9 @@ There may be additional restrictions in place on your network or on hosts preven
 
 This issue can have many causes, but one of the most common is that the pause image was misconfigured. This is a high-level symptom of the next issue.
 
-
 ### When deploying, Docker containers keep restarting
 
 Check that your pause image is compatible with your OS version. Kubernetes assumes that both the OS and the containers have matching OS version numbers. If you are using an experimental build of Windows, such as an Insider build, you will need to adjust the images accordingly. Please refer to the Microsoft's [Docker repository](https://hub.docker.com/u/microsoft/) for images.
-
 
 ## Common Kubernetes master errors
 

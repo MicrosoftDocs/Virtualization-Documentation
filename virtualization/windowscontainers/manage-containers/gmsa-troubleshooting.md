@@ -231,7 +231,6 @@ nltest /sc_verify:contoso.com
     ```powershell
     Set-ADObject -Identity $gMSA -Replace @{ userAccountControl = ($gmsa.userAccountControl -band 0x7FFFC5FF) -bor 0x1000 }
 
-
 ### Non-domain-joined container hosts: Use event logs to identify configuration issues
 
 Event logging for using gMSA with non-domain-joined container hosts can be used to identify configuration issues. Events are logged in the Microsoft-Windows-Containers-CCG log file and can be found in the Event Viewer under Applications and Services Logs\Microsoft\Windows\Containers-CCG\Admin. If you export this log file from the container host to reader it, you must have the containers feature enabled on the device where you are trying to read the log file and you must be on a Windows version that supports using gMSA with non-domain-joined container hosts.

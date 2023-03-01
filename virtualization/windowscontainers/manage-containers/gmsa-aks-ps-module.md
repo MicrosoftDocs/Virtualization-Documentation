@@ -29,7 +29,7 @@ To get started, download the PowerShell Module from the PowerShell gallery:
    Install-Module -Name AksGMSA -Repository PSGallery -Force
    ```
 
->[!Note]
+>[!NOTE]
 >The gMSA on AKS PowerShell module is constantly updated. If you ran the steps on this tutorial before and is now checking back on new configurations, make sure you update the module to the latest version. More information on the module can be found on the [PowerShell Gallery page](https://www.powershellgallery.com/packages/AksGMSA/).
 
 ## Module requirements
@@ -39,7 +39,6 @@ The gMSA on AKS PowerShell module relies on different modules and tools. In orde
    ```powershell
    Install-ToolingRequirements
    ```
-
 
 ## Login with your Azure credential
 

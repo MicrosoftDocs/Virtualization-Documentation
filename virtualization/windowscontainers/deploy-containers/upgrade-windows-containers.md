@@ -14,7 +14,7 @@ ms.date: 09/01/2021
 This topic describes how to upgrade Windows containers to a new Windows or Windows Server operating system version. There are two steps for upgrading containers:
 
 1. Upgrade the container host to the new operating system version.
-2. Create new container instances using the new operating system version.
+1. Create new container instances using the new operating system version.
 
 > [!NOTE]
 > If you just need to _update_ (or patch) your current Windows base OS container image, see [update your containers](../deploy-containers/update-containers.md) to pull the latest patch image for your containers.

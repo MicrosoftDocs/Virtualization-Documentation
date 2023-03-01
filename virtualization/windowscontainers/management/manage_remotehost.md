@@ -34,7 +34,6 @@ users\foo\.docker\client\ca.pem --tlscert=c:\users\foo\.docker\client\cert.pem -
 ker\client\key.pem ps
 ```
 
-
 ## Troubleshooting
 ### Try connecting without TLS to determine your NSG firewall settings are correct
 Connectivity errors typically manifest themselves in errors like:

@@ -24,4 +24,3 @@ This issue is now root caused, and we are working on the fix. You can find the f
 
 [containerd/containerd#4301](https://github.com/containerd/containerd/issues/4301).
 
-

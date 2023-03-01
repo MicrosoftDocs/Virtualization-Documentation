@@ -258,3 +258,4 @@ Hence, if a container host has only one network adapter it is possible to run in
 There are two ways to get around this issue:
 - *Option 1 - delete existing transparent network:* Before initializing a swarm, ensure there is not an existing transparent network on your container host. Delete transparent networks to ensure there is a free virtual network adapter on your host to be used for overlay network creation.
 - *Option 2 - create an additional (virtual) network adapter on your host:* Instead of removing any transparent network that's on your host you can create an additional network adapter on your host to be used for overlay network creation. To do this, simply create a new external network adapter (using PowerShell or Hyper-V Manager); with the new interface in place, when your swarm is initialized the Host Network Service (HNS) will automatically recognize it on your host and use it to bind the external vSwitch for overlay network creation.
+-

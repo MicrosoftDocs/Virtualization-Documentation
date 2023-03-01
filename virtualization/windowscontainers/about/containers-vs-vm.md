@@ -4,7 +4,7 @@ description: Overview of the key similarities and differences between containers
 author: jasongerend
 ms.author: jgerend
 ms.date: 09/01/2021
-ms.topic: overview
+ms.topic: concept-article
 ---
 # Containers vs. virtual machines
 

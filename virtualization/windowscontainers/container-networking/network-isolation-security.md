@@ -17,7 +17,6 @@ Each container endpoint is placed in its own __network namespace__. The manageme
 
 ![Hyper-V isolation with a synthetic VM network adapter](media/windows-firewall-containers.png)
 
-
 Run the following Powershell cmdlet to get all network compartments in the protocol stack:
 
 ```powershell
