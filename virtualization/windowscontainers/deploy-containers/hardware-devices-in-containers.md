@@ -1,7 +1,6 @@
 ---
 title: Devices in containers on Windows
 description: Learn about device support for containers on Windows.
-keywords: docker, containers, devices, hardware
 author: v-susbo
 ms.author: mabrigg
 ms.date: 10/20/2020

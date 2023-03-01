@@ -1,7 +1,6 @@
 ---
 title: Manage Azure Container Instances on Windows Admin Center
 description: Learn to manage Azure Container Instances on Windows Admin Center.
-keywords: docker, containers, Windows Admin Center
 author: vrapolinario
 ms.author: viniap
 ms.date: 12/24/2020

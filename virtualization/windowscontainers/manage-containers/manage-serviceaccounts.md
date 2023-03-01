@@ -1,7 +1,6 @@
 ---
 title: Create gMSAs for Windows containers
 description: How to create group Managed Service Accounts (gMSAs) for Windows containers.
-keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts
 author: rpsqrd
 ms.author: jgerend
 ms.date: 08/16/2021
@@ -16,7 +15,7 @@ Windows-based networks commonly use Active Directory (AD) to facilitate authenti
 
 Although Windows containers cannot be domain joined, they can still use Active Directory domain identities to support various authentication scenarios. To achieve this, you can configure a Windows container to run with a [group Managed Service Account](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA), which is a special type of service account introduced in Windows Server 2012 and designed to allow multiple computers to share an identity without needing to know its password. Windows containers cannot be domain joined, but many Windows applications that run in Windows containers still need AD Authentication. To use AD Authentication, you can configure a Windows container to run with a group Managed Service Account (gMSA).
 
-When gMSA for Windows containers was initially introduced, it required the container host to be domain joined, which created a lot of overhead for users to manually join Windows worker nodes to a domain. This limitation has been addressed with gMSA for Windows containers support for non-domain-joined container hosts. We'll continue to support the original gMSA functionality to use a domain joined container host. 
+When gMSA for Windows containers was initially introduced, it required the container host to be domain joined, which created a lot of overhead for users to manually join Windows worker nodes to a domain. This limitation has been addressed with gMSA for Windows containers support for non-domain-joined container hosts. We'll continue to support the original gMSA functionality to use a domain joined container host.
 
 Improvements to gMSA when using a non-domain-joined container host include:
 
@@ -147,7 +146,7 @@ Add-ADGroupMember -Identity "WebApp01Hosts" -Members "ContainerHost01$", "Contai
 When using gMSA for containers with non-domain-joined hosts, instead of adding container hosts to the `WebApp01Hosts` security group, create and add a standard user account.
 
 ```powershell
-# Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively. 
+# Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively.
 
 # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
 # To install the AD module on Windows 10 version 1809 or later, run Add-WindowsCapability -Online -Name 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
@@ -160,7 +159,7 @@ New-ADGroup -Name "WebApp01 Authorized Accounts" -SamAccountName "WebApp01Accoun
 New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -ServicePrincipalNames "host/WebApp01", "host/WebApp01.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "WebApp01Accounts"
 
 # Create the standard user account. This account information needs to be stored in a secret store and will be retrieved by the ccg.exe hosted plug-in to retrieve the gMSA password. Replace 'StandardUser01' and 'p@ssw0rd' with a unique username and password. We recommend using a random, long, machine-generated password.
-New-ADUser -Name "StandardUser01" -AccountPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd" -Force) -Enabled 1 
+New-ADUser -Name "StandardUser01" -AccountPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd" -Force) -Enabled 1
 
 # Add your container hosts to the security group
 Add-ADGroupMember -Identity "WebApp01Accounts" -Members "StandardUser01"
@@ -219,7 +218,7 @@ To create a credential spec file on your container host:
 3. Run the following cmdlet to create the new credential spec file:
 
     ```powershell
-    # Replace 'WebApp01' with your own gMSA 
+    # Replace 'WebApp01' with your own gMSA
     New-CredentialSpec -AccountName WebApp01
     ```
 

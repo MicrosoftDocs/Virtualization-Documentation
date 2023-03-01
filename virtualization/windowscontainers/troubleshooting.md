@@ -1,7 +1,6 @@
 ---
 title: Troubleshoot Windows containers
 description: Troubleshooting tips, automated scripts, and log information for Windows containers and Docker.
-keywords: docker, containers, troubleshooting, logs
 author: PatrickLang
 ms.author: mabrigg
 ms.date: 12/19/2016
