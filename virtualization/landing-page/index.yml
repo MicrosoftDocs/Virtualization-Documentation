@@ -8,8 +8,6 @@ brand: windows
 metadata:
   title: Virtualization documentation # Required; page title displayed in search results. Include the brand. < 60 chars.
   description: Find info about virtualization on Windows 10 and Windows Server, including how to run virtual machines (VMs) and containers. # Required; article description that is displayed in search results. < 160 chars.
-  services: virtual-machines-windows
-  ms.service: virtual-machines-windows #Required; service per approved list. service slug assigned to your service by ACOM.
   ms.topic: hub-page # Required
   author: scooley #Required; your GitHub user alias, with correct capitalization.
   ms.prod: virtualization
