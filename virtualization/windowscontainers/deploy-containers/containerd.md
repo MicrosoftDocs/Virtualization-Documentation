@@ -1,7 +1,6 @@
 ---
 title: Windows container platform
 description: Learn more about new container building blocks available in Windows.
-keywords: LCOW, linux containers, docker, containers, containerd, cri, runhcs, runc
 author: scooley
 ms.author: jgerend
 ms.date: 11/19/2018

@@ -30,12 +30,12 @@ sections:
       - question: |
           What Windows operating systems are supported?
         answer: |
-          AKS on Azure Stack HCI uses Windows Server 2019 as the container host OS version and only supports process isolation. For Windows container version compatibility, see [Windows container version compatibility](../deploy-containers/version-compatibility.md).
+          Support for Windows containers is dependent on the platform on which it runs. Azure Kubernetes Service (AKS) and AKS on Azure Stack HCI and Windows Server supports both Windows Server 2019 and Windows Server 2022. For Windows container version compatibility, see [Windows container version compatibility](../deploy-containers/version-compatibility.md).
           
       - question: |
           How do I patch my Windows nodes?
         answer: |
-          Windows Server nodes in AKS on Azure Stack HCI must be upgraded to get the latest patch fixes and updates. Windows Updates are not enabled on Windows nodes in AKS on Azure Stack HCI. However, AKS on Azure Stack HCI makes Windows Updates available by periodically updating the Windows Server node images.
+          Windows Server nodes in AKS and AKS on Azure Stack HCI and Windows Server must be upgraded to get the latest patch fixes and updates. Windows Updates are not enabled on Windows nodes on those services. However, both services provide mechanisms to update the Windows node images.
 
       - question: |
           Can my Windows Server containers use gMSA?
@@ -81,7 +81,7 @@ sections:
           If you want to run your Windows containers this way, you'll need to make sure your host is running Windows 10 build 17763+ and you have a Docker version with Engine 18.09 or newer.
           
           > [!WARNING]
-          > Aside from on IoT Core and IoT Enterprise hosts (after accepting additional terms and restrictions), this feature is only meant for development and testing. You should continue to use Windows Server as the host for production deployments. By using this feature, you must also ensure that your host and container version tags match, otherwise the container may fail to start or exhibit undefined behavior.
+          > Aside from on IoT Core and IoT Enterprise hosts (after accepting additional terms and restrictions), this feature is only meant for development and testing. You should continue to use Windows Server as the host for production deployments. By using this feature, you must also ensure that your host and container version tags and build number match, otherwise the container may fail to start or exhibit undefined behavior.
           
       - question: |
           How do I make my container images available on air-gapped machines?

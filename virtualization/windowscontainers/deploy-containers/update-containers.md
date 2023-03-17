@@ -1,7 +1,6 @@
 ---
 title: Update Windows Server containers
-description: How Windows can run build and run containers across multiple versions
-keywords: metadata, containers, version
+description: Learn how Windows can run build and run containers across multiple versions.
 author: heidilohr
 ms.author: helohr
 manager: lizross

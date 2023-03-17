@@ -1,7 +1,6 @@
 ---
 title: Run your first Windows container
-description: Quick start to learn how to run Windows containers
-keywords: docker, containers, LCOW
+description: Learn how to run Windows containers.
 author: v-susbo
 ms.author: viniap
 ms.date: 09/01/2021

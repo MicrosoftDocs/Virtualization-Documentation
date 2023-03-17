@@ -1,9 +1,8 @@
 ---
-title: Windows Container Version Compatibility
+title: Windows container version compatibility
 description: Version compatibility for containers built from different versions of Windows Server and Windows.
-keywords: metadata, containers, version
 author: brasmith-ms
-ms.author: brasmith 
+ms.author: brasmith
 ms.topic: conceptual
 ms.date: 03/15/2022
 ---
@@ -66,11 +65,14 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
 |Windows Server 2022|&#10060;|&#10060;|
-|Windows Server 2019|&#10004;|&#10004;|
+|Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
 ---
 <!-- stop tab view -->
+
+>[!NOTE]
+>Windows 10 version 1809 and Windows Server 2019 had the same build number at GA moment. Since then, they received independent updates resulting in build number mismatch. Process isolation on Windows client is available in preview for Windows 11 with Windows Server 2022 images - with build number mismatch. If you have a requirement to run process isolated containers on a Windows 10, please let us know in our [GitHub issues](https://github.com/microsoft/Windows-Containers/issues).
 
 ## Matching container host version with container image versions
 
@@ -80,13 +82,13 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 The Windows operating system has four levels of versioning: major, minor, build and revision. For example, version 10.0.14393.103 would have a major version of 10, a minor version of 0, a build number of 14393, and a revision number of 103. The build number only changes when new versions of the OS are published, and the revision number is updated as Windows updates are applied.
 
-With the exception of WS2022 + Windows 11, Windows Server containers are blocked from starting when the build number between the container host and the container image are different. For example, when the container host is version 10.0.14393.* (Windows Server 2016) and you attempt to run a container with an image version 10.0.16299.* (Windows Server version 1709) the OS compute service will return a version incompatibility error.
+With the exception of WS2022 + Windows 11, Windows Server containers are blocked from starting when the build number between the container host and the container image are different. For example, when the container host is version 10.0.14393.* (Windows Server 2016) and you attempt to run a container with an image version 10.0.16299.* (Windows Server, version 1709) the OS compute service will return a version incompatibility error.
 
 #### Windows Server 2016 Restrictions
 
 Windows Server 2016-based containers will not run in a system where the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.**1914** (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.**1944** (Windows Server 2016 with KB4053579 applied), then the image might not start.
 
-**For hosts or images using Windows Server version 1809 and later, this rule doesn't apply** - the host and container image do not need matching **revisions**.
+**For hosts or images using Windows Server, version 1809 and later, this rule doesn't apply** - the host and container image do not need matching **revisions**.
 
 >[!NOTE]
 >We strongly recommend you update both your host and containers with the latest patches and updates to stay secure and compatible. For important guidance for how to update Windows containers, see [Update Windows Server containers](update-containers.md).

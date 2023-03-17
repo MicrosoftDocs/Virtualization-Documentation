@@ -1,11 +1,10 @@
 ---
 title: Create container images on Windows Admin Center
-description: Container images on Windows Admin Center
-keywords: docker, containers, Windows Admin Center
+description: Create container images on Windows Admin Center.
 author: vrapolinario
 ms.author: viniap
 ms.date: 12/23/2020
-ms.topic: quickstart
+ms.topic: overview
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Create new container images on Windows Admin Center
@@ -14,7 +13,7 @@ This topic describes how to create new container images using Windows Admin Cent
 
 ## Create new container images
 
-When working with containers, you'll write instructions to Docker on how your container image works, and then Docker creates a new container image based on these instructions. These instructions are saved on a file called "Dockerfile" that's saved to the same folder in which your application resides. 
+When working with containers, you'll write instructions to Docker on how your container image works, and then Docker creates a new container image based on these instructions. These instructions are saved on a file called "Dockerfile" that's saved to the same folder in which your application resides.
 
 Windows Admin Center can considerably reduce the overhead of writing Dockerfiles or even remove the need to write these files entirely. To get started, on the **Containers** extension, select the **Create New** option on the **Images** tab.
 
@@ -34,7 +33,7 @@ Once you select the type of application you want to containerize, you can select
 - **Image name**: The final image name to be used. You can change the name later when you push the image to a container registry.
 - **Image tag**: The tag is used to differentiate between multiple versions of the same image. Provide a identifier, so your image is properly tagged.
 
-Once you have selected all the options for your container image, you can review the Dockerfile. If necessary, you can also manually edit the Dockerfile. This Dockerfile is saved to the location of the application you specified in an earlier step. 
+Once you have selected all the options for your container image, you can review the Dockerfile. If necessary, you can also manually edit the Dockerfile. This Dockerfile is saved to the location of the application you specified in an earlier step.
 
 >[!Note]
 >If a Dockerfile already exists in the location of the application you are trying to containerize, Windows Admin Center will replace that file with the new one it just created.

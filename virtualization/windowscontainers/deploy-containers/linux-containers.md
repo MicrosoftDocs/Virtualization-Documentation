@@ -1,7 +1,6 @@
 ---
-title: Linux Containers on Windows 10
+title: Linux containers on Windows 10
 description: Learn about different ways you can use Hyper-V to run Linux containers on Windows 10 as if they're native.
-keywords: linux containers, docker, containers, windows 10
 author: scooley
 ms.author: scooley
 ms.date: 09/17/2019

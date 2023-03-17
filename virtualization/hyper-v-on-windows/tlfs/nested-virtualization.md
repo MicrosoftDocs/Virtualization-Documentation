@@ -54,6 +54,14 @@ The enlightened VMCS structure is versioned to account for future changes. Each 
 
 The only VMCS version currently supported is 1.
 
+### Hypervisor Implementation Considerations
+
+For most VMCS fields, the corresponding enlightened VMCS field is supported for a VM if the VMCS field is supported for the VM, as determined through architectural feature discovery mechanisms. Exceptions are reported in [CPUID leaf 0x4000000A](feature-discovery.md#microsoft-hypervisor-cpuid-leaves).
+
+In cases where architectural feature discovery mechanisms indicate support for a VMCS field for which no enlightened VMCS field is defined, the L1 hypervisor should not enable the feature if it chooses to use enlightened VMCS.
+
+The Hyper-V L0 hypervisor will not indicate support for a VMCS field for which no enlightened VMCS field or exception is defined. If another L0 hypervisor needs a new enlightened VMCS field or exception to be defined, please contact Microsoft.
+
 ## Enlighened VMCB fields (AMD)
 
 AMD has reserved space in the VMCB for hypervisor use, as well as an associated clean bit. The reserved bytes are in the control section, offset 0x3E0-3FF, of the VMCB. The clean bit is bit 31 (the clean bit must be invalidated whenever the hypervisor modifies the “enlightenments” area of the VMCB).

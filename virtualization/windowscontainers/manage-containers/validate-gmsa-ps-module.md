@@ -1,7 +1,6 @@
 ---
 title: Validate gMSA on AKS with the PowerShell module
-description: Validate gMSA on Azure Kubernetes Service for Windows Containers.
-keywords: gMSA, containers, PowerShell
+description: Validate gMSA on Azure Kubernetes service for Windows containers.
 author: vrapolinario
 ms.author: viniap
 ms.date: 01/14/2021

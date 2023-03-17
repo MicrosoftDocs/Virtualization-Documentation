@@ -1,7 +1,6 @@
 ---
-title: Configure your app to use a Group Managed Service Account
-description: How to configure apps to use Group Managed Service Accounts (gMSAs) for Windows containers.
-keywords: docker, containers, active directory, gmsa, apps, applications, group managed service account, group managed service accounts, configuration
+title: Configure your app to use a group Managed Service Account
+description: How to configure apps to use group Managed Service Accounts (gMSAs) for Windows containers.
 author: rpsqrd
 ms.author: ryanpu
 ms.date: 09/10/2019
