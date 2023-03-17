@@ -494,6 +494,11 @@
       "source_path": "virtualization/windowscontainers/quick-start/Using-Insider-Container-Images.md",
       "redirect_url": "/virtualization/windowscontainers/deploy-containers/insider-overview",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/tlfs.md",
+      "redirect_url": "/virtualization/hyper-v-on-windows/index",
+      "redirect_document_id": false
     }
   ]
 }
