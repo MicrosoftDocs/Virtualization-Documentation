@@ -4,7 +4,7 @@ description: Version compatibility for containers built from different versions 
 author: brasmith-ms
 ms.author: brasmith
 ms.topic: conceptual
-ms.date: 03/15/2022
+ms.date: 03/20/2023
 ---
 # Windows container version compatibility
 
