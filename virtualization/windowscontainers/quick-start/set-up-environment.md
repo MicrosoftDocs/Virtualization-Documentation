@@ -3,7 +3,7 @@ title: Prepare Windows operating system containers
 description: Set up Windows or Windows Server for containers, then run your first container image.
 author: brasmith-ms
 ms.author: brasmith
-ms.date: 06/17/2022
+ms.date: 03/31/2023
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
@@ -13,14 +13,21 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 This tutorial describes how to:
 
-- [Set up Windows 10/11 and Windows Server for containers](#prerequisites)
-- [Build container-ready Azure VMs](#container-ready-azure-vms)
-- [Install the Container Runtime](#install-the-container-runtime)
-    - [Windows 10 & 11](#windows-10-and-11-1)
+- [Get started: Prep Windows for containers](#get-started-prep-windows-for-containers)
+  - [Prerequisites](#prerequisites)
+    - [Windows 10 and 11](#windows-10-and-11)
+    - [Windows Server](#windows-server)
+      - [Container-Ready Azure VMs](#container-ready-azure-vms)
+        - [Azure Image Builder](#azure-image-builder)
+        - [Custom Script Extensions](#custom-script-extensions)
+  - [Install the Container Runtime](#install-the-container-runtime)
+    - [Windows 10 and 11](#windows-10-and-11-1)
     - [Windows Admin Center](#windows-admin-center)
-    - [Windows Server - Moby, Mirantis, & Containerd](#windows-server-1)
-- [Run your first container image](./run-your-first-container.md)
-- [Containerize a simple .NET core application](./building-sample-app.md)
+    - [Windows Server](#windows-server-1)
+- [Docker CE / Moby](#docker-ce--moby)
+- [Mirantis Container Runtime](#mirantis-container-runtime)
+- [Containerd](#containerd)
+  - [Next steps](#next-steps)
 
 ## Prerequisites
 
