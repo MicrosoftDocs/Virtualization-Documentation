@@ -24,9 +24,6 @@ This tutorial describes how to:
     - [Windows 10 and 11](#windows-10-and-11-1)
     - [Windows Admin Center](#windows-admin-center)
     - [Windows Server](#windows-server-1)
-- [Docker CE / Moby](#docker-ce--moby)
-- [Mirantis Container Runtime](#mirantis-container-runtime)
-- [Containerd](#containerd)
   - [Next steps](#next-steps)
 
 ## Prerequisites
@@ -117,7 +114,7 @@ To run a Windows container you must have a supported container runtime available
 This section will detail the process of installing each on your specific copy of Windows, including a set of powershell scripts which make it easy to install each runtime in just a few steps.
 
 <!-- start tab view -->
-# [Docker CE / Moby](#tab/dockerce)
+[Docker CE / Moby](#tab/dockerce)
 
 Docker Community Edition (CE) provides a standard runtime environment for containers with a common API and command-line interface (CLI). It is managed by the open source community as part of the [Moby Project](https://mobyproject.org/).
 
@@ -130,13 +127,13 @@ Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/
 
 For more configuration details, see [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md).
 
-# [Mirantis Container Runtime](#tab/mirantiscontainerruntime)
+[Mirantis Container Runtime](#tab/mirantiscontainerruntime)
 
 The Mirantis Container Runtime, formally known as Docker EE, provides the same functionality as Docker CE plus extra features built specifically for enterprise deployments. To install this runtime please head over to the Mirantis website for instructions on how to install: [https://www.mirantis.com/docker-engine-enterprise-support/](https://www.mirantis.com/docker-engine-enterprise-support/).
 
 Please head over to the [Mirantis site](https://www.mirantis.com/software/container-runtime/) for more information.
 
-# [Containerd](#tab/containerd)
+[Containerd](#tab/containerd)
 
 [Containerd](https://github.com/containerd/containerd) is an industry-standard container runtime with an emphasis on simplicity, robustness and portability. It is available as a daemon for Linux and Windows, which can manage the complete container lifecycle of its host systemW: image transfer and storage, container execution and supervision, low-level storage and network attachments, etc.
 
