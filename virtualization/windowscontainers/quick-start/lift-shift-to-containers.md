@@ -1,9 +1,9 @@
 ---
 title: Lift and shift to containers
 description: Learn how to migrate existing applications to containers.
-author: robinharwood
-ms.author: roharwoo
-ms.date: 08/01/2022
+author: vrapolinario
+ms.author: viniap
+ms.date: 03/31/2023
 ms.topic: conceptual
 ---
 
@@ -313,3 +313,5 @@ Note: Currently, AKS and AKS on Azure Stack HCI support only process-isolated co
 6. Consider orchestration needs. Once containerized, your application likely needs automated management available with tools such as Kubernetes, AKS, or AKS on Azure Stack HCI. See [Windows Container orchestration overview](../about/overview-container-orchestrators.md) for a full discussion and guide to choosing among the tools.
 7. Containerize the app.
 8. Push the app to an image repository. This will allow the container hosts to download the image in any environment, including dev, test, and production.
+
+Azure Migrate can provide a guided process for discovering, assessing, and migrating your existing Windows application to Azure Kubernetes Service. For more information, check out the [Azure Migrate](/azure/migrate/tutorial-modernize-asp-net-aks) documentation page.
