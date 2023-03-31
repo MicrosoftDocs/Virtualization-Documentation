@@ -314,4 +314,4 @@ Note: Currently, AKS and AKS on Azure Stack HCI support only process-isolated co
 7. Containerize the app.
 8. Push the app to an image repository. This will allow the container hosts to download the image in any environment, including dev, test, and production.
 
-Azure Migrate can provide a guided process for discovering, assessing, and migrating your existing Windows application to Azure Kubernetes Service. For more information, check out the [Azure Migrate](https://learn.microsoft.com/azure/migrate/tutorial-modernize-asp-net-aks) documentation page.
+Azure Migrate can provide a guided process for discovering, assessing, and migrating your existing Windows application to Azure Kubernetes Service. For more information, check out the [Azure Migrate](/azure/migrate/tutorial-modernize-asp-net-aks) documentation page.
