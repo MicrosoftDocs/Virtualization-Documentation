@@ -3,7 +3,7 @@ title: Create container images on Windows Admin Center
 description: Create container images on Windows Admin Center.
 author: vrapolinario
 ms.author: viniap
-ms.date: 12/23/2020
+ms.date: 04/12/2023
 ms.topic: overview
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---

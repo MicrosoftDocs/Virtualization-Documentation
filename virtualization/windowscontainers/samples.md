@@ -2,7 +2,7 @@
 title: Windows containers solutions
 description: Learn about popular projects and code samples using Windows containers.
 author: sijuman
-ms.date: 12/17/2021
+ms.date: 04/12/2023
 ms.topic: overview
 ms.author: sijuman
 ms.assetid: 5c6f6350-f8d6-4426-b53d-9fb09c2bf267
