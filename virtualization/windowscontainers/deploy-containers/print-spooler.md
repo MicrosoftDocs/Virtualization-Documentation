@@ -17,7 +17,7 @@ Applications with a dependency on printing services can be containerized success
 ## Setup
 
 * The host should be Windows Server 2019 or Windows 10 Pro/Enterprise October 2018 update or newer.
-* The [mcr.microsoft.com/windows](https://mcr.microsoft.com/product/windows/about) or the [mcr.microsoft.com/windows/server]([https]https://mcr.microsoft.com/product/windows/server/about) images should be the targeted base image. Other Windows container base images (such as Nano Server and Windows Server Core) do not carry the Printing Server Role.
+* The [mcr.microsoft.com/windows](https://mcr.microsoft.com/product/windows/about) or the [mcr.microsoft.com/windows/server](https://mcr.microsoft.com/product/windows/server/about) images should be the targeted base image. Other Windows container base images (such as Nano Server and Windows Server Core) do not carry the Printing Server Role.
 
 ### Hyper-V Isolation
 
