@@ -111,7 +111,7 @@ landingContent:
       - linkListType: reference
         links:
           - text: Windows containers roadmap
-            url: https://github.com/microsoft/Windows-Containers/projects/1
+            url: https://github.com/Azure/AKS/projects/1?card_filter_query=label%3Awindows
           - text: Samples
             url: ./samples.md
           - text: Troubleshooting
