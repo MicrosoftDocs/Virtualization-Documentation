@@ -23,7 +23,7 @@ The Host Compute APIs allow applications to extend the Hyper-V platform with vir
 The following section contains the definitions of the APIs for device virtualization in the HCS. The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
 
-## Compute System Opterations
+## Compute System Operations
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
 |[HdvInitializeDeviceHost](./HdvPciDeviceInitialize.md)|Create a compute system|

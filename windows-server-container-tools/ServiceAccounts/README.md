@@ -36,7 +36,7 @@ To use the CredentialSpec PowerShell module, your computer must meet the followi
 -   [ ] Windows 10 version 1607/Windows Server 2016 or later
 -   [ ] Computer must be joined to an Active Directory domain
 -   [ ] [Docker Desktop for Windows 10](https://docs.docker.com/docker-for-windows/install/) or [Docker EE for Windows Server](https://docs.docker.com/install/windows/docker-ee/) must be installed
--   [ ] At least one [group managed service account](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) already created in your domain
+-   [ ] At least one [group managed service account](https://learn.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) already created in your domain
 
 In its simplest form, the cmdlet takes the name of the gMSA and creates a credential spec file based on that account.
 The cmdlet assumes the gMSA is in the same domain as the current computer (not the user's domain).
@@ -75,4 +75,3 @@ New-CredentialSpec WebApp01 -AdditionalAccounts @{ AccountName = 'LogAgentSvc'; 
 
 ## Documentation
 Check out the [Windows Container Identity](https://aka.ms/containers/identity) docs for instructions on how to set up your environment, generate a credential spec, and run a container using an Active Directory identity.
-

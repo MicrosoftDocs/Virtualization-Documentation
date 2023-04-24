@@ -2,7 +2,7 @@
 title: Looking at the Hyper-V Event Log (January 2018 edition)
 description: Learn about the different event channels when viewing the Hyper-V event log.
 author: cwilhit
-ms.author: crwilhit
+ms.author: scooley
 date:       2018-01-23 22:57:01
 ms.date: 01/23/2018
 categories: debugging

@@ -18,7 +18,7 @@ Tar and curl are staples in a developer’s toolbox; beginning today, you’ll f
   * **Tar:** A command line tool that allows a user to extract files and create archives. Outside of PowerShell or the installation of third party software, there was no way to extract a file from cmd.exe. We're correcting this behavior :) The implementation we're shipping in Windows uses [libarchive](http://libarchive.org/).
   * **Curl:** Another command line tool that allows for transferring of files to and from servers (so you can, say, now download a file from the internet).
 
-Now not only will you be able to perform file transfers from the command line,  you'll also be able to extract files in formats in addition to .zip (like .tar.gz, for example). PowerShell _does_ already offer similar functionality (it has curl and it's own file extraction utilities), but we recognize that there might be instances where PowerShell is not readily available or the user wants to stay in cmd. <!--[![](https://msdnshared.blob.core.windows.net/media/2017/12/tar.gif)](https://msdnshared.blob.core.windows.net/media/2017/12/tar.gif)-->
+Now not only will you be able to perform file transfers from the command line,  you'll also be able to extract files in formats in addition to .zip (like .tar.gz, for example). PowerShell _does_ already offer similar functionality (it has curl and its own file extraction utilities), but we recognize that there might be instances where PowerShell is not readily available or the user wants to stay in cmd. <!--[![](https://msdnshared.blob.core.windows.net/media/2017/12/tar.gif)](https://msdnshared.blob.core.windows.net/media/2017/12/tar.gif)-->
 
 ## 2\. The Containers Experience
 

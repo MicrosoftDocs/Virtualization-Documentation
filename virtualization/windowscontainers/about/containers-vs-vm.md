@@ -1,11 +1,10 @@
 ---
 title: Containers vs. virtual machines
-description: This topic discusses some of the key similarities and differences between containers and virtual machines, and when you might want to use each. Containers and virtual machines each have their uses–in fact, many deployments of containers use virtual machines as the host operating system rather than running directly on the hardware, especially when running containers in the cloud.
-keywords: docker, containers, vms, virtual machines
-author: jasongerend
-ms.author: jgerend
-ms.date: 09/01/2021
-ms.topic: overview
+description: Overview of the key similarities and differences between containers and virtual machines, and when you might want to use each.
+author: vrapolinario
+ms.author: viniap
+ms.date: 03/31/2023
+ms.topic: concept-article
 ---
 # Containers vs. virtual machines
 

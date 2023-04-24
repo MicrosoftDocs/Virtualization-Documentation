@@ -18,7 +18,7 @@
       items:
         - name: Reference
           tocHref: /virtualization/api/hcs/reference
-          topicHref: /virtualization/api/hcs/reference
+          topicHref: /virtualization/api/hcs/reference/apioverview
     - name: VM Saved State Dump Provider API
       tocHref: /virtualization/api/vm-dump-provider/
       topicHref: /virtualization/api/vm-dump-provider/vm-dump-provider

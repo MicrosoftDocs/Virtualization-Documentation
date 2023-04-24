@@ -6,6 +6,7 @@ description: Dynamic Memory Coming To Hyper-V
 ms.date: 03/18/2010
 date:       2010-03-18 07:02:00
 categories: calista-technologies
+ms.prod: virtualization
 ---
 # Dynamic Memory Coming To Hyper-V
 

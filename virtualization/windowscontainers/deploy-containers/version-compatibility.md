@@ -1,11 +1,10 @@
 ---
-title: Windows Container Version Compatibility
+title: Windows container version compatibility
 description: Version compatibility for containers built from different versions of Windows Server and Windows.
-keywords: metadata, containers, version
 author: brasmith-ms
-ms.author: brasmith-ms
+ms.author: brasmith
 ms.topic: conceptual
-ms.date: 03/15/2022
+ms.date: 03/20/2023
 ---
 # Windows container version compatibility
 
@@ -13,7 +12,7 @@ ms.date: 03/15/2022
 
 Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were the first Windows releases that could build and run Windows Server containers. Containers built using these versions can run on newer releases, but there are a few things you need to know before you start.
 
-The architecture of Windows differs vastly from that of Linux. Linux has a monolithic kernel, while in Windows User and Kernel mode are more tightly bound. Until the introduction of containers, Windows User and Kernel mode were shipped in synchrony, thus resulting in container compatibility requirements on Windows that differ from the norm in Linux. 
+The architecture of Windows differs vastly from that of Linux. Linux has a monolithic kernel, while in Windows User and Kernel mode are more tightly bound. Until the introduction of containers, Windows User and Kernel mode were shipped in synchrony, thus resulting in container compatibility requirements on Windows that differ from the norm in Linux.
 
 Decoupling the User/Kernel boundary in Windows is a monumental task and highly non-trivial, however, we have been working hard to stabilize this boundary across all of Windows to provide our customers the flexibility to run down-level containers. **Starting with Windows 11 and Windows Server 2022 we are enabling the ability to run process-isolated WS2022 containers on Windows 11 hosts.** We've done our best to capture the areas which break the boundary, but now want to open the feature to developers on Windows 11 for feedback. We are committed to enabling this experience for you, so please [let us know when you experience issues](https://github.com/microsoft/Windows-Containers).
 
@@ -26,17 +25,7 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10004;|&#10004;|
-|Windows Server, version 20H2|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows Server, version 20H2](#tab/windows-server-20H2)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10004;|&#10004;|
+|Windows Server 2022|&#10004;|&#10004;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -44,8 +33,7 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
+|Windows Server 2022|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10004;|
 |Windows Server 2016|&#10004;|&#10060;|
 
@@ -53,8 +41,7 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10060;|&#10060;|
+|Windows Server 2022|&#10060;|&#10060;|
 |Windows Server 2019|&#10060;|&#10060;|
 |Windows Server 2016|&#10004;|&#10004;|
 
@@ -65,35 +52,27 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 <!-- start tab view -->
 
-# [Windows 11, version 21H2](#tab/windows-11-21H2)
+# [Windows 11](#tab/windows-11)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10004;|&#10004;|
-|Windows Server, version 20H2|&#10004;|&#10060;|
+|Windows Server 2022|&#10004;|&#10004;(preview)|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# [Windows 10, version 21H1](#tab/windows-10-21H1)
+# [Windows 10](#tab/windows-10)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 2022|&#10004;|&#10060;|
-|Windows Server, version 20H2|&#10004;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
-
-# [Windows 10, version 20H2](#tab/windows-10-20H2)
-
-|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 2022|&#10060;|&#10060;|
-|Windows Server, version 20H2|&#10004;|&#10004;|
+|Windows Server 2022|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
 ---
 <!-- stop tab view -->
+
+>[!NOTE]
+>Windows 10 version 1809 and Windows Server 2019 had the same build number at GA moment. Since then, they received independent updates resulting in build number mismatch. Process isolation on Windows client is available in preview for Windows 11 with Windows Server 2022 images - with build number mismatch. If you have a requirement to run process isolated containers on a Windows 10, please let us know in our [GitHub issues](https://github.com/microsoft/Windows-Containers/issues).
 
 ## Matching container host version with container image versions
 
@@ -103,13 +82,13 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 The Windows operating system has four levels of versioning: major, minor, build and revision. For example, version 10.0.14393.103 would have a major version of 10, a minor version of 0, a build number of 14393, and a revision number of 103. The build number only changes when new versions of the OS are published, and the revision number is updated as Windows updates are applied.
 
-With the exception of WS2022 + Windows 11, Windows Server containers are blocked from starting when the build number between the container host and the container image are different. For example, when the container host is version 10.0.14393.* (Windows Server 2016) and you attempt to run a container with an image version 10.0.16299.* (Windows Server version 1709) the OS compute service will return a version incompatibility error.
+With the exception of WS2022 + Windows 11, Windows Server containers are blocked from starting when the build number between the container host and the container image are different. For example, when the container host is version 10.0.14393.* (Windows Server 2016) and you attempt to run a container with an image version 10.0.16299.* (Windows Server, version 1709) the OS compute service will return a version incompatibility error.
 
 #### Windows Server 2016 Restrictions
 
 Windows Server 2016-based containers will not run in a system where the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.**1914** (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.**1944** (Windows Server 2016 with KB4053579 applied), then the image might not start.
 
-**For hosts or images using Windows Server version 1809 and later, this rule doesn't apply** - the host and container image do not need matching **revisions**.
+**For hosts or images using Windows Server, version 1809 and later, this rule doesn't apply** - the host and container image do not need matching **revisions**.
 
 >[!NOTE]
 >We strongly recommend you update both your host and containers with the latest patches and updates to stay secure and compatible. For important guidance for how to update Windows containers, see [Update Windows Server containers](update-containers.md).

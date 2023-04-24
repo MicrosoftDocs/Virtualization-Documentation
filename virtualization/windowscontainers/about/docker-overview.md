@@ -1,7 +1,6 @@
 ---
 title: About Docker
 description: Learn about Docker.
-keywords: docker, containers
 author: Heidilohr
 ms.author: helohr
 ms.date: 05/22/2019

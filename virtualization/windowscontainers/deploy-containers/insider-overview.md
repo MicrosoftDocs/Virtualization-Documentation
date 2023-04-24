@@ -1,9 +1,8 @@
 ---
-title: Use Containers with Windows Insider Program
-description: Learn how to get started using windows containers with the Windows Insider program
-keywords: docker, containers, insider, windows
+title: Use containers with Windows Insider Program
+description: Learn how to get started using Windows containers with the Windows Insider Program.
 author: cwilhit
-ms.author: crwilhit
+ms.author: lizross
 ms.date: 12/29/2020
 ms.topic: how-to
 ---
@@ -27,7 +26,7 @@ If you do not have Docker already installed, follow the [Get Started](../quick-s
 
 By being part of the Windows Insider program, you can use our latest builds for the base images. You specify the insider build image you want to use in the `docker pull` command, for example, `mcr.microsoft.com/windows/server/insider:10.0.{build}.{revision}`.
 
-To pull the Windows Server Insider base image, run the following: 
+To pull the Windows Server Insider base image, run the following:
 
 ```console
 docker pull mcr.microsoft.com/windows/server/insider:10.0.20348.1

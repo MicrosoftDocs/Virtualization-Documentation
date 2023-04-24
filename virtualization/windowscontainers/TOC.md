@@ -11,7 +11,7 @@
 ## [Set up your environment](quick-start/set-up-environment.md)
 ## [Run your first container](quick-start/run-your-first-container.md)
 ## [Containerize a sample app](quick-start/building-sample-app.md)
-## [Lift and shift to containers](quick-start/lift-shift-to-containers.md)
+## [Lift and shift to Windows containers](quick-start/lift-shift-to-containers.md)
 
 # Tutorials
 ## Build a Windows container
@@ -104,7 +104,6 @@
 #### [Configure your app to use a gMSA](manage-containers/gmsa-configure-app.md)
 #### [Run a container with a gMSA](manage-containers/gmsa-run-container.md)
 #### [Orchestrate containers with a gMSA](manage-containers/gmsa-orchestrate-containers.md)
-#### [Configure gMSA on Azure Kubernetes Service](manage-containers/gmsa-aks-ps-module.md)
 #### [Configure gMSA with AKS on Azure Stack HCI](/azure-stack/aks-hci/prepare-windows-nodes-gmsa)
 #### [Troubleshoot gMSAs](manage-containers/gmsa-troubleshooting.md)
 #### gMSA on Azure Kubernetes Service (AKS)
@@ -132,7 +131,7 @@
 
 # Resources
 ## [Known Issues](manage-containers/known-issues.md)
-## [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1)
+## [Windows Server containers roadmap](https://github.com/Azure/AKS/projects/1?card_filter_query=label%3A+windows)
 ## Licensing and support
 ### [Pricing and licensing](https://www.microsoft.com/windows-server/pricing)
 ### [Windows base OS images](https://hub.docker.com/_/microsoft-windows-base-os-images)
