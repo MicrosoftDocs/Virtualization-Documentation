@@ -15,7 +15,7 @@ The last few weeks have been buzzing with virtualization news. Just two examples
 
 **WPC: A Sneak Peek at Windows Server “ _8_ ” Hyper-V**
 
-At WPC, I participated in a keynote and got to demo the first sneak peek at the next version of Hyper-V. If you’d like to see the Windows Server “ _8_ ” sneak-peek demo, go [here](http://digitalwpc.com/Videos/AllVideos/Permalink/3cb3788c-5c47-4b9e-987c-0dec4194058b/#fbid=xeCtyhEp9Qw) and fast forward to 36:50 of this online video. Don’t wait. I don’t know how long the video will be up. Judging by the _tens of thousands_ of views in the first couple of weeks, I think there ’s a bit of interest.
+At WPC, I participated in a keynote and got to demo the first sneak peek at the next version of Hyper-V. If you’d like to see the Windows Server “ _8_ ” sneak-peek demo, and fast forward to 36:50 of this online video. Don’t wait. I don’t know how long the video will be up. Judging by the _tens of thousands_ of views in the first couple of weeks, I think there ’s a bit of interest.
 
 Here’s what we showed:
 
@@ -54,13 +54,6 @@ In a word, NO. But don’t take my word for it. Let’s see what VMware’s cust
 
 On Twitter, folks have created a new hashtag devoted to the new vSphere Memory Tax topic [#vtax](https://twitter.com/#!/search?q=%23vTax).  Many of the Tweets contain language that is not appropriate for this blog, but here are a few tweets that I’m able to copy and paste.
 
-[![clip_image001](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7215.clip_image001_thumb_2DABDC82.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1832.clip_image001_75013274.png)
-
-[![clip_image002](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5187.clip_image002_thumb_006BA851.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5504.clip_image002_79B89ECD.png)[![clip_image003](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5584.clip_image003_thumb_0DD1BB57.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2376.clip_image003_071EB1D4.png)
-
-[![clip_image004](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0880.clip_image004_thumb_06464BEA.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0702.clip_image004_51A5EFAE.png)[![clip_image005](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0285.clip_image005_thumb_0C8D2278.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7144.clip_image005_57ECC63C.png)
-
-[![clip_image006](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1362.clip_image006_thumb_57146052.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1778.clip_image006_506156CF.png)[![clip_image007](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7144.clip_image007_thumb_647A7358.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2055.clip_image007_5DC769D5.png)
 
 So VMware customers immediately grasped the cost implications of this new model and were not hesitant to make their feelings known. But the broader IT community also expressed concern.
 
@@ -88,19 +81,19 @@ A few days after the appearance of VMware press releases on the vSphere 5 launch
 > 
 > _"Very shocked here, I can't go to my boss and explain that our recent investment in three new bladeservers with 128GB memory and 2 CPUs has to be licensed with extra VMware licences because there's 'so much RAM' in it," Vince77 wrote on the forum on[Wednesday](http://communities.vmware.com/thread/320877?start=30&tstart=0)._
 
-3\. CRN: [VMware Customers Fuming over VSphere Licensing Changes](http://www.crn.com/news/data-center/231001634/vmware-customers-fuming-over-vsphere-5-licensing-changes.htm;jsessionid=OvB1S3S+aV9DGvb+vycWTQ**.ecappj02?cid=nl_alert)
+3\. CRN: [VMware Customers Fuming over VSphere Licensing Changes](https://www.crn.com/news/data-center)
 
 > _VMware customers are venting their spleen over the licensing changes coming in vSphere 5, which in some cases will amount to a significant price hike._
 > 
 > _… and…_
 > 
-> _Evidence of customers' frustration can be found on Twitter, where the[#Vtax](http://www.crn.com/news/data-center/231001634/%20http:/twitter.com/#!/search?q=%23vTax) hashtag has sprung up and attracted a steady stream of vitriolic -- and sometimes colorful -- commentary. "Meet us at Boston Harbor -- we are dumping copies of VMware Workstation. _
+> _Evidence of customers' frustration can be found on Twitter, where the [#Vtax](https://www.crn.com/news/data-center/) hashtag has sprung up and attracted a steady stream of vitriolic -- and sometimes colorful -- commentary. "Meet us at Boston Harbor -- we are dumping copies of VMware Workstation. _
 
 4\. ITNews: [VMware Users Rail Against Licensing Changes](http://www.itnews.com.au/News/263512,vmware-users-rail-against-licensing-changes.aspx)
 
 > _“ Some required to double, triple VMware licenses.”_
 
-5\. TechTarget: [VMware Pricing Changes Add Cost To The Cloud](http://itknowledgeexchange.techtarget.com/cloud-computing/vmware-pricing-changes-add-cost-to-cloud/)
+5\. TechTarget: VMware Pricing Changes Add Cost To The Cloud
 
 > Analyst Comment: _“ **VMware ’s controversial licensing and pricing changes in vSphere 5, [leaked today](http://searchservervirtualization.techtarget.com/news/2240034504/) are positively uncloud-like when it comes to cost…”**_
 
@@ -194,7 +187,7 @@ Also, from the [VMware Community Forum](http://communities.vmware.com/thread/320
 
 **Comment #6** :
 
-[![clip_image008](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1832.clip_image008_thumb_41C4F90B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2821.clip_image008_2D3FA98D.png)
+
 
 **Comment #7** : Here’s another comment from [VMware’s public blog](http://blogs.vmware.com/virtualreality/2011/07/setting-microsoft-straight-on-the-vmware-service-provider-program-vspp.html#comments):
 
@@ -230,17 +223,16 @@ Here are some public reactions from VMware, including quotes from a Co-President
 
 **Response #1** : In response to the scathing and derisive customer feedback, VMware held an online webinar on 6/18/2011. The speaker repeated the same licensing and messaging. [Here’s what one VMware customer had to say (in VMware’s Community Forum) after attending this webcast](http://communities.vmware.com/thread/320877?start=660&tstart=0):
 
-[![clip_image009](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3808.clip_image009_thumb_40EC9321.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5148.clip_image009_3A39899E.png)
+
 
 **Response #2:** In a video interview with CRN, VMware Co-President Carl Eschenbach (@2:45 in the video) says,
 
-[![clip_image010](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6204.clip_image010_12930D74.png)](http://www.crn.com/video/index1.htm?searchVideoContent=1057465579001)
 
 **[“ I actually think our channel and customers are excited about this change” (the new licensing).](http://www.crn.com/video/index1.htm?searchVideoContent=1057465579001)**
 
 **-VMware Co-President, Carl Eschenbach**
 
-**Response #3** : In another interview with CRN, VMware CEO, [Paul Maritz, says in an interview with CRN](http://www.crn.com/news/data-center/231002148/vmware-ceo-maritz-tries-to-clear-air-on-vsphere-licensing.htm;jsessionid=VUIogF1qA47edvIsQkS5QQ**.ecappj02):
+**Response #3** : In another interview with CRN, VMware CEO, [Paul Maritz, says in an interview with CRN](https://www.crn.com/news/data-center):
 
 > _"We believe that 95 percent of customers will see no change in their licensing costs. From our calculations, most customers will see no change and won't be required to pay us more money," Maritz said in a Q &A during VMware's Q2 earnings call._
 > 
@@ -1547,7 +1539,7 @@ With Microsoft, customers can build scalable virtualized infrastructures on Hype
 
 As for scalability, you should know that scalability and performance are ongoing development activities at Microsoft. Scalability and performance work is _never_ complete. If you look at Windows Server, we have improved the scalability, performance, and capabilities in every release. Needless to say, the next version of Windows Server will improve on these numbers and you can expect even more capabilities.
 
-At the Worldwide Partner Conference 2011, we demonstrated some of the new capabilities of **Windows Server “ _8_ ,” specifically around Hyper-V**.  **With an ability to create VMs with more than 16 virtual processors and built-in replication with Hyper-V Replica,** Microsoft is showcasing its deep commitment to its customers, and our relentless pursuit to provide even more value, at no extra cost.  **These are just 2 of the _hundreds_ of features coming in the Microsoft Private Cloud, of which you ’ll be able to find out more at [Microsoft’s BUILD conference](http://www.buildwindows.com/), September 13th-16th in Anaheim, CA.**
+At the Worldwide Partner Conference 2011, we demonstrated some of the new capabilities of **Windows Server “ _8_ ,” specifically around Hyper-V**.  **With an ability to create VMs with more than 16 virtual processors and built-in replication with Hyper-V Replica,** Microsoft is showcasing its deep commitment to its customers, and our relentless pursuit to provide even more value, at no extra cost.  **These are just 2 of the _hundreds_ of features coming in the Microsoft Private Cloud, of which you ’ll be able to find out more at Microsoft’s BUILD conference, September 13th-16th in Anaheim, CA.**
 
 Finally, I don’t understand how VMware can claim a memory tax benefits customers. I’ve had the privilege of working on virtualization for over a decade and **_not once_** has a customer told me,  “I really wish you would license virtualization by the memory assigned to a VM.”
 
@@ -1565,7 +1557,7 @@ NO, we have no intention of imposing:
 
 Per VM taxes are what virtualization vendors do, not strategic cloud providers.
 
-See you at [Build](http://www.buildwindows.com/),
+
 
 Jeff Woolsey
 

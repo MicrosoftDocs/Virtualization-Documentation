@@ -8,7 +8,7 @@ ms.date: 03/22/2011
 categories: private-cloud
 ---
 # Microsoft Management Summit (MMS) - Private Cloud Computing
-From the sold-out Microsoft Management Summit in Las Vegas, Brad Anderson posts about empowering our customers with Private Cloud computing.  This post comes directly from the [Official Microsoft Blog](https://blogs.technet.com/b/microsoft_blog/archive/2011/03/22/private-cloud-computing-it-s-all-about-the-apps.aspx).  View the related press release [here](http://bit.ly/f2yA8M). 
+From the sold-out Microsoft Management Summit in Las Vegas, Brad Anderson posts about empowering our customers with Private Cloud computing.  This post comes directly from the [Official Microsoft Blog](/archive/blogs/microsoft_blog/private-cloud-computing-its-all-about-the-apps).
 
   
 **Private Cloud Computing: It ’s all About the Apps**
@@ -23,15 +23,15 @@ In fact, an agile infrastructure that is disconnected from the applications it s
 
 In cloud computing, I see great opportunity for these customers. If you think about it, cloud computing is, at its core, focused on applications. In the very large cloud centers, where we run the Windows Azure,  Office 365, Xbox Live, and Bing services (among others), application service levels are all that matter.  We have optimized everything – the facility, the infrastructure, the processes – to deliver on-demand, standardized IT services that run on shared resources. While Microsoft’s investment in these types of cloud centers is unique, the best practices can be directly applied to every IT environment.
 
-So, how does a company get there? Certainly virtualization is an important step, and many organizations are at that phase in their “journey to the cloud.” (Case in point: retail leader Target Co. [using our Hyper-V technologies](https://www.microsoft.com/presspass/press/2011/mar11/03-21TargetPR.mspx).) But how can you be sure your company is well positioned to move to cloud computing, ready to meet the business demands for faster, more reliable application services?
+So, how does a company get there? Certainly virtualization is an important step, and many organizations are at that phase in their “journey to the cloud.” (Case in point: retail leader Target Co. using our Hyper-V technologies.) But how can you be sure your company is well positioned to move to cloud computing, ready to meet the business demands for faster, more reliable application services?
 
 You start with a management infrastructure that is designed to empower IT. A management infrastructure that brings together the network, storage and computing islands into an integrated fabric. A management infrastructure that can create clouds with just a few clicks. Management that empowers the business to build, deploy and scale applications on their terms. And management infrastructure that is not just “virtual machine aware,” but delivers the application insight that your business depends upon, spanning both private and public cloud services.
 
 That kind of management can make the difference between IT really delivering business value and just managing cost and complexity. In addition, IT administrators will find that it unlocks career opportunity, as well. Just as we move from individual servers to infrastructure fabric, server administrators will see an opportunity to lead the journey to the cloud.
 
-That’s what we’re showing at MMS today. (You will soon be able to view my keynote speeches and read our news announcements [here](https://www.microsoft.com/presspass/presskits/cloud/).) Our management offerings are designed to help IT organizations build private cloud solutions that deliver application services, not just virtual machines. With our approach, the applications drive the IT infrastructure, not the other way around. The management technologies at the center give both IT managers and application managers throughout the company a unified view into applications in private, public and hybrid cloud scenarios.
+That’s what we’re showing at MMS today. Our management offerings are designed to help IT organizations build private cloud solutions that deliver application services, not just virtual machines. With our approach, the applications drive the IT infrastructure, not the other way around. The management technologies at the center give both IT managers and application managers throughout the company a unified view into applications in private, public and hybrid cloud scenarios.
 
-Finally, with a Microsoft [private cloud](https://www.microsoft.com/virtualization/en/us/private-cloud.aspx), customers can use the infrastructure they know and own today to build and deliver private cloud computing as a managed service, including other vendors’ tools, platforms and virtualization technologies. We emphasize putting our customers’ needs ahead of any particular technology.
+Finally, with a Microsoft private cloud, customers can use the infrastructure they know and own today to build and deliver private cloud computing as a managed service, including other vendors’ tools, platforms and virtualization technologies. We emphasize putting our customers’ needs ahead of any particular technology.
 
 If you’re interested in more details, I invite you to watch my keynote speeches here, or visit our Hyper-V Cloud web site. Let us know your thoughts!
 

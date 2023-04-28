@@ -8,13 +8,13 @@ ms.date: 02/10/2011
 categories: net
 ---
 # Hyper-V Cloud Fast Track Program
-So you heard about the [**Hyper-V Cloud Fast Track program**](https://www.microsoft.com/virtualization/en/us/hyperv-cloud-fasttrack.aspx) and wonder  … what exactly is it? Is it marketecture or is there some meat to it? What do these “pre-architected, pre-validated” solutions consist of, and how were those decisions arrived at? What was the architecture and validation methodology? Well my friend, this post is for you. 
+So you heard about the **Hyper-V Cloud Fast Track program** and wonder  … what exactly is it? Is it marketecture or is there some meat to it? What do these “pre-architected, pre-validated” solutions consist of, and how were those decisions arrived at? What was the architecture and validation methodology? Well my friend, this post is for you. 
 
-Myself and [David Ziembicki](https://blogs.technet.com/b/davidzi/) authored the Hyper-V Cloud Fast Track Reference Architecture and Validation Guide used to align Microsoft and OEM partners on a common architecture and for OEMs to re-use and expand upon for their own Reference Architectures. Dave and I are Solution Architects within [Microsoft Services](https://www.microsoft.com/microsoftservices/en/us/home.aspx) in the [US Public Sector](https://www.microsoft.com/industry/government/default.aspx) organization.
+Myself and [David Ziembicki](https://blogs.technet.com/b/davidzi/) authored the Hyper-V Cloud Fast Track Reference Architecture and Validation Guide used to align Microsoft and OEM partners on a common architecture and for OEMs to re-use and expand upon for their own Reference Architectures. Dave and I are Solution Architects within Microsoft Services in the US Public Sector organization.
 
-A few details to get out of the way: First, each OEM (HP, Dell, IBM, Hitachi, Fujitsu, NEC) brings something unique to the table. Each OEM partner will be jointly publishing with Microsoft their Hyper-V Cloud Fast Track Reference Architecture, which will detail the hardware specifications, configurations, detailed design elements, and management additions. Available to you right now are some great resources such as solution briefs, a [new white paper](https://download.microsoft.com/download/B/7/9/B7931A5A-18F6-41EA-B603-975EF281587F/Hyper-V_Cloud_Fast_Track_White_Paper.pdf "Reference architecture technical white paper"), and Fast Track partner web sites. In this post I will share with you the common architecture elements that apply to all program partners and how those decisions were made.
+A few details to get out of the way: First, each OEM (HP, Dell, IBM, Hitachi, Fujitsu, NEC) brings something unique to the table. Each OEM partner will be jointly publishing with Microsoft their Hyper-V Cloud Fast Track Reference Architecture, which will detail the hardware specifications, configurations, detailed design elements, and management additions. Available to you right now are some great resources such as solution briefs, a new white paper, and Fast Track partner web sites. In this post I will share with you the common architecture elements that apply to all program partners and how those decisions were made.
 
-Next, I’d like to direct you to the [**Private Cloud TechNet Blog**](https://blogs.technet.com/b/privatecloud/) where I have detailed the [ Principles](https://blogs.technet.com/b/privatecloud/archive/2010/10/12/private-cloud-principles.aspx) and [Concepts](https://blogs.technet.com/b/privatecloud/archive/2010/12/20/private-cloud-concepts.aspx) which underlay the architecture of this program. Now, those principles are actually pretty lofty goals and the program will address more and more of them over time. A brief preview of the concepts is listed below. I feel it’s important to provide a glimpse of them now because they are what Hyper-V Cloud Fast Track aims to achieve. Please reference the post for deeper insight on these.
+Next, I’d like to direct you to the [**Private Cloud TechNet Blog**](https://blogs.technet.com/b/privatecloud/) where I have detailed the [Principles](https://blogs.technet.com/b/privatecloud/archive/2010/10/12/private-cloud-principles.aspx) and [Concepts](https://blogs.technet.com/b/privatecloud/archive/2010/12/20/private-cloud-concepts.aspx) which underlay the architecture of this program. Now, those principles are actually pretty lofty goals and the program will address more and more of them over time. A brief preview of the concepts is listed below. I feel it’s important to provide a glimpse of them now because they are what Hyper-V Cloud Fast Track aims to achieve. Please reference the post for deeper insight on these.
 
 ****
 
@@ -76,7 +76,7 @@ o   Storage Tiering
 
 o   Automation
 
-![Storage Log image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7485.CSVstorage.jpg)
+
 
 One of the really cool advantages of this program is that it allows for multiple best-of-breed private cloud solutions to emerge taking advantage of each vendor’s strength. You can only find this in a multi-vendor, multi-participant program.
 
@@ -100,7 +100,7 @@ o   NIC Teaming
 
 NIC Teaming in particular is one of those items that can be tricky to get right being there are different vendor solutions each with potentially different features and configuration options. Therefore it’s an example of a design element that benefits greatly from the Hyper-V Cloud Fast Track program taking all the guesswork out of NIC Teaming providing the best-practice configuration tested and validated by both Microsoft and the OEM.
 
-![N I C Teaming image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5100.NICTeaming.jpg)
+
 
 ****
 
@@ -133,12 +133,15 @@ The Management layer is so critical and really is what transforms the datacenter
 
 **Summary**
 
-There are several other elements I would love to delve into such as _Security_ and _Service Management_ , but this post could go for quite a while. I’ll leave the remainder for the [Reference Architecture Whitepaper](https://download.microsoft.com/download/B/7/9/B7931A5A-18F6-41EA-B603-975EF281587F/Hyper-V_Cloud_Fast_Track_White_Paper.pdf) which we just published, as well as the OEM-specific Reference Architectures published by them.
+There are several other elements I would love to delve into such as _Security_ and _Service Management_ , but this post could go for quite a while. I’ll leave the remainder for the Reference Architecture Whitepaper which we just published, as well as the OEM-specific Reference Architectures published by them.
 
 I hope you found this article useful and that it sheds some light on the deep and broad collaborative effort we have embarked upon with our partners. Personally, I am very happy that this program was created and am confident it will fill a great need emerging in datacenters everywhere.
 
 ****
 
-**Adam Fazio, Solution Architect, Microsoft   **  [Twitter](http://www.twitter.com/adamfazio)  [LinkedIn](http://www.linkedin.com/in/adamfazio)  [Building Clouds](https://blogs.technet.com/b/privatecloud/rss.aspx)
+**Adam Fazio, Solution Architect, Microsoft**  
+[Twitter](https://twitter.com/adamfazio)  
+[LinkedIn](https://www.linkedin.com/in/adamfazio/)  
+[Building Clouds](https://blogs.technet.com/b/privatecloud/rss.aspx)
 
 ****
