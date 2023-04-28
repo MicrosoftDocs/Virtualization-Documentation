@@ -13,12 +13,9 @@ This post discusses a subtle change in the certificate workflow for Hyper-V Repl
 
 **Note** :
 
-  * The pre-requisites certificate based authentication remains unchanged (as seen in an earlier post “[ **Hyper-V Replica - Prerequisites for certificate based deployments**](https://blogs.technet.com/b/virtualization/archive/2012/03/13/hyper-v-replica-certificate-requirements.aspx)”)
+  * The pre-requisites certificate based authentication remains unchanged (as seen in an earlier post “[**Hyper-V Replica - Prerequisites for certificate based deployments**](/virtualization/community/team-blog/2012/20120313-hyper-v-replica-prerequisites-for-certificate-based-deployments)”)
 
   * Only the workflow for picking the certificate has changed – all other functionality (such as handling seamless replication during VM migration) and requirements (certificates, firewall rules) remain unchanged
-
-
-
 
 **Windows Server “8” Beta Workflow:**
 
@@ -32,15 +29,11 @@ This post discusses a subtle change in the certificate workflow for Hyper-V Repl
     * **Error conditions** : In certain scenarios, the errors which stemmed from picking the root certificate did not help users debug the problem. As Hyper-V Replica attempted to use a certificate which was different from the user input, root-causing the error proved to be cumbersome.
 
 
-
-
 **Summary of change:**
 
   * We listened to your feedback and introduced a minor change in the workflow which now requires you to pick the Personal store certificate.
 
   * This post discusses the new workflow by using a SAN certificate as an example. The same steps can be used for other supported certificates.
-
-
 
 
 **Step #1: Enabling Replication on a Replica Cluster**
@@ -50,20 +43,10 @@ This post discusses a subtle change in the certificate workflow for Hyper-V Repl
   * The administrator wants to allow the cluster to receive replication traffic and clicks on the **Replication Settings** of RepBroker. On a fresh cluster where the certificate have not been installed, the following error message is seen on clicking the **Select Certificate … **button.
 
 
-
-
-> [![Error message after clicking Select Certificate](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1121.image_thumb_320CDE88.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6646.image_2E000005.png)
-
-  * Using the information from the error message (and a little help from [this](https://blogs.technet.com/b/virtualization/archive/2012/07/10/requesting-hyper-v-replica-certificates-from-an-enterprise-ca.aspx) post ![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3426.wlEmoticon-smile_661865C0.png)), the administrator creates and installs a SAN certificate which meets the requirement.
-
-
+  * Using the information from the error message (and a little help from [this](https://blogs.technet.com/b/virtualization/archive/2012/07/10/requesting-hyper-v-replica-certificates-from-an-enterprise-ca.aspx) post, the administrator creates and installs a SAN certificate which meets the requirement.
 
   * Now, on clicking the **Select Certificate … **button, a **filtered list** (which matches the **[certificate pre-requisites](https://blogs.technet.com/b/virtualization/archive/2012/03/13/hyper-v-replica-certificate-requirements.aspx)) ** of certificates from the Personal Store of the Local Machine is shown:
 
-
-
-
-> [![Filtered listing from the Personal Store of the Local Machine](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4478.image_thumb_695439A9.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6064.image_65475B26.png)
 
 **(OR)** To achieve the same from PowerShell, the following cmdlets can be used
 
@@ -114,10 +97,6 @@ PS Cert:\LocalMachine\My> Set-VMReplicationServer -ReplicationEnabled $true -All
 
   * On a fresh primary cluster, if the administrator tries to enable replication using certificate based authentication before configuring the certificates, he is shown an error message:
 
-
-
-> [![Error message on a fresh primary cluster](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1055.image_thumb_2E90DE4F.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3000.image_2A83FFCC.png)
-
   * The administrator creates and installs a SAN certificate by following the same guidance as the replica server
 
 
@@ -125,9 +104,6 @@ PS Cert:\LocalMachine\My> Set-VMReplicationServer -ReplicationEnabled $true -All
   * When the administrator now clicks on the **Select Certificate … **button, a **filtered list** of certificates from the Personal Store of the Local Machine which matches the [certificate pre-requisites](https://blogs.technet.com/b/virtualization/archive/2012/03/13/hyper-v-replica-certificate-requirements.aspx).
 
 
-
-
-> [![Filtered list of certificates](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7318.image_thumb_18CC1754.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3527.image_791AACDA.png)
 
 **(OR)** To achieve the above using PowerShell, the administrator issues the following cmdlets:
 

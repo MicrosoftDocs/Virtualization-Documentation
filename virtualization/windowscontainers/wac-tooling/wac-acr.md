@@ -1,31 +1,30 @@
 ---
 title: Manage Azure Container Registry on Windows Admin Center
 description: Learn about Azure Container Registry on Windows Admin Center.
-keywords: docker, containers, Windows Admin Center
 author: vrapolinario
 ms.author: viniap
-ms.date: 12/24/2020
+ms.date: 04/12/2023
 ms.topic: how-to
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Manage Azure Container Registry using Windows Admin Center
 
-This topic describes how to manage Azure Container Registry (ACR) using Windows Admin Center. Azure Container Registry allows you to build, store, and manage container images and artifacts in a private registry for all types of container deployments. 
+This topic describes how to manage Azure Container Registry (ACR) using Windows Admin Center. Azure Container Registry allows you to build, store, and manage container images and artifacts in a private registry for all types of container deployments.
 
 >[!Note]
 >An Azure subscription is required to run the steps in this tutorial. For more information on how to connect your Windows Admin Center instance to Azure, see [Configuring Azure integration](/windows-server/manage/windows-admin-center/azure/azure-integration).
 
 Windows Admin Center allows you to perform basic management of Azure Container Registry, such as:
-  
-- List registries and images 
-- Create new registries 
-- Remove images 
+
+- List registries and images
+- Create new registries
+- Remove images
 - Pull images to your container host
 - Start new containers on Azure Container Instances from images stored in Azure Container Registry
 
-Using Windows Admin Center to manage ACR, you can prepare the Azure location to which you can push images directly from the **Images** tab under **Container host**. To get started, follow the steps below:  
+Using Windows Admin Center to manage ACR, you can prepare the Azure location to which you can push images directly from the **Images** tab under **Container host**. To get started, follow the steps below:
 
-1. Open your Windows Admin Center instance and select the container host. 
+1. Open your Windows Admin Center instance and select the container host.
 2. Under **Tools** in the left pane, scroll down and select the **Containers** extension.
 3. Open the **Azure Container Registry** tab under **Azure**.
 

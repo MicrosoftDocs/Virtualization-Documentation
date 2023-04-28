@@ -12,15 +12,15 @@ I was tinkering around with my lab setup which consists of a domain, proxy serve
 
 If the primary server is behind a proxy server (forward proxy) and if Kerberos based authentication is used to establish a connection between the primary and replica server, you might encounter an error: _Hyper-V cannot connect to the specified Replica server `<servername>` due to connection timed out. Verify if a network connection exists to the Replica server or if the proxy settings have been configured appropriately to allow replication traffic._
 
-[![Connection timed out error](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image4_thumb_10CD0BA5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image4_3870F71E.png)
+<!--[![Connection timed out error](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image4_thumb_10CD0BA5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image4_3870F71E.png)-->
 
 I have a **Forefront TMG 2010** acting as a proxy server and the logs in the proxy server 
 
-[![Proxy server logs](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_2AAF3CF4.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_387EF23E.png)
+<!--[![Proxy server logs](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_2AAF3CF4.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_387EF23E.png)-->
 
 I also had _[netmon](https://www.microsoft.com/en-in/download/details.aspx?id=4865)_ running in my primary server and the logs didn’t indicate too much other than for the fact that the connection never made it to the replica server – something happened between the primary and replica server which caused the connection to be terminated. The primary server name in this deployment is prb8.hvrlab.com and the proxy server is w2k8r2proxy1.hvrlab.com. 
 
-[![Primary server](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image12_thumb_5A8395A8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image12_4B4A9C2A.png)
+<!--[![Primary server](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image12_thumb_5A8395A8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image12_4B4A9C2A.png)-->
 
 If a successful connection goes through, you will see a spew of messages on netmon 
 
@@ -28,11 +28,11 @@ When I had observed the issue the first time when building the product, I had re
 
 Hyper-V Replica set a high content length as we expect to transfer large files (VHDs) and it would save us the effort to re-establish the connection each time. A closer inspection of a POST request shows the content length which is being set by Hyper-V Replica (ahem, ~500GB)
 
-[![P O S T Request](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_2A00A3C1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_6F16E046.png)
+<!--[![P O S T Request](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_2A00A3C1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_6F16E046.png)-->
 
 The proxy server returns a _what-uh?_ response in the form of a bad-request
 
-[![Bad-request response](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_7CA42F52.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_4FF8E4C8.png)
+<!--[![Bad-request response](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_7CA42F52.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_4FF8E4C8.png)-->
 
 That isn’t superhelpful by any means and the error message unfortunately isn’t too specific either. But now you know the reason for the failure – the proxy server terminates the connection the connection request and it never reaches the replica server. 
 

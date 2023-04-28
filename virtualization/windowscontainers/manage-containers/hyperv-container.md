@@ -1,7 +1,6 @@
 ﻿---
 title: Isolation modes
 description: Explanation of how Hyper-V isolation differs from process isolated containers.
-keywords: docker, containers
 author: cwilhit
 ms.author: lizross
 ms.date: 06/01/2021

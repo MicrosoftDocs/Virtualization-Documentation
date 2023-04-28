@@ -14,15 +14,6 @@ Hyper-V Replica reduces the Recovery Time Objective (RTO) providing the ability 
 
 When replication is enabled for a VM, the replica VM's network adapters are disconnected by default.
 
- 
-
-[![clip_image002\[7\]](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5633.clip_image0027_thumb_18D11B10.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1004.clip_image0027_15306F82.jpg) |   |   | [![clip_image002\[13\]](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1401.clip_image00213_thumb_0A2B908D.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8838.clip_image00213_517E55CE.jpg)  
----|---|---|---  
-  |   |   |    
-  
-> **Primary Virtual machine**
-
-|    |   | **Replica Virtual machine**  
   
 **Inject IP address from UI**
 
@@ -30,11 +21,10 @@ Administrators need to connect the replica VM to the appropriate switch in the R
 
 Open the Hyper-V manager and open the settings of the replica VM. Click on **Network Adapter** and click on the **Failover TCP/IP** below the setting.
 
-[![clip_image002\[15\]](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2577.clip_image00215_thumb_06435D5F.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8688.clip_image00215_42D8CB4B.jpg)
+
 
 Enter the IP (v4/v6) details including the address, subnet mask and DNS server(s) information. To verify the settings, invoke the "Test Failover" operation. It is recommended that this operation is run in an isolated network which can be achieved by using the **Test Failover** setting under the Replica VM’s network adapter setting. In the picture below, the replica VM is connected to one such private network.
 
-[![clip_image002\[17\]](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4401.clip_image00217_thumb_40C3B06B.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0677.clip_image00217_5A9555E9.jpg)
 
 By default, the network settings under **Test Failover** is not-connected to any switch. Once the above step is performed, when a test failover is invoked, the newly created VM will be connected to "Private Test Network" switch and the IP address provided under " **Failover TCP/IP** " will be injected into the test VM.
 
@@ -83,7 +73,7 @@ where ‘Private Test Network’ is the name of a virtual switch which provides 
 
 A frequent question which we get is around providing the ability to inject **multiple** IP addresses on the same network adapter.
 
-Though this cannot be achieved using UI or PowerShell, the same can be achieved in WMI. This address set is represented by WMI class [Msvm_FailoverNetworkAdapterSettingData](https://msdn.microsoft.com/library/hh850154\(v=vs.85\).aspx). A WMI snippet is given below which allows you to achieve the above functionality:
+Though this cannot be achieved using UI or PowerShell, the same can be achieved in WMI. This address set is represented by WMI class [Msvm_FailoverNetworkAdapterSettingData](/windows/win32/hyperv_v2/msvm-failovernetworkadaptersettingdata). A WMI snippet is given below which allows you to achieve the above functionality:
 
 ```wmi
     #Get vm object 
@@ -219,4 +209,4 @@ Though this cannot be achieved using UI or PowerShell, the same can be achieved 
 
  
 
-The post demonstrates the ease with which IP addresses can be injected during failover. If you wish to inject IP address into a running VM from the root partition, [SetGuestNetworkAdapterConfiguration](https://msdn.microsoft.com/library/hh850297\(v=vs.85\).aspx) is a new API which allows you to achieve this.
+The post demonstrates the ease with which IP addresses can be injected during failover. If you wish to inject IP address into a running VM from the root partition, [SetGuestNetworkAdapterConfiguration](/windows/win32/hyperv_v2/setguestnetworkadapterconfiguration-msvm-virtualsystemmanagementservice) is a new API which allows you to achieve this.

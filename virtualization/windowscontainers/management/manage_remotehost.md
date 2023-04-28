@@ -1,7 +1,6 @@
 ---
 title: Remote management of a Windows Docker host
 description: How to securely manage a remote Docker host running Windows Server.
-keywords: docker, containers
 author: taylorb-microsoft
 ms.author: mabrigg
 ms.date: 02/14/2017
@@ -34,7 +33,6 @@ docker -D -H tcp://wsdockerhost.southcentralus.cloudapp.azure.com:2376 --tlsveri
 users\foo\.docker\client\ca.pem --tlscert=c:\users\foo\.docker\client\cert.pem --tlskey=c:\users\foo\.doc
 ker\client\key.pem ps
 ```
-
 
 ## Troubleshooting
 ### Try connecting without TLS to determine your NSG firewall settings are correct

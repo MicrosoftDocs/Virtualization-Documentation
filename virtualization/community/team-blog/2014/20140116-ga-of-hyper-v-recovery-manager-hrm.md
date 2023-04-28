@@ -14,12 +14,11 @@ We are excited to announce the General Availability of Hyper-V Recovery Manager 
 
 The high level solution is as follows:
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_08F9A01C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_63015F14.png)
+<!--[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_08F9A01C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_63015F14.png)-->
 
-A step by step guide on setting up HRM is available @ <http://www.windowsazure.com/en-us/documentation/articles/hyper-v-recovery-manager-configure-vault/>
 
-If you have questions on HRM, visit the TechNet forum @ <https://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr>
+If you have questions on HRM, visit the [TechNet forum](https://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr)
 
-Pricing, SLA details for the service is available @ <http://www.windowsazure.com/en-us/pricing/details/recovery-manager/>
+Pricing, SLA details for the service is available [here](https://azure.microsoft.com/pricing/details/site-recovery/)
 
-Brad Anderson’s blog on HRM - <https://blogs.technet.com/b/in_the_cloud/archive/2014/01/16/announcing-the-ga-of-windows-azure-hyper-v-recovery-manager.aspx> – provides more details on the solution.
+Brad Anderson’s [blog](/archive/blogs/) on HRM – provides more details on the solution.

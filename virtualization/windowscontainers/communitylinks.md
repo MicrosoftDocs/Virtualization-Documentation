@@ -1,7 +1,6 @@
 ---
 title: Community videos and blogs
 description: Links to videos and blogs contributed by the Windows container community.
-keywords: docker, containers, windows, samples
 author: taylorb-microsoft
 ms.author: mabrigg
 ms.date: 12/19/2016

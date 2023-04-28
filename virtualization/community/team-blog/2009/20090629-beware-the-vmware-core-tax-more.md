@@ -11,7 +11,7 @@ categories: hp
 
 Virtualization Nation,
 
-We'd like to again offer congratulations to [AMD on the release of their new 6-core Opteron ("Istanbul") processors](http://sites.amd.com/us/atwork/promo/Pages/six-core-opteron.aspx). [As Bryon mentioned](https://blogs.technet.com/virtualization/archive/2009/06/09/Windows-Server-2008-R2-Hyper_2D00_V-and-AMD_2700_s-6_2D00_core-Opteron.aspx), Hyper-V R2 goes hand in hand with these new processors with support for AMD's Rapid Virtualization Indexing, advanced power savings with Core Parking and, of course, more cores means compute resources to run more virtual machines. In fact, two factors that have fueled virtualization have been the rise of 64-bit (x64) computing and the rapid growth of multi-core processors.
+We'd like to again offer congratulations to [AMD on the release of their new 6-core Opteron ("Istanbul") processors](https://www.amd.com/). [As Bryon mentioned](/virtualization/community/team-blog/2009/20090609-windows-server-2008-r2-hyper-v-and-amd-s-6-core-opteron), Hyper-V R2 goes hand in hand with these new processors with support for AMD's Rapid Virtualization Indexing, advanced power savings with Core Parking and, of course, more cores means compute resources to run more virtual machines. In fact, two factors that have fueled virtualization have been the rise of 64-bit (x64) computing and the rapid growth of multi-core processors.
 
 **Bring On The Cores**
 
@@ -48,8 +48,6 @@ Ouch.
 
 From their website:
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NoHyperVCoreTaxHere_BADB/image_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NoHyperVCoreTaxHere_BADB/image_3.png)
-
  
 
 **What do Analysts Think?**
@@ -66,7 +64,6 @@ With vSphere, VMware created a new, higher end tier, Enterprise Plus, so that En
 
 **What Do VMware Customers Think?**
 
-From [HERE](http://searchservervirtualization.techtarget.com/news/article/0,289142,sid94_gci1359167,00.html). 
 
 > _The enforced SnS renewal is particularly galling for companies that just recently renewed their contracts, said Andrew Storrs, and independent consultant in Vancouver, Canada. "It's not so bad if you only have six months left [on SnS], but what if you have 2.5 years left?" To take advantage of the upgrade promotion, IT managers are in the awkward position of having to ask to for more money for their SnS, "just for the privilege of using a normal [VMware] edition next year."_
 > 
@@ -84,7 +81,7 @@ Think that's bad? VMware didn't stop there.
 
 Two things that are interesting:
 
-  1. It's odd that Enterprise Edition supports fewer cores per processor than Advanced. Paying more and getting less isn't exactly customer friendly. **To add insult to injury, _VMware is dropping the Enterprise SKU altogether this year to force customers to purchase an upgrade to Enterprise Plus_. ([HERE](http://searchservervirtualization.techtarget.com/news/article/0,289142,sid94_gci1359167,00.html) & [HERE](http://technodrone.blogspot.com/2009/04/will-we-be-forced-to-pay-more-pt-2.html)) Double ouch**. 
+  1. It's odd that Enterprise Edition supports fewer cores per processor than Advanced. Paying more and getting less isn't exactly customer friendly. **To add insult to injury, _VMware is dropping the Enterprise SKU altogether this year to force customers to purchase an upgrade to Enterprise Plus_. ([HERE](https://blog.technodrone.cloud/2009/04/will-we-be-forced-to-pay-more-pt-2.html)) Double ouch**. 
   2. It's also interesting that VMware caps the number of cores per processor at 12. What happens when a processor comes out that includes more than 12 cores? 16? 24? 32? More? Will that require an upgrade to _Enterprise Super Plus_?
 
 
@@ -93,7 +90,7 @@ I'll let you draw your own conclusions, but VMware's track record speaks for its
 
 **CUSTOMERS: FIRST & FOREMOST**
 
-**No Core Tax**. At Microsoft, we don't license per core, generally, we license per server or per processor. When we do license per processor, it's per _processor_ regardless of how many cores are present. I should also point out that the **_[FREE standalone Microsoft Hyper-V Server 2008 R2 supports up 8 physical processors whether there are 1, 2, 4, 6 or 8+ cores per processor](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx)_** ** __**as well.
+**No Core Tax**. At Microsoft, we don't license per core, generally, we license per server or per processor. When we do license per processor, it's per _processor_ regardless of how many cores are present. I should also point out that the **_[FREE standalone Microsoft Hyper-V Server 2008 R2 supports up 8 physical processors whether there are 1, 2, 4, 6 or 8+ cores per processor](https://techcommunity.microsoft.com/t5/virtualization/microsoft-hyper-v-server-2008-r2-release-candidate-free-live/ba-p/381560)_** ** __**as well.
 
 Read that last sentence again.
 

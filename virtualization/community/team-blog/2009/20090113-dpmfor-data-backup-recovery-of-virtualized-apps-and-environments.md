@@ -19,13 +19,13 @@ And unlike other (shall-not-be-named) virtualization platforms’ backup mechani
 
 For more details on the SP1 release for DPM 2007, check out:
 
-·         Bala’s executive [viewpoint on DPM 2007 sp1](https://blogs.technet.com/dpm/archive/2009/01/13/announcing-service-pack-1-for-dpm-2007.aspx)
+·         Bala’s executive [viewpoint on DPM 2007 sp1](https://techcommunity.microsoft.com/t5/system-center-blog/bg-p/SystemCenterBlog)
 
-·         Some early SP1 customers are also blogging about their experiences and you can see at these links – [ICON](https://blogs.technet.com/dpm/archive/2009/01/13/customer-blog-post-on-DPM-2007-SP1-ICON.aspx) & [Convergent Computing](https://blogs.technet.com/dpm/archive/2009/01/13/customer-blog-post-on-DPM-2007-SP1-RAND.aspx)
+·         Some early SP1 customers are also blogging about their experiences and you can see at these links – [ICON](https://techcommunity.microsoft.com/t5/system-center-blog/bg-p/SystemCenterBlog) & [Convergent Computing]https://techcommunity.microsoft.com/t5/system-center-blog/bg-p/SystemCenterBlog)
 
-·         A feature overview of [DPM SP1 is located here](https://blogs.technet.com/dpm/archive/2009/01/13/Service-Pack-1-is-for-you.aspx)
+·         A feature overview of DPM SP1 
 
-The DPM folks have dedicated resources on “ ** _How to protect virtualized environments with DPM 2007_** ” – [https://www.microsoft.com/DPM/virtualization](https://www.microsoft.com/DPM/virtualization). And a very cool podcast showing how to protect Hyper-V with DPM 2007 SP1 - [https://edge.technet.com/Media/DPM-2007-SP1-Protecting-Hyper-V](https://edge.technet.com/Media/DPM-2007-SP1-Protecting-Hyper-V)
+The DPM folks have dedicated resources on “ ** _How to protect virtualized environments with DPM 2007_** ” – [here](https://www.microsoft.com/DPM/virtualization). And a very cool podcast showing how to protect Hyper-V with DPM 2007 SP1 
 
 Congrats to the DPM crew – and nice job on backing up Hyper-V !!!
 

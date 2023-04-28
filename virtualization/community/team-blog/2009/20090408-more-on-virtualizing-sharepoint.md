@@ -11,7 +11,7 @@ categories: enterprise-strategy-group
 
 Since there was interest in the [previous post](https://blogs.technet.com/virtualization/archive/2009/04/06/Series-on-virtualizing-SharePoint.aspx "TechNet blog post") about the UK services team's series on virtualizing SharePoint, I wanted to recommend the following video from October 2008. The interview is with Michael Noel of Convergent Computing.  Michael is also a SharePoint MVP. In this video (6 minutes long), Michael talks about using System Center Virtual Machine Manager to deploy SharePoint.  He also talks about disaster recovery and quickly provisioning a SharePoint farm.
 
-There's a high interest amongst our customers to adopt SharePoint, and to run it within a virtual machine. Mark at Enterprise Strategy Group [[his blog](http://esgblogs.typepad.com/marks_blog/ "Mark Bowker blog")] shared the following data with me [from a Dec 2008 research brief by ESG], that partially explains why there's interest.
+There's a high interest amongst our customers to adopt SharePoint, and to run it within a virtual machine. Mark at Enterprise Strategy Group his blog shared the following data with me [from a Dec 2008 research brief by ESG], that partially explains why there's interest.
 
  
 
@@ -20,6 +20,5 @@ There's a high interest amongst our customers to adopt SharePoint, and to run
 > _ESG ’s research also reveals that SharePoint is viewed very favorably by current users, with 69% of current adopters saying they would recommend that organizations similar to their own implement SharePoint broadly._
 
   
-[Michael Noel on Virtualization Part II](https://www.microsoft.com/video/en/us/details/c82a8f7a-2261-4f4c-8197-518649c8d4b4?vp_evt=eref&vp_video=Michael+Noel+on+Virtualization+Part+II)
 
 BTW \- for those of you who read this blog on the Web (20-25% of you), I hope you like the new skins. Patrick

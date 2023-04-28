@@ -73,10 +73,10 @@ LACC 501BC
 
 **Call to Action**
 
-  * [Sign up for Server and Cloud sessions today!](http://sessions.digitalwpc.com/topic/list?categories=Server%20and%20Cloud)
+  * Sign up for Server and Cloud sessions today!
   * Visit the Private Cloud and Platform Servers booth (#1221) in the Solution Innovation Center to take advantage of our readiness offer, and to see a Private Cloud solution from HP and Dell in action!
   * Join us in the Server and Tools Lounge (located at the entrance to LACC West) for Happy Hour with Top Server and Tools Executives on Monday, July 11th from 4:30 – 5:30pm
-  * Stay up to date with the latest Server and Cloud information! Follow us on twitter (@MSServerCloud) on our blog ([http://blogs.technet.com/b/server-cloud](http://bit.ly/oFxcFQ)) and “Like” us on Facebook ([Facebook.com/Server.Cloud](http://on.fb.me/pti7IF)) to get access to WPC 2011 previews. And don’t forget tag your own twitter messages with #hyperv and #WPC11.
+  * Stay up to date with the latest Server and Cloud information! Follow us on twitter (@MSServerCloud) on our ([blog](/archive/blogs/)) and “Like” us on Facebook ([Facebook.com/Server.Cloud](https://www.facebook.com/MicrosoftCloud)) to get access to WPC 2011 previews. And don’t forget tag your own twitter messages with #hyperv and #WPC11.
 
 
 

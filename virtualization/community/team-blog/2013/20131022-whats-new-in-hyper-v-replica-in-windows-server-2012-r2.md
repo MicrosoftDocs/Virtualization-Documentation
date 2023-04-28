@@ -19,13 +19,13 @@ You can upgrade from Windows Server 2012 to Windows Server 2012 R2 **without hav
 
 Windows Server 2012 allowed customers to replicate their virtual machines at a preset 5minute replication frequency. Our aspirations to bring down this replication frequency was backed by customer’s asks on providing the flexibility to set different replication frequencies to different virtual machines. With Windows Server 2012 R2, you can now asynchronously replicate your virtual machines at either **30second, 5mins or 15mins** frequency.   
  
-[![30sec](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3513.30sec_thumb_57C8E14C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2061.30sec_25CEB011.png)****
+<!-- [![30sec](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3513.30sec_thumb_57C8E14C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2061.30sec_25CEB011.png)****-->
 
 ## Additional Recovery Points
 
 Customers can now have a longer retention with **24 recovery points**. These 24 (up from 16 in Windows Server 2012) recovery points are spaced at an hour ’s interval.           
           
-[![Additional recovery points](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3817.image_thumb_58C361DA.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2772.image_02A3D610.png)****
+<!-- [![Additional recovery points](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3817.image_thumb_58C361DA.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2772.image_02A3D610.png)**** -->
 
 ## Linux guest OS support
 
@@ -36,7 +36,7 @@ Hyper-V Replica, since it’s first release has been agnostic to the application
 
 You can now ‘extend’ your replica copy to a third site using the ‘Extended replication’ feature. The functionality provides an added layer of protection to recover from your disaster. You can now have a replica copy within your site (eg: ClusterA->ClusterB in your primary datacenter) and extend the replication for the protected VMs from ClusterB->ClusterC (in your secondary data center).   
           
-[![Extended replication](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8030.image_thumb_47751BA6.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2781.image_513A831E.png)    
+<!-- [![Extended replication](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8030.image_thumb_47751BA6.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2781.image_513A831E.png) -->
 
 To recover from a disaster in ClusterA, you can now quickly failover to the VMs in ClusterB and continue to protect them to ClusterC. More on extended replication capabilities in the coming weeks.        
 

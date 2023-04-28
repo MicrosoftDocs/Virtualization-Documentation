@@ -1,7 +1,6 @@
 ---
 title: Run a container with a gMSA
 description: How to run a Windows container with a group Managed Service Account (gMSA).
-keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts
 author: rpsqrd
 ms.author: ryanpu
 ms.date: 09/10/2019

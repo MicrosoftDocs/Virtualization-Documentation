@@ -1,10 +1,9 @@
 ---
 title: Prepare Windows operating system containers
 description: Set up Windows or Windows Server for containers, then run your first container image.
-keywords: docker, containers, LCOW
 author: brasmith-ms
 ms.author: brasmith
-ms.date: 06/17/2022
+ms.date: 03/31/2023
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
@@ -14,14 +13,18 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 This tutorial describes how to:
 
-- [Set up Windows 10/11 and Windows Server for containers](#prerequisites)
-- [Build container-ready Azure VMs](#container-ready-azure-vms)
-- [Install the Container Runtime](#install-the-container-runtime)
-    - [Windows 10 & 11](#windows-10-and-11-1)
+- [Get started: Prep Windows for containers](#get-started-prep-windows-for-containers)
+  - [Prerequisites](#prerequisites)
+    - [Windows 10 and 11](#windows-10-and-11)
+    - [Windows Server](#windows-server)
+      - [Container-Ready Azure VMs](#container-ready-azure-vms)
+        - [Azure Image Builder](#azure-image-builder)
+        - [Custom Script Extensions](#custom-script-extensions)
+  - [Install the Container Runtime](#install-the-container-runtime)
+    - [Windows 10 and 11](#windows-10-and-11-1)
     - [Windows Admin Center](#windows-admin-center)
-    - [Windows Server - Moby, Mirantis, & Containerd](#windows-server-1)
-- [Run your first container image](./run-your-first-container.md)
-- [Containerize a simple .NET core application](./building-sample-app.md)
+    - [Windows Server](#windows-server-1)
+  - [Next steps](#next-steps)
 
 ## Prerequisites
 
@@ -33,7 +36,7 @@ To run containers on Windows 10 or 11, you need the following:
 - [Hyper-V](/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) should be enabled.
 
 > [!NOTE]
-> Starting with the Windows 10 October Update 2018, Microsoft no longer disallows users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for development or test purposes. See the [FAQ](../about/faq.yml) to learn more.  
+> Starting with the Windows 10 October Update 2018, Microsoft no longer disallows users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for development or test purposes. See the [FAQ](../about/faq.yml) to learn more.
 
 Windows Server Containers use Hyper-V isolation by default on Windows 10 and 11 to provide developers with the same kernel version and configuration that will be used in production. To learn more about Hyper-V isolation, see [Isolation Modes](../manage-containers/hyperv-container.md).
 
@@ -103,7 +106,7 @@ You can use Windows Admin Center to properly set up a Windows Server machine as 
 
 Click the **Install** button. Windows Admin Center will start the configuration of Windows Server and Docker in the background. After the process is complete, you can refresh the page and see the other functionalities of the Containers extension.
 
-![Container images](./media/WAC-Images.png)  
+![Container images](./media/WAC-Images.png)
 
 ### Windows Server
 To run a Windows container you must have a supported container runtime available on your machine. The runtimes currently supported on Windows are [containerd](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd), [Moby](https://mobyproject.org/), and the [Mirantis Container Runtime](https://info.mirantis.com/docker-engine-support).

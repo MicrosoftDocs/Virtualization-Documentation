@@ -23,15 +23,9 @@ To view or to import the certificates ****
 
    iii. Choose ' **Computer Account** ' in the Certificate snap-in pop up
 
- 
-
-[![Choose Computer Account in the Certificate snap-in pop up](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2626.CertSnapIn_1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/2626.CertSnapIn_1.png)
-
- 
 
      iv.   Open the **Certificates** store under the **Personal** store.
 
-[![Open the Certificates store under the Personal Store](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7558.CertMgr_1.PNG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7558.CertMgr_1.PNG)****
 
 ## **Primary Server Certificate** **Requirements**
 
@@ -40,10 +34,6 @@ To setup a replication relationship, the certificate in the **primary server** m
   * **Enhanced Key Usage** must support both Client and Server authentication 
 
 
-
-[![Enhanced Key Usage must support both client and server authentication](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5518.EKU.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5518.EKU.png)
-
- 
 
   * Set the Subject field or the Subject Alternative Name using **one** of the following methods:
     * Set the Subject field to the primary server name (e.g.: _primary1.contoso.com_ ).  If the primary server is part of a cluster, ensure that the subject field is set to the FQDN of the HVR Broker (install this certificate on all the nodes of the cluster). 
@@ -134,7 +124,7 @@ _===============================================================================
 
  
 
-For a sample HVR deployment scenario using makecert certificate, see Appendix C of the UTG which is available [here](https://technet.microsoft.com/library/hh831759.aspx?ppud=4). 
+For a sample HVR deployment scenario using makecert certificate, see Appendix C of the UTG which is available [here](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831759(v=ws.11)).  
 
 In the next few weeks , we will be posting an end to end workflow for enabling replication using certificates.
 

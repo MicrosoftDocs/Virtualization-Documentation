@@ -285,10 +285,10 @@ This replica server is ‘published’ using the hoster’s GW via regular HTTPS
 
 The following links illustrate on how to achieve this:
 
-* Create certificates using makecert – Appendix C of the [Understanding and Troubleshooting guide for Hyper-V Replica](https://www.microsoft.com/en-us/download/details.aspx?id=29016)
-* (or) Create certificates from a [standalone CA](https://blogs.technet.com/b/virtualization/archive/2012/07/02/requesting-certificates-for-hyper-v-replica-from-cas.aspx)
-* (or) Create certificates from an [Enterprise CA](https://blogs.technet.com/b/virtualization/archive/2012/07/10/requesting-hyper-v-replica-certificates-from-an-enterprise-ca.aspx)
-* Setup replication for the virtual machine [using](https://blogs.technet.com/b/virtualization/archive/2012/07/18/hyper-v-replica-certificate-based-authentication-in-windows-server-2012-rc.aspx) the certificate based authentication.
+* Create certificates using makecert – Appendix C of the Understanding and Troubleshooting guide for Hyper-V Replica
+* (or) Create certificates from a [standalone CA](https://techcommunity.microsoft.com/t5/virtualization/requesting-hyper-v-replica-certificates-from-a-ca/ba-p/381939)
+* (or) Create certificates from an [Enterprise CA](https://techcommunity.microsoft.com/t5/virtualization/requesting-hyper-v-replica-certificates-from-an-enterprise-ca/ba-p/381936)
+* Setup replication for the virtual machine [using](https://techcommunity.microsoft.com/t5/virtualization/hyper-v-replica-8211-certificate-based-authentication-in-windows/ba-p/381925) the certificate based authentication.
 
 Since EDGE1 is acting as DA server it will not allow any non-IPsec traffic thru it. In general customer deployment there would be an IPS device in front of EDGE1. In the above topology to allow HTTPS HVR traffic thru EDGE1, we need to disable IPsec dosp with the following cmdlet
 
