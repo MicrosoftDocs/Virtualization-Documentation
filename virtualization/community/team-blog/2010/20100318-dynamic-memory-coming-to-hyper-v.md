@@ -12,9 +12,9 @@ ms.prod: virtualization
 
 Virtualization Nation,
 
-I’ve had the pleasure of talking with customers in the last few months and the Hyper-V R2 reception has been nothing but unequivocally positive. Whether it’s been folks in small, medium or the enterprise, they appreciate the [new capabilities in Windows Server 2008 R2 Hyper-V](https://blogs.technet.com/virtualization/archive/2009/07/22/windows-server-2008-r2-hyper-v-server-2008-r2-rtm.aspx) and the free [Microsoft Hyper-V Server 2008 R2](https://blogs.technet.com/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx). At the same time, we’re _always_ listening to our customers to better understand their business requirements and requests so we know what to build for subsequent releases. Today, we’re [pleased to announce](https://www.microsoft.com/Presspass/press/2010/mar10/03-18DesktopVirtPR.mspx) new capabilities that will enhance both virtualized server and virtualized desktop deployments:
+I’ve had the pleasure of talking with customers in the last few months and the Hyper-V R2 reception has been nothing but unequivocally positive. Whether it’s been folks in small, medium or the enterprise, they appreciate the [new capabilities in Windows Server 2008 R2 Hyper-V](https://techcommunity.microsoft.com/t5/virtualization/windows-server-2008-r2-hyper-v-server-2008-r2-rtm/ba-p/381646) and the free [Microsoft Hyper-V Server 2008 R2](https://techcommunity.microsoft.com/t5/virtualization/microsoft-hyper-v-server-2008-r2-rtm-more/ba-p/381635). At the same time, we’re _always_ listening to our customers to better understand their business requirements and requests so we know what to build for subsequent releases. Today, we’re pleased to announce new capabilities that will enhance both virtualized server and virtualized desktop deployments:
 
-  * **Remote FX** : With Microsoft RemoteFX, users will be able to work remotely in a Windows Aero desktop environment, watch full-motion video, enjoy Silverlight animations, and run 3D applications within a Hyper-V VM – all with the fidelity of a local-like performance. For more info, check out Max’s blog [here](https://blogs.technet.com/virtualization/archive/2010/03/18/Explaining-Microsoft-RemoteFX.aspx). 
+  * **Remote FX** : With Microsoft RemoteFX, users will be able to work remotely in a Windows Aero desktop environment, watch full-motion video, enjoy Silverlight animations, and run 3D applications within a Hyper-V VM – all with the fidelity of a local-like performance. For more info, check out Max’s blog [here](https://techcommunity.microsoft.com/t5/virtualization/explaining-microsoft-remotefx/ba-p/381720). 
   * **Hyper-V Dynamic Memory** : With Hyper-V Dynamic Memory, Hyper-V will enable greater virtual machine density suitable for servers and VDI deployments.
 
 
@@ -30,13 +30,12 @@ When it comes to virtualization and memory, virtualization users have repeatedly
 
 Their comments are clear: Maximize our investment in the hardware resources, provide high density, and with a minimal performance impact.
 
-(Speaking of performance, Hyper-V R2 performance is exceptional. We recently released an in depth performance analysis on Windows Server 2008 Hyper-V R2 Virtual Hard Disk Performance using a variety of workloads including SQL, Exchange, Web and more. This is a must read: <https://download.microsoft.com/download/0/7/7/0778C0BB-5281-4390-92CD-EC138A18F2F9/WS08_R2_VHD_Performance_WhitePaper.docx>)
+(Speaking of performance, Hyper-V R2 performance is exceptional. We recently released an in depth performance analysis on Windows Server 2008 Hyper-V R2 Virtual Hard Disk Performance using a variety of workloads including SQL, Exchange, Web and more.  
 
 **Virtual Machine Performance & Density**
 
 If you think about Virtual Machine Performance and Virtual Machine Density as a continuum and you can place the slider, where would you position the slider?
 
-[![MaximumPerformance2_thumb1](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/AnnouncingWindowsRemoteFXHyperVDynamicMe_87CE/MaximumPerformance2_thumb1_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/AnnouncingWindowsRemoteFXHyperVDynamicMe_87CE/MaximumPerformance2_thumb1_2.png)
 
 Up to now, we’ve opted to err on the side of performance with excellent results. Now, customers are asking us to start moving that slider over to increase density and still minimize performance impact, so that’s what we’re doing.
 

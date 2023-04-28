@@ -13,14 +13,12 @@ Hyper-V customers are running both SUSE Linux Enterprise Server and Red Hat Ente
 
  
 
-We are excited to announce the availability of Linux integration components for Red Hat Enterprise Linux (RHEL 5.2, 5.3, and 5.4) which provides synthetic network and storage drivers enabling RHEL to work with the optimized devices provided by Hyper-V.  We’ve already submitted these drivers to the upstream Linux kernel in July 2009 (read [here](https://blogs.technet.com/virtualization/archive/2009/07/20/linux-ics-for-hyper-v-and-gplv2.aspx) for more information) and are looking forward to these being integrated with a future version of RHEL.  In the meantime, Microsoft will provide full support for these drivers.  Red Hat provides best effort support for these components. Customers interested in understanding how these are supported by Red Hat prior to their inclusion natively into to their distribution can read the details at the [Red Hat Knowledge Base article](http://kbase.redhat.com/faq/docs/DOC-1068).
-
+We are excited to announce the availability of Linux integration components for Red Hat Enterprise Linux (RHEL 5.2, 5.3, and 5.4) which provides synthetic network and storage drivers enabling RHEL to work with the optimized devices provided by Hyper-V.  We’ve already submitted these drivers to the upstream Linux kernel in July 2009 (read [here](https://techcommunity.microsoft.com/t5/virtualization/linux-ics-for-hyper-v-and-gplv2/ba-p/381647) for more information) and are looking forward to these being integrated with a future version of RHEL.  In the meantime, Microsoft will provide full support for these drivers.  Red Hat provides best effort support for these components. Customers interested in understanding how these are supported by Red Hat prior to their inclusion natively into to their distribution can read the details at the Red Hat Knowledge Base article.
  
 
-To download this new version of the Linux Integration Components, visit this [link](https://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=c299d675-bb9f-41cf-b5eb-74d0595ccc5c) on the Microsoft Download Center.
+To download this new version of the Linux Integration Components, visit this [link](https://www.microsoft.com/download/) on the Microsoft Download Center.
 
  
-
 Mike Sterling
 
 Hyper-V Program Manager, Microsoft
