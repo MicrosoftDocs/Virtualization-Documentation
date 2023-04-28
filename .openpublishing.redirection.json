@@ -497,7 +497,7 @@
     },
     {
       "source_path": "virtualization/hyper-v-on-windows/reference/tlfs.md",
-      "redirect_url": "/virtualization/hyper-v-on-windows/index",
+      "redirect_url": "/virtualization/hyper-v-on-windows/tlfs/tlfs",
       "redirect_document_id": false
     }
   ]
