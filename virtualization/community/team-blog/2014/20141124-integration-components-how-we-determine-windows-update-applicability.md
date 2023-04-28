@@ -9,9 +9,9 @@ categories: hyper-v
 ---
 # Integration components - How we determine Windows Update applicability
 
-Last week we began [distributing integration components through Windows Update](/b/virtualization/archive/2014/11/11/hyper-v-integration-components-are-available-through-windows-update.aspx).  In the November rollup, integration components were made available to Windows Server 2012/2008R2 virtual machines along with Windows 8/7 virtual machines running on Windows Technical Preview hosts.
+Last week we began distributing integration components through Windows Update.  In the November rollup, integration components were made available to Windows Server 2012/2008R2 virtual machines along with Windows 8/7 virtual machines running on Windows Technical Preview hosts.
 
-Ben wrote a great [blog post](https://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updating-integration-components-over-windows-update.aspx) outlining how to update the integration components.
+Ben wrote a great blog post outlining how to update the integration components.
 
 Using Windows Update to apply integration components brought to light an interesting set of challenges with our standard servicing tools.  Unlike other Windows Updates, integration components are tied to the host version not just the installed OS.  How should we check that Windows is running in a virtual machine on a Technical Preview Hyper-V host?
 

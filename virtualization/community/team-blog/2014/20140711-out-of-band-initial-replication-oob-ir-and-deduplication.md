@@ -32,28 +32,28 @@ Fortunately my colleague [**Paul Despe**](https://social.technet.microsoft.com/p
 
 
 
-[![Dynamically expanding VHDX file](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_1D8D60E6.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_15763491.png)
+<!--[![Dynamically expanding VHDX file](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_1D8D60E6.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_15763491.png)-->
 
   * Using _Disk Management,_ bring the disk online, initialize it, create a single volume, and format it with NTFS. You should be able to see the new volume in your Explorer window. I used Y:\ as the drive letter.
 
 
 
-[![New volume in Explorer window](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_02E5E62F.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_73434A6C.png)
+<!--[![New volume in Explorer window](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_02E5E62F.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_73434A6C.png)-->
 
   * Mount this VHDX on the server you are using to do the OOB IR process. 
   * If you go to _Server Manager_ and view this volume (Y:\\), you will see that it is backed by a fixed disk.
 
 
 
-[![View volume](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_26A42F2B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_5084A360.png)
+<!--[![View volume](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_26A42F2B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_5084A360.png)-->
 
   * In the volume view, enable deduplication on this volume by right-clicking and selecting **‘Configure Data Deduplication’**. Set the **‘Deduplicate files older than (in days)’** field to zero.
 
 
 
-[![Enable duplication with Configure Data Deduplication](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_5A028338.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_263A8CE7.png)
+<!--[![Enable duplication with Configure Data Deduplication](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_5A028338.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_263A8CE7.png)-->
 
-[![Deduplicate files older than (in days) field](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_42013381.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_4C32CDEE.png)
+<!--[![Deduplicate files older than (in days) field](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_42013381.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_4C32CDEE.png)-->
 
 You can also enable deduplication in PowerShell with the following commandlets:
     
@@ -66,9 +66,9 @@ PS C:\> Set-DedupVolume Y: -MinimumFileAgeDays 0
 
 Now you are set to start the OOB IR process and take advantage of the deduplicated volume. This is what I saw after 1 VM was enabled for replication with OOB IR:
 
-[![1 V M enabled for replication with O O B I R Image 1](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_0C8D92BE.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_6F84E3F5.png)
+<!--[![1 V M enabled for replication with O O B I R Image 1](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_0C8D92BE.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_6F84E3F5.png)-->
 
-[![1 V M enabled for replication with O O B I R Image 2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_4BCD8B65.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_03804596.png)
+<!--[![1 V M enabled for replication with O O B I R Image 2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_4BCD8B65.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_03804596.png)-->
 
 That’s about 32.6GB of storage used. Wait… shouldn’t there be a reduction in size because of deduplication?
 
@@ -82,11 +82,11 @@ The good part is that you can trigger the job on-demand and start the deduplicat
 PS C:\> Start-DedupJob Y: -Type Optimization
 ```
 
-There are other parameters provided by the commandlet that allow you to control the deduplication job. You can explore the various options in the TechNet documentation: <https://technet.microsoft.com/library/hh848442.aspx>.
+There are other parameters provided by the commandlet that allow you to control the deduplication job. You can explore the various options in the TechNet documentation: [here](/powershell/module/deduplication/start-dedupjob).
 
 This is what I got after the deduplication job completed:
 
-[![Screen after completing deduplication job]](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_6AA920A5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_1FB31F25.png)
+<!--[![Screen after completing deduplication job]](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_6AA920A5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_1FB31F25.png)-->
 
 That’s a 54% saving with just one VM – a very good start!
 
@@ -94,9 +94,9 @@ That’s a 54% saving with just one VM – a very good start!
 
 After this I threw in a few more virtual machines with completely different applications installed and here is the observed savings after each step:
 
-[![Observed savings](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_091882F1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_59C70D66.png)
+<!--[![Observed savings](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_091882F1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_59C70D66.png)-->
 
-I think the excellent results speak for themselves! ![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/wlEmoticon-smile_5AC18DF4.png) Notice how between VM2 and VM3, almost all of the data (~9GB) has been absorbed by deduplication with an increase of only 300MB! As the deduplication team as published on TechNet, VDI VMs would have a high degree of similarity in their disks and would result in a much higher deduplication rate. A random mix of VMs yields surprisingly good results as well.
+I think the excellent results speak for themselves! Notice how between VM2 and VM3, almost all of the data (~9GB) has been absorbed by deduplication with an increase of only 300MB! As the deduplication team as published on TechNet, VDI VMs would have a high degree of similarity in their disks and would result in a much higher deduplication rate. A random mix of VMs yields surprisingly good results as well.
 
 ##### Final steps
 

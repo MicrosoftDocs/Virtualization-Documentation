@@ -22,7 +22,7 @@ Keep reading for more details. Also, if you want to try new Hyper-V things as we
 
 #### Faster VM creation with Quick Create
 
-[![clip_image001](https://msdnshared.blob.core.windows.net/media/2017/04/clip_image001_thumb4.png)](https://msdnshared.blob.core.windows.net/media/2017/04/clip_image0016.png) Hyper-V Manager has a new option for quickly and easily creating virtual machines, aptly named “Quick Create”. [Introduced in build 15002](https://blogs.technet.microsoft.com/virtualization/2017/01/10/cool-new-things-for-hyper-v-on-desktop/), Quick Create focuses on getting the guest operating system up and running as quickly as possible -- including creating and connecting to a virtual switch. When we first released Quick Create, there were a number of issues mostly centered on our default virtual machine settings ([read more](https://blogs.technet.microsoft.com/virtualization/2017/01/20/a-closer-look-at-vm-quick-create/)). In response to your feedback, we have updated the Quick Create defaults. Creators Update Quick Create defaults: 
+<!--[![clip_image001](https://msdnshared.blob.core.windows.net/media/2017/04/clip_image001_thumb4.png)](https://msdnshared.blob.core.windows.net/media/2017/04/clip_image0016.png)--> Hyper-V Manager has a new option for quickly and easily creating virtual machines, aptly named “Quick Create”. [Introduced in build 15002](https://blogs.technet.microsoft.com/virtualization/2017/01/10/cool-new-things-for-hyper-v-on-desktop/), Quick Create focuses on getting the guest operating system up and running as quickly as possible -- including creating and connecting to a virtual switch. When we first released Quick Create, there were a number of issues mostly centered on our default virtual machine settings ([read more](https://blogs.technet.microsoft.com/virtualization/2017/01/20/a-closer-look-at-vm-quick-create/)). In response to your feedback, we have updated the Quick Create defaults. Creators Update Quick Create defaults: 
 
   * Generation: 2
   * Memory: 2048 MB to start, Dynamic Memory enabled
@@ -37,7 +37,7 @@ Last year we added the ability to run Hyper-V inside of Hyper-V (a.k.a. nested v
 
 #### Dynamic resize for Enhanced Session Mode VMs
 
-[![dynamic_resize](https://msdnshared.blob.core.windows.net/media/2017/04/dynamic_resize_thumb.gif)](https://msdnshared.blob.core.windows.net/media/2017/04/dynamic_resize.gif) The picture says it all. If you are using Hyper-V’s Enhanced Session Mode, you can dynamically resize your virtual machine. Right now, this is only available to virtual machines that support Hyper-V’s Enhanced Session mode. That includes: 
+<!--[![dynamic_resize](https://msdnshared.blob.core.windows.net/media/2017/04/dynamic_resize_thumb.gif)](https://msdnshared.blob.core.windows.net/media/2017/04/dynamic_resize.gif)--> The picture says it all. If you are using Hyper-V’s Enhanced Session Mode, you can dynamically resize your virtual machine. Right now, this is only available to virtual machines that support Hyper-V’s Enhanced Session mode. That includes: 
 
   * Windows Client: Windows 8.1, Windows 10 and later
   * Windows Server: Windows Server 2012 R2, Windows Server 2016 and later
@@ -46,7 +46,7 @@ Read [blog](https://blogs.technet.microsoft.com/virtualization/2017/01/27/introd
 
 #### Zoom for VM Connect
 
-Is your virtual machine impossible to read? Alternately, do you suffer from scaling issues in legacy applications? **VMConnect** now has the option to adjust **Zoom Level** under the **View** Menu. [![image](https://msdnshared.blob.core.windows.net/media/2017/04/image_thumb302.png)](https://msdnshared.blob.core.windows.net/media/2017/04/image312.png)
+Is your virtual machine impossible to read? Alternately, do you suffer from scaling issues in legacy applications? **VMConnect** now has the option to adjust **Zoom Level** under the **View** Menu.<!-- [![image](https://msdnshared.blob.core.windows.net/media/2017/04/image_thumb302.png)](https://msdnshared.blob.core.windows.net/media/2017/04/image312.png) -->
 
 #### Multiple NAT networks and IP pinning
 
