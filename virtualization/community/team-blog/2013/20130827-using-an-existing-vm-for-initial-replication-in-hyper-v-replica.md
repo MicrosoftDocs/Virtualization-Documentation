@@ -9,7 +9,7 @@ description: Reasons for using an existing virtual machine as the initial copy i
 # Hyper-V Replica provides three methods to do initial replication:
 
   1. Send data over the network (Online IR)
-  2. Send data [using external media](/b/virtualization/archive/2013/06/28/save-network-bandwidth-by-using-out-of-band-initial-replication-method-in-hyper-v-replica.aspx) (OOB IR)
+  2. Send data [using external media](/virtualization/community/team-blog/2013/20130628-save-network-bandwidth-by-using-out-of-band-initial-replication-method-in-hyper-v-replica) (OOB IR)
   3. Use an existing virtual machine as the initial copy
 
 
@@ -39,7 +39,7 @@ Given the restrictions placed on the existing VM that can act as an initial copy
 
 ### Syncing the primary and Replica VMs
 
-Although there is a complete VM on the replica side, the Replica VM lags behind the primary VM in terms of the freshness of the data. So as a part of the initial replication process the two VMs have to be brought into sync. This process is very similar to [resynchronization](/b/virtualization/archive/2013/05/10/resynchronization-of-virtual-machines-in-hyper-v-replica.aspx) and is very IOPS intensive. Depending on the differences between the primary and Replica VHDs, there could also be significant network traffic to transfer the delta changes from the primary site to the replica site.
+Although there is a complete VM on the replica side, the Replica VM lags behind the primary VM in terms of the freshness of the data. So as a part of the initial replication process the two VMs have to be brought into sync. This process is very similar to [resynchronization](/virtualization/community/team-blog/2013/20130510-resynchronization-of-virtual-machines-in-hyper-v-replica) and is very IOPS intensive. Depending on the differences between the primary and Replica VHDs, there could also be significant network traffic to transfer the delta changes from the primary site to the replica site.
 
  
 
@@ -57,7 +57,7 @@ Thus a replication scenario that involves (1) _large VHDs_ that to be replicated
 
 Using this option through the UI is extremely simple – you simply need to select the option with _“ Use an existing virtual machine on the Replica server as the initial copy”_. This option is presented to you during the **Enable Replication** wizard.
 
-[![Image from meta blog API](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8787.image_thumb_3AEF6177.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6761.image_10EA41ED.png)
+
 
 When using PowerShell, there is a sequence of 3 commands that need to be executed:
 
@@ -82,7 +82,6 @@ As with the other methods of initial replication, you can also schedule when the
 
 If the Replica VM is on a cluster, _ensure that it is made Highly Available (HA) before any further actions are taken_. This is a prerequisite and it enables the VM to be picked up by the Failover Cluster service  – and consequently by the Hyper-V Replica Broker.
 
-[![Meta blog API image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6837.image_thumb_46C240A8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2843.image_57A6E498.png)
 
  
 

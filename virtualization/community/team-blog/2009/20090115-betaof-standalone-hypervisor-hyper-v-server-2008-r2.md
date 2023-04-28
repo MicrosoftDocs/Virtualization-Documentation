@@ -14,9 +14,9 @@ ms.assetid:
 
 Hello fellow virtualization fans,
 
-Bryon here [again](https://blogs.technet.com/virtualization/archive/2009/01/16/winserver-2k8-hyper-v-is-alive.aspx). With all the excitement around the [beta release of Windows Server 2008 R2](https://blogs.technet.com/windowsserver/archive/2009/01/07/announcing-windows-server-2008-r2-beta.aspx), it’s important to call attention to another important beta release: Microsoft Hyper-V Server 2008 R2! 
+Bryon here again. With all the excitement around the beta release of Windows Server 2008 R2, it’s important to call attention to another important beta release: Microsoft Hyper-V Server 2008 R2! 
 
-To ensure there is no confusion, let me be clear that I’m talking about **Microsoft Hyper-V Server 2008 R2**.  **Not Hyper-V the feature of Windows Server 2008 R2**.  Alessandro’s [post](http://www.virtualization.info/2009/01/microsoft-releases-stand-alone-hyper-v.html) did a good job showing the differences. Microsoft Hyper-V Server 2008 R2 is the next generation of the standalone hypervisor based product. ~~
+To ensure there is no confusion, let me be clear that I’m talking about **Microsoft Hyper-V Server 2008 R2**.  **Not Hyper-V the feature of Windows Server 2008 R2**.  Alessandro’s post did a good job showing the differences. Microsoft Hyper-V Server 2008 R2 is the next generation of the standalone hypervisor based product. ~~
 
 ~~
 
@@ -28,9 +28,9 @@ Building on the solid virtualization platform of Microsoft Hyper-V Server 2008, 
 
 §  Updated Configuration Utility:  Since Microsoft Hyper-V Server 2008 is command line only, the configuration utility is designed to simplify the most common initial configuration tasks.  It helps you configure the settings without having to type long command-line strings.  Microsoft Hyper-V Server 2008 R2 beta adds new options to ease the configuration of options such as remote management, failover clustering, and software update installation just to name a few.
 
-So make sure to check out more information on Microsoft Hyper-V Server and download R2 Beta at the [Microsoft Hyper-V Website](https://www.microsoft.com/hvs).
+So make sure to check out more information on Microsoft Hyper-V Server and download R2 Beta at the Microsoft Hyper-V Website.
 
-Additionally, the beta can be downloaded by subscribers on [TechNet](https://technet.microsoft.com/subscriptions/downloads/default.aspx?pv=1:352) and [MSDN](https://msdn.microsoft.com/subscriptions/downloads/default.aspx?pv=1:352). 
+Additionally, the beta can be downloaded by subscribers on TechNet and MSDN. 
 
 
 Virtually Yours,
