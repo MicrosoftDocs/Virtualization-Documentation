@@ -1,7 +1,6 @@
 ---
 title: Windows container base images
 description: Overview of the Windows container base images and when to use them.
-keywords: docker, containers, hashes
 author: mattbriggs
 ms.author: mabrigg
 ms.date: 09/01/2021
@@ -150,5 +149,3 @@ Read [Use Containers with the Windows Insider Program](../deploy-containers/insi
 `Windows Server Core` and `Nanoserver` are the most common base images to target. The key difference between these images is that Nanoserver has a significantly smaller API surface. PowerShell, WMI, and the Windows servicing stack are absent from the Nanoserver image.
 
 Nanoserver was built to provide just enough API surface to run apps that have a dependency on .NET core or other modern open source frameworks. As a tradeoff to the smaller API surface, the Nanoserver image has a significantly smaller on-disk footprint than the rest of the Windows base images. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/src/sdk/2.1/nanoserver-1909/amd64/Dockerfile).
-
-

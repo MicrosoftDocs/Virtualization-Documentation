@@ -1,7 +1,6 @@
 ---
 title: Base image servicing lifecycles
 description: Information about the Windows container base image lifecycle.
-keywords: windows containers, containers, lifecycle, release information, base image, container base image
 author: mattbriggs
 ms.author: mabrigg
 ms.date: 2/18/2022

@@ -1,7 +1,6 @@
 ---
 title: Microsoft software EULA for Windows containers
 description: License agreement for Windows container base images.
-keywords: docker, containers, eula
 author: cwilhit
 ms.author: scooley
 ms.date: 08/11/2020
@@ -31,7 +30,7 @@ UPDATED: Windows Server Container with Hyper-V isolation (formerly known as Hype
 ## LICENSE TERMS
 **Host License.** The Host License terms apply to your use of the Container Image and any Windows container(s) created with the Container Image which are distinct and separate from a virtual machine.
 
-**Use Rights.** The Container Image may be used to create an isolated virtualized Windows operating system environment to which primary and significant functionality is added (“Consolidated Image”). You may use the Container Image to create, build, and run your Consolidated Image on Host Software and distribute the Container Image only as part of your Consolidated Image. Updates to the Host Software may not update the Container Image so you may re-create any Windows containers based on an updated Container Image. 
+**Use Rights.** The Container Image may be used to create an isolated virtualized Windows operating system environment to which primary and significant functionality is added (“Consolidated Image”). You may use the Container Image to create, build, and run your Consolidated Image on Host Software and distribute the Container Image only as part of your Consolidated Image. Updates to the Host Software may not update the Container Image so you may re-create any Windows containers based on an updated Container Image.
 
 **Restrictions.** You may not remove this Supplemental License document file from the Container Image. You may not enable remote access to the application(s) you run within your container to avoid applicable license fees. You may not reverse engineer, decompile, or disassemble the Container Image, or attempt to do so, except and only to the extent required by third party licensing terms governing the use of certain open-source components that may be included with the software. Additional restrictions in the Host License may apply.
 

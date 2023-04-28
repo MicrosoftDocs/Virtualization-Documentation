@@ -24,13 +24,6 @@ Edwin and David recently sat down in front of a video camera to talk about the t
 
 
 
-See the video below, or the other 22 videos [here](https://www.microsoft.com/video/en/us/related?video=c754f940-b5a1-43ee-99f1-d9e083dbc81a "Microsoft virtualization videos").
-
- 
-
-  
-[Microsoft Mythbusters: Top 10 VMware Myths](https://www.microsoft.com/video/en/us/details/f8c3314f-c82d-4f8d-8b19-6a59733670f8?vp_evt=eref&vp_video=Microsoft+Mythbusters%3a+Top+10+VMware+Myths)
-
   Patrick
 
  

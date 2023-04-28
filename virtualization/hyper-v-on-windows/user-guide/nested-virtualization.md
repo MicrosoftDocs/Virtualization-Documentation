@@ -43,6 +43,9 @@ Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
 3. Start the virtual machine.
 4. Install Hyper-V within the virtual machine, just like you would for a physical server. For more information on installing Hyper-V see, [Install Hyper-V](../quick-start/enable-hyper-v.md).
 
+>[!NOTE]
+> When using Windows Server 2019 as the first level VM, the number of vCPUs should be 225 or less.
+
 ## Disable Nested Virtualization
 You can disable nested virtualization for a stopped virtual machine using the following PowerShell command:
 ```

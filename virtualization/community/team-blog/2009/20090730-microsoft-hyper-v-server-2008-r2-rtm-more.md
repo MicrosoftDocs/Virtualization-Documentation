@@ -18,19 +18,17 @@ It's been a very good busy since the Windows Server 2008 R2 & Microsoft Hyper-V 
 > 
 > " ** _Windows Server 2008 R2 is Microsoft's Best-Ever Server OS." ChannelWeb_**
 
-In short, Windows Server 2008 R2 is getting rave reviews and Hyper-V is just one part of this extraordinary server release. For more info on the all up [Windows Server 2008 R2 release](https://blogs.technet.com/windowsserver/archive/2008/10/28/announcing-windows-server-2008-r2.aspx), here's a good blog and for more on [Windows Server 2008 R2 Hyper-V check out this blog](https://blogs.technet.com/virtualization/archive/2009/07/22/windows-server-2008-r2-hyper-v-server-2008-r2-rtm.aspx).
+In short, Windows Server 2008 R2 is getting rave reviews and Hyper-V is just one part of this extraordinary server release. For more info on the all up [Windows Server 2008 R2 release](https://cloudblogs.microsoft.com/windowsserver/2008/10/28/announcing-windows-server-2008-r2/), here's a good blog and for more on [Windows Server 2008 R2 Hyper-V check out this blog](https://techcommunity.microsoft.com/t5/virtualization/windows-server-2008-r2-hyper-v-server-2008-r2-rtm/ba-p/381646).
 
 **Thanks To The Folks At Veeam**
 
-I'd also like give a shout out to the folks at Veeam. We're pleased by their announcement that their [developing solutions for Windows Server 2008 R2 Hyper-V and Microsoft Hyper-V Server 2008 R2](https://blogs.technet.com/virtualization/archive/2009/07/23/r2-veeam-too.aspx). [While VMware is dissuading companies from developing for their free ESXi](http://searchservervirtualization.techtarget.com/news/article/0,289142,sid94_gci1358344,00.html) and making many question whether the free version is even supported or not, we are actively encouraging developers to develop for both Windows Server 2008 R2 Hyper-V and the free Microsoft Hyper-V Server 2008 and yes, MS Hyper-V Server 2008 R2 is a fully supported offering. Speaking Of Microsoft Hyper-V Server 2008 R2.
+I'd also like give a shout out to the folks at Veeam. We're pleased by their announcement that their [developing solutions for Windows Server 2008 R2 Hyper-V and Microsoft Hyper-V Server 2008 R2](https://techcommunity.microsoft.com/t5/virtualization/r2-veeam-too/ba-p/381637). [While VMware is dissuading companies from developing for their free ESXi](https://searchservervirtualization.techtarget.com/info/news) and making many question whether the free version is even supported or not, we are actively encouraging developers to develop for both Windows Server 2008 R2 Hyper-V and the free Microsoft Hyper-V Server 2008 and yes, MS Hyper-V Server 2008 R2 is a fully supported offering. Speaking Of Microsoft Hyper-V Server 2008 R2.
 
 **Microsoft Hyper-V Server 2008 R2 RTM Overview**
 
 With our customers input first and foremost, we developed Microsoft Hyper-V Server 2008 R2 to meet their requirements and you can see the results are dramatic. 
 
  
-
-[![Physical processor support image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/2e228c9394fd_6A6B/image_thumb_5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/2e228c9394fd_6A6B/image_12.png)
 
 Let me be very clear about line 1 "physical processor support" above. That refers to the number of **physical processors (sockets)** that Hyper-V Server supports, regardless of how many cores each processor up to a total of 64 logical processors. So, no [Core Tax here](https://blogs.technet.com/virtualization/archive/2009/06/28/Beware-the-VMware-Core-Tax-and-More.aspx). 
 
@@ -46,10 +44,8 @@ Microsoft Hyper-V Server 2008 R2 includes the unique ability (compared to Window
 
 **Microsoft Hyper-V Server 2008 R2 Features**
 
-**Live Migration[![Live Migration image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/2e228c9394fd_6A6B/image_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/2e228c9394fd_6A6B/image_2.png)**
-
   * #1 Customer Requested Feature 
-  * [Processor Compatibility Mode](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)
+  * [Processor Compatibility Mode](https://techcommunity.microsoft.com/t5/virtualization/tech-ed-windows-server-2008-r2-hyper-v-news/ba-p/381610)
 
 
 
@@ -60,13 +56,12 @@ Microsoft Hyper-V Server 2008 R2 includes the unique ability (compared to Window
 
 
 
-**[Enhanced Scalability (4x Improvement)](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)**
+**[Enhanced Scalability (4x Improvement)](https://techcommunity.microsoft.com/t5/virtualization/tech-ed-windows-server-2008-r2-hyper-v-news/ba-p/381610)**
 
   * [Support for 64 Logical Processors](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)
   * Support for up to 384 Running VMs or up to 512 virtual processors 
   * Greater VM Density 
   * Lower TCO
-
 
 
 **Networking Enhancements**
@@ -75,12 +70,10 @@ Microsoft Hyper-V Server 2008 R2 includes the unique ability (compared to Window
   * 10 Gb/E Ready
 
 
-
 **Dynamic Virtual Machine Capabilities**
 
   * Live Migration 
   * Hot Add/Remove Virtual Storage
-
 
 
 **Boot From Flash**
@@ -90,18 +83,12 @@ Microsoft Hyper-V Server 2008 R2 includes the unique ability (compared to Window
   * SCONFIG Enhancements
 
 
-
- 
-
 In short, Microsoft Hyper-V Server 2008 R2 addresses all the top customer asks: Live Migration, High Availability, Major Scalability Improvements **and much more all while keeping it FREE**. VMware's isn't even close to matching this value. 
 
 **The Cost Of Live Migration**
 
-A few weeks ago, I blogged how [Microsoft Hyper-V Server 2008 R2 would include Live Migration and High Availability at no cost. No strings attached](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx). I did a simple comparison showing how much it costs to get Live Migration capability from Microsoft and VMware. Here's the summary:
+A few weeks ago, I blogged how Microsoft Hyper-V Server 2008 R2 would include Live Migration and High Availability at no cost. No strings attached. I did a simple comparison showing how much it costs to get Live Migration capability from Microsoft and VMware. Here's the summary:
 
- 
-
-[![Diagram displaying the cost of migration](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/2e228c9394fd_6A6B/image_thumb_3.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/2e228c9394fd_6A6B/image_8.png)
 
 Since I wrote that blog, I've read interesting articles where VMware is trying to divert the discussion as far from cost as far as possible and trying to develop new and interesting ways to justify the fact that VMware Live Migration costs a minimum of $2245 per processor. Despite the fact that $13,470, $26,940, $22,450 and $44,900 in licensing costs to use Live Migration are greater than $0, VMware claims to cost less.
 
@@ -148,7 +135,6 @@ _(BTW: Third party MPIO support from VMware jacks up the price yet again forcing
   * Redundant Power Supply
 
 
-
 OR
 
 **Configuration 2: For $15,606 ($5202 each), you could buy _three HP ProLiant DL365 G5 servers_ , each configured with**
@@ -161,7 +147,6 @@ OR
   * Redundant Power Supply
 
 
-
 OR
 
 **Configuration 3: For $21,291 ($7097 each), you could buy _three HP ProLiant DL360 G6 servers_ , each configured with**
@@ -172,7 +157,6 @@ OR
   * Dual 1Gb/E 
   * Quad Port 1Gb/E PCI-E NIC 
   * Redundant Power Supply
-
 
 
 OR
@@ -188,12 +172,11 @@ OR
   * Redundant Power Supply
 
 
-
 That's a heck of a lot of incredibly powerful, server systems to choose from. By using Hyper-V instead of VMware you can use the substantial $$$$ saved to reinvest in new server hardware. At this point, you just need to pick out a SAN. 
 
 **Failover Cluster Configuration Program**
 
-One commonly asked question we hear is, "Do I need special storage to work with Live Migration? Is there a special Hyper-V Logo program?" NO. There are a couple of different options. To make things easy, you can choose a SAN that's validated via the [Failover Cluster Configuration Program (FCCP)](https://www.microsoft.com/windowsserver2008/en/us/failover-clustering-program-partners.aspx) from our partners like Compellent, Dell, EMC, Fujitsu, Fujitsu Siemens, Hitachi, IBM, NetApp ([Microsoft Storage Partner of the Year](https://www.microsoft.com/presspass/press/2009/jun09/06-24POTY09PR.mspx)) or NEC for starters and you're ready to go. That said, FCCP is not required for support. Windows offers the largest, broadest ecosystem and our customers like having multiple options based on their business needs. To see if your storage is supported for Hyper-V Live Migration and Failover Clustering all you need to do is run the [Microsoft Cluster Validate Tool provided in the OS to insure that the cluster is validated and thus supported](https://technet.microsoft.com/library/cc732035\(WS.10\).aspx). 
+One commonly asked question we hear is, "Do I need special storage to work with Live Migration? Is there a special Hyper-V Logo program?" NO. There are a couple of different options. To make things easy, you can choose a SAN that's validated via the Failover Cluster Configuration Program (FCCP) from our partners like Compellent, Dell, EMC, Fujitsu, Fujitsu Siemens, Hitachi, IBM, NetApp (Microsoft Storage Partner of the Year) or NEC for starters and you're ready to go. That said, FCCP is not required for support. Windows offers the largest, broadest ecosystem and our customers like having multiple options based on their business needs. To see if your storage is supported for Hyper-V Live Migration and Failover Clustering all you need to do is run the [Microsoft Cluster Validate Tool provided in the OS to insure that the cluster is validated and thus supported](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc732035(v=ws.10)). 
 
 **Customers Win**
 

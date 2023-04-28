@@ -1,7 +1,6 @@
-﻿---
+---
 title: Windows container networking
 description: Introduction to architecture of Windows container networks.
-keywords: docker, containers
 author: daschott
 ms.author: jgerend
 ms.date: 10/20/2021
@@ -13,7 +12,7 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 > Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 >[!IMPORTANT]
->Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general Docker networking commands, options, and syntax. With the exception of any cases described in [unsupported features and network options](#unsupported-features-and-network-options), all Docker networking commands are supported on Windows with the same syntax as on Linux. However, the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (for example, ifconfig) are not supported on Windows.
+>Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general Docker networking commands, options, and syntax. With the exception of any cases described in [unsupported features and network options](#unsupported-features-and-network-options), all Docker networking commands are supported on Windows with the same syntax as on Linux. However, the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (for example, `ifconfig`) are not supported on Windows.
 
 ## Basic networking architecture
 
@@ -21,7 +20,7 @@ This topic provides an overview of how Docker creates and manages host networks 
 
 ![Illustrates the Windows network stack](media/windowsnetworkstack-simple.png)
 
-The first time the Docker engine runs, it will create a default NAT network, 'nat', which uses an internal vSwitch and a Windows component named `WinNAT`. If there are any pre-existing external vSwitches on the host which were created through PowerShell or Hyper-V Manager, they will also be available to Docker using the *transparent* network driver and can be seen when you run the ``docker network ls`` command.
+The first time Docker Engine runs, it will create a default NAT network, 'nat', which uses an internal vSwitch and a Windows component named `WinNAT`. If there are any pre-existing external vSwitches on the host which were created through PowerShell or Hyper-V Manager, they will also be available to Docker using the *transparent* network driver and can be seen when you run the ``docker network ls`` command.
 
 ![Illustrates the Docker network ls PowerShell command](media/docker-network-ls.png)
 
@@ -59,7 +58,7 @@ The Host Networking Service (HNS) and the Host Compute Service (HCS) work togeth
 
 The following networking options are currently **NOT** supported on Windows:
 
-- From Windows Server 2022 onwards, Windows containers attached to l2bridge networks support the IPv6 stack. However, Windows containers attached to NAT and overlay networks do not support communicating over the IPv6 stack. 
+- From Windows Server 2022 onwards, Windows containers attached to l2bridge networks support the IPv6 stack. However, Windows containers attached to NAT and overlay networks do not support communicating over the IPv6 stack.
 - Encrypted container communication via IPsec.
 - [Host mode](https://docs.docker.com/ee/ucp/interlock/config/host-mode-networking/) networking.
 - Networking on virtualized Azure infrastructure via the transparent network driver.

@@ -1,10 +1,9 @@
 ---
 title: Print spooler in Windows containers
 description: Learn about current working behavior for the print spooler service in Windows containers.
-keywords: docker, containers, printer, spooler
-author: cwilhit
-ms.author: lizross
-ms.date: 10/22/2019
+author: vrapolinario
+ms.author: viniap
+ms.date: 04/12/2023
 ms.topic: how-to
 ---
 
@@ -18,7 +17,7 @@ Applications with a dependency on printing services can be containerized success
 ## Setup
 
 * The host should be Windows Server 2019 or Windows 10 Pro/Enterprise October 2018 update or newer.
-* The [mcr.microsoft.com/windows](https://hub.docker.com/_/microsoft-windowsfamily-windows) image should be the targeted base image. Other Windows container base images (such as Nano Server and Windows Server Core) do not carry the Printing Server Role.
+* The [mcr.microsoft.com/windows](https://mcr.microsoft.com/product/windows/about) or the [mcr.microsoft.com/windows/server](https://mcr.microsoft.com/product/windows/server/about) images should be the targeted base image. Other Windows container base images (such as Nano Server and Windows Server Core) do not carry the Printing Server Role.
 
 ### Hyper-V Isolation
 

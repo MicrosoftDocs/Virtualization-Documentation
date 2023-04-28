@@ -5,7 +5,6 @@ ms.author: daschott
 ms.date: 08/13/2020
 ms.topic: overview
 description: Getting started with Kubernetes on Windows.
-keywords: kubernetes, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 # Kubernetes on Windows
@@ -15,16 +14,13 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 
 This page serves as an overview for getting started with Kubernetes on Windows.
 
-
 ### Try out Kubernetes on Windows
 
-See [deploying Kubernetes on Windows](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/adding-windows-nodes/) for instructions on how to manually install Kubernetes on Windows in the environment of your choice.
-
+See [deploying Kubernetes on Windows](/azure/aks/hybrid/aks-hci-evaluation-guide) for instructions on how to manually install Kubernetes on Windows in the environment of your choice.
 
 ### Scheduling Windows containers
 
 See [scheduling Windows containers in Kubernetes](https://kubernetes.io/docs/setup/production-environment/windows/user-guide-windows-containers/) for best practices and recommendations on scheduling Windows containers in Kubernetes.
-
 
 ### Deploying Kubernetes on Windows in Azure
 

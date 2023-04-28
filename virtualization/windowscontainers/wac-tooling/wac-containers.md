@@ -1,19 +1,18 @@
 ---
 title: Run containers on Windows Admin Center
 description: Run a container on Windows Admin Center.
-keywords: docker, containers, Windows Admin Center
 author: vrapolinario
 ms.author: viniap
-ms.date: 12/23/2020
+ms.date: 04/12/2023
 ms.topic: how-to
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Run new containers using Windows Admin Center
 
-Windows Admin Center helps you run containers locally on your container host. 
+Windows Admin Center helps you run containers locally on your container host.
 
 1. In Windows Admin Center with the **Containers** extension installed, open the container host you want to manage.
-2. Under **Tools** in the left pane, select the **Containers** extension. 
+2. Under **Tools** in the left pane, select the **Containers** extension.
 3. Select the **Images** tab under Container host.
 
     ![Images tab](./media/wac-images.png)

@@ -11,7 +11,7 @@ categories: hyper-v
 
 Fellow Virtualization Fans,
 
-Bryon Surace here. I’m a senior program manager on the server virtualization team. Last week Steve Ballmer officially [announced](https://www.microsoft.com/presspass/press/2009/jan09/01-07CES09PR.mspx) the public availability of Windows Server 2008 R2 Beta! So did my friends over at the [Windows Server Division blog](https://blogs.technet.com/windowsserver/archive/2009/01/07/announcing-windows-server-2008-r2-beta.aspx).  With this release, there are a tremendous number of new features and capabilities that I encourage everyone to check out.  However, since I am somewhat partial to virtualization, let’s talk about my Top 5 favorite new Hyper-V features:
+Bryon Surace here. I’m a senior program manager on the server virtualization team. Last week Steve Ballmer officially announced the public availability of Windows Server 2008 R2 Beta! So did my friends over at the Windows Server Division blog.  With this release, there are a tremendous number of new features and capabilities that I encourage everyone to check out.  However, since I am somewhat partial to virtualization, let’s talk about my Top 5 favorite new Hyper-V features:
 
 **Bryon ’s Favorite New Hyper-V Feature #1: Live migration of Virtual machines
 
@@ -51,7 +51,7 @@ Microsoft has updated the Windows Hypervisor with enhancements to reduce the pow
 
 In addition to my top 5, there are many other great new features including VMQ support and Jumbo Frame support.
 
-Be sure to check out all the great new Hyper-V features in R2 at the [Windows Server 2008 R2 website](https://www.microsoft.com/windowsserver2008/en/us/r2.aspx).
+Be sure to check out all the great new Hyper-V features in R2 at the Windows Server 2008 R2 website.
 
 **Virtually Yours,**
 
