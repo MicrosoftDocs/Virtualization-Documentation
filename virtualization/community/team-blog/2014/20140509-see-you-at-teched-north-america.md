@@ -81,7 +81,7 @@ Again, feel free to stop by and talk to us. Looking forward to seeing you at Tec
 
  
 
-[![TechEd team](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/HyperVatTechEd.JPG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/HyperVatTechEd.JPG)  
+<!--[![TechEd team](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/HyperVatTechEd.JPG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/HyperVatTechEd.JPG)  -->
 
 
 [From left to right: Taylor, Sam, Ben, Sarah, Jeff, Patrick]

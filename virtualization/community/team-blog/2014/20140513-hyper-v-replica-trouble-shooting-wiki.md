@@ -27,4 +27,4 @@ We would like this to be a community effort to make it social and **_you are fre
 
 If you are new to TechNet wiki, the guide on “ **How to contribute** ” is [here](https://social.technet.microsoft.com/wiki/contents/articles/145.wiki-how-to-contribute-content-to-technet-wiki.aspx).
 
-Happy WIKI’ing ![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/wlEmoticon-smile_6C1D8731.png)
+Happy WIKI’ing 

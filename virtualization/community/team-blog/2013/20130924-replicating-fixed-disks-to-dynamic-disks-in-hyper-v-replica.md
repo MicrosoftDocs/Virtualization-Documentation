@@ -27,7 +27,7 @@ This process is simple enough, and can be done through the **Edit Disk** wizard 
 
 **NOTE 2:** The name of your dynamic disk should be _exactly the same_ as the name of your fixed disk.
 
-[![Edit disk](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7612.Edit-disk_thumb_1C4532AE.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6761.Edit-disk_08298574.png)
+<!--[![Edit disk](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7612.Edit-disk_thumb_1C4532AE.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6761.Edit-disk_08298574.png) -->
 
 _(The destination location has been changed so that the same filename can be kept)_
 
@@ -39,7 +39,7 @@ To get the same result using PowerShell, use the following command:
 
 ### Making it work with Hyper-V Replica
 
-  1. Enable replication from the customer to the hosting provider using online IR or [out-of-band IR](https://blogs.technet.com/b/virtualization/archive/2013/06/28/save-network-bandwidth-by-using-out-of-band-initial-replication-method-in-hyper-v-replica.aspx).
+  1. Enable replication from the customer to the hosting provider using online IR or [out-of-band IR](https://techcommunity.microsoft.com/t5/virtualization/save-network-bandwidth-by-using-out-of-band-initial-replication/ba-p/382009).
   2. The hosting provider waits for the IR to complete.
   3. The hosting provider can then pause the replication at any time on the Replica server – this will prevent HRL log apply on the disk while it is being converted.
   4. The hosting provider can then convert the disk from fixed to dynamic using the technique mentioned above. Ensure that there is adequate storage space to hold both disks until the process is complete.

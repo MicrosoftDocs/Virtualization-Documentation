@@ -26,4 +26,4 @@ To work around the issue, an exception rule needs to be added to the primary ser
 
 
 
-[![Local Policy Group Editor 2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0677.LocalPolicyGroupEditor2_thumb_32AE6ECF.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5516.LocalPolicyGroupEditor2_6C9B210A.png)
+<!-- [![Local Policy Group Editor 2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0677.LocalPolicyGroupEditor2_thumb_32AE6ECF.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5516.LocalPolicyGroupEditor2_6C9B210A.png) -->

@@ -11,8 +11,6 @@ description: This article discusses how files are named in the Replica virtual m
 
 When you enable replication on a virtual machine, the Replica virtual machine files are created under the location specified by you in the Replica server configuration on the Replica side. Under the specified location, the files are created under a folder structure that looks like:
 
-[![Folder structure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7127.image_thumb_04F85A16.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0513.image_79AF45D8.png)
-
 The folders are named using GUIDs.
 
 > Why are GUIDs used to name the folders?
@@ -21,9 +19,8 @@ The folders are named using GUIDs.
 
 Instead of this default folder structure, you may want to have a simpler folder structure as you are sure that you will not get such name conflicts in your setup. You may want a folder structure that looks like:
 
-[![Simpler folder structure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8130.image_thumb_0EFCD574.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4314.image_5C0D450C.png)
 
-The good news is that you can achieve this using simple steps ![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1754.wlEmoticon-smile_2647D9E5.png). Here are the steps that could accomplish this for you:
+The good news is that you can achieve this using simple steps. Here are the steps that could accomplish this for you:
 
   1. Enable replication for the virtual machine, and ensure initial replication is not started immediately (You can choose to schedule the initial replication for a later time)
 
@@ -34,7 +31,7 @@ The good news is that you can achieve this using simple steps ![Smile](https://m
 
 
 
-You can do the same steps using Powershell. Here is a sample script that accomplishes this task for you. This script assumes both primary and replica sides to be clustered setups. This script also assumes [certificate-based authentication](https://blogs.technet.com/b/virtualization/archive/2012/07/16/hyper-v-replica-certificate-based-authentication-in-windows-server-2012-rc.aspx) being used. You can easily customize the script if you have a different environment.
+You can do the same steps using Powershell. Here is a sample script that accomplishes this task for you. This script assumes both primary and replica sides to be clustered setups. This script also assumes [certificate-based authentication](/virtualization/community/team-blog/2013/20130413-hyper-v-replica-certificate-based-authentication-makecert) being used. You can easily customize the script if you have a different environment.
     
 ```markdown
 Function Enable-VMReplicationCustomStorageOneLocationUsingCertificate
