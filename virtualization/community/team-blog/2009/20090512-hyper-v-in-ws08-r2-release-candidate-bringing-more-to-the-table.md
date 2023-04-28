@@ -9,7 +9,7 @@ categories: high-availability
 ---
 # Hyper-V in WS08 R2 Release Candidate: Bringing More to the Table
 
-You'll want to read Isaac's blog post about the RC milestone of Windows Server 2008 R2. His post focuses on 64 LP support and processor compatibility mode for live migration. Read the post [here](https://blogs.technet.com/windowsserver/archive/2009/05/11/hyper-v-in-ws08-r2-release-candidate-bringing-more-to-the-table.aspx "Isaac's post on Windows Server blog").
+You'll want to read Isaac's blog post about the RC milestone of Windows Server 2008 R2. His post focuses on 64 LP support and processor compatibility mode for live migration. Read the post [here](/virtualization/community/team-blog/2009/20090512-hyper-v-in-ws08-r2-release-candidate-bringing-more-to-the-table "Isaac's post on Windows Server blog").
 
 Here's an excerpt:
 
