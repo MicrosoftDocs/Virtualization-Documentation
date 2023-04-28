@@ -43,7 +43,7 @@ The following table lists supported extended hypercalls by call code.
 | Call Code | Type    | Hypercall                                                                           |
 |-----------|---------|-------------------------------------------------------------------------------------|
 | 0x8001    | Simple  | [HvExtCallQueryCapabilities](HvExtCallQueryCapabilities.md)                         |
-| 0x8002    | Simple  | HvExtCallGetBootZeroedMemory                                                        |
+| 0x8002    | Simple  | [HvExtCallGetBootZeroedMemory](HvExtCallGetBootZeroedMemory.md)                     |
 | 0x8003    | Simple  | HvExtCallMemoryHeatHint                                                             |
 | 0x8004    | Simple  | HvExtCallEpfSetup                                                                   |
 | 0x8006    | Simple  | HvExtCallMemoryHeatHintAsync                                                        |

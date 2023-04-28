@@ -1,12 +1,11 @@
 ---
 title: Lift and shift to containers
-description: Learn how to migrate existing applications to containers
-keywords: containers, migrate
-author: robinharwood
-ms.author: roharwoo
-ms.date: 08/01/2022
-ms.topic: quickstart
----  
+description: Learn how to migrate existing applications to containers.
+author: vrapolinario
+ms.author: viniap
+ms.date: 03/31/2023
+ms.topic: conceptual
+---
 
 # Using Windows Containers to "Containerize" Existing Applications
 
@@ -133,7 +132,7 @@ If your application requires .NET, your ability to containerize depends entirely
 
 ### Apps using third-party (non-Microsoft) frameworks
 
-Generally speaking, Microsoft is unable to certify third-party frameworks or applications, or support them running on Windows containers – or physical and virtual machines for that matter. However, Microsoft does perform its own internal testing for usability of multiple third-party frameworks and tools, including Apache, Cassandra, Chocolatey, Datadog, Django, Flask, Git, Golang, JBoss, Jenkins, Rust, Nodejs, Pearl, Python, Ruby, Tomcat, and many others. 
+Generally speaking, Microsoft is unable to certify third-party frameworks or applications, or support them running on Windows containers – or physical and virtual machines for that matter. However, Microsoft does perform its own internal testing for usability of multiple third-party frameworks and tools, including Apache, Cassandra, Chocolatey, Datadog, Django, Flask, Git, Golang, JBoss, Jenkins, Rust, Nodejs, Pearl, Python, Ruby, Tomcat, and many others.
 
 For any third-party framework or software, please validate its supportability on Windows containers with the vendor that supplies it.
 
@@ -238,7 +237,7 @@ With a microservices approach, however, you have a few options to avoid keeping 
 
 #### Background services
 
-Although containers are generally for ephemeral processes, you can containerize a background, long-running application provided you create a foreground process to both kick it off and keep it running.  
+Although containers are generally for ephemeral processes, you can containerize a background, long-running application provided you create a foreground process to both kick it off and keep it running.
 
 A great example of this is ServiceMonitor, which is a Windows executable designed to be used as an entry-point process when running IIS in containers.  Although it was built for IIS, the ServiceMonitor tool offers a model that can also be used to monitor other services, with some limitations.
 
@@ -314,3 +313,5 @@ Note: Currently, AKS and AKS on Azure Stack HCI support only process-isolated co
 6. Consider orchestration needs. Once containerized, your application likely needs automated management available with tools such as Kubernetes, AKS, or AKS on Azure Stack HCI. See [Windows Container orchestration overview](../about/overview-container-orchestrators.md) for a full discussion and guide to choosing among the tools.
 7. Containerize the app.
 8. Push the app to an image repository. This will allow the container hosts to download the image in any environment, including dev, test, and production.
+
+Azure Migrate can provide a guided process for discovering, assessing, and migrating your existing Windows application to Azure Kubernetes Service. For more information, check out the [Azure Migrate](/azure/migrate/tutorial-modernize-asp-net-aks) documentation page.

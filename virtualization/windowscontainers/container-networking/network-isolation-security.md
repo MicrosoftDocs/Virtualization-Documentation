@@ -1,7 +1,6 @@
-﻿---
+---
 title: Network isolation and security
 description: Network isolation and security within Windows containers.
-keywords: docker, containers
 author: daschott
 ms.author: daschott
 ms.date: 10/20/2021
@@ -17,7 +16,6 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 Each container endpoint is placed in its own __network namespace__. The management host virtual network adapter and host network stack are located in the default network namespace. To enforce network isolation between containers on the same host, a network namespace is created for each Windows Server container and containers run under Hyper-V isolation into which the network adapter for the container is installed. Windows Server containers use a host virtual network adapter to attach to the virtual switch. Hyper-V isolation uses a synthetic VM network adapter (not exposed to the utility VM) to attach to the virtual switch.
 
 ![Hyper-V isolation with a synthetic VM network adapter](media/windows-firewall-containers.png)
-
 
 Run the following Powershell cmdlet to get all network compartments in the protocol stack:
 

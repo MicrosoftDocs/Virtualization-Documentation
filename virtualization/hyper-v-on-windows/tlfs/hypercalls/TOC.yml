@@ -44,3 +44,5 @@
   href: HvCallVtlReturn.md
 - name: HvExtCallQueryCapabilities
   href: HvExtCallQueryCapabilities.md
+- name: HvExtCallGetBootZeroedMemory
+  href: HvExtCallGetBootZeroedMemory.md

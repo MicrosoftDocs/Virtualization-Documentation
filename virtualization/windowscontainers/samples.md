@@ -1,10 +1,9 @@
 ---
-title: Windows Containers Solutions
-description: Discover and learn about popular projects and code samples using Windows containers.
-keywords: docker, containers, windows, samples
+title: Windows containers solutions
+description: Learn about popular projects and code samples using Windows containers.
 author: sijuman
-ms.date: 12/17/2021
-ms.topic: article
+ms.date: 04/12/2023
+ms.topic: overview
 ms.author: sijuman
 ms.assetid: 5c6f6350-f8d6-4426-b53d-9fb09c2bf267
 ---
@@ -15,7 +14,7 @@ Microsoft provides solutions for Windows containers using the latest Windows Ser
 
 ## What are Windows containers?
 
-Containers are a technology for packaging and running Windows and Linux applications across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for apps that need to rapidly adapt to changing demand. 
+Containers are a technology for packaging and running Windows and Linux applications across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for apps that need to rapidly adapt to changing demand.
 
 All containers are created from container images. A container image is a bundle of files organized into a stack of layers that resides on your local machine or in a remote container registry. The container images used in the samples described in this topic are images based on Windows Server, Windows Server Core, and Nano server:
 

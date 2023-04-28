@@ -131,7 +131,7 @@
 
 # Resources
 ## [Known Issues](manage-containers/known-issues.md)
-## [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1)
+## [Windows Server containers roadmap](https://github.com/Azure/AKS/projects/1?card_filter_query=label%3A+windows)
 ## Licensing and support
 ### [Pricing and licensing](https://www.microsoft.com/windows-server/pricing)
 ### [Windows base OS images](https://hub.docker.com/_/microsoft-windows-base-os-images)
