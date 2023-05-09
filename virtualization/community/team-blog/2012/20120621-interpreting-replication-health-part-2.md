@@ -8,22 +8,16 @@ ms.date: 06/21/2012
 categories: hvr
 ---
 # Interpreting Replication Health – Part 2
-#### Continuing from where we left off the last [time](https://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx)…
+#### Continuing from where we left off the last [time](https://techcommunity.microsoft.com/t5/virtualization/interpreting-replication-health-8211-part-1/ba-p/381956)…
 
 #### Q1: The Replication Health pane has loads of information, how do I  interpret these attributes?
 
-[![Monitoring-IIS-Normal-Primary_thumb4](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7510.Monitoring-IIS-Normal-Primary_thumb4_thumb_42C203DC.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3465.Monitoring-IIS-Normal-Primary_thumb4_7118F8D8.png) |   |   | [![image_thumb9](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3872.image_thumb9_thumb_4ADBC0E2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6507.image_thumb9_46CEE25F.png)  
----|---|---|---  
-  
- 
-
-I thought you would never ask ![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4540.wlEmoticon-smile_20FB4CAD.png)
 
   1. On both the Primary and Replica VM, the following attributes are displayed:
 
 
 
-> Replication State | Refers to the **current** state of the replicating VM. The set of values are captured in Q3 under the **UI** column, in the previous [post](https://blogs.technet.com/b/virtualization/archive/2012/06/15/interpreting-replication-health-part-1.aspx)  
+> Replication State | Refers to the **current** state of the replicating VM. The set of values are captured in Q3 under the **UI** column, in the previous [post](https://techcommunity.microsoft.com/t5/virtualization/interpreting-replication-health-8211-part-1/ba-p/381956)  
 > ---|---  
 > Replication Type | Indicates whether the VM a Primary VM or a Replica VM  
 > Current Primary Server | Provides the FQDN of the server on which the primary VM resides  
@@ -45,20 +39,15 @@ I thought you would never ask ![Smile](https://msdnshared.blob.core.windows.net/
   * **Last synchronized at:** This refers to the last time the replica was sent to the primary server (or) received and applied in the replica server. The difference between the current time and this value, indicates the loss of data (measured in time) if a failover is initiated.
 
 
-
-
    2\. On the **primary** VM:
 
   * **Size of data yet to be replicated:** This refers to the size of the replica file which is being tracked but not sent to the replica server yet. The value signifies the loss of data (measured in MBs) if a failover is initiated on the replica VM.
-
 
 
    3\. On the **Replica** VM:
 
   * **Test failover status:** If Test failover is enabled at the time of measuring the statistics, then this attribute is set to  ‘Running’ – else, it is set to ‘Not Running’
   * **Last Test Failover initiated at:** This refers to the wall-clock time when the last test-failover operation was initiated.
-
-
 
 
    4\. Buttons:
@@ -97,7 +86,6 @@ In this example, when a VM is enabled for replication at 2pm, statistics are col
 
 Yes. In the event viewer, under the Hyper-V VMMS node, an Information message is recorded. The event ID for this is **29174**.
 
-[![image_thumb1](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1715.image_thumb1_thumb_29813CA8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3056.image_thumb1_15658F6E.png)
 
  
 
@@ -109,18 +97,12 @@ Yes, when the VM migrates from one node to another, the replication statistics a
 
 Yes! From the Failover Cluster Manager you can run a query to get VMs with a specific replication Health. Under **Roles** , click on ‘ **Add Criteria** ’, choose ‘ **Replication Health** ’ and specify the criteria (Critical/Normal/Warning)
 
-[![image_thumb51_thumb](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6661.image_thumb51_thumb_thumb_6CEE5F6C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4442.image_thumb51_thumb_7ABE14B6.png) |   | [![image_thumb71_thumb](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3022.image_thumb71_thumb_thumb_6BAC573E.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2451.image_thumb71_thumb_5556B1F9.png)  
----|---|---  
   
 >  
 
 **Q7: Is there any such provision in the Hyper-V Manager?**
 
 You can add the column ‘Replication Health’ from the Add/Remove Column option in Hyper-V Manager
-
-[![image_thumb3](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3441.image_thumb3_thumb_060EDB07.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5001.image_thumb3_0201FC84.png) |   | [![image_thumb2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8228.image_thumb2_thumb_3562E142.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5516.image_thumb2_38090C42.png)  
----|---|---  
-  
  
 
 **Q8: Is there a PowerShell cmdlet to get all this information?**

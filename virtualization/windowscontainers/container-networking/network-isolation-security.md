@@ -1,4 +1,4 @@
-﻿---
+---
 title: Network isolation and security
 description: Network isolation and security within Windows containers.
 author: daschott

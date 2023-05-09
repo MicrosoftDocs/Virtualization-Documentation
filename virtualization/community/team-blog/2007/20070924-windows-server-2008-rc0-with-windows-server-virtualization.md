@@ -18,7 +18,6 @@ Jeff Woolsey here from the Microsoft Virtualization Team. It’s a great week he
 
 First, I HAVE to mention **Halo 3**. :-) Every review I ’ve read as been extremely positive and it looks like the Halo team knocked one out of the park, _AGAIN._ Congratulations to them all! Over here in Server, we have a release of our own, none other than **Windows Server 2008 RC0**. RC0 is a big release because it means we're entering the home stretch for Windows Server 2008 and because it includes the first technology preview of our new hypervisor based virtualization technology, Windows Server virtualization (WSV).
 
-The announcement is [here](https://www.microsoft.com/presspass/features/2007/sep07/09-24windowserverrc0.mspx) and the Windows Server 2008 RC0 download is [here](https://www.microsoft.com/windowsserver2008/audsel.mspx)
 
 With the announcement that the Windows Server 2008 and the Technology Preview is available, I’ve already received an inbox full of email from folks asking how they can try it out. I’ll send a pointer to the official release notes and the step-by-step setup guide shortly, but I want to get the word out so I’ve written up my own abridged version.  This is my own quick setup guide and isn’t a replacement for the Release Notes and official Window Server Virtualization Step-by-Step Setup Guide.  Finally, as excited as everyone is about this release, please remember that this is Technology Preview and is not recommended for production use.
 

@@ -8,7 +8,7 @@ description: Enabling the Hyper-V Extend Replication in Windows Server 2012 R2.
 ---
 # Hyper-V Extend Replication
 
-With Hyper-V Extend Replication feature in Windows Server 2012 R2, customers can have multiple copies of data to protect them from different outage scenarios. For example, as a customer I might choose to keep my second DR site in the same campus or a few miles away while I want to keep my third copy of data across the continents to give added protection for my workloads. Hyper-V Replica **Extend replication** exactly addresses this problem by providing one more copy of workload at an extended site apart from replica site. As mentioned in [What’s new in Hyper-V Replica in Windows Server 2012 R2](https://blogs.technet.com/b/virtualization/archive/2013/10/22/what-s-new-in-windows-server-2012-r2.aspx), user can extend the replication from Replica site and continue to protect the virtualized work loads even in case of disaster at primary site!! 
+With Hyper-V Extend Replication feature in Windows Server 2012 R2, customers can have multiple copies of data to protect them from different outage scenarios. For example, as a customer I might choose to keep my second DR site in the same campus or a few miles away while I want to keep my third copy of data across the continents to give added protection for my workloads. Hyper-V Replica **Extend replication** exactly addresses this problem by providing one more copy of workload at an extended site apart from replica site. As mentioned in [What’s new in Hyper-V Replica in Windows Server 2012 R2](https://techcommunity.microsoft.com/t5/virtualization/what-8217-s-new-in-hyper-v-replica-in-windows-server-2012-r2/ba-p/382119), user can extend the replication from Replica site and continue to protect the virtualized work loads even in case of disaster at primary site!! 
 
 This is so cool and exactly what I was looking for. But how do I enable this feature in Windows Server 2012 R2? Well, I will walk you through different ways in which you can enable replication and you will be amazed to see how similar is the experience is to enable replication wizard.
 
@@ -34,14 +34,14 @@ _**Enable-VMReplication –VMName `<vmname>` -ReplicaServerName <extended_server
 
 Once you extend replication from replica site, you can check Replication tab in Replica Site Hyper-V UI and you will see details about extend replication being present along with Primary Relation ship. 
 
-[![Replication tab](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2543.image_thumb_342CCD41.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1373.image_6283C23D.png)
+<!--[![Replication tab](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2543.image_thumb_342CCD41.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1373.image_6283C23D.png)-->
 
 You can also check-up Health Statistics of Extended Replication from Hyper-V UI. Go to VM in Replica site and right click and select “Replication->View replication Health” . Extended Replication health statistics are displayed under a separate tab named “Extended Replication”.
 
-[![Extended replication health statistics](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5428.image_thumb_1985528A.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3583.image_6CDA07FF.png)
+<!--[![Extended replication health statistics](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5428.image_thumb_1985528A.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3583.image_6CDA07FF.png)-->
 
 You can also query PowerShell on the replica site to see details about Extended Replication Relationship.
 
 _**Measure-VMReplication –VMName `<name>` -ReplicationRelationshipType Extended | select ***_
 
-This is all great. But how do I carry out failover in case of Extended Replication? I will reserve that to my next blog post. Until then happy extended Replication ![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8255.wlEmoticon-smile_6C951110.png)
+This is all great. But how do I carry out failover in case of Extended Replication? I will reserve that to my next blog post. Until then happy extended Replication.

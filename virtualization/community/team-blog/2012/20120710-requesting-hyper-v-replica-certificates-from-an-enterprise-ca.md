@@ -8,15 +8,13 @@ ms.date: 07/10/2012
 categories: certificates
 ---
 # Requesting Hyper-V Replica Certificates from an Enterprise CA
-In an earlier [**post**](https://blogs.technet.com/b/virtualization/archive/2012/07/02/requesting-certificates-for-hyper-v-replica-from-cas.aspx), we discussed the steps required to get a certificate from a **Standalone CA** or from a third party CA. For an **Enterprise CA** , the INF file needs to be modified and suitable templates need to be available to honor the certificate request.
+In an earlier [**post**](https://techcommunity.microsoft.com/t5/virtualization/requesting-hyper-v-replica-certificates-from-an-enterprise-ca/ba-p/381936), we discussed the steps required to get a certificate from a **Standalone CA** or from a third party CA. For an **Enterprise CA** , the INF file needs to be modified and suitable templates need to be available to honor the certificate request.
 
 To make things interesting, the post is written for a deployment where both the primary and replica serves are part of a cluster where a **SAN** (Subject Alternative Name) **certificate** is being used for achieving certificate based authentication. It’s worth calling out two points:
 
-  * The steps below can be used to create and manage wildcard and subject-name certificates by using an appropriate INF file (see earlier [post](https://blogs.technet.com/b/virtualization/archive/2012/07/02/requesting-certificates-for-hyper-v-replica-from-cas.aspx) for the INF file)
+  * The steps below can be used to create and manage wildcard and subject-name certificates by using an appropriate INF file (see earlier [post](https://techcommunity.microsoft.com/t5/virtualization/requesting-hyper-v-replica-certificates-from-an-enterprise-ca/ba-p/381936) for the INF file)
 
   * This post captures just one potential deployment model. The steps below will vary based on your enterprise CA policies and templates
-
-
 
 
 **Step #1: Setup an Enterprise CA**
@@ -43,14 +41,10 @@ An out-of-box installation of the ADCS role does not have a template which can b
 
 
 
-> [![Manage template image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8030.image_thumb_14283786.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6403.image_29172948.png)
-
   * Right click on **Workstation Authentication** and choose the **Duplicate Template** option
 
 
 
-
-> [![Duplicate template image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2086.image_thumb_6567A045.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6403.image_5EB20611.png)
 
   * The tabs which can be modified in the template are:
 
@@ -72,17 +66,17 @@ An out-of-box installation of the ADCS role does not have a template which can b
 > Snips from a sample template (called **Hyper-VReplica** ) are shown below.
 >
 >
-> **General: [![General image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2818.image_thumb_54D9BAFB.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4478.image_1096C2FE.png)**
+> **General:**
 >
-> **Compatibility: [![Compatibility image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7711.image_thumb_56406E7E.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7608.image_2AF946C6.png)**  
+> **Compatibility:**  
 >  
-> **Extensions: [![Extensions image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8284.image_thumb_42B59F8E.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5657.image_455BCA8E.png)**
+> **Extensions:**
 >
-> **Security: [![Security image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8780.image_thumb_5D182356.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5483.image_5BB40084.png)**  
+> **Security:**  
 >  
-> **Issuance Requirements: [![Issuance requirements image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4186.image_thumb_53554C8F.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8713.image_0F125492.png)**
+> **Issuance Requirements:**
 >
-> **Subject Name: [![Subject name image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2330.image_thumb_3FCA7D9F.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2043.image_2974D85A.png)**  
+> **Subject Name:**  
   
 
 
@@ -176,9 +170,6 @@ Open “Certification Authority” on the server and click on “Certificate Tem
   * Work with your CA admin to issue the pending request. In this example, the request ID is **19**
 
 
-
-[![Pending request image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7674.image_thumb_5AD9D52D.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1727.image_54FCA0E3.png)
-
   * Once the request is issued, on the primary node, issue the following command to retrieve the response (cer file) from the CA. The request ID is 19 in this example.
 
 
@@ -188,9 +179,6 @@ Open “Certification Authority” on the server and click on “Certificate Tem
 
   * Import this certificate into the Personal store of the Local machine. Once imported, the entry would look as follows (the **Issued to** attribute is set to the Subject name specified in the INF file)
 
-
-
-[![Certificate import image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2783.image_thumb_37AEFB2C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3377.image_1EB09A36.png)
 
   * Export the SANCert (with the private key) as a pfx file
   * Import the pfx file on each node of the cluster in the **Personal** store of the Local Machine. Ensure that the root certificate is available in each node as well.

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Windows container networking
 description: Introduction to architecture of Windows container networks.
 author: daschott

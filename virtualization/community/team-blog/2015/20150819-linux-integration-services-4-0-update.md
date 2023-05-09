@@ -15,7 +15,7 @@ We are pleased to announce an update to Linux Integration Services (LIS) version
 
 ## Download Location
 
-The LIS binaries are available either as a tar file that can be uploaded to your virtual machine or as an ISO that can be mounted. The files are available from the Microsoft Download Center here: <https://www.microsoft.com/en-us/download/details.aspx?id=46842>
+The LIS binaries are available either as a tar file that can be uploaded to your virtual machine or as an ISO that can be mounted. The files are available from the Microsoft Download Center here: <https://www.microsoft.com/download/)
 
 A ReadMe file has been provided to provide information on the installation procedure, feature set, and issues.
 
@@ -71,6 +71,6 @@ More details on individual features can be found at <https://technet.microsoft.c
 
 ## Customer Feedback
 
-Customers can provide feedback through the [Linux and FreeBSD Virtual Machines on Hyper-V forum](https://social.technet.microsoft.com/Forums/windowsserver/en-us/home?forum=linuxintegrationservices) and via [Microsoft Windows Server Uservoice](https://windowsserver.uservoice.com/forums/295062-linux-support). We look forward to hearing about your experiences with LIS.
+Customers can provide feedback through the [Linux and FreeBSD Virtual Machines on Hyper-V forum](https://social.technet.microsoft.com/Forums/windowsserver/en-us/home?forum=linuxintegrationservices) and via Microsoft Windows Server Uservoice. We look forward to hearing about your experiences with LIS.
 
 Thanks! --jrp (Josh Poulson)

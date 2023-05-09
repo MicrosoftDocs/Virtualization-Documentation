@@ -26,17 +26,17 @@ Download the script from here: <https://gallery.technet.microsoft.com/Hyper-V-Re
 
 I started the debugging process using the script on SQL Server virtual machine of my own. I copied the script into the VM and ran it in an elevated PowerShell window. You might run into PowerShell script execution policy restrictions, and you might need to set the execution policy to _Unrestricted_ (<https://technet.microsoft.com/library/ee176961.aspx>).
 
-[![script running](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/script-running_thumb_6DB81E07.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/script-running_65A0F1B2.png)
+<!--[![script running](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/script-running_thumb_6DB81E07.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/script-running_65A0F1B2.png)-->
 
 At the same time, I was monitoring the VM using Perfmon from the host and checking to see if there is any burst of disk activity seen. The blue line in the Perfmon graph is something I was not expecting to see, and it is significantly higher than the rest of the data – the scale for the blue line is 10X that of the red and green lines. (Side note: I was also monitoring the writes from within the guest using Perfmon… to see if there was any mismatch. As you can see from the screenshot below, the two performance monitors are rather in sync :))
 
-[![Perfmon - Host and Guest - Copy](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/Perfmon---Host-and-Guest---Copy_thumb_7C877541.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/Perfmon---Host-and-Guest---Copy_5B05B501.png)
+<!--[![Perfmon - Host and Guest - Copy](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/Perfmon---Host-and-Guest---Copy_thumb_7C877541.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/Perfmon---Host-and-Guest---Copy_5B05B501.png)-->
 
 At this point, I have no clue what in the guest is causing this sort of churn to show up. Fortunately I have the script collecting data inside the guest that I will use for further analysis.
 
 Pull out the two files from the guest VM for analysis in Excel – **ProcStats-2.csv** and **HVRStats-2.csv**. Before starting the analysis, one additional bit of Excel manipulation that I added was to include a column called _Hour-Minute_ : __ it pulls out only the hour and minute from the timestamp (ignoring the seconds) and is used in the PivotTable analysis as a field. I use the following formula in the cell: **=TIME(HOUR(A2), MINUTE(A2), 0)** where A2 is the timestamp cell for that row. Copy it down and it’ll adjust the formula appropriately.
 
-[![Excel analysis](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_58843556.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_0983E604.png)
+<!--[![Excel analysis](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_58843556.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_0983E604.png)-->
 
  
 
@@ -44,19 +44,19 @@ Pull out the two files from the guest VM for analysis in Excel – **ProcStats-2
 
 Let’s first look at the file **HVRStats-2.csv** in Excel. Use the data to create a PivotTable and a PivotChart – this gives a summarized view of the writes happening. What we see is that there is excessive data that gets written at 4:57 AM and 4:58 AM. This is more than 30X of the data written otherwise.
 
-[![H V R Stats](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_35595B55.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_4A484D17.png)
+<!--[![H V R Stats](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_35595B55.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_4A484D17.png)-->
 
 #### Per process write statistics
 
 Now let’s look at **ProcStats-2.csv** in Excel. Use the data to create a PivotTable and PivotChart – and this should give us a per-process view of what is happening. With the per-process information, we can easily plot the data written by each process and identify the culprit. In this case, SQL Server itself caused a spike in the data written (highlighted in red)
 
-[![Per process write statistics](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_65A7E21E.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_33ADB0E3.png)
+<!--[![Per process write statistics](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_65A7E21E.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_33ADB0E3.png)-->
 
  
 
 This is what the graph looks like for a large data copy operation (~1.5 GB). There is a burst of writes between 1:52PM and 1:53PM in Explorer.exe – and this corresponds to the copy operation that was initiated. 
 
-[![Large data copy operation graph](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_22DF0A05.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_1C95A2C6.png)
+<!--[![Large data copy operation graph](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_22DF0A05.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_1C95A2C6.png)-->
 
 #### What next?
 
@@ -74,15 +74,11 @@ Isolating the file sometimes helps in identifying the underlying operation. Once
 
 From the previous step you will get the details of the process causing the churn – for example, _System (PID 4)._ Using the Resource Monitor you would find that the file being modified – for example, the file is identified as _C:\pagefile.sys_. This would lead you to the conclusion that it is the pagefile that is being churned. 
 
-[![resmon](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/resmon_thumb_162CE68C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/resmon_12200809.png)
+<!--[![resmon](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/resmon_thumb_162CE68C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/resmon_12200809.png)-->
 
-###  
 
 #### Alternative tools:
 
-  1. Process Monitor:   <https://technet.microsoft.com/sysinternals/bb896645.aspx>
-  2. Windows Performance Recorder and Windows Performance Analyzer: 
-    * <https://msdn.microsoft.com/library/windows/hardware/hh448205.aspx>
-    * <https://msdn.microsoft.com/library/windows/hardware/hh448170.aspx> 
-
+  1. [Process Monitor](/sysinternals/downloads/procmon)
+  2. [Windows Performance Recorder](/previous-versions/windows/it-pro/windows-8.1-and-8/hh448205(v=win.10)) and [Windows Performance Analyzer](/previous-versions/windows/it-pro/windows-8.1-and-8/hh448170(v=win.10)) 
 

@@ -32,13 +32,13 @@ Top of my head, the key features in the product are:
 
 
 
-[![Replication from a System Center 2012 R2 Virtual Machine Manager cloud to Azure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0017_thumb_3F5A80E6.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0017_095601D9.jpg)
+<!--[![Replication from a System Center 2012 R2 Virtual Machine Manager cloud to Azure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0017_thumb_3F5A80E6.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0017_095601D9.jpg)-->
 
   * Replication frequency of **30seconds, 5mins or 15mins –** just like the on-premises product, you can replicate to Azure at 30seconds. 
 
 
 
-[![Replicate to Azure at 30 seconds](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0019_thumb_5A2937A3.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0019_039D78E4.jpg)
+<!--[![Replicate to Azure at 30 seconds](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0019_thumb_5A2937A3.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0019_039D78E4.jpg)-->
 
   * Additional **24 additional recovery points** to choose during failover – You can configure upto 24 additional recovery points at an hourly granularity. 
 
@@ -50,13 +50,13 @@ Top of my head, the key features in the product are:
 
 
 
-[![Encryption at rest](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00111_thumb_3FEB5F30.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00111_097AAD2E.jpg)
+<!--[![Encryption at rest](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00111_thumb_3FEB5F30.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00111_097AAD2E.jpg)-->
 
   * Self-service DR with **Planned, Unplanned and Test Failover** – Need I say more – everything is in your hands and at your convenience. 
 
 
 
-[![Self-service DR with planned, unplanned, and test failover](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00113_thumb_05FEACF5.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00113_7D7B4DAA.jpg)
+<!--[![Self-service DR with planned, unplanned, and test failover](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00113_thumb_05FEACF5.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image00113_7D7B4DAA.jpg)-->
 
   * One click app-level failover using Recovery Plans 
   * Audit and compliance reporting 
@@ -64,7 +64,7 @@ Top of my head, the key features in the product are:
 
 
 
-The documentation explaining the end to end workflows is available @ <https://azure.microsoft.com/documentation/articles/hyper-v-recovery-manager-azure/> to help you get started.
+The documentation explaining the end to end workflows is available to help you get started.
 
 The landing page for this service is @ <https://azure.microsoft.com/services/site-recovery/>
 

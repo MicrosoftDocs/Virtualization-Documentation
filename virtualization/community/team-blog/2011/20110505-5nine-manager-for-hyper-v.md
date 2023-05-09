@@ -42,16 +42,13 @@ If you've ever fired up the no-cost Hyper-V Server, you know that the UI is mini
 
 Here's a screenshot of SCONFIG:
 
- ![screenshot of SCONFIG](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/1643.SCONFIG.png)
-
- 
 
 Once you've configured Hyper-V Server for remote management, you can manage it in a number of ways:
 
   * Using Windows Server 2008 R2 SP1 Hyper-V Manager on a full version of Windows Server 2008 R2 SP1
   * [Using the Remote Server Administration Tools (RSAT) for Windows 7 & Windows 7 SP1](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=7d2f6ad7-656b-4313-a005-4e344e43997d)
-  * [System Center Virtual Machine Manager 2008 R2 SP1](https://www.microsoft.com/systemcenter/en/us/virtual-machine-manager/vmm-whats-new-r2.aspx)
-  *  [System Center Virtual Machine Manager 2012 Beta](https://www.microsoft.com/systemcenter/en/us/virtual-machine-manager/vm-vnext-beta.aspx)
+  * System Center Virtual Machine Manager 2008 R2 SP1
+  * System Center Virtual Machine Manager 2012 Beta
 
 
 
@@ -69,11 +66,9 @@ The folks at 5Nine have developed a local GUI for Microsoft Hyper-V Server 2008 
 
 Here's a screenshot of the 5nine Hyper-V Manager:
 
- ![screenshot of the 5nine Hyper-V Manager](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5531.5Nine%20Manager%20for%20Hyper-V.png)
-
  
 
- Very cool. This is a great opportunity to point out what can be accomplished using the [public Hyper-V WMI APIs](https://msdn.microsoft.com/library/cc136992\(VS.85\).aspx) which have been documented since day one.
+ Very cool. This is a great opportunity to point out what can be accomplished using the [public Hyper-V WMI APIs](/previous-versions/windows/desktop/virtual/windows-virtualization-portal) which have been documented since day one.
 
 ** **
 
@@ -81,8 +76,8 @@ Here's a screenshot of the 5nine Hyper-V Manager:
 
 Here are the key links:
 
-  * [Microsoft Hyper-V Server 2008 R2 SP1](https://www.microsoft.com/downloads/en/details.aspx?familyId=92E2C4BA-6965-4F8E-ABBE-CBB40556B680&hash=pMNVRmBEI7H164HL10deNppvqjcmjZcDVytJUQicRu8ZJbYi4y653qj3S6ekFSBzZltDG4dDMv%2bYytE5pynQAA%3d%3d)
-  * [5Nine Hyper-V Manager](https://www.5nine.com/5nine-manager-for-hyper-v-free.aspx)
+  * [Microsoft Hyper-V Server 2008 R2 SP1](https://www.microsoft.com/download/details.aspx?id=20196)
+  * 5Nine Hyper-V Manager
 
 
 
@@ -104,13 +99,13 @@ Windows Server & Cloud
 
 Q: Did Microsoft develop this Hyper-V Manager for Microsoft Hyper-V Server 2008 R2?
 
-A: No. The product is called **5Nine Hyper-V Manager** developed by our partners at 5Nine. To learn more about 5Nine Hyper-V Manager you should check out their site here: <https://www.5nine.com/5nine-manager-for-hyper-v-free.aspx>
+A: No. The product is called **5Nine Hyper-V Manager** developed by our partners at 5Nine. 
 
 ===========================================================================
 
 Q: How much does the 5Nine Hyper-V Manager cost? What are the system requirements?
 
-A: 5Nine offers both a free version and a $99 version. [You should check out their website for the details](https://www.5nine.com/5nine-manager-for-hyper-v-free.aspx). The big difference is that the $99 version provides local access to the VM itself. 
+A: 5Nine offers both a free version and a $99 version. The big difference is that the $99 version provides local access to the VM itself. 
 
 Note: 5Nine Hyper-V Manager works with Microsoft Hyper-V Server 2008 R2 and later. It doesn't work with the original Microsoft Hyper-V Server 2008 because it requires some capabilities not included Hyper-V Server 2008, such as .NET Framework.
 
@@ -128,8 +123,8 @@ A: Microsoft provides multiple ways to manage Microsoft Hyper-V Server remotely 
 
   * Using Windows Server 2008 R2 SP1 Hyper-V Manager on a full version of Windows Server 2008 R2 SP1
   * [Using the Remote Server Administration Tools (RSAT) for Windows 7 & Windows 7 SP1](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=7d2f6ad7-656b-4313-a005-4e344e43997d)
-  * [System Center Virtual Machine Manager 2008 R2 SP1](https://www.microsoft.com/systemcenter/en/us/virtual-machine-manager/vmm-whats-new-r2.aspx)
-  *  [System Center Virtual Machine Manager 2012 Beta](https://www.microsoft.com/systemcenter/en/us/virtual-machine-manager/vm-vnext-beta.aspx)
+  * System Center Virtual Machine Manager 2008 R2 SP1
+  * System Center Virtual Machine Manager 2012 Beta
 
 
 

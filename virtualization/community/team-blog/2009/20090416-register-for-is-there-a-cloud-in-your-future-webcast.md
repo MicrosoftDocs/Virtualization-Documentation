@@ -9,9 +9,7 @@ categories: cloud-computing
 ---
 # Register for 'Is There a Cloud in Your Future?' Webcast
 
-On Tuesday, April 28 at 11:00am PDT, Microsoft will continue its webcast series on 'How to Invest in the IT Infrastructure You Have While Preparing for Tomorrow' with [Part 2](http://www2.eventsvc.com/academylive/register/c9fee1c9-b5ce-4349-a3f6-82858e358aa5): **"Is There a Cloud in Your Future?"**
-
-Register [here](http://www2.eventsvc.com/academylive/register/c9fee1c9-b5ce-4349-a3f6-82858e358aa5)
+On Tuesday, April 28 at 11:00am PDT, Microsoft will continue its webcast series on 'How to Invest in the IT Infrastructure You Have While Preparing for Tomorrow' with Part 2: **"Is There a Cloud in Your Future?"**
 
  
 
@@ -19,6 +17,6 @@ Join Zane Adam, Microsoft Senior Director of System Center and Virtualization, B
 
  
 
- **Part 1: "One Server Does Not Fit All"** is available for on-demand viewing  [here](https://www107.livemeeting.com/cc/msevents/view?id=CAL041409)
+ **Part 1: "One Server Does Not Fit All"** is available for on-demand viewing
 
 _Bill Laing, Microsoft CVP Windows Server Division, Al Gillen, program vice president, IDC, and a Microsoft Customer present best practices to keep your costs down during this economic downturn and solutions that help you both choose and make the most of your server._

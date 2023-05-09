@@ -29,7 +29,7 @@ Let me say that I’m sure everyone reading this can appreciate the distance bet
 
 One thing I’d like to point out:  since these agreements are focused on joint technical support for Microsoft and Red Hat’s mutual customers using server virtualization, the activities included in these agreements do not require the sharing of IP.  Therefore, these agreements do not include any patent or other IP licensing rights. 
 
-I want to leave you with the point that Microsoft is pragmatically focused on helping customers and partners be successful in a heterogeneous IT world. We’re committed to enable and support interoperability with non-Windows OSes.  As a result we take a multifaceted approach to interoperability, be it customer-driven industry collaborations, such as this  Server Virtualization Validation Program, be it standards that promote common technologies (e.g., device virtualization through the PCI-SIG), or proactive licensing of IP (e.g., [Microsoft’s Virtual Hard Disk format](https://www.microsoft.com/interop/osp/default.mspx), [Microsoft’s Hypercall APIs](https://blogs.technet.com/virtualization/archive/2007/10/24/windows-virtualization-hypercall-apis-available-via-open-specification-promise.aspx)), or the creation of technologies that bridge different systems (e.g., protocol licensing and documentation, [Integration Components for Linux](https://blogs.msdn.com/mikester/archive/2008/09/10/linux-integration-components-now-posted.aspx)). In the end, customers with mixed IT environments expect it all to work together and today’s announcement is one way of making that happen.
+I want to leave you with the point that Microsoft is pragmatically focused on helping customers and partners be successful in a heterogeneous IT world. We’re committed to enable and support interoperability with non-Windows OSes.  As a result we take a multifaceted approach to interoperability, be it customer-driven industry collaborations, such as this  Server Virtualization Validation Program, be it standards that promote common technologies (e.g., device virtualization through the PCI-SIG), or proactive licensing of IP (e.g., Microsoft’s Virtual Hard Disk format, [Microsoft’s Hypercall APIs](https://blogs.technet.com/virtualization/archive/2007/10/24/windows-virtualization-hypercall-apis-available-via-open-specification-promise.aspx)), or the creation of technologies that bridge different systems (e.g., protocol licensing and documentation, [Integration Components for Linux](https://blogs.msdn.com/mikester/archive/2008/09/10/linux-integration-components-now-posted.aspx)). In the end, customers with mixed IT environments expect it all to work together and today’s announcement is one way of making that happen.
 
 Below you can read an FAQ that is also on Red Hat's website. 
 
@@ -109,9 +109,9 @@ A7: There is no change in Microsoft's or Red Hat's relationship with VMware. Not
 
 A8: Validations will be posted to the respective Microsoft and Red Hat web sites:
 
-[http://www.redhat.com/rhel/compatibility/hardware/](http://www.redhat.com/rhel/compatibility/hardware/)
+[Read Hat website](https://www.redhat.com/rhel/compatibility/hardware/)
 
-[http://www.windowsservercatalog.com/svvp.aspx](http://www.windowsservercatalog.com/svvp.aspx)
+[Windows Server Catalog website](https://www.windowsservercatalog.com/svvp.aspx)
 
 **Q9: Who will be the primary beneficiary of this agreement?
 

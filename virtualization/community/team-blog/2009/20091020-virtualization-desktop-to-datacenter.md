@@ -30,7 +30,7 @@ On the server side, the latest is from Gartner Symposium in Orlando. Gartner[ann
 
 > _According to Gartner, 18% of_[ _server workloads_](https://www.reuters.com/article/urnidgns002570f3005978d80025765500510b19/gartner-server-virtualization-now-at-18-of-server-workload-idUS211522475720091020) _this year run on virtualized servers; that share will grow to 28% next year and reach almost half by 2012. But growth is anticipated among the small-to-midsize businesses (SMB), and it's in this segment that Microsoft has a good chance to build a customer base. By 2012, VMware's share is expected to shrink to 65% but the base of VMs will have grown to 58 million, a 10-fold leap. By that time, Gartner believes, Microsoft will hold 27% share, Citrix 6%, Red Hat 2% and others about 1%._
 
- Along those lines, I had a great email exchange a couple weeks ago with Steve at PoundHost in Maidenhead, UK. I was giving a [presentation at IP Expo / VM Expo conference](http://www.ipexpo.co.uk/Speakers-2009/Patrick-O%E2%80%99Rourke "egads! what a photo") in London, and wanted to highlight PoundHost's business results since switching to Hyper-V and System Center away from VMware tools, and since PoundHost has deployed the [Dynamic Datacenter Tookit](https://www.microsoft.com/hosting/dynamicdatacenter/Home.html "website") for hosters. PoundHost has a very compelling story of how technology can really help a business transform itself and create new opportunities. The [Microsoft case study](https://www.microsoft.com/casestudies/Case_Study_Detail.aspx?casestudyid=4000004741 "MS case study on PoundHost") doesn't really do it justice. Here's some of what Steve shared with me:
+ Along those lines, I had a great email exchange a couple weeks ago with Steve at PoundHost in Maidenhead, UK. I was giving a presentation at IP Expo / VM Expo conference in London, and wanted to highlight PoundHost's business results since switching to Hyper-V and System Center away from VMware tools, and since PoundHost has deployed the [Dynamic Datacenter Tookit](https://www.microsoft.com/hosting/dynamicdatacenter/Home.html "website") for hosters. PoundHost has a very compelling story of how technology can really help a business transform itself and create new opportunities. The [Microsoft case study](https://www.microsoft.com/casestudies/Case_Study_Detail.aspx?casestudyid=4000004741 "MS case study on PoundHost") doesn't really do it justice. Here's some of what Steve shared with me:
 
   * Cost. "It meant we could offer Linux and Windows at the same price (when we went live with the beta of R2 we had Linux guests but we don’t now). It means we can offer low cost VMs on high quality (and cost!) host servers which ultimately give the end user a better experience. [It] works out about £1.00 per guest assuming 60 guests per host."
 
@@ -45,8 +45,6 @@ On the server side, the latest is from Gartner Symposium in Orlando. Gartner[ann
   * Customer service. "We’re also doing the customer control panel now for Poundhost which is based on the Dynamic Datacenter Toolkit."
 
 
-
-
- Check out more about the Dynamic Datacenter toolkits and partner alliance at [their blog](https://blogs.technet.com/ddcalliance/ "Dynamic Datacenter alliance blog").
+ Check out more about the Dynamic Datacenter toolkits and partner alliance at [their blog](/archive/blogs/ddcalliance/ "Dynamic Datacenter alliance blog").
 
 Patrick O'Rourke

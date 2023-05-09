@@ -43,8 +43,8 @@ A: Yes, virtual machines with either product are compatible, but when using Virt
 
 If after reading everything above you still don't know which product to use, start with Virtual PC because of its local interface. As a reminder,
 
-Virtual PC 2007 can be downloaded from [here](https://www.microsoft.com/windows/products/winfamily/virtualpc/default.mspx)  
-Virtual Server R2 SP1 can be downloaded from [here](https://www.microsoft.com/technet/prodtechnol/eval/virtualserver/default.mspx)
+
+
 
 Cheers,  
 Jeff

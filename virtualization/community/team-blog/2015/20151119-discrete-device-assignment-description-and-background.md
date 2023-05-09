@@ -11,13 +11,13 @@ categories: dda
 
 With Windows Server 2016, we're introducing a new feature, called Discrete Device Assignment, in Hyper-V.  Users can now take some of the PCI Express devices in their systems and pass them through directly to a guest VM.  This is actually much of the same technology that we've used for SR-IOV networking in the past.  And because of that, instead of giving you a lot of background on how this all works, I'll just point to an excellent series of posts that John Howard did a few years ago about SR-IOV when used for networking.
 
-[Everything you wanted to know about SR-IOV in Hyper-V part 1](/b/jhoward/archive/2012/03/12/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-1.aspx "Everything you wanted to know about SR-IOV in Hyper-V part 1")
+Everything you wanted to know about SR-IOV in Hyper-V part 1
 
-[Everything you wanted to know about SR-IOV in Hyper-V part 2](/b/jhoward/archive/2012/03/13/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-2.aspx "Everything you wanted to know about SR-IOV in Hyper-V part 2")
+Everything you wanted to know about SR-IOV in Hyper-V part 2
 
-[Everything you wanted to know about SR-IOV in Hyper-V part 3](/b/jhoward/archive/2012/03/14/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-3.aspx "Everything you wanted to know about SR-IOV in Hyper-V part 3")
+Everything you wanted to know about SR-IOV in Hyper-V part 3
 
-[Everything you wanted to know about SR-IOV in Hyper-V part 4](/b/jhoward/archive/2012/03/15/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-4.aspx "Everything you wanted to know about SR-IOV in Hyper-V part 4")
+Everything you wanted to know about SR-IOV in Hyper-V part 4
 
 Now I've only linked the first four posts that John Howard did back in 2012 because those were the ones that discussed the internals of PCI Express and distributing actual devices among multiple operating systems.  The rest of his series is mostly about networking, and while I do recommend it, that's not what we're talking about here.
 
@@ -89,6 +89,6 @@ Finally, it wouldn’t be a blog post without a screen shot. Here’s Device Man
 
 In a future post, I’ll talk about how to figure out whether your machine and your devices support all this.
 
-Read the next post in this series:  [Discrete Device Assignment -- Machines and devices](/b/virtualization/archive/2015/11/20/discrete-device-assignment-machines-and-devices.aspx "Discrete Device Assignment -- Machines and devices")
+Read the next post in this series: [Discrete Device Assignment -- Machines and devices](/virtualization/community/team-blog/2015/20151120-discrete-device-assignment-machines-and-devices "Discrete Device Assignment Machines and devices")
 
 \-- Jake Oshins

@@ -16,7 +16,7 @@ A frequent follow-up question to hit my inbox was from folks interested in a lis
 
 No problem.
 
-Here’s the link to the [documentation for Windows 7 and Windows Server 2008 R2 SP1 (KB976932)](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=61924cea-83fe-46e9-96d8-027ae59ddc11&displaylang=en). This KB includes:
+Here’s the link to the documentation for Windows 7 and Windows Server 2008 R2 SP1 (KB976932). This KB includes:
 
   * Hotfixes and Security Updates
   * Notable Changes
@@ -28,7 +28,7 @@ While the current version posted is for the Service Pack 1 Release Candidate, th
   
  **VMware and ASLR Follow-Up**
 
-[In my last blog](https://blogs.technet.com/b/virtualization/archive/2011/02/09/windows-7-and-windows-server-2008-r2-sp1-add-new-virtualization-innovations.aspx), I discussed the importance of Address Space Layout Randomization (ASLR) as an effective, transparent security mitigation built-into Windows 7. I noted that independent security analysts wholeheartedly agree on the importance of ASLR. I also stated we have serious concerns that VMware was recommending customers disable ASLR to achieve better density.  
+[In my last blog](https://techcommunity.microsoft.com/t5/virtualization/windows-7-and-windows-server-2008-r2-sp1-add-new-virtualization/ba-p/381776), I discussed the importance of Address Space Layout Randomization (ASLR) as an effective, transparent security mitigation built-into Windows 7. I noted that independent security analysts wholeheartedly agree on the importance of ASLR. I also stated we have serious concerns that VMware was recommending customers disable ASLR to achieve better density.  
   
 Following that blog post, we were contacted by Jeff Buell from VMware.
 
@@ -40,23 +40,17 @@ First, let me say thank you to Jeff Buell for his swift response. I’m glad to 
 
 **Looks Like It Started Here …**
 
-It appears that the suggestion to disable ASLR began right here on VMware’s public blog page.
+It appears that the suggestion to disable ASLR began right here on VMware’s public blog page.[Check out here](http://blogs.vmware.com/view/2009/04/vista-and-vmware-view.html)
 
-<http://blogs.vmware.com/view/2009/04/vista-and-vmware-view.html>
 
-![V M ware A S L R image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/4186.img%201.png)
 
-The post casually mentions that disabling ASLR will “lower overall security,” and then continues to make things worse by telling people to disable NX and DEP, two additional security mitigations. Because of this post, others picked up on this recommendation (such as in VMware’s community forums) and promoted this idea without anyone from VMware disputing this unfortunate suggestion:
+The post casually mentions that disabling ASLR will “lower overall security,” and then continues to make things worse by telling people to disable NX and DEP, two additional security mitigations. Because of this post, others picked up on this recommendation (such as in VMware’s community forums) and promoted this idea without anyone from VMware disputing this unfortunate suggestion: [here](https://communities.vmware.com/message/1294525#1294525)
 
-<http://communities.vmware.com/message/1294525#1294525>
 
-![Lower overall security image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/8585.img%202.png)
 
 At first, I thought these were isolated incidents, but then I started receiving regular inquiries from customers who said they were considering a VDI deployment and specifically asking if Microsoft had a recommendation or support stance regarding ASLR. Considering the fact that ASLR is transparent and you have to go out of your way to disable it (you have to be admin and then go to the Registry), I knew this wasn’t isolated anymore.
 
 Finally, at VMworld 2010 in Europe, VMware Director of Product Marketing, Eric Horschman, delivered session TA8270 titled, **Get the Best VM Density From Your Virtualization Platform.**
-
-![Slide image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0755.img%203.png)
 
  In this session, a slide was presented with the following:
 
@@ -87,5 +81,3 @@ Cheers,
 Jeff Woolsey  
 Group Program Manager, Hyper-V  
 Windows Server & Cloud
-
- 

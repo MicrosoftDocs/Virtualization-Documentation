@@ -16,7 +16,7 @@ In Windows Server 2012, we supported recovery history by storing one recovery sn
 
 The screenshot below shows recovery snapshots on a replica VM with recovery points:
 
-[![Recovery snapshots on a replica VM with recovery points](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0016_thumb_43B66657.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0016_660B6B1F.png)
+<!--[![Recovery snapshots on a replica VM with recovery points](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0016_thumb_43B66657.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/clip_image0016_660B6B1F.png)-->
 
 However, due to the way recovery snapshots work, there are some inherent tradeoffs in using them for recovery history. They are:
 
@@ -32,7 +32,7 @@ The undo-log architecture makes use of the efficient change tracking and logging
 
 Thus, in the undo-log architecture, the data in the replica VHDs is always at the latest state. Failing over to an older point requires application of corresponding undo logs. However, the most favored scenario of failing over to the latest recovery point is made extremely efficient. In fact, there is over 100% improvement in IOPS usage on the recovery side with undo-log approach as opposed to recovery snapshot based approach! Furthermore, should there be any corruption in data in any undo logs, failover to older recovery points is impacted while leaving all the newer recovery points accessible.
 
-![Important](https://i.technet.microsoft.com/areas/global/content/clear.gif)Important  
+
 ---  
   
   * The undo-logs are stored as .HRU files. They’re stored under `<Replica store>`\Hyper-V Replica\Virtual hard disks\<GUID>\ by default. **Do not delete** the HRU files directly from the storage location. Instead reduce the number of configured recovery points from virtual machine replication settings in hyper-v manager. 

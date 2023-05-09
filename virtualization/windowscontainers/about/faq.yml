@@ -5,7 +5,7 @@ metadata:
   keywords: docker, containers
   author: vrapolinario
   ms.author: viniap
-  ms.date: 03/25/2023
+  ms.date: 05/04/2023
   ms.topic: faq
   ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 title: Frequently asked questions about containers
@@ -25,12 +25,12 @@ sections:
       - question: |
           What are the prerequisites for running containers on Windows?
         answer: |
-          Containers were introduced to the platform with Windows Server 2016. To use containers, you'll need either Windows Server 2016 or the Windows 10 Anniversary update (version 1607) or newer. Read the [System Requirements](../deploy-containers/system-requirements.md) to learn more.
+          Containers were introduced to the platform with Windows Server 2016. To use containers, you'll need either Windows Server 2016, the Windows 10 Anniversary update (version 1607) or newer, or Windows 10 IoT Enterprise or newer. Read the [System Requirements](../deploy-containers/system-requirements.md) to learn more.
           
       - question: |
-          What Windows operating systems are supported?
+          What of the Windows operating systems are supported in Kubernetes?
         answer: |
-          Support for Windows containers is dependent on the platform on which it runs. Azure Kubernetes Service (AKS) and AKS on Azure Stack HCI and Windows Server supports both Windows Server 2019 and Windows Server 2022. For Windows container version compatibility, see [Windows container version compatibility](../deploy-containers/version-compatibility.md).
+          Support for Windows containers is dependent on the Kubernetes platform on which it runs. Azure Kubernetes Service (AKS) and AKS on Azure Stack HCI and Windows Server supports both Windows Server 2019 and Windows Server 2022 Windows nodes. Azure Kubernetes Service Edge Essentials support Windows Server 2019, Windows Server 2022, and Windows 10/11 Enterprise or Pro. For Windows container version compatibility, see [Windows container version compatibility](../deploy-containers/version-compatibility.md).
           
       - question: |
           How do I patch my Windows nodes?
@@ -56,13 +56,14 @@ sections:
           |----------------------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
           |Windows Server Standard                                         |Unlimited                                          |2                                                  |
           |Windows Server Datacenter                                       |Unlimited                                          |Unlimited                                          |
-          |Windows 10 Pro and Enterprise                                   |Unlimited *(for test or development purposes only)*|Unlimited *(for test or development purposes only)*|
-          |Windows 10 IoT Core and Enterprise                             |Unlimited*                                         |Unlimited*                                          |
+          |Windows Pro and Enterprise                                      |Unlimited *(for test or development purposes only)*|Unlimited *(for test or development purposes only)*|
+          |Windows 10 IoT Core                                             |Unlimited*                                         |Unlimited*                                         |
+          |Windows IoT Enterprise                                          |Unlimited*                                         |Unlimited*                                         |          
           
           Windows Server container image usage is determined by reading the number of virtualization guests supported for that [edition](/windows-server/get-started-19/editions-comparison-19). <br/>
           
           >[!NOTE]
-          >\*Production usage of containers on an IoT edition of Windows depend on if you have agreed to the Microsoft Commercial Terms of Use for Windows 10 Core Runtime Images or the Windows 10 IoT Enterprise Device License (“Windows IoT Commercial Agreement”). Additional terms and restrictions in the Windows IoT Commercial Agreements apply to your use of Container Image in a production environment. Please read the [container image EULA](../images-eula.md) to understand exactly what is permitted and what is not.
+          >\*Production usage of containers on an IoT edition of Windows depend on if you have agreed to the Microsoft Commercial Terms of Use for Windows Core Runtime Images or the Windows IoT Enterprise Device License (“Windows IoT Commercial Agreement”). Additional terms and restrictions in the Windows IoT Commercial Agreements apply to your use of Container Image in a production environment. Please read the [container image EULA](../images-eula.md) to understand exactly what is permitted and what is not.
           
       - question: |
           As a developer, do I have to rewrite my app for each type of container?
@@ -76,7 +77,7 @@ sections:
       - question: |
           Can I run Windows containers in process-isolated mode on Windows 10?
         answer: |
-          Starting with the Windows 10 October 2018 update, you can run a Windows container with process isolation, but you must first directly request process isolation by using the `--isolation=process` flag when running your containers with `docker run`. Process-isolation is compatible on Windows 10 Pro, Windows 10 Enterprise, Windows 10 IoT Core and Windows 10 IoT Enterprise.
+          Starting with the Windows 10 October 2018 update, you can run a Windows container with process isolation, but you must first directly request process isolation by using the `--isolation=process` flag when running your containers with `docker run`. Process-isolation is compatible on Windows 10 11 Pro (or newer), Windows 10 Enterprise (or newer), Windows 10 IoT Core and Windows 10 IoT Enterprise (or newer).
           
           If you want to run your Windows containers this way, you'll need to make sure your host is running Windows 10 build 17763+ and you have a Docker version with Engine 18.09 or newer.
           

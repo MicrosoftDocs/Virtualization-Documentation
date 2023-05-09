@@ -49,11 +49,11 @@ A: The AVX instructions **_can_** improve performance if applications and worklo
 
 Q: Does the Hyper-V Processor Compatibility feature have any bearing on this matter?
 
-[![Hyper-V Processor compatibility](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3247.Processor%20Compatibility.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3247.Processor%20Compatibility.png)
+
 
 A: No. The Hyper-V Processor Compatibility feature is orthogonal to this matter. The fundamental issue is that Windows Server 2008 R2 and Microsoft Hyper-V Server 2008 R2 were released years before processors with AVX instructions were available and didn’t includes support for the AVX instructions in the _parent operating system_.
 
-The Hyper-V Processor Compatibility feature normalizes the processor feature set and only exposes guest visible processor features that are available on all Hyper-V enabled processors of the same processor architecture, i.e. AMD or Intel. This allows the VM to be migrated to any hardware platform of the same processor architecture. For more info on Hyper-V Processor Compatibility here are some links ([here ](https://blogs.technet.com/b/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)and [here](https://download.microsoft.com/download/F/2/1/F2146213-4AC0-4C50-B69A-12428FF0B077/VM%20processor%20compatibility%20mode.doc)).
+The Hyper-V Processor Compatibility feature normalizes the processor feature set and only exposes guest visible processor features that are available on all Hyper-V enabled processors of the same processor architecture, i.e. AMD or Intel. This allows the VM to be migrated to any hardware platform of the same processor architecture. For more info on Hyper-V Processor Compatibility here are some links ([here](https://blogs.technet.com/b/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx)and [here](https://download.microsoft.com/download/F/2/1/F2146213-4AC0-4C50-B69A-12428FF0B077/VM%20processor%20compatibility%20mode.doc)).
 
 Cheers,
 

@@ -12,7 +12,7 @@ ms.assetid: 165262c0-7981-4e1c-b1b5-9a51f88543d1
 
 # WinHEC 2006 Presentation slides are available online
 
-The Microsoft WinHEC 2006 presentation slides are now available to view online under the [WHDC](https://www.microsoft.com/whdc/winhec/pres06.mspx) (Windows Hardware Developer Central) area on microsoft.com. The Windows Virtualization related sessions are near the bottom of the page and are listed below for reference.
+The Microsoft WinHEC 2006 presentation slides are now available to view online under the WHDC (Windows Hardware Developer Central) area on microsoft.com. The Windows Virtualization related sessions are near the bottom of the page and are listed below for reference.
 
 * [Device Virtualization Architecture](https://download.microsoft.com/download/5/b/9/5b97017b-e28a-4bae-ba48-174cf47d23cd/VIR040_WH06.ppt)
 * [How to Use the WMI Interfaces with Windows Virtualization](https://download.microsoft.com/download/5/b/9/5b97017b-e28a-4bae-ba48-174cf47d23cd/VIR043_WH06.ppt)
@@ -31,5 +31,3 @@ John Howard
 Program Manager  
 Windows Virtualization
 
-[Original link](https://blogs.technet.microsoft.com/virtualization/2006/06/14/winhec-2006-presentation-slides-are-available-online/
-)

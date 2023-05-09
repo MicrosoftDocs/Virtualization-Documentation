@@ -23,83 +23,14 @@ _(NOTE: In this post we will use a VM named “RESYNC VM” in all examples and 
 
 It would become quite obvious after going through this table below that Resync is not expected to occur regularly. In fact, in the normal course of replication this is quite a rare event. The VM enters the _“Resynchronization Required”_ state when any one of the conditions are encountered:
 
-#### Site
-
-| 
-
-#### Condition
-
-| 
-
-#### Scenario example  
-  
----|---|---  
-  
-Primary
-
-| 
-
-Modify VHD when VM is turned off
-
-| 
-
-Mount/modify VHD outside the VM, Edit disk, Offline patching  
-  
-Primary
-
-| 
-
-Size of tracking log files > 50% of total VHD size for a VM
-
-| 
-
-Network outage causes logs to accumulate  
-  
-Primary
-
-| 
-
-Write failure to tracking log file
-
-| 
-
-VHD and logs are on SMB and connectivity to the SMB storage is flaky.  
-  
-Primary
-
-| 
-
-Tracking log file is not closed gracefully
-
-| 
-
-Host crash with primary VM running. Applicable to VMs in a cluster also.  
-  
-Primary
-
-| 
-
-Reverting the volume to an older point in time
-
-Reverting the VM to an older snapshot
-
-| 
-
-Volume/snapshot backup and restore  
-  
-Secondary
-
-| 
-
-Out-of-sequence or Invalid log file is applied
-
-| 
-
-Restoring a backed-up copy of the Replica VM
-
-Importing an older VM copy, when migration by using export-import
-
-Reverting volume to an older point in time using Volume backup and restore.
+| Site | Condition | Scenario example |  
+| --- | --- | --- |
+| Primary | Modify VHD when VM is turned off | Mount/modify VHD outside the VM, Edit disk, Offline patching |
+| Primary | Size of tracking log files > 50% of total VHD size for a VM | Network outage causes logs to accumulate |
+| Primary | Write failure to tracking log file | VHD and logs are on SMB and connectivity to the SMB storage is flaky. |
+| Primary | Tracking log file is not closed gracefully | Host crash with primary VM running. Applicable to VMs in a cluster also. |
+| Primary | Reverting the volume to an older point in time | Reverting the VM to an older snapshot | Volume/snapshot backup and restore |
+| Secondary | Out-of-sequence or Invalid log file is applied | Restoring a backed-up copy of the Replica VM Importing an older VM copy, when migration by using export-import. Reverting volume to an older point in time using Volume backup and restore.|
 
 Reverting the VM to an older snapshot  
   
@@ -107,7 +38,7 @@ When the VM enters the _“Resynchronization Required”_ state, the replication
 
 The replication health will also show this message:
 
-[![resync 002](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5516.resync-002_thumb_7BE1F016.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3010.resync-002_45713E14.png)
+<!--[![resync 002](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5516.resync-002_thumb_7BE1F016.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3010.resync-002_45713E14.png)-->
 
 ## Initiating and scheduling resynchronization
 
@@ -120,7 +51,7 @@ Depending on the VM setting, the user might have to trigger the resynchronizatio
 
 You will be presented with the screen to schedule the resynchronization operation:
 
-[![resync 003](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6355.resync-003_thumb_73833C21.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4426.resync-003_3905AB9C.png)
+<!--[![resync 003](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6355.resync-003_thumb_73833C21.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4426.resync-003_3905AB9C.png)-->
 
 To start the resync operation from PowerShell, use the [**Resume-VMReplication**](https://technet.microsoft.com/library/hh848510.aspx) commandlet:
     
@@ -143,11 +74,11 @@ The scheduling of the resynchronization operation can be configured for each VM:
 
 
 
-[![resync 006](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6622.resync-006_thumb_54D17398.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7713.resync-006_0EBE25D4.png)
+<!-- [![resync 006](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6622.resync-006_thumb_54D17398.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7713.resync-006_0EBE25D4.png)-->
 
 The default option is to schedule the resynchronization operation during off-peak hours. The resource intensive nature of the operation makes such scheduling useful, and aims to reduce the impact on running VMs. 
 
-The same can be configured in PowerShell using the [**Set-VMReplication**](https://technet.microsoft.com/library/hh848543.aspx) commandlet:
+The same can be configured in PowerShell using the [**Set-VMReplication**](/powershell/module/hyper-v/set-vmreplication) commandlet:
     
     
 ## Manual resync
@@ -171,7 +102,7 @@ Set-VMReplication –VMName "RESYNC VM" -AutoResynchronizeEnabled 1 -AutoResynch
     
 Set-VMReplication –VMName "RESYNC VM" -AutoResynchronizeEnabled 1 -AutoResynchronizeIntervalStart 00:00:00 -AutoResynchronizeIntervalEnd 06:00:00
 
-To see the resynchronization settings in PowerShell, use the [**Get-VMReplication**](https://technet.microsoft.com/library/hh848570.aspx) commandlet and look for the _AutoResynchronizeEnabled_ , _AutoResynchronizeIntervalStart_ , and _AutoResynchronizeIntervalEnd_ fields: 
+To see the resynchronization settings in PowerShell, use the [**Get-VMReplication**](/powershell/module/hyper-v/get-vmreplication) commandlet and look for the _AutoResynchronizeEnabled_ , _AutoResynchronizeIntervalStart_ , and _AutoResynchronizeIntervalEnd_ fields: 
     
     
 Get-VMReplication -VMname "RESYNC VM" | fl *
