@@ -1,4 +1,4 @@
-﻿{
+{
   "build": {
     "content": [
       {
@@ -30,6 +30,7 @@
     "externalReference": [],
 
     "globalMetadata": {
+      "uhfHeaderId": "MSDocsHeader-Windows",
       "breadcrumb_path": "/virtualization/toc.json",
       "extendBreadcrumb": true,
       "feedback_system": "GitHub",
