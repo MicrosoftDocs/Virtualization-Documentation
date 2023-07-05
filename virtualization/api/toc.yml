@@ -1,0 +1,512 @@
+- name: Overview
+  href: ./index.md
+- name: Hyper-V WMI provider
+  href: /windows/win32/hyperv_v2/windows-virtualization-portal
+- name: Host Compute System API
+  expanded: true
+  items: 
+    - name: Overview
+      href: ./hcs/overview.md
+    - name: API Reference
+      expanded: true
+      items: 
+        - name: Overview
+          href: ./hcs/Reference/APIOverview.md
+        - name: Data Types
+          items: 
+            - name: HCS Error Code
+              href: ./hcs/Reference/HCSHResult.md
+            - name: HCS_OPERATION_TYPE
+              href: ./hcs/Reference/HCS_OPERATION_TYPE.md
+            - name: HCS_EVENT_TYPE
+              href: ./hcs/Reference/HCS_EVENT_TYPE.md
+            - name: HCS_EVENT
+              href: ./hcs/Reference/HCS_EVENT.md
+            - name: HCS_EVENT_OPTIONS
+              href: ./hcs/Reference/HCS_EVENT_OPTIONS.md
+            - name: HCS_PROCESS_INFORMATION
+              href: ./hcs/Reference/HCS_PROCESS_INFORMATION.md
+        - name: Callback Function Types
+          items: 
+            - name: HCS_OPERATION_COMPLETION
+              href: ./hcs/Reference/HCS_OPERATION_COMPLETION.md
+            - name: HCS_EVENT_CALLBACK
+              href: ./hcs/Reference/HCS_EVENT_CALLBACK.md
+        - name: Functions
+          expanded: true
+          items: 
+            - name: Operation
+              items: 
+                - name: HcsCreateOperation
+                  href: ./hcs/Reference/HcsCreateOperation.md
+                - name: HcsCloseOperation
+                  href: ./hcs/Reference/HcsCloseOperation.md
+                - name: HcsGetOperationContext
+                  href: ./hcs/Reference/HcsGetOperationContext.md
+                - name: HcsSetOperationContext
+                  href: ./hcs/Reference/HcsSetOperationContext.md
+                - name: HcsGetComputeSystemFromOperation
+                  href: ./hcs/Reference/HcsGetComputeSystemFromOperation.md
+                - name: HcsGetProcessFromOperation
+                  href: ./hcs/Reference/HcsGetProcessFromOperation.md
+                - name: HcsGetOperationType
+                  href: ./hcs/Reference/HcsGetOperationType.md
+                - name: HcsGetOperationId
+                  href: ./hcs/Reference/HcsGetOperationId.md
+                - name: HcsGetOperationResult
+                  href: ./hcs/Reference/HcsGetOperationResult.md
+                - name: HcsGetOperationResultAndProcessInfo
+                  href: ./hcs/Reference/HcsGetOperationResultAndProcessInfo.md
+                - name: HcsWaitForOperationResult
+                  href: ./hcs/Reference/HcsWaitForOperationResult.md
+                - name: HcsWaitForOperationResultAndProcessInfo
+                  href: ./hcs/Reference/HcsWaitForOperationResultAndProcessInfo.md
+                - name: HcsSetOperationCallback
+                  href: ./hcs/Reference/HcsSetOperationCallback.md
+                - name: HcsCancelOperation
+                  href: ./hcs/Reference/HcsCancelOperation.md
+            - name: Compute System
+              items: 
+                - name: HcsCreateComputeSystem
+                  href: ./hcs/Reference/HcsCreateComputeSystem.md
+                - name: HcsOpenComputeSystem
+                  href: ./hcs/Reference/HcsOpenComputeSystem.md
+                - name: HcsCloseComputeSystem
+                  href: ./hcs/Reference/HcsCloseComputeSystem.md
+                - name: HcsStartComputeSystem
+                  href: ./hcs/Reference/HcsStartComputeSystem.md
+                - name: HcsShutDownComputeSystem
+                  href: ./hcs/Reference/HcsShutDownComputeSystem.md
+                - name: HcsTerminateComputeSystem
+                  href: ./hcs/Reference/HcsTerminateComputeSystem.md
+                - name: HcsCrashComputeSystem
+                  href: ./hcs/Reference/HcsCrashComputeSystem.md
+                - name: HcsPauseComputeSystem
+                  href: ./hcs/Reference/HcsPauseComputeSystem.md
+                - name: HcsResumeComputeSystem
+                  href: ./hcs/Reference/HcsResumeComputeSystem.md
+                - name: HcsSaveComputeSystem
+                  href: ./hcs/Reference/HcsSaveComputeSystem.md
+                - name: HcsGetComputeSystemProperties
+                  href: ./hcs/Reference/HcsGetComputeSystemProperties.md
+                - name: HcsModifyComputeSystem
+                  href: ./hcs/Reference/HcsModifyComputeSystem.md
+                - name: HcsSetComputeSystemCallback
+                  href: ./hcs/Reference/HcsSetComputeSystemCallback.md
+                - name: HcsEnumerateComputeSystems
+                  href: ./hcs/Reference/HcsEnumerateComputeSystems.md
+            - name: Device Virtualization
+              items: 
+                - name: Device Virtualization
+                  href: hcs/Reference/hdv/DeviceVirtualization.md
+                - name: HdvCreateDeviceInstance
+                  href: hcs/Reference/hdv/HdvCreateDeviceInstance.md
+                - name: HdvCreateGuestMemoryAperture
+                  href: hcs/Reference/hdv/HdvCreateGuestMemoryAperture.md
+                - name: HdvDeliverGuestInterrupt
+                  href: hcs/Reference/hdv/HdvDeliverGuestInterrupt.md
+                - name: HdvDeviceType
+                  href: hcs/Reference/hdv/HdvDeviceType.md
+                - name: HdvInitializeDeviceHost
+                  href: hcs/Reference/hdv/HdvInitializeDeviceHost.md
+                - name: HdvPciBarSelector
+                  href: hcs/Reference/hdv/HdvPciBarSelector.md
+                - name: HdvPciDeviceGetDetails
+                  href: hcs/Reference/hdv/HdvPciDeviceGetDetails.md
+                - name: HdvPciDeviceInitialize
+                  href: hcs/Reference/hdv/HdvPciDeviceInitialize.md
+                - name: HdvPciDeviceInterface
+                  href: hcs/Reference/hdv/HdvPciDeviceInterface.md
+                - name: HdvPciDeviceSetConfiguration
+                  href: hcs/Reference/hdv/HdvPciDeviceSetConfiguration.md
+                - name: HdvPciDeviceStart
+                  href: hcs/Reference/hdv/HdvPciDeviceStart.md
+                - name: HdvPciDeviceStop
+                  href: hcs/Reference/hdv/HdvPciDeviceStop.md
+                - name: HdvPciDeviceTeardown
+                  href: hcs/Reference/hdv/HdvPciDeviceTeardown.md
+                - name: HdvPciInterfaceVersion
+                  href: hcs/Reference/hdv/HdvPciInterfaceVersion.md
+                - name: HdvPciPnpId
+                  href: hcs/Reference/hdv/HdvPciPnpId.md
+                - name: HdvPciReadConfigSpace
+                  href: hcs/Reference/hdv/HdvPciReadConfigSpace.md
+                - name: HdvPciReadInterceptedMemory
+                  href: hcs/Reference/hdv/HdvPciReadInterceptedMemory.md
+                - name: HdvPciWriteConfigSpace
+                  href: hcs/Reference/hdv/HdvPciWriteConfigSpace.md
+                - name: HdvPciWriteInterceptedMemory
+                  href: hcs/Reference/hdv/HdvPciWriteInterceptedMemory.md
+                - name: HdvReadGuestMemory
+                  href: hcs/Reference/hdv/HdvReadGuestMemory.md
+                - name: HdvTeardownDeviceHost
+                  href: hcs/Reference/hdv/HdvTeardownDeviceHost.md
+                - name: HdvWriteGuestMemory
+                  href: hcs/Reference/hdv/HdvWriteGuestMemory.md
+            - name: Process Execution
+              items: 
+                - name: HcsCreateProcess
+                  href: ./hcs/Reference/HcsCreateProcess.md
+                - name: HcsOpenProcess
+                  href: ./hcs/Reference/HcsOpenProcess.md
+                - name: HcsCloseProcess
+                  href: ./hcs/Reference/HcsCloseProcess.md
+                - name: HcsTerminateProcess
+                  href: ./hcs/Reference/HcsTerminateProcess.md
+                - name: HcsSignalProcess
+                  href: ./hcs/Reference/HcsSignalProcess.md
+                - name: HcsGetProcessInfo
+                  href: ./hcs/Reference/HcsGetProcessInfo.md
+                - name: HcsGetProcessProperties
+                  href: ./hcs/Reference/HcsGetProcessProperties.md
+                - name: HcsModifyProcess
+                  href: ./hcs/Reference/HcsModifyProcess.md
+                - name: HcsSetProcessCallback
+                  href: ./hcs/Reference/HcsSetProcessCallback.md
+            - name: Host Service
+              items: 
+                - name: HcsGetServiceProperties
+                  href: ./hcs/Reference/HcsGetServiceProperties.md
+                - name: HcsModifyServiceSettings
+                  href: ./hcs/Reference/HcsModifyServiceSettings.md
+                - name: HcsSubmitWerReport
+                  href: ./hcs/Reference/HcsSubmitWerReport.md
+            - name: Virtual Machine Utilities
+              items: 
+                - name: HcsCreateEmptyGuestStateFile
+                  href: ./hcs/Reference/HcsCreateEmptyGuestStateFile.md
+                - name: HcsCreateEmptyRuntimeStateFile
+                  href: ./hcs/Reference/HcsCreateEmptyRuntimeStateFile.md
+                - name: HcsGrantVmAccess
+                  href: ./hcs/Reference/HcsGrantVmAccess.md
+                - name: HcsRevokeVmAccess
+                  href: ./hcs/Reference/HcsRevokeVmAccess.md
+                - name: HcsGrantVmGroupAccess
+                  href: ./hcs/Reference/HcsGrantVmGroupAccess.md
+                - name: HcsRevokeVmGroupAccess
+                  href: ./hcs/Reference/HcsRevokeVmGroupAccess.md
+            - name: Containers Storage Utilities
+              items: 
+                - name: HcsImportLayer
+                  href: ./hcs/Reference/HcsImportLayer.md
+                - name: HcsExportLayer
+                  href: ./hcs/Reference/HcsExportLayer.md
+                - name: HcsExportLegacyWritableLayer
+                  href: ./hcs/Reference/HcsExportLegacyWritableLayer.md
+                - name: HcsDestroyLayer
+                  href: ./hcs/Reference/HcsDestroyLayer.md
+                - name: HcsSetupBaseOSLayer
+                  href: ./hcs/Reference/HcsSetupBaseOSLayer.md
+                - name: HcsInitializeWritableLayer
+                  href: ./hcs/Reference/HcsInitializeWritableLayer.md
+                - name: HcsInitializeLegacyWritableLayer
+                  href: ./hcs/Reference/HcsInitializeLegacyWritableLayer.md
+                - name: HcsAttachLayerStorageFilter
+                  href: ./hcs/Reference/HcsAttachLayerStorageFilter.md
+                - name: HcsDetachLayerStorageFilter
+                  href: ./hcs/Reference/HcsDetachLayerStorageFilter.md
+                - name: HcsFormatWritableLayerVhd
+                  href: ./hcs/Reference/HcsFormatWritableLayerVhd.md
+                - name: HcsGetLayerVhdMountPath
+                  href: ./hcs/Reference/HcsGetLayerVhdMountPath.md
+    - name: JSON Schema
+      items: 
+        - name: Schema Overview
+          href: ./hcs/SchemaOverview.md
+        - name: JSON Schema Reference
+          href: ./hcs/SchemaReference.md
+        - name: Schema in Different Languages
+          href: ./hcs/SchemaSample.md
+    - name: Samples
+      items: 
+        - name: Quick Start
+          href: ./hcs/Reference/Tutorial.md
+        - name: Operation Completion
+          href: ./hcs/Reference/OperationCompletionSample.md
+        - name: Event Callback
+          href: ./hcs/Reference/EventCallbackSample.md
+        - name: Compute System
+          href: ./hcs/Reference/ComputeSystemSample.md
+        - name: Host Service
+          href: ./hcs/Reference/ServiceSample.md
+        - name: Virtual Machine Utilities
+          href: ./hcs/Reference/UtilityFunctionSample.md
+- name: Host Compute Network API
+  expanded: true
+  items: 
+    - name: Overview
+      href: /windows-server/networking/technologies/hcn/hcn-top
+      expanded: true
+      items: 
+        - name: Data Types
+          items: 
+            - name: HCN Error Codes
+              href: ./hcn/Reference/HCNHResult.md
+            - name: HCN\_NOTIFICATIONS
+              href: ./hcn/Reference/HCN_NOTIFICATIONS.md
+            - name: HCN\_NOTIFICATION_CALLBACK
+              href: ./hcn/Reference/HCN_NOTIFICATION_CALLBACK.md
+            - name: HCN\_CALLBACK
+              href: ./hcn/Reference/HCN_CALLBACK.md
+            - name: HCN\_NAMESPACE
+              href: ./hcn/Reference/HCN_NAMESPACE.md
+            - name: HCN\_ENDPOINT
+              href: ./hcn/Reference/HCN_ENDPOINT.md
+            - name: HCN\_NETWORK
+              href: ./hcn/Reference/HCN_NETWORK.md
+            - name: HCN\_LOADBALANCER
+              href: ./hcn/Reference/HCN_LOADBALANCER.md
+            - name: HCN\_SERVICE
+              href: ./hcn/Reference/HCN_SERVICE.md
+            - name: HCN\_GUESTNETWORKSERVICE
+              href: ./hcn/Reference/HCN_GUESTNETWORKSERVICE.md
+            - name: HCN\_PORT\_PROTOCOL
+              href: ./hcn/Reference/HCN_PORT_PROTOCOL.md
+            - name: HCN\_PORT\_ACCESS
+              href: ./hcn/Reference/HCN_PORT_ACCESS.md
+            - name: HCN\_PORT\_RANGE\_RESERVATION
+              href: ./hcn/Reference/HCN_PORT_RANGE_RESERVATION.md
+            - name: HCN\_PORT\_RANGE\_ENTRY
+              href: ./hcn/Reference/HCN_PORT_RANGE_ENTRY.md
+        - name: Functions
+          expanded: true
+          items: 
+            - name: Networks
+              items: 
+                - name: HcnEnumerateNetworks
+                  href: ./hcn/Reference/HcnEnumerateNetworks.md
+                - name: HcnCreateNetwork
+                  href: ./hcn/Reference/HcnCreateNetwork.md
+                - name: HcnOpenNetwork
+                  href: ./hcn/Reference/HcnOpenNetwork.md
+                - name: HcnModifyNetwork
+                  href: ./hcn/Reference/HcnModifyNetwork.md
+                - name: HcnQueryNetworkProperties
+                  href: ./hcn/Reference/HcnQueryNetworkProperties.md
+                - name: HcnDeleteNetwork
+                  href: ./hcn/Reference/HcnDeleteNetwork.md
+                - name: HcnCloseNetwork
+                  href: ./hcn/Reference/HcnCloseNetwork.md
+            - name: Namespaces
+              items: 
+                - name: HcnEnumerateNamespaces
+                  href: ./hcn/Reference/HcnEnumerateNamespaces.md
+                - name: HcnCreateNamespace
+                  href: ./hcn/Reference/HcnCreateNamespace.md
+                - name: HcnOpenNamespace
+                  href: ./hcn/Reference/HcnOpenNamespace.md
+                - name: HcnModifyNamespace
+                  href: ./hcn/Reference/HcnModifyNamespace.md
+                - name: HcnQueryNamespaceProperties
+                  href: ./hcn/Reference/HcnQueryNamespaceProperties.md
+                - name: HcnDeleteNamespace
+                  href: ./hcn/Reference/HcnDeleteNamespace.md
+                - name: HcnCloseNamespace
+                  href: ./hcn/Reference/HcnCloseNamespace.md
+            - name: Endpoints
+              items: 
+                - name: HcnEnumerateEndpoints
+                  href: ./hcn/Reference/HcnEnumerateEndpoints.md
+                - name: HcnCreateEndpoint
+                  href: ./hcn/Reference/HcnCreateEndpoint.md
+                - name: HcnOpenEndpoint
+                  href: ./hcn/Reference/HcnOpenEndpoint.md
+                - name: HcnModifyEndpoint
+                  href: ./hcn/Reference/HcnModifyEndpoint.md
+                - name: HcnQueryEndpointProperties
+                  href: ./hcn/Reference/HcnQueryEndpointProperties.md
+                - name: HcnDeleteEndpoint
+                  href: ./hcn/Reference/HcnDeleteEndpoint.md
+                - name: HcnCloseEndpoint
+                  href: ./hcn/Reference/HcnCloseEndpoint.md
+            - name: LoadBalancers
+              items: 
+                - name: HcnEnumerateLoadBalancers
+                  href: ./hcn/Reference/HcnEnumerateLoadBalancers.md
+                - name: HcnCreateLoadBalancer
+                  href: ./hcn/Reference/HcnCreateLoadBalancer.md
+                - name: HcnOpenLoadBalancer
+                  href: ./hcn/Reference/HcnOpenLoadBalancer.md
+                - name: HcnModifyLoadBalancer
+                  href: ./hcn/Reference/HcnModifyLoadBalancer.md
+                - name: HcnQueryLoadBalancerProperties
+                  href: ./hcn/Reference/HcnQueryLoadBalancerProperties.md
+                - name: HcnDeleteLoadBalancer
+                  href: ./hcn/Reference/HcnDeleteLoadBalancer.md
+                - name: HcnCloseLoadBalancer
+                  href: ./hcn/Reference/HcnCloseLoadBalancer.md
+            - name: Services
+              items: 
+                - name: HcnRegisterServiceCallback
+                  href: ./hcn/Reference/HcnRegisterServiceCallback.md
+                - name: HcnUnregisterServiceCallback
+                  href: ./hcn/Reference/HcnUnregisterServiceCallback.md
+            - name: Guest Network Services
+              items: 
+                - name: HcnRegisterGuestNetworkServiceCallback
+                  href: ./hcn/Reference/HcnRegisterGuestNetworkServiceCallback.md
+                - name: HcnUnregisterGuestNetworkServiceCallback
+                  href: ./hcn/Reference/HcnUnregisterGuestNetworkServiceCallback.md
+                - name: HcnCreateGuestNetworkService
+                  href: ./hcn/Reference/HcnCreateGuestNetworkService.md
+                - name: HcnCloseGuestNetworkService
+                  href: ./hcn/Reference/HcnCloseGuestNetworkService.md
+                - name: HcnModifyGuestNetworkService
+                  href: ./hcn/Reference/HcnModifyGuestNetworkService.md
+                - name: HcnDeleteGuestNetworkService
+                  href: ./hcn/Reference/HcnDeleteGuestNetworkService.md
+            - name: Port Reservations
+              items: 
+                - name: HcnReserveGuestNetworkServicePort
+                  href: ./hcn/Reference/HcnReserveGuestNetworkServicePort.md
+                - name: HcnReserveGuestNetworkServicePortRange
+                  href: ./hcn/Reference/HcnReserveGuestNetworkServicePortRange.md
+                - name: HcnReleaseGuestNetworkServicePortReservationHandle
+                  href: ./hcn/Reference/HcnReleaseGuestNetworkServicePortReservationHandle.md
+                - name: HcnEnumerateGuestNetworkPortReservations
+                  href: ./hcn/Reference/HcnEnumerateGuestNetworkPortReservations.md
+                - name: HcnFreeGuestNetworkPortReservations
+                  href: ./hcn/Reference/HcnFreeGuestNetworkPortReservations.md
+    - name: JSON Schema
+      expanded: true
+      items: 
+        - name: JSON Schema Reference
+          href: ./hcn/HNS_Schema.md
+- name: Windows Hypervisor Platform API
+  href: ./hypervisor-platform/hypervisor-platform.md
+  items: 
+    - name: WHvCancelRunVirtualProcessor
+      href: ./hypervisor-platform/funcs/WHvCancelRunVirtualProcessor.md
+    - name: WHvCreatePartition
+      href: ./hypervisor-platform/funcs/WHvCreatePartition.md
+    - name: WHvCreateVirtualProcessor
+      href: ./hypervisor-platform/funcs/WHvCreateVirtualProcessor.md
+    - name: WHvDeletePartition
+      href: ./hypervisor-platform/funcs/WHvDeletePartition.md
+    - name: WHvDeleteVirtualProcessor
+      href: ./hypervisor-platform/funcs/WHvDeleteVirtualProcessor.md
+    - name: WHvGetCapability
+      href: ./hypervisor-platform/funcs/WHvGetCapability.md
+    - name: WHvGetPartitionCounters
+      href: ./hypervisor-platform/funcs/WHvGetPartitionCounters.md
+    - name: WHvGetPartitionProperty
+      href: ./hypervisor-platform/funcs/WHvGetPartitionProperty.md
+      items: 
+        - name: Data Types
+          href: ./hypervisor-platform/funcs/WHvPartitionPropertyDataTypes.md
+    - name: WHvGetVirtualProcessorCounters
+      href: ./hypervisor-platform/funcs/WHvGetVirtualProcessorCounters.md
+    - name: WHvGetVirtualProcessorInterruptControllerState
+      href: ./hypervisor-platform/funcs/WHvGetVirtualProcessorInterruptControllerState.md
+    - name: WHvGetVirtualProcessorRegisters
+      href: ./hypervisor-platform/funcs/WHvGetVirtualProcessorRegisters.md
+      items: 
+        - name: Data Types
+          href: ./hypervisor-platform/funcs/WHvVirtualProcessorDataTypes.md
+    - name: WHvGetVirtualProcessorXSaveState
+      href: ./hypervisor-platform/funcs/WHvGetVirtualProcessorXSaveState.md
+    - name: WHvMapGpaRange
+      href: ./hypervisor-platform/funcs/WHvMapGpaRange.md
+    - name: WHvQueryGpaRangeDirtyBitmap
+      href: ./hypervisor-platform/funcs/WHvQueryGpaRangeDirtyBitmap.md
+    - name: WHvRequestInterrupt
+      href: ./hypervisor-platform/funcs/WHvRequestInterrupt.md
+    - name: WHvResumePartitionTime
+      href: ./hypervisor-platform/funcs/WHvResumePartitionTime.md
+    - name: WHvRunVirtualProcessor
+      href: ./hypervisor-platform/funcs/WHvRunVirtualProcessor.md
+      items: 
+        - name: Exit Contexts
+          href: ./hypervisor-platform/funcs/WHvExitContextDataTypes.md
+        - name: Memory Access
+          href: ./hypervisor-platform/funcs/MemoryAccess.md
+        - name: I/O Port Access
+          href: ./hypervisor-platform/funcs/IOPortAccess.md
+        - name: MSR Access
+          href: ./hypervisor-platform/funcs/MSRAccess.md
+        - name: CPUID Access
+          href: ./hypervisor-platform/funcs/CPUIDAccess.md
+        - name: Virtual Processor Exception
+          href: ./hypervisor-platform/funcs/VirtualProcessorException.md
+        - name: Interrupt Window
+          href: ./hypervisor-platform/funcs/InterruptWindow.md
+        - name: Unsupported Feature
+          href: ./hypervisor-platform/funcs/UnsupportableFeature.md
+        - name: Execution Cancelled
+          href: ./hypervisor-platform/funcs/ExecutionCancelled.md
+    - name: WHvSetPartitionProperty
+      href: ./hypervisor-platform/funcs/WHvSetPartitionProperty.md
+      items: 
+        - name: Data Types
+          href: ./hypervisor-platform/funcs/WHvPartitionPropertyDataTypes.md
+    - name: WHvSetupPartition
+      href: ./hypervisor-platform/funcs/WHvSetupPartition.md
+    - name: WHvSetVirtualProcessorInterruptControllerState
+      href: ./hypervisor-platform/funcs/WHvSetVirtualProcessorInterruptControllerState.md
+    - name: WHvSetVirtualProcessorRegisters
+      href: ./hypervisor-platform/funcs/WHvSetVirtualProcessorRegisters.md
+      items: 
+        - name: Data Types
+          href: ./hypervisor-platform/funcs/WHvVirtualProcessorDataTypes.md
+    - name: WHvSetVirtualProcessorXSaveState
+      href: ./hypervisor-platform/funcs/WHvSetVirtualProcessorXSaveState.md
+    - name: WHvSuspendPartitionTime
+      href: ./hypervisor-platform/funcs/WHvSuspendPartitionTime.md
+    - name: WHvTranslateGva
+      href: ./hypervisor-platform/funcs/WHvTranslateGva.md
+    - name: WHvUnmapGpaRange
+      href: ./hypervisor-platform/funcs/WHvUnmapGpaRange.md
+- name: Virtualization Related Tools
+  expanded: true
+  items: 
+    - name: Virtual Hard Disk Interface
+      href: /windows/win32/api/virtdisk/
+    - name: Hypervisor Instruction Emulator API
+      href: ./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md
+      items: 
+        - name: Instruction Emulation
+          items: 
+            - name: I/O Port Access
+              href: ./hypervisor-instruction-emulator/funcs/IOPortAccessIE.md
+            - name: MMIO Access
+              href: ./hypervisor-instruction-emulator/funcs/MMIOAccessIE.md
+        - name: Emulator Structures
+          items: 
+            - name: WHV_EMULATOR_CALLBACKS
+              href: ./hypervisor-instruction-emulator/funcs/WhvEmulatorCallbacks.md
+            - name: WHV_EMULATOR_IO_ACCESS_INFO
+              href: ./hypervisor-instruction-emulator/funcs/WhvEmulatorIOAccessInfo.md
+            - name: WHV_EMULATOR_MEMORY_ACCESS_INFO
+              href: ./hypervisor-instruction-emulator/funcs/WhvEmulatorMemoryAccessInfo.md
+            - name: WHV_EMULATOR_STATUS
+              href: ./hypervisor-instruction-emulator/funcs/WhvEmulatorStatus.md
+        - name: API Methods
+          items: 
+            - name: WHvEmulatorCreateEmulator
+              href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorCreateEmulator.md
+            - name: WHvEmulatorDestoryEmulator
+              href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorDestoryEmulator.md
+            - name: WHvEmulatorTryIoEmulation
+              href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorTryEmulation.md
+            - name: WHvEmulatorTryMmioEmulation
+              href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorTryEmulation.md
+        - name: Callback Functions
+          items: 
+            - name: WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK
+              href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorGetVirtualProcessorRegistersCallback.md
+            - name: WHV_EMULATOR_IO_PORT_CALLBACK
+              href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorIOPortCallback.md
+            - name: WHV_EMULATOR_MEMORY_CALLBACK
+              href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorMemoryCallback.md
+            - name: WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK
+              href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorSetVirtualProcessorRegistersCallback.md
+            - name: WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK
+              href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorTranslateGVAPageCallback.md
+    - name: VM Saved State Dump Provider API
+      items: 
+        - name: Overview
+          href: ./vm-dump-provider/index.md
+        - name: Reference
+          href: ./vm-dump-provider/reference/reference.md
+        - name: Samples
+          href: ./vm-dump-provider/samples.md
