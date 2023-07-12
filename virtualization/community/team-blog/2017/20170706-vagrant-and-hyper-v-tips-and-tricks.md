@@ -36,7 +36,7 @@ And when you boot your first Vagrant environment, again, add --provider. Note: y
 
 Adding the provider flag is a pain to do every single time you run `vagrant up`. Fortunately, you can set up your Vagrantfile to automate things for you. After running `vagrant init`, modify your vagrant file with the following:
 
-```csharp
+```ruby
 Vagrant.configure(2) do |config|
     config.vm.box = "hashicorp/bionic64"
     config.vm.provider "hyperv"
@@ -46,7 +46,7 @@ Vagrant.configure(2) do |config|
 One additional trick here: `vagrant init` will create a file that will appear to be full of commented out items. However, there is one line not commented out: `[caption id="attachment_10185" align="aligncenter" width="879"]`
 <!--![asdf](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog-1024x784.png)](https://msdnshared.blob.core.windows.net/media/2017/07/VagrantFile_Blog.png)--> There is one line not commented.[/caption] Make sure you delete that line! Otherwise, you'll end up with an error like this:
 
-```csharp
+```console
     Bringing machine 'default' up with 'hyperv' provider...
     ==> default: Verifying Hyper-V is enabled...
     ==> default: Box 'base' could not be found. Attempting to find and install...
@@ -65,7 +65,7 @@ One additional trick here: `vagrant init` will create a file that will appear to
 
 For the image used in the "Getting Started" guide (hashicorp/bionic64), Vagrant tries to use SMBv1 for shared folders. However, if you're like me and have [SMBv1 disabled](https://blogs.technet.microsoft.com/filecab/2016/09/16/stop-using-smb1/), this will fail:
 
-```csharp
+```console
     Failed to mount folders in Linux guest. This is usually because
     the "vboxsf" file system is not available. Please verify that
     the guest additions are properly installed in the guest and
@@ -96,7 +96,7 @@ If you can't, you can try installing cifs-utils in the VM and re-provision. You 
 
 Hyper-V has some useful features that improve the Vagrant experience. For example, a pretty substantial portion of the time spent running `vagrant up` is spent cloning the virtual hard drive. A faster way is to use differencing disks with Hyper-V. You can also turn on virtualization extensions, which allow nested virtualization within the VM (i.e. Docker with Hyper-V containers). Here are the lines to add to your Vagrantfile to add these features:
 
-```csharp
+```ruby
     config.vm.provider "hyperv" do |h|
       h.enable_virtualization_extensions = true
       h.linked_clone = true
@@ -112,7 +112,7 @@ You can find more boxes to use in the Vagrant Cloud (formally called Atlas). The
 
 While adding the default provider to your Vagrantfile is useful, it means you need to remember to do it with each new Vagrantfile you create. If you don't, Vagrant will trying to download VirtualBox when you `vagrant up` the first time for your new box. Again, VirtualBox doesn't work alongside Hyper-V, so this is a problem.
 
-```csharp
+```powershell
     PS C:\vagrant> vagrant up
     ==>  Provider 'virtualbox' not found. We'll automatically install it now...
          The installation process will start below. Human interaction may be
@@ -137,7 +137,7 @@ Again, you can also set the default provider in the Vagrant file (see Trick 3), 
 
 Those are my tips and tricks for getting started with Vagrant on Hyper-V. If there are any you think I missed, or anything you think I got wrong, let me know in the comments. Here's the complete version of my simple starting Vagrantfile:
 
-```csharp
+```ruby
     # -*- mode: ruby -*-
     # vi: set ft=ruby :
 
