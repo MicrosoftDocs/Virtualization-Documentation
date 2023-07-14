@@ -9,7 +9,7 @@ categories: dell
 ---
 # Microsoft customers showcased at VMworld Europe 2009
 
-This week at VMworld Europe 2009 we're showcasing a number of European customers who have deployed Windows Server Hyper-V, System Center and App-v 4.5. You can watch two videos below. One is of Bouygues Construction based in France. Bouygues does civil engineering, electrical contracting, and maintenance, employs 51,100 people and operates in more than 80 countries. This video is in French with English subtitles, and includes discussion of their Hyper-V and SCVMM deployment on Dell servers with EMC storage. 
+This week at VMworld Europe 2009 we're showcasing a number of European customers who have deployed Windows Server Hyper-V, System Center and App-v 4.5. You can watch two videos below. One is of Bouygues Construction based in France. Bouygues does civil engineering, electrical contracting, and maintenance, employs 51,100 people and operates in more than 80 countries/regions. This video is in French with English subtitles, and includes discussion of their Hyper-V and SCVMM deployment on Dell servers with EMC storage. 
 
  
 
