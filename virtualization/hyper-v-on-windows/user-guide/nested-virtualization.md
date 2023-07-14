@@ -41,29 +41,23 @@ Virtualization applications other than Hyper-V aren't supported in Hyper-V virtu
 
 Using a nested Hyper-V VM in production is supported for both Azure and on-premises in the following scenarios. We also recommend you make sure that your services and applications are also supported.
 
-TODO: (confirm if this is true) Nested Virtualization isn't suitable for highly available services, for example, failover clustering, mission-critical services, and performance sensitive applications when the VMs are sharing the same host. We recommended you fully evaluate the services and applications.
-
-TODO: (replaced by first paragraph) Microsoft supports the following Nested Virtualization scenarios in Azure and on-premises.
+Nested Virtualization isn't suitable for Windows Server Failover Clustering, and performance sensitive applications. We recommended you fully evaluate the services and applications.
 
 ### Hyper-V VMs on Hyper-V VMs
 
 Running Hyper-V VMs nested on Hyper-V VMs is great for test labs and evaluation environments. Especially where configurations can be easily modified and saved states can be used to revert to specific configurations. Test labs don't typically require the same service level agreement (SLA) as production environments.
 
-Production environments running Hyper-V VMs running on Hyper-V VMs are supported. However, it's recommended to make sure that your services and applications are also supported. TODO: (What about this from Koji) If you use nested Hyper-V VM in production, it is recommended to fully evaluate whether the services or applications provide the expected behavior.
+Production environments running Hyper-V VMs running on Hyper-V VMs are supported. However, it's recommended to make sure that your services and applications are also supported. If you use nested Hyper-V VM in production, it is recommended to fully evaluate whether the services or applications provide the expected behavior.
 
 To learn more about setting up Nested Virtualization on Azure, see our Tech Community blog [How to Setup Nested Virtualization for Azure VM/VHD](https://techcommunity.microsoft.com/t5/itops-talk-blog/how-to-setup-nested-virtualization-for-azure-vm-vhd/ba-p/1115338).
 
 ### Third party virtualization on Hyper-V virtualization
 
-Whilst it might be possible for third party virtualization to run on Hyper-V, Microsoft doesn't test this scenario. Third party virtualization on Hyper-V virtualization isn't supported.
-
-TODO: (Does this statement just open us up to comment. do we need to say anything more than it isn't supported?) If you're using a third-party hypervisor, Microsoft can't provide end-to-end support, ensure your hypervisor vendor supports this scenario.
+Whilst it might be possible for third party virtualization to run on Hyper-V, Microsoft doesn't test this scenario. Third party virtualization on Hyper-V virtualization isn't supported, ensure your hypervisor vendor supports this scenario.
 
 ### Hyper-V virtualization on third party virtualization
 
-Whilst it might be possible for Hyper-V virtualization to run on third party virtualization, Microsoft doesn't test this scenario. Hyper-V virtualization on third party virtualization isn't supported.
-
-TODO: (Does this statement just open us up to comment. do we need to say anything more that it isn't supported?) If you're using a third-party hypervisor, Microsoft can't provide end-to-end support, ensure your hypervisor vendor supports this scenario.
+Whilst it might be possible for Hyper-V virtualization to run on third party virtualization, Microsoft doesn't test this scenario. Hyper-V virtualization on third party virtualization isn't supported, ensure your hypervisor vendor supports this scenario.
 
 ### Azure Stack HCI nested on Hyper-V VMs
 
@@ -75,7 +69,7 @@ To learn more about Azure Stack HCI nested on Hyper-V VMs, see [Nested virtualiz
 
 Microsoft offers Hyper-V isolation for containers. This isolation mode offers enhanced security and broader compatibility between host and container versions. With Hyper-V isolation, multiple container instances run concurrently on a host. Each container runs inside of a highly optimized virtual machine and effectively gets its own kernel. Since a Hyper-V isolated container offers isolation through a hypervisor layer between itself and the container host, when the container host is a Hyper-V based virtual machine, there's performance overhead. The associated performance overhead occurs in terms of container start-up time, storage, network, and CPU operations.
 
-When a Hyper-V isolated container is run in a Hyper-V VM, it's running nested. Using a Hyper-V VM opens many useful scenarios but also exaggerates some of the performance TODO: impact that the hypervisor incurs, as there are two levels of hypervisors running above the physical host.
+When a Hyper-V isolated container is run in a Hyper-V VM, it's running nested. Using a Hyper-V VM opens many useful scenarios but also increases latency, as there are two levels of hypervisors running above the physical host.
 
 Running Hyper-V isolated containers nested on Hyper-V is supported.
 
@@ -91,4 +85,4 @@ To learn more about how to enabled WSL 2 to run in a VM, see [Frequently Asked Q
 
 ## Next step
 
-- [Run Hyper-V in a Virtual Machine with Nested Virtualization](/virtualization/hyper-v-on-windows/user-guide/nested-virtualization)
+- [Run Hyper-V in a Virtual Machine with Nested Virtualization](enable-nested-virtualization.md)

@@ -18,7 +18,7 @@
     href: user-guide/create-pre-release-vm.md
 - name: Manage the Hyper-V Hosts
   items:
-  - name: Enable Nested Virtualization
+  - name: What is Nested Virtualization?
     href: user-guide/nested-virtualization.md
   - name: Enable Nested Virtualization
     href: user-guide/enable-nested-virtualization.md
