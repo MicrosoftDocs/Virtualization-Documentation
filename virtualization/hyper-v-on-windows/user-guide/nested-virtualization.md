@@ -21,11 +21,11 @@ Modern processors include hardware features that make virtualization faster and 
 
 The following diagram shows Hyper-V without nesting.  The Hyper-V hypervisor takes full control of the hardware virtualization capabilities (orange arrow), and doesn't expose them to the guest operating system.
 
-:::image type="content" source="media/nested-virtualization/hv-no-nesting.PNG" alt-text="Diagram of the levels of Hyper V with Nested Virtualization disabled.":::
+:::image type="content" source="media/HVNoNesting.PNG" alt-text="Diagram of the levels of Hyper V with Nested Virtualization disabled.":::
 
 In contrast, the following diagram shows Hyper-V with Nested Virtualization enabled. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
 
-:::image type="content" source="media/nested-virtualization/hv-nesting.png" alt-text="Diagram of the levels of Hyper V with Nested Virtualization enabled.":::
+:::image type="content" source="media/HVNesting.PNG" alt-text="Diagram of the levels of Hyper V with Nested Virtualization enabled.":::
 
 ## Dynamic Memory and Runtime Memory Resize
 
@@ -79,7 +79,7 @@ When a Hyper-V isolated container is run in a Hyper-V VM, it's running nested. U
 
 Running Hyper-V isolated containers nested on Hyper-V is supported.
 
-To learn more about Nested Hyper-V Containers, see [Performance tuning Windows Server Containers](../../administration/performance-tuning/role/windows-server-container/index.md).
+To learn more about Nested Hyper-V Containers, see [Performance tuning Windows Server Containers](/windows-server/administration/performance-tuning/role/windows-server-container/).
 
 ### Running WSL2 in a Hyper-V VM running nested on Hyper-V
 
