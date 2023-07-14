@@ -1,113 +1,94 @@
 ---
-title: Run Hyper-V in a Virtual Machine with Nested Virtualization
-description: Learn about how to use nested virtualization to run Hyper-V in a virtual machine to emulate configurations that normally require multiple hosts.
-keywords: windows 10, hyper-v
-author: johncslack
-ms.author: mabrigg
-ms.date: 9/9/2021
-ms.topic: article
-ms.prod: windows-10-hyperv
-ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
+title: What is Nested Virtualization for Hyper-V?
+description: Learn about Nested Virtualization in Hyper-V, including what it is, how it works, and supported scenarios.
+author: robinharwood
+ms.author: wscontent
+ms.topic: concept-article
+ms.date: 07/13/2023
+#CustomerIntent: As a virtualization admin, I was to understand what Nested Virtualization is, so that I apply it to my own environment.
 ---
 
-# Run Hyper-V in a Virtual Machine with Nested Virtualization
+# What is Nested Virtualization?
 
-Nested virtualization is a feature that allows you to run Hyper-V inside of a Hyper-V virtual machine (VM). This is helpful for running a Visual Studio phone emulator in a virtual machine, or testing configurations that ordinarily require several hosts.
+Nested virtualization is a feature that lets you run Hyper-V inside a Hyper-V virtual machine (VM). Over the years hardware has improved and the use cases for Nested Virtualization have expanded. For example, Nested Virtualization can be useful for:
 
->[!NOTE]
-> Nested Virtualization is supported both Azure and on-premises. However, if using a non-Microsoft hypervisor such as KVM, Microsoft can not provide end-to-end support please ensure your vendor supports this scenario.
-![Screenshot of demonstrating nested virtualizations by running an emulator in another emulator.](./media/HyperVNesting.png)
+- Running applications or emulators in a nested VM
+- Testing software releases on VMs
+- Reducing deployment times for training environments
+- Using Hyper-V isolation for containers
 
-## Prerequisites
+Modern processors include hardware features that make virtualization faster and more secure. Hyper-V relies on these processor extensions to run virtual machines, for example, Intel VT-x and AMD-V. Nested virtualization makes this hardware support available to guest virtual machines.
 
-### Intel processor with VT-x and EPT technology
-* The Hyper-V host must be Windows Server 2016/Windows 10 or greater
-* VM configuration version 8.0 or greater
+The following diagram shows Hyper-V without nesting.  The Hyper-V hypervisor takes full control of the hardware virtualization capabilities (orange arrow), and doesn't expose them to the guest operating system.
 
-### AMD EPYC/Ryzen processor or later
-* The Hyper-V host must be Windows Server 2022/Windows 11 or greater
-* VM configuration version 10.0 or greater
+:::image type="content" source="media/nested-virtualization/hv-no-nesting.PNG" alt-text="Diagram of the levels of Hyper V with Nested Virtualization disabled.":::
 
->[!NOTE]
-> The guest can be any Windows supported guest operating system. Newer Windows operating systems may support enlightenments that improve performance.
+In contrast, the following diagram shows Hyper-V with Nested Virtualization enabled. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
 
-
-## Configure Nested Virtualization
-
-1. Create a virtual machine. See the prerequisites above for the required OS and VM versions.
-2. While the virtual machine is in the OFF state, run the following command on the physical Hyper-V host. This enables nested virtualization for the virtual machine.
-
-```
-Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
-```
-3. Start the virtual machine.
-4. Install Hyper-V within the virtual machine, just like you would for a physical server. For more information on installing Hyper-V see, [Install Hyper-V](../quick-start/enable-hyper-v.md).
-
->[!NOTE]
-> When using Windows Server 2019 as the first level VM, the number of vCPUs should be 225 or less.
-
-## Disable Nested Virtualization
-You can disable nested virtualization for a stopped virtual machine using the following PowerShell command:
-```
-Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $false
-```
+:::image type="content" source="media/nested-virtualization/hv-nesting.png" alt-text="Diagram of the levels of Hyper V with Nested Virtualization enabled.":::
 
 ## Dynamic Memory and Runtime Memory Resize
-When Hyper-V is running inside a virtual machine, the virtual machine must be turned off to adjust its memory. This means that even if dynamic memory is enabled, the amount of memory will not fluctuate. For virtual machines without dynamic memory enabled, any attempt to adjust the amount of memory while it's on will fail. 
 
-Note that simply enabling nested virtualization will have no effect on dynamic memory or runtime memory resize. The incompatibility only occurs while Hyper-V is running in the VM.
+When Hyper-V is running inside a virtual machine, the virtual machine must be turned off to adjust its memory. Meaning that even if dynamic memory is enabled, the amount of memory doesn't fluctuate. Simply enabling nested virtualization has no effect on dynamic memory or runtime memory resize.
 
-## Networking Options
+For virtual machines without dynamic memory enabled, attempting to adjust the amount of memory while running fails. The incompatibility only occurs while Hyper-V is running in the VM.
 
-There are two options for networking with nested virtual machines: 
+## Third party virtualization apps
 
-1. MAC address spoofing
-2. NAT networking
+Virtualization applications other than Hyper-V aren't supported in Hyper-V virtual machines, and are likely to fail. Virtualization applications include any software that requires hardware virtualization extensions.
 
-### MAC Address Spoofing
-In order for network packets to be routed through two virtual switches, MAC address spoofing must be enabled on the first (L1) level of virtual switch. This is completed with the following PowerShell command.
+## Supported scenarios
 
-``` PowerShell
-Get-VMNetworkAdapter -VMName <VMName> | Set-VMNetworkAdapter -MacAddressSpoofing On
-```
+Using a nested Hyper-V VM in production is supported for both Azure and on-premises in the following scenarios. We also recommend you make sure that your services and applications are also supported.
 
-### Network Address Translation (NAT)
-The second option relies on network address translation (NAT). This approach is best suited for cases where MAC address spoofing is not possible, like in a public cloud environment.
+TODO: (confirm if this is true) Nested Virtualization isn't suitable for highly available services, for example, failover clustering, mission-critical services, and performance sensitive applications when the VMs are sharing the same host. We recommended you fully evaluate the services and applications.
 
-First, a virtual NAT switch must be created in the host virtual machine (the "middle" VM). Note that the IP addresses are just an example, and will vary across environments:
+TODO: (replaced by first paragraph) Microsoft supports the following Nested Virtualization scenarios in Azure and on-premises.
 
-``` PowerShell
-New-VMSwitch -Name VmNAT -SwitchType Internal
-New-NetNat –Name LocalNAT –InternalIPInterfaceAddressPrefix “192.168.100.0/24”
-```
+### Hyper-V VMs on Hyper-V VMs
 
-Next, assign an IP address to the net adapter:
+Running Hyper-V VMs nested on Hyper-V VMs is great for test labs and evaluation environments. Especially where configurations can be easily modified and saved states can be used to revert to specific configurations. Test labs don't typically require the same service level agreement (SLA) as production environments.
 
-``` PowerShell
-Get-NetAdapter "vEthernet (VmNat)" | New-NetIPAddress -IPAddress 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
-```
+Production environments running Hyper-V VMs running on Hyper-V VMs are supported. However, it's recommended to make sure that your services and applications are also supported. TODO: (What about this from Koji) If you use nested Hyper-V VM in production, it is recommended to fully evaluate whether the services or applications provide the expected behavior.
 
-Each nested virtual machine must have an IP address and gateway assigned to it. Note that the gateway IP must point to the NAT adapter from the previous step. You may also want to assign a DNS server:
+To learn more about setting up Nested Virtualization on Azure, see our Tech Community blog [How to Setup Nested Virtualization for Azure VM/VHD](https://techcommunity.microsoft.com/t5/itops-talk-blog/how-to-setup-nested-virtualization-for-azure-vm-vhd/ba-p/1115338).
 
-``` PowerShell
-Get-NetAdapter "vEthernet (VmNat)" | New-NetIPAddress -IPAddress 192.168.100.2 -DefaultGateway 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
-Netsh interface ip add dnsserver “vEthernet (VmNat)” address=<my DNS server>
-```
+### Third party virtualization on Hyper-V virtualization
 
-## How nested virtualization works
+Whilst it might be possible for third party virtualization to run on Hyper-V, Microsoft doesn't test this scenario. Third party virtualization on Hyper-V virtualization isn't supported.
 
-Modern processors include hardware features that make virtualization faster and more secure. Hyper-V relies on these processor extensions to run virtual machines (e.g. Intel VT-x and AMD-V). Typically, once Hyper-V starts, it prevents other software from using these processor capabilities.  This prevents guest virtual machines from running Hyper-V.
+TODO: (Does this statement just open us up to comment. do we need to say anything more than it isn't supported?) If you're using a third-party hypervisor, Microsoft can't provide end-to-end support, ensure your hypervisor vendor supports this scenario.
 
-Nested virtualization makes this hardware support available to guest virtual machines.
+### Hyper-V virtualization on third party virtualization
 
-The diagram below shows Hyper-V without nesting.  The Hyper-V hypervisor takes full control of the hardware virtualization capabilities (orange arrow), and does not expose them to the guest operating system.
+Whilst it might be possible for Hyper-V virtualization to run on third party virtualization, Microsoft doesn't test this scenario. Hyper-V virtualization on third party virtualization isn't supported.
 
-![Diagram of the levels of Hyper V with nested virtualization disabled.](./media/HVNoNesting.PNG)
+TODO: (Does this statement just open us up to comment. do we need to say anything more that it isn't supported?) If you're using a third-party hypervisor, Microsoft can't provide end-to-end support, ensure your hypervisor vendor supports this scenario.
 
-In contrast, the diagram below shows Hyper-V with nested virtualization enabled. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
+### Azure Stack HCI nested on Hyper-V VMs
 
-![Diagram of the levels of Hyper V with nested virtualization enabled](./media/HVNesting.png)
+Azure Stack HCI is designed and tested to run on validated physical hardware. Azure Stack HCI can run nested in a virtual machine for evaluation, but production environments in a nested configuration aren't supported.
 
-## 3rd Party Virtualization Apps
+To learn more about Azure Stack HCI nested on Hyper-V VMs, see [Nested virtualization in Azure Stack HCI](/azure-stack/hci/concepts/nested-virtualization).
 
-Virtualization applications other than Hyper-V are not supported in Hyper-V virtual machines, and are likely to fail. This includes any software that requires hardware virtualization extensions.
+### Hyper-V isolated containers running nested on Hyper-V
+
+Microsoft offers Hyper-V isolation for containers. This isolation mode offers enhanced security and broader compatibility between host and container versions. With Hyper-V isolation, multiple container instances run concurrently on a host. Each container runs inside of a highly optimized virtual machine and effectively gets its own kernel. Since a Hyper-V isolated container offers isolation through a hypervisor layer between itself and the container host, when the container host is a Hyper-V based virtual machine, there's performance overhead. The associated performance overhead occurs in terms of container start-up time, storage, network, and CPU operations.
+
+When a Hyper-V isolated container is run in a Hyper-V VM, it's running nested. Using a Hyper-V VM opens many useful scenarios but also exaggerates some of the performance TODO: impact that the hypervisor incurs, as there are two levels of hypervisors running above the physical host.
+
+Running Hyper-V isolated containers nested on Hyper-V is supported.
+
+To learn more about Nested Hyper-V Containers, see [Performance tuning Windows Server Containers](../../administration/performance-tuning/role/windows-server-container/index.md).
+
+### Running WSL2 in a Hyper-V VM running nested on Hyper-V
+
+Windows Subsystem for Linux (WSL) is a feature of the Windows operating system that enables you to run a Linux file system, along with Linux command-line tools and GUI apps, directly on Windows.
+
+Running WSL2 in a Hyper-V VM running nested on Hyper-V is supported.
+
+To learn more about how to enabled WSL 2 to run in a VM, see [Frequently Asked Questions about Windows Subsystem for Linux](/windows/wsl/faq#can-i-run-wsl-2-in-a-virtual-machine-).
+
+## Next step
+
+- [Run Hyper-V in a Virtual Machine with Nested Virtualization](/virtualization/hyper-v-on-windows/user-guide/nested-virtualization)

@@ -20,6 +20,8 @@
   items:
   - name: Enable Nested Virtualization
     href: user-guide/nested-virtualization.md
+  - name: Enable Nested Virtualization
+    href: user-guide/enable-nested-virtualization.md
   - name: Build a custom VM Gallery
     href: user-guide/custom-gallery.md
   - name: Set up a NAT network
