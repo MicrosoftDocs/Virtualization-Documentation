@@ -97,4 +97,4 @@ Netsh interface ip add dnsserver “vEthernet (VmNat)” address=<my DNS server>
 
 ## Next steps
 
-- [Remotely manage Hyper-V hosts with Hyper-V Manager](/windows-server/virtualization/hyper-v/manage/remotely-manage-hyper-v-hosts)Remotely manage Hyper-V hosts with Hyper-V Manager
+- [Remotely manage Hyper-V hosts with Hyper-V Manager](/windows-server/virtualization/hyper-v/manage/remotely-manage-hyper-v-hosts)
