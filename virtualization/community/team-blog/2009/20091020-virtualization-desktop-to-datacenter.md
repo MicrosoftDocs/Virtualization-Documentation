@@ -15,7 +15,7 @@ Microsoft Desktop Optimization Pack 2009 R2 is now available. The big thing is s
 
 > _If you are an MDOP customer, you can download MDOP 2009 R2 through_[ _Microsoft Volume Licensing Site (MVLS)_](https://go.microsoft.com/fwlink/?LinkId=166331) _.   For others who wish to evaluate MDOP products, the MDOP software is available at _[_MSDN_](https://msdn.microsoft.com/subscriptions/downloads/default.aspx?PV=42:178) _and_[ _TechNet_](https://technet.microsoft.com/subscriptions/downloads/default.aspx?PV=42:178) _  (in accordance with your MSDN or TechNet agreements, except for AIS). _
 > 
-> _MDOP has been licensed for over 21 million desktops worldwide! In a recent survey completed for Microsoft by Answers Research, and including 1000 IT professionals across five countries, we learned several interesting facts:_
+> _MDOP has been licensed for over 21 million desktops worldwide! In a recent survey completed for Microsoft by Answers Research, and including 1000 IT professionals across five countries/regions, we learned several interesting facts:_
 > 
 >   * _66% of MDOP customers deployed three or more of the MDOP products_
 >   * _52% of them deployed MDOP across more than half of their PCs_
