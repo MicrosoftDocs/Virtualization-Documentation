@@ -68,7 +68,7 @@ To create a container with process isolation through Docker, use the `--isolatio
 docker run -it --isolation=process mcr.microsoft.com/windows/servercore:ltsc2019 cmd
 ```
 
-Windows containers running on Windows Server default to running with process isolation. Windows containers running on Windows 10 Pro and Enterprise default to running with Hyper-V isolation. Starting with the Windows 10 October 2018 update, users running a Windows 10 Pro or Enterprise host can run a Windows container with process isolation. Users must must directly request process isolation by using the `--isolation=process` flag.
+Windows containers running on Windows Server default to running with process isolation. Windows containers running on Windows 10 Pro and Enterprise default to running with Hyper-V isolation. Starting with the Windows 10 October 2018 update, users running a Windows 10 Pro or Enterprise host can run a Windows container with process isolation. Users must directly request process isolation by using the `--isolation=process` flag.
 
 > [!WARNING]
 > Running with process isolation on Windows 10 Pro and Enterprise is meant for development/testing. Your host must be running Windows 10 build 17763+ and you must have a Docker version with Engine 18.09 or newer.
@@ -103,7 +103,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
      67       5      820       3836 ...71     0.03   3964   3 PING
 ```
 
-To contrast, this example starts a Hyper-V -solated container with a ping process as well.
+To contrast, this example starts a Hyper-V isolated container with a ping process as well.
 
 ```
 docker run -d --isolation=hyperv mcr.microsoft.com/windows/servercore:ltsc2019 ping localhost -t
