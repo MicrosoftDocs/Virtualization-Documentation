@@ -25,7 +25,7 @@ To learn more about Nested Virtualization and supported scenarios, see [What is 
 
 ### AMD EPYC / Ryzen processor or later
 
-- The Hyper-V host must be either Windows Server 2016 or later, or Windows 10 or later.
+- The Hyper-V host must be either Windows Server 2022 or later, or Windows 11 or later.
 - VM configuration version 10.0 or higher.
 
 >[!NOTE]
