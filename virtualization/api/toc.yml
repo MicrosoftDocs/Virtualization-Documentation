@@ -109,6 +109,8 @@
                   href: hcs/Reference/hdv/HdvDeviceType.md
                 - name: HdvInitializeDeviceHost
                   href: hcs/Reference/hdv/HdvInitializeDeviceHost.md
+                - name: HdvInitializeDeviceHostForProxy
+                  href: hcs/Reference/hdv/HdvInitializeDeviceHostForProxy.md
                 - name: HdvPciBarSelector
                   href: hcs/Reference/hdv/HdvPciBarSelector.md
                 - name: HdvPciDeviceGetDetails
@@ -137,10 +139,16 @@
                   href: hcs/Reference/hdv/HdvPciWriteConfigSpace.md
                 - name: HdvPciWriteInterceptedMemory
                   href: hcs/Reference/hdv/HdvPciWriteInterceptedMemory.md
+                - name: HdvProxyDeviceHost
+                  href: hcs/Reference/hdv/HdvProxyDeviceHost.md
                 - name: HdvReadGuestMemory
                   href: hcs/Reference/hdv/HdvReadGuestMemory.md
+                - name: HdvRegisterDoorbell
+                  href: hcs/Reference/hdv/RegisterDoorbell.md
                 - name: HdvTeardownDeviceHost
                   href: hcs/Reference/hdv/HdvTeardownDeviceHost.md
+                - name: HdvUnregisterDoorbell
+                  href: hcs/Reference/hdv/HdvUnregisterDoorbell.md
                 - name: HdvWriteGuestMemory
                   href: hcs/Reference/hdv/HdvWriteGuestMemory.md
             - name: Process Execution
