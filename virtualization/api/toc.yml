@@ -144,7 +144,7 @@
                 - name: HdvReadGuestMemory
                   href: hcs/Reference/hdv/HdvReadGuestMemory.md
                 - name: HdvRegisterDoorbell
-                  href: hcs/Reference/hdv/RegisterDoorbell.md
+                  href: hcs/Reference/hdv/HdvRegisterDoorbell.md
                 - name: HdvTeardownDeviceHost
                   href: hcs/Reference/hdv/HdvTeardownDeviceHost.md
                 - name: HdvUnregisterDoorbell
