@@ -32,6 +32,7 @@ The following section contains the definitions of the APIs for device virtualiza
 |[HdvDeliverGuestInterrupt](./HdvDeliverGuestInterrupt.md)|Delivers a message signaled interrupt (MSI) to the guest partition.|
 |[HdvDeviceType](HdvDeviceType.md)|Discriminator for the Emulated device type.|
 |[HdvInitializeDeviceHost](HdvInitializeDeviceHost.md)|Initializes a device emulator host in the caller's process.|
+|[HdvInitializeDeviceHostForProxy](HdvInitializeDeviceHostForProxy.md)|Initializes the device emulator host in the caller's process and associates it with the specified proxy.|
 |[HdvPciBarSelector](HdvPciBarSelector.md)|Discriminator for the BAR selection.|
 |[HdvPciDeviceGetDetails](HdvPciDeviceGetDetails.md)|Queries the PCI description of the emulated device.|
 |[HdvPciDeviceInitialize](HdvPciDeviceInitialize.md)|Initializes the emulated device.|
@@ -46,6 +47,9 @@ The following section contains the definitions of the APIs for device virtualiza
 |[HdvPciReadInterceptedMemory](HdvPciReadInterceptedMemory.md)|Executes an intercepted MMIO read for the emulated device.|
 |[HdvPciWriteConfigSpace](HdvPciWriteConfigSpace.md)|Executes a write into the emulated device's PCI config space.|
 |[HdvPciWriteInterceptedMemory](HdvPciWriteInterceptedMemory.md)|Executes an intercepted MMIO write for the emulated device.|
+|[HdvProxyDeviceHost](HdvProxyDeviceHost.md)|Register a device host from another process with the compute system.|
 |[HdvReadGuestMemory](./HdvReadGuestMemory.md)|Reads guest primary memory (RAM) contents into a buffer.|
+|[HdvRegisterDoorbell](HdvRegisterDoorbell.md)|Registers a guest address to trigger an event on writes. The value of the write will be discarded.|
 |[HdvTeardownDeviceHost](./HdvTeardownDeviceHost.md)|Tears down the device emulator host in the caller's process.|
+|[HdvUnregisterDoorbell](HdvUnregisterDoorbell.md)|Unregisters a doorbell notification.|
 |[HdvWriteGuestMemory](./HdvWriteGuestMemory.md)|Writes the contents of a specified buffer to guest primary memory (RAM).|
