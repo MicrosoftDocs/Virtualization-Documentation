@@ -1,8 +1,8 @@
 ---
 title: Device Virtualization
 description: Device Virtualization
-author: sethmanheim
-ms.author: sethm
+author: sethm
+ms.authore: sethmanheim
 ms.topic: reference
 ms.prod: virtualization
 ms.date: 06/12/2023

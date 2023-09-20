@@ -1,8 +1,8 @@
 ---
 title: HDV_PCI_READ_INTERCEPTED_MEMORY
 description: HDV_PCI_READ_INTERCEPTED_MEMORY
-author: faymeng
-ms.author: mabrigg
+author: sethm
+ms.authore: sethmanheim
 ms.topic: reference
 ms.prod: virtualization
 ms.date: 06/09/2021
