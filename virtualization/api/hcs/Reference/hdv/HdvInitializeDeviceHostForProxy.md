@@ -25,7 +25,7 @@ Initializes the device emulator host in the caller's process and associates it w
 
 ```C++
 HRESULT WINAPI
-HdvInitializeDeviceHostForProxyForProxy(
+HdvInitializeDeviceHostForProxy(
     _In_ const GUID* VmId,
     _In_ PVOID ProxyInterface_IUnknown,
     _Out_ HDV_HOST* DeviceHostHandle
