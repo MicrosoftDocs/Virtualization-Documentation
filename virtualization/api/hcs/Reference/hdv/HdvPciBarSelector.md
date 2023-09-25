@@ -2,7 +2,7 @@
 title: HDV_PCI_BAR_SELECTOR Enumeration
 description: HDV_PCI_BAR_SELECTOR Enumeration
 author: sethm
-ms.authore: sethmanheim
+ms.author: sethmanheim
 ms.topic: reference
 ms.prod: virtualization
 ms.date: 06/09/2021

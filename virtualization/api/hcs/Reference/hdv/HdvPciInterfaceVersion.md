@@ -2,7 +2,7 @@
 title: HDV_PCI_INTERFACE_VERSION Enumeration
 description: HDV_PCI_INTERFACE_VERSION Enumeration
 author: sethm
-ms.authore: sethmanheim
+ms.author: sethmanheim
 ms.topic: reference
 ms.prod: virtualization
 ms.date: 06/09/2021

@@ -2,7 +2,7 @@
 title: HdvUnregisterDoorbell function
 description: HdvUnregisterDoorbell function
 author: sethm
-ms.authore: sethmanheim
+ms.author: sethmanheim
 ms.topic: reference
 ms.prod: virtualization
 ms.date: 06/09/2021
