@@ -1,8 +1,8 @@
 ---
 title: HDV_DEVICE_TYPE
 description: HDV_DEVICE_TYPE
-author: sethm
-ms.author: sethmanheim
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
 ms.prod: virtualization
 ms.date: 06/09/2021

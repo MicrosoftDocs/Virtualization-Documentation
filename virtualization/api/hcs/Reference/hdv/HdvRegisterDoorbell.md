@@ -1,8 +1,8 @@
 ---
 title: HdvRegisterDoorbell function
 description: HdvRegisterDoorbell function
-author: sethm
-ms.author: sethmanheim
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
 ms.prod: virtualization
 ms.date: 06/09/2021
