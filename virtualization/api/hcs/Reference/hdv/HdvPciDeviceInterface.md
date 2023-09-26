@@ -1,8 +1,8 @@
 ---
 title: HDV_DEVICE_TYPE Structure
 description: HDV_DEVICE_TYPE Structure
-author: faymeng
-ms.author: mabrigg
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
 ms.prod: virtualization
 ms.date: 06/09/2021
