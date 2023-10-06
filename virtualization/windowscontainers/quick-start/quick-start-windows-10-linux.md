@@ -36,7 +36,7 @@ In order to run Linux containers, you need to make sure Docker is targeting the 
 
 ![Docker system tray menu showing the "Switch to Windows containers" command.](./media/switchDaemon.png)
 
-Once you've confirmed you are targeting the correc daemon, run the container with the following command:
+Once you've confirmed you are targeting the correct daemon, run the container with the following command:
 
 ```console
 docker run --rm busybox echo hello_world
