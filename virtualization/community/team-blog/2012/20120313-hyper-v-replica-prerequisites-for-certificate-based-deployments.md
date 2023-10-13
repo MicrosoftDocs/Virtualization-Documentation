@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica - Prerequisites for certificate based deployments"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Hyper-V Replica - Prerequisites for certificate based deployments
 ms.date: 03/13/2012

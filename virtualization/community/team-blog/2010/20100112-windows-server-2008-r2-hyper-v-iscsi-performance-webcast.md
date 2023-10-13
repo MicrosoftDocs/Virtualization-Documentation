@@ -1,6 +1,6 @@
 ---
 title:      "Windows Server 2008 R2 Hyper-V iSCSI Performance Webcast"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Windows Server 2008 R2 Hyper-V iSCSI Performance Webcast
 ms.date: 01/12/2010

@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica Certificate based authentication and Proxy servers"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 02/17/2014
 categories: hvr

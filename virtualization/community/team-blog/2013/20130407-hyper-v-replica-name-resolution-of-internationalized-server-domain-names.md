@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica - Name Resolution of Internationalized Server/Domain names"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Hyper-V Replica - Name Resolution of Internationalized Server/Domain names
 ms.date: 04/07/2013

@@ -1,6 +1,6 @@
 ---
 title:      "Improvements in recovery history"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 01/27/2014
 categories: hvr

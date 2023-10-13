@@ -1,6 +1,6 @@
 ---
 title:      "Update&#58; More than recession&#58; IDC's server virtualization tracker report"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Update; More than recession; IDC's server virtualization tracker report
 ms.date: 10/26/2009

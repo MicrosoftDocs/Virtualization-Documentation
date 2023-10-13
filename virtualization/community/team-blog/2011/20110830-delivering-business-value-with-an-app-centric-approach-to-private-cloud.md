@@ -1,6 +1,6 @@
 ---
 title:      "Delivering business value with an app-centric approach to Private Cloud"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Delivering business value with an app-centric approach to Private Cloud
 ms.date: 08/30/2011

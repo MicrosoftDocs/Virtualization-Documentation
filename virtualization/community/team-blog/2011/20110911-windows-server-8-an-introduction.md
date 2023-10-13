@@ -1,6 +1,6 @@
 ---
 title:      "Windows Server 8&#58; An Introduction"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Windows Server; an introduction
 ms.date: 09/11/2011

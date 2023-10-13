@@ -1,6 +1,6 @@
 ---
 title:      "Announcing the availability of the Beta version of Linux Integration Services for Hyper-V with SMP support"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Announcing the availability of the Beta version of Linux Integration Services for Hyper-V with SMP support
 ms.date: 03/31/2010

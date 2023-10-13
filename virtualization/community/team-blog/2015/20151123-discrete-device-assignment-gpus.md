@@ -1,7 +1,7 @@
 ---
 title: Discrete Device Assignment -- GPUs
 description: Learn about passing your GPU to a virtual machines using Discrete Device Assignment.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-11-23 11:41:54
 ms.date: 11/23/2015

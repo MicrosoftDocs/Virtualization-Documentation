@@ -1,7 +1,7 @@
 ---
 title: PowerShell Direct – Running PowerShell inside a virtual machine from the Hyper-V host
 description: Learn about running a Powershell command prompt inside a Hyper-V virtual machine host.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-05-14 13:01:00
 ms.date: 05/14/2015

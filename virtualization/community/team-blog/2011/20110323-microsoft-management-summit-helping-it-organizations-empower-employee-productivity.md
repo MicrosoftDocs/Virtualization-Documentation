@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft Management Summit&#58;  Helping IT Organizations Empower Employee Productivity"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft Management Summit;  Helping IT Organizations Empower Employee Productivity
 ms.date: 03/23/2011

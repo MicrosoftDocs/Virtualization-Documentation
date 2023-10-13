@@ -1,6 +1,6 @@
 ---
 title:      "Replication Health Mailer"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 05/13/2014
 date:       2014-05-13 05:13:14

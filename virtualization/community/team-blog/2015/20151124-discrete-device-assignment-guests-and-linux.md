@@ -1,7 +1,7 @@
 ---
 title: Discrete Device Assignment -- Guests and Linux
 description: Learn about supporting Linux guest virtual machines using Discrete Device Assignment.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-11-24 14:46:02
 ms.date: 11/24/2015

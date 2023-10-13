@@ -1,6 +1,6 @@
 ---
 title:      "Simplify your customers’ cloud migration planning with MAP 6.0"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Simplify your customers’ cloud migration planning with MAP 6.0
 ms.date: 07/15/2011

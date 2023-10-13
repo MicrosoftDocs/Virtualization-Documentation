@@ -1,7 +1,7 @@
 ---
 title:      Announcing the GA of Disaster Recovery to Azure using Azure Site Recovery
 description: Learn about what additional features and improvements the GA release brings to the Disaster Recovery of Azure Site Recovery.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2014-10-02 12:48:32
 ms.date: 10/02/2014

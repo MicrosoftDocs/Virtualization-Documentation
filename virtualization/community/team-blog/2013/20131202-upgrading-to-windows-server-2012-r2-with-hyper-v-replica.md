@@ -1,6 +1,6 @@
 ---
 title:      "Upgrading to Windows Server 2012 R2 with Hyper-V Replica"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 12/02/2013
 categories: hvr

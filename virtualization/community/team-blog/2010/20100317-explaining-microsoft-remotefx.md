@@ -1,6 +1,6 @@
 ---
 title:      "Explaining Microsoft RemoteFX"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Explaining Microsoft RemoteFX
 ms.date: 03/17/2010

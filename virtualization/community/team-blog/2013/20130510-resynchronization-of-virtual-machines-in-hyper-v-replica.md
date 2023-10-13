@@ -1,6 +1,6 @@
 ---
 title:      "Resynchronization of virtual machines in Hyper-V Replica"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Resynchronization of virtual machines in Hyper-V Replica
 ms.date: 05/10/2013

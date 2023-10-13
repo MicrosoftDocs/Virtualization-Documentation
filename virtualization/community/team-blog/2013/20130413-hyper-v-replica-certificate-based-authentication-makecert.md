@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica Certificate Based Authentication - makecert"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Hyper-V Replica Certificate Based Authentication - makecert
 ms.date: 04/13/2013

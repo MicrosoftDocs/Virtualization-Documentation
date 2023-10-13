@@ -1,7 +1,7 @@
 ---
 title: What's new in Hyper-V for Windows 10 Fall Creators Update
 description: Learn about the new supported virtual machine features in the Windows 10 Fall Creators Update for Hyper-V.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-11-13 18:00:46
 ms.date: 11/13/2017

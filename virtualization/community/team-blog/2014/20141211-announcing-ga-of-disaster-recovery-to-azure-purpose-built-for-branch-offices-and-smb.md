@@ -1,7 +1,7 @@
 ---
 title: Announcing GA of Disaster Recovery to Azure - Purpose-Built for Branch Offices and SMB
 description: An announcement about GA of Disaster Recovery to Azure to Branch Office and SMB customers.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2014-12-11 11:05:00
 ms.date: 12/11/2014

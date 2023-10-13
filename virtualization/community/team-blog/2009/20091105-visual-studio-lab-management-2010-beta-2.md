@@ -1,6 +1,6 @@
 ---
 title:      "Visual Studio Lab Management 2010 beta 2"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Visual Studio Lab Management 2010 beta 2
 ms.date: 11/05/2009

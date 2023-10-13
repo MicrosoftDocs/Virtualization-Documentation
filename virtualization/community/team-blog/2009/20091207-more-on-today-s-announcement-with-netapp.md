@@ -1,6 +1,6 @@
 ---
 title:      "More on today's announcement with NetApp"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: More on today's announcement with NetApp
 ms.date: 12/07/2009

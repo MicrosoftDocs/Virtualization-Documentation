@@ -1,6 +1,6 @@
 ---
 title:      "Big news&#58;  Microsoft and HP team up to move IT forward"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft and HP team up to move IT forward
 ms.date: 01/13/2010

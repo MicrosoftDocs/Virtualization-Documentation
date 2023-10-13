@@ -1,7 +1,7 @@
 ---
 title: Integration components - How we determine Windows Update applicability
 description: Learn about how we determine the Windows update applicability of integration components for Hyper-V.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2014-11-24 08:48:06
 ms.date: 11/24/2014

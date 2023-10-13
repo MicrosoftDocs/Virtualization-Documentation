@@ -1,6 +1,6 @@
 ---
 title:      "Hear what NetApp and Cisco are Saying After Joining the Hyper-V Fast Track Program"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Hear what NetApp and Cisco are Saying After Joining the Hyper-V Fast Track Program
 ms.date: 05/17/2011

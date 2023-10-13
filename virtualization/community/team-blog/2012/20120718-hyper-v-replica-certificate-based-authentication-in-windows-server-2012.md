@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica–Certificate Based Authentication in Windows Server 2012"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 07/18/2012
 date:       2012-07-18 13:18:00

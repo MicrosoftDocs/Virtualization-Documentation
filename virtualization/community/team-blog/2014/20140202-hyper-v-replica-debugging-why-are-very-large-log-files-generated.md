@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica debugging&#58; Why are very large log files generated?"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 02/02/2014
 categories: hvr

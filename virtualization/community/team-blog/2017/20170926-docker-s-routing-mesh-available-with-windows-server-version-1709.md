@@ -1,7 +1,7 @@
 ---
 title: Docker's routing mesh available with Windows Server version 1709
 description: Learn about some of the new features available with Windows Server version 1709, including Docker's routing mesh. 
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-09-26 05:04:44
 ms.date: 09/26/2017

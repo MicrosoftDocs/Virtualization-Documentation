@@ -1,6 +1,6 @@
 ---
 title:      "Introduction to Resource Metering"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 08/16/2012
 date:       2012-08-16 10:37:00

@@ -1,6 +1,6 @@
 ---
 title:      "Guest post&#58; Intel discusses iSCSI and 1 million IOPs"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Intel discusses iSCSI and 1 million IOPs
 ms.date: 02/24/2010

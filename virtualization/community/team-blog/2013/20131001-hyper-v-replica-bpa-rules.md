@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica BPA Rules"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 10/01/2013
 categories: hvr

@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft and Dell – Management and Virtualization Solutions Partnership"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft and Dell – Management and Virtualization Solutions Partnership
 ms.date: 04/06/2011

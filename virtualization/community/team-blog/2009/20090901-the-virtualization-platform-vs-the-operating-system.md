@@ -1,6 +1,6 @@
 ---
 title:      "The Virtualization platform vs. the Operating System"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: The Virtualization platform vs. the Operating System
 ms.date: 09/01/2009

@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica Powershell Series&#58; Don’t want Replica folder names as GUIDs!"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 07/19/2012
 date:       2012-07-19 23:04:00

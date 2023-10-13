@@ -1,6 +1,6 @@
 ---
 title:      "Why is the &#34;Hyper-V Replica Broker&#34; required?"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Why is the Hyper-V Replica Broker required?
 ms.date: 03/07/2012

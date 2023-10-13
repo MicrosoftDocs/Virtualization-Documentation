@@ -1,6 +1,6 @@
 ---
 title:      "GA of Hyper-V Recovery Manager (HRM)"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 01/16/2014
 categories: hrm

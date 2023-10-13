@@ -1,6 +1,6 @@
 ---
 title:      "Follow us on Twitter and get a chance to win a Zune HD"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Follow us on Twitter and get a chance to win a Zune HD
 ms.date: 08/31/2009

@@ -1,6 +1,6 @@
 ---
 title:      "Check out the New Microsoft Server and Cloud Platform Website!"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Check out the New Microsoft Server and Cloud Platform Website!
 ms.date: 08/25/2011

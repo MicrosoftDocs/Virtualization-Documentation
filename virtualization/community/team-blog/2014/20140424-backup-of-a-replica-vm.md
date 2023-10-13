@@ -1,6 +1,6 @@
 ---
 title:      "Backup of a Replica VM"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 04/24/2014
 date:       2014-04-24 04:21:00

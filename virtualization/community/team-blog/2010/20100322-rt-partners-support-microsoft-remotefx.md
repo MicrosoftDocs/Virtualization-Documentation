@@ -1,6 +1,6 @@
 ---
 title:      "RT&#58; Partners Support Microsoft RemoteFX"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Partners Support Microsoft RemoteFX
 ms.date: 03/22/2010

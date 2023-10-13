@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft Workloads Best on Hyper-V"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft Workloads Best on Hyper-V
 ms.date: 04/04/2011

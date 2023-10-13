@@ -1,7 +1,7 @@
 ---
 title: Windows container base images
 description: Overview of the Windows container base images and when to use them.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 09/01/2021
 ms.topic: conceptual

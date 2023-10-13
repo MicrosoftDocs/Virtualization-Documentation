@@ -1,6 +1,6 @@
 ---
 title:      "Virtualization for Server Workloads&#58; Avanade Case Study, NetApp Whitepaper"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Virtualization for Server Workloads, Avanade Case Study, NetApp Whitepaper
 ms.date: 03/08/2010

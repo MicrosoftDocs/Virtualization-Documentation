@@ -1,6 +1,6 @@
 ---
 title:      "Replica Clusters behind a NAT"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 10/10/2013
 categories: hvr

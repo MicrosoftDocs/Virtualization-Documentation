@@ -1,6 +1,6 @@
 ---
 title:      "VMworld 2009 an oppurtunity to meet our customers"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: VMworld 2009 an oppurtunity to meet our customers
 ms.date: 08/26/2009

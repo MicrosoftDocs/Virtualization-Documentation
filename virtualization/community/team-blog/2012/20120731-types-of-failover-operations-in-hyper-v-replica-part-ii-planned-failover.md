@@ -1,6 +1,6 @@
 ---
 title:      "Types of failover operations in Hyper-V Replica–Part II - Planned Failover"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 07/31/2012
 date:       2012-07-31 04:13:33

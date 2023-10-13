@@ -2,7 +2,7 @@
 title: The GuestPhysicalAddressToRawSavedMemoryOffset function
 description: Translates the given guest physical address to a raw saved memory offset.
 ms.date: 04/19/2022
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ---
 

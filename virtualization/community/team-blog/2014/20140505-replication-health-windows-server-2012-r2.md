@@ -1,6 +1,6 @@
 ---
 title:      "Replication Health-Windows Server 2012 R2"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 05/05/2014
 date:       2014-05-05 09:00:36

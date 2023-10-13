@@ -1,6 +1,6 @@
 ---
 title:      "Save network bandwidth by using Out-of-Band Initial Replication method in Hyper-V Replica"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Save network bandwidth by using Out-of-Band Initial Replication method in Hyper-V Replica
 ms.date: 06/28/2013

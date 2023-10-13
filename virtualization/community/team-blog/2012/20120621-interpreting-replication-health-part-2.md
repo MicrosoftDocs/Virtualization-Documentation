@@ -1,7 +1,7 @@
 ---
 title:      "Interpreting Replication Health - Part 2"
 description: Describes how administrators can monitor the health of the replicating VM's using the Replication Health attribute - Part 2.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2012-06-21 05:20:00
 ms.date: 06/21/2012

@@ -1,7 +1,7 @@
 ---
 title: Delivering Safer Apps with Windows Server 2016 and Docker Enterprise Edition
 description: Learn about some of the features of Windows Server 2016 and Docker Enterprise Edition and how they can help deploy IT applications efficiently.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-09-05 09:00:47
 ms.date: 09/05/2017

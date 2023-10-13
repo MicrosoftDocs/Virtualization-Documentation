@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica in Windows Server 2012 R2 and System Center Operations Manager 2012 R2"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 12/10/2013
 categories: hvr

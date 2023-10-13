@@ -1,6 +1,6 @@
 ---
 title:      "Take your business to the next level with new partner programs and incentives for private cloud computing"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Take your business to the next level with new partner programs and incentives for private cloud computing
 ms.date: 07/13/2011

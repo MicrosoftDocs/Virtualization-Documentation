@@ -1,6 +1,6 @@
 ---
 title:      "RT Cutting through the FUD Facts; you should know about Hyper-V and System Center"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Cutting through the FUD; Facts you should know about Hyper-V and System Center
 ms.date: 12/18/2009

@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft Delivers New Cloud Tools and Solutions at the Worldwide Partner Conference"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft Delivers New Cloud Tools and Solutions at the Worldwide Partner Conference
 ms.date: 07/12/2011

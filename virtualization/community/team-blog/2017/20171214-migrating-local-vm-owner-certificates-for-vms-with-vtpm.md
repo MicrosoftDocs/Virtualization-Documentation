@@ -1,7 +1,7 @@
 ---
 title: Migrating local VM owner certificates for VMs with vTPM
 description: Learn about using vTPM to migrate local virtual machine owner certificates when switching between local hosts.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-12-14 06:27:22
 ms.date: 12/14/2017

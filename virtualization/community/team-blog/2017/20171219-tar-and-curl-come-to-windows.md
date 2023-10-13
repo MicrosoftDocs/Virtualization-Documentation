@@ -1,7 +1,7 @@
 ---
 title: Tar and Curl Come to Windows!
 description: Learn about curl and bsdtar, two new command-line tools that are now supported in Windows.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-12-19 18:00:23
 ms.date: 12/19/2017

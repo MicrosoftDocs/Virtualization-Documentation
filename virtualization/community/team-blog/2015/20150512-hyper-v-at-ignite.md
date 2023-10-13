@@ -1,7 +1,7 @@
 ---
 title: Hyper-V at Ignite
 description: Find articles about announcement and new information on Hyper-V revealed at Ignite 2015.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-05-12 18:11:00
 ms.date: 05/12/2015

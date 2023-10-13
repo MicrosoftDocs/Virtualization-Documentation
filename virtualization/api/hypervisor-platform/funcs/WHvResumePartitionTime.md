@@ -1,7 +1,7 @@
 ---
 title: WHvResumePartitionTime
 description: Description on working with WHvResumePartitionTime and understanding its parameters, return value, remarks, and requirements. 
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 03/15/2019
 ---

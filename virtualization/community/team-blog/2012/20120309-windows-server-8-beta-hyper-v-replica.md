@@ -1,6 +1,6 @@
 ---
 title:      "Windows Server “8” Beta – Hyper-V Replica"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Windows Server “8” Beta – Hyper-V Replica
 ms.date: 03/09/2012

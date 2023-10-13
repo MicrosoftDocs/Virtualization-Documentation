@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft Path to the Private Cloud&#58; Day 2, Question 1"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft Path to the Private Cloud; Day 2, Question 1
 ms.date: 08/31/2011

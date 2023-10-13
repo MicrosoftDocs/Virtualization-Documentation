@@ -1,6 +1,6 @@
 ---
 title:      "Optimizing Hyper-V Replica HTTPS traffic using Riverbed SteelHead"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 05/08/2014
 date:       2014-05-08 10:54:59

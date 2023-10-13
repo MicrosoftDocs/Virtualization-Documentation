@@ -1,7 +1,7 @@
 ---
 title: Discrete Device Assignment -- Description and background
 description: Learn about Discrete Device Assignment, a new feature with Windows Server 2016 for Hyper-V virtual machines.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-11-19 13:27:30
 ms.date: 11/19/2015

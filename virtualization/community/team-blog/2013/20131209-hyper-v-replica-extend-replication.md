@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica&#58; Extend Replication"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 12/09/2013
 categories: hvr

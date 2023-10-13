@@ -1,6 +1,6 @@
 ---
 title:      "Announcing the availability of the updated Infrastructure Planning and Design Guides for Virtualization and System Center"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Announcing the availability of the updated Infrastructure Planning and Design Guides for Virtualization and System Center
 ms.date: 09/24/2009

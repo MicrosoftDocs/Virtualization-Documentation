@@ -1,7 +1,7 @@
 ---
 title: Linux Integration Services 4.0 Update
 description: Learn more about the 4.0.11 update for Linux Integration Services on Hyper-V and Microsoft Azure.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-08-19 17:00:00
 ms.date: 08/19/2015

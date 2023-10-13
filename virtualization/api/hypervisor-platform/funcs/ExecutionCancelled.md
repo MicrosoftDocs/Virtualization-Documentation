@@ -1,7 +1,7 @@
 ---
 title: Execution canceled from the host
 description: Learn about context data for an exit caused by a cancellation from the host.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 04/20/2022
 ---

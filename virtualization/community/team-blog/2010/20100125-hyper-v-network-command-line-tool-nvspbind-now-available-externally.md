@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Network Command Line Tool NVSPBIND Now Available Externally"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Hyper-V Network Command Line Tool NVSPBIND Now Available Externally
 ms.date: 01/25/2010

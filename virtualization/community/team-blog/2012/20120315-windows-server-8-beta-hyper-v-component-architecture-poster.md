@@ -1,6 +1,6 @@
 ---
 title:      "Windows Server “8” Beta Hyper-V Component Architecture Poster"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Windows Server 8 Beta Hyper-V Component Architecture Poster
 ms.date: 03/15/2012

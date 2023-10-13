@@ -1,6 +1,6 @@
 ---
 title:      "Upcoming Webcasts on Best Practices for Virtualizing MS Server Applications"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Upcoming Webcasts on Best Practices for Virtualizing MS Server Applications
 ms.date: 10/27/2009

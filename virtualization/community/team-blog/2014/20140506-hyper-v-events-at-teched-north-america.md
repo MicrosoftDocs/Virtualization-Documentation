@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V events at TechEd North America"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 05/06/2014
 date:       2014-05-06 13:57:48

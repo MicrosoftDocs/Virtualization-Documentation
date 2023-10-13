@@ -1,6 +1,6 @@
 ---
 title:      "Online resize of virtual disks attached to replicating virtual machines"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 11/14/2013
 categories: hvr

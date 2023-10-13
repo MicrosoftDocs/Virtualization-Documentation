@@ -1,7 +1,7 @@
 ---
 title: WSL Interoperability with Docker
 description: Learn about the supported features for calling the docker daemon under Windows using the Windows Subsystem for Linux.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-12-08 18:20:23
 ms.date: 12/08/2017

@@ -1,6 +1,6 @@
 ---
 title:      "Network Recommendations for a Hyper-V Cluster in Windows Server 2012"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 01/19/2014
 categories: hvr

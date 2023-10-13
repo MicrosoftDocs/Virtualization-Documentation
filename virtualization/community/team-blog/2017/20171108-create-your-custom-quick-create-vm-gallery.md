@@ -1,7 +1,7 @@
 ---
 title: Create your custom Quick Create VM gallery
 description: Learn how to create your own custom virtual machine gallery using Quick Create on JSON files.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-11-08 02:41:52
 ms.date: 11/08/2017

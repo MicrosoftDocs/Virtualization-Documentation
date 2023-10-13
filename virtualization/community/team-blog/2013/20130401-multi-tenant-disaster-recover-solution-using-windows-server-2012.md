@@ -1,6 +1,6 @@
 ---
 title:      "Multi-tenant disaster recover solution using Windows Server 2012"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Multi-tenant disaster recover solution using Windows Server 2012
 ms.date: 04/01/2013

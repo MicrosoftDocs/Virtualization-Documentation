@@ -1,7 +1,7 @@
 ---
 title: Copying Files into a Hyper-V VM with Vagrant
 description: Learn about using Vagrant to enable coping virtual machine files into a Hyper-V environment.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-07-18 21:50:09
 ms.date: 07/18/2017

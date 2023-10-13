@@ -1,6 +1,6 @@
 ---
 title:      "Enabling Linux Support on Windows Server 2012 R2 Hyper-V"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Enabling Linux Support on Windows Server 2012 R2 Hyper-V
 ms.date: 07/24/2013

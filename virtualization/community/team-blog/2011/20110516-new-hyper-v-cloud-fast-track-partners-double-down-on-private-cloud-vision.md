@@ -1,6 +1,6 @@
 ---
 title:      "New Hyper-V Cloud Fast Track Partners Double Down on Private Cloud Vision"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: New Hyper-V Cloud Fast Track Partners Double Down on Private Cloud Vision
 ms.date: 05/16/2011

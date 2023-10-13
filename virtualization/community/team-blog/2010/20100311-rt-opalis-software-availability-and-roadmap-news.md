@@ -1,6 +1,6 @@
 ---
 title:      "RT&#58; Opalis Software Availability and Roadmap News"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Opalis Software Availability and Roadmap News
 ms.date: 03/11/2010

@@ -1,6 +1,6 @@
 ---
 title:      "How to Use Resource Metering With PowerShell"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 08/20/2012
 date:       2012-08-20 10:30:00

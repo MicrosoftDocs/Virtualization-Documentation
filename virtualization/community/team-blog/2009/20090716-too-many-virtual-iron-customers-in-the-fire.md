@@ -1,6 +1,6 @@
 ---
 title:      "Too many Virtual Iron customers in the fire?"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Learn about Virtual Iron customers.
 ms.date: 07/16/2009

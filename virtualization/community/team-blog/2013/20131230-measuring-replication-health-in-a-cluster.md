@@ -1,6 +1,6 @@
 ---
 title:      "Measuring Replication Health in a cluster"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 12/30/2013
 categories: hvr

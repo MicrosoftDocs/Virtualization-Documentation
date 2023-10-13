@@ -1,6 +1,6 @@
 ---
 title:      "Special Guest Blog Post&#58; CDW talks Cloud Computing"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Special Guest Blog Post; CDW talks Cloud Computing
 ms.date: 06/08/2011

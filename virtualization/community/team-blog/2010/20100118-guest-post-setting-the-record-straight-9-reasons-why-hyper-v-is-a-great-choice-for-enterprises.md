@@ -1,6 +1,6 @@
 ---
 title:      "Guest post&#58; &#34;Setting the Record Straight - 9 Reasons Why Hyper-V is a Great Choice for Enterprises&#34;"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Setting the Record Straight - 9 Reasons Why Hyper-V is a Great Choice for Enterprises
 ms.date: 01/18/2010

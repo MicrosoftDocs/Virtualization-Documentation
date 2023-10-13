@@ -1,6 +1,6 @@
 ---
 title:      "Make the Most of Your WPC Experience"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Make the Most of Your WPC Experience
 ms.date: 07/11/2011

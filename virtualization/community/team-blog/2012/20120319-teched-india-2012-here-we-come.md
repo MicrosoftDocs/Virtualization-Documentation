@@ -1,6 +1,6 @@
 ---
 title:      "TechEd India 2012, here we come!"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: TechEd India 2012, here we come!
 ms.date: 03/19/2012

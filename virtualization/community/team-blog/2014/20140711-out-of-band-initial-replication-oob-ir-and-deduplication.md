@@ -1,6 +1,6 @@
 ---
 title:      "Out-of-band Initial Replication (OOB IR) and Deduplication"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 07/11/2014
 date:       2014-07-11 09:50:00

@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft’s new VDI licensing&#58; VDI Suites"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 07/13/2009
 description: Learn about VDI suites.

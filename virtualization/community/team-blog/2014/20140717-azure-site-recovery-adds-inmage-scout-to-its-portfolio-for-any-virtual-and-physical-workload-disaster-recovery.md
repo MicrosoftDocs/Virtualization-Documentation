@@ -1,6 +1,6 @@
 ---
 title:      "Azure Site Recovery adds InMage Scout to Its Portfolio for Any Virtual and Physical Workload Disaster Recovery"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 07/17/2014
 date:       2014-07-17 01:14:44

@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft a Leader in x86 Server Virtualization"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft a Leader in x86 Server Virtualization
 ms.date: 07/05/2011

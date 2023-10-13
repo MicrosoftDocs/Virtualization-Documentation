@@ -1,6 +1,6 @@
 ---
 title: "Replicating fixed disks to dynamic disks in Hyper-V Replica"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 09/24/2013
 categories: hvr

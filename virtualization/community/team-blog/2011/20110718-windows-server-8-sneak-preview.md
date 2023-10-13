@@ -1,6 +1,6 @@
 ---
 title:      "“Windows Server 8” sneak preview"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Windows Server 8 sneak preview
 ms.date: 07/18/2011

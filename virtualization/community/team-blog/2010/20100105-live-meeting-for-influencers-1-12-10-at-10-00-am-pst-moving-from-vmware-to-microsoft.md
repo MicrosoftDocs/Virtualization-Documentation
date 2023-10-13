@@ -1,6 +1,6 @@
 ---
 title:      "Live Meeting for Influencers, 1.12.10 at 10&#58;00 am PST&#58; Moving from VMware to Microsoft"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Live Meeting for Influencers, 1.12.10 at 8;00 am PST; Moving from VMware to Microsoft
 ms.date: 01/05/2010

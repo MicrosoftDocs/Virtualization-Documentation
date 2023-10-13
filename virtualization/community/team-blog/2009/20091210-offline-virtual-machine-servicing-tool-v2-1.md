@@ -1,6 +1,6 @@
 ---
 title:      "Offline Virtual Machine Servicing Tool v2.1"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Offline Virtual Machine Servicing Tool v2.1
 ms.date: 12/10/2009

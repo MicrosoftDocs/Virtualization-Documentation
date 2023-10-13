@@ -1,7 +1,7 @@
 ---
 title: Linux Integration Services 4.1.3-2
 description: Learn about version 4.1.3-2 update of the Linux Integration Services.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-03-10 22:27:17
 ms.date: 03/10/2017

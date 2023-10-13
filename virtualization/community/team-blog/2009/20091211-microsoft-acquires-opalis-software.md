@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft Acquires Opalis Software"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft Acquires Opalis Software
 ms.date: 12/11/2009

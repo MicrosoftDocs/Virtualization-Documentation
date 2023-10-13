@@ -2,7 +2,7 @@
 title: The GetGuestPhysicalMemoryChunks function
 description: Returns the layout of the physical memory of the guest.
 ms.date: 04/18/2022
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ---
 # GetGuestPhysicalMemoryChunks function

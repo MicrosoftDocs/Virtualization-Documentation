@@ -1,7 +1,7 @@
 ---
 title:      Azure Site Recovery - Data Security and Privacy
 description: Learn about how Azure Site Recovery maintains customer data security and privacy.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2014-09-03 01:56:45
 ms.date: 09/03/2014
