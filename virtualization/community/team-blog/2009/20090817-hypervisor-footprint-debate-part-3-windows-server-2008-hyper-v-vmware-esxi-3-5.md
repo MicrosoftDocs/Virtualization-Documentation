@@ -92,7 +92,7 @@ Say it with me:
 
 **_>   Security is more than just disk footprint. <_**
 
-Quoting disk footprint size alone is a nice pithy, superficial phrase, but it's also a boat load of bollocks. The next time some VMware representative throws out that argument, point them to this blog and tell them Jeff sent you. If you've ever spent anytime with a security expert, one of the first things they will tell you is that **_security is not a one time exercise_**. **_Security is an ongoing process that should be embedded throughout the entire development lifecycle_**. It's that belief that drove us to [develop the Microsoft Secure Development Lifecycle (SDL) and is publicly available](https://www.microsoft.com/securityengineering/sdl). 
+Quoting disk footprint size alone is a nice pithy, superficial phrase, but it's also a not completely true. The next time some VMware representative throws out that argument, point them to this blog and tell them Jeff sent you. If you've ever spent anytime with a security expert, one of the first things they will tell you is that **_security is not a one time exercise_**. **_Security is an ongoing process that should be embedded throughout the entire development lifecycle_**. It's that belief that drove us to [develop the Microsoft Secure Development Lifecycle (SDL) and is publicly available](https://www.microsoft.com/securityengineering/sdl). 
 
 **Microsoft Secure Development Lifecycle (SDL)**
 

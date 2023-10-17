@@ -27,7 +27,7 @@ There were a few questions from customers on network failover and load balancing
 
  
 
-The bummer was when we lost Internet connectivity for a while at the convention center. Thankfully it was restored before the end of the day and we could return to a sense of digital comfort and connectivity. 
+The tough part was when we lost Internet connectivity for a while at the convention center. Thankfully it was restored before the end of the day and we could return to a sense of digital comfort and connectivity. 
 
  
 
