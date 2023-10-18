@@ -9,7 +9,7 @@ ms.date: 06/09/2021
 api_name:
 - HdvUnregisterDoorbell function
 api_location:
-- computecore.dll
+- drewbatgit/Virtualization-Documentation-Private
 api_type:
 - DllExport
 topic_type: 
