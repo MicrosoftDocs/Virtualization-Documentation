@@ -9,7 +9,7 @@ ms.date: 06/09/2021
 api_name:
 - HdvRegisterDoorbell function
 api_location:
-- computecore.dll
+- vmdevicehost.dll
 api_type:
 - DllExport
 topic_type: 
