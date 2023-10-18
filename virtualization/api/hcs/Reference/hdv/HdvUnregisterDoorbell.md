@@ -9,7 +9,7 @@ ms.date: 06/09/2021
 api_name:
 - HdvUnregisterDoorbell function
 api_location:
-- drewbatgit/Virtualization-Documentation-Private
+- vmdevicehost.dll
 api_type:
 - DllExport
 topic_type: 
