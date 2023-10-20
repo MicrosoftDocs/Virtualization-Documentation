@@ -114,8 +114,9 @@ For help deciding which Azure services are right for your scenario, see [Azure c
 
 To view resources for using Windows Server containers:
 
-- For current issues and planned feature upgrades, see the [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1).
+- For current issues and planned feature upgrades, see the [Windows containers GitHub repository](https://github.com/microsoft/Windows-Containers).
 
-- To view container events, see [Windows container and the Azure Kubernetes Service}](https://azure.microsoft.com/resources/videos/ignite-2019-windows-container-and-the-azure-kubernetes-service/) and [other recent containers events and slideshows](../deploy-containers/events.md).
+- Check out our blog: (Windows Containers Blog)[https://techcommunity.microsoft.com/t5/containers/bg-p/Containers].
 
 - To contact the Windows Server containers team, send email to [Windows Containers Customers](mailto:win-containers@microsoft.com).
+  
