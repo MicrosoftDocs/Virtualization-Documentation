@@ -116,7 +116,7 @@ To view resources for using Windows Server containers:
 
 - For current issues and planned feature upgrades, see the [Windows containers GitHub repository](https://github.com/microsoft/Windows-Containers).
 
-- Check out our blog: (Windows Containers Blog)[https://techcommunity.microsoft.com/t5/containers/bg-p/Containers].
+- Check out our blog: [Windows Containers Blog](https://techcommunity.microsoft.com/t5/containers/bg-p/Containers).
 
 - To contact the Windows Server containers team, send email to [Windows Containers Customers](mailto:win-containers@microsoft.com).
   
