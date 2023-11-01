@@ -1,6 +1,6 @@
 ---
 title:      "Azure Site Recovery – case of the “network connection failure”"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 07/06/2014
 date:       2014-07-06 21:55:00

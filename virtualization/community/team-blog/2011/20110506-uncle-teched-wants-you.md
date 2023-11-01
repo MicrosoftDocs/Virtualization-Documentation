@@ -1,6 +1,6 @@
 ---
 title:      "Uncle TechEd Wants You!"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Uncle TechEd Wants You!
 ms.date: 05/06/2011

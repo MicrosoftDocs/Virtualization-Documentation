@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica & Proxy Servers on primary site"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 02/08/2014
 categories: hvr

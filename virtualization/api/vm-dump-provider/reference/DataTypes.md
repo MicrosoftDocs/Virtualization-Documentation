@@ -2,7 +2,7 @@
 title: VM Dump Provider Data Types
 description: Learn about VM Dump Provider Data Types.
 ms.date: 04/18/2022
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ---
 # VM Dump Provider Data Types

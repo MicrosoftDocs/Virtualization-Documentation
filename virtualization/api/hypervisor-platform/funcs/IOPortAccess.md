@@ -1,7 +1,7 @@
 ---
 title: Exit caused by an I/O port access
 description: Learn about context data for an exit caused by an I/O port access.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 04/20/2022
 ---

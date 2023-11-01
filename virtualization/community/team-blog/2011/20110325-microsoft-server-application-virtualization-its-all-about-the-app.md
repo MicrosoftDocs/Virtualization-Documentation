@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft Server Application Virtualization – It’s all about the App"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft Server Application Virtualization – It’s all about the App
 ms.date: 03/25/2011

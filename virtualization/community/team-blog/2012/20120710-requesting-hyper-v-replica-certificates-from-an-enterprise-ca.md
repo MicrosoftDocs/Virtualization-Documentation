@@ -1,7 +1,7 @@
 ---
 title:      "Requesting Hyper-V Replica Certificates from an Enterprise CA"
 description: Requesting Hyper-V Replica Certificates from an Enterprise CA
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2012-07-10 02:27:00
 ms.date: 07/10/2012

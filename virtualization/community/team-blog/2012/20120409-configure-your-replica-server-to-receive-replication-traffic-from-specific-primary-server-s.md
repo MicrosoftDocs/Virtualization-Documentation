@@ -1,6 +1,6 @@
 ---
 title:      "Configure your Replica server to receive replication traffic from specific primary server(s)"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Configure your Replica server to receive replication traffic from specific primary server(s)
 ms.date: 04/09/2012

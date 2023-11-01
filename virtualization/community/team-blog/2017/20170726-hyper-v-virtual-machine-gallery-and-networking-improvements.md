@@ -1,7 +1,7 @@
 ---
 title: Hyper-V virtual machine gallery and networking improvements
 description: Learn about the the Hyper-V virtual machine gallery and related networking improvements.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-07-26 01:42:39
 ms.date: 07/26/2017

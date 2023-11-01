@@ -2,7 +2,7 @@
 title: The LocateSavedStateFiles function
 description: Locates the saved state file(s) for a given VM and/or snapshot.
 ms.date: 04/19/2022
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ---
 

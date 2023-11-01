@@ -1,6 +1,6 @@
 ---
 title:      "TechEd North America 2014"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 05/08/2014
 date:       2014-05-08 22:02:00

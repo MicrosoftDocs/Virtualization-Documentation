@@ -1,7 +1,7 @@
 ---
 title:      "Customer Spotlight&#58; Target Corp. Eliminates Performance Bottlenecks with Hyper-V"
 description: This blog discusses how Target Corp. eliminates performanc bottlenecks with Hyper-V 
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2011-03-21 01:30:00
 ms.date: 03/21/2011

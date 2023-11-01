@@ -1,7 +1,7 @@
 ---
 title:      Get the Scoop - FREE Frozen Custard and Hyper-V
 description: Learn about Hyper-V while attending VMWorld. 
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2013-08-26 10:05:51
 ms.date: 08/26/2013

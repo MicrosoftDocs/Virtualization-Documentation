@@ -1,6 +1,6 @@
 ---
 title:      "Disaster Recovery to Microsoft Azure – Part 1"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 06/20/2014
 date:       2014-06-20 04:34:43

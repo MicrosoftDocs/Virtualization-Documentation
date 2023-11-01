@@ -1,7 +1,7 @@
 ---
 title:      Migrate Windows Server 2012R2 Virtualized Workloads to Microsoft Azure with Azure Site Recovery
 description: Learn about migrating virtualized workloads from Windows Server 2012R2 to Microsoft Azure using Azure Site Recovery.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2014-08-13 22:19:30
 ms.date: 08/13/2014

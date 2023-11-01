@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica Capacity Planner"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Hyper-V Replica Capacity Planner
 ms.date: 05/22/2013

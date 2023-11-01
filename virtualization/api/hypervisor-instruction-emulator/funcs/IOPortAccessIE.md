@@ -1,7 +1,7 @@
 ---
 title: I/O port access for QEMU
 description: Learn about the I/O port access for QEMU. 
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 04/19/2022
 ---

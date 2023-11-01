@@ -1,6 +1,6 @@
 ---
 title:      "Azure Site Recovery - FAQ"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 06/25/2014
 date:       2014-06-25 18:48:00

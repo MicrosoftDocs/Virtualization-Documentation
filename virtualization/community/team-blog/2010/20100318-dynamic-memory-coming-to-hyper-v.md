@@ -1,6 +1,6 @@
 ---
 title:      "Dynamic Memory Coming To Hyper-V"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Dynamic Memory Coming To Hyper-V
 ms.date: 03/18/2010

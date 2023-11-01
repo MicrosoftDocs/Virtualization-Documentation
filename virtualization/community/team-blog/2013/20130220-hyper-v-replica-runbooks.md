@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica Runbooks"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 02/20/2013
 date:       2013-02-20 06:21:43

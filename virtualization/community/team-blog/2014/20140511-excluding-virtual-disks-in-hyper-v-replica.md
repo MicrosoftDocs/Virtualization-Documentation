@@ -1,6 +1,6 @@
 ---
 title:      "Excluding virtual disks in Hyper-V Replica"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 05/11/2014
 date:       2014-05-11 04:00:00

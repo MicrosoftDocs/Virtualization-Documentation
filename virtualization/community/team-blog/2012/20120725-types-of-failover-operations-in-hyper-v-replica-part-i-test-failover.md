@@ -1,6 +1,6 @@
 ---
 title:      "Types of failover operations in Hyper-V Replica – Part I – Test Failover"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 07/25/2012
 date:       2012-07-25 16:15:00

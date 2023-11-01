@@ -1,7 +1,7 @@
 ---
 title: Virtual Machine Storage Resiliency in Windows Server 2016
 description: Learn about how Windows Server 2016 Hyper-V virtual machines handle storage failures.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-09-08 09:28:00
 ms.date: 09/08/2015

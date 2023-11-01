@@ -1,6 +1,6 @@
 ---
 title:      "Virtualization&#58; desktop to datacenter"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Virtualization; desktop to datacenter
 ms.date: 10/20/2009

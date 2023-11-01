@@ -1,6 +1,6 @@
 ---
 title:      "BEWARE THE VMWARE MEMORY VTAX; PLUS--GOOD NEWS FOR HYPER-V..."
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Beware the VMware memory vTax, plus good news for Hyper-V
 ms.date: 08/01/2011

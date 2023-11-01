@@ -1,7 +1,7 @@
 ---
 title:      "Brad Anderson posts from MMS - Private Cloud Computing&#58; It’s all About the Apps"
 description: Brad Anderson posts from Microsoft Management Summit (MMS) about Private Cloud Computing. 
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2011-03-22 01:30:00
 ms.date: 03/22/2011

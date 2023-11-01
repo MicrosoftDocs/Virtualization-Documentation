@@ -1,6 +1,6 @@
 ---
 title:      "City of Frisco (Texas) saves big with Hyper-V and NetApp"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: City of Frisco (Texas) saves big with Hyper-V and NetApp
 ms.date: 12/01/2009

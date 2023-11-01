@@ -1,7 +1,7 @@
 ---
 title: Integration components available for virtual machines not connected to Windows Update
 description: Learn about the available integration components for virtual machines not connected to a Windows update using Hyper-V.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-07-24 10:42:00
 ms.date: 07/24/2015

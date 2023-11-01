@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft’s Hyper-V Cloud Fast Track Accelerates Private Cloud Deployment"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft’s Hyper-V Cloud Fast Track Accelerates Private Cloud Deployment
 ms.date: 05/19/2011

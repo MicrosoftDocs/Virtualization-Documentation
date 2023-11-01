@@ -1,7 +1,7 @@
 ---
 title: Container Images are now out for Windows Server version 1709
 description: Learn about some notable features of Windows Server version 1709 including container images and updated tagging schemes.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-10-18 19:30:43
 ms.date: 10/18/2017

@@ -1,6 +1,6 @@
 ---
 title:      "ExpressRoute + ASR = Efficient DR solution"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 07/20/2014
 date:       2014-07-20 13:00:00

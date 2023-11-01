@@ -1,6 +1,6 @@
 ---
 title:      "Free Microsoft iSCSI Target"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Free Microsoft iSCSI Target
 ms.date: 04/04/2011

@@ -1,6 +1,6 @@
 ---
 title:      "MMS 2011 LABS POWERED BY HYPER-V, SYSTEM CENTER & HP..."
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: MMS 2011 Labs powered by Hyper-V, System Center, and HP
 ms.date: 03/28/2011

@@ -1,7 +1,7 @@
 ---
 title: What's new in Hyper-V for the Windows 10 Creators Update?
 description: Learn about the new Hyper-V features in the Windows 10 Creators Update and how they can help your virtual machine management.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-04-13 00:21:53
 ms.date: 04/13/2017

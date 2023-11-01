@@ -1,7 +1,7 @@
 ---
 title: When to use Hyper-V Dynamic Memory versus Runtime Memory Resize
 description: Learn about the appropriate situations when to use Hyper-V Dynamic Memory or Runtime Memory Resize.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-05-26 14:30:14
 ms.date: 05/26/2015

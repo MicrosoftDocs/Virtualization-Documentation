@@ -1,7 +1,7 @@
 ---
 title:      "Inject IP address into the VM during failover"
 description: Post discussing how to configure the static IP address of the Replica VM before it has failed over.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2012-05-28 22:11:00
 ms.date: 05/28/2012

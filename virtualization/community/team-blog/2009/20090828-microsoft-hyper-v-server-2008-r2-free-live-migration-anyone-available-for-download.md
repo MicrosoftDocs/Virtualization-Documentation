@@ -1,6 +1,6 @@
 ---
 title:      "Microsoft Hyper-V Server 2008 R2 (Free live migration anyone!) available for download"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft Hyper-V Server 2008 R2 (Free live migration anyone!) available for download
 ms.date: 08/28/2009

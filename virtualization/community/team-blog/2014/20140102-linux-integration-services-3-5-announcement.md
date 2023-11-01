@@ -1,6 +1,6 @@
 ---
 title:      "Linux Integration Services 3.5 Announcement"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 01/02/2014
 categories: uncategorized

@@ -1,6 +1,6 @@
 ---
 title:      "Using an existing VM for initial replication in Hyper-V Replica"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 08/27/2013
 categories: hvr

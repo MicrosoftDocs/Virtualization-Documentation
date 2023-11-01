@@ -1,7 +1,7 @@
 ---
 title:      "Promotion of Brad Anderson to Corporate Vice President, Management and Services Division"
 description: Brad Anderson one of the key drivers behind Microsoft’s management offerings, including the System Center suite and products such as VMM, has been promoted to corporate vice president.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2009-07-28 16:16:00
 ms.date: 07/28/2009

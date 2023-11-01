@@ -1,6 +1,6 @@
 ---
 title:      "Migrate virtual machines from a VMware environment to Hyper-V in Windows Server 2012 using a free, simple, standalone tool"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 09/18/2012
 date:       2012-09-18 20:04:00

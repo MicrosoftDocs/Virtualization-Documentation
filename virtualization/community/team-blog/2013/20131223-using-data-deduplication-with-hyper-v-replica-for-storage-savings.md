@@ -1,6 +1,6 @@
 ---
 title:      "Using data deduplication with Hyper-V Replica for storage savings"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 12/23/2013
 categories: hvr

@@ -2,7 +2,7 @@
 title: The GetVpCount function
 description: Queries for the Virtual Processor count for a given VmSavedStateDump.
 ms.date: 04/19/2022
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ---
 

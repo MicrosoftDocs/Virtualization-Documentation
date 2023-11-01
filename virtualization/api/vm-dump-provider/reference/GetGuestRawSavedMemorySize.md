@@ -2,7 +2,7 @@
 title: The GetGuestRawSavedMemorySize function
 description: Returns the size in bytes of the saved memory for a given VM saved state file.
 ms.date: 04/18/2022
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ---
 # GetGuestRawSavedMemorySize function

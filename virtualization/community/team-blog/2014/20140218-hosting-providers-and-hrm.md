@@ -1,6 +1,6 @@
 ---
 title:      "Hosting Providers and HRM"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 02/18/2014
 categories: hrm

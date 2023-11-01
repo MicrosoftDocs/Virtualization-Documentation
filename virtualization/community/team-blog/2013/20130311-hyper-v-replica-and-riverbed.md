@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica and Riverbed"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 03/11/2013
 date:       2013-03-11 09:51:00

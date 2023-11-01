@@ -1,7 +1,7 @@
 ---
 title:      "Enable replication using certificate based authentication - in PowerShell"
 description: Blog discussing how to enable replication using certificate based authentication in PowerShell.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2012-04-23 04:49:00
 ms.date: 04/23/2012

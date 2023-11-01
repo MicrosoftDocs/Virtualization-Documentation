@@ -1,7 +1,7 @@
 ---
 title: Available to Windows 10 Insiders Today - Access to published container ports via “localhost”/127.0.0.1
 description: This is a cross post that redirects you the Microsoft Networking Blog.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-11-06 17:47:40
 ms.date: 11/06/2017

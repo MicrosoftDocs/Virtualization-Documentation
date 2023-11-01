@@ -1,6 +1,6 @@
 ---
 title:      "MICROSOFT HYPER-V SERVER 2008 R2 SP1 RELEASED!"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Microsoft Hyper-V Server 2008 R2 SP1 released!
 ms.date: 04/12/2011

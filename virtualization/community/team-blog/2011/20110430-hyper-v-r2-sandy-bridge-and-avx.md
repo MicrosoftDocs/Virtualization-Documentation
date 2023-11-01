@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V R2, Sandy Bridge and AVX..."
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Hyper-V R2, Sandy Bridge and AVX
 ms.date: 04/30/2011

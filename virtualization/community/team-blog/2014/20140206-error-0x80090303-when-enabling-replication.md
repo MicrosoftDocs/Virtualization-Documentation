@@ -1,6 +1,6 @@
 ---
 title:      "Error 0x80090303 when enabling replication"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 02/06/2014
 categories: hvr

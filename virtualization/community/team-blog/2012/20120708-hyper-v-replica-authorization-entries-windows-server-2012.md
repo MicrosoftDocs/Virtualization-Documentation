@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica Authorization entries–Windows Server 2012"
 description: Hyper-V Replica Authorization entries–Windows Server 2012
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2012-07-08 04:36:00
 ms.date: 07/08/2012

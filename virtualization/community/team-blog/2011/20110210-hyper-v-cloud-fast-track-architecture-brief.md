@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Cloud Fast Track Architecture Brief"
 description: Information and resources for the Hyper-V Cloud Fast Track program.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2011-02-10 02:00:00
 ms.date: 02/10/2011

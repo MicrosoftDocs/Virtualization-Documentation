@@ -1,6 +1,6 @@
 ---
 title:      "Update&#58; Capacity Planner for Hyper-V Replica"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 01/21/2014
 categories: hvr

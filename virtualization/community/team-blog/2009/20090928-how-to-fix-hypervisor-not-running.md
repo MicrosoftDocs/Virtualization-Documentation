@@ -1,6 +1,6 @@
 ---
 title:      "How to fix&#58; Hypervisor not running"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: How to fix Hypervisor not running
 ms.date: 09/28/2009

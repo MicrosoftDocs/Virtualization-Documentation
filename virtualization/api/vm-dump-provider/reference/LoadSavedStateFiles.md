@@ -2,7 +2,7 @@
 title: The LoadSavedStateFiles function
 description: Loads the given saved state files and creates an instance of VmSavedStateDump. This instance can be referenced on the other methods with the returned UINT64 Id.
 ms.date: 04/19/2022
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ---
 

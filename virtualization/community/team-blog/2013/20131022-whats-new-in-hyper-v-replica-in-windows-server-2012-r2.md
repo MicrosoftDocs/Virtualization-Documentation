@@ -1,6 +1,6 @@
 ---
 title:      "What’s new in Hyper-V Replica in Windows Server 2012 R2"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 10/22/2013
 categories: hvr

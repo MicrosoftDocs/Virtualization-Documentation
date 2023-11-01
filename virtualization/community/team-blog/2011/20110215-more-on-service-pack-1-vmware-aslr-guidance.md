@@ -1,7 +1,7 @@
 ---
 title:      "More on Service Pack 1 & VMware ASLR Guidance"
 description: This blog is a follow-up to VMware and their guidance on Address Space Layout Randomization (ASLR).
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2011-02-15 09:00:00
 ms.date: 02/15/2011

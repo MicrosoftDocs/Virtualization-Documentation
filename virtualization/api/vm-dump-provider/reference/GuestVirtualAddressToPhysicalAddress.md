@@ -2,7 +2,7 @@
 title: The GuestVirtualAddressToPhysicalAddress function
 description: Translates a virtual address to a physical address using information found in the guest's memory and processor's state.
 ms.date: 04/19/2022
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ---
 

@@ -1,6 +1,6 @@
 ---
 title:      "MMS 2011, SYSTEM CENTER 2012 AND MORE..."
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: MMS 2011, SYSTEM CENTER 2012 AND MORE
 ms.date: 03/24/2011

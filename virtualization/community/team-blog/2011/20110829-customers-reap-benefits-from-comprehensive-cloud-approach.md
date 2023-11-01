@@ -1,6 +1,6 @@
 ---
 title:      "Customers Reap Benefits from Comprehensive Cloud Approach"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Customers Reap Benefits from Comprehensive Cloud Approach
 ms.date: 08/29/2011

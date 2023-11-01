@@ -1,7 +1,7 @@
 ---
 title: Windows Insider Preview - Nested Virtualization
 description: Learn more about the upcoming build release that supports nested virtualization in a Hyper-V virtual machine.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-10-13 12:55:00
 ms.date: 10/13/2015

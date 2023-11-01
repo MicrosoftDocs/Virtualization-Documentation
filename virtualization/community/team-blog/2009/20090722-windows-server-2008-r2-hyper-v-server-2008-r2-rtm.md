@@ -1,7 +1,7 @@
 ---
 title:      "Windows Server 2008 R2 & Hyper-V Server 2008 R2 RTM"
 description: Windows Server 2008 R2 Hyper-V provides access to high performance hypervisor based virtualization.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2009-07-22 16:40:00
 ms.date: 07/22/2009

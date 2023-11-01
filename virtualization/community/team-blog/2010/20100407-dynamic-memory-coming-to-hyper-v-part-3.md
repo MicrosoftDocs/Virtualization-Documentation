@@ -1,6 +1,6 @@
 ---
 title:      "Dynamic Memory Coming to Hyper-V Part 3…"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Dynamic Memory Coming to Hyper-V Part 3
 ms.date: 04/07/2010

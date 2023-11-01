@@ -1,7 +1,7 @@
 ---
 title:      Advanced Tools and Scripting with PowerShell 3.0
 description: Learn Advanced Tools and Scripting with PowerShell 3.0 at our free training event for Microsoft Virtual Academy on August 1st.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2013-07-26 08:00:00
 ms.date: 07/26/2013

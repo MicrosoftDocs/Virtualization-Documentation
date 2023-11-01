@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica Powershell Series&#58; Creating Hyper-V Replica Broker"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 08/14/2012
 date:       2012-08-14 23:09:00

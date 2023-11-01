@@ -1,6 +1,6 @@
 ---
 title:      "Red Hat Enterprise Linux and Hyper-V"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Red Hat Enterprise Linux and Hyper-V
 ms.date: 02/23/2010

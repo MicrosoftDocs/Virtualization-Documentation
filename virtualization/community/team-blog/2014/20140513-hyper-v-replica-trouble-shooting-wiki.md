@@ -1,6 +1,6 @@
 ---
 title:      "Hyper-V Replica trouble-shooting wiki"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 05/13/2014
 date:       2014-05-13 00:18:55

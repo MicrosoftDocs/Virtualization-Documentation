@@ -1,7 +1,7 @@
 ---
 title: Windows Server 2016 Adds Native Overlay Network Driver, enabling mixed Linux + Windows Docker Swarm Mode Clusters
 description: Learn about the native overlay network driver for Windows Server 2016 and how it can enable mixed Linux and Windows swarm mode clusters.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2017-04-18 13:02:30
 ms.date: 04/18/2017

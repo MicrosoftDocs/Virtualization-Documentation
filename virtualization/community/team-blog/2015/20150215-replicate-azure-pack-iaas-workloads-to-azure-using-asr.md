@@ -1,7 +1,7 @@
 ---
 title: Replicate Azure Pack IaaS Workloads to Azure using ASR
 description: Learn about how you can use Azure Site Recovery to replicate Azure Pack IaaS workloads.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 date:       2015-02-15 22:58:27
 ms.date: 02/16/2015

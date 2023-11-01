@@ -1,6 +1,6 @@
 ---
 title:      "Using SMB shares with Hyper-V Replica"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: Using SMB shares with Hyper-V Replica
 ms.date: 06/14/2013

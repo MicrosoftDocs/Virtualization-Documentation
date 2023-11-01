@@ -1,7 +1,7 @@
 ---
 title: Create a new partition object
 description: Learn about the WHvCreatePartition function that creates a new partition object.
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 ms.date: 04/20/2022
 ---

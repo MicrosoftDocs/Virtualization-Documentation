@@ -1,6 +1,6 @@
 ---
 title:      "MDOP 2010 Launches, with 64-bit version of App-V 4.6"
-author: mattbriggs
+author: sethmanheim
 ms.author: mabrigg
 description: MDOP 2010 Launches, with 64-bit version of App-V 4.6
 ms.date: 02/22/2010
