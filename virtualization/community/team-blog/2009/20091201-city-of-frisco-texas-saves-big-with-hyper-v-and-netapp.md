@@ -6,7 +6,6 @@ description: City of Frisco (Texas) saves big with Hyper-V and NetApp
 ms.date: 12/01/2009
 date:       2009-12-01 15:52:00
 categories: events
-ms.service: sharepoint
 ---
 # City of Frisco (Texas) saves big with Hyper-V and NetApp
 
