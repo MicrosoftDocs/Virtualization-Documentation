@@ -34,7 +34,7 @@ All container sample source code is kept under the Vitualization-Documentation g
     docker build -t python:latest .
 5. To run the newly built container, run the docker run command.
    docker run -it python
-6. This will enter you into the container and show you "Hello World."
+6. This will enter you into the container and show you "Hello World!"
 7. The python version should display. Use the exit command to exit the container.
 ## Dockerfile Details:
 ```
