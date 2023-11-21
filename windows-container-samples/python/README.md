@@ -34,8 +34,8 @@ All container sample source code is kept under the Vitualization-Documentation g
     docker build -t python:latest .
 5. To run the newly built container, run the docker run command.
    docker run -it python
-6. This will enter you into the container and show you "Hello World!"
-7. The python version should display. Use the exit command to exit the container.
+6. This will enter you into the container and show you "Hello world!"
+7. The container exits successfully.
 ## Dockerfile Details:
 ```
 # This dockerfile utilizes components licensed by their respective owners/authors.
@@ -52,8 +52,5 @@ RUN powershell.exe -Command \
     Start-Process c:\python-3.10.0.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
     Remove-Item c:\python-3.10.0.exe -Force
 
-
-RUN echo print("Hello World!") > c:\hello.py
-
-CMD ["py", "c:/hello.py"]
+CMD ["py", "-m" ,"__hello__"]
 ```
