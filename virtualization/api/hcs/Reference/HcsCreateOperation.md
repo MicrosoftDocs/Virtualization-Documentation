@@ -26,20 +26,20 @@ Creates a new operation.
 ```cpp
 HCS_OPERATION WINAPI
 HcsCreateOperation(
-    _In_opt_ HCS_OPERATION_COMPLETION callback
     _In_opt_ void*                    context
+    _In_opt_ HCS_OPERATION_COMPLETION callback
     );
 ```
 
 ## Parameters
 
-`callback`
-
-Optional pointer to an [`HCS_OPERATION_COMPLETION`](./HCS_OPERATION_COMPLETION.md) callback to be invoked when the operation completes.
-
 `context`
 
 Optional pointer to a context that is passed to the callback.
+
+`callback`
+
+Optional pointer to an [`HCS_OPERATION_COMPLETION`](./HCS_OPERATION_COMPLETION.md) callback to be invoked when the operation completes.
 
 ## Return Values
 
