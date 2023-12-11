@@ -13,7 +13,7 @@ There are many ways to optimize both the Docker build process and the resulting 
 
 ## Image layers in Docker build
 
-Before you can optimize your Docker build, you'll need to know how Docker build works. During the Docker build process, a Dockerfile is consumed, and each actionable instruction is run, one-by-one, in its own temporary container. The result is a new image layer for each actionable instruction.
+Before you can optimize your Docker build, you'll need to know how Docker build works. During the Docker build process, a Dockerfile is consumed, and each instruction is run sequentially. The RUN, COPY, and ADD instructions are actionable instructions. When invoked each actionable instruction creates its own temporary container. The result is a new image layer for each actionable instruction.
 
 For example, the following sample Dockerfile uses the `mcr.microsoft.com/windows/servercore:ltsc2019` base OS image, installs IIS, and then creates a simple website.
 
