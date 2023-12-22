@@ -73,7 +73,7 @@ Windows containers running on Windows Server default to running with process iso
 > [!WARNING]
 > Running with process isolation on Windows 10 Pro and Enterprise is meant for development/testing. Your host must be running Windows 10 build 17763+ and you must have a Docker version with Engine 18.09 or newer.
 >
-> You should continue to use Windows Server as the host for production deployments. By using this feature on Windows 10 Pro and Enterprise, you must also ensure that your host and container version tags match, otherwise the container may fail to start or exhibit undefined behavior.
+> You should continue to use Windows Server or Windows IoT Enterprise as the host for production deployments. By using this feature on Windows 10 Pro and Enterprise, you must also ensure that your host and container version tags match, otherwise the container may fail to start or exhibit undefined behavior.
 
 ### Isolation explanation
 
