@@ -29,6 +29,6 @@ The error message displayed in PowerShell is "The system failed to create '\[pat
 Use a NTFS formatted drive instead. 
 
 ## I get this message when I try to install: "Hyper-V cannot be installed: The processor does not support second level address translation (SLAT)."
-Hyper-V requires SLAT in order to run virtual machines. If you computer does not support SLAT, then it cannot be a host for virtual mahchines.
+Hyper-V requires SLAT in order to run virtual machines. If you computer does not support SLAT, then it cannot be a host for virtual machines.
 
 If you are only trying to install the management tools, unselect **Hyper-V Platform** in **Programs and Features** > **Turn Windows features on or off**.

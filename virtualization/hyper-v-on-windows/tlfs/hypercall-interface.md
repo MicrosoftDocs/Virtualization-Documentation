@@ -51,7 +51,7 @@ The guest must avoid the examination and/or manipulation of any input or output 
 
 ## Legal Hypercall Environments
 
-Hypercalls can be invoked only from the most privileged guest processor mode. On x64 platfoms, this means protected mode with a current privilege level (CPL) of zero. Although real-mode code runs with an effective CPL of zero, hypercalls are not allowed in real mode. An attempt to invoke a hypercall within an illegal processor mode will generate a #UD (undefined operation) exception.
+Hypercalls can be invoked only from the most privileged guest processor mode. On x64 platforms, this means protected mode with a current privilege level (CPL) of zero. Although real-mode code runs with an effective CPL of zero, hypercalls are not allowed in real mode. An attempt to invoke a hypercall within an illegal processor mode will generate a #UD (undefined operation) exception.
 
 All hypercalls should be invoked through the architecturally-defined hypercall interface (see below). An attempt to invoke a hypercall by any other means (for example, copying the code from the hypercall code page to an alternate location and executing it from there) might result in an undefined operation (#UD) exception. The hypervisor is not guaranteed to deliver this exception.
 

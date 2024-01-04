@@ -80,7 +80,7 @@ At this point, the question I’m always asked is, “What now? What if a virtua
 
 No.
 
-At this point, Dynamic Memory will attempt to reclaim pages from other virtual machines. However, in the absolute worst case where no free pages are available, the **guest operating** system will page as needed, not the parent. This is important because the guest operating system knows best what memory should and shouldn ’t be paged. (I covered this back in [Part 5](https://techcommunity.microsoft.com/t5/virtualization/repost-dynamic-memory-coming-to-hyper-v-part-5-8230/ba-p/381751)...) Finally, when free memory does become available from other virtual machines, Dynamic Memory will move memory as needed.
+At this point, Dynamic Memory will attempt to reclaim pages from other virtual machines. However, in the absolute worst case where no free pages are available, the **guest operating** system will page as needed, not the parent. This is important because the guest operating system knows best what memory should and shouldn’t be paged. (I covered this back in [Part 5](https://techcommunity.microsoft.com/t5/virtualization/repost-dynamic-memory-coming-to-hyper-v-part-5-8230/ba-p/381751)...) Finally, when free memory does become available from other virtual machines, Dynamic Memory will move memory as needed.
 
 **Over-Subscription & the CPU Analogy**
 

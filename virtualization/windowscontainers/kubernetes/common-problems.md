@@ -113,7 +113,7 @@ One of the Kubernetes networking requirements (see [Kubernetes model](https://ku
 
 Local NodePort access from the node itself may fail. This is a known feature gap being addressed with cumulative update KB4571748 (or later). NodePort access will work from other nodes or external clients.
 
-### My Windows node stops routing thourgh NodePorts after I scaled down my pods
+### My Windows node stops routing through NodePorts after I scaled down my pods
 
 Due to a design limitation, there needs to be at least one pod running on the Windows node for NodePort forwarding to work.
 

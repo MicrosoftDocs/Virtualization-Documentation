@@ -176,7 +176,7 @@ C:\> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADD
 In order to launch a Docker Service to a mixed-OS swarm cluster, there must be a way to distinguish which swarm nodes are running the OS for which that service is designed, and which are not. [Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) provide a useful way to label nodes, so that services can be created and configured to run only on the nodes that match their OS.
 
 >[!NOTE]
->[Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) can be used to apply metadata to a variety of Docker objects (including container images, containers, volumes and networks), and for a variety of purposes (e.g. labels could be used to separate 'front-end' and 'back-end' components of an application, by allowing front-end microservices to be secheduled only on 'front-end' labeled nodes and back-end mircoservices to be scheduled only on 'back-end' labeled nodes). In this case, we use labels on nodes, to distinguish Windows OS nodes and Linux OS nodes.
+>[Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) can be used to apply metadata to a variety of Docker objects (including container images, containers, volumes and networks), and for a variety of purposes (e.g. labels could be used to separate 'front-end' and 'back-end' components of an application, by allowing front-end microservices to be scheduled only on 'front-end' labeled nodes and back-end mircoservices to be scheduled only on 'back-end' labeled nodes). In this case, we use labels on nodes, to distinguish Windows OS nodes and Linux OS nodes.
 
 To label your existing swarm nodes, use the following syntax:
 
