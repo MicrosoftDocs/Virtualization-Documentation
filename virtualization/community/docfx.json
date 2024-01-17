@@ -155,7 +155,6 @@
         "team-blog/2012/20120816-introduction-to-resource-metering.md": "windows-server-2012",
         "team-blog/2012/20120820-how-to-use-resource-metering-with-powershell.md": "powershell",
         "team-blog/2012/20120918-migrate-virtual-machines-from-a-vmware-environment-to-hyper-v-in-windows-server-2012-using-a-free-simple-standalone-tool.md": "windows-server-2012",
-        "team-blog/2013/20130220-hyper-v-replica-runbooks.md": "system-center-2012",
         "team-blog/2013/20130401-multi-tenant-disaster-recover-solution-using-windows-server-2012.md": "windows-server-2012",
         "team-blog/2013/20130416-updates-for-hyper-v.md": "windows-server-2012",
         "team-blog/2013/20130418-how-to-install-integration-services-when-the-virtual-machine-is-not-running.md": "powershell",
@@ -254,7 +253,8 @@
         "team-blog/2014/20140903-azure-site-recovery-data-security-and-privacy.md": "site-recovery",
         "team-blog/2014/20141002-announcing-the-ga-of-disaster-recovery-to-azure-using-azure-site-recovery.md": "site-recovery",
         "team-blog/2014/20141211-announcing-ga-of-disaster-recovery-to-azure-purpose-built-for-branch-offices-and-smb.md": "site-recovery",
-        "team-blog/2015/20150215-replicate-azure-pack-iaas-workloads-to-azure-using-asr.md": "site-recovery"
+        "team-blog/2015/20150215-replicate-azure-pack-iaas-workloads-to-azure-using-asr.md": "site-recovery",
+        "team-blog/2013/20130220-hyper-v-replica-runbooks.md": "system-center-2012"
       }
     },  
     "extendBreadcrumb": true
