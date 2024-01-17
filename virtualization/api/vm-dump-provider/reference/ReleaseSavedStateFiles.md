@@ -12,7 +12,6 @@ Releases the given VmSavedStateDump provider that matches the supplied ID. Relea
 
 ## Syntax
 ```C
-
 HRESULT
 WINAPI
 ReleaseSavedStateFiles(

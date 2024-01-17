@@ -16,7 +16,6 @@ HvCallEnableVpVtl enables a VTL to run on a VP. This hypercall should be used in
 ## Interface
 
  ```c
-
 HV_STATUS
 HvEnableVpVtl(
     _In_ HV_PARTITION_ID TargetPartitionId,
