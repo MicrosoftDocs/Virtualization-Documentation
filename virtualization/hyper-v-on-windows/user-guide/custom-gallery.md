@@ -6,7 +6,6 @@ author: scooley
 ms.author: scooley
 ms.date: 05/04/2018
 ms.topic: article
-ms.prod: windows-10-hyperv
 ms.assetid: d9238389-7028-4015-8140-27253b156f37
 ---
 # Create a custom virtual machine gallery

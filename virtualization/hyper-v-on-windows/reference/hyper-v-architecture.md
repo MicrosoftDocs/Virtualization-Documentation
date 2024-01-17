@@ -5,7 +5,6 @@ author: v-thepet
 ms.author: v-thepet
 ms.date: 09/14/2020
 ms.topic: article
-ms.prod: windows-10-hyperv
 ---
 # Hyper-V Architecture
 

@@ -6,7 +6,6 @@ author: scooley
 ms.author: scooley
 ms.date: 04/07/2018
 ms.topic: article
-ms.prod: windows-10-hyperv
 ms.assetid: f1e75efa-8745-4389-b8dc-91ca931fe5ae
 ---
 
