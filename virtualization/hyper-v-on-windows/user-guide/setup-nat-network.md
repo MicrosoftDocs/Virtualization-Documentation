@@ -6,7 +6,6 @@ author: jmesser81
 ms.author: jamesser
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-10-hyperv
 ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
 ---
 

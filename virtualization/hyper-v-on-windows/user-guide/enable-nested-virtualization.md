@@ -6,7 +6,6 @@ author: johncslack
 ms.author: wscontent
 ms.date: 07/14/2023
 ms.topic: article
-ms.prod: windows-10-hyperv
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 ---
 

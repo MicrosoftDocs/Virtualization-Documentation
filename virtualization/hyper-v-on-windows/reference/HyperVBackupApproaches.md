@@ -5,7 +5,6 @@ author: scooley
 ms.author: scooley
 ms.date: 05/29/2020
 ms.topic: article
-ms.prod: windows-10-hyperv
 ---
 # Hyper-V Backup Approaches
 Hyper-V allows you to backup virtual machines, from the host operating system, without the need to run custom backup software inside the virtual machine.  There are several approaches that are available for developers to utilize depending on their needs.
