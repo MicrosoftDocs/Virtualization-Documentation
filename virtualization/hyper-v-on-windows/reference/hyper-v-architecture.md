@@ -1,8 +1,8 @@
 ---
 title: Hyper-v Architecture
 description: Describes the Hyper-V architecture and its role in virtualization and provides an overview and glossary of the architecture.
-author: v-thepet
-ms.author: v-thepet
+author: scooley
+ms.author: scooley
 ms.date: 09/14/2020
 ms.topic: article
 ms.prod: windows-10-hyperv
