@@ -1,7 +1,7 @@
 ---
 title:      "5Nine Manager for Hyper-V"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: 5Nine Manager for Hyper-V
 ms.date: 05/05/2011
 date:       2011-05-05 06:56:00

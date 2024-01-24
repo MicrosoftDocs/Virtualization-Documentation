@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica–Certificate Based Authentication in Windows Server 2012"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 07/18/2012
 date:       2012-07-18 13:18:00
 categories: hvr
@@ -13,11 +13,11 @@ This post discusses a subtle change in the certificate workflow for Hyper-V Repl
 
 **Note** :
 
-  * The pre-requisites certificate based authentication remains unchanged (as seen in an earlier post “[**Hyper-V Replica - Prerequisites for certificate based deployments**](/virtualization/community/team-blog/2012/20120313-hyper-v-replica-prerequisites-for-certificate-based-deployments)”)
+  * The pre-requisites certificate based authentication remains unchanged (as seen in an earlier post "[**Hyper-V Replica - Prerequisites for certificate based deployments**](/virtualization/community/team-blog/2012/20120313-hyper-v-replica-prerequisites-for-certificate-based-deployments)")
 
   * Only the workflow for picking the certificate has changed – all other functionality (such as handling seamless replication during VM migration) and requirements (certificates, firewall rules) remain unchanged
 
-**Windows Server “8” Beta Workflow:**
+**Windows Server "8" Beta Workflow:**
 
   * A post explaining the workflow in Beta was published [earlier](https://blogs.technet.com/b/virtualization/archive/2012/04/23/certificate-based-authentication-and-powershell.aspx). In summary, Hyper-V administrators picked a certificate from the **Trusted Root Certification Authorities** store of the Local Machine for certificate based authentication.
 
@@ -38,7 +38,7 @@ This post discusses a subtle change in the certificate workflow for Hyper-V Repl
 
 **Step #1: Enabling Replication on a Replica Cluster**
 
-  * Let’s consider a clustered deployment on which a Hyper-V Replica Broker (called **RepBroker** ) has been created.
+  * Let's consider a clustered deployment on which a Hyper-V Replica Broker (called **RepBroker** ) has been created.
 
   * The administrator wants to allow the cluster to receive replication traffic and clicks on the **Replication Settings** of RepBroker. On a fresh cluster where the certificate have not been installed, the following error message is seen on clicking the **Select Certificate … **button.
 

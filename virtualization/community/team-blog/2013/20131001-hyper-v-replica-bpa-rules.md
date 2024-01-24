@@ -1,16 +1,16 @@
 ---
 title:      "Hyper-V Replica BPA Rules"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 10/01/2013
 categories: hvr
 description: Rules for using the Best Practices Analyzer (BPA).
 ---
 # Rules for Using the Best Practices Analyzer (BPA)
 
-A frequent question from our customers is on whether there are standard “best practices” when deploying Hyper-V Replica (or any Windows Server role for that matter). These questions come in many avatars - Does the Product Group have any configuration gotchas based on internal testing, is my server properly configured, should I change any replication configuration etc.
+A frequent question from our customers is on whether there are standard "best practices" when deploying Hyper-V Replica (or any Windows Server role for that matter). These questions come in many avatars - Does the Product Group have any configuration gotchas based on internal testing, is my server properly configured, should I change any replication configuration etc.
 
-**Best Practices Analyzer (BPA)** is a powerful inbox tool which scans the server for any potential ‘best practice’ violations. The report describes the problem and also provides recommendation to fix the issue. You can use the BPA both from UI as well as PowerShell.
+**Best Practices Analyzer (BPA)** is a powerful inbox tool which scans the server for any potential 'best practice' violations. The report describes the problem and also provides recommendation to fix the issue. You can use the BPA both from UI as well as PowerShell.
 
 From the Server Manager Dashboard, click on **Hyper-V,** scroll down to the **Best Practices Analyzer** option, click on **Tasks** , followed by **Start BPA Run**
 

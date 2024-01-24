@@ -2,7 +2,7 @@
 title: How to give us feedback
 description: Find out how to send us feedback to continue to improve your virtual machine management.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2017-02-10 21:21:24
 ms.date: 02/10/2017
 categories: hyper-v

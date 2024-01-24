@@ -2,7 +2,7 @@
 title:      "Microsoft Hyper-V Server 2008 R2 RTM & More."
 description: Microsoft Hyper-V Server 2008 R2 RTM post announcement quotes and boot from flash.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2009-07-30 14:14:00
 ms.date: 07/30/2009
 categories: uncategorized

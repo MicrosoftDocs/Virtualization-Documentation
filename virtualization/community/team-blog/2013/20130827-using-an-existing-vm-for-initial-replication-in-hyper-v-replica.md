@@ -1,7 +1,7 @@
 ---
 title:      "Using an existing VM for initial replication in Hyper-V Replica"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 08/27/2013
 categories: hvr
 description: Reasons for using an existing virtual machine as the initial copy in Hyper-V Replica.
@@ -20,7 +20,7 @@ Each option for initial replication has a specific scenario for which it excels.
 
 ### Choosing an existing virtual machine
 
-This method of initial replication is rather self-explanatory – it takes an existing VM on the replica site as the baseline to be synced with the primary. However, it’s not enough to pick any virtual machine on the replica site to use as an initial copy. Hyper-V Replica places certain requirements on the VM that can be used in this method of initial replication:
+This method of initial replication is rather self-explanatory – it takes an existing VM on the replica site as the baseline to be synced with the primary. However, it's not enough to pick any virtual machine on the replica site to use as an initial copy. Hyper-V Replica places certain requirements on the VM that can be used in this method of initial replication:
 
   1. It has to have the same virtual machine ID as that of the primary VM
   2. It should have the same disks (and disk properties) as that of the primary VM
@@ -29,7 +29,7 @@ This method of initial replication is rather self-explanatory – it takes an ex
 
 Given the restrictions placed on the existing VM that can act as an initial copy, there are a few clear ways to get such a VM:
 
-  * **Restore the VM from backup**. Historically, the disaster recovery strategy for most companies involved taking backups and restoring the datacenter from these backups. This strategy also implies that there is a mechanism in place to transport the backed-up data to the recovery site. This makes the backed-up copies an excellent start point for Hyper-V Replica ’s disaster recovery process. The data will be older – depending on the backup policies – but it will satisfy the criteria to use this initial replication method. Of course, it is suggested to use the latest backup data so as to keep the delta changes to the minimum.
+  * **Restore the VM from backup**. Historically, the disaster recovery strategy for most companies involved taking backups and restoring the datacenter from these backups. This strategy also implies that there is a mechanism in place to transport the backed-up data to the recovery site. This makes the backed-up copies an excellent start point for Hyper-V Replica 's disaster recovery process. The data will be older – depending on the backup policies – but it will satisfy the criteria to use this initial replication method. Of course, it is suggested to use the latest backup data so as to keep the delta changes to the minimum.
   * **Export the VM from the primary and import on the replica**. Of course, the exported VM needs to be transported to the other site so this option is similar to out-of-band initial replication using external media.
   * **Use an older Replica VM.** When a replication relationship is removed, the Replica VM remains  – and this VM can be used as the initial copy when replication is enabled again for the same VM in the future.
 
@@ -55,7 +55,7 @@ Thus a replication scenario that involves (1) _large VHDs_ that to be replicated
 
 ### Making this happen with UI and PowerShell
 
-Using this option through the UI is extremely simple – you simply need to select the option with _“ Use an existing virtual machine on the Replica server as the initial copy”_. This option is presented to you during the **Enable Replication** wizard.
+Using this option through the UI is extremely simple – you simply need to select the option with _" Use an existing virtual machine on the Replica server as the initial copy"_. This option is presented to you during the **Enable Replication** wizard.
 
 
 

@@ -1,7 +1,7 @@
 ---
 title:      "Offline Virtual Machine Servicing Tool v2.1"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Offline Virtual Machine Servicing Tool v2.1
 ms.date: 12/10/2009
 date:       2009-12-10 07:20:00
@@ -9,7 +9,7 @@ categories: hyper-v
 ---
 # Offline Virtual Machine Servicing Tool v2.1
 
-Virtualization affects how we plan, build, deploy, operate, and _service_ workloads.   Customers are creating large libraries of virtual machines containing various configurations.  The patch-state of these virtual machines are not always known.  Ensuring that offline virtual machines are properly patched and won’t become vulnerable the instant they come online is critical. 
+Virtualization affects how we plan, build, deploy, operate, and _service_ workloads.   Customers are creating large libraries of virtual machines containing various configurations.  The patch-state of these virtual machines are not always known.  Ensuring that offline virtual machines are properly patched and won't become vulnerable the instant they come online is critical. 
 
  
 
@@ -29,7 +29,7 @@ The tool combines the Windows Workflow programming model with the Windows PowerS
 
  
 
- **What ’s New?
+ **What 's New?
 
 **
 

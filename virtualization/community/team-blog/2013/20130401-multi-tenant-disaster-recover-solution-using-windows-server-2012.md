@@ -1,7 +1,7 @@
 ---
 title:      "Multi-tenant disaster recover solution using Windows Server 2012"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Multi-tenant disaster recover solution using Windows Server 2012
 ms.date: 04/01/2013
 date:       2013-04-01 12:54:00
@@ -11,57 +11,57 @@ categories: hvr
 
 **Windows Server 2012** introduces fundamental improvements that make it a cloud-ready operating system. The capabilities provide a flexible and scalable solution which opens up a wide range of opportunities for hosting providers to build new cloud services.
 
-This blog post is co-authored by **Uma Mahesh** , Senior Program Manager and **Yigal Edery** , Principal Program Manager in the Windows Server division. The blog article is based on Yigal’s TechEd talk on “[Building Hosted Public and Private Clouds Using Windows Server 2012](https://channel9.msdn.com/events/TechEd/Europe/2012/WSV301)”
+This blog post is co-authored by **Uma Mahesh** , Senior Program Manager and **Yigal Edery** , Principal Program Manager in the Windows Server division. The blog article is based on Yigal's TechEd talk on "[Building Hosted Public and Private Clouds Using Windows Server 2012](https://channel9.msdn.com/events/TechEd/Europe/2012/WSV301)"
 
-In this post, Contoso.com, a Washington DC based fictitious company, replicates its business critical VMs to a hosting provider offering DR as a cloud service.   This article describes integration between different Windows Server 2012 features to enable a complete end to end service which hosting providers (or ‘hoster’) can offer. It uses **Hyper-V Replica** , **Network Virtualization** and **Remote Access** (including both site-to-site (S2S) VPN   &  DirectAccess), which enables a hoster to build a complete, multi-tenant disaster recover (DR) service, using Windows Server 2012.
+In this post, Contoso.com, a Washington DC based fictitious company, replicates its business critical VMs to a hosting provider offering DR as a cloud service.   This article describes integration between different Windows Server 2012 features to enable a complete end to end service which hosting providers (or 'hoster') can offer. It uses **Hyper-V Replica** , **Network Virtualization** and **Remote Access** (including both site-to-site (S2S) VPN   &  DirectAccess), which enables a hoster to build a complete, multi-tenant disaster recover (DR) service, using Windows Server 2012.
 
 The technology building blocks are:
 
   1. [**Hyper-V Replica**](https://technet.microsoft.com/library/jj134172): Hyper-V Replica in Windows Server 2012 allows you to replicate multiple VMs from different tenants on single physical host.
 
-  2. [**Hyper-V Network Virtualization**](https://technet.microsoft.com/library/jj134230): Hyper-V Network Virtualization allows a multiple  tenant virtual networks with overlapping IP address space to be created on the same hoster physical network yet providing isolation between tenant network. A replicated VM of a tenant can be brought live in a dedicated virtual network  for the tenant in the hosting provider’s physical   network.
+  2. [**Hyper-V Network Virtualization**](https://technet.microsoft.com/library/jj134230): Hyper-V Network Virtualization allows a multiple  tenant virtual networks with overlapping IP address space to be created on the same hoster physical network yet providing isolation between tenant network. A replicated VM of a tenant can be brought live in a dedicated virtual network  for the tenant in the hosting provider's physical   network.
 
   3. [**Site-to-Site VPN support**](https://technet.microsoft.com/library/hh831614\(v=ws.11\).aspx): Using the S2S VPN solution which is available in Windows Server 2012 (which includes support for S2S VPN over IPsec), tenants can connect to their respective virtual network in the hoster premises.
 
-  4. [**DirectAccess with multi-pathing**](https://technet.microsoft.com/library/hh831664): Multi-Pathing enables employees of  each tenants to connect to the on-premises DA under normal operations. If the replicated VMs are brought up in the hosting provider premises (say, due to a disaster in the tenant’s site), employees smoothly failover to the hoster DA server and through it to the replicated VMs in their respective virtual network with the hoster. ****
+  4. [**DirectAccess with multi-pathing**](https://technet.microsoft.com/library/hh831664): Multi-Pathing enables employees of  each tenants to connect to the on-premises DA under normal operations. If the replicated VMs are brought up in the hosting provider premises (say, due to a disaster in the tenant's site), employees smoothly failover to the hoster DA server and through it to the replicated VMs in their respective virtual network with the hoster. ****
   
-In this article, we will demonstrate the steps required to set up a deployment to replicate a mission critical app (which is hosted in a VM) from the customers premise to a hoster. When a disaster strikes the customer premises, the administrator fails over to the replicated VM (on the hosting provider premises) which comes up with the same IP address. Clients using DA can seamlessly be routed to the service that’s currently up and running in the hosting provider premises.
+In this article, we will demonstrate the steps required to set up a deployment to replicate a mission critical app (which is hosted in a VM) from the customers premise to a hoster. When a disaster strikes the customer premises, the administrator fails over to the replicated VM (on the hosting provider premises) which comes up with the same IP address. Clients using DA can seamlessly be routed to the service that's currently up and running in the hosting provider premises.
 
 <!-- The topology is as follows:
 
 [https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7558.image_thumb_56749DC8.png](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6472.image_5097697E.png) -->
 
-Contoso.com’s Washington site consists of  an:
+Contoso.com's Washington site consists of  an:
 
-  1. Edge Gateway **(EDGE1)** is a Windows Server 2012 VM in which Remote Access is configured.   EDGE1 connects to Internet via a NIC  (131.107.0.2) which connects to the Internet Router (131.107.0.1). It also connects to rest of Contoso’s corporate network (10.0.0.0/24) via another NIC (10.0.0.2, 2001:db8:dc::1)
+  1. Edge Gateway **(EDGE1)** is a Windows Server 2012 VM in which Remote Access is configured.   EDGE1 connects to Internet via a NIC  (131.107.0.2) which connects to the Internet Router (131.107.0.1). It also connects to rest of Contoso's corporate network (10.0.0.0/24) via another NIC (10.0.0.2, 2001:db8:dc::1)
 
   2. Domain controller **DC1** (10.0.0.1, 2001:db8:dc::1)
 
-  3. Applications server **APP1** ((10.0.0.1, 2001:db8:dc::1)   run as VMs on another  WS2012 Hyper-v Server (ContosoP1 – also referred to as the “ **Primary Server** ”).  Hyper-V Replica is enabled on this (APP1) VM and the VM is replicated to a Windows Server 2012 Hyper-V server on the hosting provide premises (HosterR1 – also referred to as the “ **Replica Server** ”) .
+  3. Applications server **APP1** ((10.0.0.1, 2001:db8:dc::1)   run as VMs on another  WS2012 Hyper-v Server (ContosoP1 – also referred to as the " **Primary Server** ").  Hyper-V Replica is enabled on this (APP1) VM and the VM is replicated to a Windows Server 2012 Hyper-V server on the hosting provide premises (HosterR1 – also referred to as the " **Replica Server** ") .
 
 ## Client
 
   1. **Client1** is a client VM of Contoso that is connected to Internet (131.107.0.200)
 
-  2. DA is configured on Client1 which ensures that it can connect to  Contoso’s corporate  network and access  applications like APP1. Client1 is not concerned whether APP1 is physically present in Washington site or in hoster network as it accesses the application by it’s name  app1.corp.contoso.com using DireactAccess. Furthermore, it can connect to DA server in the enterprise viz, EDGE1 or connect to DA server of Contoso at the hoster premises 3-DAS1. If connectivity to any DA server is lost,  the DA connection automatically reconnects to other active DA server.
+  2. DA is configured on Client1 which ensures that it can connect to  Contoso's corporate  network and access  applications like APP1. Client1 is not concerned whether APP1 is physically present in Washington site or in hoster network as it accesses the application by it's name  app1.corp.contoso.com using DireactAccess. Furthermore, it can connect to DA server in the enterprise viz, EDGE1 or connect to DA server of Contoso at the hoster premises 3-DAS1. If connectivity to any DA server is lost,  the DA connection automatically reconnects to other active DA server.
 
 ## Hosting Provider
 
-  1. **HosterGW,** which is running on Windows Server 2012,  is connected to “Internet” (131.107.0.101). The hoster’s internal network is 192.168.1.101.
+  1. **HosterGW,** which is running on Windows Server 2012,  is connected to "Internet" (131.107.0.101). The hoster's internal network is 192.168.1.101.
 
   2. NAT is enabled on HosterGW so that applications/services (like Hyper-V Replica )  on  hoster internal network  (eg:HosterR1 ,192.168.1.101) are available over Internet.  HosterR1 can host VMs directly created on it or replicated to it using Hyper-v Replica.
 
-  3. HosterGW machine hosts GW VMs per tenant  so that  the hoster can provide connectivity  between the tenant’s virtual network and  tenant’s on-prem network. In this topology, **ContosoCloudGW** VM is the S2S VPN GW for Contoso. This VM connects the contoso virtual network at hoster to the contoso corporate network. **Hyper-V Network Virtualization** is used to create the Contoso’s virtual network of 10.0.0.0/24, 10.6.0.0/24, 2001:db8:dc::/48 and 2001:db8:dc::/48 (collectively called the Customer Address space or CA) over the hoster’s  address space  192.168.1.0/24 (called Provider Address space  or PA).
+  3. HosterGW machine hosts GW VMs per tenant  so that  the hoster can provide connectivity  between the tenant's virtual network and  tenant's on-prem network. In this topology, **ContosoCloudGW** VM is the S2S VPN GW for Contoso. This VM connects the contoso virtual network at hoster to the contoso corporate network. **Hyper-V Network Virtualization** is used to create the Contoso's virtual network of 10.0.0.0/24, 10.6.0.0/24, 2001:db8:dc::/48 and 2001:db8:dc::/48 (collectively called the Customer Address space or CA) over the hoster's  address space  192.168.1.0/24 (called Provider Address space  or PA).
 
 ## Building the above deployment
 
-### Step 1: Building Contoso ’s environment
+### Step 1: Building Contoso 's environment
 
 This step is similar to creating the base environment for DA. The [test lab guide](https://www.microsoft.com/en-us/download/details.aspx?id=29031) which demonstrates Direct Access single server setup has detailed steps on creating the environment. Once the steps are completed, you will have a setup where Client1 from Internet (directly connected or behind NAT) can access APP1 over Direct Access. <!--as shown in the below diagram.-->
 
 <!-- [https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7532.image_thumb_459DDBAB.png](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5707.image_48B039A0.png) -->
 
-### Step 2: Building Hosters ’s environment
+### Step 2: Building Hosters 's environment
 
 The objectives of the hosting provider are:
 
@@ -71,13 +71,13 @@ The objectives of the hosting provider are:
 
 <!-- [https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7838.image_thumb_368C1E33.png](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/7851.image_7078D06E.png) -->
 
-#### 2a) Steps required to “bring your own IP address”
+#### 2a) Steps required to "bring your own IP address"
 
 Hyper-V Network Virtualization (HNV) allows Contoso to bring VMs with an IP address to the hoster. The following cmdlets demonstrate how HNV can be deployed on two hosts viz., **HosterGW** & **HosterR1**.
 
-In this example, HosterGW has two NICs one connected to “Internet” (131.107.0.101) and once connected to hoster internal network (192.168.1.101). HosterR1 has one NIC connected to hoster internal network(192.168.1.111). The following PS cmdlets need to be run on both **HosterGW and HosterR1** to configure HNV.
+In this example, HosterGW has two NICs one connected to "Internet" (131.107.0.101) and once connected to hoster internal network (192.168.1.101). HosterR1 has one NIC connected to hoster internal network(192.168.1.111). The following PS cmdlets need to be run on both **HosterGW and HosterR1** to configure HNV.
 
-**Rename the NIC connected to internal network  as  “WnvNIC” and run the following cmdlets.**
+**Rename the NIC connected to internal network  as  "WnvNIC" and run the following cmdlets.**
 
 `$WnvNIC   = "WnvNIC"`
 
@@ -279,7 +279,7 @@ The above steps ensure that  VMs of Contoso hosted @ the hoster are accessible 
 
 #### Step 2c: Configure Hyper-V Replica
 
-This replica server is ‘published’ using the hoster’s GW via regular HTTPS (customers use cert-based authentication to replicate).
+This replica server is 'published' using the hoster's GW via regular HTTPS (customers use cert-based authentication to replicate).
 
 <!-- [![configure Hyper-V Replica](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6862.image_thumb_517F8045.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3644.image_323A48C1.png) -->
 
@@ -306,7 +306,7 @@ Similarly on HosterR1, add the following entry in hosts file
 
 ### Step 3: Configuring Cloud DA site on top of Hyper-v Network Virtualization
 
-Now that  we have ensured the the VMs are replicated to the hoster we need to provide and option to Contoso employees  to connect  to their  replicated VMs  from Internet even if Washington DA server is not available.  This is done by deploying a DA server in Contoso cloud. Since DA in WS 2012 supports multiple DA sites, all that’s required here is to enable  a new  Cloud DA entry point.  <!--Following diagram  describes the topology.-->
+Now that  we have ensured the the VMs are replicated to the hoster we need to provide and option to Contoso employees  to connect  to their  replicated VMs  from Internet even if Washington DA server is not available.  This is done by deploying a DA server in Contoso cloud. Since DA in WS 2012 supports multiple DA sites, all that's required here is to enable  a new  Cloud DA entry point.  <!--Following diagram  describes the topology.-->
 
 <!-- [![Configuring Cloud DA site on top of Hyper-v Network Virtualization](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3247.image_thumb_621C9C95.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1588.image_77E3F441.png) -->
 
@@ -321,8 +321,8 @@ Now that  we have ensured the the VMs are replicated to the hoster we need to p
   5. Right click on NAT node.
   6. Select New Interface.
   7. Select the interface connected to Internet.
-  8. In NAT tab, select Public Interface connected to private network and check “Enable NAT on this interface” option.
-  9. Select services and ports tab, select “Secure web server (HTTPS) option
+  8. In NAT tab, select Public Interface connected to private network and check "Enable NAT on this interface" option.
+  9. Select services and ports tab, select "Secure web server (HTTPS) option
 
 <!-- [![Configure NAT on 3-EDG1](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8461.clip_image002_thumb_1459CAD4.gif)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3618.clip_image002_5C18C30A.gif)
 
@@ -346,11 +346,11 @@ Now that  we have ensured the the VMs are replicated to the hoster we need to p
 ---  
   |    
   
-8\. In NAT tab, select Public Interface connected to private network and check “Enable NAT on this interface” option.
+8\. In NAT tab, select Public Interface connected to private network and check "Enable NAT on this interface" option.
 
-9\. Select services and ports tab, select “Secure web server (HTTPS) option
+9\. Select services and ports tab, select "Secure web server (HTTPS) option
 
- [![Select services and ports tab, select “Secure web server (HTTPS) option](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1513.image101_thumb_677273B2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8037.image101_03146EF8.png) -->
+ [![Select services and ports tab, select "Secure web server (HTTPS) option](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1513.image101_thumb_677273B2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8037.image101_03146EF8.png) -->
 
 ##### Enter the IP address of 3-DAS1, 10.6.0.6 in Private address
 

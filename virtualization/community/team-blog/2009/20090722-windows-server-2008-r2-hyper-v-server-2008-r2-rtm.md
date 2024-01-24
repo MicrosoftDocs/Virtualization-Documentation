@@ -2,7 +2,7 @@
 title:      "Windows Server 2008 R2 & Hyper-V Server 2008 R2 RTM"
 description: Windows Server 2008 R2 Hyper-V provides access to high performance hypervisor based virtualization.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2009-07-22 16:40:00
 ms.date: 07/22/2009
 categories: high-availability
@@ -133,7 +133,7 @@ How good is the remoting? I recently tested the new RDP enhancements by doing th
 
 I then remoted into a virtual machine running Windows 7 (the VM was allocated 1 GB of memory) and then fired up _**three videos running within the VM simultaneously.** _ Specifically ** _,_**
 
-  * a TV show streaming over the Internet using the Hulu desktop application (the show was “The Greatest Generation” by Tom Brokaw. Highly recommended.) 
+  * a TV show streaming over the Internet using the Hulu desktop application (the show was "The Greatest Generation" by Tom Brokaw. Highly recommended.) 
   * a large resolution QuickTime movie preview also streaming 
   * an online Silverlight demo
 

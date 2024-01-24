@@ -1,7 +1,7 @@
 ---
 title:      "Replica Clusters behind a NAT"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 10/10/2013
 categories: hvr
 description: Reaching the Replica server in a port based NAT environment.
@@ -18,31 +18,31 @@ Before going any further, a quick refresher on how the placement logic and traff
 
 1) When the primary server contacts the Hyper-V Replica Broker, it (the broker) finds a replica server on which the replica VM can reside and returns the FQDN of the replica server (eg: R3.contoso.com) and the port to which the replication traffic needs to be sent.
 
-2) Any subsequent communication happens between the primary server and the replica server (R3.contoso.com) without the Hyper-V Replica Broker’s involvement.
+2) Any subsequent communication happens between the primary server and the replica server (R3.contoso.com) without the Hyper-V Replica Broker's involvement.
 
 3) If the VM migrates from R3.contoso.com to R2.contoso.com, the replication between the primary server and R3.contoso.com fails as the VM is unavailable on R3.contoso.com. After retrying a few time, the primary server contacts the Hyper-V Replica Broker indicating that it is unable to find the VM on the replica server (R3.contoso.com). In response, the Hyper-V Replica broker looks into the cluster and returns the information that the replica-VM now resides in R2.contoso.com. It also provides the port number as part of this response. Replication is now established to R2.contoso.com. 
 
-It’s worth calling out that the above steps happen without any manual intervention.
+It's worth calling out that the above steps happen without any manual intervention.
 
-In a NAT environment where port-based-address translation is used (i.e traffic is routed to a particular server based on the destination ports) the above communication mechanism fails. This is due to the fact that the network listener on each of the servers (R1, R2,..Rn.contoso.com) comes up on the **same port**. As the Hyper-V Replica broker returns the same port number in each of it’s response (to the primary server), any incoming request which hits the NAT server cannot be uniquely identified.
+In a NAT environment where port-based-address translation is used (i.e traffic is routed to a particular server based on the destination ports) the above communication mechanism fails. This is due to the fact that the network listener on each of the servers (R1, R2,..Rn.contoso.com) comes up on the **same port**. As the Hyper-V Replica broker returns the same port number in each of it's response (to the primary server), any incoming request which hits the NAT server cannot be uniquely identified.
 
-Needless to say, if there is an one to one mapping between the ‘public’ IP address exposed by the NAT and the ‘private’ IP address of the servers (R1, R2…Rn.contoso.com), the default configuration works fine.
+Needless to say, if there is an one to one mapping between the 'public' IP address exposed by the NAT and the 'private' IP address of the servers (R1, R2…Rn.contoso.com), the default configuration works fine.
 
 So, how do we address this problem – Consider the following 3 node cluster with the following names and IP address: R1.contoso.com @ 192.168.1.2, R2.contoso.com @ 192.168.1.3 and R3.contoso.com @ 192.168.1.4.
 
 1) Create the Hyper-V Replica Broker resource using the following cmdlets with a static IP address of your choice (192.168.1.5 in this example)
     
     
-    $BrokerName = “HVR-Broker”
+    $BrokerName = "HVR-Broker"
     
     
     Add-ClusterServerRole -Name $BrokerName –StaticAddress 192.168.1.5
     
     
-    Add-ClusterResource -Name “Virtual Machine Replication Broker” -Type "Virtual Machine Replication Broker" -Group $BrokerName
+    Add-ClusterResource -Name "Virtual Machine Replication Broker" -Type "Virtual Machine Replication Broker" -Group $BrokerName
     
     
-    Add-ClusterResourceDependency “Virtual Machine Replication Broker” $BrokerName
+    Add-ClusterResourceDependency "Virtual Machine Replication Broker" $BrokerName
     
     
      
@@ -53,7 +53,7 @@ So, how do we address this problem – Consider the following 3 node cluster wit
 2) **Hash table of server name, port:** Create a hash table map table of the server name and the port on which the listener should come up in the particular server. 
     
     
-    $portmap=@{"R1.contoso.com"=8081; “R2.contoso.com"=8082; "R3.contoso.com"=8003, “HVR-Broker.contoso.com”=8080}
+    $portmap=@{"R1.contoso.com"=8081; "R2.contoso.com"=8082; "R3.contoso.com"=8003, "HVR-Broker.contoso.com"=8080}
 
 3) Enable the replica server to receive replication traffic by providing the hash table as an input 
     
@@ -75,4 +75,4 @@ So, how do we address this problem – Consider the following 3 node cluster wit
 
 5) Ensure that the primary server can resolve the replica servers and broker to the public IP address of the NAT device and ensure that the appropriate firewall rules have been enabled.
 
-That’s it – you are all set! Replication works seamlessly as before and now you have the capability to reach the Replica server in a port based NAT environment.
+That's it – you are all set! Replication works seamlessly as before and now you have the capability to reach the Replica server in a port based NAT environment.

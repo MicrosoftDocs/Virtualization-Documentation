@@ -2,14 +2,14 @@
 title: WSL Interoperability with Docker
 description: Learn about the supported features for calling the docker daemon under Windows using the Windows Subsystem for Linux.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2017-12-08 18:20:23
 ms.date: 12/08/2017
 categories: containers
 ---
 # WSL Interoperability with Docker
 
-We frequently get asked about running docker from within the Windows Subsystem for Linux (WSL). We don’t support running the docker daemon directly in WSL. But what you _can_ do is call in to the daemon running under Windows from WSL. What does this let you do? You can create dockerfiles, build them, and run them in the daemon—Windows or Linux, depending on which runtime you have selected—all from the comfort of WSL. <!--[![](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)-->
+We frequently get asked about running docker from within the Windows Subsystem for Linux (WSL). We don't support running the docker daemon directly in WSL. But what you _can_ do is call in to the daemon running under Windows from WSL. What does this let you do? You can create dockerfiles, build them, and run them in the daemon—Windows or Linux, depending on which runtime you have selected—all from the comfort of WSL. <!--[![](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)](https://msdnshared.blob.core.windows.net/media/2017/12/npipeconf.gif)-->
 
 ### **Overview**
 
@@ -19,11 +19,11 @@ The architectural design of docker is split into three components: a client, a R
   * **REST API** : Acts as the interface between the client and server, allowing a flow of communication.
   * **Daemon:** Responsible for actually managing the containers—starting, stopping, etc. The daemon listens for API requests from docker clients.
 
-The daemon has very close ties to the kernel. Today in Windows, when you’re running Windows Server containers, a daemon process runs in Windows. When you switch to Linux Container mode, the daemon actually runs inside a VM called the Moby Linux VM. With the [upcoming release](https://blog.docker.com/2017/11/docker-for-windows-17-11/) of Docker, you’ll be able to run Windows Server containers and Linux container side-by-side, and the daemon will always run as a Windows process. The client, however, doesn’t have to sit in the same place as the daemon. For example, you could have a local docker client on your dev machine communicating with Docker up in Azure. This allows us to have a client in WSL talking to the daemon running on the host.
+The daemon has very close ties to the kernel. Today in Windows, when you're running Windows Server containers, a daemon process runs in Windows. When you switch to Linux Container mode, the daemon actually runs inside a VM called the Moby Linux VM. With the [upcoming release](https://blog.docker.com/2017/11/docker-for-windows-17-11/) of Docker, you'll be able to run Windows Server containers and Linux container side-by-side, and the daemon will always run as a Windows process. The client, however, doesn't have to sit in the same place as the daemon. For example, you could have a local docker client on your dev machine communicating with Docker up in Azure. This allows us to have a client in WSL talking to the daemon running on the host.
 
 ### **What** **'s the** **Proposal?**
 
-This method is made available because of a tool built by John Starks ([@gigastarks](https://twitter.com/gigastarks)), a dev lead on Hyper-V, called **npiperelay**. Getting communication up and running between WSL and the daemon isn't new; there have been several great blog posts ([ this blog](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) by Nick Janetakis comes to mind) which recommend going a TCP-route by opening a port without TLS. <!--(like below): [![](https://msdnshared.blob.core.windows.net/media/2017/11/tls.png)](https://msdnshared.blob.core.windows.net/media/2017/11/tls.png)--> While I would consider the port 2375 method to be more robust than the tutorial we're about to walk through, you _do_ expose your system to potential attack vectors for malicious code. We don't like exposing attack vectors 🙂 What about opening another port to have docker listen on and protect _that_ with TLS? Well, Docker for Windows [ doesn’t support](https://github.com/docker/for-win/issues/453) the requirements needed to make this happen. So this brings up back to npiperelay.  _Note:_ the tool we are about to use works best with insider builds--it can be a little buggy on ver. 1709. Your mileage may vary.
+This method is made available because of a tool built by John Starks ([@gigastarks](https://twitter.com/gigastarks)), a dev lead on Hyper-V, called **npiperelay**. Getting communication up and running between WSL and the daemon isn't new; there have been several great blog posts ([ this blog](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) by Nick Janetakis comes to mind) which recommend going a TCP-route by opening a port without TLS. <!--(like below): [![](https://msdnshared.blob.core.windows.net/media/2017/11/tls.png)](https://msdnshared.blob.core.windows.net/media/2017/11/tls.png)--> While I would consider the port 2375 method to be more robust than the tutorial we're about to walk through, you _do_ expose your system to potential attack vectors for malicious code. We don't like exposing attack vectors 🙂 What about opening another port to have docker listen on and protect _that_ with TLS? Well, Docker for Windows [ doesn't support](https://github.com/docker/for-win/issues/453) the requirements needed to make this happen. So this brings up back to npiperelay.  _Note:_ the tool we are about to use works best with insider builds--it can be a little buggy on ver. 1709. Your mileage may vary.
 
 ### Installing Go
 

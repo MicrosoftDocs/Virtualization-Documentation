@@ -1,7 +1,7 @@
 ---
 title:      "Configure your Replica server to receive replication traffic from specific primary server(s)"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Configure your Replica server to receive replication traffic from specific primary server(s)
 ms.date: 04/09/2012
 date:       2012-04-09 06:57:00
@@ -17,7 +17,7 @@ Posting this article on behalf of **Rahul Razdan,** who is a PM with the Window 
 
  
 
-As part of setting up a Replica server  in Windows Server  “8”  Beta, you can choose to receive replication traffic from authorized primary server(s)/clusters. This post explains how to configure this setting and the use cases for the same. We will also learn how to group authorized servers into ‘trust zones’ in this post. 
+As part of setting up a Replica server  in Windows Server  "8"  Beta, you can choose to receive replication traffic from authorized primary server(s)/clusters. This post explains how to configure this setting and the use cases for the same. We will also learn how to group authorized servers into 'trust zones' in this post. 
 
 ## Authorization
 
@@ -56,7 +56,7 @@ If the storage location for an authorization entry is changed **after** a replic
 
 ###  Security Tag
 
-A security tag needs to be specified for each authorization entry. A group of primary servers, with the same security tag can be considered to be part of a “trust zone”.
+A security tag needs to be specified for each authorization entry. A group of primary servers, with the same security tag can be considered to be part of a "trust zone".
 
  
 
@@ -67,7 +67,7 @@ How is this useful? Hyper-V Replica allows replication to continue seamlessly wh
 For the Replica server to allow replication traffic for a Replica virtual machine from a set of primary servers (the servers amongst which the primary virtual machine can move), those set of primary servers should be grouped into the same trust zone i,e the same security tag. 
 
 
-The security tag can be used for another scenario - in the above picture, servers in **“ Trust Zone 2”** (say, security tag "TZ-2") will be able to send replication traffic for Replica virtual machines that were created by any of the servers in that trust zone. A server in **“ Trust Zone 2”** will **not** be able to send replication traffic for a Replica virtual machine that was created by a server in **“ Trust Zone 1”** (say, security tag "TZ-1"). This will ensure that in case a server from trust zone 2 gets compromised, the attacker cannot use replication to tamper the Replica virtual machine belonging to **“ Trust Zone 1”**.
+The security tag can be used for another scenario - in the above picture, servers in **" Trust Zone 2"** (say, security tag "TZ-2") will be able to send replication traffic for Replica virtual machines that were created by any of the servers in that trust zone. A server in **" Trust Zone 2"** will **not** be able to send replication traffic for a Replica virtual machine that was created by a server in **" Trust Zone 1"** (say, security tag "TZ-1"). This will ensure that in case a server from trust zone 2 gets compromised, the attacker cannot use replication to tamper the Replica virtual machine belonging to **" Trust Zone 1"**.
 
  
 

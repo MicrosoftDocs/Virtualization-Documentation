@@ -1,7 +1,7 @@
 ---
 title:      "Linux ICs for Hyper-V and GPLv2"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Learn about Linux ICs for Hyper-V and GPLv2
 ms.date: 07/20/2009
 date:       2009-07-20 13:06:00

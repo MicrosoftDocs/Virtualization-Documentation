@@ -1,7 +1,7 @@
 ---
 title:      "See you at TechEd North America!"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 05/09/2014
 date:       2014-05-09 14:50:50
 categories: uncategorized

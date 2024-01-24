@@ -1,7 +1,7 @@
 ---
 title:      "Migrate virtual machines from a VMware environment to Hyper-V in Windows Server 2012 using a free, simple, standalone tool"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 09/18/2012
 date:       2012-09-18 20:04:00
 categories: uncategorized
@@ -9,14 +9,14 @@ description: Migrate virtual machines from a VMware environment to Hyper-V in Wi
 ---
 # Migrate virtual machines to the Hyper-V host in Windows Server 2012
 
-Windows Server 2012 is generally available for evaluation and purchase by all customers around the world. Additionally, there is great news for organizations that are looking for a way to migrate virtual machines hosted on VMware vSphere to the Hyper-V host in Windows Server 2012. The production (RTW) version of the Microsoft Virtual Machine Converter (MVMC) and the Beta version of the VMware console plugin version are both available to download. We extend a huge thank you to our beta participants who have taken the time to evaluate the pre-release versions of the tools and provided us with extremely valuable feedback. MVMC is one resource available as part of the [Switch to Hyper-V program](https://blogs.technet.com/b/server-cloud/archive/2012/07/16/go-beyond-virtualization-with-the-quot-switch-to-hyper-v-quot-program.aspx) announced at Microsoft’s Worldwide Partner Conference earlier this year. The Switch to Hyper-V program helps partners and customers go beyond virtualization to true cloud computing by providing guidance, resources, and tools that take the risk out of virtual migrations, reduce the time and effort required, and define best practices.  
+Windows Server 2012 is generally available for evaluation and purchase by all customers around the world. Additionally, there is great news for organizations that are looking for a way to migrate virtual machines hosted on VMware vSphere to the Hyper-V host in Windows Server 2012. The production (RTW) version of the Microsoft Virtual Machine Converter (MVMC) and the Beta version of the VMware console plugin version are both available to download. We extend a huge thank you to our beta participants who have taken the time to evaluate the pre-release versions of the tools and provided us with extremely valuable feedback. MVMC is one resource available as part of the [Switch to Hyper-V program](https://blogs.technet.com/b/server-cloud/archive/2012/07/16/go-beyond-virtualization-with-the-quot-switch-to-hyper-v-quot-program.aspx) announced at Microsoft's Worldwide Partner Conference earlier this year. The Switch to Hyper-V program helps partners and customers go beyond virtualization to true cloud computing by providing guidance, resources, and tools that take the risk out of virtual migrations, reduce the time and effort required, and define best practices.  
   
 Click on the links provided below to download MVMC and the MVMC Plug-In for vSphere Client 
 
   * [MVMC Standalone solution (Production Release)](https://go.microsoft.com/fwlink/?LinkID=247805)
   * [MVMC Plug-In for VMware vSphere Client Beta](https://connect.microsoft.com/site14/InvitationUse.aspx?ProgramID=7594&InvitationID=MVMC-PK9Q-BR47)
 
-In case you haven’t had a chance to evaluate the pre-release versions of these tools, MVMC provides a Microsoft-supported, freely available, standalone solution and a VMware console plugin solution. In each case, it converts VMware virtual machines (VMs) and VMware virtual disks (VMDKs) to Hyper-V virtual machines and Hyper-V virtual hard disks (VHDs). The virtual machine conversion capability can be invoked through a graphical user interface (GUI) or a command- line interface. The wizard-driven GUI has all of 5 simple screens where user input is required and you are ready to convert a virtual machine from vSphere to Hyper-V. It doesn’t get more simple than that!   
+In case you haven't had a chance to evaluate the pre-release versions of these tools, MVMC provides a Microsoft-supported, freely available, standalone solution and a VMware console plugin solution. In each case, it converts VMware virtual machines (VMs) and VMware virtual disks (VMDKs) to Hyper-V virtual machines and Hyper-V virtual hard disks (VHDs). The virtual machine conversion capability can be invoked through a graphical user interface (GUI) or a command- line interface. The wizard-driven GUI has all of 5 simple screens where user input is required and you are ready to convert a virtual machine from vSphere to Hyper-V. It doesn't get more simple than that!   
 MVMC converts VMware virtual machines created with: 
 
   * VMware vSphere 4.1
@@ -26,7 +26,7 @@ MVMC converts VMware virtual machines created with:
   
 To virtual machines for: 
 
-  * Windows Server® 2012 Hyper-V
+  * Windows Server&reg; 2012 Hyper-V
   * Microsoft Hyper-V Server 2012
   * Windows Server 2008 R2 SP1 Hyper-V
   * Microsoft Hyper-V Server 2008 R2 SP1

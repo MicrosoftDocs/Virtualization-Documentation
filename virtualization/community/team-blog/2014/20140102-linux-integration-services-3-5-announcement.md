@@ -1,7 +1,7 @@
 ---
 title:      "Linux Integration Services 3.5 Announcement"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 01/02/2014
 categories: uncategorized
 description: This article covers the new features and information about the Linux Integration Services version 3.5.
@@ -589,7 +589,7 @@ PAE Kernel Support
   1. Static IP injection might not work if Network Manager has been configured for a given Hyper-V-specific network adapter on the virtual machine. To ensure smooth functioning of static IP injection, ensure that either Network Manager is turned off completely, or has been turned off for a specific network adapter through its Ifcfg-ethX file.
   2. When you use Virtual Fibre Channel devices, ensure that logical unit number 0 (LUN 0) has been populated. If LUN 0 has not been populated, a Linux virtual machine might not be able to mount Virtual Fibre Channel devices natively.
   3. If there are open file handles during a live virtual machine backup operation, the backed-up virtual hard disks (VHDs) might have to undergo a file system consistency check (fsck) when restored.
-  4. Live backup operations can fail silently if the virtual machine has an attached iSCSI device or a physical disk that is directly attached to a virtual machine (“pass-through disk”).
+  4. Live backup operations can fail silently if the virtual machine has an attached iSCSI device or a physical disk that is directly attached to a virtual machine ("pass-through disk").
   5. LIS 3.5 only provides Dynamic Memory ballooning support—it does not provide hot-add support. In such a scenario, the Dynamic Memory feature can be used by setting the Startup memory parameter to a value which is equal to the Maximum memory parameter. This results in all the requisite memory being allocated to the virtual machine at boot time—and then later, depending upon the memory requirements of the host, Hyper-V can freely reclaim any memory from the guest. Also, ensure that Startup Memory and Minimum Memory are not configured below distribution recommended values.
 
 **Customer Feedback** Customer can provide feedback through Linux Integration Services for Microsoft Hyper-V forum located on the [Windows Server Forum](https://social.technet.microsoft.com/Forums/windowsserver/en-us/home?forum=linuxintegrationservices). We are eager to listen to your experiences and any issues that you may face while using LIS 3.5. We hope that this release helps you maximize your investment in Hyper-V and Windows Server.

@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica - Prerequisites for certificate based deployments"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Hyper-V Replica - Prerequisites for certificate based deployments
 ms.date: 03/13/2012
 date:       2012-03-13 03:06:00
@@ -9,7 +9,7 @@ categories: hvr
 ---
 # Hyper-V Replica - Prerequisites for certificate based deployments
 
-An often asked question from early HVR deployments has been about the product’s certificate requirements. This post captures the pre-requisites for enabling replication using certificate based authentication.
+An often asked question from early HVR deployments has been about the product's certificate requirements. This post captures the pre-requisites for enabling replication using certificate based authentication.
 
 HVR uses machine level mutual authentication, which requires you to install the certificates in the Personal certificate store of the local computer.
 
@@ -46,14 +46,14 @@ To setup a replication relationship, the certificate in the **primary server** m
 
 
  (or)
-* For a SAN certificate, set the Subject Alternative Name’s DNS Name to the primary server name (e.g.: _primary1.contoso.com_ ). If the primary server is part of a cluster, the Subject Alternative Name of the certificate should contain the FQDN of the HVR Broker (install this certificate on all the nodes of the cluster).
+* For a SAN certificate, set the Subject Alternative Name's DNS Name to the primary server name (e.g.: _primary1.contoso.com_ ). If the primary server is part of a cluster, the Subject Alternative Name of the certificate should contain the FQDN of the HVR Broker (install this certificate on all the nodes of the cluster).
 
 
 
  
 
   * Ensure that the valid X.509v3 certificate is not revoked.
-  * Check if the root of this certificate is present in the “Trusted Root Certification Authorities” of the replica server certificate store.
+  * Check if the root of this certificate is present in the "Trusted Root Certification Authorities" of the replica server certificate store.
 
 
 
@@ -65,7 +65,7 @@ To enable a server to receive replication traffic, the certificate in the replic
 
   * **Enhanced Key Usage**  must support both Client and Server authentication 
   * Set the Subject field or the Subject Alternative Name using **one** of the following methods:
-    * For a SAN certificate, set the Subject Alternative Name’s DNS Name to the replica server name (e.g.: _replica1.contoso.com_ ). If the replica server is part of cluster, the Subject Alternative Name of the certificate must contain the replica server name ***and***  FQDN of the HVR Broker (install this certificate on all the nodes of the cluster.)
+    * For a SAN certificate, set the Subject Alternative Name's DNS Name to the replica server name (e.g.: _replica1.contoso.com_ ). If the replica server is part of cluster, the Subject Alternative Name of the certificate must contain the replica server name ***and***  FQDN of the HVR Broker (install this certificate on all the nodes of the cluster.)
 
 
 
@@ -82,7 +82,7 @@ To enable a server to receive replication traffic, the certificate in the replic
  
 
   * Ensure that the valid X.509v3 certificate is not revoked.
-  * Check if the root of this certificate is present in the “Trusted Root Certification Authorities” of the replica server certificate store.
+  * Check if the root of this certificate is present in the "Trusted Root Certification Authorities" of the replica server certificate store.
 
 
 

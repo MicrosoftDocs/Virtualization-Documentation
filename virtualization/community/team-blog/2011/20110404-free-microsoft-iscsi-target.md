@@ -1,7 +1,7 @@
 ---
 title:      "Free Microsoft iSCSI Target"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Free Microsoft iSCSI Target
 ms.date: 04/04/2011
 date:       2011-04-04 07:40:00
@@ -9,7 +9,7 @@ categories: iscsi
 ---
 # Free Microsoft iSCSI Target
 
-Virtualization Nation, One common refrain we hear from you is that you appreciate the fact we’re driving down the costs of virtualization and adding more and more capabilities in the box such as Live Migration (LM) and High Availability (HA). We’re happy to do it and we’re just getting started. :) To use both LM and HA, these require shared storage. This shared storage can be in the forms of SAS, iSCSI or Fiber Channel SAN. For many environments this isn't an issue, but there are some specific scenarios where customers need LM and HA and the cost of a dedicated SAN is a blocker. For example, 
+Virtualization Nation, One common refrain we hear from you is that you appreciate the fact we're driving down the costs of virtualization and adding more and more capabilities in the box such as Live Migration (LM) and High Availability (HA). We're happy to do it and we're just getting started. :) To use both LM and HA, these require shared storage. This shared storage can be in the forms of SAS, iSCSI or Fiber Channel SAN. For many environments this isn't an issue, but there are some specific scenarios where customers need LM and HA and the cost of a dedicated SAN is a blocker. For example, 
 
   * A branch office environment. It's one thing to setup a dedicated SAN in a datacenter, but what happens when you have 100/500/5000 branch offices? That's a huge multiplier to provide SANs in every one of those branch offices...
   * A small business. Small businesses are especially cost conscious and still want to deploy Hyper-V clustered for the benefits of LM and HA...

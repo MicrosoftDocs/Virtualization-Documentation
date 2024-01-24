@@ -1,7 +1,7 @@
 ---
 title:      "Using data deduplication with Hyper-V Replica for storage savings"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 12/23/2013
 categories: hvr
 description: How users of Hypver-V Replica can save on data storage expenses with data deduplication.
@@ -56,7 +56,7 @@ Enabling data deduplication on the replica site volumes will not have an impact 
 
 ##### WITH ADDITIONAL RECOVERY POINTS
 
-Hyper-V Replica allows the user to have additional recovery points for replicated virtual machines that allows the user to go back in time during a failover. Creating the recovery points involves reading the existing data from the VHD before the log files are applied. When the Replica VM is stored on a deduplication-enabled volume, reading the VHD is slower and this impacts the time taken by the overall process. The apply time on a deduplication-enabled VHD can be between 5X and 7X more than without deduplication. When the time taken to apply the log exceeds the replication frequency then there will be a log file pileup on the replica server. Over a period of time this can lead to the health of the VM degrading. The other side effect is that the VM state will always be _“ Modifying”_ and in this state other Hyper-V operations and backup will not be possible.
+Hyper-V Replica allows the user to have additional recovery points for replicated virtual machines that allows the user to go back in time during a failover. Creating the recovery points involves reading the existing data from the VHD before the log files are applied. When the Replica VM is stored on a deduplication-enabled volume, reading the VHD is slower and this impacts the time taken by the overall process. The apply time on a deduplication-enabled VHD can be between 5X and 7X more than without deduplication. When the time taken to apply the log exceeds the replication frequency then there will be a log file pileup on the replica server. Over a period of time this can lead to the health of the VM degrading. The other side effect is that the VM state will always be _" Modifying"_ and in this state other Hyper-V operations and backup will not be possible.
 
 There are two mitigation steps suggested:
 

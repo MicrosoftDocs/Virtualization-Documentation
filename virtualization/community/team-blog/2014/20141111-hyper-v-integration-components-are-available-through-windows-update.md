@@ -2,7 +2,7 @@
 title:      Hyper-V integration components are available through Windows Update
 description: Learn about how the Hyper-V integration components will be delivered directly to virtual machines in a Windows update.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2014-11-11 02:00:00
 ms.date: 11/11/2014
 categories: hyper-v

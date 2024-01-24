@@ -1,8 +1,8 @@
 ---
 title:      "Microsoft RemoteFX&#58; Closing the User Experience Gap"
 description: Microsoft RemoteFX and how it can further help close the user experience gap between physical and virtual desktops.
-author: mabriggs
-ms.author: mabrigg
+author: sethmanheim
+ms.author: sethm
 date:       2010-04-24 17:24:00
 ms.date: 04/24/2010
 categories: calista-technologies

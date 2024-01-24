@@ -1,7 +1,7 @@
 ---
 title:      "Types of failover operations in Hyper-V Replica–Part II - Planned Failover"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 07/31/2012
 date:       2012-07-31 04:13:33
 categories: disaster-recovery
@@ -23,7 +23,7 @@ Planned Failover is used in the following cases
 
   * I want to perform host maintenance on my primary and would like to run from the replica site. 
   * My primary site is expecting some power outage – I want to move over to the replica site. 
-  * There’s an impending typhoon – I want to proactively take action to ensure business continuity. 
+  * There's an impending typhoon – I want to proactively take action to ensure business continuity. 
   * My compliance requirements mandate that every quarter, I run my workloads from the replica site for a week. 
 
 
@@ -41,7 +41,7 @@ Please note – for the PFO to work from UI, remote WMI has to be enabled on the
 PFO does the following
 
   * Performs pre-requisite checks to ensure the operation can succeed. These pre-requisite checks are: 
-    * As PFO is a “planned” activity with zero data, the primary virtual machine should be shut down before initiating the operation. 
+    * As PFO is a "planned" activity with zero data, the primary virtual machine should be shut down before initiating the operation. 
     * Once the VM is failed over in the replica site, Hyper-V Replica starts replicating the changes back to the primary server. For this to work, the primary server should be configured to receive replication from the Hyper-V Replica Broker on the replica side if the replica is a cluster or the replica server if the replica is a standalone. 
   * Sends the last set of tracked changes which ensures zero data loss. 
   * Reverses the direction of replication – so if you were replicating from **_Cluster-P_** (on the primary site) ** __** to **_Cluster-R_** (on the replica site), then the replication will happen from **_Cluster-R_** to **_Cluster-P_**. The primary virtual machine will become the replica virtual machine and vice-versa and all the recovery points are merged. This step is done at the end of PFO. 

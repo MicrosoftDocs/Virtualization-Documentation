@@ -1,7 +1,7 @@
 ---
 title:      "More on today's announcement with NetApp"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: More on today's announcement with NetApp
 ms.date: 12/07/2009
 date:       2009-12-07 22:06:00

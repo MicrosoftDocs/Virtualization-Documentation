@@ -1,7 +1,7 @@
 ---
 title:      "Updates for Hyper-V"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Updates for Hyper-V
 ms.date: 04/16/2013
 date:       2013-04-16 00:20:00
