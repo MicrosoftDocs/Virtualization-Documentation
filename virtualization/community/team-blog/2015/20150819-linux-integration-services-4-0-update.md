@@ -6,8 +6,8 @@ ms.author: mabrigg
 date:       2015-08-19 17:00:00
 ms.date: 08/19/2015
 categories: lis-hyperv-linux
-ms.prod: windows-server
-ms.technology: hyper-v
+ms.service: windows-server
+ms.subservice: hyper-v
 ---
 # Linux Integration Services 4.0 Update
 
