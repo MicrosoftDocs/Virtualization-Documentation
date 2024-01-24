@@ -4,7 +4,7 @@ description: Device Virtualization
 author: sethmanheim
 ms.author: sethm
 ms.topic: reference
-ms.prod: virtualization
+ms.service: virtualization
 ms.date: 06/12/2023
 api_name:
 - Device Virtualization
