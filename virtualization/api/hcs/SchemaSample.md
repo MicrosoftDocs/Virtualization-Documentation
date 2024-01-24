@@ -4,7 +4,7 @@ description: Schema in Different Languages
 author: faymeng
 ms.author: mabrigg
 ms.topic: reference
-ms.prod: virtualization
+ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - Schema in Different Languages

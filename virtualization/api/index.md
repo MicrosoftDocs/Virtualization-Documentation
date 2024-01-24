@@ -6,7 +6,7 @@ author: jterry75
 ms.author: mabrigg
 ms.date: 12/19/2017
 ms.topic: article
-ms.prod: virtualization
+ms.service: virtualization
 
 ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
 ---

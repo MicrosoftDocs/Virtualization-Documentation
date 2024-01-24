@@ -4,7 +4,7 @@ description: HcsSetupBaseOSVolume
 author: faymeng
 ms.author: mabrigg
 ms.topic: reference
-ms.prod: virtualization
+ms.service: virtualization
 ms.date: 12/21/2021
 api_name:
 - HcsSetupBaseOSVolume
