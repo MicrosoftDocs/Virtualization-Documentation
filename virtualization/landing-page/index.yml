@@ -10,7 +10,7 @@ metadata:
   description: Find info about virtualization on Windows 10 and Windows Server, including how to run virtual machines (VMs) and containers. # Required; article description that is displayed in search results. < 160 chars.
   ms.topic: hub-page # Required
   author: scooley #Required; your GitHub user alias, with correct capitalization.
-  ms.prod: virtualization
+  ms.service: virtualization
   ms.date: 03/31/2017 #Required; mm/dd/yyyy format.
   ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
 

@@ -6,8 +6,8 @@ author: scooley
 ms.author: scooley
 ms.date: 01/22/2018
 ms.topic: article
-ms.prod: windows-server
-ms.technology: windows-containers
+ms.service: windows-server
+ms.subservice: windows-containers
 ---
 
 # Windows Server Insider Preview Build 17074
