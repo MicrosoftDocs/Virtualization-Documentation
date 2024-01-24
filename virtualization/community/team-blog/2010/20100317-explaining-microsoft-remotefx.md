@@ -1,7 +1,7 @@
 ---
 title:      "Explaining Microsoft RemoteFX"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Explaining Microsoft RemoteFX
 ms.date: 03/17/2010
 date:       2010-03-17 15:38:00
@@ -13,7 +13,7 @@ Hi, my name is Max Herrmann, and I am part of the Windows Server Remote Desktop 
 
  
 
-Just to be clear, RemoteFX is not a new standalone product from Microsoft. Rather, it describes a set of RDP technologies - most prominently graphics virtualization and the use of advanced codes - that are being added to Windows Server 2008 R2 Service Pack 1; these technologies are based on the IP that Microsoft acquired and continued to develop since acquiring Calista Technologies. So think of Microsoft RemoteFX as the ‘special sauce’ in Remote Desktop Services that users will be able to enjoy when they connect to their virtual and session-based desktops and applications over the network. With Microsoft RemoteFX, users will be able to work remotely in a Windows Aero desktop environment, watch full-motion video, enjoy Silverlight animations, and run 3D applications – all with the fidelity of a local-like performance when connecting over the LAN. Their desktops are actually hosted in the data center as part of a virtual desktop infrastructure (VDI) or a session virtualization environment (formerly known as Terminal Services). With RemoteFX, these users will be able to access their workspace via a standard RDP connection from a broad range of client devices – rich PCs, thin clients and very simple, low-cost devices.
+Just to be clear, RemoteFX is not a new standalone product from Microsoft. Rather, it describes a set of RDP technologies - most prominently graphics virtualization and the use of advanced codes - that are being added to Windows Server 2008 R2 Service Pack 1; these technologies are based on the IP that Microsoft acquired and continued to develop since acquiring Calista Technologies. So think of Microsoft RemoteFX as the 'special sauce' in Remote Desktop Services that users will be able to enjoy when they connect to their virtual and session-based desktops and applications over the network. With Microsoft RemoteFX, users will be able to work remotely in a Windows Aero desktop environment, watch full-motion video, enjoy Silverlight animations, and run 3D applications – all with the fidelity of a local-like performance when connecting over the LAN. Their desktops are actually hosted in the data center as part of a virtual desktop infrastructure (VDI) or a session virtualization environment (formerly known as Terminal Services). With RemoteFX, these users will be able to access their workspace via a standard RDP connection from a broad range of client devices – rich PCs, thin clients and very simple, low-cost devices.
 
  
 
@@ -21,7 +21,7 @@ Also today, we announced a collaboration agreement with Citrix, which will enabl
 
  
 
-With SP1 just now being announced (see Oliver's blog) but not available for a while, there will be many more details I will be able to share with you as we progress. This is just the beginning of an exciting time for centralized desktop computing and the benefits of the user experience enhancements that Microsoft RemoteFX will deliver for that architecture. Please stay tuned for great things to come, and check in on my blog every once in a while for the latest news. Meanwhile, I would encourage you to read up more on [today’s announcements](/windows-server/virtualization/hyper-v/deploy/deploy-graphics-devices-using-remotefx-vgpu "MS news release").
+With SP1 just now being announced (see Oliver's blog) but not available for a while, there will be many more details I will be able to share with you as we progress. This is just the beginning of an exciting time for centralized desktop computing and the benefits of the user experience enhancements that Microsoft RemoteFX will deliver for that architecture. Please stay tuned for great things to come, and check in on my blog every once in a while for the latest news. Meanwhile, I would encourage you to read up more on [today's announcements](/windows-server/virtualization/hyper-v/deploy/deploy-graphics-devices-using-remotefx-vgpu "MS news release").
 
 Max
 
