@@ -1,14 +1,14 @@
 ---
 title:      "Improvements in recovery history"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 01/27/2014
 categories: hvr
 description: How undo logs can benefit Hyper-V Replica customers.
 ---
 # Undo Logs and Recovery History
 
-Hyper-V replica has always had the capability to maintain multiple recovery points. In this blog post we’ll delve into “undo logs” – a brand new way for storing recovery points introduced in Windows Server 2012 R2 and how it benefits Hyper-V Replica customers.
+Hyper-V replica has always had the capability to maintain multiple recovery points. In this blog post we'll delve into "undo logs" – a brand new way for storing recovery points introduced in Windows Server 2012 R2 and how it benefits Hyper-V Replica customers.
 
 #### Snapshot based recovery history
 
@@ -20,7 +20,7 @@ The screenshot below shows recovery snapshots on a replica VM with recovery poin
 
 However, due to the way recovery snapshots work, there are some inherent tradeoffs in using them for recovery history. They are:
 
-1\. **Increased IOPS on the recovery side during normal replication** : This effect is more evident when a snapshot is created and tapers off over time. This manifests because any write to a new block that isn’t present in a recovery snapshot results in the allocation and zero-filling of a new block before the write succeeds. On an average this can result in IOPS impact of 4x to 6x where x is the number of write IOs on the primary VM.
+1\. **Increased IOPS on the recovery side during normal replication** : This effect is more evident when a snapshot is created and tapers off over time. This manifests because any write to a new block that isn't present in a recovery snapshot results in the allocation and zero-filling of a new block before the write succeeds. On an average this can result in IOPS impact of 4x to 6x where x is the number of write IOs on the primary VM.
 
 **2.** **Data corruption** in any of the recovery snapshots impacts failovers to any of later recovery points. ****
 
@@ -35,7 +35,7 @@ Thus, in the undo-log architecture, the data in the replica VHDs is always at th
 
 ---  
   
-  * The undo-logs are stored as .HRU files. They’re stored under `<Replica store>`\Hyper-V Replica\Virtual hard disks\<GUID>\ by default. **Do not delete** the HRU files directly from the storage location. Instead reduce the number of configured recovery points from virtual machine replication settings in hyper-v manager. 
+  * The undo-logs are stored as .HRU files. They're stored under `<Replica store>`\Hyper-V Replica\Virtual hard disks\<GUID>\ by default. **Do not delete** the HRU files directly from the storage location. Instead reduce the number of configured recovery points from virtual machine replication settings in hyper-v manager. 
   * Do not delete UndoLog configuration stored under _< Replica store>\Hyper-V Replica\UndoLog Configuration_. These are important configuration files used by Hyper-V Replica system.
 
   

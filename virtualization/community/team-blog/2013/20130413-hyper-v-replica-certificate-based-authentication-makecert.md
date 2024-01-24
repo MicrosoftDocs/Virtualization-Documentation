@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica Certificate Based Authentication - makecert"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Hyper-V Replica Certificate Based Authentication - makecert
 ms.date: 04/13/2013
 date:       2013-04-13 03:01:38
@@ -35,7 +35,7 @@ Each time:
 
 The command installs a test certificate in the Personal store of the local machine and is saved as a file locally. The certificate can be used for both Client and Server authentication 
 
-4\. The certificates can be viewed by mmc->File->Add/Remove Snap in…->Certificates->Add->”Computer Account”->Next->Finish->Ok
+4\. The certificates can be viewed by mmc->File->Add/Remove Snap in…->Certificates->Add->"Computer Account"->Next->Finish->Ok
 
 You will find the Personal certificate (with the machine names) and the Root certificate (MyTestRootCA) in the highlighted folders:
 
@@ -61,11 +61,11 @@ certutil -addstore -f Root "MyTestRootCA.cer"
 
 9\. In a clustered deployment, two certificates are required on each server:
 
-  * Certificate with the subject name set to the server’s FQDN
-  * Certificate with the subject name set to the Hyper-V Replica Broker’s FQDN. This is required as the Hyper-V Replica Broker is Highly Available and can migrate from one server to another. 
+  * Certificate with the subject name set to the server's FQDN
+  * Certificate with the subject name set to the Hyper-V Replica Broker's FQDN. This is required as the Hyper-V Replica Broker is Highly Available and can migrate from one server to another. 
 
 
 
-10\. By default, a certificate revocation check is mandatory and Self-Signed Certificates don’t support Revocation checks. To work around it, modify the following registry key on **Primary, Replica Servers**
+10\. By default, a certificate revocation check is mandatory and Self-Signed Certificates don't support Revocation checks. To work around it, modify the following registry key on **Primary, Replica Servers**
     
  reg add  "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Replication" /v DisableCertRevocationCheck /d 1 /t REG_DWORD /f

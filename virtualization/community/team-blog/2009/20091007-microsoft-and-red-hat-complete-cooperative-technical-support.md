@@ -1,7 +1,7 @@
 ---
 title:      "Microsoft and Red Hat Complete Cooperative Technical Support"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Microsoft and Red Hat Complete Cooperative Technical Support
 ms.date: 10/07/2009
 date:       2009-10-07 03:00:00

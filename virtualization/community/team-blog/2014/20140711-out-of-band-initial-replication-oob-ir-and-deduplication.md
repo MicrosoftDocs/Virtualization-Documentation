@@ -1,7 +1,7 @@
 ---
 title:      "Out-of-band Initial Replication (OOB IR) and Deduplication"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 07/11/2014
 date:       2014-07-11 09:50:00
 categories: disaster-recovery
@@ -24,11 +24,11 @@ I started this experiment by attaching the removable drive to my server and atte
 
 ##### Interesting discovery #1:  Deduplication is not allowed on volumes on removable disks
 
-Whoops! This seems like a fundamental block to our scenario – how do you build deduplicated OOB IR, if the deduplication is not supported on removable media? This limitation is officially documented here: <https://technet.microsoft.com/library/hh831700.aspx>, and says _“Volumes that are candidates for deduplication must conform to the following requirements:   Must be exposed to the operating system as non-removable drives. Remotely-mapped drives are not supported.”_
+Whoops! This seems like a fundamental block to our scenario – how do you build deduplicated OOB IR, if the deduplication is not supported on removable media? This limitation is officially documented here: <https://technet.microsoft.com/library/hh831700.aspx>, and says _"Volumes that are candidates for deduplication must conform to the following requirements:   Must be exposed to the operating system as non-removable drives. Remotely-mapped drives are not supported."_
 
 Fortunately my colleague [**Paul Despe**](https://social.technet.microsoft.com/profile/Paul%20Despe) in the Windows Server Data Deduplication team came to the rescue. There is a (slightly) convoluted way to get the data on the removable drive _and_ deduplicated. Here goes:
 
-  * Create a dynamically expanding VHDX file. The size doesn’t matter too much as you can always start off with the default and expand if required.
+  * Create a dynamically expanding VHDX file. The size doesn't matter too much as you can always start off with the default and expand if required.
 
 
 
@@ -47,7 +47,7 @@ Fortunately my colleague [**Paul Despe**](https://social.technet.microsoft.com/p
 
 <!--[![View volume](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_26A42F2B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_5084A360.png)-->
 
-  * In the volume view, enable deduplication on this volume by right-clicking and selecting **‘Configure Data Deduplication’**. Set the **‘Deduplicate files older than (in days)’** field to zero.
+  * In the volume view, enable deduplication on this volume by right-clicking and selecting **'Configure Data Deduplication'**. Set the **'Deduplicate files older than (in days)'** field to zero.
 
 
 
@@ -70,9 +70,9 @@ Now you are set to start the OOB IR process and take advantage of the deduplicat
 
 <!--[![1 V M enabled for replication with O O B I R Image 2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_4BCD8B65.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_03804596.png)-->
 
-That’s about 32.6GB of storage used. Wait… shouldn’t there be a reduction in size because of deduplication?
+That's about 32.6GB of storage used. Wait… shouldn't there be a reduction in size because of deduplication?
 
-##### Interesting discovery #2:  Deduplication doesn’t work on-the-fly
+##### Interesting discovery #2:  Deduplication doesn't work on-the-fly
 
 Ah… so if you were expecting that the VHD data would arrive into the volume in deduplicated form, this is going to be a bit of a surprise. At the first go, the VHD data will be present in the volume _in its original size._ Deduplication happens as post-facto as a job that crunches the data and reduces the size of the VHD after it has been fully copied as a part of the OOB IR process. This is because deduplication needs an exclusive handle on the file in order to go about doing its work.
 
@@ -88,7 +88,7 @@ This is what I got after the deduplication job completed:
 
 <!--[![Screen after completing deduplication job]](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_6AA920A5.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_1FB31F25.png)-->
 
-That’s a 54% saving with just one VM – a very good start!
+That's a 54% saving with just one VM – a very good start!
 
 ##### Deduplication rate with more virtual machines
 
@@ -104,7 +104,7 @@ Once you are done with the OOB IR and deduplication of your VMs, you need to do 
 
   1. Ensure that no deduplication job is running on the volume 
   2. Eject the fixed disk – this should disconnect the VHD from the host 
-  3. Compact the VHD using the **“Edit Virtual Hard Disk Wizard”**. At the time I disconnected the VHD from the host, the size of the VHD was 36.38GB. After compacting it the size came down to 28.13GB… and this is more in line with the actual disk consumed that you see in the graph above 
+  3. Compact the VHD using the **"Edit Virtual Hard Disk Wizard"**. At the time I disconnected the VHD from the host, the size of the VHD was 36.38GB. After compacting it the size came down to 28.13GB… and this is more in line with the actual disk consumed that you see in the graph above 
   4. Copy the VHD to the Replica site, mount it on the Replica host, and complete the OOB IR process!
 
 

@@ -1,7 +1,7 @@
 ---
 title:      "Hosting Providers and HRM"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 02/18/2014
 categories: hrm
 description: This article explains how HRM can help you offer DR as a service.

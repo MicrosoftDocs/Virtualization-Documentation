@@ -2,7 +2,7 @@
 title:      "Hypervisor Footprint Debate Part 1&#58; Microsoft Hyper-V Server 2008 & VMware ESXi 3.5"
 description: Comparison, analysis, and debate of the Hypervisor disk footprint Part 1
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2009-08-12 11:13:00
 ms.date: 08/12/2009
 categories: esx
@@ -64,7 +64,7 @@ In short, VMware has focused on our entire footprint which is made up mostly of 
 
 
 
-Both Microsoft and VMware also have optional patches, but I didn't include this type because they are optional, so we could focus on the most acute patches.. Finally, let me very clear about the Microsoft patches. **These counts include ALL critical and recommended patches, _meaning if there was a critical patch for IE or some other Windows component I counted it_**. Had I ignored these types of patches, that wouldn’t be a fair comparison.
+Both Microsoft and VMware also have optional patches, but I didn't include this type because they are optional, so we could focus on the most acute patches.. Finally, let me very clear about the Microsoft patches. **These counts include ALL critical and recommended patches, _meaning if there was a critical patch for IE or some other Windows component I counted it_**. Had I ignored these types of patches, that wouldn't be a fair comparison.
 
 **Comparison #1: Microsoft Hyper-V Server 2008 & VMware ESXi 3.5**
 

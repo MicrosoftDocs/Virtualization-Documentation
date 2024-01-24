@@ -1,7 +1,7 @@
 ---
 title:      "Make the Most of Your WPC Experience"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Make the Most of Your WPC Experience
 ms.date: 07/11/2011
 date:       2011-07-11 12:02:58
@@ -9,7 +9,7 @@ categories: private-cloud
 ---
 # Make the Most of Your WPC Experience
 
-The 2011 Microsoft Worldwide Partner Conference (WPC) is kicking off today, and with over 12,000 attendees expected, it promises to be an exciting event. The Server and Cloud team at Microsoft has been working furiously over the last few months to make this a successful event for our partners. Over the next few days, our team will provide you regular updates about the announcements and events at WPC. As with all WPCs, there’s a lot going on at the event, so we’d like to highlight some locations and events that our core infrastructure partners will find useful. 
+The 2011 Microsoft Worldwide Partner Conference (WPC) is kicking off today, and with over 12,000 attendees expected, it promises to be an exciting event. The Server and Cloud team at Microsoft has been working furiously over the last few months to make this a successful event for our partners. Over the next few days, our team will provide you regular updates about the announcements and events at WPC. As with all WPCs, there's a lot going on at the event, so we'd like to highlight some locations and events that our core infrastructure partners will find useful. 
 
   * **_Breakout Sessions:_** You can find a complete list of the Server and Cloud breakout sessions. Our sessions cover a variety of topics, ranging from the how the Private Cloud can help expand your business, to a preview of the benefits that the upcoming System Center 2012 release can bring to your infrastructure practice. Each session will have partner speakers featured as well, so be sure to add these sessions to your schedule builder!
   * **_Private Cloud and Platform Servers Booth_** : Please visit our booth (#1221) in the Solutions Innovation Center. In addition to demos of our latest products, you will find some really exciting offerings there: 
@@ -22,6 +22,6 @@ The 2011 Microsoft Worldwide Partner Conference (WPC) is kicking off today, and 
       * The Cloud Assessment Tool
       * The MPN Private Cloud Sales Specialist program
 
-Stay up to date with the latest Server and Cloud information! Follow us on twitter (@MSServerCloud) on our blog (<https://blogs.technet.com/b/server-cloud>) and “Like” us on Facebook (<http://www.facebook.com/Server.Cloud>) to get access to WPC 2011 previews. And don’t forget tag your own twitter messages with #hyperv and #WPC11 Please remember that this is your event, and we want to hear from you! Please let us know what you liked, and didn’t like, at WPC 2011.We’ll be back over the next few days with many more updates for you. Varun Chhabra Partner Marketing, Windows Server and Management Business Group 
+Stay up to date with the latest Server and Cloud information! Follow us on twitter (@MSServerCloud) on our blog (<https://blogs.technet.com/b/server-cloud>) and "Like" us on Facebook (<http://www.facebook.com/Server.Cloud>) to get access to WPC 2011 previews. And don't forget tag your own twitter messages with #hyperv and #WPC11 Please remember that this is your event, and we want to hear from you! Please let us know what you liked, and didn't like, at WPC 2011.We'll be back over the next few days with many more updates for you. Varun Chhabra Partner Marketing, Windows Server and Management Business Group 
 
  

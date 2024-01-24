@@ -1,7 +1,7 @@
 ---
 title:      "Backup of a Replica VM"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 04/24/2014
 date:       2014-04-24 04:21:00
 categories: hvr

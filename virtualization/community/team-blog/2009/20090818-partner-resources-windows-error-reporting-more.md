@@ -2,7 +2,7 @@
 title:      "Partner Resources&#58; Windows Error Reporting & More"
 description: Partner resources Microsoft provides to help develop and refine their products running on Windows and integration with Hyper-V.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2009-08-18 10:20:00
 ms.date: 08/18/2009
 categories: hyper-v

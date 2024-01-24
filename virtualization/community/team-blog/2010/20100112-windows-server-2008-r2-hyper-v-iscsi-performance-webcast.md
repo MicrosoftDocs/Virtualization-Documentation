@@ -1,7 +1,7 @@
 ---
 title:      "Windows Server 2008 R2 Hyper-V iSCSI Performance Webcast"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Windows Server 2008 R2 Hyper-V iSCSI Performance Webcast
 ms.date: 01/12/2010
 date:       2010-01-12 19:20:00
@@ -13,11 +13,11 @@ My friend and teammate Jim Schwartz on our Virtualization Solutions Marketing�
 
  
 
-Hi, I’m Jim Schwartz, a director of virtualization solutions marketing with Microsoft in Redmond.
+Hi, I'm Jim Schwartz, a director of virtualization solutions marketing with Microsoft in Redmond.
 
  
 
-Over the past year we’ve seen more customers moving from basic deployment scenarios like dev/test and consolidation into more advanced deployments that take full advantage of VM mobility for high availability and site recovery.  Deployment of critical business workloads shows how virtualization features like Live Migration are driving IT agility.  Shared storage offers significant benefits for storage consolidation including centralized backup, ease of management, and scalability.  Combining these benefits with Microsoft server virtualization delivers a powerful solution for IT customers to maximize hardware utilization in their datacenters.
+Over the past year we've seen more customers moving from basic deployment scenarios like dev/test and consolidation into more advanced deployments that take full advantage of VM mobility for high availability and site recovery.  Deployment of critical business workloads shows how virtualization features like Live Migration are driving IT agility.  Shared storage offers significant benefits for storage consolidation including centralized backup, ease of management, and scalability.  Combining these benefits with Microsoft server virtualization delivers a powerful solution for IT customers to maximize hardware utilization in their datacenters.
 
  
 
@@ -41,7 +41,7 @@ In addition to iSCSI storage target providers, advances in CPU and network accel
 
  
 
-If you’re interested in hearing more about Windows Server R2 Hyper-V, the iSCSI initiator and Intel’s iSCSI enhancements, join us for a webcast on 1/14—the speakers will provide a deep dive into the technologies and cover practical considerations.  Microsoft and Intel will announce physical and virtual throughput and IOP performance numbers developed as a result of collaborative engineering efforts during the Windows Server 2008 R2 release cycle...you may be surprised at the results!  Register for the webcast [here](https://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?EventID=1032432956&EventCategory=4&culture=en-US&CountryCode=US). 
+If you're interested in hearing more about Windows Server R2 Hyper-V, the iSCSI initiator and Intel's iSCSI enhancements, join us for a webcast on 1/14—the speakers will provide a deep dive into the technologies and cover practical considerations.  Microsoft and Intel will announce physical and virtual throughput and IOP performance numbers developed as a result of collaborative engineering efforts during the Windows Server 2008 R2 release cycle...you may be surprised at the results!  Register for the webcast [here](https://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?EventID=1032432956&EventCategory=4&culture=en-US&CountryCode=US). 
 
  
 

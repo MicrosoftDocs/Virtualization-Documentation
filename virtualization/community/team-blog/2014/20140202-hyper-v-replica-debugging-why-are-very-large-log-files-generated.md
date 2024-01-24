@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica debugging&#58; Why are very large log files generated?"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 02/02/2014
 categories: hvr
 description: This article explains why very large log files are generated and provides resolutions.
@@ -10,9 +10,9 @@ description: This article explains why very large log files are generated and pr
 
 Quite a few customers have reached out to us with this question, and you can even see a few posts around this on the [TechNet Forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv). The query comes in various forms:
 
-  * _“My log file size was in the MBs and sometime at night it went into the GBs – what happened?”_
-  * _“I have huge amounts of data to sync across once a day when no data is being changed in the guest”_
-  * _“The size of the log file (the .hrl) is growing 10X…”_
+  * _"My log file size was in the MBs and sometime at night it went into the GBs – what happened?"_
+  * _"I have huge amounts of data to sync across once a day when no data is being changed in the guest"_
+  * _"The size of the log file (the .hrl) is growing 10X…"_
 
 
 
@@ -34,7 +34,7 @@ At the same time, I was monitoring the VM using Perfmon from the host and checki
 
 At this point, I have no clue what in the guest is causing this sort of churn to show up. Fortunately I have the script collecting data inside the guest that I will use for further analysis.
 
-Pull out the two files from the guest VM for analysis in Excel – **ProcStats-2.csv** and **HVRStats-2.csv**. Before starting the analysis, one additional bit of Excel manipulation that I added was to include a column called _Hour-Minute_ : __ it pulls out only the hour and minute from the timestamp (ignoring the seconds) and is used in the PivotTable analysis as a field. I use the following formula in the cell: **=TIME(HOUR(A2), MINUTE(A2), 0)** where A2 is the timestamp cell for that row. Copy it down and it’ll adjust the formula appropriately.
+Pull out the two files from the guest VM for analysis in Excel – **ProcStats-2.csv** and **HVRStats-2.csv**. Before starting the analysis, one additional bit of Excel manipulation that I added was to include a column called _Hour-Minute_ : __ it pulls out only the hour and minute from the timestamp (ignoring the seconds) and is used in the PivotTable analysis as a field. I use the following formula in the cell: **=TIME(HOUR(A2), MINUTE(A2), 0)** where A2 is the timestamp cell for that row. Copy it down and it'll adjust the formula appropriately.
 
 <!--[![Excel analysis](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_58843556.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_0983E604.png)-->
 
@@ -42,13 +42,13 @@ Pull out the two files from the guest VM for analysis in Excel – **ProcStats-2
 
 #### Overall write statistics (HVR Stats)
 
-Let’s first look at the file **HVRStats-2.csv** in Excel. Use the data to create a PivotTable and a PivotChart – this gives a summarized view of the writes happening. What we see is that there is excessive data that gets written at 4:57 AM and 4:58 AM. This is more than 30X of the data written otherwise.
+Let's first look at the file **HVRStats-2.csv** in Excel. Use the data to create a PivotTable and a PivotChart – this gives a summarized view of the writes happening. What we see is that there is excessive data that gets written at 4:57 AM and 4:58 AM. This is more than 30X of the data written otherwise.
 
 <!--[![H V R Stats](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_35595B55.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_4A484D17.png)-->
 
 #### Per process write statistics
 
-Now let’s look at **ProcStats-2.csv** in Excel. Use the data to create a PivotTable and PivotChart – and this should give us a per-process view of what is happening. With the per-process information, we can easily plot the data written by each process and identify the culprit. In this case, SQL Server itself caused a spike in the data written (highlighted in red)
+Now let's look at **ProcStats-2.csv** in Excel. Use the data to create a PivotTable and PivotChart – and this should give us a per-process view of what is happening. With the per-process information, we can easily plot the data written by each process and identify the culprit. In this case, SQL Server itself caused a spike in the data written (highlighted in red)
 
 <!--[![Per process write statistics](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_65A7E21E.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_33ADB0E3.png)-->
 

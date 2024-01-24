@@ -1,7 +1,7 @@
 ---
 title:      "Replication Health Mailer"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 05/13/2014
 date:       2014-05-13 05:13:14
 categories: uncategorized
@@ -15,6 +15,6 @@ The sample output from the script looks like this. You can add as many recipient
 
 <!--[![Capture](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/Capture_thumb_3A145EB7.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/Capture_7D5CD626.png)-->
 
-On a cluster, you can run this script on one of the cluster nodes to get information about all Cluster VMs. You can even run this script to get information from remote host and remote Cluster using “ **HostorClusterName** ” parameter. In case of cluster use **“isCluster** ” parameter to tell the script to get information from Cluster rather than on the local node.
+On a cluster, you can run this script on one of the cluster nodes to get information about all Cluster VMs. You can even run this script to get information from remote host and remote Cluster using " **HostorClusterName** " parameter. In case of cluster use **"isCluster** " parameter to tell the script to get information from Cluster rather than on the local node.
 
-Isn’t it simple and easy to get the replication information about VMs?
+Isn't it simple and easy to get the replication information about VMs?

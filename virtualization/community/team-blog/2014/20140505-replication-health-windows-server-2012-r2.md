@@ -1,7 +1,7 @@
 ---
 title:      "Replication Health-Windows Server 2012 R2"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 05/05/2014
 date:       2014-05-05 09:00:36
 categories: uncategorized
@@ -19,9 +19,9 @@ Replication tab in Replica Site now shows replication health information for bot
 
 **Replication Health Screen in Replica Site:**
 
-Replication Health information about Extend Replication can be captured through “ **Extended Replication** ” tab in Replication Health screen. To view Replication Health Screen, go to **Hyper-V Manager/Failover Cluster Manager** and right click on protected VM and choose “ **View Replication Health** ”.
+Replication Health information about Extend Replication can be captured through " **Extended Replication** " tab in Replication Health screen. To view Replication Health Screen, go to **Hyper-V Manager/Failover Cluster Manager** and right click on protected VM and choose " **View Replication Health** ".
 
-Replication health information about primary replication relationship is shown in “Replication” tab while extended replication screen displays Replication Health information about extend replication. What’s more, Extended Replication tab looks exactly like Replication Health screen in Primary Server to give a consistent view while Replication tab continues to display the content the way it used to. You can even “Reset Statistics” or “Save as CSV file” on a relationship basis. 
+Replication health information about primary replication relationship is shown in "Replication" tab while extended replication screen displays Replication Health information about extend replication. What's more, Extended Replication tab looks exactly like Replication Health screen in Primary Server to give a consistent view while Replication tab continues to display the content the way it used to. You can even "Reset Statistics" or "Save as CSV file" on a relationship basis. 
 
 <!--[![rep heal-1](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/rep-heal-1_thumb_0DFB583C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/rep-heal-1_413500F4.png)-->
 
@@ -29,7 +29,7 @@ Replication health information about primary replication relationship is shown i
 
 #### Replication Health through PowerShell:
 
-I can get Replication Health details of Extended Replication through Powershell by setting “ **ReplicationRelationshipType** ” **** parameter to “ **Extended** ”. To view the health of Replication from primary to replica, use the value of “ **Simple** ” as input to ReplicationRelationshipType parameter.
+I can get Replication Health details of Extended Replication through Powershell by setting " **ReplicationRelationshipType** " **** parameter to " **Extended** ". To view the health of Replication from primary to replica, use the value of " **Simple** " as input to ReplicationRelationshipType parameter.
 
 _Measure-VMReplication –VMName `<name>` -ReplicationRelationshipType Extended_
 

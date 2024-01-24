@@ -2,7 +2,7 @@
 title: A great way to collect logs for troubleshooting
 description: Learn how to optimize your use of event logs to troubleshoot issues within a Hyper-V cluster.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2017-10-27 23:30:39
 ms.date: 10/27/2017
 categories: hyper-v

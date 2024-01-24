@@ -2,7 +2,7 @@
 title:      "Requesting Hyper-V Replica Certificates from an Enterprise CA"
 description: Requesting Hyper-V Replica Certificates from an Enterprise CA
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2012-07-10 02:27:00
 ms.date: 07/10/2012
 categories: certificates
@@ -10,7 +10,7 @@ categories: certificates
 # Requesting Hyper-V Replica Certificates from an Enterprise CA
 In an earlier [**post**](https://techcommunity.microsoft.com/t5/virtualization/requesting-hyper-v-replica-certificates-from-an-enterprise-ca/ba-p/381936), we discussed the steps required to get a certificate from a **Standalone CA** or from a third party CA. For an **Enterprise CA** , the INF file needs to be modified and suitable templates need to be available to honor the certificate request.
 
-To make things interesting, the post is written for a deployment where both the primary and replica serves are part of a cluster where a **SAN** (Subject Alternative Name) **certificate** is being used for achieving certificate based authentication. It’s worth calling out two points:
+To make things interesting, the post is written for a deployment where both the primary and replica serves are part of a cluster where a **SAN** (Subject Alternative Name) **certificate** is being used for achieving certificate based authentication. It's worth calling out two points:
 
   * The steps below can be used to create and manage wildcard and subject-name certificates by using an appropriate INF file (see earlier [post](https://techcommunity.microsoft.com/t5/virtualization/requesting-hyper-v-replica-certificates-from-an-enterprise-ca/ba-p/381936) for the INF file)
 
@@ -36,8 +36,8 @@ To deploy SAN certificates, the CA needs to be configured to accept the SAN attr
 
 An out-of-box installation of the ADCS role does not have a template which can be reused for Hyper-V Replica. You would need to duplicate an existing template using the following steps:
 
-  * Open ‘Certification Authority’ (certsrv.msc) from ‘Administrative Tools’
-  * Right click on ‘ **Certificate Template'** and click on **Manage**
+  * Open 'Certification Authority' (certsrv.msc) from 'Administrative Tools'
+  * Right click on ' **Certificate Template'** and click on **Manage**
 
 
 
@@ -83,7 +83,7 @@ An out-of-box installation of the ADCS role does not have a template which can b
 
 In case you missed the blog post introduction, this is just **one** **possible** template configuration which can be used to issue SAN certificates for Hyper-V Replica. If the above conditions are broadly met in other templates, skip step #2, and use any existing template.
 
-Open “Certification Authority” on the server and click on “Certificate Templates”. Select “Action” (from top of the menu) and choose the “New” option followed by “Certificate Template to Issue”. Choose the certificate template name from the pop-up box (in this example “Hyper-VReplica” and click on the OK button.
+Open "Certification Authority" on the server and click on "Certificate Templates". Select "Action" (from top of the menu) and choose the "New" option followed by "Certificate Template to Issue". Choose the certificate template name from the pop-up box (in this example "Hyper-VReplica" and click on the OK button.
 
 **Step #3: Create SAN certificate on the primary cluster**
 
@@ -191,4 +191,4 @@ Open “Certification Authority” on the server and click on “Certificate Tem
 
 
 
-That’s it, you are good to go! You now have a setup which has SAN certificates which have been issued by your Enterprise CA. These certificates can be used on the replica and primary cluster to receive and enable replication respectively.
+That's it, you are good to go! You now have a setup which has SAN certificates which have been issued by your Enterprise CA. These certificates can be used on the replica and primary cluster to receive and enable replication respectively.

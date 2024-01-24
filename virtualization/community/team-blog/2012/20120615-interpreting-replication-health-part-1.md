@@ -2,13 +2,13 @@
 title:      "Interpreting Replication Health – Part 1"
 description: Describes how administrators can monitor the health of the replicating VM's using the Replication Health attribute - Part 1. 
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2012-06-15 03:33:00
 ms.date: 06/15/2012
 categories: hvr
 ---
 # Interpreting Replication Health – Part 1
-In Windows Server 2012 Release Candidate, Hyper-V administrators can monitor the ‘health’ of the replicating VMs using the **Replication Health** attribute **.** This ** ** property allows administrators to answer common questions such as:
+In Windows Server 2012 Release Candidate, Hyper-V administrators can monitor the 'health' of the replicating VMs using the **Replication Health** attribute **.** This ** ** property allows administrators to answer common questions such as:
 
   * When did the primary and replica VMs last synchronize?
 
@@ -23,13 +23,13 @@ The two-part FAQ post explains the concept of Replication Health and provides gu
 
 #### Q1: How do I view the health of the replicating VM?
 
-  * Click on the replicating VM and choose ‘ **View Replication Health …**’ from either the Hyper-V Manager or Failover Cluster Manager
+  * Click on the replicating VM and choose ' **View Replication Health …**' from either the Hyper-V Manager or Failover Cluster Manager
 
 
   * (or) Click on the **Replication** tab in the bottom pane of the Hyper-V Manager to get a summary view
 
 
-#### Q2: What is the ‘Replication State’ and what are the values?
+#### Q2: What is the 'Replication State' and what are the values?
 
 **Replication state** shows the **current** state of the replicating VM. It indicates whether the VM is being replicated, whether initial replication is pending etc.
 
@@ -49,7 +49,7 @@ The table below captures the states as seen in WMI, UI and PowerShell.
 | 0 | Not enabled | NA | VM is **not** enabled for replication.|
 | 1 | Pending Initial Replication | ReadyForInitialReplication | Replication relationship has been created but **Initial Replication** has not been initiated. This is seen on the primary VM only. |
 | 2 | Pending Initial Replication | WaitingForInitialReplication | The replica VM enters this state when a replication relationship has been created but **Initial Replication** has not been initiated (or) **Initial Replication** is in progress. The primary VM enters this state when **Initial Replication** is in progress. |
-| 3 | Replication Enabled | Replicating | This state (on  both the primary and replica VM) indicates that the replication is ‘ **Normal** ’.|
+| 3 | Replication Enabled | Replicating | This state (on  both the primary and replica VM) indicates that the replication is ' **Normal** '.|
 | 4 | Prepared for planned failover | SyncedReplicationComplete | This state is applicable only for the primary VM. It indicates that **Planned Failover** is complete and that the VM is locked from powering up. |
 | 5 | Failover Complete | FailOverWaitingCompletion | **Failover** has been initiated on the replica VM but has not been completed. The Failover operation is considered to be complete only when the VM is either reverse replicated (or) when additional recovery points are removed. |
 | 6 | Failover Complete | FailedOver | The replica VM enters this state once the **Failover** operation has been completed. |
@@ -61,13 +61,13 @@ The table below captures the states as seen in WMI, UI and PowerShell.
   
  
 
-#### Q3: Isn’t Replication State sufficient to track whether replication is in progress, why do I need Replication Health?
+#### Q3: Isn't Replication State sufficient to track whether replication is in progress, why do I need Replication Health?
 
-Good question! While Replication State is comprehensive, it provides the **current** replication status  – it does not provide any ‘trending' information or warnings to watch out for. 
+Good question! While Replication State is comprehensive, it provides the **current** replication status  – it does not provide any 'trending' information or warnings to watch out for. 
 
 On the other hand, **Replication Health** provides an aggregated view of events in a certain interval. Hyper-V Replica uses inbuilt heuristics to warn the administrator that replication is sub-optimal.
 
-Let’s consider an example where your organization’s network connectivity is over burdened between 2am to 6am everyday. This could result in a sub-optimal replication of the VM (i.e replication is not occurring every 5mins or the replica VM is behind the primary VM by more than an hour). When you check the **Replication State** of the VM at 10am everyday, it would indicate that replication is normal (Replication Enabled, as described in the above table).
+Let's consider an example where your organization's network connectivity is over burdened between 2am to 6am everyday. This could result in a sub-optimal replication of the VM (i.e replication is not occurring every 5mins or the replica VM is behind the primary VM by more than an hour). When you check the **Replication State** of the VM at 10am everyday, it would indicate that replication is normal (Replication Enabled, as described in the above table).
 
 However, this does not paint a true picture as your replica is behind the primary VM. **Replication Health** on the other hand would either be set to Warning or Critical which would prompt you to debug the issue further.
 
@@ -92,7 +92,7 @@ The table below captures the states as seen in WMI, UI and PowerShell.
   
  
 
-#### Q5: When is Replication Health considered ‘Critical’?
+#### Q5: When is Replication Health considered 'Critical'?
 
 The Replication Health is flagged as Critical if one of the following occurs:
 
@@ -101,22 +101,22 @@ The Replication Health is flagged as Critical if one of the following occurs:
 
 
 
-In the Replication Health pane, click on ‘ **View Events** ’ to see a filtered set of events corresponding to this VM which helps you root-cause the issue.
+In the Replication Health pane, click on ' **View Events** ' to see a filtered set of events corresponding to this VM which helps you root-cause the issue.
 
 
-#### Q6: When is Replication Health flagged as ‘Warning’?
+#### Q6: When is Replication Health flagged as 'Warning'?
 
-The Replication Health is shown as Warning when the replication is ‘not optimal’. The conditions which would result in a Warning health include:
+The Replication Health is shown as Warning when the replication is 'not optimal'. The conditions which would result in a Warning health include:
 
   * >20% of replication cycles have been missed in a monitoring interval – Common reasons which lead to this condition include insufficient network bandwidth, storage IOPS bottleneck on your replica server.
   * More than an hour has elapsed since the last send replica (on the primary VM) was sent or the last received replica (on the replica VM) was received – This could result in a loss of more than 60mins worth of data loss if the replica VM is failed over (due to a disaster)
   * If Initial Replication has not been completed
-  * If Failover has been initiated, but ‘reverse replication’ has not been initiated
-  * If the primary VM’s replication is paused.
+  * If Failover has been initiated, but 'reverse replication' has not been initiated
+  * If the primary VM's replication is paused.
 
 
 
-**Q7: So does ‘Normal’ mean that the replication is on track?**
+**Q7: So does 'Normal' mean that the replication is on track?**
 
 Correct, this health indicates that replication has the following characteristics:
 
@@ -125,6 +125,6 @@ Correct, this health indicates that replication has the following characteristic
   * The average latency is less than or equal to 5mins
 
 
-#### That’s neat! Tell me more…
+#### That's neat! Tell me more…
 
 We will cover further details such as PowerShell cmdlets, tips to extend the platform capability to monitor the health by setting up alerts, interpreting the attribute in the Replication Health view, concept of a monitoring interval, monitoring start time etc., in the [next post](https://techcommunity.microsoft.com/t5/virtualization/interpreting-replication-health-part-2/ba-p/381948).

@@ -1,7 +1,7 @@
 ---
 title:      "RT&#58; Opalis Software Availability and Roadmap News"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Opalis Software Availability and Roadmap News
 ms.date: 03/11/2010
 date:       2010-03-11 17:45:00
@@ -15,6 +15,6 @@ Louise Johns [blogged](https://blogs.technet.com/systemcenter/archive/2010/03/03
 
 > Today, Opalis supports integration to 3rd party tools such as BMC, CA, HP, EMC, IBM and VMware. In Q2 we will expand on interoperability capabilities with new Integration Packs for UNIX, Linux Redhat and Suse. In Q3, Integration Packs for Service Manager 2010, Configuration Manager 07 R2, VMM 2008 R2 and DPM 2010 will be made available. **** Planning for Opalis v-next, 2011 releases are underway and will be communicated in the upcoming months.
 
->  We’ll provide more information about the sessions at MMS in the coming weeks.
+>  We'll provide more information about the sessions at MMS in the coming weeks.
 
 Patrick

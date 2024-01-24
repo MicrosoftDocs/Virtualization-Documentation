@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica trouble-shooting wiki"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 05/13/2014
 date:       2014-05-13 00:18:55
 categories: uncategorized
@@ -25,6 +25,6 @@ We would like this to be a community effort to make it social and **_you are fre
 
 **d. Additional resources** – List of blogs/KB Articles/Documentation/other articles which contain more information for the customer about the failure.
 
-If you are new to TechNet wiki, the guide on “ **How to contribute** ” is [here](https://social.technet.microsoft.com/wiki/contents/articles/145.wiki-how-to-contribute-content-to-technet-wiki.aspx).
+If you are new to TechNet wiki, the guide on " **How to contribute** " is [here](https://social.technet.microsoft.com/wiki/contents/articles/145.wiki-how-to-contribute-content-to-technet-wiki.aspx).
 
-Happy WIKI’ing 
+Happy WIKI'ing 

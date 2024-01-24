@@ -1,7 +1,7 @@
 ---
 title:      "Application consistent recovery points with Windows Server 2008/2003 guest OS"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 05/19/2014
 date:       2014-05-19 22:00:00
 categories: hvr
@@ -21,7 +21,7 @@ The customer had the following setup that was throwing errors:
 
 
 
-At the time of enabling replication, the customer selected the option to create additional recovery points and have the “Volume Shadow Copy Service (VSS) snapshot frequency” as 1 hour. This means that every hour the VSS writer of the guest OS would be invoked to take an _application-consistent snapshot_. 
+At the time of enabling replication, the customer selected the option to create additional recovery points and have the "Volume Shadow Copy Service (VSS) snapshot frequency" as 1 hour. This means that every hour the VSS writer of the guest OS would be invoked to take an _application-consistent snapshot_. 
 
 #### Symptoms
 

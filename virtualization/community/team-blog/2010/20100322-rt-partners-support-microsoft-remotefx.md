@@ -1,7 +1,7 @@
 ---
 title:      "RT&#58; Partners Support Microsoft RemoteFX"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Partners Support Microsoft RemoteFX
 ms.date: 03/22/2010
 date:       2010-03-22 17:04:00
@@ -15,7 +15,7 @@ Today Max Herrmann (who [posted on this site](/virtualization/community/team-bl
 > 
 > Several of these companies have already come forward with their own RemoteFX announcements last Friday, one day after Microsoft RemoteFX was born: We have seen statements of planned support for RemoteFX from AppliedMicro, [Citrix](https://www.citrix.com/blogs/2013/12/11/true-hardware-gpu-sharing-arrives/), [DevonIT](http://www.devonit.com/blog/devon-it-announces-plans-for-integration-of-thin-client-solutions-with-microsoft-remotefx), [Quest](http://www.quest.com), [ThinLinx](http://thinlinx.com/news/), [Via](https://www.viatech.com/en/category/press/) and Wyse. AMD expressed excitement about our RemoteFX announcement in one of their blogs, and [in a Network World article](https://www.networkworld.com/article/2230145/microsoft-and-citrix-look-to-deliver-tko.html), HP announced future support for Microsoft RemoteFX to enhance the user multimedia experience for their thin clients. 
 > 
-> Jeff Groudan from HP commented that Microsoft’s recent announcements are consistent with HP’s ongoing efforts to simplify client virtualization, from the desktop-to-the-datacenter. “Integrating Microsoft RemoteFX enables future WES-based HP thin clients to deliver a richer, local-like user experience for Microsoft session-based desktop and virtual desktop infrastructure customers. By leveraging the power of virtualized graphics and advanced codecs, remote workers will be able to access any type of application or screen content, including rich media and 3D applications.”
+> Jeff Groudan from HP commented that Microsoft's recent announcements are consistent with HP's ongoing efforts to simplify client virtualization, from the desktop-to-the-datacenter. "Integrating Microsoft RemoteFX enables future WES-based HP thin clients to deliver a richer, local-like user experience for Microsoft session-based desktop and virtual desktop infrastructure customers. By leveraging the power of virtualized graphics and advanced codecs, remote workers will be able to access any type of application or screen content, including rich media and 3D applications."
 > 
 > I feel with these great companies on board, RemoteFX is heading into an exciting future. For more information on these RemoteFX partner companies, [visit our RDS partner page](https://www.microsoft.com/windowsserver2008/en/us/rds-partners.aspx). And if you want to learn more about RemoteFX, please check in often with my blog for more details as we continue to refine the technology for Windows Server 2008 R2 SP1.
 

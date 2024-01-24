@@ -2,7 +2,7 @@
 title:      "Enable replication using certificate based authentication - in PowerShell"
 description: Blog discussing how to enable replication using certificate based authentication in PowerShell.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2012-04-23 04:49:00
 ms.date: 04/23/2012
 categories: certificates
@@ -12,11 +12,11 @@ categories: certificates
 
  
 
-In an earlier post, we have discussed the [prerequisites for certificate based deployment](https://blogs.technet.com/b/virtualization/archive/2012/03/13/hyper-v-replica-certificate-requirements.aspx). This blog now captures the administrator workflow to enable replication using PowerShell in Windows Server “8” Beta.
+In an earlier post, we have discussed the [prerequisites for certificate based deployment](https://blogs.technet.com/b/virtualization/archive/2012/03/13/hyper-v-replica-certificate-requirements.aspx). This blog now captures the administrator workflow to enable replication using PowerShell in Windows Server "8" Beta.
 
  
 
-If your primary or replica server is part of a cluster, configure the **Hyper-V Replica Broker** before following the instructions in this blog. The PS cmdlets in the blog "[Why is Hyper-V Replica Broker required](https://blogs.technet.com/b/virtualization/archive/2012/03/27/why-is-the-quot-hyper-v-replica-broker-quot-required.aspx)” enable you to configure the broker.  
+If your primary or replica server is part of a cluster, configure the **Hyper-V Replica Broker** before following the instructions in this blog. The PS cmdlets in the blog "[Why is Hyper-V Replica Broker required](https://blogs.technet.com/b/virtualization/archive/2012/03/27/why-is-the-quot-hyper-v-replica-broker-quot-required.aspx)" enable you to configure the broker.  
 
 
 ### Configure Replica Server   
@@ -69,7 +69,7 @@ In this example, _IntRootCA_ has issued _BrokerHyd_ which meets the prerequisite
 
 2\. To enable replication on the Replica server/cluster, issue the following PowerShell cmdlet, using the above thumbprint information in `< CertThumbprint>`:
 
-_Set-VMReplicationServer -ReplicationEnabled $true -AllowedAuthenticationType Certificate -ReplicationAllowedFromAnyServer $true -CertificateThumbprint " `<CertThumbprint>`” -DefaultStorageLocation “`<Storage Location>`” -CertificateAuthenticationPort `<Listenerport>`_
+_Set-VMReplicationServer -ReplicationEnabled $true -AllowedAuthenticationType Certificate -ReplicationAllowedFromAnyServer $true -CertificateThumbprint " `<CertThumbprint>`" -DefaultStorageLocation "`<Storage Location>`" -CertificateAuthenticationPort `<Listenerport>`_
 
  PS C:\Windows\system32> Set-VMReplicationServer -ReplicationEnabled $true -AllowedAuthenticationType Certificate -ReplicationAllowedFromAnyServer $true -CertificateThumbprint "4BFFF00509B97C782603F1DF3AF8C0399778FD70" -DefaultStorageLocation "C:\ClusterStorage\Volume2\Replica" -CertificateAuthenticationPort 5000 
 
@@ -244,7 +244,7 @@ Server session ID: FC0000002001ED19
   
 
 
-4\. Ensure that the Firewall allows traffic on the configured port. In a clustered environment, if you are using Windows Firewall, issue the following command from one of the node’s in the cluster:
+4\. Ensure that the Firewall allows traffic on the configured port. In a clustered environment, if you are using Windows Firewall, issue the following command from one of the node's in the cluster:
 
 _ _
 
@@ -288,7 +288,7 @@ PS C:\Windows\system32> Set-VMReplication -VMName "ProjectVM" -ReplicaServerName
 
  
 
-3\. To initiate “Initial-Replication” of the virtual machine, use the following cmdlet
+3\. To initiate "Initial-Replication" of the virtual machine, use the following cmdlet
 
   
 
@@ -310,4 +310,4 @@ PS C:\Windows\system32> Start-VMInitialReplication -VMName "ProjectVM"
 
  
 
-You have now enabled replication using certificates! It’s also worth calling out that when the primary or replica virtual machine migrates from one clustered node to another, Hyper-V Replica will continue to send replication traffic **without** any manual intervention.
+You have now enabled replication using certificates! It's also worth calling out that when the primary or replica virtual machine migrates from one clustered node to another, Hyper-V Replica will continue to send replication traffic **without** any manual intervention.

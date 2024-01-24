@@ -1,7 +1,7 @@
 ---
 title:      "Types of failover operations in Hyper-V Replica–Part III - Unplanned Failover"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 08/08/2012
 date:       2012-08-08 12:21:56
 categories: disaster-recovery
@@ -13,7 +13,7 @@ In the first two parts of this 3-part series, you learnt about [Test Failover](h
 
 ### 1\. What is Unplanned Failover? 
 
-Unplanned Failover is an operation initiated on the replica VM when the primary VM/site is hit by a disaster. During Unplanned Failover, a check is done using Remote WMI to see if the primary VM is running.This is to protect against accidental administrator actions on the replica VM. This check prevents a ‘split-brain’ scenario where both the production and the replica VMs are running.
+Unplanned Failover is an operation initiated on the replica VM when the primary VM/site is hit by a disaster. During Unplanned Failover, a check is done using Remote WMI to see if the primary VM is running.This is to protect against accidental administrator actions on the replica VM. This check prevents a 'split-brain' scenario where both the production and the replica VMs are running.
 
 ### 2\. When should I use Unplanned Failover? 
 
@@ -30,9 +30,9 @@ Unplanned failover is performed on the replica virtual machine by right-clicking
 
 [![clip_image001](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5344.clip_image001_thumb_397A690F.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4762.clip_image001_56CA9F77.jpg)
 
-If you have turned on recovery history, Unplanned Failover can be performed against a previous point-in-time. This is usually done in case the most recent point is either corrupt or not application consistent. Once you failover, you should run some tests to check that the point-in-time is good. If the point-in-time has issues, you can cancel the failover using **“Cancel Failover”** on the replica VM. Then you can choose a different point-in-time and do a Failover.
+If you have turned on recovery history, Unplanned Failover can be performed against a previous point-in-time. This is usually done in case the most recent point is either corrupt or not application consistent. Once you failover, you should run some tests to check that the point-in-time is good. If the point-in-time has issues, you can cancel the failover using **"Cancel Failover"** on the replica VM. Then you can choose a different point-in-time and do a Failover.
 
-After you have validated that the failed over VM is kosher, you should do a **‘Complete’** of the failover by performing an action on the replica virtual machine – this will ensure that the recovery points are merged.
+After you have validated that the failed over VM is kosher, you should do a **'Complete'** of the failover by performing an action on the replica virtual machine – this will ensure that the recovery points are merged.
 
 The above procedure can be achieved using Powershell using the following cmdlets. Use Complete-VMFailover only after ensuring that the failed over VM serves the purpose.
     
@@ -180,7 +180,7 @@ When to use
 
   * Perform host maintenance on your primary and would like to run from the replica site.
   * Your primary site is expecting some power outage – you want to move over to the replica site.
-  * There’s an impending typhoon – you want to proactively take action to ensure business continuity.
+  * There's an impending typhoon – you want to proactively take action to ensure business continuity.
   * Your compliance requirements mandate that every quarter, you run your workloads from the replica site for a week.
 
 | 

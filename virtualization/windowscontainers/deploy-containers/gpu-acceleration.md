@@ -1,8 +1,8 @@
 ---
 title: GPU acceleration in Windows containers
 description: Learn about the level of GPU acceleration in Windows containers.
-author: v-susbo
-ms.author: mabrigg
+author: sethmanheim
+ms.author: sethm
 ms.date: 12/29/2020
 ms.topic: how-to
 ---
@@ -25,7 +25,7 @@ For this feature to work, your environment must meet the following requirements:
 - The container host must be running Docker Engine 19.03 or newer.
 - The container host must have a GPU running display drivers version WDDM 2.5 or newer.
 
-To check the WDDM version of your display drivers, run the DirectX Diagnostic Tool (dxdiag.exe) on your container host. In the tool’s “Display” tab, look in the “Drivers” section as indicated below.
+To check the WDDM version of your display drivers, run the DirectX Diagnostic Tool (dxdiag.exe) on your container host. In the tool's "Display" tab, look in the "Drivers" section as indicated below.
 
 ![Screenshot of the Driver Model found in the Display tab.](media/dxdiag.png)
 

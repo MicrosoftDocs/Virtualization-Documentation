@@ -2,7 +2,7 @@
 title: Windows container base images
 description: Overview of the Windows container base images and when to use them.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 09/01/2021
 ms.topic: conceptual
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
@@ -105,7 +105,7 @@ All Windows container base images are discoverable through [Docker Hub](https://
 docker pull mcr.microsoft.com/windows/servercore:ltsc2022
 ```
 
-The MCR does not have its own catalog experience and is meant to support existing catalogs, such as Docker Hub. Thanks to Azure’s global footprint and coupled with Azure CDN, the MCR delivers an image pull experience that is consistent and fast. Azure customers, running their workloads in Azure, benefit from in-network performance enhancements as well as tight integration with the MCR (the source for Microsoft container images), Azure Marketplace, and the expanding number of services in Azure that offer containers as the deployment package format.
+The MCR does not have its own catalog experience and is meant to support existing catalogs, such as Docker Hub. Thanks to Azure's global footprint and coupled with Azure CDN, the MCR delivers an image pull experience that is consistent and fast. Azure customers, running their workloads in Azure, benefit from in-network performance enhancements as well as tight integration with the MCR (the source for Microsoft container images), Azure Marketplace, and the expanding number of services in Azure that offer containers as the deployment package format.
 
 ## Choosing a base image
 
@@ -131,7 +131,7 @@ How do you choose the right base image to build upon? For most users, `Windows S
 
 ## Windows vs Windows Server
 
-The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and has no limits for IIS connections. To use the latest Windows Server image, you’ll need a Windows Server 2022 installation. The Windows image is not available for Windows Server 2022.
+The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and has no limits for IIS connections. To use the latest Windows Server image, you'll need a Windows Server 2022 installation. The Windows image is not available for Windows Server 2022.
 
 ## Base images for Windows Insiders
 
