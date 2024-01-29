@@ -2,7 +2,7 @@
 title:      "Interpreting Replication Health - Part 2"
 description: Describes how administrators can monitor the health of the replicating VM's using the Replication Health attribute - Part 2.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2012-06-21 05:20:00
 ms.date: 06/21/2012
 categories: hvr
@@ -26,7 +26,7 @@ categories: hvr
 > From Time | The start time for the **monitoring interval**  
 > To Time | This calls out the current time or time at which this window was launched  
   
-> The statistics below are collected between ‘From Time’ and ‘To Time’
+> The statistics below are collected between 'From Time' and 'To Time'
 
 > **Average size** |  The average size of the replica file (sent in every **replication interval** )  
 > ---|---  
@@ -46,13 +46,13 @@ categories: hvr
 
    3\. On the **Replica** VM:
 
-  * **Test failover status:** If Test failover is enabled at the time of measuring the statistics, then this attribute is set to  ‘Running’ – else, it is set to ‘Not Running’
+  * **Test failover status:** If Test failover is enabled at the time of measuring the statistics, then this attribute is set to  'Running' – else, it is set to 'Not Running'
   * **Last Test Failover initiated at:** This refers to the wall-clock time when the last test-failover operation was initiated.
 
 
    4\. Buttons:
 
-  * Refresh: Refreshes the statistics by updating the ‘To time’.
+  * Refresh: Refreshes the statistics by updating the 'To time'.
   * Reset Statistics: Zeros out the statistics for the current interval and starts afresh. You would typically used this option after rectifying a problem
   * Save As: Saves the monitoring information as a CSV file which can be archived
 
@@ -62,7 +62,7 @@ categories: hvr
 
 Hyper-V Replica tracks the writes to the VM in a log file. This log file is sent every 5mins which is also called the replication interval. Administrators **cannot** configure this interval.
 
-Due to network or storage issues or due to excessive churn in the VM, the replica file transfer _might_ take more than 5mins to reach the destination server (and applied to the replica VM). Hyper-V Replica has inbuilt semantics to handle such situations by delaying the transfer of the next replica file.  This impacts the ‘ **Successful Replication Cycles** ’ and **Average Latency** statistics.
+Due to network or storage issues or due to excessive churn in the VM, the replica file transfer _might_ take more than 5mins to reach the destination server (and applied to the replica VM). Hyper-V Replica has inbuilt semantics to handle such situations by delaying the transfer of the next replica file.  This impacts the ' **Successful Replication Cycles** ' and **Average Latency** statistics.
 
 ****  **Q3: What is the Monitoring Interval and Monitoring Start Time and how do I get/set this?**
 
@@ -93,16 +93,16 @@ Yes. In the event viewer, under the Hyper-V VMMS node, an Information message is
 
 Yes, when the VM migrates from one node to another, the replication statistics are preserved and used in the new node.
 
-**Q6: I manage a N-node-cluster with many replicating VMs, I (obviously) cannot click on each VM to know it ’s health. Is there an easier way to manage from UI?**
+**Q6: I manage a N-node-cluster with many replicating VMs, I (obviously) cannot click on each VM to know it 's health. Is there an easier way to manage from UI?**
 
-Yes! From the Failover Cluster Manager you can run a query to get VMs with a specific replication Health. Under **Roles** , click on ‘ **Add Criteria** ’, choose ‘ **Replication Health** ’ and specify the criteria (Critical/Normal/Warning)
+Yes! From the Failover Cluster Manager you can run a query to get VMs with a specific replication Health. Under **Roles** , click on ' **Add Criteria** ', choose ' **Replication Health** ' and specify the criteria (Critical/Normal/Warning)
 
   
 >  
 
 **Q7: Is there any such provision in the Hyper-V Manager?**
 
-You can add the column ‘Replication Health’ from the Add/Remove Column option in Hyper-V Manager
+You can add the column 'Replication Health' from the Add/Remove Column option in Hyper-V Manager
  
 
 **Q8: Is there a PowerShell cmdlet to get all this information?**

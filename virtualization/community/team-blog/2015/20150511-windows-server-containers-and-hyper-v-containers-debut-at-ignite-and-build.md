@@ -2,7 +2,7 @@
 title: Windows Server Containers and Hyper-V Containers Debut at Ignite and Build
 description: Learn about supported Ignite and Build sessions for Windows Server Containers and Hyper-V Containers.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2015-05-11 16:34:38
 ms.date: 05/11/2015
 categories: uncategorized

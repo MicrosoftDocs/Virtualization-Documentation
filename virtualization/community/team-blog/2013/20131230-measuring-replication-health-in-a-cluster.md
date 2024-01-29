@@ -1,7 +1,7 @@
 ---
 title:      "Measuring Replication Health in a cluster"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 12/30/2013
 categories: hvr
 description: This article covers how to view replication health statistics in a cluster.
@@ -16,12 +16,12 @@ Clicking on the above option, displays the replication statistics which I am loo
 
 <!--[![Replication statistics](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_7B47428F.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_69D45106.png)-->
 
-Clicking on the ‘Reset Statistics’ clears the statistics collected so far and resets the start (“From time” field) time. 
+Clicking on the 'Reset Statistics' clears the statistics collected so far and resets the start ("From time" field) time. 
 
-In a large deployment, it’s not practical to right click on each VM to get the health statistics.  Hyper-V PowerShell cmdlets help in simplifying the task. I had two requirements:
+In a large deployment, it's not practical to right click on each VM to get the health statistics.  Hyper-V PowerShell cmdlets help in simplifying the task. I had two requirements:
 
   * Requirement #1: Get a report of the average size of the log files which were being sent during the VMs replication interval 
-  * Requirement #2: Snap all the VMs replication statistics to the same start time (“From time”) field and reset the statistics 
+  * Requirement #2: Snap all the VMs replication statistics to the same start time ("From time") field and reset the statistics 
 
 
 
@@ -44,7 +44,7 @@ We can pipe the output of each node of the cluster and the replication health of
 Get-ClusterNode -Cluster $ClusterName | foreach-object {Measure-VMReplication -ComputerName $_ | Select VMName, AvgReplSize, PrimaryServerName, CurrentReplicaServerName | ft}
 ```
 
-Requirement #1 is met, now let’s look at requirement #2. To snap all the replicating VMs statistics to a common start time, I used the **Reset-VMReplicationStatistics** which takes the VMName as an input. However if Reset-VMReplicationStatistics is used on a non-replicating VM, the cmdlet errors out with the following error message:
+Requirement #1 is met, now let's look at requirement #2. To snap all the replicating VMs statistics to a common start time, I used the **Reset-VMReplicationStatistics** which takes the VMName as an input. However if Reset-VMReplicationStatistics is used on a non-replicating VM, the cmdlet errors out with the following error message:
     
 ```markdown
  Reset-VMReplicationStatistics :  'Reset-VMReplicationStatistics' is not applicable on virtual machine 'IOMeterBase'.
@@ -68,7 +68,7 @@ Requirement #1 is met, now let’s look at requirement #2. To snap all the repli
         + FullyQualifiedErrorId : InvalidOperation,Microsoft.HyperV.PowerShell.Commands.ResetVMReplicationStatisticsCommand
 ```
 
-It’s a touch messy and to address the issue, we would need to isolate the replicating VMs in a given server. This can be done by querying only for those VMs whose **ReplicationMode** is set (to either Primary or Replica). The output of **Get-VM** is shown below 
+It's a touch messy and to address the issue, we would need to isolate the replicating VMs in a given server. This can be done by querying only for those VMs whose **ReplicationMode** is set (to either Primary or Replica). The output of **Get-VM** is shown below 
     
 ```markdown
 PS C:\> get-vm | select vmname, ReplicationMode | fl
@@ -104,4 +104,4 @@ To reset the statistics, pipe the above cmdlet to Reset-VMReplicationStatistics
 PS C:\> Get-ClusterNode -Cluster $ClusterName | ForEach-Object {Get-VM -ComputerName $_ | Where-Object {$_.ReplicationMode -eq "Primary"} | Reset-VMReplicationStatistics}
 ```
 
-Wasn’t that a lot easier than right clicking on each VM in your cluster and clicking on the ‘Reset Statistics’ button? :)
+Wasn't that a lot easier than right clicking on each VM in your cluster and clicking on the 'Reset Statistics' button? :)

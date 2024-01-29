@@ -2,7 +2,7 @@
 title: Discrete Device Assignment -- Description and background
 description: Learn about Discrete Device Assignment, a new feature with Windows Server 2016 for Hyper-V virtual machines.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2015-11-19 13:27:30
 ms.date: 11/19/2015
 categories: dda
@@ -39,7 +39,7 @@ Other types of devices may work when passed through to a guest VM.  We've tried
 
 ## Switching it all On
 
-Managing the underlying hardware of your machine is complicated, and can quickly get you in trouble. Furthermore, we’re really trying to address the need to pass NVMe devices though to storage appliances, which are likely to be configured by people who are IT pros and want to use scripts. So all of this is only available through PowerShell, with nothing in the Hyper-V Manager. What follows is a PowerShell script that finds all the NVMe controllers in the system, unloads the default drivers from them, dismounts them from the management OS and makes them available in a pool for guest VMs.
+Managing the underlying hardware of your machine is complicated, and can quickly get you in trouble. Furthermore, we're really trying to address the need to pass NVMe devices though to storage appliances, which are likely to be configured by people who are IT pros and want to use scripts. So all of this is only available through PowerShell, with nothing in the Hyper-V Manager. What follows is a PowerShell script that finds all the NVMe controllers in the system, unloads the default drivers from them, dismounts them from the management OS and makes them available in a pool for guest VMs.
 
 ### get all devices which are NVMe controllers
 
@@ -61,9 +61,9 @@ foreach ($pnpdev in $pnpdevs) {
 
 }
 
-Depending on whether you’ve already put your NVMe controllers into use, you might actually have to reboot between disabling them and dismounting them. But after you have both disabled (removed the drivers) and dismounted (taken them away from the management OS) you should be able to find them all in a pool. You can, of course, reverse this process with the Mount-VMHostAssignableDevice and Enable-PnPDevice cmdlets.
+Depending on whether you've already put your NVMe controllers into use, you might actually have to reboot between disabling them and dismounting them. But after you have both disabled (removed the drivers) and dismounted (taken them away from the management OS) you should be able to find them all in a pool. You can, of course, reverse this process with the Mount-VMHostAssignableDevice and Enable-PnPDevice cmdlets.
 
-Here’s the output of running the script above on my test machine where I have, alas, only one NVMe controller, followed by asking for the list of devices in the pool:
+Here's the output of running the script above on my test machine where I have, alas, only one NVMe controller, followed by asking for the list of devices in the pool:
 
 [jakeo-t620]: PS E:\test> .\dismount-nvme.ps1  
 PCIROOT(40)#PCI(0200)#PCI(0000)  
@@ -76,18 +76,18 @@ CimSession : CimSession: .
 ComputerName : JAKEO-T620  
 IsDeleted : False
 
-Now that we have the NVMe controllers in the pool of dismounted PCI Express devices, we can add them to a VM. There are basically three options here, using the InstanceID above, using the LocationPath and just saying “give me any device from the pool.” You can add more than one to a VM. And you can add or remove them at any time, even when the VM is running. I want to add this NVMe controller to a VM called “StorageServer”:
+Now that we have the NVMe controllers in the pool of dismounted PCI Express devices, we can add them to a VM. There are basically three options here, using the InstanceID above, using the LocationPath and just saying "give me any device from the pool." You can add more than one to a VM. And you can add or remove them at any time, even when the VM is running. I want to add this NVMe controller to a VM called "StorageServer":
 
 [jakeo-t620]: PS E:\test> Add-VMAssignableDevice -LocationPath "PCIROOT(40)#PCI(0200)#PCI(0000)" -VMName StorageServer
 
 There are similar Remove-VMAssignableDevice and Get-VMAssignableDevice cmdlets.
 
-If you don’t like scripts, the InstanceID can be found as “Device Instance Path” under the Details tab in Device Manager. The Location Path is also under Details. You can disable the device there and then use PowerShell to dismount it.  
-Finally, it wouldn’t be a blog post without a screen shot. Here’s Device Manager from that VM, rearranged with “View by Connection” simply because it proves that I’m talking about a VM.
+If you don't like scripts, the InstanceID can be found as "Device Instance Path" under the Details tab in Device Manager. The Location Path is also under Details. You can disable the device there and then use PowerShell to dismount it.  
+Finally, it wouldn't be a blog post without a screen shot. Here's Device Manager from that VM, rearranged with "View by Connection" simply because it proves that I'm talking about a VM.
 
 % [https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png)
 
-In a future post, I’ll talk about how to figure out whether your machine and your devices support all this.
+In a future post, I'll talk about how to figure out whether your machine and your devices support all this.
 
 Read the next post in this series: [Discrete Device Assignment -- Machines and devices](/virtualization/community/team-blog/2015/20151120-discrete-device-assignment-machines-and-devices "Discrete Device Assignment Machines and devices")
 

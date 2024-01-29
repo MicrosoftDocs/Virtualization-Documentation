@@ -1,7 +1,7 @@
 ---
 title:      "Virtualization&#58; desktop to datacenter"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Virtualization; desktop to datacenter
 ms.date: 10/20/2009
 date:       2009-10-20 14:54:00
@@ -32,17 +32,17 @@ On the server side, the latest is from Gartner Symposium in Orlando. Gartner[ann
 
  Along those lines, I had a great email exchange a couple weeks ago with Steve at PoundHost in Maidenhead, UK. I was giving a presentation at IP Expo / VM Expo conference in London, and wanted to highlight PoundHost's business results since switching to Hyper-V and System Center away from VMware tools, and since PoundHost has deployed the [Dynamic Datacenter Tookit](https://www.microsoft.com/hosting/dynamicdatacenter/Home.html "website") for hosters. PoundHost has a very compelling story of how technology can really help a business transform itself and create new opportunities. The [Microsoft case study](https://www.microsoft.com/casestudies/Case_Study_Detail.aspx?casestudyid=4000004741 "MS case study on PoundHost") doesn't really do it justice. Here's some of what Steve shared with me:
 
-  * Cost. "It meant we could offer Linux and Windows at the same price (when we went live with the beta of R2 we had Linux guests but we don’t now). It means we can offer low cost VMs on high quality (and cost!) host servers which ultimately give the end user a better experience. [It] works out about £1.00 per guest assuming 60 guests per host."
+  * Cost. "It meant we could offer Linux and Windows at the same price (when we went live with the beta of R2 we had Linux guests but we don't now). It means we can offer low cost VMs on high quality (and cost!) host servers which ultimately give the end user a better experience. [It] works out about £1.00 per guest assuming 60 guests per host."
 
   * Common management tools. "We were also very impressed with a demo we had seen of System Center Virtual Machine Manager and Ops Manager so we now use both in our infrastructure."
 
-  * Choice. "I’m a VCP and have a lot of experience with ESX but I’d never use it again now I’ve used Hyper-V under R2"
+  * Choice. "I'm a VCP and have a lot of experience with ESX but I'd never use it again now I've used Hyper-V under R2"
 
   * Grow business. "[We've] expanded our Hyper-V/System Center offerings into our managed services company Server Arcade "
 
   * Grow business: profitability boost by 55%
 
-  * Customer service. "We’re also doing the customer control panel now for Poundhost which is based on the Dynamic Datacenter Toolkit."
+  * Customer service. "We're also doing the customer control panel now for Poundhost which is based on the Dynamic Datacenter Toolkit."
 
 
  Check out more about the Dynamic Datacenter toolkits and partner alliance at [their blog](/archive/blogs/ddcalliance/ "Dynamic Datacenter alliance blog").

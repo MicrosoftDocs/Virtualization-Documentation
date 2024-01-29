@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica Kerberos Error"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 02/13/2013
 date:       2013-02-13 22:55:00
 categories: hvr

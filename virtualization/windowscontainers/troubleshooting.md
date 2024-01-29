@@ -1,8 +1,8 @@
 ---
 title: Troubleshoot Windows containers
 description: Troubleshooting tips, automated scripts, and log information for Windows containers and Docker.
-author: PatrickLang
-ms.author: mabrigg
+author: sethmanheim
+ms.author: sethm
 ms.date: 12/19/2016
 ms.topic: troubleshooting
 ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5

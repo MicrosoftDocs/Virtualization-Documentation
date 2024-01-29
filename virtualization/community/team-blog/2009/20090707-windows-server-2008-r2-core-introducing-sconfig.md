@@ -1,7 +1,7 @@
 ---
 title:      "Windows Server 2008 R2 Core&#58; Introducing SCONFIG."
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Windows Server 2008 R1 Core Deployment
 ms.date: 07/07/2009
 categories: hyper-v

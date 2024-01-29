@@ -2,14 +2,14 @@
 title: Virtual Machine Storage Resiliency in Windows Server 2016
 description: Learn about how Windows Server 2016 Hyper-V virtual machines handle storage failures.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2015-09-08 09:28:00
 ms.date: 09/08/2015
 categories: hyper-v
 ---
 # Virtual Machine Storage Resiliency in Windows Server 2016
 
-We live in an imperfect world, where things will go wrong.  When they do, you need a private cloud which is designed to be highly available and resilient to failures in the environment. In today’s cloud scale environments transient storage failures have become more common than hard failures. Transient storage failure means that a Virtual Machine (VM) cannot access the VHDX file and that read or write requests to the disk are failing. In Windows Server 2016 there is new Hyper-V capabilities which will enable a VM to detect when storage access fails and to be seamlessly resilient. In short, by moving your private cloud to Windows Server 2016 your VMs will achieve better SLA’s!
+We live in an imperfect world, where things will go wrong.  When they do, you need a private cloud which is designed to be highly available and resilient to failures in the environment. In today's cloud scale environments transient storage failures have become more common than hard failures. Transient storage failure means that a Virtual Machine (VM) cannot access the VHDX file and that read or write requests to the disk are failing. In Windows Server 2016 there is new Hyper-V capabilities which will enable a VM to detect when storage access fails and to be seamlessly resilient. In short, by moving your private cloud to Windows Server 2016 your VMs will achieve better SLA's!
 
 ## What happens when VM experiences transient storage failure
 
@@ -19,7 +19,7 @@ The behavior in previous releases is that when a Virtual Machine (VM) experience
 
 ### What happens in Windows Server 2016
 
-In Windows Server 2016 new capabilities have been introduced which detects the storage failures and takes action to mitigate the impact. When a VM experiences a failure in readying or writing to its VHD/VHDX the VM will be placed into a critical pause state. The VM is frozen in time, resulting in everything inside the VM freezing and no additional I/O’s are issued. The VM will remain in this state until storage becomes responsive again. The VM then moves back to running state when it can start reading and writing to its VHD/X. Since the session state of the VM is retained, this means the VM resumes exactly where it left off. For short transient failures, this will commonly be completely transparent to clients.
+In Windows Server 2016 new capabilities have been introduced which detects the storage failures and takes action to mitigate the impact. When a VM experiences a failure in readying or writing to its VHD/VHDX the VM will be placed into a critical pause state. The VM is frozen in time, resulting in everything inside the VM freezing and no additional I/O's are issued. The VM will remain in this state until storage becomes responsive again. The VM then moves back to running state when it can start reading and writing to its VHD/X. Since the session state of the VM is retained, this means the VM resumes exactly where it left off. For short transient failures, this will commonly be completely transparent to clients.
 
 Remember that when a VM is in a critical pause state, the VM is frozen and not accessible to clients. So there is a window where clients will not be able to access the VM. But the fact that the VM session state is retained, makes the storage outage much less impactful.
 

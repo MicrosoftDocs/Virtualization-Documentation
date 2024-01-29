@@ -1,7 +1,7 @@
 ---
 title:      "Microsoft Hyper-V Server 2008 R2 (Free live migration anyone!) available for download"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Microsoft Hyper-V Server 2008 R2 (Free live migration anyone!) available for download
 ms.date: 08/28/2009
 date:       2009-08-28 18:05:00
@@ -9,7 +9,7 @@ categories: hyper-v
 ---
 # Microsoft Hyper-V Server 2008 R2 (Free live migration anyone!) available for download
 
-We are really excited to announce that Microsoft Hyper-V Server 2008 R2 is available for download [here](https://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=48359dd2-1c3d-4506-ae0a-232d0314ccf6). It’s been a long an exciting journey bringing this product to our customers. 
+We are really excited to announce that Microsoft Hyper-V Server 2008 R2 is available for download [here](https://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=48359dd2-1c3d-4506-ae0a-232d0314ccf6). It's been a long an exciting journey bringing this product to our customers. 
 
 The chart below tells it all, we have listened to our customers and have designed the product to meet their needs. This is a robust virtualization platform with [live migration built in at no extra charge](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx). 
 
@@ -89,7 +89,7 @@ Hyper-V MMC, Windows Server 2008, Windows Server 2008 R2, System Center Virtual 
   
  
 
-And don’t forget that Microsoft Hyper-V Server 2008 R2 also [supports boot from flash](https://blogs.technet.com/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx) for our OEM partners. 
+And don't forget that Microsoft Hyper-V Server 2008 R2 also [supports boot from flash](https://blogs.technet.com/virtualization/archive/2009/07/30/microsoft-hyper-v-server-2008-r2-rtm-more.aspx) for our OEM partners. 
 
 Just to recap this release has the following features
 
@@ -99,7 +99,7 @@ Just to recap this release has the following features
 
 (c)    Support for running up to 384 virtual machines with up to 512 virtual processors
 
-(d)    [Processor compatibility mode](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx) for live migration across different processor SKU’s from the same vendor
+(d)    [Processor compatibility mode](https://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx) for live migration across different processor SKU's from the same vendor
 
 (e)    Hot add/remove virtual storage
 

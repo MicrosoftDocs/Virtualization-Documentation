@@ -2,7 +2,7 @@
 title:      "Inject IP address into the VM during failover"
 description: Post discussing how to configure the static IP address of the Replica VM before it has failed over.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2012-05-28 22:11:00
 ms.date: 05/28/2012
 categories: hvr
@@ -23,7 +23,7 @@ Open the Hyper-V manager and open the settings of the replica VM. Click on **Net
 
 
 
-Enter the IP (v4/v6) details including the address, subnet mask and DNS server(s) information. To verify the settings, invoke the "Test Failover" operation. It is recommended that this operation is run in an isolated network which can be achieved by using the **Test Failover** setting under the Replica VM’s network adapter setting. In the picture below, the replica VM is connected to one such private network.
+Enter the IP (v4/v6) details including the address, subnet mask and DNS server(s) information. To verify the settings, invoke the "Test Failover" operation. It is recommended that this operation is run in an isolated network which can be achieved by using the **Test Failover** setting under the Replica VM's network adapter setting. In the picture below, the replica VM is connected to one such private network.
 
 
 By default, the network settings under **Test Failover** is not-connected to any switch. Once the above step is performed, when a test failover is invoked, the newly created VM will be connected to "Private Test Network" switch and the IP address provided under " **Failover TCP/IP** " will be injected into the test VM.
@@ -67,7 +67,7 @@ To connect the VM to a different switch which would be used for Test Failover, u
     
     -TestReplicaSwitchName 'Private Test Network'
 ```
-where ‘Private Test Network’ is the name of a virtual switch which provides an isolated network environment.
+where 'Private Test Network' is the name of a virtual switch which provides an isolated network environment.
 
 **Inject IP address using WMI**
 

@@ -1,7 +1,7 @@
 ---
 title:      "Dynamic Memory Coming to Hyper-V Part 4"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Dynamic Memory Coming to Hyper-V Part 4
 ms.date: 04/21/2010
 date:       2010-04-21 07:39:00

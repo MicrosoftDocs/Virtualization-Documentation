@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica Runbooks"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 02/20/2013
 date:       2013-02-20 06:21:43
 categories: hvr

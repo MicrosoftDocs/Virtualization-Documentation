@@ -1,7 +1,7 @@
 ---
 title:      "Why is the &#34;Hyper-V Replica Broker&#34; required?"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Why is the Hyper-V Replica Broker required?
 ms.date: 03/07/2012
 date:       2012-03-27 09:54:00
@@ -50,7 +50,7 @@ As part of creating the replica virtual machine, the Hyper-V Replica Broker is a
 
 ## Redirect traffic in case replica virtual machine migrates
 
-  * If the replica virtual machine migrates from one node (eg: R1.contoso.com) to another (eg: R2.contoso.com), the primary server falls back to the broker **_R-Broker-CAP_** with the question “where is the replica for the virtual machine **_VirtualMachine_Workload_** ”
+  * If the replica virtual machine migrates from one node (eg: R1.contoso.com) to another (eg: R2.contoso.com), the primary server falls back to the broker **_R-Broker-CAP_** with the question "where is the replica for the virtual machine **_VirtualMachine_Workload_** "
   * The broker locates the virtual machine in the cluster and returns the node name (R2.contoso.com) to the primary server. 
   * The primary server sends its subsequent requests to R2.contoso.com – the replication is re-established with no manual intervention.
 
@@ -68,12 +68,12 @@ As part of creating the replica virtual machine, the Hyper-V Replica Broker is a
 
 ·         Issue the following cmdlets to configure the broker: 
 
-_$ BrokerName = “P-Broker-CAP”_
+_$ BrokerName = "P-Broker-CAP"_
 
 _Add- ClusterServerRole -Name $BrokerName_
 
-_Add- ClusterResource -Name “Virtual Machine Replication Broker” -Type "Virtual Machine Replication Broker" -Group $BrokerName_
+_Add- ClusterResource -Name "Virtual Machine Replication Broker" -Type "Virtual Machine Replication Broker" -Group $BrokerName_
 
-_Add- ClusterResourceDependency “Virtual Machine Replication Broker” $BrokerName_
+_Add- ClusterResourceDependency "Virtual Machine Replication Broker" $BrokerName_
 
 _Start- ClusterGroup $BrokerName_

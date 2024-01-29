@@ -2,7 +2,7 @@
 title:      Networking 101 for Disaster Recovery to Microsoft Azure using Site Recovery
 description: Learn the basics of networking for Disaster Recovery when using Microsoft Azure Site Recovery.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2014-09-09 03:29:00
 ms.date: 09/09/2014
 categories: azure

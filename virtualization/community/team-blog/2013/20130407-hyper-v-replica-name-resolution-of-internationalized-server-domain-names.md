@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica - Name Resolution of Internationalized Server/Domain names"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Hyper-V Replica - Name Resolution of Internationalized Server/Domain names
 ms.date: 04/07/2013
 date:       2013-04-07 23:05:00
@@ -9,9 +9,9 @@ categories: hvr
 ---
 # Hyper-V Replica - Name Resolution of Internationalized Server/Domain names
 
-In a mixed language environment where the server name or domain name contains international characters, you might encounter an error at the time of enabling replication. The event viewer messages will tell you that “Hyper-V failed to enable replication for virtual machine” and “The server name or address could not be resolved (0x00002EE7)”. The problem could seem a little perplexing because pinging the same FQDN might work just fine. The problem occurs because of Hyper-V Replica’s dependency on HTTP.
+In a mixed language environment where the server name or domain name contains international characters, you might encounter an error at the time of enabling replication. The event viewer messages will tell you that "Hyper-V failed to enable replication for virtual machine" and "The server name or address could not be resolved (0x00002EE7)". The problem could seem a little perplexing because pinging the same FQDN might work just fine. The problem occurs because of Hyper-V Replica's dependency on HTTP.
 
-To work around the issue, an exception rule needs to be added to the primary server’s name resolution policies. Follow these steps to create the rule:
+To work around the issue, an exception rule needs to be added to the primary server's name resolution policies. Follow these steps to create the rule:
 
   1. Open the Local Group Policy Editor (Gpedit.msc).
   2. Under **Local Computer Policy** , expand **Computer Configuration** , **Windows Settings** , and then click **Name Resolution Policy**.

@@ -2,7 +2,7 @@
 title:      "TechEd North America 2012"
 description: Key takeaways from Jeff Woolsey's presentation at TechEd North America 2012.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2012-06-12 22:52:39
 ms.date: 06/12/2012
 categories: hvr

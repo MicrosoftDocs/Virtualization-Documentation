@@ -2,7 +2,7 @@
 title: New Hyper-V Survey
 description: Send us some feedback using this survey about shielded virtual machines and troubleshooting using Hyper-V.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2016-02-16 23:31:44
 ms.date: 02/16/2016
 categories: hyper-v

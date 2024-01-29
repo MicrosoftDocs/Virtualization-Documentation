@@ -1,7 +1,7 @@
 ---
 title:      "XenDesktop 7 Supports Windows Server 2012"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: XenDesktop 7 Supports Windows Server 2012
 ms.date: 05/23/2013
 date:       2013-05-23 09:00:00

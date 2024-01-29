@@ -2,7 +2,7 @@
 title:      "From 2010 to 2011&#58; Walking the Cloud Talk"
 description: The shift to cloud computing in 2010 and predictions about 2011
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2010-12-10 08:55:55
 ms.date: 12/10/2010
 categories: blogs

@@ -2,7 +2,7 @@
 title: Use NGINX to load balance across your Docker Swarm cluster
 description: Learn how to set up a containerized NGINX server to load balance traffic across a Docker swarm cluster.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2017-04-19 13:38:56
 ms.date: 04/19/2017
 categories: containers
@@ -32,7 +32,7 @@ Additionally, each host system should be configured with the following:
     * TCP and UDP port 7946 for communication among nodes
     * TCP and UDP port 4789 for overlay network traffic
 
-***Note on using two nodes rather than three:** _These instructions can be completed using just two nodes. However, currently there is a known bug on Windows which prevents containers from accessing their hosts using localhost or even the host’s external IP address (for more background on this, see Caveats and Gotchas below). This means that in order to access docker services via their exposed ports on the swarm hosts, the NGINX load balancer must not reside on the same host as any of the service container instances._ _Put another way, if you use only two nodes to complete this exercise, one of them will need to be dedicated to hosting the NGINX load balancer, leaving the other to be used as a swarm container host (i.e. you will have a single-host swarm cluster, a host dedicated to hosting your containerized NGINX load balancer)._
+***Note on using two nodes rather than three:** _These instructions can be completed using just two nodes. However, currently there is a known bug on Windows which prevents containers from accessing their hosts using localhost or even the host's external IP address (for more background on this, see Caveats and Gotchas below). This means that in order to access docker services via their exposed ports on the swarm hosts, the NGINX load balancer must not reside on the same host as any of the service container instances._ _Put another way, if you use only two nodes to complete this exercise, one of them will need to be dedicated to hosting the NGINX load balancer, leaving the other to be used as a swarm container host (i.e. you will have a single-host swarm cluster, a host dedicated to hosting your containerized NGINX load balancer)._
 
 ## Step 1: Build an NGINX container image
 
@@ -66,13 +66,13 @@ First, run the container:
     C:\temp> docker run -it -p 80:80 nginx
 ```
 
-Next, open a new cmdlet window and use the ` docker ps ` command to see that the container is running. Note its ID. The ID of your container is the value of ` <CONTAINERID> `in the next command. Get the container’s IP address:
+Next, open a new cmdlet window and use the ` docker ps ` command to see that the container is running. Note its ID. The ID of your container is the value of ` <CONTAINERID> `in the next command. Get the container's IP address:
 
 ```code
     C:\temp> docker exec <CONTAINERID> ipconfig
 ```
 
-For example, your container’s IP address may be 172.17.176.155, as in the example output shown below. <!--[![nginxipconfig](https://msdnshared.blob.core.windows.net/media/2017/03/nginxipconfig.png)](https://msdnshared.blob.core.windows.net/media/2017/03/nginxipconfig.png)--> Next, open a browser on your container host and put your container’s IP address in the address bar. You should see a confirmation page, indicating that NGINX is successfully running in your container. <!--[![nginxconfirmation](https://msdnshared.blob.core.windows.net/media/2017/03/nginxconfirmation.png)](https://msdnshared.blob.core.windows.net/media/2017/03/nginxconfirmation.png)  -->
+For example, your container's IP address may be 172.17.176.155, as in the example output shown below. <!--[![nginxipconfig](https://msdnshared.blob.core.windows.net/media/2017/03/nginxipconfig.png)](https://msdnshared.blob.core.windows.net/media/2017/03/nginxipconfig.png)--> Next, open a browser on your container host and put your container's IP address in the address bar. You should see a confirmation page, indicating that NGINX is successfully running in your container. <!--[![nginxconfirmation](https://msdnshared.blob.core.windows.net/media/2017/03/nginxconfirmation.png)](https://msdnshared.blob.core.windows.net/media/2017/03/nginxconfirmation.png)  -->
 
 ## Step 2: Build images for two containerized IIS Web services
 
@@ -109,11 +109,11 @@ Next, use the `docker ps` command to see that the container is running. Note its
     C:\temp> docker exec <CONTAINERID> ipconfig
 ```
 
-Now open a browser on your container host and put your container’s IP address in the address bar. You should see a confirmation page, indicating that the IIS Web server role is successfully running in your container. <!--[![iisconfirmation](https://msdnshared.blob.core.windows.net/media/2017/03/iisconfirmation1.png)](https://msdnshared.blob.core.windows.net/media/2017/03/iisconfirmation1.png)-->
+Now open a browser on your container host and put your container's IP address in the address bar. You should see a confirmation page, indicating that the IIS Web server role is successfully running in your container. <!--[![iisconfirmation](https://msdnshared.blob.core.windows.net/media/2017/03/iisconfirmation1.png)](https://msdnshared.blob.core.windows.net/media/2017/03/iisconfirmation1.png)-->
 
 ### Build two custom IIS Web server images
 
-In this step, we’ll be replacing the IIS landing/confirmation page that we saw above with custom HTML pages--two different images, corresponding to two different web container images. In a later step, we’ll be using our NGINX container to load balance across instances of these two images. _Because the images will be different, we will easily see the load balancing in action as it shifts between the content being served by the containers we’ll define in this step._ First, on your host machine create a simple file called, index_1.html. In the file type any text. For example, your index_1.html file might look like this: <!--[![index1](https://msdnshared.blob.core.windows.net/media/2017/03/index1-500x191.png) ](https://msdnshared.blob.core.windows.net/media/2017/03/index1.png)--> Now create a second file, index_2.html. Again, in the file type any text. For example, your index_2.html file might look like this: <!--[![index2](https://msdnshared.blob.core.windows.net/media/2017/03/index21-500x219.png)](https://msdnshared.blob.core.windows.net/media/2017/03/index21.png)--> Now we’ll use these HTML documents to make two custom web service images. If the iis-web container instance that you just built is not still running, run a new one, then get the ID of the container using:
+In this step, we'll be replacing the IIS landing/confirmation page that we saw above with custom HTML pages--two different images, corresponding to two different web container images. In a later step, we'll be using our NGINX container to load balance across instances of these two images. _Because the images will be different, we will easily see the load balancing in action as it shifts between the content being served by the containers we'll define in this step._ First, on your host machine create a simple file called, index_1.html. In the file type any text. For example, your index_1.html file might look like this: <!--[![index1](https://msdnshared.blob.core.windows.net/media/2017/03/index1-500x191.png) ](https://msdnshared.blob.core.windows.net/media/2017/03/index1.png)--> Now create a second file, index_2.html. Again, in the file type any text. For example, your index_2.html file might look like this: <!--[![index2](https://msdnshared.blob.core.windows.net/media/2017/03/index21-500x219.png)](https://msdnshared.blob.core.windows.net/media/2017/03/index21.png)--> Now we'll use these HTML documents to make two custom web service images. If the iis-web container instance that you just built is not still running, run a new one, then get the ID of the container using:
 
 ```code
     C:\temp> docker exec <CONTAINERID> ipconfig
@@ -125,7 +125,7 @@ Now, copy your index_1.html file from your host onto the IIS container instance 
     C:\temp> docker cp index_1.html <CONTAINERID>:C:\inetpub\wwwroot\index.html
 ```
 
-Next, stop and commit the container in its current state. This will create a container image for the first web service. Let’s call this first image, "web_1."
+Next, stop and commit the container in its current state. This will create a container image for the first web service. Let's call this first image, "web_1."
 
 ```code
     C:\> docker stop <CONTAINERID>
@@ -141,7 +141,7 @@ Now, start the container again and repeat the previous steps to create a second 
     C:\> docker commit <CONTAINERID> web_2
 ```
 
-You have now created images for two unique web services; if you view the Docker images on your host by running `docker images`, you should see that you have two new container images—“web_1” and “web_2”.
+You have now created images for two unique web services; if you view the Docker images on your host by running `docker images`, you should see that you have two new container images—"web_1" and "web_2".
 
 ### Put the IIS container images on all of your swarm hosts
 
@@ -185,7 +185,7 @@ _**Note:** Before moving on, `stop` and `remove` any NGINX or IIS containers run
     C:\temp> docker rm <CONTAINERID>
 ```
 
-Next, we’re going to use the "web_1" and "web_2" container images that we created in previous steps of this exercise to deploy two container services to our swarm cluster. To create the services, run the following commands from your swarm manager node:
+Next, we're going to use the "web_1" and "web_2" container images that we created in previous steps of this exercise to deploy two container services to our swarm cluster. To create the services, run the following commands from your swarm manager node:
 
 ```code
     C:\ > docker service create --name=s1 --publish mode=host,target=80 --endpoint-mode dnsrr web_1 powershell -command {echo sleep; sleep 360000;}
@@ -220,7 +220,7 @@ The commands in the previous step will deploy one container instance/replica for
 
 ## Step 5: Configure your NGINX load balancer
 
-Now that services are running on your swarm, you can configure the NGINX load balancer to distribute traffic across the container instances for those services. _Of course, generally load balancers are used to balance traffic across instances of a single service, not multiple services. For the purpose of clarity, this example uses two services so that the function of the load balancer can be easily seen; because the two services are serving different HTML content, we’ll clearly see how the load balancer is distributing requests between them._
+Now that services are running on your swarm, you can configure the NGINX load balancer to distribute traffic across the container instances for those services. _Of course, generally load balancers are used to balance traffic across instances of a single service, not multiple services. For the purpose of clarity, this example uses two services so that the function of the load balancer can be easily seen; because the two services are serving different HTML content, we'll clearly see how the load balancer is distributing requests between them._
 
 ### The nginx.conf file
 
@@ -250,10 +250,10 @@ Before you can adjust your nginx.conf file, you must obtain the required informa
 
 The above commands will return details on every container instance running for each of your services, across all of your swarm hosts.
 
-  * One column of the output, the “ports” column, includes port information for each host of the form `*:<HOSTPORT>->80/tcp`. The values of `<HOSTPORT>` will be different for each container instance, as each container is published on its own host port.
-  * Another column, the “node” column, will tell you which machine the container is running on. This is how you will identify the host IP information for each endpoint.
+  * One column of the output, the "ports" column, includes port information for each host of the form `*:<HOSTPORT>->80/tcp`. The values of `<HOSTPORT>` will be different for each container instance, as each container is published on its own host port.
+  * Another column, the "node" column, will tell you which machine the container is running on. This is how you will identify the host IP information for each endpoint.
 
-You now have the port information and node for each container endpoint. Next, use that information to populate the upstream field of your nginx.conf file; for each endpoint, add a server to the upstream field of the file, replacing the field with the IP address of each node (if you don’t have this, run ipconfig on each host machine to obtain it), and the field with the corresponding host port. For example, if you have two swarm hosts (IP addresses 172.17.0.10 and 172.17.0.11), each running three containers your list of servers will end up looking something like this:
+You now have the port information and node for each container endpoint. Next, use that information to populate the upstream field of your nginx.conf file; for each endpoint, add a server to the upstream field of the file, replacing the field with the IP address of each node (if you don't have this, run ipconfig on each host machine to obtain it), and the field with the corresponding host port. For example, if you have two swarm hosts (IP addresses 172.17.0.10 and 172.17.0.11), each running three containers your list of servers will end up looking something like this:
 
 ```code
     upstream appcluster {
@@ -301,19 +301,19 @@ Your load balancer should now be fully configured to distribute traffic across t
   * If accessing from the NGINX host machine: Type the IP address of the nginx container running on the machine into the browser address bar. (This is the value of `<CONTAINERID>` above).
   * If accessing from another host machine (with network access to the NGINX host machine): Type the IP address of the NGINX host machine into the browser address bar.
 
-Once you’ve typed the applicable address into the browser address bar, press enter and wait for the web page to load. Once it loads, you should see one of the HTML pages that you created in step 2. Now press refresh on the page. You may need to refresh more than once, but after just a few times you should see the other HTML page that you created in step 2. If you continue refreshing, you will see the two different HTML pages that you used to define the services, web_1 and web_2, being accessed in a round-robin pattern (round-robin is the default load balancing strategy for NGINX, [but there are others](http://nginx.org/en/docs/http/load_balancing.html)). The animated image below demonstrated the behavior that you should see. <!--[![](https://msdnshared.blob.core.windows.net/media/2017/03/refresh.gif)](https://msdnshared.blob.core.windows.net/media/2017/03/refresh.gif)--> As a reminder, below is the full configuration with all three nodes. When you're refreshing your web page view, you're repeatedly accessing the NGINX node, which is distributing your GET request to the container endpoints running on the swarm nodes. Each time you resend the request, the load balancer has the opportunity to route you to a different endpoint, resulting in your being served a different web page, depending on whether or not your request was routed to an S1 or S2 endpoint. <!--[![configuration_full](https://msdnshared.blob.core.windows.net/media/2017/03/configuration_full.png)](https://msdnshared.blob.core.windows.net/media/2017/03/configuration_full.png)-->
+Once you've typed the applicable address into the browser address bar, press enter and wait for the web page to load. Once it loads, you should see one of the HTML pages that you created in step 2. Now press refresh on the page. You may need to refresh more than once, but after just a few times you should see the other HTML page that you created in step 2. If you continue refreshing, you will see the two different HTML pages that you used to define the services, web_1 and web_2, being accessed in a round-robin pattern (round-robin is the default load balancing strategy for NGINX, [but there are others](http://nginx.org/en/docs/http/load_balancing.html)). The animated image below demonstrated the behavior that you should see. <!--[![](https://msdnshared.blob.core.windows.net/media/2017/03/refresh.gif)](https://msdnshared.blob.core.windows.net/media/2017/03/refresh.gif)--> As a reminder, below is the full configuration with all three nodes. When you're refreshing your web page view, you're repeatedly accessing the NGINX node, which is distributing your GET request to the container endpoints running on the swarm nodes. Each time you resend the request, the load balancer has the opportunity to route you to a different endpoint, resulting in your being served a different web page, depending on whether or not your request was routed to an S1 or S2 endpoint. <!--[![configuration_full](https://msdnshared.blob.core.windows.net/media/2017/03/configuration_full.png)](https://msdnshared.blob.core.windows.net/media/2017/03/configuration_full.png)-->
 
 ## Caveats and gotchas
 
 #### Is there a way to publish a single port for my service, so that I can load balance across just a few endpoints rather than all of my container instances?
 
-Unfortunately, we do not yet support publishing a single port for a service on Windows. This feature is swarm mode’s routing mesh feature—a feature that allows you to publish ports for a service, so that that service is accessible to external resources via that port on every swarm node. [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for swarm mode on Windows is not yet supported, but will be coming soon.
+Unfortunately, we do not yet support publishing a single port for a service on Windows. This feature is swarm mode's routing mesh feature—a feature that allows you to publish ports for a service, so that that service is accessible to external resources via that port on every swarm node. [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for swarm mode on Windows is not yet supported, but will be coming soon.
 
-#### Why can’t I run my containerized load balancer on one of my swarm nodes?
+#### Why can't I run my containerized load balancer on one of my swarm nodes?
 
-Currently, there is a known bug on Windows, which prevents containers from accessing their hosts using localhost or even the host’s external IP address. This means containers cannot access their host’s exposed ports—the can only access exposed ports on other hosts. In the context of this exercise, this means that the NGINX load balancer must be running on its own host, and never on the same host as any services that it needs to via exposed ports. Put another way, for the containerized NGINX load balancer to balance across the two web services defined in this exercise, s1 and s2, it cannot be running on a swarm node—if it were running on a swarm node, it would be unable to access any containers on that node _via host exposed ports._ Of course, an additional caveat here is that containers do not need to be accessed via host exposed ports. It is also possible to access containers directly, using the container IP and published port. If this instead were done for this exercise, the NGINX load balancer would need to be configured to access:
+Currently, there is a known bug on Windows, which prevents containers from accessing their hosts using localhost or even the host's external IP address. This means containers cannot access their host's exposed ports—the can only access exposed ports on other hosts. In the context of this exercise, this means that the NGINX load balancer must be running on its own host, and never on the same host as any services that it needs to via exposed ports. Put another way, for the containerized NGINX load balancer to balance across the two web services defined in this exercise, s1 and s2, it cannot be running on a swarm node—if it were running on a swarm node, it would be unable to access any containers on that node _via host exposed ports._ Of course, an additional caveat here is that containers do not need to be accessed via host exposed ports. It is also possible to access containers directly, using the container IP and published port. If this instead were done for this exercise, the NGINX load balancer would need to be configured to access:
 
   * containers that share its host by their container IP and port
-  * containers that do not share its host by their host’s IP and exposed port
+  * containers that do not share its host by their host's IP and exposed port
 
 There is no problem with configuring the load balancer in this way, other than the added complexity that it introduces compared to simply putting the load balancer on its own machine, so that containers can be uniformly accessed via their hosts.

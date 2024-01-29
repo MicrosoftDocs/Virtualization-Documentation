@@ -2,7 +2,7 @@
 title:      "More on Service Pack 1 & VMware ASLR Guidance"
 description: This blog is a follow-up to VMware and their guidance on Address Space Layout Randomization (ASLR).
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2011-02-15 09:00:00
 ms.date: 02/15/2011
 categories: dynamic-memory
@@ -16,7 +16,7 @@ A frequent follow-up question to hit my inbox was from folks interested in a lis
 
 No problem.
 
-Here’s the link to the documentation for Windows 7 and Windows Server 2008 R2 SP1 (KB976932). This KB includes:
+Here's the link to the documentation for Windows 7 and Windows Server 2008 R2 SP1 (KB976932). This KB includes:
 
   * Hotfixes and Security Updates
   * Notable Changes
@@ -36,19 +36,19 @@ _From Jeff Buell, Perf Engineering at VMware_
 
 _I'm from the performance engineering team at VMware.  We take both performance recommendations and security very seriously.  As you state, ASLR is a good security feature. VMware has never recommended disabling it.  If you have a reference saying otherwise, I'd love to see it.  _
 
-First, let me say thank you to Jeff Buell for his swift response. I’m glad to see that Microsoft and VMware Engineering _**agree that ASLR is a good security feature**_ and that disabling ASLR is a terrible suggestion. Jeff appears to be concerned and willing to rectify this situation. Again, thank you Jeff. Here are the specifics.
+First, let me say thank you to Jeff Buell for his swift response. I'm glad to see that Microsoft and VMware Engineering _**agree that ASLR is a good security feature**_ and that disabling ASLR is a terrible suggestion. Jeff appears to be concerned and willing to rectify this situation. Again, thank you Jeff. Here are the specifics.
 
 **Looks Like It Started Here …**
 
-It appears that the suggestion to disable ASLR began right here on VMware’s public blog page.[Check out here](http://blogs.vmware.com/view/2009/04/vista-and-vmware-view.html)
+It appears that the suggestion to disable ASLR began right here on VMware's public blog page.[Check out here](http://blogs.vmware.com/view/2009/04/vista-and-vmware-view.html)
 
 
 
-The post casually mentions that disabling ASLR will “lower overall security,” and then continues to make things worse by telling people to disable NX and DEP, two additional security mitigations. Because of this post, others picked up on this recommendation (such as in VMware’s community forums) and promoted this idea without anyone from VMware disputing this unfortunate suggestion: [here](https://communities.vmware.com/message/1294525#1294525)
+The post casually mentions that disabling ASLR will "lower overall security," and then continues to make things worse by telling people to disable NX and DEP, two additional security mitigations. Because of this post, others picked up on this recommendation (such as in VMware's community forums) and promoted this idea without anyone from VMware disputing this unfortunate suggestion: [here](https://communities.vmware.com/message/1294525#1294525)
 
 
 
-At first, I thought these were isolated incidents, but then I started receiving regular inquiries from customers who said they were considering a VDI deployment and specifically asking if Microsoft had a recommendation or support stance regarding ASLR. Considering the fact that ASLR is transparent and you have to go out of your way to disable it (you have to be admin and then go to the Registry), I knew this wasn’t isolated anymore.
+At first, I thought these were isolated incidents, but then I started receiving regular inquiries from customers who said they were considering a VDI deployment and specifically asking if Microsoft had a recommendation or support stance regarding ASLR. Considering the fact that ASLR is transparent and you have to go out of your way to disable it (you have to be admin and then go to the Registry), I knew this wasn't isolated anymore.
 
 Finally, at VMworld 2010 in Europe, VMware Director of Product Marketing, Eric Horschman, delivered session TA8270 titled, **Get the Best VM Density From Your Virtualization Platform.**
 
@@ -60,7 +60,7 @@ _**Best practices
 > Upgrade to vSphere 4.1 for memory compression  
 > Install VMware tools in guest OSes to enable ballooning  
 > Protect your critical VMs  
-> Add VMs until “active” memory overcommit is reached  
+> Add VMs until "active" memory overcommit is reached  
 > Allow DRS to balance VMs across your cluster_
 
 **_Advanced techniques_**
@@ -70,11 +70,11 @@ _> Use flash solid state disks for ESXi swapfile datastore (for overcommitted ho
 > Consolidate similar guest OSes and applications to assist Transparent Page Sharing  
 > Disable ASLR in windows 2008/Windows 7 guests for VDI workloads_
 
-When a VMware Director is promoting such poor advice, we were concerned our customers were putting themselves in undue risk and wanted to clearly articulate the Microsoft position. There is an apparent disconnect between VMware engineering and marketing on this topic, and I’m glad to see the engineering team speak out.
+When a VMware Director is promoting such poor advice, we were concerned our customers were putting themselves in undue risk and wanted to clearly articulate the Microsoft position. There is an apparent disconnect between VMware engineering and marketing on this topic, and I'm glad to see the engineering team speak out.
 
-Again, my thanks to Jeff Buell from VMware Engineering for his quick response to this matter. I’m going to assume that VMware will clarify their position internally and appropriately message their position externally by fixing these external links. I’d be relieved to see VMware no longer recommend users disable fundamental security mitigations, such as ASLR, any further.
+Again, my thanks to Jeff Buell from VMware Engineering for his quick response to this matter. I'm going to assume that VMware will clarify their position internally and appropriately message their position externally by fixing these external links. I'd be relieved to see VMware no longer recommend users disable fundamental security mitigations, such as ASLR, any further.
 
-In my next blog, I’ll discuss some points you should consider make when determining what guest OS to deploy for VDI.
+In my next blog, I'll discuss some points you should consider make when determining what guest OS to deploy for VDI.
 
 Cheers,
 

@@ -1,7 +1,7 @@
 ---
 title:      "Upcoming Preview of 'Disaster Recovery to Azure' Functionality in Hyper-V Recovery Manager"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 05/15/2014
 date:       2014-05-15 06:02:35
 categories: uncategorized

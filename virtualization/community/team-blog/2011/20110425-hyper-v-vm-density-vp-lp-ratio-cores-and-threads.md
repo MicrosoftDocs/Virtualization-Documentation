@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V VM Density, VP&#58;LP Ratio, Cores and Threads..."
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Hyper-V VM Density, LP Ratio, Cores and Threads...
 ms.date: 04/25/2011
 date:       2011-04-25 06:18:00
@@ -13,11 +13,11 @@ Virtualization Nation,
 
  
 
-With Windows Server 2008 R2 SP1 Hyper-V and Microsoft Hyper-V Server 2008 R2 SP1, we focused Hyper-V development on enhancing Virtual Desktop Infrastructure (VDI) scenarios, which resulted in the introduction of Dynamic Memory and RemoteFX. In addition, we increased the maximum number of running virtual processors (VP) per logical processor (LP) from 8:1 to 12:1 when running Windows 7 as the guest operating system for VDI deployments. In making this change and discussing the VP:LP ratio with you, I’ve noticed that there’s some confusion as to what this metric really means and how it compares to other virtualization vendors. Let’s discuss.
+With Windows Server 2008 R2 SP1 Hyper-V and Microsoft Hyper-V Server 2008 R2 SP1, we focused Hyper-V development on enhancing Virtual Desktop Infrastructure (VDI) scenarios, which resulted in the introduction of Dynamic Memory and RemoteFX. In addition, we increased the maximum number of running virtual processors (VP) per logical processor (LP) from 8:1 to 12:1 when running Windows 7 as the guest operating system for VDI deployments. In making this change and discussing the VP:LP ratio with you, I've noticed that there's some confusion as to what this metric really means and how it compares to other virtualization vendors. Let's discuss.
 
  
 
-I’ve noticed differences in how Microsoft--versus other virtualization vendors--expresses the maximum number of virtual processors that can run on a physical processor. It seems we’ve inadvertently created some confusion as to the maximum number of supported virtual processors on a server running Hyper-V. Here’s the crux of the problem:
+I've noticed differences in how Microsoft--versus other virtualization vendors--expresses the maximum number of virtual processors that can run on a physical processor. It seems we've inadvertently created some confusion as to the maximum number of supported virtual processors on a server running Hyper-V. Here's the crux of the problem:
 
 ·         Other virtualization vendors provide a maximum for virtual processors **_per core_**.
 
@@ -25,7 +25,7 @@ I’ve noticed differences in how Microsoft--versus other virtualization vendors
 
  
 
-What ends up happening is that customers ask about the ratios and here’s what happens:
+What ends up happening is that customers ask about the ratios and here's what happens:
 
 1.       Vendor A responds 16:1 (with the qualifier that your mileage will vary…).
 
@@ -33,13 +33,13 @@ What ends up happening is that customers ask about the ratios and here’s what 
 
  
 
-The issue is we’re comparing apples and oranges. When we talk about physical processors, that includes symmetric multi-threading where there are two threads (i.e., logical processors) per core. Remember, Microsoft provides a maximum of virtual processors **_per_ _logical processor_** where a logical processor **_equals a core or thread_**. To do apples-to-apples comparison, when you ask about the **_maximum virtual processors per core for Hyper-V_** , the answer really is:
+The issue is we're comparing apples and oranges. When we talk about physical processors, that includes symmetric multi-threading where there are two threads (i.e., logical processors) per core. Remember, Microsoft provides a maximum of virtual processors **_per_ _logical processor_** where a logical processor **_equals a core or thread_**. To do apples-to-apples comparison, when you ask about the **_maximum virtual processors per core for Hyper-V_** , the answer really is:
 
 ·         Up to 24:1 for Win 7 for VDI and 16:1 for non-VDI (all other guest operating systems)
 
  
 
-…and up to a maximum of 384 running virtual machines and/or 512 virtual processors per server (whichever comes first). To make things easy to understand, I’ve provided the formulas and tables below.
+…and up to a maximum of 384 running virtual machines and/or 512 virtual processors per server (whichever comes first). To make things easy to understand, I've provided the formulas and tables below.
 
  
 
@@ -51,7 +51,7 @@ The issue is we’re comparing apples and oranges. When we talk about physical p
 
 ==============================================
 
-In the case of a VDI scenario with Windows 7 as the guest with a 12:1 (VP:LP) ratio, here’s the formula and the table:
+In the case of a VDI scenario with Windows 7 as the guest with a 12:1 (VP:LP) ratio, here's the formula and the table:
 
  
 
@@ -227,7 +227,7 @@ In the case of a VDI scenario with Windows 7 as the guest with a 12:1 (VP:LP) ra
 
 ==============================================
 
-For all other guest operating systems, the maximum supported ratio is 8:1. Here’s the formula and table.
+For all other guest operating systems, the maximum supported ratio is 8:1. Here's the formula and table.
 
  
 

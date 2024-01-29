@@ -1,7 +1,7 @@
 ---
 title:      "Excluding virtual disks in Hyper-V Replica"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 05/11/2014
 date:       2014-05-11 04:00:00
 categories: hvr
@@ -15,12 +15,12 @@ Since its introduction in Windows Server 2012, Hyper-V Replica has provided a wa
 
 Excluding disks from replication is done because:
 
-  1. The data churned on the excluded disk is not important or doesn’t need to be replicated    (and) 
+  1. The data churned on the excluded disk is not important or doesn't need to be replicated    (and) 
   2. Storage and network resources can be saved by not replicating this churn 
 
 
 
-Point #1 is worth elaborating on a little. What data isn't “important”? The lens used to judge the importance of replicated data is its usefulness at the time of Failover. Data that is not replicated _should_ also not be needed at the time of failover. Lack of this data would then also not impact the Recovery Point Objective (RPO) in any material way.
+Point #1 is worth elaborating on a little. What data isn't "important"? The lens used to judge the importance of replicated data is its usefulness at the time of Failover. Data that is not replicated _should_ also not be needed at the time of failover. Lack of this data would then also not impact the Recovery Point Objective (RPO) in any material way.
 
 
 
@@ -43,7 +43,7 @@ _Figure 1:   Changing the location of the System Page File to another disk/volu
 
 #### Excluding disks in the Hyper-V Replica UI
 
-Right-click on a VM and select “ **Enable Replication…** ”. This will bring up the wizard that walks you through the various inputs required to enable replication on the VM. The screen titled “ **Choose Replication VHDs** ” is where you deselect the virtual disks that you do not want to replicate. By default, all virtual disks will be selected for replication.
+Right-click on a VM and select " **Enable Replication…** ". This will bring up the wizard that walks you through the various inputs required to enable replication on the VM. The screen titled " **Choose Replication VHDs** " is where you deselect the virtual disks that you do not want to replicate. By default, all virtual disks will be selected for replication.
 
 _Figure 2:   Excluding the page file virtual disk from a virtual machine_
 
@@ -63,7 +63,7 @@ _Figure 3:   List of disks included for and excluded from replication _<!--[![F
 
 ## Impact of disk exclusion
 
-Enable replication | A placeholder disk (for use during initial replication) is not created on the Replica VM. The excluded disk doesn’t exist on the replica in any form.  
+Enable replication | A placeholder disk (for use during initial replication) is not created on the Replica VM. The excluded disk doesn't exist on the replica in any form.  
 ---|---  
 Initial replication | The data from the excluded disks are not transferred to the replica site.   
 Delta replication | The churn on any of the excluded disks is not transferred to the replica site.  
@@ -255,7 +255,7 @@ param (
     }
 ```
 
-The script can also be customized for use with [Azure Hyper-V Recovery Manager](https://azure.microsoft.com/services/recovery-manager/), but we’ll save that for another post! 
+The script can also be customized for use with [Azure Hyper-V Recovery Manager](https://azure.microsoft.com/services/recovery-manager/), but we'll save that for another post! 
 
 ## Capacity Planner and disk exclusion
 

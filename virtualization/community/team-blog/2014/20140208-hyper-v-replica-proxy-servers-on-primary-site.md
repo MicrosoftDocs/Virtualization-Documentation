@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V Replica & Proxy Servers on primary site"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 02/08/2014
 categories: hvr
 description: This article discusses various errors while using Hyper-V Replica and Proxy Servers.
@@ -18,7 +18,7 @@ I have a **Forefront TMG 2010** acting as a proxy server and the logs in the pro
 
 <!--[![Proxy server logs](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_2AAF3CF4.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_387EF23E.png)-->
 
-I also had _[netmon](https://www.microsoft.com/en-in/download/details.aspx?id=4865)_ running in my primary server and the logs didn’t indicate too much other than for the fact that the connection never made it to the replica server – something happened between the primary and replica server which caused the connection to be terminated. The primary server name in this deployment is prb8.hvrlab.com and the proxy server is w2k8r2proxy1.hvrlab.com. 
+I also had _[netmon](https://www.microsoft.com/en-in/download/details.aspx?id=4865)_ running in my primary server and the logs didn't indicate too much other than for the fact that the connection never made it to the replica server – something happened between the primary and replica server which caused the connection to be terminated. The primary server name in this deployment is prb8.hvrlab.com and the proxy server is w2k8r2proxy1.hvrlab.com. 
 
 <!--[![Primary server](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image12_thumb_5A8395A8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image12_4B4A9C2A.png)-->
 
@@ -34,7 +34,7 @@ The proxy server returns a _what-uh?_ response in the form of a bad-request
 
 <!--[![Bad-request response](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_7CA42F52.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_4FF8E4C8.png)-->
 
-That isn’t superhelpful by any means and the error message unfortunately isn’t too specific either. But now you know the reason for the failure – the proxy server terminates the connection the connection request and it never reaches the replica server. 
+That isn't superhelpful by any means and the error message unfortunately isn't too specific either. But now you know the reason for the failure – the proxy server terminates the connection the connection request and it never reaches the replica server. 
 
 So how do we work around it – there are two ways (1) Bypass the proxy server (2) Use cert based authentication (another blog for some other day).
 
@@ -50,4 +50,4 @@ Enable-VMReplication -vmname NewVM5 -AuthenticationType Kerberos -ReplicaServerN
 Start-VMInitialReplication -vmname NewVM5
 ```
 
-This is not available in the Hyper-V Manager or Failover Cluster Manager UI. It’s supported only in PowerShell (and WMI). Running the above cmdlets will create the replication request and start the initial replication.
+This is not available in the Hyper-V Manager or Failover Cluster Manager UI. It's supported only in PowerShell (and WMI). Running the above cmdlets will create the replication request and start the initial replication.

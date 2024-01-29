@@ -1,7 +1,7 @@
 ---
 title:      "Enabling Linux Support on Windows Server 2012 R2 Hyper-V"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Enabling Linux Support on Windows Server 2012 R2 Hyper-V
 ms.date: 07/24/2013
 date:       2013-07-24 08:30:00
@@ -9,11 +9,11 @@ categories: uncategorized
 ---
 # Enabling Linux Support on Windows Server 2012 R2 Hyper-V
 
-_This post is a part of the nine-part “_ _What ’s New in Windows Server & System Center 2012 R2_ _” series that is featured on Brad Anderson ’s _[**_In the Cloud_**](https://blogs.technet.com/b/in_the_cloud/) _blog.   Today’s blog post covers Linux Support on Windows Server 2012 R2 and how it applies to Brad’s larger topic of “Transform the Datacenter”.  To read that post and see the other technologies discussed, read today’s post:  “_[ _What ’s New in 2012 R2:  Enabling Open Source Software_](https://blogs.technet.com/b/in_the_cloud/archive/2013/07/24/what-s-new-in-2012-r2-enabling-open-source-software.aspx) _. ”  _
+_This post is a part of the nine-part "_ _What 's New in Windows Server & System Center 2012 R2_ _" series that is featured on Brad Anderson 's _[**_In the Cloud_**](https://blogs.technet.com/b/in_the_cloud/) _blog.   Today's blog post covers Linux Support on Windows Server 2012 R2 and how it applies to Brad's larger topic of "Transform the Datacenter".  To read that post and see the other technologies discussed, read today's post:  "_[ _What 's New in 2012 R2:  Enabling Open Source Software_](https://blogs.technet.com/b/in_the_cloud/archive/2013/07/24/what-s-new-in-2012-r2-enabling-open-source-software.aspx) _. "  _
 
-The ability to provision Linux on Hyper-V and Windows Azure is one of Microsoft’s core efforts towards enabling great Open Source Software support. As part of this initiative, the Microsoft Linux Integration Services (LIS) team pursues ongoing development of enlightened Linux drivers that are directly checked in to the Linux upstream kernel thereby allowing direct integration into upcoming releases of major distributions such as CentOS, Debian, Red Hat, SUSE and Ubuntu.
+The ability to provision Linux on Hyper-V and Windows Azure is one of Microsoft's core efforts towards enabling great Open Source Software support. As part of this initiative, the Microsoft Linux Integration Services (LIS) team pursues ongoing development of enlightened Linux drivers that are directly checked in to the Linux upstream kernel thereby allowing direct integration into upcoming releases of major distributions such as CentOS, Debian, Red Hat, SUSE and Ubuntu.
 
-The Integration Services were originally shipped as a download from Microsoft’s sites. Linux users could download and install these drivers and contact Microsoft for any requisite support. As the drivers have matured, they are now delivered directly through the Linux distributions. Not only does this approach avoid the extra step of downloading drivers from Microsoft’s site but it also allows users to leverage their existing support contracts with Linux vendors. 
+The Integration Services were originally shipped as a download from Microsoft's sites. Linux users could download and install these drivers and contact Microsoft for any requisite support. As the drivers have matured, they are now delivered directly through the Linux distributions. Not only does this approach avoid the extra step of downloading drivers from Microsoft's site but it also allows users to leverage their existing support contracts with Linux vendors. 
 
 For example Red Hat has certified enlightened drivers for Hyper-V on Red Hat Enterprise Linux (RHEL) 5.9 and certification of RHEL 6.4 should be complete by summer 2013. This will allow customers to directly obtain Red Hat support for any issues encountered while running RHEL 5.9/6.4 on Hyper-V.
 
@@ -83,7 +83,7 @@ _**Figure** **1** **Configuring a Linux virtual machine with Dynamic Memory**_  
 
   _ **Figure** **3** **Server and client statistics for an overloaded Linux apache server configured with static RAM**_
 
- Next consider the case of the apache server hosted in a Linux virtual machine configured with dynamic memory. Figure 4 shows that for this server the amount of available memory quickly ramps up through Hyper-V’s hot-add mechanism to over 2GB and the number of transactions/second is 120 with an average latency/transaction of 182 ms during the warm up phase itself.
+ Next consider the case of the apache server hosted in a Linux virtual machine configured with dynamic memory. Figure 4 shows that for this server the amount of available memory quickly ramps up through Hyper-V's hot-add mechanism to over 2GB and the number of transactions/second is 120 with an average latency/transaction of 182 ms during the warm up phase itself.
 
 <!--[![Server and client statistics during startup phase of Linux apache server configured with Dynamic RAM](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3731.10.200.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/3731.10.200.png)[![Figure 4 part 2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5381.WindowsPowershell.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/5381.WindowsPowershell.png) -->
 
@@ -172,7 +172,7 @@ _**Figure** **14** **New NMIs issued to the Linux virtual machine**_
 
 **7.        ****Specification of Memory Mapped I/O (MMIO) gap**
 
-Linux based appliance manufacturers use the MMIO gap (also known as PCI hole) to divide the available physical memory between the Just Enough Operating System (JeOS) that boots up the appliance and the actual software infrastructure that powers the appliance. Inability to configure the MMIO gap causes the JeOS to consume all of the available memory leaving nothing for the appliance’s custom software infrastructure. This shortcoming inhibits the development of Hyper-V based virtual appliances.
+Linux based appliance manufacturers use the MMIO gap (also known as PCI hole) to divide the available physical memory between the Just Enough Operating System (JeOS) that boots up the appliance and the actual software infrastructure that powers the appliance. Inability to configure the MMIO gap causes the JeOS to consume all of the available memory leaving nothing for the appliance's custom software infrastructure. This shortcoming inhibits the development of Hyper-V based virtual appliances.
 
 The Windows Server 2012 R2 Hyper-V infrastructure allows appliance manufacturers to configure the location of the MMIO gap. Availability of this feature facilitates the provisioning of Hyper-V powered virtual appliances in hosted environments. The following paragraphs provide technical details on this feature.
 
@@ -259,10 +259,10 @@ function SetMMIOGap([INT] $newGapSize)
     return $false  
 }
 
-The location of the MMIO gap can be verified by searching the keyword “pci_bus” in the post boot dmesg log of the Linux virtual machine. This output containing the keyword should provide the start memory address of the MMIO gap. The size of the MMIO gap can then be verified by subtracting the start address from 4GB represented in hexadecimal.
+The location of the MMIO gap can be verified by searching the keyword "pci_bus" in the post boot dmesg log of the Linux virtual machine. This output containing the keyword should provide the start memory address of the MMIO gap. The size of the MMIO gap can then be verified by subtracting the start address from 4GB represented in hexadecimal.
 
 **Summary**
 
 Over the past year, the LIS team added a slew of features to enable great support for Linux virtual machines running on Hyper-V. These features will not only simplify the process of hosting Linux on Hyper-V but will also provide superior consolidation and improved performance for Linux workloads. As of now the team is actively working with various Linux vendors to bring these features in newer distribution releases. The team is eager to hear customer feedback and invites any feature proposals that will help improve Linux hosters experience on Hyper-V. Customers may get in touch with the team through [linuxic@microsoft.com](mailto:linuxic@microsoft.com) or thorough the Linux Kernel Mailing List([here](https://lkml.org/)).
 
-_To see all of the posts in this series, check out the_ _What ’s New in Windows Server & System Center 2012 R2_ _archive_
+_To see all of the posts in this series, check out the_ _What 's New in Windows Server & System Center 2012 R2_ _archive_

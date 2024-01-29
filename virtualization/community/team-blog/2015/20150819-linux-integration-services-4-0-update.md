@@ -2,7 +2,7 @@
 title: Linux Integration Services 4.0 Update
 description: Learn more about the 4.0.11 update for Linux Integration Services on Hyper-V and Microsoft Azure.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2015-08-19 17:00:00
 ms.date: 08/19/2015
 categories: lis-hyperv-linux
@@ -19,7 +19,7 @@ The LIS binaries are available either as a tar file that can be uploaded to your
 
 A ReadMe file has been provided to provide information on the installation procedure, feature set, and issues.
 
-See also the TechNet article “[Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)” for a comparison of LIS features and best practices for use.  
+See also the TechNet article "[Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)" for a comparison of LIS features and best practices for use.  
   
 As LIS code is released under the GNU Public License version 2 (GPLv2) and are freely available at the [LIS GitHub project](https://github.com/LIS). LIS code is also regularly submitted to the upstream Linux kernel and documented on the [Linux kernel mailing list (lkml)](https://lkml.org/).
 

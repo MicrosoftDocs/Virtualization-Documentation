@@ -1,7 +1,7 @@
 ---
 title:      "Disaster Recovery to Microsoft Azure – Part 2"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 06/21/2014
 date:       2014-06-21 04:34:03
 categories: asr
@@ -13,15 +13,15 @@ Continuing from the previous [blog](https://blogs.technet.com/b/virtualization/a
 
 Love it??? Talk about it, try it and share your comments. 
 
-Let’s retrace the journey - in Jan 2014, we announced the General Availability of **Hyper-V Recovery Manager** **(HRM).** HRM  enabled customers to co-ordinate protection and recovery of virtualized workloads between SCVMM managed clouds. Using this Azure service, customers could setup, monitor and orchestrate protection and recovery of their Virtual Machines on top of Windows Server 2012, WS2012 R2 Hyper-V Replica. 
+Let's retrace the journey - in Jan 2014, we announced the General Availability of **Hyper-V Recovery Manager** **(HRM).** HRM  enabled customers to co-ordinate protection and recovery of virtualized workloads between SCVMM managed clouds. Using this Azure service, customers could setup, monitor and orchestrate protection and recovery of their Virtual Machines on top of Windows Server 2012, WS2012 R2 Hyper-V Replica. 
 
-Like Hyper-V Replica, the solution works great when our customers had a secondary location. But what if it isn’t the case. After all, the CAPEX and OPEX cost of building and maintaining multiple datacenters is high. One of the common questions/suggestions/feedback to our team was around using Azure as a secondary data center. Azure provides a world class, reliable, resilient platform – at a fraction of a cost compared to running your workloads or in this case, maintaining a secondary datacenter. 
+Like Hyper-V Replica, the solution works great when our customers had a secondary location. But what if it isn't the case. After all, the CAPEX and OPEX cost of building and maintaining multiple datacenters is high. One of the common questions/suggestions/feedback to our team was around using Azure as a secondary data center. Azure provides a world class, reliable, resilient platform – at a fraction of a cost compared to running your workloads or in this case, maintaining a secondary datacenter. 
 
 The rebranded HRM service - **Azure Site Recovery (ASR)** \- delivers this capability. On 6/19, we announced the availability of the preview version of ASR which orchestrates, manages and replicates VMs **to** Azure. 
 
-When a disaster strikes the customer’s on-premises, ASR can “ **failover** ” the replicated VMs **in** Azure. 
+When a disaster strikes the customer's on-premises, ASR can " **failover** " the replicated VMs **in** Azure. 
 
-And once the customer recovers the on-premises site, ASR can “ **failback** ” the Azure IaaS VMs **to** the customer’s private cloud. We want you to decide which VM runs where and when! 
+And once the customer recovers the on-premises site, ASR can " **failback** " the Azure IaaS VMs **to** the customer's private cloud. We want you to decide which VM runs where and when! 
 
 There is some exciting technology built on top of Azure which enables the scenario and in the coming weeks we will dive deep into the workflows and the technology. 
 
@@ -46,7 +46,7 @@ Top of my head, the key features in the product are:
 
  
 
-  * **Encryption @ Rest:** You got to love this – we encrypt the data *before* it leaves your on-premises server. We never decrypt the payload till you initiate a failover. You own the encryption key and it’s safe with you. 
+  * **Encryption @ Rest:** You got to love this – we encrypt the data *before* it leaves your on-premises server. We never decrypt the payload till you initiate a failover. You own the encryption key and it's safe with you. 
 
 
 
