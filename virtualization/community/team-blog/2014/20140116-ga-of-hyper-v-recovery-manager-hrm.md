@@ -5,8 +5,8 @@ ms.author: sethm
 ms.date: 01/16/2014
 categories: hrm
 description: This article shares the general availability of HRM and provides relevant resources.
-ms.prod: windows-server
-ms.technology: hyper-v
+ms.service: windows-server
+ms.subservice: hyper-v
 ---
 # Hyper-V (HRM) Recovery Manager Availability
 

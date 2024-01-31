@@ -6,8 +6,8 @@ ms.author: scooley
 date: 2016-07-12 16:19:23
 ms.date: 07/31/2019
 categories: hyper-v
-ms.prod: windows-server
-ms.technology: hyper-v
+ms.service: windows-server
+ms.subservice: hyper-v
 ---
 # Which Linux Integration Services should I use in my Linux VMs?
 

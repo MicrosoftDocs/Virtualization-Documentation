@@ -109,13 +109,10 @@
         "team-blog/2010/20100716-installing-service-pack-1-on-microsoft-hyper-v-server-2008-r2.md": "microsoft-hyper-v-server-2008-R2",
         "team-blog/2010/20100729-linux-integration-services-v2-1-now-available.md": "system-center",
         "team-blog/2010/20100922-reducing-the-cost-of-virtualization-using-microsoft-hyper-v-and-system-center.md": "system-center",
-        "team-blog/2010/20101001-lg-network-monitor-is-desktop-as-a-service-thanks-to-remotefx.md": "windows-7",
-        "team-blog/2010/20101012-med-v-2-0-beta-is-available-for-windows-7-migrations.md": "windows-7",
         "team-blog/2010/20101107-hyper-v-cloud-program-for-private-cloud.md": "windows-server",
         "team-blog/2010/20101108-hyper-v-dynamic-memory-test-for-vdi-density.md": "dynamics",
         "team-blog/2011/20110209-windows-7-and-windows-server-2008-r2-sp1-add-new-virtualization-innovations.md": "dynamics",
         "team-blog/2011/20110210-hyper-v-cloud-fast-track-architecture-brief.md": "system-center",
-        "team-blog/2011/20110215-more-on-service-pack-1-vmware-aslr-guidance.md": "windows-7",
         "team-blog/2011/20110321-customer-spotlight-target-corp-eliminates-performance-bottlenecks-with-hyper-v.md": "sql",
         "team-blog/2011/20110324-mms-2011-system-center-2012-and-more.md": "system-center",
         "team-blog/2011/20110325-microsoft-server-application-virtualization-its-all-about-the-app.md": "system-center",
@@ -124,7 +121,6 @@
         "team-blog/2011/20110404-microsoft-workloads-best-on-hyper-v.md": "sql",
         "team-blog/2011/20110406-microsoft-and-dell-management-and-virtualization-solutions-partnership.md": "windows-server-2008",
         "team-blog/2011/20110413-windows-server-hyper-v-and-system-center-raise-the-stakes-in-the-virtualization-race.md": "system-center",
-        "team-blog/2011/20110425-hyper-v-vm-density-vp-lp-ratio-cores-and-threads.md": "windows-7",
         "team-blog/2011/20110430-hyper-v-r2-sandy-bridge-and-avx.md": "windows-server-2008",
         "team-blog/2011/20110505-5nine-manager-for-hyper-v.md": "microsoft-hyper-v-server-2008-R2",
         "team-blog/2011/20110506-uncle-teched-wants-you.md": "windows-server",
@@ -256,7 +252,11 @@
         "team-blog/2014/20140505-replication-health-windows-server-2012-r2.md": "windows-server-2012",
         "team-blog/2014/20140506-hyper-v-events-at-teched-north-america.md": "windows-server-2012",
         "team-blog/2014/20140511-excluding-virtual-disks-in-hyper-v-replica.md": "windows-server-2012",
-        "team-blog/2015/20150223-hyper-v-receives-red-hat-certification.md": "windows-server-2012"
+        "team-blog/2015/20150223-hyper-v-receives-red-hat-certification.md": "windows-server-2012",
+        "team-blog/2010/20101001-lg-network-monitor-is-desktop-as-a-service-thanks-to-remotefx.md": "windows-7",
+        "team-blog/2010/20101012-med-v-2-0-beta-is-available-for-windows-7-migrations.md": "windows-7",
+        "team-blog/2011/20110215-more-on-service-pack-1-vmware-aslr-guidance.md": "windows-7",
+        "team-blog/2011/20110425-hyper-v-vm-density-vp-lp-ratio-cores-and-threads.md": "windows-7"
       }
     },  
     "extendBreadcrumb": true
