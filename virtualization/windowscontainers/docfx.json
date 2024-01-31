@@ -42,14 +42,14 @@
         "**/*.md": "windows-containers"
       },
       "ms.service": {
-        "**/*.md": "windows-server"
+        "**/*.md": "windows-server",
+        "index.yml": "windows-server",
+        "**/faq.yml": "windows-server"
       },
       "ms.topic": {
         "**/*.md": "article"
       },
       "ms.prod": {
-        "index.yml": "windows-server",
-        "**/faq.yml": "windows-server"
       },
       "ms.technology": {
       }
