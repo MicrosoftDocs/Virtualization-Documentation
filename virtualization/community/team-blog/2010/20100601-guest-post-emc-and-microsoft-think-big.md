@@ -1,6 +1,6 @@
 ---
 title:      "Guest post&#58; EMC and Microsoft Think Big"
-description: EMC and Microsoft have been thinking big lately.  How big?  We've set out to build and test one of the largest Hyper-V environments in the world.
+description: EMC and Microsoft have been thinking big lately.  How big?  We’ve set out to build and test one of the largest Hyper-V environments in the world.
 author: sethmanheim
 ms.author: sethm
 date:       2010-06-01 15:49:00

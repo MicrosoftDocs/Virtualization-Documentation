@@ -1,7 +1,7 @@
 ---
 title:      "Mark your calendar&#58; Watch the MS Management Summit keynotes"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Mark your calendar; Watch the MS Management Summit keynotes
 ms.date: 04/16/2010
 date:       2010-04-16 09:15:00

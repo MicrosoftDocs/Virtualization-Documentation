@@ -3,7 +3,7 @@ title: The GetArchitecture function
 description: Learn about the GetArchitecture function.
 ms.date: 04/18/2022
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ---
 
 # GetArchitecture function

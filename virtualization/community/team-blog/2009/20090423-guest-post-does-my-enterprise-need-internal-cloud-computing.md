@@ -1,8 +1,8 @@
 ---
 title:      "Guest post&#58; &#34;Does my enterprise need internal cloud computing?&#34;"
 description: With the latest announcement that I can buy an “Internal Cloud” for only $3,495 per CPU, I figured I’d share my thoughts about the real vs. perceived benefits of this new private compute cloud idea.
-author: mabriggs
-ms.author: mabrigg
+author: sethmanheim
+ms.author: sethm
 ms.date: 04/23/2009
 date:       2009-04-23 11:45:00
 categories: cloud-computing

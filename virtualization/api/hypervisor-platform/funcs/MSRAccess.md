@@ -2,7 +2,7 @@
 title: Exit caused by an MSR access
 description: Learn about context data for a VM exit caused by an MSR access.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 04/20/2022
 ---
 

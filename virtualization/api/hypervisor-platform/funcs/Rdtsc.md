@@ -2,7 +2,7 @@
 title: Exit caused by an rdtsc(p) instruction
 description: Learn about context data for an exit caused by an rdtsc(p) instruction.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 04/20/2022
 ---
 

@@ -2,7 +2,7 @@
 title: WHV_EMULATOR_MEMORY_ACCESS_INFO method
 description: Learn about the WHV_EMULATOR_MEMORY_ACCESS_INFO method. 
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 04/19/2022
 ---
 

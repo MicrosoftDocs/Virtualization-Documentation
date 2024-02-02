@@ -1,7 +1,7 @@
 ---
 title:      "Windows Server 8&#58; An Introduction"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Windows Server; an introduction
 ms.date: 09/11/2011
 date:       2011-09-11 10:37:00

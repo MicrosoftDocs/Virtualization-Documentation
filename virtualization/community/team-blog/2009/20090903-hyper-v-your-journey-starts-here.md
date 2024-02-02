@@ -1,7 +1,7 @@
 ---
 title:      "Hyper-V, your journey starts here!"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Hyper-V, your journey starts here!
 ms.date: 09/03/2009
 date:       2009-09-03 12:59:00

@@ -1,7 +1,7 @@
 ---
 title:      "What to expect in the System Center Orchestrator Beta!"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: What to expect in the System Center Orchestrator Beta!
 ms.date: 05/18/2011
 date:       2011-05-18 09:22:10
