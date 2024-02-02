@@ -31,16 +31,10 @@
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
     "fileMetadata": {
-      "ms.subservice": {
-        "team-blog/2011/20110608-special-guest-blog-post-cdw-talks-cloud-computing.md": "microsoft-mpi",
-        "team-blog/2017/20170419-use-nginx-to-load-balance-across-your-docker-swarm-cluster.md": "microsoft-mpi"
-      },
-      "ms.technology": {
-      },
       "ms.topic": {
         "team-blog/**/*.md": "article"
       },
-      "ms.prod": {
+      "ms.service": {
         "team-blog/**/*.md": "virtualization",
         "team-blog/2009/20090206-windows-server-2008-hyper-v-security-guide-beta-now-available.md": "windows-server-2008",
         "team-blog/2009/20090209-guest-post-virtualization-drives-250000-in-real-savings.md": "windows",
@@ -216,9 +210,7 @@
         "team-blog/2017/20171208-wsl-interoperability-with-docker.md": "windows",
         "team-blog/2017/20171214-migrating-local-vm-owner-certificates-for-vms-with-vtpm.md": "powershell",
         "team-blog/2017/20171219-tar-and-curl-come-to-windows.md": "windows",
-        "team-blog/2018/20180123-looking-at-the-hyper-v-event-log-january-2018-edition.md": "windows"
-      },
-      "ms.service": {
+        "team-blog/2018/20180123-looking-at-the-hyper-v-event-log-january-2018-edition.md": "windows",
         "team-blog/2014/20140621-disaster-recovery-to-microsoft-azure-part-2.md": "site-recovery",
         "team-blog/2014/20140625-azure-site-recovery-faq.md": "site-recovery",
         "team-blog/2014/20140706-azure-site-recovery-case-of-the-network-connection-failure.md": "site-recovery",
@@ -257,6 +249,10 @@
         "team-blog/2010/20101012-med-v-2-0-beta-is-available-for-windows-7-migrations.md": "windows-7",
         "team-blog/2011/20110215-more-on-service-pack-1-vmware-aslr-guidance.md": "windows-7",
         "team-blog/2011/20110425-hyper-v-vm-density-vp-lp-ratio-cores-and-threads.md": "windows-7"
+      },
+      "ms.subservice": {
+        "team-blog/2011/20110608-special-guest-blog-post-cdw-talks-cloud-computing.md": "microsoft-mpi",
+        "team-blog/2017/20170419-use-nginx-to-load-balance-across-your-docker-swarm-cluster.md": "microsoft-mpi"
       }
     },  
     "extendBreadcrumb": true
