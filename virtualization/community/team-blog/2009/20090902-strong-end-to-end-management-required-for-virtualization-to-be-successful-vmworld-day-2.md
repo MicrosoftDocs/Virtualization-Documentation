@@ -1,7 +1,7 @@
 ---
 title:      "Strong end to end management required for Virtualization to be successful (VMworld day 2)"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Strong end to end management required for Virtualization to be successful (VMworld day 2)
 ms.date: 09/02/2009
 date:       2009-09-02 09:39:00

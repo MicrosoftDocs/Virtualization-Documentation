@@ -1,7 +1,7 @@
 ---
 title:      "LiveMeeting on Microsoft’s Integrated Virtualization Strategy&#58; Thursday, Nov. 19, 8&#58;00 AM PST"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: LiveMeeting on Microsoft’s Integrated Virtualization Strategy; Thursday, Nov. 19, 8;00 AM PST
 ms.date: 11/17/2009
 date:       2009-11-17 14:44:48

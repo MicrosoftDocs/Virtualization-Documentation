@@ -2,7 +2,7 @@
 title:      "Guest Post&#58; All Eyes on SteelEye with DataKeeper Support for Hyper-V"
 description: SteelEye delivers DataKeeper Cluster Edition, a real-time data replication solution for Hyper-V.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2009-08-20 00:10:00
 ms.date: 08/20/2009
 categories: disaster-recovery

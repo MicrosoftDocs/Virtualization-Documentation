@@ -2,7 +2,7 @@
 title: MMIO Access for QEMU
 description: Learn about the MMIO Access for QEMU. 
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 04/19/2022
 ---
 # MMIO Access for QEMU

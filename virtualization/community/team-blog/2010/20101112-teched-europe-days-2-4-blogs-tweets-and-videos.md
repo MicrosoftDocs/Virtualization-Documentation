@@ -2,7 +2,7 @@
 title:      "TechEd Europe Days 2-4&#58; Blogs, Tweets, and Videos"
 description: Blogs, tweets, and videos from TechEd Europe 2010 days 2-4
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2010-11-12 02:54:04
 ms.date: 11/12/2010
 categories: blogs

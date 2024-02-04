@@ -1,7 +1,7 @@
 ---
 title:      "What's coming up with the next versions of SCOM and SCVMM"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: What's coming up with the next versions of SCOM and SCVMM
 ms.date: 04/22/2010
 date:       2010-04-22 12:29:00

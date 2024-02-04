@@ -1,8 +1,8 @@
 ---
 title: Known issues
 description: Known issues for Windows Server containers.
-author: taylob
-ms.author: mabrigg
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
 ms.date: 07/21/2021
 ---

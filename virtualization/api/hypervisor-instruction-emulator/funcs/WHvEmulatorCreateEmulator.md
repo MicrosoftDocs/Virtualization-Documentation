@@ -2,7 +2,7 @@
 title: WHvEmulatorCreateEmulator method
 description: Learn about the WHvEmulatorCreateEmulator method. 
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 04/19/2022
 ---
 

@@ -1,7 +1,7 @@
 ---
 title:      "Windows Server 8&#58; Standards-Based Storage Management"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Windows Server Standards-Based Storage Management
 ms.date: 10/14/2011
 date:       2011-10-14 11:49:00

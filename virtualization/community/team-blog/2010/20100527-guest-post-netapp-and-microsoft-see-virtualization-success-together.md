@@ -1,8 +1,8 @@
 ---
 title:      "Guest post&#58; NetApp and Microsoft See Virtualization Success Together"
 description: Microsoft and NetApp have been helping customers get the most out of their virtualized infrastructure.
-author: mabriggs
-ms.author: mabrigg
+author: sethmanheim
+ms.author: sethm
 date:       2010-05-27 12:51:27
 ms.date: 05/27/2010
 categories: citrix

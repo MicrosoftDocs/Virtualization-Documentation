@@ -1,8 +1,8 @@
 ---
 title: HcsGetOperationResultAndProcessInfo
 description: HcsGetOperationResultAndProcessInfo
-author: faymeng
-ms.author: mabrigg
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
 ms.service: virtualization
 ms.date: 06/09/2021

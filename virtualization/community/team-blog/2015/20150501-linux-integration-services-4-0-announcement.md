@@ -2,7 +2,7 @@
 title: Linux Integration Services 4.0 Announcement
 description: Announcing the release of Linux Integration Services 4.0 and expanded access to Hyper-V virtual machine features.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2015-05-01 13:43:00
 ms.date: 05/01/2015
 categories: uncategorized

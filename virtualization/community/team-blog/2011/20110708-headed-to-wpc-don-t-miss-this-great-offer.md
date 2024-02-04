@@ -1,7 +1,7 @@
 ---
 title:      "Headed to WPC? Don't miss this great offer!"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Headed to WPC? Don't miss this great offer!
 ms.date: 07/08/2011
 date:       2011-07-08 12:21:58

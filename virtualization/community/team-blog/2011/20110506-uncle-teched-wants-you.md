@@ -1,7 +1,7 @@
 ---
 title:      "Uncle TechEd Wants You!"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Uncle TechEd Wants You!
 ms.date: 05/06/2011
 date:       2011-05-06 16:08:00
