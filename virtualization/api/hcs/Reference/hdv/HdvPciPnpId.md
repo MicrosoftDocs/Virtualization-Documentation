@@ -4,7 +4,6 @@ description: HDV_PCI_PNP_ID structure
 author: sethmanheim
 ms.author: sethm
 ms.topic: reference
-ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HDV_PCI_PNP_ID structure
