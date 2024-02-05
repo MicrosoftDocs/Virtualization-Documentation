@@ -2,7 +2,7 @@
 title: Delete a partition and release the resources that the partition was using
 description: Learn about the WHvDeletePartition function that lets you delete a partition, remove the partition object, and release the resources that the partition was using.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 04/20/2022
 ---
 

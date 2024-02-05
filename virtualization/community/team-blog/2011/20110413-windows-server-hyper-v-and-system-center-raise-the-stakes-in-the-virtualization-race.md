@@ -1,7 +1,7 @@
 ---
 title:      "Windows Server Hyper-V and System Center Raise the Stakes in the Virtualization Race"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Windows Server Hyper-V and System Center Raise the Stakes in the Virtualization Race
 ms.date: 04/13/2011
 date:       2011-04-13 09:30:00

@@ -1,7 +1,7 @@
 ---
 title:      "RT&#58; Happy Data Privacy Day from System Center"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Happy Data Privacy Day from System Center
 ms.date: 01/28/2010
 date:       2010-01-28 10:45:00

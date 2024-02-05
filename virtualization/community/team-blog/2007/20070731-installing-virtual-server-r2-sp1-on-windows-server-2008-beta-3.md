@@ -6,7 +6,6 @@ author: scooley
 ms.author: scooley
 ms.date: 7/31/2007
 ms.topic: article
-ms.prod: virtualization
 ms.assetid: c5ab90f3-e7fa-442f-bd82-3c8f34a6a61d
 ---
 

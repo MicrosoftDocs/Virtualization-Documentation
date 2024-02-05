@@ -3,7 +3,7 @@ title: The ReleaseSavedStateFiles function
 description: Releases the given VmSavedStateDump provider that matches the supplied ID.
 ms.date: 04/19/2022
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ---
 
 # ReleaseSavedStateFiles function

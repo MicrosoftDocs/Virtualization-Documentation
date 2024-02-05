@@ -5,7 +5,7 @@ ms.author: sethm
 ms.date: 09/24/2013
 categories: hvr
 description: Converting fixed virtual disks to dynamic disks to trim the size down.
-ms.prod: virtualization
+ms.service: virtualization
 ---
 # How to Convert Fixed Disks to Dynamic Disks
 

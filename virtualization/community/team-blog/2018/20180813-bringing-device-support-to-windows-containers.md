@@ -6,7 +6,6 @@ author: cwilhit
 ms.author: scooley 
 ms.date: 8/13/2018
 ms.topic: article
-ms.prod: virtualization
 ms.assetid: 
 ---
 # Bringing Device Support to Windows Containers

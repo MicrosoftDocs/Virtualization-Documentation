@@ -1,7 +1,7 @@
 ---
 title:      "Update&#58; What you won't see at VMworld 2009"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Update - What you won't see at VMworld 2009
 ms.date: 08/26/2009
 date:       2009-08-26 19:30:00

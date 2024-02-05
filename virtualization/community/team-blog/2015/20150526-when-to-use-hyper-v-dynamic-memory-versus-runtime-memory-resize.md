@@ -6,7 +6,7 @@ ms.author: sethm
 date:       2015-05-26 14:30:14
 ms.date: 05/26/2015
 categories: dynamic-memory
-ms.prod: virtualization
+ms.service: virtualization
 ---
 # When to use Hyper-V Dynamic Memory versus Runtime Memory Resize
 

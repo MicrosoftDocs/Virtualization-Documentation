@@ -1,7 +1,7 @@
 ---
 title:      "Microsoft Virtualization&#58; Best Choice for MS Server Applications"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Microsoft Virtualization; Best Choice for MS Server Applications
 ms.date: 09/02/2009
 date:       2009-09-02 12:21:00
