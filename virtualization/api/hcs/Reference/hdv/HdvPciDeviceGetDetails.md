@@ -4,7 +4,6 @@ description: HDV_PCI_DEVICE_GET_DETAILS
 author: sethmanheim
 ms.author: sethm
 ms.topic: reference
-ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HDV_PCI_DEVICE_GET_DETAILS
@@ -56,6 +55,6 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_GET_DETAILS)(
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
-| **Library** | ComputeCore.ext |
-| **Dll** | ComputeCore.ext |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |
 |    |    |
