@@ -2,7 +2,7 @@
 title: VM exit caused by a memory access
 description: Learn about context data for a VM exit caused by a memory access.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 04/20/2022
 ---
 

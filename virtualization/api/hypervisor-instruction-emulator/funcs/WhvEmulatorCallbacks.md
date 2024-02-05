@@ -2,7 +2,7 @@
 title: WHV_EMULATOR_CALLBACKS method
 description: Learn about the WHV_EMULATOR_CALLBACKS method. 
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ms.date: 04/19/2022
 ---
 

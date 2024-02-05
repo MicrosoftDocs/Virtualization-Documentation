@@ -3,7 +3,7 @@ title: The ReadGuestRawSavedMemory function
 description: Reads raw memory from the saved state file. This function reads raw memory from the saved state file as if it were a flat memory layout, regardless of the guest memory layout.
 ms.date: 04/19/2022
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 ---
 
 # ReadGuestRawSavedMemory function

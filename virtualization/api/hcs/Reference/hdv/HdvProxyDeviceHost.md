@@ -4,7 +4,6 @@ description: HdvProxyDeviceHost function
 author: sethmanheim
 ms.author: sethm
 ms.topic: reference
-ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HdvProxyDeviceHost
@@ -68,4 +67,3 @@ If the function fails, the return value is an  `HRESULT` error code.
 | **Target Platform** | Windows |
 | **Library** | vmdevicehost.lib |
 | **Dll** | vmdevicehost.dll |
-
