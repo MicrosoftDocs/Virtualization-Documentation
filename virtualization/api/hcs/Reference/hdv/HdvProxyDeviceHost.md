@@ -68,4 +68,3 @@ If the function fails, the return value is an  `HRESULT` error code.
 | **Target Platform** | Windows |
 | **Library** | vmdevicehost.lib |
 | **Dll** | vmdevicehost.dll |
-
