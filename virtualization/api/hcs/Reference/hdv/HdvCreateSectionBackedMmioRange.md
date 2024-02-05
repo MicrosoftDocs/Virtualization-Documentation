@@ -4,7 +4,6 @@ description: HdvCreateSectionBackedMmioRange
 author: sethmanheim
 ms.author: sethm
 ms.topic: reference
-ms.service: virtualization
 ms.date: 02/05/2024
 api_name:
 - HdvCreateSectionBackedMmioRange
