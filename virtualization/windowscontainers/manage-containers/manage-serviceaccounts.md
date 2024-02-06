@@ -330,4 +330,3 @@ If you run into any issues during setup, check our [troubleshooting guide](gmsa-
 ## Additional resources
 
 - To learn more about gMSAs, see the [group Managed Service Accounts overview](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
-- For a video demonstration, watch our [recorded demo](https://youtu.be/cZHPz80I-3s?t=2672) from Ignite 2016.
