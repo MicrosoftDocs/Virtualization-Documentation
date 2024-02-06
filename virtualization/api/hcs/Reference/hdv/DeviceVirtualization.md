@@ -4,7 +4,6 @@ description: Device Virtualization
 author: sethmanheim
 ms.author: sethm
 ms.topic: reference
-ms.service: virtualization
 ms.date: 06/12/2023
 api_name:
 - Device Virtualization
@@ -29,7 +28,9 @@ The following section contains the definitions of the APIs for device virtualiza
 |---|---|
 |[HdvCreateDeviceInstance](HdvCreateDeviceInstance.md)|Creates a device instance in the current host.|
 |[HdvCreateGuestMemoryAperture](./HdvCreateGuestMemoryAperture.md)|Creates a guest RAM aperture in the address space of the calling process.|
+|[HdvCreateSectionBackedMmioRange](HdvCreateSectionBackedMmioRange.md)| Maps a section into device MMIO space, so that accesses to those addresses are backed by the section.|
 |[HdvDeliverGuestInterrupt](./HdvDeliverGuestInterrupt.md)|Delivers a message signaled interrupt (MSI) to the guest partition.|
+|[HdvDestroySectionBackedMmioRange](HdvDestroySectionBackedMmioRange.md)|Unmaps a section previously mapped via [HdvCreateSectionBackedMmioRange](HdvCreateSectionBackedMmioRange.md).|
 |[HdvDeviceType](HdvDeviceType.md)|Discriminator for the Emulated device type.|
 |[HdvInitializeDeviceHost](HdvInitializeDeviceHost.md)|Initializes a device emulator host in the caller's process.|
 |[HdvInitializeDeviceHostForProxy](HdvInitializeDeviceHostForProxy.md)|Initializes the device emulator host in the caller's process and associates it with the specified proxy.|

@@ -103,8 +103,12 @@
                   href: hcs/Reference/hdv/HdvCreateDeviceInstance.md
                 - name: HdvCreateGuestMemoryAperture
                   href: hcs/Reference/hdv/HdvCreateGuestMemoryAperture.md
+                - name: HdvCreateSectionBackedMmioRange
+                  href: hcs/Reference/hdv/HdvCreateSectionBackedMmioRange.md
                 - name: HdvDeliverGuestInterrupt
                   href: hcs/Reference/hdv/HdvDeliverGuestInterrupt.md
+                - name: HdvDestroySectionBackedMmioRange
+                  href: hcs/Reference/hdv/HdvDestroySectionBackedMmioRange.md
                 - name: HdvDeviceType
                   href: hcs/Reference/hdv/HdvDeviceType.md
                 - name: HdvInitializeDeviceHost

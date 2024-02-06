@@ -4,7 +4,6 @@ description: HdvWriteGuestMemory
 author: sethmanheim
 ms.author: sethm
 ms.topic: reference
-ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HdvWriteGuestMemory
@@ -57,6 +56,6 @@ HdvWriteGuestMemory(
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
-| **Library** | ComputeCore.ext |
-| **Dll** | ComputeCore.ext |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |
 |    |    |
