@@ -19,7 +19,7 @@ You need Docker in order to work with Windows Containers. Docker consists of the
 
 - [Install Docker](../quick-start/set-up-environment.md)
 
-For scripted installations, see [Use a script to install Docker EE](https://docs.mirantis.com/docker-enterprise/v3.1/dockeree-products/mcr/mcr-windows.html).
+For scripted installations, [use a script to install Mirantis Runtime (formerly Docker EE)](https://github.com/microsoft/Windows-Containers/blob/Main/helpful_tools/Install-MirantisContainerRuntime/install-mirantis-container-runtime.ps1).
 
 Before you can use Docker, you'll need to install the container images. For more information, see [docs for our container base images](../manage-containers/container-base-images.md).
 
