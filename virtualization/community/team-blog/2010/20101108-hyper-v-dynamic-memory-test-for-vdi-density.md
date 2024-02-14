@@ -6,7 +6,7 @@ ms.author: scooley
 date:       2010-11-08 01:30:00
 ms.date: 11/08/2010
 categories: dell
-ms.prod: virtualization
+ms.service: virtualization
 ---
 # Hyper-V Dynamic Memory test for VDI density
 

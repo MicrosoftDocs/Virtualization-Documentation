@@ -1,7 +1,7 @@
 ---
 title:      "MMS 2013 Labs&#58; Powered by Microsoft/HP Private Cloud..."
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: MMS 2013 Labs, Powered by Microsoft/HP Private Cloud
 ms.date: 05/29/2013
 date:       2013-05-29 06:54:00

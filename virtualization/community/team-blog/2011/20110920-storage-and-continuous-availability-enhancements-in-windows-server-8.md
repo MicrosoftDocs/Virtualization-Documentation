@@ -1,7 +1,7 @@
 ---
 title:      "Storage and Continuous Availability Enhancements in Windows Server 8"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Storage and Continuous Availability Enhancements in Windows Server 8
 ms.date: 09/20/2011
 date:       2011-09-20 10:20:00

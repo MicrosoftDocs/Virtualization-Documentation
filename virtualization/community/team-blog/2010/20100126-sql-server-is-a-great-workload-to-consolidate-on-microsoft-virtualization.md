@@ -1,7 +1,7 @@
 ---
 title:      "SQL Server is a Great Workload to Consolidate on Microsoft Virtualization"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: SQL Server is a Great Workload to Consolidate on Microsoft Virtualization
 ms.date: 01/26/2010
 date:       2010-01-26 05:51:00

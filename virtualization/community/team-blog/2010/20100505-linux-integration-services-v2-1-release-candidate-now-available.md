@@ -1,8 +1,8 @@
 ---
 title:      "Linux Integration Services v2.1 Release Candidate Now Available"
 description: The release candidate (RC) version of the Linux Integration Services for Microsoft Hyper-V.
-author: mabriggs
-ms.author: mabrigg
+author: sethmanheim
+ms.author: sethm
 date:       2010-05-05 11:15:00
 ms.date: 05/05/2010
 categories: hyper-v

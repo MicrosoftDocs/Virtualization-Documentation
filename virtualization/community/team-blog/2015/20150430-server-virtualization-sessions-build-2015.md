@@ -2,7 +2,7 @@
 title: Server Virtualization Sessions @ Build 2015
 description: An announcement for the Build 2015 event and what sessions are related to Server Virtualization and Server Application development.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2015-04-30 13:39:18
 ms.date: 04/30/2015
 categories: uncategorized

@@ -2,7 +2,7 @@
 title:      "CentOS, OpenSUSE & More Linux Distros on Hyper-V R2!"
 description:  Comments and reviews from the source code contributions to the Linux kernel under GPL V2.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2009-08-10 01:53:02
 ms.date: 08/10/2009
 categories: hyper-v

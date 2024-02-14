@@ -2,11 +2,11 @@
 title:      "Windows 7 and Windows Server 2008 R2 SP1 Add New Virtualization Innovations"
 description: The release announcement of Service Pack 1 for Windows Serer 2008 R2 and Windows 7 adding two new virtualization capabilities.
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 date:       2011-02-09 02:00:00
 ms.date: 02/09/2011
 categories: aslr
-ms.prod: virtualization
+ms.service: virtualization
 ---
 # Windows 7 and Windows Server 2008 R2 SP1 Add New Virtualization Innovations
 Virtualization Nation,

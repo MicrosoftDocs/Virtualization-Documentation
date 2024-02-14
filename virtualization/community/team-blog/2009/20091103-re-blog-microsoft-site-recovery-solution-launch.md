@@ -1,7 +1,7 @@
 ---
 title:      "Re-blog&#58; Microsoft Site Recovery Solution Launch"
 author: sethmanheim
-ms.author: mabrigg
+ms.author: sethm
 description: Re-blog Microsoft Site Recovery Solution Launch
 ms.date: 11/03/2009
 date:       2009-11-03 23:27:00

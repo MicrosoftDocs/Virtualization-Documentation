@@ -2,7 +2,7 @@
 title:      "Windows Server "8" Beta – Hyper-V Replica"
 author: sethmanheim
 ms.author: sethm
-description: Windows Server "8" Beta – Hyper-V Replica
+description: Windows Server “8” Beta – Hyper-V Replica
 ms.date: 03/09/2012
 date:       2012-03-09 06:12:00
 categories: hvr
