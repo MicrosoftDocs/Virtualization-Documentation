@@ -30,7 +30,7 @@ The containers can run all user mode binaries from their base layer except for t
 
 The following diagram illustrates the communication between user-mode and kernel-mode components.
 
-:::image type="content" source="media/portability/application-binary-interaface.png" alt-text="A diagram showing the stabilize ABI boundary. Host processes and services, as well container processes and services, use this abstracted layer to communicate with the underlying shared kernel.":::
+:::image type="content" source="media/portability/application-binary-interface.png" alt-text="A diagram showing the stabilize ABI boundary. Host processes and services, as well container processes and services, use this abstracted layer to communicate with the underlying shared kernel.":::
 
 ## Which versions can I use?
 
