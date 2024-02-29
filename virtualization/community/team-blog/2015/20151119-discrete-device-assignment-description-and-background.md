@@ -11,13 +11,13 @@ categories: dda
 
 With Windows Server 2016, we're introducing a new feature, called Discrete Device Assignment, in Hyper-V.  Users can now take some of the PCI Express devices in their systems and pass them through directly to a guest VM.  This is actually much of the same technology that we've used for SR-IOV networking in the past.  And because of that, instead of giving you a lot of background on how this all works, I'll just point to an excellent series of posts that John Howard did a few years ago about SR-IOV when used for networking.
 
-Everything you wanted to know about SR-IOV in Hyper-V part 1
+[Everything you wanted to know about SR-IOV in Hyper-V part 1](https://learn.microsoft.com/en-us/archive/blogs/jhoward/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-1)
 
-Everything you wanted to know about SR-IOV in Hyper-V part 2
+[Everything you wanted to know about SR-IOV in Hyper-V part 2](https://learn.microsoft.com/en-us/archive/blogs/jhoward/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-2)
 
-Everything you wanted to know about SR-IOV in Hyper-V part 3
+[Everything you wanted to know about SR-IOV in Hyper-V part 3](https://learn.microsoft.com/en-us/archive/blogs/jhoward/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-3)
 
-Everything you wanted to know about SR-IOV in Hyper-V part 4
+[Everything you wanted to know about SR-IOV in Hyper-V part 4](https://learn.microsoft.com/en-us/archive/blogs/jhoward/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-4)
 
 Now I've only linked the first four posts that John Howard did back in 2012 because those were the ones that discussed the internals of PCI Express and distributing actual devices among multiple operating systems.  The rest of his series is mostly about networking, and while I do recommend it, that's not what we're talking about here.
 
