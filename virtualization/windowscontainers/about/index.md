@@ -84,8 +84,6 @@ You can also use the interactive mode of containers to run conflicting instances
 
 Orchestrators are a critical piece of infrastructure when setting up a container-based environment. While you can manage a few containers manually using Docker and Windows, apps often make use of five, ten, or even hundreds of containers, which is where orchestrators come in.
 
-Container orchestrators were built to help manage containers at scale and in production. Orchestrators provide functionality for:
-
 Orchestrators help you grow containerized apps at scale, providing functionality for:
 
 - Deploying at scale
