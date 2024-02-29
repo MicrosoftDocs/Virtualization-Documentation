@@ -138,4 +138,4 @@ At this stage, the configuration of gMSA on AKS is completed. You can now deploy
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Configure gMSA on AKS with PowerShell module](./validate-gmsa-ps-module.md)
+> [Validate gMSA on AKS with PowerShell module](./validate-gmsa-ps-module.md)
