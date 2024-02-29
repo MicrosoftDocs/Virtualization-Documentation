@@ -29,6 +29,8 @@ To learn more about Nested Virtualization and supported scenarios, see [What is 
 
 >[!NOTE]
 > The guest can be any Windows supported guest operating system. Newer Windows operating systems may support enlightenments that improve performance.
+> To enable Nested Virtualization in an Azure VM, make sure to set Security Type as **"Standard"**.
+
 
 ## Configure Nested Virtualization
 
