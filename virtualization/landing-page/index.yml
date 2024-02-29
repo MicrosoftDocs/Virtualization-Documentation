@@ -1,13 +1,13 @@
 ### YamlMime:Hub
 
 title: Virtualization documentation # < 60 chars
-summary: Find info about virtualization on Windows 10 and Windows Server, including how to run virtual machines (VMs) and containers. # < 160 chars
+summary: Find info about virtualization on Windows and Windows Server, including how to run virtual machines (VMs) and containers. # < 160 chars
 # brand: aspnet | azure | dotnet | dynamics | m365 | ms-graph | office | power-bi | power-platform | sql | sql-server | vs | visual-studio | windows | xamarin
 brand: windows
 
 metadata:
   title: Virtualization documentation # Required; page title displayed in search results. Include the brand. < 60 chars.
-  description: Find info about virtualization on Windows 10 and Windows Server, including how to run virtual machines (VMs) and containers. # Required; article description that is displayed in search results. < 160 chars.
+  description: Find info about virtualization on Windows and Windows Server, including how to run virtual machines (VMs) and containers. # Required; article description that is displayed in search results. < 160 chars.
   ms.topic: hub-page # Required
   author: scooley #Required; your GitHub user alias, with correct capitalization.
   ms.service: virtualization
@@ -20,11 +20,11 @@ highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
     # Card
-    - title: Hyper-V on Windows 10
+    - title: Hyper-V on Windows
       itemType: overview
       url: /virtualization/hyper-v-on-windows/about/
     # Card
-    - title: Install Hyper-V on Windows 10
+    - title: Install Hyper-V on Windows
       itemType: how-to-guide
       url: /virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
     # Card
@@ -47,7 +47,7 @@ conceptualContent:
   # summary: Find related links to Containers and Hyper-V on Windows. # < 160 chars (optional)
   items:
     # Card
-    - title: Run virtual machines on Windows 10
+    - title: Run virtual machines on Windows
       links:
         - url: /virtualization/hyper-v-on-windows/quick-start/quick-create-virtual-machine
           itemType: quickstart
@@ -67,6 +67,9 @@ conceptualContent:
         - url: /windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines
           itemType: how-to-guide
           text: Create a virtual network switch
+        - url: https://www.microsoft.com/evalcenter/evaluate-windows-server-2022
+          itemType: download
+          text: Download Windows Server
     # Card
     - title: Run containers on Windows or Azure
       links:
@@ -110,11 +113,8 @@ conceptualContent:
           itemType: reference
           text: Hyper-V forum
     # Card
-    - title: Hyper-V Server and Documentation Archive
+    - title: Documentation Archive
       links:
-        - url: https://www.microsoft.com/evalcenter/evaluate-hyper-v-server-2019
-          itemType: download
-          text: Download Hyper-V Server 2019
         - url: /previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/mt169373(v=ws.11)
           itemType: overview
           text: Windows Server 2012 R2 and 2012
