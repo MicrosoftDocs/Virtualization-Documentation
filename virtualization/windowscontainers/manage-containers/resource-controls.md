@@ -64,7 +64,7 @@ For each resource this section provides a mapping between the Docker command lin
 
 | Resource | Location |
 |---|---|
-| Docker interface | [--io-maxbandwidth/--io-maxiops](https://docs.docker.com/edge/engine/reference/commandline/run/#usage) |
+| Docker interface | [--io-maxbandwidth/--io-maxiops](https://docs.docker.com/engine/reference/commandline/cli/) |
 | HCS interface | [StorageIOPSMaximum and StorageBandwidthMaximum](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Shared Kernel | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
 | Hyper-V isolation | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
@@ -73,7 +73,7 @@ For each resource this section provides a mapping between the Docker command lin
 
 | Resource | Location |
 |---|---|
-| Docker interface | [--storage-opt size=](https://docs.docker.com/edge/engine/reference/commandline/run/#set-storage-driver-options-per-container) |
+| Docker interface | [--storage-opt size=](https://docs.docker.com/compose/compose-file/05-services/#storage_opt) |
 | HCS interface | [StorageSandboxSize](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Shared Kernel | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
 | Hyper-V isolation | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
