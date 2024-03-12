@@ -36,7 +36,6 @@ The Hyper-V WMI APIs are publicly available **Hypercall APIs**.  Hypercall APIs 
 * Scheduler. (set scheduler policy management for CPU reserves, caps and weights)
 * and more
 
-The Microsoft Hypercall Interface is publicly available [here](https://www.microsoft.com/downloads/details.aspx?FamilyID=91E2E518-C62C-4FF2-8E50-3A37EA4100F5&displaylang=en).
 
 You may be wondering when someone would use the WMI APIs versus the Hypercall APIs. The Hyper-V WMI APIs are for creating, configuring and monitoring virtual resources while the Hypercall APIs are for very special purpose low-level work like IDE/debugger development.
 

@@ -37,7 +37,7 @@ Follow the latest stories, developments, and projects from the Hyper-V team, fol
 * [Announcing Windows Server 2016 Containers Preview](https://weblogs.asp.net/scottgu/announcing-windows-server-2016-containers-preview)
 * [Docker -Introducing the Technical Preview of Docker Enging for Windows Server 2016](https://blog.docker.com/2015/08/tp-docker-engine-windows-server-2016/)
 * Containers 101 Video
-* [Containers: Docker, Windows and Trends](https://azure.microsoft.com/blog/2015/08/17/containers-docker-windows-and-trends/)
+* [Containers: Docker, Windows and Trends](https://azure.microsoft.com/blog/containers-docker-windows-and-trends/)
 
 ### Blogs 
 * Channel 9 - The Containers Channel

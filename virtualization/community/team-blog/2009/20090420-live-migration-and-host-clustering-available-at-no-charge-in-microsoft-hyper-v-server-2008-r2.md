@@ -17,7 +17,7 @@ Microsoft Hyper-V Server 2008 R2 will continue to be free, and now will include 
 
 These same features also will be available in Windows Server 2008 R2 Hyper-v, which provides our customers with core virtualization features as part of Windows Server offering.  With Windows Server 2008 R2, customers also get flexible virtualization rights (e.g., 4 free virtual instances with Windows Server Enterprise Edition and unlimited virtual instances with Windows Server Datacenter Edition).
 
-You can download Microsoft Hyper-V Server 2008 R2 beta [here](https://www.microsoft.com/downloads/details.aspx?familyid=E464E255-CDD5-44B2-84E6-3233EAE3F356&displaylang=en). Microsoft Hyper-V Server 2008 R2 can be managed by System Center Virtual Machine Manager 2008 R2. You can download the beta [here](https://www.microsoft.com/systemcenter/virtualmachinemanager/en/us/r2-beta.aspx).
+Microsoft Hyper-V Server 2008 R2 can be managed by System Center Virtual Machine Manager 2008 R2. You can download the beta [here](https://www.microsoft.com/systemcenter/virtualmachinemanager/en/us/r2-beta.aspx).
 
 You can find more info on Microsoft’s virtualization products and solutions at [http://www.microsoft.com/virtualization](https://www.microsoft.com/virtualization).
 
