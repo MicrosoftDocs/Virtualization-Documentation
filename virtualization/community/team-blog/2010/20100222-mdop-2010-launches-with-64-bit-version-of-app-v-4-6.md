@@ -27,10 +27,6 @@ For more information about App-V and MED-V, check out the following blogs.
 
   * Tim Managan talks about App-V and Windows7 integration on his [blog](http://www.tmurgent.com/TmBlog/?p=151).
 
-  * Ruben Spruijt, App-V MVP, describes the power of App-V’s Shared Cache in his [blog](http://www.brianmadden.com/blog/rubenspruijt). 
-
-  * Kevin Kaminskis discusses Sequencing 64-bit apps on his [blog](http://myitforum.com/cs2/blogs/kkaminski/default.aspx).
-
   * Rodney Medina talks about how App-V is helping his customers deploy Windows 7 in his [blog](http://www.softgridblog.com/)
 
 

@@ -83,9 +83,6 @@ Now that we have the NVMe controllers in the pool of dismounted PCI Express devi
 There are similar Remove-VMAssignableDevice and Get-VMAssignableDevice cmdlets.
 
 If you don't like scripts, the InstanceID can be found as "Device Instance Path" under the Details tab in Device Manager. The Location Path is also under Details. You can disable the device there and then use PowerShell to dismount it.  
-Finally, it wouldn't be a blog post without a screen shot. Here's Device Manager from that VM, rearranged with "View by Connection" simply because it proves that I'm talking about a VM.
-
-% [https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png)
 
 In a future post, I'll talk about how to figure out whether your machine and your devices support all this.
 

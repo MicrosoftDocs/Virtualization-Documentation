@@ -46,7 +46,7 @@ Here's a screenshot of SCONFIG:
 Once you've configured Hyper-V Server for remote management, you can manage it in a number of ways:
 
   * Using Windows Server 2008 R2 SP1 Hyper-V Manager on a full version of Windows Server 2008 R2 SP1
-  * [Using the Remote Server Administration Tools (RSAT) for Windows 7 & Windows 7 SP1](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=7d2f6ad7-656b-4313-a005-4e344e43997d)
+  * [Using the Remote Server Administration Tools (RSAT) for Windows 7 & Windows 7 SP1](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools)
   * System Center Virtual Machine Manager 2008 R2 SP1
   * System Center Virtual Machine Manager 2012 Beta
 
@@ -122,7 +122,7 @@ Q: Will Microsoft provide a local GUI?
 A: Microsoft provides multiple ways to manage Microsoft Hyper-V Server remotely including:
 
   * Using Windows Server 2008 R2 SP1 Hyper-V Manager on a full version of Windows Server 2008 R2 SP1
-  * [Using the Remote Server Administration Tools (RSAT) for Windows 7 & Windows 7 SP1](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=7d2f6ad7-656b-4313-a005-4e344e43997d)
+  * [Using the Remote Server Administration Tools (RSAT) for Windows 7 & Windows 7 SP1](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools)
   * System Center Virtual Machine Manager 2008 R2 SP1
   * System Center Virtual Machine Manager 2012 Beta
 

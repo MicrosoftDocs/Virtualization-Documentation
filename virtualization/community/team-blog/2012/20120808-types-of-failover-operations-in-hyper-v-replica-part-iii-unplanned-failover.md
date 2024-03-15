@@ -28,8 +28,6 @@ Unplanned Failover is used in the following cases
 
 Unplanned failover is performed on the replica virtual machine by right-clicking on the VM and choosing the **Failover** operation (either from the Hyper-V Manager or from the Failover Clustering Manager).
 
-[![clip_image001](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5344.clip_image001_thumb_397A690F.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4762.clip_image001_56CA9F77.jpg)
-
 If you have turned on recovery history, Unplanned Failover can be performed against a previous point-in-time. This is usually done in case the most recent point is either corrupt or not application consistent. Once you failover, you should run some tests to check that the point-in-time is good. If the point-in-time has issues, you can cancel the failover using **"Cancel Failover"** on the replica VM. Then you can choose a different point-in-time and do a Failover.
 
 After you have validated that the failed over VM is kosher, you should do a **'Complete'** of the failover by performing an action on the replica virtual machine – this will ensure that the recovery points are merged.
@@ -126,7 +124,7 @@ Once in 6 months
 
 | 
 
-Never (ok, fine – whenever you have a disaster![Smile](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2744.wlEmoticon-smile_5D36C706.png))  
+Never (ok, fine – whenever you have a disaster!)  
   
 What happens to the replication of the primary VM during the duration of this operation
 

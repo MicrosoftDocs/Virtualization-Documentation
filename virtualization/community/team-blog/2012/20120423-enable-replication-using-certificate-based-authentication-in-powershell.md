@@ -60,11 +60,6 @@ Copy the thumbprint of the certificate **which has issued the Personal store cer
 
 In this example, _IntRootCA_ has issued _BrokerHyd_ which meets the prerequisite in the blog article, hence we copy the thumbprint " 4BFFF00509B97C782603F1DF3AF8C0399778FD70"
 
-[![Certificate thumbprint image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7506.BrokerHyd.PNG)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/7506.BrokerHyd.PNG)
-
- 
-
-  
 
 
 2\. To enable replication on the Replica server/cluster, issue the following PowerShell cmdlet, using the above thumbprint information in `< CertThumbprint>`:
@@ -306,7 +301,7 @@ PS C:\Windows\system32> Start-VMInitialReplication -VMName "ProjectVM"
 
 4\. The Hyper-V Manager provides useful information for the replicating virtual machine
 
-[![Hyper-V Manager image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0211.VMState.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/0211.VMState.png)
+
 
  
 

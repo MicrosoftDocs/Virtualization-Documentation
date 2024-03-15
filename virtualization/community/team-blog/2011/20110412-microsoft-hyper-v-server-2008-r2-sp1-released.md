@@ -41,7 +41,7 @@ After installing the update, both Dynamic Memory and [RemoteFX](https://technet.
 
   * Using the updated R2 SP1 Hyper-V Manager user interface on a full version of Windows Server 2008 R2 SP1
 
-  * [Using the updated Remote Server Administration Tools (RSAT) for Windows 7 & Windows 7 SP1](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=7d2f6ad7-656b-4313-a005-4e344e43997d)
+  * [Using the updated Remote Server Administration Tools (RSAT) for Windows 7 & Windows 7 SP1](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools)
 
   * [System Center Virtual Machine Manager 2008 R2 SP1](https://www.microsoft.com/systemcenter/en/us/virtual-machine-manager/vmm-whats-new-r2.aspx)
 

@@ -206,9 +206,9 @@ And…
 
 [http://arstechnica.com/business/news/2011/08/vmware-capitulates-over-vsphere-5-pricing-kinda.ars](http://arstechnica.com/business/news/2011/08/vmware-capitulates-over-vsphere-5-pricing-kinda.ars)
 
-_[BulkRate](http://arstechnica.com/civis/memberlist.php?mode=viewprofile&u=23019&sid=71a0e7cac15d6a30b06a002a92413fc9)_ _Registered: Sep 9, 2003_ _Posts: 511_ __ _[Posted: Fri Jul 29, 2011 2:10 pm](http://arstechnica.com/civis/viewtopic.php?p=21904689&sid=71a0e7cac15d6a30b06a002a92413fc9#p21904689)_ __  
+_BulkRat_ _Registered: Sep 9, 2003_ _Posts: 511_ _[Posted: Fri Jul 29, 2011 2:10 pm](http://arstechnica.com/civis/viewtopic.php?p=21904689&sid=71a0e7cac15d6a30b06a002a92413fc9#p21904689)_
 
-_It still feels like a money-grab, now with a hamfisted manipulation attempt added in via the "p!&& 'em off with the crazy limits first, then announce the ones we'd intended all along" approach. It means I'm not actualy regarded as one of VMware's customers, nor are my needs or strategies based upon their product taken into account in any meaninful way._ _This change repairs some of the damage to our existing Essentials+ cluster's operational lifetime plan (RAM upgrade in 1+ year), but I'm still not seeing whether the Hypervisor standalone product remains capped into uselessness at 8GB, or bumps up to 12GB in line with the other changes._ _Either way, they've tried this once and will likely do so again. Damage done and now they're on my "Vendors to Anticipate Screwage From" list. Next version (v3) of Hyper-V gets an honest evaluation spot in our environment plus migration plan. When our support's up in about 2 years we'll be ready._ __  
+_It still feels like a money-grab, now with a hamfisted manipulation attempt added in via the "p!&& 'em off with the crazy limits first, then announce the ones we'd intended all along" approach. It means I'm not actualy regarded as one of VMware's customers, nor are my needs or strategies based upon their product taken into account in any meaninful way._ _This change repairs some of the damage to our existing Essentials+ cluster's operational lifetime plan (RAM upgrade in 1+ year), but I'm still not seeing whether the Hypervisor standalone product remains capped into uselessness at 8GB, or bumps up to 12GB in line with the other changes._ _Either way, they've tried this once and will likely do so again. Damage done and now they're on my "Vendors to Anticipate Screwage From" list. Next version (v3) of Hyper-V gets an honest evaluation spot in our environment plus migration plan. When our support's up in about 2 years we'll be ready._ 
   
 **Ars Technica Comment 1:**
 
@@ -573,7 +573,7 @@ In contrast, let's compare the previous three Microsoft Hyper-V Server 2008 rele
 
 **_Notice that every change has benefited you. More scale. More VM Mobility. More VM capabilities. All at no charge._**
 
-In addition, Microsoft Hyper-V Server's has a [publicly documented management interface](https://msdn.microsoft.com/library/cc136992\(VS.85\).aspx) and we _encourage_ , not discourage, folks to develop for our free hypervisor. Here's just one example from [5Nine software](http://www.5nine.com/5nine-manager-for-hyper-v-free.aspx).
+In addition, Microsoft Hyper-V Server's has a [publicly documented management interface](https://msdn.microsoft.com/library/cc136992\(VS.85\).aspx) and we _encourage_ , not discourage, folks to develop for our free hypervisor. Here's just one example from [5Nine software](../2011/20110505-5nine-manager-for-hyper-v.md).
 
 Here's a table to illustrate just a few of the improvements over the last three versions.
 

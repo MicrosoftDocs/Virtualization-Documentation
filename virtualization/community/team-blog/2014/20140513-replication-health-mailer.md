@@ -9,7 +9,7 @@ description: This article shares a script used to mail replication health in a c
 ---
 # Replication Health Mailer
 
-One of our Engineers, **Sangeeth** , has come up with a nifty PowerShell script which mails the replication health in a host or  in a cluster in a nice dashboard format. We thought it would be of help to our customers to get the status of the replicating VMs and their foot print on CPU and in Memory. You can download the script [here.](https://gallery.technet.microsoft.com/Replication-Health-Mailer-4066632c#content)
+One of our Engineers, **Sangeeth** , has come up with a nifty PowerShell script which mails the replication health in a host or  in a cluster in a nice dashboard format. We thought it would be of help to our customers to get the status of the replicating VMs and their foot print on CPU and in Memory.
 
 The sample output from the script looks like this. You can add as many recipients as you wish 
 

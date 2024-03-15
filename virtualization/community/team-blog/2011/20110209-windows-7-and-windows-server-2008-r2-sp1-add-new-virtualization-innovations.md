@@ -18,7 +18,7 @@ Let’s start with Dynamic Memory. An enhancement to Hyper-V R2, Dynamic Memory 
 **Why is Dynamic Memory so important?**
 
   
-High praise from the folks over at [brianmadden.com](http://www.brianmadden.com/blogs/guestbloggers/archive/2011/01/27/a-closer-look-at-the-new-quot-dynamic-memory-quot-feature-of-hyper-v-is-it-worth-it-for-vdi.aspx):
+High praise from the folks over at brianmadden.com:
 
 _I do think that, looking at memory management from a VDI perspective, Hyper-V fits the bill just as well as ESX does, if not better._
 

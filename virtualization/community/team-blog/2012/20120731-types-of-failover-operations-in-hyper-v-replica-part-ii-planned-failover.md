@@ -32,7 +32,6 @@ Planned Failover is used in the following cases
 
 After turning off the primary virtual machine, PFO is performed on the primary virtual machine by right-clicking on the VM and choosing the **Failover** operation (either from the Hyper-V Manager or from the Failover Clustering Manager).
 
-[![clip_image002](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8510.clip_image002_thumb_16461DFD.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6036.clip_image002_41F45748.png)
 
 Please note – for the PFO to work from UI, remote WMI has to be enabled on the replica site and the user running the PFO should have the necessary privileges. More on remote WMI in a later blog.
 

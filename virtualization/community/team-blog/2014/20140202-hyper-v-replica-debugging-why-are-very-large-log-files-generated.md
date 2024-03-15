@@ -22,7 +22,7 @@ As a first step, the question that customers want answered is: **What is causing
 
 ### Step 1:  Isolate the high-churning processes
 
-Download the script from here: <https://gallery.technet.microsoft.com/Hyper-V-Replica-Identify-f09763b6>, and copy the script into the virtual machine. The script collects information about the writes done by various processes and writes log files with this data. 
+Download the script from [Hyper-V Replica](/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj134172(v=ws.11)), and copy the script into the virtual machine. The script collects information about the writes done by various processes and writes log files with this data. 
 
 I started the debugging process using the script on SQL Server virtual machine of my own. I copied the script into the VM and ran it in an elevated PowerShell window. You might run into PowerShell script execution policy restrictions, and you might need to set the execution policy to _Unrestricted_ (<https://technet.microsoft.com/library/ee176961.aspx>).
 
