@@ -24,7 +24,6 @@ Pauses the execution of a compute system, see [sample code](./ComputeSystemSampl
 ## Syntax
 
 ```cpp
-
 HRESULT WINAPI
 HcsPauseComputeSystem(
     _In_ HCS_SYSTEM computeSystem,

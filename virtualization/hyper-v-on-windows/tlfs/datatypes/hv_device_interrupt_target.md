@@ -13,7 +13,6 @@ ms.topic: reference
 ## Syntax
 
  ```c
-
 #define HV_DEVICE_INTERRUPT_TARGET_MULTICAST 1
 #define HV_DEVICE_INTERRUPT_TARGET_PROCESSOR_SET 2
 
