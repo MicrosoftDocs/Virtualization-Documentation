@@ -51,7 +51,7 @@ PS C:\>
 
 ### Process Isolation
 
-Due to the shared kernel nature of process-isolated containers, current behavior limits the user to running only **one instance** of the printer spooler service across the host and all its container children. If the host has the printer spooler running, you must stop the service on the host before attemping to launch the printer service in the guest.
+Due to the shared kernel nature of process-isolated containers, current behavior limits the user to running only **one instance** of the printer spooler service across the host and all its container children. If the host has the printer spooler running, you must stop the service on the host before attempting to launch the printer service in the guest.
 
 > [!TIP]
 > If you launch a container and query for the spooler service in both the container and the host simultaneously, both will report their state as 'running'. But do not be deceived--the container will not be able to query for a list of available printers. The host's spooler service must not run.
