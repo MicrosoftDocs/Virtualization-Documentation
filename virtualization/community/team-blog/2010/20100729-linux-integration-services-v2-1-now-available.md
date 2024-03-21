@@ -35,4 +35,4 @@ The following features are included in the 2.1 release:
 
 This version of the integration services for Hyper-V supports Novell SUSE Linux Enterprise Server 10 SP3, SUSE Linux Enterprise Server 11, and Red Hat Enterprise Linux 5.2 / 5.3 / 5.4 / 5.5.
 
-Customers can obtain the Linux IC’s via the Microsoft Download Center at this link: [https://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=eee39325-898b-4522-9b4c-f4b5b9b64551](https://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=eee39325-898b-4522-9b4c-f4b5b9b64551)
+Customers can obtain the Linux IC’s via the Microsoft Download Center at this link: [https://www.microsoft.com/download/details.aspx?id=55106&751be11f-ede8-5a0c-](https://www.microsoft.com/download/details.aspx?id=55106&751be11f-ede8-5a0c-)
