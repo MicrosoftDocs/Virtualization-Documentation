@@ -13,7 +13,7 @@ We published some news today with NetApp. In short, Microsoft and NetApp...
 
 > today announced a new three-year agreement that deepens product collaboration and technical integration, and extends joint sales and marketing activities to customers worldwide. Under the new agreement, the two companies will collaborate and deliver technology solutions that span virtualization, private cloud computing, and storage and data management, enabling customers to increase data center management efficiencies, reduce costs, and improve business agility.
 
- As [NetApp's partner site](https://bluexp.netapp.com/blog/ma-anf-blg-windows-virtual-desktop-implementation "NetApp site on MS.com/virtualization") states, we'll work with NetApp to sell/market disaster recovery solutions using NetApp HA and DR storage with Hyper-V and System Center. There's a sample customer blueprint (.pdf) with datacenter configs. And there's datacenter consolidation solutions, which are discussed in this white paper ([here](http://www-download.netapp.com/edm/gen/20090129_TOT_Articles/TOT_Virtualize_Hyper-V_13JAN09-CB.pdf "white paper")). 
+ As [NetApp's partner site](https://bluexp.netapp.com/blog/ma-anf-blg-windows-virtual-desktop-implementation "NetApp site on MS.com/virtualization") states, we'll work with NetApp to sell/market disaster recovery solutions using NetApp HA and DR storage with Hyper-V and System Center. There's a sample customer blueprint (.pdf) with datacenter configs.
 
  Above and beyond this, examples of technical integration include
 

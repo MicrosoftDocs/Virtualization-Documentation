@@ -9,7 +9,7 @@ categories: hyper-v
 ---
 # Microsoft Hyper-V Server 2008 R2 (Free live migration anyone!) available for download
 
-We are really excited to announce that Microsoft Hyper-V Server 2008 R2 is available for download [here](https://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=48359dd2-1c3d-4506-ae0a-232d0314ccf6). It's been a long an exciting journey bringing this product to our customers. 
+We are really excited to announce that Microsoft Hyper-V Server 2008 R2 is available for download [here](https://www.microsoft.com/download/details.aspx?id=20196&lang=en). It's been a long an exciting journey bringing this product to our customers. 
 
 The chart below tells it all, we have listened to our customers and have designed the product to meet their needs. This is a robust virtualization platform with [live migration built in at no extra charge](https://blogs.technet.com/virtualization/archive/2009/05/06/microsoft-hyper-v-server-2008-r2-release-candidate-free-live-migration-ha-anyone.aspx). 
 
@@ -85,7 +85,7 @@ Hyper-V MMC, Windows Server 2008, Windows Server 2008 R2, System Center Virtual 
 
 | 
 
-[Remote Server Administration Tool (Free),](https://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=7d2f6ad7-656b-4313-a005-4e344e43997d) Windows Server 2008 R2, System Center Virtual Machine Manager 2008 R2  
+[Remote Server Administration Tool (Free),](https://www.microsoft.com/download//confirmation.aspx?id=45520) Windows Server 2008 R2, System Center Virtual Machine Manager 2008 R2  
   
  
 

@@ -88,7 +88,7 @@ Except when their own patches cause days of downtime and render VMotion impotent
 
 **Reliability/Availability**. With VMware ESXi 3.5 Update 2, it included a serious flaw which resulted in **_two days of downtime_** for their customers including the loss of VMotion:
 
-> _["Starting this morning, we could not power on nor VMotion any of our virtual machines," said someone identified as "mattjk" on a VMware support forum. "The VI Client threw the error 'A general system error occurred: Internal Error.'"](http://www.computerworld.com/s/article/9112439/VMware_licensing_bug_blacks_out_virtual_servers)_
+> _"Starting this morning, we could not power on nor VMotion any of our virtual machines," said someone identified as "mattjk" on a VMware support forum. "The VI Client threw the error 'A general system error occurred: Internal Error.'"_
 
 It was so bad, VMware's CEO had to apologize on numerous occasions. ([HERE](https://www.computerworld.com/), [HERE](https://marcusoh.blogspot.com/2008/08/dont-roll-vmware-update-2-yet.html), [HERE](https://communities.vmware.com/thread/162377)). VMware then rushed out the VMware ESXi 3.5 Update 3 which introduced instability to VMware High Availability and **could cause virtual machines to spontaneously, unexpectedly reboot**. ([HERE](https://kb.vmware.com/s/article/1007899) & [HERE](https://blog.scottlowe.org/2008/12/12/vmware-ha-problem-with-update-3/))
 
