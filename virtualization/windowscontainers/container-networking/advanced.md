@@ -88,6 +88,73 @@ Use the option, `-o com.docker.network.windowsshim.dnssuffix=<DNS SUFFIX>` to sp
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnssuffix=abc.com -o com.docker.network.windowsshim.dnsservers=4.4.4.4,8.8.8.8 MyTransparentNetwork
 ```
 
+## Testing DNS server reachability
+
+> Applies to all network drivers
+
+When testing DNS connectivity you should use the Resolve-DnsName powershell cmdlet instead of nslookup. Resolve-DnsName uses the built-in DNS client for Windows which will retry with all of the available DNS servers and unlike nslookup also works with configurations that use newer DNS technologies such as DNSSEC, DNS-over-HTTP (DoH) and DNS-over-TLS (DoT). This is the best way to determine if DNS is functioning within the container. Any application that relies on Windows to do the DNS lookup will get the same behavior as Resolve-DNSName.  
+```
+PS C:\> resolve-dnsname bing.com
+
+Name                                           Type   TTL   Section    IPAddress
+----                                           ----   ---   -------    ---------
+bing.com                                       AAAA   882   Answer     2620:1ec:c11::200
+bing.com                                       A      2442  Answer     13.107.21.200
+bing.com                                       A      2442  Answer     204.79.197.200
+```
+
+If after testing with resolve-dnsname you suspect you are having DNS connectivity issues you might be having DNS connection issues outside of the container host. To narrow that down, use pktmon to trace the packet to see if it leaves the container host in the correct format.  In this exmaple, 8.8.8.8 is blocked somewhere on the network.  Use the following commands to determine whether or not it is an issue with the Windows Container host :
+
+On the container host:
+```
+   PS C:\> pktmon filter remove
+   PS C:\> pktmon filter add -t tcp -p 53
+   PS C:\> pktmon filter add -t udp -p 53
+   PS C:\> pktmon start --capture
+```
+
+In the container:
+```
+   PS C:\> nslookup bing.com 8.8.8.8
+   DNS request timed out.
+       timeout was 2 seconds.
+   Server:  UnKnown
+   Address:  8.8.8.8
+
+   DNS request timed out.
+       timeout was 2 seconds.
+   DNS request timed out.
+       timeout was 2 seconds.
+   DNS request timed out.
+       timeout was 2 seconds.
+   DNS request timed out.
+       timeout was 2 seconds.
+   *** Request to UnKnown timed-out
+```
+
+Back on the container host:
+```
+   PS C:\> pktmon stop
+   PS C:\> pktmon etl2txt PktMon.etl
+   PS C:\> notepad pktmon.txt
+```
+
+Using notepad look at the Appearance # to find the last appearance of the DNS request packet, check which component it was last seen on, and confirm that the packet looks correct:
+
+```
+   [02]0000.0000::2024-03-20 14:13:45.720095500 [Microsoft-Windows-PktMon] PktGroupId 281474976710677, PktNumber 1, Appearance 14, Direction Tx , Type Ethernet , Component 6, Edge 1, Filter 2, OriginalSize 80, LoggedSize 80 
+   	00-15-5D-C8-8E-16 > E8-B5-D0-2C-24-40, ethertype IPv4 (0x0800), length 80: 10.127.130.152.59312 > 8.8.8.8.53: 1+ PTR? 8.8.8.8.in-addr.arpa. (38)
+```
+
+You can find the list of component ids and names at the end of the file.  In this example Component 6 is the ethernet adapter:
+```
+   [00]1D7C.0AFC::2024-03-20 14:13:59.067489700 [Microsoft-Windows-PktMon] Component 6, Type Miniport , Name netvsc.sys, Microsoft Hyper-V Network Adapter #2 
+   [00]1D7C.0AFC::2024-03-20 14:13:59.067489900 [Microsoft-Windows-PktMon] Property: Component 6, PhysAddress  = 0x00155DC88E16 
+   [00]1D7C.0AFC::2024-03-20 14:13:59.067490200 [Microsoft-Windows-PktMon] Property: Component 6, NdisMedium  = Ethernet  
+```
+
+Whenever the last appearance is the ethernet adapter you can assume the packet left he machine.  You should also verify that the IP addresses are correct and that the destination MAC address matches the physical ethernet switch.  If you don't see a response in the pktmon log then you know that the container host never received the reply from the network.
+
 ## VFP
 
 See [this article](https://www.microsoft.com/research/project/azure-virtual-filtering-platform/) for more information.
