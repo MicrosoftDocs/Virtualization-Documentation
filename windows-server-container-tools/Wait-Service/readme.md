@@ -10,7 +10,7 @@ If AllowServiceRestarts is true if the service is restarted the script automatic
 #### ServiceName
 The name of the service to wait for.
 #### StartupTime
-The amount of time in seconds to wait for the service to start after initating the script.  Default is 10sec.
+The amount of time in seconds to wait for the service to start after initiating the script.  Default is 10sec.
 #### AllowServiceRestart
 Automatically restart the wait process when the service exits looping for the StartupTimeout again.
 ## Example

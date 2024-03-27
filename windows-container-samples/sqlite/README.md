@@ -1,6 +1,6 @@
 # Description:
 
-This sample will create a demo container with the latest SQLite 3.37.0 software on windows server 2022 servercore image. Sqlite is a libray that implements a serverless, self-contained, high-reliability SQL database engine.
+This sample will create a demo container with the latest SQLite 3.37.0 software on windows server 2022 servercore image. Sqlite is a library that implements a serverless, self-contained, high-reliability SQL database engine.
 
 This dockerfile is for demonstration purposes and may require modification for production use.
 
@@ -35,7 +35,7 @@ All container sample source code is kept under the Vitualization-Documentation g
     docker build -t sqlite:latest .
 5. To run the newly built container, run the docker run command.
     docker run -it sqlite
-6. This will enter you into the container and you should see sql lite databse appear.
+6. This will enter you into the container and you should see sql lite database appear.
 
 ## Dockerfile Details:
 ```Dockerfile

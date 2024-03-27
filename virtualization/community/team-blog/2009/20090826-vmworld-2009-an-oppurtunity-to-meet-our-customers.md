@@ -13,7 +13,7 @@ Hi, I am Vijay Tewari a program manager with the Virtualization team here at Mic
 
 Below is my tentative schedule for VMworld. As you can see a lot of wait lists, but I am hoping that I can squeeze in. Would like your feedback if there are sessions you would like to see covered. 
 
-We will be tweeting (follow vtango on [Twitter](https://twitter.com/vtango)) and blogging all through the event, so follow along.  Looking forward to seeing you!! Vijay Vijay Tewari, Principal Program Manager, Virtualization
+We will be tweeting (follow vtango on [Twitter](https://twitter.com/vtango)) and blogging all through the event, so follow along.  Looking forward to seeing you!! Vijay Tewari, Principal Program Manager, Virtualization
 
 **** 
 

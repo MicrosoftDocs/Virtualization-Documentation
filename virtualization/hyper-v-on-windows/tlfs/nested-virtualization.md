@@ -61,7 +61,7 @@ In cases where architectural feature discovery mechanisms indicate support for a
 
 The Hyper-V L0 hypervisor will not indicate support for a VMCS field for which no enlightened VMCS field or exception is defined. If another L0 hypervisor needs a new enlightened VMCS field or exception to be defined, please contact Microsoft.
 
-## Enlighened VMCB fields (AMD)
+## Enlightened VMCB fields (AMD)
 
 AMD has reserved space in the VMCB for hypervisor use, as well as an associated clean bit. The reserved bytes are in the control section, offset 0x3E0-3FF, of the VMCB. The clean bit is bit 31 (the clean bit must be invalidated whenever the hypervisor modifies the “enlightenments” area of the VMCB).
 
@@ -221,7 +221,7 @@ On AMD platforms, all TLB entries are architecturally tagged with an ASID (addre
 
 ## Nested Virtualization Exceptions
 
-On Intel platforms. the L1 hypervisor can opt in to combining virtualization exceptions in the page fault exception class. The L0 hypervisor advertises support for this enlightment in the Hypervisor Nested Virtualization Features CPUID leaf.
+On Intel platforms. the L1 hypervisor can opt in to combining virtualization exceptions in the page fault exception class. The L0 hypervisor advertises support for this enlightenment in the Hypervisor Nested Virtualization Features CPUID leaf.
 
 This enlightenment can be enabled by setting VirtualizationException to “1” in [HV_NESTED_ENLIGHTENMENTS_CONTROL](datatypes/HV_NESTED_ENLIGHTENMENTS_CONTROL.md) data structure in the Virtual Processor Assist Page.
 

@@ -82,7 +82,7 @@ For reference, the following table lists the version numbers for Base OS contain
 
 ## Troubleshoot host and container image mismatches
 
-Before you start, make sure sure to get familiar with the information in [Version compatibility](version-compatibility.md). This information will help you figure out whether your issue was caused by mismatching patches. When you've established mismatching patches as the cause, you can follow the instructions in this section to troubleshoot the issue.
+Before you start, make sure to get familiar with the information in [Version compatibility](version-compatibility.md). This information will help you figure out whether your issue was caused by mismatching patches. When you've established mismatching patches as the cause, you can follow the instructions in this section to troubleshoot the issue.
 
 ### Query the version of your container host
 

@@ -32,7 +32,7 @@ docker run -it -p 80:80 django cmd
 
 **Instructions**
 
-All container sample source code is kept under the Vitualization-Documentation git repository in a folder called windows-container-samples.
+All container sample source code is kept under the Virtualization-Documentation git repository in a folder called windows-container-samples.
 1. Open a CLI session and change directories to the folder in which you want to store this repository. 
 2. Clone the repo to your current working directory:
     git clone https://github.com/MicrosoftDocs/Virtualization-Documentation.git

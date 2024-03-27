@@ -145,7 +145,7 @@ int sock = socket(AF_VSOCK, SOCK_STREAM, 0);
 
 Bind associates a socket with connection information.
 
-The function definition is copied below for convinience, read more about bind [here](/windows/desktop/api/winsock/nf-winsock-bind).
+The function definition is copied below for convenience, read more about bind [here](/windows/desktop/api/winsock/nf-winsock-bind).
 
 ``` C
 // Windows

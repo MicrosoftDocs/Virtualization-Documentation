@@ -47,7 +47,7 @@ Enhanced Session Mode requires Remote Desktop to be enabled in the VM. Search fo
 
 ![Enable Remote Desktop](media/remote-desktop-settings.png)
 
-Versions newer than Windows 10, version 2004 will requrire an additional setting, this includes Windows 11. If the Virtual Machine Connect window shows a background without a login prompt, then you need to make one more change.
+Versions newer than Windows 10, version 2004 will require an additional setting, this includes Windows 11. If the Virtual Machine Connect window shows a background without a login prompt, then you need to make one more change.
 
 First, log back in to the VM using Basic Mode. Search for "Sign-In Options" in the Settings app or Start menu. 
 On this page, turn "Require Windows Hello sign-in for Microsoft accounts" off. 

@@ -59,7 +59,7 @@ To learn more about the gMSA improvements, see [Create gMSAs for Windows contain
 
 ### IPv6 support
 
-The first step to fully supporting the IPv6 dual stack has been implemented for Kuberenetes in Windows. The IPv6 dual stack is supported for L2Bridge-based networks on the platform. IPv6 is dependent on the CNI used in Kubernetes, and it also required Kubernetes version 1.20 to enable the IPv6 support end-to-end. For more information, see [IPv4/IPv6 in Introduction to Windows support in Kubernetes](https://kubernetes.io/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#ipv4-ipv6-dual-stack).
+The first step to fully supporting the IPv6 dual stack has been implemented for Kubernetes in Windows. The IPv6 dual stack is supported for L2Bridge-based networks on the platform. IPv6 is dependent on the CNI used in Kubernetes, and it also required Kubernetes version 1.20 to enable the IPv6 support end-to-end. For more information, see [IPv4/IPv6 in Introduction to Windows support in Kubernetes](https://kubernetes.io/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#ipv4-ipv6-dual-stack).
 
 ## Improved Kubernetes experience
 

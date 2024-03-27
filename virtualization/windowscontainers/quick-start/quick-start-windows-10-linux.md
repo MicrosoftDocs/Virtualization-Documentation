@@ -44,7 +44,7 @@ docker run --rm busybox echo hello_world
 
 The container should run, print "hello_world", then exit.
 
-When you query `docker images`, you should see the Linux container image that you just pulled an ran:
+When you query `docker images`, you should see the Linux container image that you just pulled and ran:
 
 ```console
 docker images
