@@ -1,3 +1,11 @@
+---
+title: The ReadGuestPhysicalAddress function
+description: Reads from the saved state file the given guest physical address range and then it is written into the supplied buffer.
+ms.date: 04/19/2022
+author: sethmanheim
+ms.author: sethm
+---
+
 # ReadGuestPhysicalAddress function
 
 Reads from the saved state file the given guest physical address range and then it is written into the supplied buffer. If BytesRead returns something lower than BufferSize, then the end of memory has been reached.

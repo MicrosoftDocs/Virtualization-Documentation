@@ -1,3 +1,11 @@
+---
+title: CPUID access call
+description: Learn about context data for an exit caused by CPUID call.
+author: sethmanheim
+ms.author: sethm
+ms.date: 04/20/2022
+---
+
 # CPUID Access
 
 

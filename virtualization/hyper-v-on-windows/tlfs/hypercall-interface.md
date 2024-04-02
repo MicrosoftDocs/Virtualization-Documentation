@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-ms.prod: windows-10-hyperv
 ---
 
 # Hypercall Interface
@@ -72,11 +71,12 @@ Callers specify a hypercall by a 64-bit value called a hypercall input value. It
 | Call Code               | 15-0    | Specifies which hypercall is requested                      |
 | Fast                    | 16      | Specifies whether the hypercall uses the register-based calling convention: 0 = memory-based, 1 = register-based |
 | Variable header size    | 26-17   | The size of a variable header, in QWORDS.                   |
-| RsvdZ                   | 31-27   | Must be zero                                                |
+| RsvdZ                   | 30-27   | Must be zero                                                |
+| Is Nested               | 31      | Specifies the hypercall should be handled by the L0 hypervisor in a nested environment. |
 | Rep Count               | 43-32   | Total number of reps (for rep call, must be zero otherwise) |
 | RsvdZ                   | 47-44   | Must be zero                                                |
 | Rep Start Index         | 59-48   | Starting index (for rep call, must be zero otherwise)       |
-| RsvdZ                   | 64-60   | Must be zero                                                |
+| RsvdZ                   | 63-60   | Must be zero                                                |
 
 For rep hypercalls, the rep count field indicates the total number of reps. The rep start index indicates the particular repetition relative to the start of the list (zero indicates that the first element in the list is to be processed). Therefore, the rep count value must always be greater than the rep start index.
 

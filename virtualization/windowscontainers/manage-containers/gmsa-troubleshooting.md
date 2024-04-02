@@ -1,12 +1,11 @@
 ---
 title: Troubleshoot gMSAs for Windows containers
-description: How to troubleshoot Group Managed Service Accounts (gMSAs) for Windows containers.
-keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts, troubleshooting, troubleshoot
+description: How to troubleshoot group Managed Service Accounts (gMSAs) for Windows containers.
 author: rpsqrd
 ms.author: jgerend
 ms.date: 10/03/2019
 ms.topic: troubleshooting
-ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
+
 ---
 # Troubleshoot gMSAs for Windows containers
 
@@ -26,7 +25,7 @@ This limitation was fixed in Windows Server 2019, where the container will now a
 
 Because all containers are required to use the same hostname, a second issue affects versions of Windows prior to Windows Server 2019 and Windows 10, version 1809. When multiple containers are assigned the same identity and hostname, a race condition may occur when two containers talk to the same domain controller simultaneously. When another container talks to the same domain controller, it will cancel communication with any prior containers using the same identity. This can lead to intermittent authentication failures and can sometimes be observed as a trust failure when you run `nltest /sc_verify:contoso.com` inside the container.
 
-We changed the behavior in Windows Server 2019 to separate the container identity from the machine name, allowing multiple containers to use the same gMSA simultaneously.
+We changed the behavior in Windows Server 2019 to separate the container identity from the machine name, allowing multiple containers to use the same gMSA simultaneously. Therefore, in Windows Server 2019, you can run multiple containers with the same identity, whether on the same or multiple hosts.
 
 ### You can't use gMSAs with Hyper-V isolated containers on Windows 10 versions 1703, 1709, and 1803
 
@@ -195,7 +194,7 @@ nltest /sc_verify:contoso.com
 4. Check if the container can obtain a valid Kerberos Ticket Granting Ticket (TGT):
 
     ```powershell
-    klist get krbtgt
+    klist get <myapp>
     ```
 
     This command should return "A ticket to krbtgt has been retrieved successfully" and list the domain controller used to retrieve the ticket. If you're able to obtain a TGT but `nltest` from the previous step fails, this may be an indication that the gMSA account is misconfigured. See [check the gMSA account](#check-the-gmsa-account) for more information.
@@ -231,7 +230,6 @@ nltest /sc_verify:contoso.com
 
     ```powershell
     Set-ADObject -Identity $gMSA -Replace @{ userAccountControl = ($gmsa.userAccountControl -band 0x7FFFC5FF) -bor 0x1000 }
-    ```
 
 ### Non-domain-joined container hosts: Use event logs to identify configuration issues
 
@@ -248,4 +246,3 @@ Event logging for using gMSA with non-domain-joined container hosts can be used 
 | 6 | Container Credential Guard failed to fetch credentials from the plug-in: %1. Error: %2 | This event indicates that the plug-in loaded but could not retrieve credentials needed to fetch the gMSA password from AD. You should verify that the input to the plugin is formatted correctly in the credential specification and that the container host has the necessary permissions to access the secret store used by the plug-in.   |
 | 7 | Container Credential Guard is refetching the credentials using the plug-in: %1 | This is an informational event. This event is generated when the gMSA password has expired and needs to be refreshed using the credentials fetched by the plug-in. |
 | 8 | Container Credential Guard failed to fetch gmsa credentials for %1 using plugin %2. Error reason: %3 | This event indicates that the credentials fetched using the plugin could not be used to fetch gMSA credentials from AD. You should verify that the account being fetched from the plug-in has permissions in AD to retrieve the gMSA credentials. |
-

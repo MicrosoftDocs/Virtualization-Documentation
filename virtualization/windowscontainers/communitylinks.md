@@ -1,11 +1,10 @@
 ---
-title: Community Videos and Blogs
-description: Links to great videos and blogs contributed by the Windows container community
-keywords: docker, containers, windows, samples
-author: taylorb-microsoft
-ms.author: taylorb-microsoft
+title: Community videos and blogs
+description: Links to videos and blogs contributed by the Windows container community.
+author: sethmanheim
+ms.author: sethm
 ms.date: 12/19/2016
-ms.topic: article
+ms.topic: conceptual
 ms.assetid: cfbb2542-fead-48e7-8318-4da92a7b5b6f
 ---
 # Community Videos and Blogs

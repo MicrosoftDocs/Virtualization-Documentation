@@ -1,15 +1,21 @@
 ---
 title:      "Guest post&#58; Intel discusses iSCSI and 1 million IOPs"
+author: sethmanheim
+ms.author: sethm
+description: Intel discusses iSCSI and 1 million IOPs
+ms.date: 02/24/2010
 date:       2010-02-24 22:48:00
 categories: guest-blog-post
 ---
+# Guest post: Intel discusses iSCSI and 1 million IOPs
+
 Hi, I'm Jordan Plawner, storage networking product planner from Intel. 
 
-Today I'm doing a recap of the [Intel Server and Ethernet Adapters and Windows 2008 R2 1m iSCSI IOPs announcement and HyperV performance webcast](http://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?culture=en-US&EventID=1032432957&CountryCode=US "Webcast link").  The number of comments and ongoing discussions by end users have been impressive.  There were two themes that ran through the blog questions and comments that I want to address.
+Today I'm doing a recap of the [Intel Server and Ethernet Adapters and Windows 2008 R2 1m iSCSI IOPs announcement and HyperV performance webcast](https://msevents.microsoft.com/CUI/WebCastEventDetails.aspx?culture=en-US&EventID=1032432957&CountryCode=US "Webcast link").  The number of comments and ongoing discussions by end users have been impressive.  There were two themes that ran through the blog questions and comments that I want to address.
 
-1st:   What does 1 million IOPs on a single 10GbE port performance mean?  What this performance means is that you do not have to worry about iSCSI performance.  There is no server I/O bottleneck.  If you are going with an iSCSI SAN use the native infrastructure built into the server, OS and adapter.  If you are deciding between iSCSI and FC, know that at the very least the performance on the client side is a wash.  Server-side ease-of-use and cost if unquestionably in ISCSI’s favor. 
+1st:   What does 1 million IOPs on a single 10GbE port performance mean?  What this performance means is that you do not have to worry about iSCSI performance.  There is no server I/O bottleneck.  If you are going with an iSCSI SAN use the native infrastructure built into the server, OS and adapter.  If you are deciding between iSCSI and FC, know that at the very least the performance on the client side is a wash.  Server-side ease-of-use and cost if unquestionably in ISCSI's favor. 
 
-Over this same time period there have been additional claims of reaching a similar magnitude of IOPs at various I/O sizes by HBA’s.  Most of those use more than 1 8G or 10G port, so read the fine print.   One HBA company claimed 930k IOPs over 1 10GbE port, which pretty much makes the point that performance has far exceed what people need and HBA’s with proprietary protocols do not provide performance benefits.  Intel and Microsoft have stated running the same test on the newest Intel servers to be released this year and preliminary results demonstrated a 33% performance boost.  While it takes years to get such a boost from proprietary solutions and a fork lift infrastructure upgrade, with native iSCSI it takes a short server refresh cycle.
+Over this same time period there have been additional claims of reaching a similar magnitude of IOPs at various I/O sizes by HBA's.  Most of those use more than 1 8G or 10G port, so read the fine print.   One HBA company claimed 930k IOPs over 1 10GbE port, which pretty much makes the point that performance has far exceed what people need and HBA's with proprietary protocols do not provide performance benefits.  Intel and Microsoft have stated running the same test on the newest Intel servers to be released this year and preliminary results demonstrated a 33% performance boost.  While it takes years to get such a boost from proprietary solutions and a fork lift infrastructure upgrade, with native iSCSI it takes a short server refresh cycle.
 
 So what then does 1 million iSCSI IOPs mean at 512b mean for your servers running storage over mid-size I/O.    It means;
 
@@ -29,6 +35,6 @@ So what then does 1 million iSCSI IOPs mean at 512b mean for your servers runnin
 
 ·        HyperV:  Talking about how much networking has improved in 2008 R2 HyperV brings up the uncomfortable question of what it was like in previous releases.  Well I see no reason to shy away from the conversation.  HyperV allows you to connect iSCSI guest initiators directly to your SAN, maintaining a virtual 1:1 relationship between applications and storage.   To do this and enable Live Migration there is some networking over head.  It is a small price to pay to enable a dynamic data center.  To be able to close the networking performance delta between physical and virtual servers using Intel VMDq, HyperV VMq  is really impressive.  At mid size I/O the throughput and IOPs were basically the same and you get Live Migration.  Talk about something for nothing. 
 
-Finally, the thinkers out there immediately wondered about SSD’s, 40G, FCoE, DCB (Data Center Bridging; aka DCE or CEE) and target capabilities.  Each topic is another posting but my message is the same; there is no server I/O bottleneck with Native iSCSI and 10G.  It will scale with SSD’s, 40G, and handle converged traffic over DCB and high capacity SAN’s.  As for the controversy of iSCSI vs. FCoE, there is no controversy, only your specific circumstance.  10GbE iSCSI is Enterprise Ready.  If you are expanding an existing FC SAN, FCoE makes sense to consider.  If you need a new SAN, call 1-800-iSCSI.
+Finally, the thinkers out there immediately wondered about SSD's, 40G, FCoE, DCB (Data Center Bridging; aka DCE or CEE) and target capabilities.  Each topic is another posting but my message is the same; there is no server I/O bottleneck with Native iSCSI and 10G.  It will scale with SSD's, 40G, and handle converged traffic over DCB and high capacity SAN's.  As for the controversy of iSCSI vs. FCoE, there is no controversy, only your specific circumstance.  10GbE iSCSI is Enterprise Ready.  If you are expanding an existing FC SAN, FCoE makes sense to consider.  If you need a new SAN, call 1-800-iSCSI.
 
 Jordan

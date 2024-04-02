@@ -1,11 +1,10 @@
 ---
 title: HcsGetServiceProperties
 description: HcsGetServiceProperties
-author: faymeng
-ms.author: qiumeng
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
+ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HcsGetServiceProperties
@@ -57,7 +56,7 @@ On success, the result as [ServiceProperties](./../SchemaReference.md#ServicePro
 |---|---|
 |`"Basic"`|[BasicInformation](./../SchemaReference.md#BasicInformation)|
 |`"CpuGroup"`|[CpuGroupConfigurations](./../SchemaReference.md#CpuGroupConfigurations)|
-|`"ProcessorTopology"`|[processorTopology](./../SchemaReference.md#processorTopology)|
+|`"ProcessorTopology"`|[processorTopology](./../SchemaReference.md#ProcessorTopology)|
 |`"ContainerCredentialGuard"`|[ContainerCredentialGuardSystemInfo](./../SchemaReference.md#ContainerCredentialGuardSystemInfo)|
 |`"QoSCapabilities"`|[QoSCapabilities](./../SchemaReference.md#QoSCapabilities)|
 

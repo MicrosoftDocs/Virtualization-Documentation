@@ -1,8 +1,14 @@
 ---
 title:      "The Virtualization platform vs. the Operating System"
+author: sethmanheim
+ms.author: sethm
+description: The Virtualization platform vs. the Operating System
+ms.date: 09/01/2009
 date:       2009-09-01 09:01:00
 categories: hyper-v
 ---
+# The Virtualization platform vs. the Operating System
+
 Day 1 at VMworld was mostly about Labs and content which builds up to the main event starting with the keynote on Tuesday morning. Looking forward to today.
 
 In the meanwhile I have been hearing about a concept being put forth that the virtualization platform is it and the OS is but relegated to the consigns of history. That’s an interesting argument, one that in my opinion is built around the myth that somehow the interface exposed by the virtualization platform is what applications are written to. The fact of the matter is that the “Virtual Machine” as exposed by the virtualization platform mimics the underlying hardware with all its diversity. An entity is still required to manage the hardware resources and provide the software abstractions to interact with incredibly diverse hardware. That is the operating system and that’s what applications are developed for.
@@ -11,7 +17,7 @@ Back in time such as of the [Manchester Mark 1](http://en.wikipedia.org/wiki/Man
 
 An interesting debate but mostly put out to confuse our customers who are fundamentally interested in running an efficient IT infrastructure that provides them the flexibility and ability to meet the business goals and be a strategic asset to their organizations. Customers are running a multitude of applications such as SQL, Sharepoint, Exchange, CRM, home grown line of business applications etc. Our partners and us are committed and focused to make sure that it happens. 
 
-By the way talking of partners, it was great to our partner [Leostream](http://www.leostream.com/news/pr_08_31_09.php) announce their connection broker for Windows Server 2008 R2 and System Center Virtual machine Manager 2008 R2. In talking to our partner here at VMworld, it’s been wonderful to see the incredible innovation on their part based on the Microsoft platform. Thanks, this is what the Microsoft platform the best for our customers with its breadth and partner solutions. 
+By the way talking of partners, it was great to our partner [Leostream](http://www.leostream.com) announce their connection broker for Windows Server 2008 R2 and System Center Virtual machine Manager 2008 R2. In talking to our partner here at VMworld, it’s been wonderful to see the incredible innovation on their part based on the Microsoft platform. Thanks, this is what the Microsoft platform the best for our customers with its breadth and partner solutions. 
 
 Vijay Tewari
 

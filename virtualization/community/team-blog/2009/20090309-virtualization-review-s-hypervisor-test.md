@@ -1,15 +1,21 @@
 ---
 title:      "Virtualization Review's hypervisor test"
+description: "A comparative performance test of three hypervisors: VMware ESX 3.5, Windows Server 2008 Hyper-V and Citrix XenServer."
+author: scooley
+ms.author: scooley
 date:       2009-03-09 16:09:00
+ms.date: 03/09/2009
 categories: citrix
 ---
-The other day, Virtualization Review published a comparative performance test of three hypervisors: VMware ESX 3.5, Windows Server 2008 Hyper-V and Citrix XenServer. You can see it [here](http://virtualizationreview.com/features/article.aspx?editorialsid=2641 "Virt Review test"). **NOTE** \- there are few independent, published performance reviews of hypervisors because including ESX in the review without VMware's permission violates the VMware EULA about posting benchmarks. VMark doesn't count as independent. Amongst reviewers, this EULA restriction is well-known and am told  serves as a deterrent to try to do performance comparatives. Rick Vanover and his editor, Keith Ward, deserve kudos for [securing VMware approval](http://virtualizationreview.com/blogs/weblog.aspx?blog=3556 "Keith Ward's editorial") for the performance comparison without jeopardizing journalistic integrity. Way to go! 
+# Virtualization Review's hypervisor test
+
+The other day, Virtualization Review published a comparative performance test of three hypervisors: VMware ESX 3.5, Windows Server 2008 Hyper-V and Citrix XenServer. You can see it [here](https://virtualizationreview.com/ "Virt Review test"). **NOTE** \- there are few independent, published performance reviews of hypervisors because including ESX in the review without VMware's permission violates the VMware EULA about posting benchmarks. VMark doesn't count as independent. Amongst reviewers, this EULA restriction is well-known and am told  serves as a deterrent to try to do performance comparatives. Rick Vanover and his editor, Keith Ward, deserve kudos for [securing VMware approval](https://virtualizationreview.com "Keith Ward's editorial") for the performance comparison without jeopardizing journalistic integrity. Way to go! 
 
 OK, back to Rick Vanover's test. His test objectives:
 
 > All the hypervisors offer essentially the same base functionality. In this series of tests, the objective was to put the same workloads on each one and see how they stack up. The types of workloads tested varied, to simulate a typical environment in which some virtual machines (VMs) are stressed, and some aren't. Each platform was subjected to the same test plan parameters, to give a fair accounting of their performance.
 
-[Read](http://virtualizationreview.com/features/article.aspx?editorialsid=2641 "Virt Review website") about the comparison parameters, test environment and caveats. The results will be surprising (in a "man bites dog" sort of way) to many. Keith wrote:
+[Read](https://virtualizationreview.com/ "Virt Review website") about the comparison parameters, test environment and caveats. The results will be surprising (in a "man bites dog" sort of way) to many. Keith wrote:
 
 > The results, from writer/online columnist Rick Vanover, were startling, to say the least. The Porsche of hypervisors? XenServer. Raise your hand if you saw that coming. It outperformed Hyper-V and ESX in most categories. The pokiest? ESX. Again, not at all what I expected. In fact, even in the few tests ESX came out on top, it barely edged out the competition. Microsoft did well across the board, and is definitely a fine product.
 

@@ -1,18 +1,25 @@
 ---
-title:      "Cool new things for Hyper-V on Windows 10"
-date:       2017-01-10 02:05:14
+title: Cool new things for Hyper-V on Windows 10
+description: Blog post that discusses the Insider build 15002 availability for Fast Ring Windows Insiders and discusses improvements and changes included in the update.
+author: scooley
+ms.author: scooley
+date: 2017-01-10 02:05:14
+ms.date: 03/20/2019
 categories: hyper-v
 ---
-Insider build 15002 is now available for Fast Ring windows insiders. In it, you’ll find a few improvements in Hyper-V for Windows 10 users: 
 
-  * A new virtual machine Quick Create experience (work in progress).
-  * More aggressive memory allocation for starting virtual machines. This is especially useful for anyone using emulators in Visual Studio or static memory virtual machines.
+# Cool new things for Hyper-V on Windows 10
+
+Insider build 15002 is now available for Fast Ring Windows Insiders. In it, you’ll find a few improvements in Hyper-V for Windows 10 users: 
+
+* A new virtual machine Quick Create experience (work in progress).
+* More aggressive memory allocation for starting virtual machines. This is especially useful for anyone using emulators in Visual Studio or static memory virtual machines.
 
 Check it out and send feedback! 
 
 ## Virtual machine Quick Create
 
-[![msohtmlclipclip_image001](https://msdnshared.blob.core.windows.net/media/2017/01/msohtmlclipclip_image001_thumb.png)](https://msdnshared.blob.core.windows.net/media/2017/01/msohtmlclipclip_image001.png) Hyper-V Manager has a new single-page wizard that makes it faster and easier to create virtual machines. You can access it through a new “Quick Create…” button (1). Quick Create focuses on getting the guest operating system up and running. It automatically creates virtual hardware necessary to run the guest operating system (2). Including a virtual switch! Since many desktop users see internet in the virtual machine as essential, we added the option to create an external switch (3) directly to the new virtual machine experience. **Quick Create is still under active development – try it out and please leave feedback!**
+<!--[![msohtmlclipclip_image001](https://msdnshared.blob.core.windows.net/media/2017/01/msohtmlclipclip_image001_thumb.png)](https://msdnshared.blob.core.windows.net/media/2017/01/msohtmlclipclip_image001.png)--> Hyper-V Manager has a new single-page wizard that makes it faster and easier to create virtual machines. You can access it through a new “Quick Create…” button (1). Quick Create focuses on getting the guest operating system up and running. It automatically creates virtual hardware necessary to run the guest operating system (2). Including a virtual switch! Since many desktop users see internet in the virtual machine as essential, we added the option to create an external switch (3) directly to the new virtual machine experience. **Quick Create is still under active development – try it out and please leave feedback!**
 
 ## Changes in memory allocation
 

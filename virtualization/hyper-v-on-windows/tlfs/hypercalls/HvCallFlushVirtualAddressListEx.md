@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-ms.prod: windows-10-hyperv
 ---
 
 # HvFlushVirtualAddressListEx
@@ -23,7 +22,7 @@ HV_STATUS
 HvCallFlushVirtualAddressListEx(
     _In_ HV_ADDRESS_SPACE_ID AddressSpace,
     _In_ HV_FLUSH_FLAGS Flags,
-    _In_ HV_VP_SET ProcessorSet,,
+    _In_ HV_VP_SET ProcessorSet,
     _Inout_ PUINT32 GvaCount,
     _In_reads_(GvaCount) PCHV_GVA GvaRangeList
     );

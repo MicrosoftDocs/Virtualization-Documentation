@@ -1,8 +1,13 @@
 ---
 title:      "Windows 7&#58; Windows XP Mode Release Candidate Now Available"
+description: Contains highlights of the WIndows XP Mode Release Candidate for Windows 7.
+author: sethmanheim
+ms.author: sethm
 date:       2009-08-06 11:59:34
+ms.date: 08/06/2009
 categories: hp
 ---
+# Windows XP Mode Release Candidate
 Virtualization Nation, Just a quick blog in case you missed the big news for Windows 7. Windows XP Mode has hit Release Candidate. Here are some highlights of the new Release Candidate: **New Features in Windows XP Mode RC** Based on feedback from the Windows XP Mode beta, we've made several improvements to the usability of Windows XP Mode for small and medium-sized business users: 
 
   * You can now attach USB devices to Windows XP Mode applications directly from the Windows 7 task-bar. This means your USB devices, such as printers and flash drives, are available to applications running in Windows XP Mode, without the need to go into full screen mode. 

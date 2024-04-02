@@ -1,3 +1,13 @@
+---
+title: WHvGetPartitionCounters
+description:  Description on partition counters and its properties, including a code sample for syntax and specific parameters and return value. 
+description: Description on WHvGetPartitionCounters and understanding its parameters, syntax, and return value. 
+author: jstarks
+ms.author: jostarks
+ms.date: 06/06/2019
+
+---
+
 # WHvGetPartitionCounters
 
 ## Syntax

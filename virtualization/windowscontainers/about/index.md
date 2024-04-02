@@ -1,10 +1,9 @@
 ---
 title: About Windows containers
-description: Containers are a technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. This topic discusses how Microsoft, Windows, and Azure help you develop and deploy apps in containers, including using Docker and Azure Kubernetes Service.
-keywords: docker, containers
-author: v-susbo
-ms.author: v-susbo
-ms.date: 09/01/2021
+description: Overview of how Microsoft, Windows, and Azure help you develop and deploy apps in containers, including using Docker and Azure Kubernetes Service.
+author: vrapolinario
+ms.author: viniap
+ms.date: 03/20/2023
 ms.topic: overview
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
@@ -23,12 +22,12 @@ To view a roadmap of planned and currently available features, see the [Windows 
 
 Microsoft provides a number of tools and platforms to help you develop and deploy apps in containers:
 
-- <strong>Run Windows-based or Linux-based containers on Windows 10</strong> for development and testing using [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), which makes use of containers functionality built-in to Windows. You can also [run containers natively on Windows Server](../quick-start/set-up-environment.md?tabs=Windows-Server).
+- <strong>Run Windows-based or Linux-based containers on Windows 10</strong> for development and testing using [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), which makes use of containers functionality built-in to Windows. You can also [run containers natively on Windows Server](../quick-start/set-up-environment.md#windows-server-1).
 - <strong>Develop, test, publish, and deploy Windows-based containers</strong> using the [powerful container support in Visual Studio](/visualstudio/containers/overview) and [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker), which include support for Docker, Docker Compose, Kubernetes, Helm, and other useful technologies.
 - <strong>Publish your apps as container images</strong> to the public DockerHub for others to use, or to a private [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) for your org's own development and deployment, pushing and pulling directly from within Visual Studio and Visual Studio Code.
 - <strong>Deploy containers at scale on Azure</strong> or other clouds:
 
-  - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) or [Azure Service Fabric](/azure/service-fabric/).
+  - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes).
   - Azure Kubernetes Service deploys containers to Azure virtual machines and manages them at scale, whether that's dozens of containers, hundreds, or even thousands. The Azure virtual machines run either a customized Windows Server image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
 - <strong>Deploy containers on-premises</strong> by using [AKS on Azure Stack HCI](/azure-stack/aks-hci/), [Azure Stack with the AKS Engine](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview), or [Azure Stack with OpenShift](/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server (see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md)), and we're working on support for running [Windows containers on RedHat OpenShift Container Platform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821) as well.
 
@@ -60,8 +59,8 @@ Microsoft offers several images (called base images) that you can use as a start
 
 * <strong>Windows</strong> - contains the full set of Windows APIs and system services (minus server roles).
 * <strong>Windows Server</strong> - contains the full set of Windows APIs and system services.
-* <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs–namely the full .NET framework. It also includes most server roles, though sadly to few, not Fax Server.
-* <strong>Nano Server</strong> - the smallest Windows Server image, with support for the .NET Core APIs and some server roles.
+* <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs–namely the full .NET framework. It also includes most but not all server roles (for example Fax Server is not included).
+* <strong>Nano Server</strong> - the smallest Windows Server image and includes support for the .NET Core APIs and some server roles.
 
 As mentioned earlier, container images are composed of a series of layers. Each layer contains a set of files that, when overlaid together, represent your container image. Because of the layered nature of containers, you don't have to always target a base image to build a Windows container. Instead, you could target another image that already carries the framework you want. For example, the .NET team publishes a [.NET core image](https://hub.docker.com/_/microsoft-dotnet-core) that carries the .NET core runtime. It saves users from needing to duplicate the process of installing .NET core–instead they can reuse the layers of this container image. The .NET core image itself is built based upon Nano Server.
 
@@ -115,8 +114,9 @@ For help deciding which Azure services are right for your scenario, see [Azure c
 
 To view resources for using Windows Server containers:
 
-- For current issues and planned feature upgrades, see the [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1). 
+- For current issues and planned feature upgrades, see the [Windows containers GitHub repository](https://github.com/microsoft/Windows-Containers).
 
-- To view container events, see [Windows container and the Azure Kubernetes Service}](https://azure.microsoft.com/resources/videos/ignite-2019-windows-container-and-the-azure-kubernetes-service/) and [other recent containers events and slideshows](../deploy-containers/events.md).
+- Check out our blog: [Windows Containers Blog](https://techcommunity.microsoft.com/t5/containers/bg-p/Containers).
 
 - To contact the Windows Server containers team, send email to [Windows Containers Customers](mailto:win-containers@microsoft.com).
+  

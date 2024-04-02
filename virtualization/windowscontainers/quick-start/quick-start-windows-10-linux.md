@@ -1,11 +1,10 @@
 ---
-title: Set up Linux Containers on Windows 10
-description: Container deployment quick start
-keywords: docker, containers, LCOW
+title: Set up Linux containers on Windows 10
+description: Linux container deployment quickstart.
 author: taylorb-microsoft
 ms.author: jgerend
 ms.date: 08/16/2019
-ms.topic: tutorial
+ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 
@@ -37,7 +36,7 @@ In order to run Linux containers, you need to make sure Docker is targeting the 
 
 ![Docker system tray menu showing the "Switch to Windows containers" command.](./media/switchDaemon.png)
 
-Once you've confirmed you are targeting the correc daemon, run the container with the following command:
+Once you've confirmed you are targeting the correct daemon, run the container with the following command:
 
 ```console
 docker run --rm busybox echo hello_world

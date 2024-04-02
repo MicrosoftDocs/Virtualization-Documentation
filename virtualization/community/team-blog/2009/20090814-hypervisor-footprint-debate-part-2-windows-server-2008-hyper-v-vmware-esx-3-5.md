@@ -1,17 +1,22 @@
 ---
 title:      "Hypervisor Footprint Debate Part 2&#58; Windows Server 2008 Hyper-V & VMware ESX 3.5"
+description: Comparison, analysis, and debate of the Hypervisor disk footprint Part 2
+author: sethmanheim
+ms.author: sethm
 date:       2009-08-14 12:26:30
+ms.date: 08/14/2009
 categories: uncategorized
 ---
+# Hypervisor Footprint Debate Part 2: Microsoft Hyper-V Server 2008 & VMware ESXi 3.5
 Virtualization Nation,
 
-In [part 1 of this series](http://blogs.technet.com/virtualization/archive/2009/08/12/hypervisor-footprint-debate-part-1-microsoft-hyper-v-server-2008-vmware-esxi-3-5.aspx), I started an in depth analysis tackling VMware’s claims head on that because their disk footprint is smaller and ESX/ESXi are single purpose hypervisors, they are therefore more secure.
+In [part 1 of this series](https://techcommunity.microsoft.com/t5/virtualization/hypervisor-footprint-debate-part-1-update-microsoft-hyper-v/ba-p/381625), I started an in depth analysis tackling VMware’s claims head on that because their disk footprint is smaller and ESX/ESXi are single purpose hypervisors, they are therefore more secure.
 
 **The Thin Hypervisor Debate In A Nutshell**
 
 Rather than attempt to restate VMware's argument, let's just use their exact verbiage. From VMware's website:
 
-[![image_thumb4](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HyperVESXESXiFootprintDebatePart1_EAF7/image_thumb4_ffbc2d6a-6984-47e4-900f-91d590a920e0.png)](file:///C:/Users/jeffwoo/AppData/Local/Temp/1/WindowsLiveWriter1286139640/supfilesE40CEB/image9.png)
+
 
 It's interesting to point out that VMware uses **ESX & ESXi 3.5** in the column title, but then only uses ESXi for comparison in the right hand column and then rushes to compares ESXi to Windows Server 2008 Hyper-V.
 
@@ -74,9 +79,6 @@ Yes, that’s right **_85 patches totaling over 3 GB_** . To put it a few other 
   * **__VMware ESX had 36x greater patch footprint than Windows Server 2008 (Core)__**
 
 
-
-[![image_thumb81](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HyperVESXESXiFootprintDebatePart2_EB95/image_thumb81_e48739af-ccf8-4aa1-8a04-2a087dc84e85.png)](file:///C:/Users/jeffwoo/AppData/Local/Temp/1/WindowsLiveWriter1286139640/supfilesE40CEB/image13.png)
-
 **The News Gets Worse**
 
 In addition, **__VMware ESX averaged over a patch per week for 18 months with:__**
@@ -102,13 +104,13 @@ In addition, don’t forget this one…
 
 **Reliability/Availability**. With VMware ESX 3.5 Update 2, it included a serious flaw which resulted in **_two days of downtime_** for their customers including the loss of VMotion:
 
-> _["Starting this morning, we could not power on nor VMotion any of our virtual machines," said someone identified as "mattjk" on a VMware support forum. "The VI Client threw the error 'A general system error occurred: Internal Error.'"](http://www.computerworld.com/s/article/9112439/VMware_licensing_bug_blacks_out_virtual_servers)_
+> _["Starting this morning, we could not power on nor VMotion any of our virtual machines," said someone identified as "mattjk" on a VMware support forum. "The VI Client threw the error 'A general system error occurred: Internal Error.'"](https://www.computerworld.com/article/2778399/vmware-licensing-bug-blacks-out-virtual-servers.html)_
 
-It was so bad, VMware’s CEO had to apologize on numerous occasions. ([HERE](http://www.computerworld.com/action/article.do?command=viewArticleBasic&articleId=9112439), [HERE](http://www.techworld.com.au/article/257277/vmware_ceo_apologizes_virtual-server_bug), [HERE](http://blogs.zdnet.com/virtualization/?p=506), [HERE](http://marcusoh.blogspot.com/2008/08/dont-roll-vmware-update-2-yet.html), [HERE](http://communities.vmware.com/thread/162377), & [HERE](http://kb2.vmware.com/kb/1006716.html)). VMware then rushed out the VMware ESX 3.5 Update 3 which introduced instability to VMware High Availability and **could cause virtual machines to spontaneously reboot**. ([HERE](http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1007899) & [HERE](http://blog.scottlowe.org/2008/12/12/vmware-ha-problem-with-update-3/))
+It was so bad, VMware’s CEO had to apologize on numerous occasions. ([HERE](https://www.computerworld.com/action/article.do?command=viewArticleBasic&articleId=9112439), [HERE](https://www.techworld.com.au/article/257277/vmware_ceo_apologizes_virtual-server_bug), [HERE](https://marcusoh.blogspot.com/2008/08/dont-roll-vmware-update-2-yet.html), [HERE](https://communities.vmware.com/t5/VI-VMware-ESX-3-5-Discussions/BIG-bug-in-ESX-3-5-Update-2-If-you-re-using-3-5u2-read-this-now/m-p/1548036)). VMware then rushed out the VMware ESX 3.5 Update 3 which introduced instability to VMware High Availability and **could cause virtual machines to spontaneously reboot**. ([HERE](https://kb.vmware.com/s/article/1007899) & [HERE](https://blog.scottlowe.org/2008/12/12/vmware-ha-problem-with-update-3/))
 
-[Virtual machines that spontaneously reboot due to bugs in VMware high availability](http://en.wikipedia.org/wiki/Irony).
+[Virtual machines that spontaneously reboot due to bugs in VMware high availability](https://en.wikipedia.org/wiki/Irony).
 
-Now consider the fact that there were two significant quality and reliability issues with two major updates **_in a row_** (ESX/ESXi Update 2  & Update 3). While the initial Windows Server 2008 Hyper-V release didn’t provide Live Migration (Windows Server 2008 Hyper-V R1 had Quick Migration and [Windows Server 2008 Hyper-V R2 includes Live Migration for free](http://blogs.technet.com/virtualization/archive/2009/07/22/windows-server-2008-r2-hyper-v-server-2008-r2-rtm.aspx)), it didn’t include two days of potential downtime and virtual machines unexpectedly rebooting either. For those that track availability in terms of nines (five nines is 5.26 minutes of downtime a year) VMware ESX 3.5 Update 2 dropped customers to “two nines” of availability.
+Now consider the fact that there were two significant quality and reliability issues with two major updates **_in a row_** (ESX/ESXi Update 2  & Update 3). While the initial Windows Server 2008 Hyper-V release didn’t provide Live Migration (Windows Server 2008 Hyper-V R1 had Quick Migration and [Windows Server 2008 Hyper-V R2 includes Live Migration for free](https://techcommunity.microsoft.com/t5/virtualization/windows-server-2008-r2-hyper-v-server-2008-r2-rtm/ba-p/381646)), it didn’t include two days of potential downtime and virtual machines unexpectedly rebooting either. For those that track availability in terms of nines (five nines is 5.26 minutes of downtime a year) VMware ESX 3.5 Update 2 dropped customers to “two nines” of availability.
 
 **_Using VMware’s own metrics, Windows Server 2008 Hyper-V is clearly the winner over ESX 3.5 and by a pretty wide margin._**
 

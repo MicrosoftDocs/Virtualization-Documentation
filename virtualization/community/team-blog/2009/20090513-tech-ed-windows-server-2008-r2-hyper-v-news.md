@@ -1,8 +1,14 @@
 ---
 title:      "Tech Ed&#58; Windows Server 2008 R2 Hyper-V News!"
+description: Greetings from Tech Ed in Los Angeles! It's been a busy couple of days.
+author: scooley
+ms.author: scooley
 date:       2009-05-13 01:34:00
+ms.date: 05/13/2009
 categories: uncategorized
 ---
+# Tech Ed: Windows Server 2008 R2 Hyper-V News
+
 Virtualization Nation,
 
 Greetings from Tech Ed in Los Angeles! It's been a busy couple of days and you've probably heard the big news by now, Windows 7 and Windows Server 2008 R2 will be shipping for the holidays!
@@ -44,7 +50,7 @@ __Just so we're clear: this still means AMD <->AMD and Intel<->Intel. It does **
 
 In addition, you may be aware that both AMD and Intel have provided similar capabilities in hardware, Extended Migration and Flex Migration respectively. Extended and Flex Migration are cool technologies available on relatively recent processors, but this is a case where providing the solution in software allows us to be more flexible and provide this capability to older systems too. Processor Compatibility also makes it easier to upgrade to the newest server hardware. In addition, Hyper-V Processor Compatibility can be done on a per VM basis (it's a checkbox) and doesn't require any BIOS changes.
 
-![clip_image001](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/TechEdWindowsServer2008R2ShippingfortheH_146F6/clip_image001_thumb.jpg)
+
 
 **Processor Compatibility In Action**
 
@@ -52,27 +58,16 @@ Here's an example of a cluster we've been testing. This is a 4 node cluster **us
 
  
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/TechEdWindowsServer2008R2ShippingfortheH_146F6/image_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/TechEdWindowsServer2008R2ShippingfortheH_146F6/image_2.png)
-
  
 
 **Time To Get Uber-Geeky**
 
 Now that I've explained what processor compatibility mode does and the flexibility provides, I'm guessing there are a few propeller heads who want to go further and know exactly what a "normalized processor" means from a processor feature standpoint. Happy to oblige. When a VM in processor compatibility mode is started, the following processor features are hidden from the VM:
-
-**Host running AMD based processor**
-
-| 
-
-**Host running Intel based processor**  
   
----|---  
-  
-SSSE3, SSE4.1, SSE4.A, SSE5, POPCNT, LZCNT, Misaligned SSE, AMD 3DNow!, Extended AMD 3DNow!
 
-| 
-
-SSSE3, SSE4.1, SSE4.2, POPCNT, Misaligned SSE, XSAVE, AVX  
+| **Host running AMD based processor** | **Host running Intel based processor** |
+| --- | --- |
+|SSSE3, SSE4.1, SSE4.A, SSE5, POPCNT, LZCNT, Misaligned SSE, AMD 3DNow!, Extended AMD 3DNow! | SSSE3, SSE4.1, SSE4.2, POPCNT, Misaligned SSE, XSAVE, AVX | 
   
 **FAQ**
 

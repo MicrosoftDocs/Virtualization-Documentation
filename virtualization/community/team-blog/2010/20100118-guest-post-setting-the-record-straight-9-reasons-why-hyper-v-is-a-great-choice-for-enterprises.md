@@ -1,17 +1,23 @@
 ---
 title:      "Guest post&#58; &#34;Setting the Record Straight - 9 Reasons Why Hyper-V is a Great Choice for Enterprises&#34;"
+author: sethmanheim
+ms.author: sethm
+description: Setting the Record Straight - 9 Reasons Why Hyper-V is a Great Choice for Enterprises
+ms.date: 01/18/2010
 date:       2010-01-18 13:21:00
 categories: disaster-recovery
 ---
-Hi, my name is Chris Steffen, architect with Kroll Factual Data. You may have read one of my [prior guest posts](http://blogs.technet.com/virtualization/archive/2008/04/03/disaster-recovery-not-a-nightmare-with-virtualization.aspx "Chris Steffen post on DR").
+# Guest post: Setting the Record Straight - 9 Reasons Why Hyper-V is a Great Choice for Enterprises
+
+Hi, my name is Chris Steffen, architect with Kroll Factual Data. You may have read one of my [prior guest posts](https://blogs.technet.com/virtualization/archive/2008/04/03/disaster-recovery-not-a-nightmare-with-virtualization.aspx "Chris Steffen post on DR").
 
  
 
-Recently, I came across an [InformationWeek Analytics Weblog](http://www.informationweek.com/blog/main/archives/2009/12/9_reasons_enter.html;jsessionid=CL13EAE2BDN05QE1GHPCKH4ATMY32JVN "InformationWeek blog") that asserted a bunch of half truths and misinformation about Microsoft’s Hyper-V virtualization solution. Usually, I can just let it go (everyone’s entitled to their own opinion, right?), but in this case, the article was so skewed and so misleading that I felt that I needed to respond.  
+Recently, I came across an [InformationWeek Analytics Weblog](http://www.informationweek.com/blog/main/archives/2009/12/9_reasons_enter.html;jsessionid=CL13EAE2BDN05QE1GHPCKH4ATMY32JVN "InformationWeek blog") that asserted a bunch of half truths and misinformation about Microsoft's Hyper-V virtualization solution. Usually, I can just let it go (everyone's entitled to their own opinion, right?), but in this case, the article was so skewed and so misleading that I felt that I needed to respond.  
   
-Full disclosure – I am a Microsoft MVP for virtualization and a very happy Microsoft Hyper-V customer. Over the years, I have written about and presented many times on the topic of virtualization in general (including Hyper-V, ESX and Xen), and the benefits my company has experienced implementing the of the Microsoft virtualization solution. I certainly recognize my particular biases, but my biases originate from the ability of Microsoft’s virtualization solutions working in my enterprise environment.   
+Full disclosure – I am a Microsoft MVP for virtualization and a very happy Microsoft Hyper-V customer. Over the years, I have written about and presented many times on the topic of virtualization in general (including Hyper-V, ESX and Xen), and the benefits my company has experienced implementing the of the Microsoft virtualization solution. I certainly recognize my particular biases, but my biases originate from the ability of Microsoft's virtualization solutions working in my enterprise environment.   
   
-In my position as a technology architect, I try to stay on top of all of the latest advances in technologies that could benefit our business. As my company is heavily invested in virtualization, I am keenly aware of the constantly changing virtualization platforms and their continued claims of superiority over each other. But some of these arguments from VMWare are just getting old. I will try to separate some of the “myths” from the reality of the debate.  
+In my position as a technology architect, I try to stay on top of all of the latest advances in technologies that could benefit our business. As my company is heavily invested in virtualization, I am keenly aware of the constantly changing virtualization platforms and their continued claims of superiority over each other. But some of these arguments from VMWare are just getting old. I will try to separate some of the "myths" from the reality of the debate.  
   
 1\. Breadth of OS support  
   
@@ -19,17 +25,17 @@ Myth: Hyper-V has no support / limited support for Linux.
   
 Reality: Microsoft supports more than just the Windows server platforms, including versions of Linux from Red Hat and Novell.   
   
-VMWare claims to support 4x more OSes that Hyper-V, but what does that really mean? When Microsoft lists an OS as supported, they COMPLETELY support the actual OS installation in the VM and you can call Microsoft support on that OS. Microsoft has support agreements with Red Hat and Novell specifically for this purpose. VMware provides no support for the actual OS, telling customer to refer to the vendor. Also, many of the OSes that VMWare claims to support are only supported by the Linux community - not taking a shot at the Linux community here, but most do not have a formal support organization. This leads me to question why they would be used in an enterprise environment. Also, those Linux distributions can be run under Hyper-V, using the Linux Integration Components Microsoft has available for download and the drivers which are in the 2.6.32 Linux kernel release. In this case, customers wouldn’t be able to call Microsoft for support for the OS, but would work with the Linux community, just as they would with VMware.  
+VMWare claims to support 4x more OSes that Hyper-V, but what does that really mean? When Microsoft lists an OS as supported, they COMPLETELY support the actual OS installation in the VM and you can call Microsoft support on that OS. Microsoft has support agreements with Red Hat and Novell specifically for this purpose. VMware provides no support for the actual OS, telling customer to refer to the vendor. Also, many of the OSes that VMWare claims to support are only supported by the Linux community - not taking a shot at the Linux community here, but most do not have a formal support organization. This leads me to question why they would be used in an enterprise environment. Also, those Linux distributions can be run under Hyper-V, using the Linux Integration Components Microsoft has available for download and the drivers which are in the 2.6.32 Linux kernel release. In this case, customers wouldn't be able to call Microsoft for support for the OS, but would work with the Linux community, just as they would with VMware.  
   
 2\. Memory management  
   
 Myth: VMWare allows for memory over subscription and this is a good thing.  
   
-Reality: The Microsoft solution does not allow for over subscription of critical resources, but you shouldn’t do it anyway.  
+Reality: The Microsoft solution does not allow for over subscription of critical resources, but you shouldn't do it anyway.  
   
 First, there is nothing poor about the way that Hyper-V manages memory – it works exactly as designed. It was designed with system performance and stability as the paramount priorities, whereas the VMWare solution appears to have been designed to allow a customer to cram as many instances on to the VM host as possible, regardless of the consequences.  
   
-The core of the VMWare argument is that you can somehow get “something for nothing” – that there is some kind of magic that comes with the over subscription of RAM using VMWare that is the silver bullet regarding memory management. To leverage memory management in ESX to the fullest, one would have to fully burden the host beyond the physical memory. If you don’t, you really aren’t using memory overcommit. If you do, one of the most risky uses is the disaster recovery scenario. Relying on a host to overcommit memory to support failover hosts is potentially dangerous and incorrect oversubscription leads to all VMs suffering from performance.   
+The core of the VMWare argument is that you can somehow get "something for nothing" – that there is some kind of magic that comes with the over subscription of RAM using VMWare that is the silver bullet regarding memory management. To leverage memory management in ESX to the fullest, one would have to fully burden the host beyond the physical memory. If you don't, you really aren't using memory overcommit. If you do, one of the most risky uses is the disaster recovery scenario. Relying on a host to overcommit memory to support failover hosts is potentially dangerous and incorrect oversubscription leads to all VMs suffering from performance.   
   
 I would also contend that there are some instances where a company might choose to use over subscription for noncritical environments, such as a test or a dev lab. But I would not classify disaster recovery as one of those environments, and I would never over commit my VM hosts in production.  
   
@@ -53,7 +59,7 @@ Microsoft Hyper-V R2 has a live migration feature!
   
 Most of the folks from VMWare have come to accept this, so now they are touting that their LM solution is better because you can migrate multiple VMs simultaneously. While it is true that the VMWare solution can migrate multiple VMs at the same time, is this actually better?  
   
-Let’s go back to Basic Computer Architecture 101, and the example of the water pipe. There are limits to how much water you can push through a pipe at any given time, and the more taps that you add to the pipe, the longer it will take to fill up a bucket at each of the pipes. Hyper-V uses the best practice of moving a single VM as quickly as possible, using the entire bandwidth available to complete the transfer. Also, it is important to point out that without a modification of the host setting, VMWare would limit the migration to 4 VMs at a time (presumably for the same bandwidth considerations). The idea of moving 40 VMs all at the same time (as mentioned in the article) is not something that would be recommended, ever, regardless of platform.  
+Let's go back to Basic Computer Architecture 101, and the example of the water pipe. There are limits to how much water you can push through a pipe at any given time, and the more taps that you add to the pipe, the longer it will take to fill up a bucket at each of the pipes. Hyper-V uses the best practice of moving a single VM as quickly as possible, using the entire bandwidth available to complete the transfer. Also, it is important to point out that without a modification of the host setting, VMWare would limit the migration to 4 VMs at a time (presumably for the same bandwidth considerations). The idea of moving 40 VMs all at the same time (as mentioned in the article) is not something that would be recommended, ever, regardless of platform.  
   
 5\. VM Priority Restarts  
   

@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-ms.prod: windows-10-hyperv
 ---
 
 # Feature and Interface Discovery
@@ -138,7 +137,17 @@ EAX and EBX indicate which features are available to the partition based upon th
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EBX       |       | Corresponds to bits 63-32 of HV_PARTITION_PRIVILEGE_MASK                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
-| ECX       |       |                                                                                       |
+| ECX       | 4-0   | Reserved
++           +-------+---------------------------------------------------------------------------------------+
+|           | 5     | Invariant Mperf is available                                                          |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 6     | Supervisor shadow stack is available                                                  |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 7     | Architectural PMU is available                                                        |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 8     | Exception trap intercept is available                                                 |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 31-9  | Reserved                                                                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EDX       | 0     | Deprecated (previously indicated availability of the MWAIT command).                  |
 +           +-------+---------------------------------------------------------------------------------------+
@@ -203,8 +212,28 @@ EAX and EBX indicate which features are available to the partition based upon th
             <td>Corresponds to bits 63-32 of HV_PARTITION_PRIVILEGE_MASK</td>
         </tr>
         <tr>
-            <td>ECX</td>
-            <td></td>
+            <td rowspan="6">ECX</td>
+            <td>4-0</td>
+            <td>Reserved</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Invariant Mperf is available</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Supervisor shadow stack is available</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Architectural PMU is available</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Exception trap intercept is available</td>
+        </tr>
+        <tr>
+            <td>31-9</td>
             <td>Reserved</td>
         </tr>
         <tr>
@@ -835,12 +864,16 @@ Indicates which nested virtualization optimizations are available to a nested hy
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 20    | Indicates support for combining virtualization exceptions in the page fault exception class.
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 21    | Reserved.                                                                             |
+|           | 21    | Indicates support for non-zero value of the 0x00002802 (GuestIa32DebugCtl) field in the VMCS.
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 22    | Indicates support for the enlightened TLB on AMD platforms. ASID flushes do not affect TLB entries derived from the NPT. Hypercalls must be used to invalidate NPT TLB entries. Also indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls.
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 31-23 | Reserved                                                                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
+| EBX       | 0     | Indicates support for the GuestPerfGlobalCtrl and HostPerfGlobalCtrl fields in the enlightened VMCS.
++           +-----------------------------------------------------------------------------------------------+
+|           | 31-1  | Reserved                                                                              |
++-----------+-----------------------------------------------------------------------------------------------+
 | EBX       | Reserved                                                                                      |
 +-----------+-----------------------------------------------------------------------------------------------+
 | ECX       | Reserved                                                                                      |
@@ -888,7 +921,7 @@ Indicates which nested virtualization optimizations are available to a nested hy
         </tr>
         <tr>
             <td>21</td>
-            <td>Reserved</td>
+            <td>Indicates support for non-zero value of the 0x00002802 (GuestIa32DebugCtl) field in the VMCS.</td>
         </tr>
         <tr>
             <td>22</td>
@@ -899,8 +932,12 @@ Indicates which nested virtualization optimizations are available to a nested hy
             <td>Reserved</td>
         </tr>
         <tr>
-            <td>EBX</td>
-            <td></td>
+            <td rowspan="2">EBX</td>
+            <td>0</td>
+            <td>Indicates support for the GuestPerfGlobalCtrl and HostPerfGlobalCtrl fields in the enlightened VMCS.</td>
+        </tr>
+        <tr>
+            <td>31-1</td>
             <td>Reserved</td>
         </tr>
         <tr>

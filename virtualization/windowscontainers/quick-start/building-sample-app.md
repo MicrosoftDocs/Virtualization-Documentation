@@ -1,11 +1,10 @@
 ---
-title: Containerize a .NET Core App
-description: Learn to build a sample .NET core app with containers
-keywords: docker, containers
-author: cwilhit
-ms.author: crwilhit
-ms.date: 09/01/2021
-ms.topic: quickstart
+title: Containerize a .NET Core app
+description: Learn how to build a sample .NET Core app with containers.
+author: vrapolinario
+ms.author: viniap
+ms.date: 03/31/2023
+ms.topic: how-to
 ---
 # Containerize a .NET Core App
 
@@ -120,7 +119,7 @@ With the Dockerfile written, we can point Docker at our Dockerfile and tell it t
    * `--name myapp` tells Docker to give this container a convenient name to query by (instead of having to look up the container ID assigned at runtime by Docker).
    * `my-asp-app` is the image we want Docker to run. This is the container image produced as the culmination of the `docker build` process.
 
-3. Open a web browser and navigate to `http://localhost:5000` to be see your containerized application, as shown in this screenshot:
+3. Open a web browser and navigate to `http://localhost:5000` to see your containerized application, as shown in this screenshot:
 
    >![ASP.NET Core webpage, running from the localhost in a container](media/SampleAppScreenshot.png)
 

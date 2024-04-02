@@ -1,17 +1,23 @@
 ---
-title:      "Discrete Device Assignment -- Description and background"
+title: Discrete Device Assignment -- Description and background
+description: Learn about Discrete Device Assignment, a new feature with Windows Server 2016 for Hyper-V virtual machines.
+author: sethmanheim
+ms.author: sethm
 date:       2015-11-19 13:27:30
+ms.date: 11/19/2015
 categories: dda
 ---
+# Discrete Device Assignment -- Description and background
+
 With Windows Server 2016, we're introducing a new feature, called Discrete Device Assignment, in Hyper-V.  Users can now take some of the PCI Express devices in their systems and pass them through directly to a guest VM.  This is actually much of the same technology that we've used for SR-IOV networking in the past.  And because of that, instead of giving you a lot of background on how this all works, I'll just point to an excellent series of posts that John Howard did a few years ago about SR-IOV when used for networking.
 
-[Everything you wanted to know about SR-IOV in Hyper-V part 1](/b/jhoward/archive/2012/03/12/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-1.aspx "Everything you wanted to know about SR-IOV in Hyper-V part 1")
+Everything you wanted to know about SR-IOV in Hyper-V part 1
 
-[Everything you wanted to know about SR-IOV in Hyper-V part 2](/b/jhoward/archive/2012/03/13/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-2.aspx "Everything you wanted to know about SR-IOV in Hyper-V part 2")
+Everything you wanted to know about SR-IOV in Hyper-V part 2
 
-[Everything you wanted to know about SR-IOV in Hyper-V part 3](/b/jhoward/archive/2012/03/14/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-3.aspx "Everything you wanted to know about SR-IOV in Hyper-V part 3")
+Everything you wanted to know about SR-IOV in Hyper-V part 3
 
-[Everything you wanted to know about SR-IOV in Hyper-V part 4](/b/jhoward/archive/2012/03/15/everything-you-wanted-to-know-about-sr-iov-in-hyper-v-part-4.aspx "Everything you wanted to know about SR-IOV in Hyper-V part 4")
+Everything you wanted to know about SR-IOV in Hyper-V part 4
 
 Now I've only linked the first four posts that John Howard did back in 2012 because those were the ones that discussed the internals of PCI Express and distributing actual devices among multiple operating systems.  The rest of his series is mostly about networking, and while I do recommend it, that's not what we're talking about here.
 
@@ -31,18 +37,17 @@ GPUs (graphics processors) are, similarly, becoming a must-have in virtual machi
 
 Other types of devices may work when passed through to a guest VM.  We've tried a few USB 3 controllers, RAID/SAS controllers, and sundry other things.  Many will work, but none will be candidates for official support from Microsoft, at least not at first, and you won't be able to put them into use without overriding warning messages.  Consider these devices to be in the "experimental" category.  More on which devices can work in a future blog post.
 
-##   
-Switching it all On
+## Switching it all On
 
-Managing the underlying hardware of your machine is complicated, and can quickly get you in trouble. Furthermore, we’re really trying to address the need to pass NVMe devices though to storage appliances, which are likely to be configured by people who are IT pros and want to use scripts. So all of this is only available through PowerShell, with nothing in the Hyper-V Manager. What follows is a PowerShell script that finds all the NVMe controllers in the system, unloads the default drivers from them, dismounts them from the management OS and makes them available in a pool for guest VMs.
+Managing the underlying hardware of your machine is complicated, and can quickly get you in trouble. Furthermore, we're really trying to address the need to pass NVMe devices though to storage appliances, which are likely to be configured by people who are IT pros and want to use scripts. So all of this is only available through PowerShell, with nothing in the Hyper-V Manager. What follows is a PowerShell script that finds all the NVMe controllers in the system, unloads the default drivers from them, dismounts them from the management OS and makes them available in a pool for guest VMs.
 
-# get all devices which are NVMe controllers
+### get all devices which are NVMe controllers
 
 $pnpdevs = Get-PnpDevice -PresentOnly | Where-Object {$_.Class -eq "SCSIAdapter"} | Where-Object {$_.Service -eq "stornvme"}
 
  
 
-# cycle through them disabling and dismounting them
+### cycle through them disabling and dismounting them
 
 foreach ($pnpdev in $pnpdevs) {
 
@@ -56,9 +61,9 @@ foreach ($pnpdev in $pnpdevs) {
 
 }
 
-Depending on whether you’ve already put your NVMe controllers into use, you might actually have to reboot between disabling them and dismounting them. But after you have both disabled (removed the drivers) and dismounted (taken them away from the management OS) you should be able to find them all in a pool. You can, of course, reverse this process with the Mount-VMHostAssignableDevice and Enable-PnPDevice cmdlets.
+Depending on whether you've already put your NVMe controllers into use, you might actually have to reboot between disabling them and dismounting them. But after you have both disabled (removed the drivers) and dismounted (taken them away from the management OS) you should be able to find them all in a pool. You can, of course, reverse this process with the Mount-VMHostAssignableDevice and Enable-PnPDevice cmdlets.
 
-Here’s the output of running the script above on my test machine where I have, alas, only one NVMe controller, followed by asking for the list of devices in the pool:
+Here's the output of running the script above on my test machine where I have, alas, only one NVMe controller, followed by asking for the list of devices in the pool:
 
 [jakeo-t620]: PS E:\test> .\dismount-nvme.ps1  
 PCIROOT(40)#PCI(0200)#PCI(0000)  
@@ -71,19 +76,16 @@ CimSession : CimSession: .
 ComputerName : JAKEO-T620  
 IsDeleted : False
 
-Now that we have the NVMe controllers in the pool of dismounted PCI Express devices, we can add them to a VM. There are basically three options here, using the InstanceID above, using the LocationPath and just saying “give me any device from the pool.” You can add more than one to a VM. And you can add or remove them at any time, even when the VM is running. I want to add this NVMe controller to a VM called “StorageServer”:
+Now that we have the NVMe controllers in the pool of dismounted PCI Express devices, we can add them to a VM. There are basically three options here, using the InstanceID above, using the LocationPath and just saying "give me any device from the pool." You can add more than one to a VM. And you can add or remove them at any time, even when the VM is running. I want to add this NVMe controller to a VM called "StorageServer":
 
 [jakeo-t620]: PS E:\test> Add-VMAssignableDevice -LocationPath "PCIROOT(40)#PCI(0200)#PCI(0000)" -VMName StorageServer
 
 There are similar Remove-VMAssignableDevice and Get-VMAssignableDevice cmdlets.
 
-If you don’t like scripts, the InstanceID can be found as “Device Instance Path” under the Details tab in Device Manager. The Location Path is also under Details. You can disable the device there and then use PowerShell to dismount it.  
-Finally, it wouldn’t be a blog post without a screen shot. Here’s Device Manager from that VM, rearranged with “View by Connection” simply because it proves that I’m talking about a VM.
+If you don't like scripts, the InstanceID can be found as "Device Instance Path" under the Details tab in Device Manager. The Location Path is also under Details. You can disable the device there and then use PowerShell to dismount it.  
 
-[![ ](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/StorageServer.png)
+In a future post, I'll talk about how to figure out whether your machine and your devices support all this.
 
-In a future post, I’ll talk about how to figure out whether your machine and your devices support all this.
-
-Read the next post in this series:  [Discrete Device Assignment -- Machines and devices](/b/virtualization/archive/2015/11/20/discrete-device-assignment-machines-and-devices.aspx "Discrete Device Assignment -- Machines and devices")
+Read the next post in this series: [Discrete Device Assignment -- Machines and devices](/virtualization/community/team-blog/2015/20151120-discrete-device-assignment-machines-and-devices "Discrete Device Assignment Machines and devices")
 
 \-- Jake Oshins

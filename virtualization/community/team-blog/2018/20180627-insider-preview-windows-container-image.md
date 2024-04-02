@@ -1,11 +1,11 @@
 ---
 title: Insider preview - Windows container image
 keywords: virtualization, containers, windows containers, dda, devices, blog
+description: Learn about the new Windows container images based on requirements workloads and how to get the new feature.
 author: cwilhit
+ms.author: scooley 
 ms.date: 6/27/2018
 ms.topic: article
-ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 
 ---
 
@@ -13,7 +13,7 @@ ms.assetid:
 
 Earlier this year at Microsoft Build 2018, we announced a third container base image for applications that have additional API dependencies beyond _nano server_ and _Windows Server Core_. Now the time has finally come and the _Windows_ container image is available for Windows Insiders.
 
-![New Windows container images announcement](https://msdnshared.blob.core.windows.net/media/2018/06/windowscontainerbuild2018.png)
+<!--![New Windows container images announcement](https://msdnshared.blob.core.windows.net/media/2018/06/windowscontainerbuild2018.png)-->
 
 ## Why another container image?
 

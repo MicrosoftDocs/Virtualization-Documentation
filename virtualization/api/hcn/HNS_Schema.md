@@ -4,8 +4,6 @@ description: HcnSchema
 author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
 ms.date: 10/31/2021
 api_name:
 - HcnSchema
@@ -15,6 +13,7 @@ api_type:
 - DllExport
 topic_type:
 - apiref
+
 ---
 # Hcn Agenda
 - [Enums](#enums)
@@ -23,10 +22,10 @@ topic_type:
 - [Version Map](#Schema-Version-Map)
 ---
 <a name = "enums"></a>
-# Hcn Enums
+## Enums
 Note: all variants listed should be used as string
 <a name = "ActionType"></a>
-## ActionType
+### ActionType
 Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting); [TierAclRule](#TierAclRule)
 
 
@@ -40,7 +39,7 @@ Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting); [TierAclRule](
 ---
 
 <a name = "AuthenticationType"></a>
-## AuthenticationType
+### AuthenticationType
 Referenced by: [PrioritizedAuthenticationMethod](#PrioritizedAuthenticationMethod)
 
 
@@ -53,7 +52,7 @@ Referenced by: [PrioritizedAuthenticationMethod](#PrioritizedAuthenticationMetho
 ---
 
 <a name = "DirectionType"></a>
-## DirectionType
+### DirectionType
 Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting); [TierAclPolicySetting](#TierAclPolicySetting)
 
 
@@ -66,7 +65,7 @@ Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting); [TierAclPolicy
 ---
 
 <a name = "EncryptionMethod"></a>
-## EncryptionMethod
+### EncryptionMethod
 Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 
 
@@ -78,7 +77,7 @@ Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 ---
 
 <a name = "EndpointFlags"></a>
-## EndpointFlags
+### EndpointFlags
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint)
 
 
@@ -96,7 +95,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint)
 ---
 
 <a name = "EndpointPolicyType"></a>
-## EndpointPolicyType
+### EndpointPolicyType
 Referenced by: [EndpointPolicy](#EndpointPolicy)
 
 
@@ -124,7 +123,7 @@ Referenced by: [EndpointPolicy](#EndpointPolicy)
 ---
 
 <a name = "EndpointResourceType"></a>
-## EndpointResourceType
+### EndpointResourceType
 Referenced by: [ModifyEndpointSettingRequest](#ModifyEndpointSettingRequest)
 
 
@@ -137,7 +136,7 @@ Referenced by: [ModifyEndpointSettingRequest](#ModifyEndpointSettingRequest)
 ---
 
 <a name = "EntityFlags"></a>
-## EntityFlags
+### EntityFlags
 
 
 |Variants|NewInVersion|Description|
@@ -147,8 +146,32 @@ Referenced by: [ModifyEndpointSettingRequest](#ModifyEndpointSettingRequest)
 
 ---
 
+<a name = "FirewallPolicyFlags"></a>
+### FirewallPolicyFlags
+Referenced by: [FirewallPolicySetting](#FirewallPolicySetting)
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"None"`<br>|[2.16](#Schema-Version-Map)||
+|`"ConstrainedInterface"`<br>|[2.16](#Schema-Version-Map)||
+
+---
+
+<a name = "FirewallVMType"></a>
+### FirewallVMType
+Referenced by: [FirewallPolicySetting](#FirewallPolicySetting)
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Invalid"`<br>|[2.16](#Schema-Version-Map)||
+|`"Host"`<br>|[2.16](#Schema-Version-Map)||
+|`"WSA"`<br>|[2.16](#Schema-Version-Map)||
+|`"WSL"`<br>|[2.16](#Schema-Version-Map)||
+
+---
+
 <a name = "GuestEndpointResourceType"></a>
-## GuestEndpointResourceType
+### GuestEndpointResourceType
 Referenced by: [ModifyGuestEndpointSettingRequest](#ModifyGuestEndpointSettingRequest)
 
 
@@ -170,7 +193,7 @@ Referenced by: [ModifyGuestEndpointSettingRequest](#ModifyGuestEndpointSettingRe
 ---
 
 <a name = "GuestNamespaceResourceType"></a>
-## GuestNamespaceResourceType
+### GuestNamespaceResourceType
 Referenced by: [ModifyGuestNamespaceSettingRequest](#ModifyGuestNamespaceSettingRequest)
 
 
@@ -183,7 +206,7 @@ Referenced by: [ModifyGuestNamespaceSettingRequest](#ModifyGuestNamespaceSetting
 ---
 
 <a name = "GuestNetworkServiceFlags"></a>
-## GuestNetworkServiceFlags
+### GuestNetworkServiceFlags
 Referenced by: [GuestNetworkService](#GuestNetworkService)
 
 
@@ -197,7 +220,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService)
 ---
 
 <a name = "GuestNetworkServiceInterfaceState"></a>
-## GuestNetworkServiceInterfaceState
+### GuestNetworkServiceInterfaceState
 Referenced by: [GuestNetworkServiceInterface](#GuestNetworkServiceInterface)
 
 
@@ -213,7 +236,7 @@ Referenced by: [GuestNetworkServiceInterface](#GuestNetworkServiceInterface)
 ---
 
 <a name = "GuestNetworkServiceNotificationType"></a>
-## GuestNetworkServiceNotificationType
+### GuestNetworkServiceNotificationType
 Referenced by: [GuestNetworkServiceInterface](#GuestNetworkServiceInterface)
 
 
@@ -233,7 +256,7 @@ Referenced by: [GuestNetworkServiceInterface](#GuestNetworkServiceInterface)
 ---
 
 <a name = "GuestNetworkServiceResourceType"></a>
-## GuestNetworkServiceResourceType
+### GuestNetworkServiceResourceType
 Referenced by: [ModifyGuestNetworkServiceSettingRequest](#ModifyGuestNetworkServiceSettingRequest)
 
 
@@ -245,7 +268,7 @@ Referenced by: [ModifyGuestNetworkServiceSettingRequest](#ModifyGuestNetworkServ
 ---
 
 <a name = "GuestNetworkServiceState"></a>
-## GuestNetworkServiceState
+### GuestNetworkServiceState
 Referenced by: [GuestNetworkServiceNotificationData](#GuestNetworkServiceNotificationData); [GuestNetworkServiceStateRequest](#GuestNetworkServiceStateRequest)
 
 
@@ -265,7 +288,7 @@ Referenced by: [GuestNetworkServiceNotificationData](#GuestNetworkServiceNotific
 ---
 
 <a name = "GuestResourceType"></a>
-## GuestResourceType
+### GuestResourceType
 Referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest)
 
 
@@ -280,7 +303,7 @@ Referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest)
 ---
 
 <a name = "HostComputeQueryFlags"></a>
-## HostComputeQueryFlags
+### HostComputeQueryFlags
 Referenced by: [HostComputeQuery](#HostComputeQuery)
 
 
@@ -293,21 +316,21 @@ Referenced by: [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "HostResourceType"></a>
-## HostResourceType
+### HostResourceType
 
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Network"`<br>|[](#Schema-Version-Map)||
-|`"Endpoint"`<br>|[](#Schema-Version-Map)||
-|`"Container"`<br>|[](#Schema-Version-Map)||
-|`"Namespace"`<br>|[](#Schema-Version-Map)||
-|`"PolicyList"`<br>|[](#Schema-Version-Map)||
+|`"Network"`<br>|[2.0](#Schema-Version-Map)||
+|`"Endpoint"`<br>|[2.0](#Schema-Version-Map)||
+|`"Container"`<br>|[2.0](#Schema-Version-Map)||
+|`"Namespace"`<br>|[2.0](#Schema-Version-Map)||
+|`"PolicyList"`<br>|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "IovInterruptModerationType"></a>
-## IovInterruptModerationType
+### IovInterruptModerationType
 Referenced by: [IovPolicySetting](#IovPolicySetting)
 
 
@@ -324,7 +347,7 @@ Referenced by: [IovPolicySetting](#IovPolicySetting)
 ---
 
 <a name = "IpamType"></a>
-## IpamType
+### IpamType
 Referenced by: [Ipam](#Ipam)
 
 
@@ -337,7 +360,7 @@ Referenced by: [Ipam](#Ipam)
 ---
 
 <a name = "IPSubnetFlags"></a>
-## IPSubnetFlags
+### IPSubnetFlags
 Referenced by: [IpSubnet](#IpSubnet)
 
 
@@ -351,7 +374,7 @@ Referenced by: [IpSubnet](#IpSubnet)
 ---
 
 <a name = "LoadBalancerDistribution"></a>
-## LoadBalancerDistribution
+### LoadBalancerDistribution
 Referenced by: [LoadBalancerPortMapping](#LoadBalancerPortMapping)
 
 
@@ -365,7 +388,7 @@ Referenced by: [LoadBalancerPortMapping](#LoadBalancerPortMapping)
 ---
 
 <a name = "LoadBalancerFlags"></a>
-## LoadBalancerFlags
+### LoadBalancerFlags
 Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 
 
@@ -379,7 +402,7 @@ Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 ---
 
 <a name = "LoadBalancerPortMappingFlags"></a>
-## LoadBalancerPortMappingFlags
+### LoadBalancerPortMappingFlags
 Referenced by: [LoadBalancerPortMapping](#LoadBalancerPortMapping)
 
 
@@ -395,23 +418,23 @@ Referenced by: [LoadBalancerPortMapping](#LoadBalancerPortMapping)
 ---
 
 <a name = "ModifyRequestType"></a>
-## ModifyRequestType
+### ModifyRequestType
 Referenced by: [ModifySettingRequest](#ModifySettingRequest)
 
 
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Add"`<br>|[](#Schema-Version-Map)||
-|`"Remove"`<br>|[](#Schema-Version-Map)||
-|`"Update"`<br>|[](#Schema-Version-Map)||
-|`"Refresh"`<br>|[](#Schema-Version-Map)||
-|`"Reset"`<br>|[](#Schema-Version-Map)||
+|`"Add"`<br>|[2.0](#Schema-Version-Map)||
+|`"Remove"`<br>|[2.0](#Schema-Version-Map)||
+|`"Update"`<br>|[2.0](#Schema-Version-Map)||
+|`"Refresh"`<br>|[2.0](#Schema-Version-Map)||
+|`"Reset"`<br>|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "NamespaceResourceType"></a>
-## NamespaceResourceType
+### NamespaceResourceType
 Referenced by: [ModifyNamespaceSettingRequest](#ModifyNamespaceSettingRequest); [NamespaceResource](#NamespaceResource)
 
 
@@ -424,22 +447,22 @@ Referenced by: [ModifyNamespaceSettingRequest](#ModifyNamespaceSettingRequest); 
 ---
 
 <a name = "NamespaceType"></a>
-## NamespaceType
+### NamespaceType
 Referenced by: [HostComputeNamespace](#HostComputeNamespace)
 
 
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Host"`<br>|[](#Schema-Version-Map)||
-|`"HostDefault"`<br>|[](#Schema-Version-Map)||
-|`"Guest"`<br>|[](#Schema-Version-Map)||
-|`"GuestDefault"`<br>|[](#Schema-Version-Map)||
+|`"Host"`<br>|[2.0](#Schema-Version-Map)||
+|`"HostDefault"`<br>|[2.0](#Schema-Version-Map)||
+|`"Guest"`<br>|[2.0](#Schema-Version-Map)||
+|`"GuestDefault"`<br>|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "NatFlags"></a>
-## NatFlags
+### NatFlags
 Referenced by: [OutboundNatPolicySetting](#OutboundNatPolicySetting); [PortMappingPolicySetting](#PortMappingPolicySetting)
 
 
@@ -453,7 +476,7 @@ Referenced by: [OutboundNatPolicySetting](#OutboundNatPolicySetting); [PortMappi
 ---
 
 <a name = "NetworkFlags"></a>
-## NetworkFlags
+### NetworkFlags
 Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -474,7 +497,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 ---
 
 <a name = "NetworkMode"></a>
-## NetworkMode
+### NetworkMode
 Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -496,7 +519,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 ---
 
 <a name = "NetworkPolicyType"></a>
-## NetworkPolicyType
+### NetworkPolicyType
 Referenced by: [NetworkPolicy](#NetworkPolicy)
 
 
@@ -521,7 +544,7 @@ Referenced by: [NetworkPolicy](#NetworkPolicy)
 ---
 
 <a name = "NetworkResourceType"></a>
-## NetworkResourceType
+### NetworkResourceType
 Referenced by: [ModifyNetworkSettingRequest](#ModifyNetworkSettingRequest)
 
 
@@ -537,7 +560,7 @@ Referenced by: [ModifyNetworkSettingRequest](#ModifyNetworkSettingRequest)
 ---
 
 <a name = "ProtocolType"></a>
-## ProtocolType
+### ProtocolType
 Referenced by: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting); [LoadBalancerPortMapping](#LoadBalancerPortMapping); [PortMappingPolicySetting](#PortMappingPolicySetting)
 
 
@@ -554,7 +577,7 @@ Referenced by: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting); [LoadB
 ---
 
 <a name = "ProxyType"></a>
-## ProxyType
+### ProxyType
 
 
 |Variants|NewInVersion|Description|
@@ -565,7 +588,7 @@ Referenced by: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting); [LoadB
 ---
 
 <a name = "RpcEndpointType"></a>
-## RpcEndpointType
+### RpcEndpointType
 Referenced by: [RpcConnectionInformation](#RpcConnectionInformation)
 
 
@@ -578,7 +601,7 @@ Referenced by: [RpcConnectionInformation](#RpcConnectionInformation)
 ---
 
 <a name = "RuleType"></a>
-## RuleType
+### RuleType
 Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting)
 
 
@@ -591,7 +614,7 @@ Referenced by: [CommonAclPolicySetting](#CommonAclPolicySetting)
 ---
 
 <a name = "SetPolicyTypes"></a>
-## SetPolicyTypes
+### SetPolicyTypes
 Referenced by: [SetPolicySetting](#SetPolicySetting)
 
 
@@ -604,7 +627,7 @@ Referenced by: [SetPolicySetting](#SetPolicySetting)
 ---
 
 <a name = "SubnetFlags"></a>
-## SubnetFlags
+### SubnetFlags
 Referenced by: [Subnet](#Subnet)
 
 
@@ -617,7 +640,7 @@ Referenced by: [Subnet](#Subnet)
 ---
 
 <a name = "SubnetPolicyType"></a>
-## SubnetPolicyType
+### SubnetPolicyType
 Referenced by: [SubnetPolicy](#SubnetPolicy)
 
 
@@ -630,9 +653,9 @@ Referenced by: [SubnetPolicy](#SubnetPolicy)
 ---
 
 <a name = "structs"></a>
-# Hcn Structs
+## Structs
 <a name = "AclPolicySetting"></a>
-## AclPolicySetting
+### AclPolicySetting
 
 
 Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#CommonAclPolicySetting)
@@ -647,15 +670,15 @@ Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#Co
 |**LocalPorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**RemotePorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**Priority**<br>|[uint16](#JSON-type)|[2.5](#Schema-Version-Map)||
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**Action**<br>|[ActionType](#ActionType)|[](#Schema-Version-Map)||
-|**Direction**<br>|[DirectionType](#DirectionType)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Action**<br>|[ActionType](#ActionType)|[2.0](#Schema-Version-Map)||
+|**Direction**<br>|[DirectionType](#DirectionType)|[2.0](#Schema-Version-Map)||
 |**RuleType**<br>|[RuleType](#RuleType)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "AuthenticationCertificate"></a>
-## AuthenticationCertificate
+### AuthenticationCertificate
 
 
 Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
@@ -669,7 +692,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "AuthenticationMethod"></a>
-## AuthenticationMethod
+### AuthenticationMethod
 
 
 
@@ -678,7 +701,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "AuthenticationPresharedKey"></a>
-## AuthenticationPresharedKey
+### AuthenticationPresharedKey
 
 
 Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
@@ -692,7 +715,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "AutomaticDNSNetworkPolicySetting"></a>
-## AutomaticDNSNetworkPolicySetting
+### AutomaticDNSNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -702,7 +725,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "Base"></a>
-## Base
+### Base
 
 
 |Field|Type|NewInVersion|Description|
@@ -720,7 +743,7 @@ Derived from parent class: [AuthenticationMethod](#AuthenticationMethod)
 ---
 
 <a name = "BasePolicy"></a>
-## BasePolicy
+### BasePolicy
 
 
 Derived from parent class: [Base](#Base)
@@ -744,7 +767,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "CommonAclPolicySetting"></a>
-## CommonAclPolicySetting
+### CommonAclPolicySetting
 
 
 Derived from parent class: [FiveTuple](#FiveTuple)
@@ -759,15 +782,15 @@ Derived from parent class: [FiveTuple](#FiveTuple)
 |**LocalPorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**RemotePorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**Priority**<br>|[uint16](#JSON-type)|[2.5](#Schema-Version-Map)||
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**Action**<br>|[ActionType](#ActionType)|[](#Schema-Version-Map)||
-|**Direction**<br>|[DirectionType](#DirectionType)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Action**<br>|[ActionType](#ActionType)|[2.0](#Schema-Version-Map)||
+|**Direction**<br>|[DirectionType](#DirectionType)|[2.0](#Schema-Version-Map)||
 |**RuleType**<br>|[RuleType](#RuleType)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "CommonL4ProxyPolicySetting"></a>
-## CommonL4ProxyPolicySetting
+### CommonL4ProxyPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -776,13 +799,13 @@ Derived from parent class: [FiveTuple](#FiveTuple)
 |**Port**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Protocol**<br>|[ProtocolType](#ProtocolType)|[2.0](#Schema-Version-Map)||
 |**ExceptionList**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
-|**Destination**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Destination**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**OutboundNat**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "DNS"></a>
-## DNS
+### DNS
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -797,7 +820,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [HostComputeNetwork]
 ---
 
 <a name = "DNS_2"></a>
-## DNS_2
+### DNS_2
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
@@ -809,7 +832,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Domain**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Search**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ServerList**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -818,7 +841,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "DrMacAddressNetworkPolicySetting"></a>
-## DrMacAddressNetworkPolicySetting
+### DrMacAddressNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -828,7 +851,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "EncapOverheadEndpointPolicySetting"></a>
-## EncapOverheadEndpointPolicySetting
+### EncapOverheadEndpointPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -838,7 +861,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "EncryptionPolicySetting"></a>
-## EncryptionPolicySetting
+### EncryptionPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -855,7 +878,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "EndpointAdditionalParams"></a>
-## EndpointAdditionalParams
+### EndpointAdditionalParams
 
 
 |Field|Type|NewInVersion|Description|
@@ -866,7 +889,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "EndpointPolicy"></a>
-## EndpointPolicy
+### EndpointPolicy
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [PolicyEndpointRequest](#PolicyEndpointRequest)
 
 
@@ -879,18 +902,18 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [PolicyEndpointReque
 ---
 
 <a name = "Extension"></a>
-## Extension
+### Extension
 
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)||
-|**IsEnabled**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Id**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**IsEnabled**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "ExtraParams"></a>
-## ExtraParams
+### ExtraParams
 Referenced by: [Health](#Health)
 
 
@@ -907,7 +930,7 @@ Referenced by: [Health](#Health)
 ---
 
 <a name = "Feature"></a>
-## Feature
+### Feature
 
 
 Derived from parent class: [Base](#Base)
@@ -930,8 +953,19 @@ Derived from parent class: [Base](#Base)
 
 ---
 
+<a name = "FirewallPolicySetting"></a>
+### FirewallPolicySetting
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**VmType**<br>|[FirewallVMType](#FirewallVMType)|[2.16](#Schema-Version-Map)||
+|**FirewallPolicyFlags**<br>|[FirewallPolicyFlags](#FirewallPolicyFlags)|[2.16](#Schema-Version-Map)||
+
+---
+
 <a name = "FiveTuple"></a>
-## FiveTuple
+### FiveTuple
 Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 
 
@@ -948,7 +982,7 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ---
 
 <a name = "FiveTuple_2"></a>
-## FiveTuple_2
+### FiveTuple_2
 
 
 |Field|Type|NewInVersion|Description|
@@ -963,7 +997,7 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ---
 
 <a name = "GuestEndpoint"></a>
-## GuestEndpoint
+### GuestEndpoint
 
 
 Derived from parent class: [Base](#Base)
@@ -986,7 +1020,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestEndpointState"></a>
-## GuestEndpointState
+### GuestEndpointState
 
 
 |Field|Type|NewInVersion|Description|
@@ -1000,7 +1034,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestFirewall"></a>
-## GuestFirewall
+### GuestFirewall
 
 
 Derived from parent class: [Base](#Base)
@@ -1022,7 +1056,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestModifySettingRequest"></a>
-## GuestModifySettingRequest
+### GuestModifySettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1039,7 +1073,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "GuestNamespace"></a>
-## GuestNamespace
+### GuestNamespace
 
 
 Derived from parent class: [Base](#Base)
@@ -1063,7 +1097,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestNetworkService"></a>
-## GuestNetworkService
+### GuestNetworkService
 Schema to hold the GNS info in HNS
 
 Derived from parent class: [Base](#Base)
@@ -1090,7 +1124,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "GuestNetworkServiceInterface"></a>
-## GuestNetworkServiceInterface
+### GuestNetworkServiceInterface
 Referenced by: [GuestNetworkService](#GuestNetworkService); [GuestNetworkServiceNotificationData](#GuestNetworkServiceNotificationData)
 
 
@@ -1105,7 +1139,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService); [GuestNetworkService
 ---
 
 <a name = "GuestNetworkServiceNotificationData"></a>
-## GuestNetworkServiceNotificationData
+### GuestNetworkServiceNotificationData
 
 
 |Field|Type|NewInVersion|Description|
@@ -1116,7 +1150,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService); [GuestNetworkService
 ---
 
 <a name = "GuestNetworkServiceStateRequest"></a>
-## GuestNetworkServiceStateRequest
+### GuestNetworkServiceStateRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1126,7 +1160,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService); [GuestNetworkService
 ---
 
 <a name = "GuestService"></a>
-## GuestService
+### GuestService
 
 
 Derived from parent class: [Base](#Base)
@@ -1150,7 +1184,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "Health"></a>
-## Health
+### Health
 Referenced by: [Base](#Base)
 
 
@@ -1163,7 +1197,7 @@ Referenced by: [Base](#Base)
 ---
 
 <a name = "HostComputeEndpoint"></a>
-## HostComputeEndpoint
+### HostComputeEndpoint
 
 
 Derived from parent class: [Base](#Base)
@@ -1193,7 +1227,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputeLoadBalancer"></a>
-## HostComputeLoadBalancer
+### HostComputeLoadBalancer
 
 
 Derived from parent class: [Base](#Base)
@@ -1221,7 +1255,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputeNamespace"></a>
-## HostComputeNamespace
+### HostComputeNamespace
 
 
 Derived from parent class: [Base](#Base)
@@ -1247,7 +1281,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputeNetwork"></a>
-## HostComputeNetwork
+### HostComputeNetwork
 
 
 Derived from parent class: [Base](#Base)
@@ -1275,7 +1309,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputePolicyList"></a>
-## HostComputePolicyList
+### HostComputePolicyList
 
 
 Derived from parent class: [Base](#Base)
@@ -1299,19 +1333,19 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostComputeQuery"></a>
-## HostComputeQuery
+### HostComputeQuery
 
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**SchemaVersion**<br>|[Version](#Version)|[2.0](#Schema-Version-Map)||
-|**Flags**<br>|[HostComputeQueryFlags](#HostComputeQueryFlags)|[](#Schema-Version-Map)||
+|**Flags**<br>|[HostComputeQueryFlags](#HostComputeQueryFlags)|[2.0](#Schema-Version-Map)||
 |**Filter**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "HostComputeRoute"></a>
-## HostComputeRoute
+### HostComputeRoute
 
 
 Derived from parent class: [Base](#Base)
@@ -1336,7 +1370,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "HostRoutePolicySetting"></a>
-## HostRoutePolicySetting
+### HostRoutePolicySetting
 
 
 
@@ -1345,7 +1379,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "InterfaceConstraintEndpointPolicySetting"></a>
-## InterfaceConstraintEndpointPolicySetting
+### InterfaceConstraintEndpointPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1360,7 +1394,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "InterfaceConstraintNetworkPolicySetting"></a>
-## InterfaceConstraintNetworkPolicySetting
+### InterfaceConstraintNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1375,18 +1409,18 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "InterfaceNotificationMessage"></a>
-## InterfaceNotificationMessage
+### InterfaceNotificationMessage
 
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "InterfaceParametersPolicySetting"></a>
-## InterfaceParametersPolicySetting
+### InterfaceParametersPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1396,7 +1430,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "IovPolicySetting"></a>
-## IovPolicySetting
+### IovPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1408,7 +1442,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "IPAddress"></a>
-## IPAddress
+### IPAddress
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
@@ -1420,19 +1454,19 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**Address**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**PrefixOrigin**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**SuffixOrigin**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**ValidLifetime**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**PreferredLifetime**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**OnLinkPrefixLength**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**SkipAsSource**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Address**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**PrefixOrigin**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**SuffixOrigin**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**ValidLifetime**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**PreferredLifetime**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**OnLinkPrefixLength**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**SkipAsSource**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "Ipam"></a>
-## Ipam
+### Ipam
 Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -1445,7 +1479,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 ---
 
 <a name = "IpConfig"></a>
-## IpConfig
+### IpConfig
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint)
 
 
@@ -1459,7 +1493,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint)
 ---
 
 <a name = "IpSubnet"></a>
-## IpSubnet
+### IpSubnet
 Referenced by: [IPSubnetNetworkRequest](#IPSubnetNetworkRequest); [Subnet](#Subnet)
 
 
@@ -1485,7 +1519,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "IPSubnetNetworkRequest"></a>
-## IPSubnetNetworkRequest
+### IPSubnetNetworkRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1496,7 +1530,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "L4ProxyPolicySetting"></a>
-## L4ProxyPolicySetting
+### L4ProxyPolicySetting
 
 
 Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting)
@@ -1509,13 +1543,13 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 |**Port**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Protocol**<br>|[ProtocolType](#ProtocolType)|[2.0](#Schema-Version-Map)||
 |**ExceptionList**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
-|**Destination**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Destination**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**OutboundNat**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "L4ProxyPolicySetting_2"></a>
-## L4ProxyPolicySetting_2
+### L4ProxyPolicySetting_2
 
 
 Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySetting)
@@ -1528,13 +1562,13 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 |**Port**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Protocol**<br>|[ProtocolType](#ProtocolType)|[2.0](#Schema-Version-Map)||
 |**ExceptionList**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
-|**Destination**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Destination**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**OutboundNat**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "L4WfpProxyPolicySetting"></a>
-## L4WfpProxyPolicySetting
+### L4WfpProxyPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1549,7 +1583,7 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 ---
 
 <a name = "LayerConstraintNetworkPolicySetting"></a>
-## LayerConstraintNetworkPolicySetting
+### LayerConstraintNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1559,7 +1593,7 @@ Derived from parent class: [CommonL4ProxyPolicySetting](#CommonL4ProxyPolicySett
 ---
 
 <a name = "LoadBalancerPortMapping"></a>
-## LoadBalancerPortMapping
+### LoadBalancerPortMapping
 Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 
 
@@ -1570,12 +1604,12 @@ Referenced by: [HostComputeLoadBalancer](#HostComputeLoadBalancer)
 |**InternalPort**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ExternalPort**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**DistributionType**<br>|[LoadBalancerDistribution](#LoadBalancerDistribution)|[2.7](#Schema-Version-Map)||
-|**Flags**<br>|[LoadBalancerPortMappingFlags](#LoadBalancerPortMappingFlags)|[](#Schema-Version-Map)||
+|**Flags**<br>|[LoadBalancerPortMappingFlags](#LoadBalancerPortMappingFlags)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "MacAddress"></a>
-## MacAddress
+### MacAddress
 
 
 Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
@@ -1585,13 +1619,13 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**PhysicalAddress**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 
 ---
 
 <a name = "MacPool"></a>
-## MacPool
+### MacPool
 Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 
 
@@ -1603,7 +1637,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork)
 ---
 
 <a name = "MacRange"></a>
-## MacRange
+### MacRange
 Referenced by: [MacPool](#MacPool)
 
 
@@ -1616,7 +1650,7 @@ Referenced by: [MacPool](#MacPool)
 ---
 
 <a name = "ModifyEndpointSettingRequest"></a>
-## ModifyEndpointSettingRequest
+### ModifyEndpointSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1633,7 +1667,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifyGuestEndpointSettingRequest"></a>
-## ModifyGuestEndpointSettingRequest
+### ModifyGuestEndpointSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1644,13 +1678,13 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RequestType**<br>|[ModifyRequestType](#ModifyRequestType)|[2.0](#Schema-Version-Map)||
-|**ResourceType**<br>|[GuestEndpointResourceType](#GuestEndpointResourceType)|[](#Schema-Version-Map)||
+|**ResourceType**<br>|[GuestEndpointResourceType](#GuestEndpointResourceType)|[2.0](#Schema-Version-Map)||
 |**Settings**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "ModifyGuestNamespaceSettingRequest"></a>
-## ModifyGuestNamespaceSettingRequest
+### ModifyGuestNamespaceSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1661,13 +1695,13 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RequestType**<br>|[ModifyRequestType](#ModifyRequestType)|[2.0](#Schema-Version-Map)||
-|**ResourceType**<br>|[GuestNamespaceResourceType](#GuestNamespaceResourceType)|[](#Schema-Version-Map)||
+|**ResourceType**<br>|[GuestNamespaceResourceType](#GuestNamespaceResourceType)|[2.0](#Schema-Version-Map)||
 |**Settings**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "ModifyGuestNetworkServiceSettingRequest"></a>
-## ModifyGuestNetworkServiceSettingRequest
+### ModifyGuestNetworkServiceSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1678,13 +1712,13 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RequestType**<br>|[ModifyRequestType](#ModifyRequestType)|[2.0](#Schema-Version-Map)||
-|**ResourceType**<br>|[GuestNetworkServiceResourceType](#GuestNetworkServiceResourceType)|[](#Schema-Version-Map)||
+|**ResourceType**<br>|[GuestNetworkServiceResourceType](#GuestNetworkServiceResourceType)|[2.0](#Schema-Version-Map)||
 |**Settings**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "ModifyNamespaceSettingRequest"></a>
-## ModifyNamespaceSettingRequest
+### ModifyNamespaceSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1695,13 +1729,13 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 |---|---|---|---|
 |**ResourceUri**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RequestType**<br>|[ModifyRequestType](#ModifyRequestType)|[2.0](#Schema-Version-Map)||
-|**ResourceType**<br>|[NamespaceResourceType](#NamespaceResourceType)|[](#Schema-Version-Map)||
+|**ResourceType**<br>|[NamespaceResourceType](#NamespaceResourceType)|[2.0](#Schema-Version-Map)||
 |**Settings**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "ModifyNamespaceSettingResponse"></a>
-## ModifyNamespaceSettingResponse
+### ModifyNamespaceSettingResponse
 Find out if Modify can return with a response?
 
 Derived from parent class: [Response](#Response)
@@ -1710,7 +1744,7 @@ Derived from parent class: [Response](#Response)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Success**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Success**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Error**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ErrorCode**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**CompartmentId**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1718,7 +1752,7 @@ Derived from parent class: [Response](#Response)
 ---
 
 <a name = "ModifyNetworkSettingRequest"></a>
-## ModifyNetworkSettingRequest
+### ModifyNetworkSettingRequest
 
 
 Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
@@ -1735,7 +1769,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifySettingRequest"></a>
-## ModifySettingRequest
+### ModifySettingRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1746,7 +1780,7 @@ Derived from parent class: [ModifySettingRequest](#ModifySettingRequest)
 ---
 
 <a name = "ModifySettingResponse"></a>
-## ModifySettingResponse
+### ModifySettingResponse
 
 
 Derived from parent class: [Response](#Response)
@@ -1755,7 +1789,7 @@ Derived from parent class: [Response](#Response)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Success**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Success**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Error**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ErrorCode**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Data**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1763,7 +1797,7 @@ Derived from parent class: [Response](#Response)
 ---
 
 <a name = "NamespaceContainerRequest"></a>
-## NamespaceContainerRequest
+### NamespaceContainerRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1773,7 +1807,7 @@ Derived from parent class: [Response](#Response)
 ---
 
 <a name = "NamespaceEndpointRequest"></a>
-## NamespaceEndpointRequest
+### NamespaceEndpointRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1783,20 +1817,20 @@ Derived from parent class: [Response](#Response)
 ---
 
 <a name = "NamespaceResource"></a>
-## NamespaceResource
+### NamespaceResource
 Referenced by: [HostComputeNamespace](#HostComputeNamespace)
 
 
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Type**<br>|[NamespaceResourceType](#NamespaceResourceType)|[](#Schema-Version-Map)||
-|**Data**<br>|[Any](#JSON-type)|[](#Schema-Version-Map)||
+|**Type**<br>|[NamespaceResourceType](#NamespaceResourceType)|[2.0](#Schema-Version-Map)||
+|**Data**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "NamespaceResource_2"></a>
-## NamespaceResource_2
+### NamespaceResource_2
 Referenced by: [GuestNamespace](#GuestNamespace)
 
 
@@ -1809,27 +1843,27 @@ Referenced by: [GuestNamespace](#GuestNamespace)
 ---
 
 <a name = "NamespaceResourceContainer"></a>
-## NamespaceResourceContainer
+### NamespaceResourceContainer
 
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "NamespaceResourceEndpoint"></a>
-## NamespaceResourceEndpoint
+### NamespaceResourceEndpoint
 
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "Neighbor"></a>
-## Neighbor
+### Neighbor
 
 
 Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
@@ -1839,7 +1873,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Address**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**InterfaceLuid**<br>|[uint64](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**InterfaceIndex**<br>|[uint32](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -1855,7 +1889,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "NetAdapterNameNetworkPolicySetting"></a>
-## NetAdapterNameNetworkPolicySetting
+### NetAdapterNameNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1865,7 +1899,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "NetworkAclPolicySetting"></a>
-## NetworkAclPolicySetting
+### NetworkAclPolicySetting
 
 
 Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#CommonAclPolicySetting)
@@ -1880,15 +1914,15 @@ Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#Co
 |**LocalPorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**RemotePorts**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**Priority**<br>|[uint16](#JSON-type)|[2.5](#Schema-Version-Map)||
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**Action**<br>|[ActionType](#ActionType)|[](#Schema-Version-Map)||
-|**Direction**<br>|[DirectionType](#DirectionType)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Action**<br>|[ActionType](#ActionType)|[2.0](#Schema-Version-Map)||
+|**Direction**<br>|[DirectionType](#DirectionType)|[2.0](#Schema-Version-Map)||
 |**RuleType**<br>|[RuleType](#RuleType)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "NetworkAdditionalParams"></a>
-## NetworkAdditionalParams
+### NetworkAdditionalParams
 
 
 |Field|Type|NewInVersion|Description|
@@ -1898,7 +1932,7 @@ Derived from parent class: [FiveTuple](#FiveTuple); [CommonAclPolicySetting](#Co
 ---
 
 <a name = "NetworkInterface"></a>
-## NetworkInterface
+### NetworkInterface
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
@@ -1908,7 +1942,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**AdvertisingEnabled**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ForwardingEnabled**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**WeakHostSend**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
@@ -1941,7 +1975,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "NetworkPolicy"></a>
-## NetworkPolicy
+### NetworkPolicy
 Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest](#PolicyNetworkRequest)
 
 
@@ -1954,19 +1988,19 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "NotificationBase"></a>
-## NotificationBase
+### NotificationBase
 
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**ID**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)||
+|**ID**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Flags**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Data**<br>|[Any](#JSON-type)|[2.2](#Schema-Version-Map)||
 
 ---
 
 <a name = "OutboundNatPolicySetting"></a>
-## OutboundNatPolicySetting
+### OutboundNatPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -1974,12 +2008,12 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 |**VirtualIP**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Destinations**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
 |**Exceptions**<br>|<[string](#JSON-type)> array|[2.0](#Schema-Version-Map)||
-|**Flags**<br>|[NatFlags](#NatFlags)|[](#Schema-Version-Map)||
+|**Flags**<br>|[NatFlags](#NatFlags)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "PolicyEndpointRequest"></a>
-## PolicyEndpointRequest
+### PolicyEndpointRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1989,7 +2023,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "PolicyNetworkRequest"></a>
-## PolicyNetworkRequest
+### PolicyNetworkRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -1999,7 +2033,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "PortMappingPolicySetting"></a>
-## PortMappingPolicySetting
+### PortMappingPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2008,12 +2042,12 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 |**InternalPort**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ExternalPort**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**VIP**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Flags**<br>|[NatFlags](#NatFlags)|[](#Schema-Version-Map)||
+|**Flags**<br>|[NatFlags](#NatFlags)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "PortnameEndpointPolicySetting"></a>
-## PortnameEndpointPolicySetting
+### PortnameEndpointPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2023,7 +2057,7 @@ Referenced by: [HostComputeNetwork](#HostComputeNetwork); [PolicyNetworkRequest]
 ---
 
 <a name = "PrioritizedAuthenticationMethod"></a>
-## PrioritizedAuthenticationMethod
+### PrioritizedAuthenticationMethod
 Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 
 
@@ -2036,7 +2070,7 @@ Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 ---
 
 <a name = "ProviderAddressEndpointPolicySetting"></a>
-## ProviderAddressEndpointPolicySetting
+### ProviderAddressEndpointPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2046,7 +2080,7 @@ Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 ---
 
 <a name = "ProviderAddressNetworkPolicySetting"></a>
-## ProviderAddressNetworkPolicySetting
+### ProviderAddressNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2056,7 +2090,7 @@ Referenced by: [EncryptionPolicySetting](#EncryptionPolicySetting)
 ---
 
 <a name = "ProxyExceptions"></a>
-## ProxyExceptions
+### ProxyExceptions
 Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 
 
@@ -2069,7 +2103,7 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ---
 
 <a name = "QosPolicySetting"></a>
-## QosPolicySetting
+### QosPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2079,7 +2113,7 @@ Referenced by: [L4WfpProxyPolicySetting](#L4WfpProxyPolicySetting)
 ---
 
 <a name = "RegistryKey"></a>
-## RegistryKey
+### RegistryKey
 
 
 Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotificationMessage)
@@ -2089,7 +2123,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**RegKeys**<br>|<[RegKey](#RegKey)> array|[2.1](#Schema-Version-Map)||
 |**Keyword**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**AdapterCLSID**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -2097,7 +2131,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 ---
 
 <a name = "RegKey"></a>
-## RegKey
+### RegKey
 Referenced by: [RegistryKey](#RegistryKey)
 
 
@@ -2112,7 +2146,7 @@ Referenced by: [RegistryKey](#RegistryKey)
 ---
 
 <a name = "RemoteSubnetRoutePolicySetting"></a>
-## RemoteSubnetRoutePolicySetting
+### RemoteSubnetRoutePolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2125,19 +2159,19 @@ Referenced by: [RegistryKey](#RegistryKey)
 ---
 
 <a name = "Response"></a>
-## Response
+### Response
 
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Success**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Success**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Error**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ErrorCode**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "Route"></a>
-## Route
+### Route
 Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [Subnet](#Subnet)
 
 
@@ -2151,7 +2185,7 @@ Referenced by: [HostComputeEndpoint](#HostComputeEndpoint); [Subnet](#Subnet)
 ---
 
 <a name = "Route_2"></a>
-## Route_2
+### Route_2
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
@@ -2163,23 +2197,23 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**NextHop**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**DestinationPrefix**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**SitePrefixLength**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**ValidLifetime**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**PreferredLifetime**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**Metric**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**Protocol**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**Loopback**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
-|**AutoconfigureAddress**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
-|**Publish**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
-|**Immortal**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**NextHop**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**DestinationPrefix**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**SitePrefixLength**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**ValidLifetime**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**PreferredLifetime**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Metric**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Protocol**<br>|[uint8](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Loopback**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**AutoconfigureAddress**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Publish**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Immortal**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
 
 ---
 
 <a name = "RpcConnectionInformation"></a>
-## RpcConnectionInformation
+### RpcConnectionInformation
 Referenced by: [GuestNetworkService](#GuestNetworkService)
 
 
@@ -2194,7 +2228,7 @@ Referenced by: [GuestNetworkService](#GuestNetworkService)
 ---
 
 <a name = "SDNRoutePolicySetting"></a>
-## SDNRoutePolicySetting
+### SDNRoutePolicySetting
 Referenced by: [HostComputeRoute](#HostComputeRoute)
 
 
@@ -2209,7 +2243,7 @@ Referenced by: [HostComputeRoute](#HostComputeRoute)
 ---
 
 <a name = "SetPolicySetting"></a>
-## SetPolicySetting
+### SetPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2222,7 +2256,7 @@ Referenced by: [HostComputeRoute](#HostComputeRoute)
 ---
 
 <a name = "SourceMacAddressNetworkPolicySetting"></a>
-## SourceMacAddressNetworkPolicySetting
+### SourceMacAddressNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2232,7 +2266,7 @@ Referenced by: [HostComputeRoute](#HostComputeRoute)
 ---
 
 <a name = "Subnet"></a>
-## Subnet
+### Subnet
 Referenced by: [Ipam](#Ipam); [SubnetNetworkRequest](#SubnetNetworkRequest)
 
 
@@ -2261,7 +2295,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "SubnetNetworkRequest"></a>
-## SubnetNetworkRequest
+### SubnetNetworkRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -2271,7 +2305,7 @@ Derived from parent class: [Base](#Base)
 ---
 
 <a name = "SubnetPolicy"></a>
-## SubnetPolicy
+### SubnetPolicy
 Referenced by: [Subnet](#Subnet)
 
 
@@ -2284,7 +2318,7 @@ Referenced by: [Subnet](#Subnet)
 ---
 
 <a name = "Telemetry"></a>
-## Telemetry
+### Telemetry
 Referenced by: [Base](#Base)
 
 
@@ -2296,7 +2330,7 @@ Referenced by: [Base](#Base)
 ---
 
 <a name = "TierAclPolicySetting"></a>
-## TierAclPolicySetting
+### TierAclPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2309,7 +2343,7 @@ Referenced by: [Base](#Base)
 ---
 
 <a name = "TierAclRule"></a>
-## TierAclRule
+### TierAclRule
 Referenced by: [TierAclPolicySetting](#TierAclPolicySetting)
 
 
@@ -2332,7 +2366,7 @@ Derived from parent class: [FiveTuple](#FiveTuple)
 ---
 
 <a name = "Version"></a>
-## Version
+### Version
 Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 
 
@@ -2345,7 +2379,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VlanPolicySetting"></a>
-## VlanPolicySetting
+### VlanPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2355,7 +2389,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VmEndpointRequest"></a>
-## VmEndpointRequest
+### VmEndpointRequest
 
 
 |Field|Type|NewInVersion|Description|
@@ -2367,7 +2401,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VsidPolicySetting"></a>
-## VsidPolicySetting
+### VsidPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2377,7 +2411,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VSwitchExtensionNetworkPolicySetting"></a>
-## VSwitchExtensionNetworkPolicySetting
+### VSwitchExtensionNetworkPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2388,7 +2422,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "VxlanPortPolicySetting"></a>
-## VxlanPortPolicySetting
+### VxlanPortPolicySetting
 
 
 |Field|Type|NewInVersion|Description|
@@ -2398,7 +2432,7 @@ Referenced by: [Base](#Base); [HostComputeQuery](#HostComputeQuery)
 ---
 
 <a name = "Xlat"></a>
-## Xlat
+### Xlat
 Referenced by: [GuestEndpointState](#GuestEndpointState)
 
 
@@ -2410,7 +2444,7 @@ Derived from parent class: [InterfaceNotificationMessage](#InterfaceNotification
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**MessageNumber**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Family**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Family**<br>|[uint16](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**SyntheticIPv4Address**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**FallbackIPv4Address**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
 |**LocalPrefix**<br>|[string](#JSON-type)|[2.5](#Schema-Version-Map)||
@@ -2443,6 +2477,7 @@ The table shows the mapping from type name for field of classes to JSON type, it
 
 |Schema Version|Release Version|
 |---|---|
+|2.0|Windows 10, version 1809 (10.0.17763.0)|
 |2.6|Windows 10, version 2004 (10.0.19041.0)|
 |2.11|Windows Server 2022 (10.0.20348.0)|
 |2.14|Windows 11, version 2004 (10.0.2200.0)|

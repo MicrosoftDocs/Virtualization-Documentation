@@ -1,10 +1,9 @@
 ---
 title: Configure gMSA on AKS with the PowerShell module
-description: Configure gMSA on Azure Kubernetes Service for Windows Containers.
-keywords: gMSA, containers, PowerShell
+description: Configure gMSA on Azure Kubernetes service for Windows containers.
 author: vrapolinario
 ms.author: viniap
-ms.date: 01/14/2021
+ms.date: 03/23/2022
 ms.topic: how-to
 
 ---
@@ -21,8 +20,8 @@ Your AKS cluster might or might not be already configured for gMSA. To validate 
     Confirm-AksGMSAConfiguration `
     -AksResourceGroupName $params["aks-cluster-rg-name"] `
     -AksClusterName $params["aks-cluster-name"] `
-    -AksGMSADomainDnsServer $params["aks-domain-dns-server"] `
-    -AksGMSARootDomainName $params["aks-root-domain-name"]
+    -AksGMSADomainDnsServer $params["domain-dns-server"] `
+    -AksGMSARootDomainName $params["domain-fqdn"]
    ```
 After configuring your cluster, you can configure the remaining infrastructure necessary for gMSA to work.
 
@@ -59,7 +58,7 @@ If running remotely, make sure your Domain Controller is configured for remote m
     -Name $params["gmsa-domain-user-name"] `
     -Password $params["gmsa-domain-user-password"] `
     -DomainControllerAddress $params["domain-controller-address"] `
-    -DomainAdmin "$($params["domain-netbios-name"])\$($params["domain-admin-user-name"])" `
+    -DomainAdmin "$($params["domain-fqdn"])\$($params["domain-admin-user-name"])" `
     -DomainAdminPassword $params["domain-admin-user-password"]
    ```
 
@@ -71,7 +70,7 @@ If running remotely, make sure your Domain Controller is configured for remote m
     -Name $params["gmsa-name"] `
     -AuthorizedUser $params["gmsa-domain-user-name"] `
     -DomainControllerAddress $params["domain-controller-address"] `
-    -DomainAdmin "$($params["domain-netbios-name"])\$($params["domain-admin-user-name"])" `
+    -DomainAdmin "$($params["domain-fqdn"])\$($params["domain-admin-user-name"])" `
     -DomainAdminPassword $params["domain-admin-user-password"]
    ```
 
@@ -89,7 +88,7 @@ Azure Key Vault (AKV) will be used to store the credential used by the Windows n
     -Location $params["azure-location"] `
     -Name $params["akv-name"] `
     -SecretName $params["akv-secret-name"] `
-    -GMSADomainUser "$($params["domain-netbios-name"])\$($params["gmsa-domain-user-name"])" `
+    -GMSADomainUser "$($params["domain-fqdn"])\$($params["gmsa-domain-user-name"])" `
     -GMSADomainUserPassword $params["gmsa-domain-user-password"]
    ```
 
@@ -131,7 +130,7 @@ Azure Key Vault (AKV) will be used to store the credential used by the Windows n
     -VaultName $params["akv-name"] `
     -VaultGMSASecretName $params["akv-secret-name"] `
     -DomainControllerAddress $params["domain-controller-address"] `
-    -DomainUser "$($params["domain-netbios-name"])\$($params["gmsa-domain-user-name"])" `
+    -DomainUser "$($params["domain-fqdn"])\$($params["gmsa-domain-user-name"])" `
     -DomainUserPassword $params["gmsa-domain-user-password"]
    ```
 At this stage, the configuration of gMSA on AKS is completed. You can now deploy your workload on your Windows nodes.

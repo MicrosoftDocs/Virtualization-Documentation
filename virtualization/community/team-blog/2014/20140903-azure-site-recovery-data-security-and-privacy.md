@@ -1,9 +1,15 @@
 ---
-title:      "Azure Site Recovery&#58; Data Security and Privacy"
+title:      Azure Site Recovery - Data Security and Privacy
+description: Learn about how Azure Site Recovery maintains customer data security and privacy.
+author: sethmanheim
+ms.author: sethm
 date:       2014-09-03 01:56:45
+ms.date: 09/03/2014
 categories: azure-site-recovery
 ---
-Microsoft is committed to ensuring the Privacy and Security of our customer’s data whenever it crosses on-premises boundaries and into Microsoft Azure. Azure Site Recovery, a cloud-based Disaster Recovery Service that enables protection and orchestrated recovery of your virtualized workloads across on-premises private clouds or directly into Azure, has been designed ground up to align with [Microsoft’s privacy and security commitment](https://aka.ms/asrsecurityblog_bradblog). 
+# Azure Site Recovery - Data Security and Privacy
+
+Microsoft is committed to ensuring the Privacy and Security of our customer's data whenever it crosses on-premises boundaries and into Microsoft Azure. Azure Site Recovery, a cloud-based Disaster Recovery Service that enables protection and orchestrated recovery of your virtualized workloads across on-premises private clouds or directly into Azure, has been designed ground up to align with [Microsoft's privacy and security commitment](https://aka.ms/asrsecurityblog_bradblog). 
 
 _Specifically our promise is to ensure that:_
 
@@ -12,4 +18,4 @@ _Specifically our promise is to ensure that:_
 
 
 
-To read more about how the Azure Site Recovery architecture delivers on these key goals, check out our new blog post, [Azure Site Recovery: Our Commitment to Keeping Your Data Secure](https://aka.ms/virtualization_azure_blog_security_blog) on the Microsoft Azure blog.
+To read more about how the Azure Site Recovery architecture delivers on these key goals, check out our new blog post on the [Microsoft Azure blog](https://azure.microsoft.com/blog/).

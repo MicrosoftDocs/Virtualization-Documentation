@@ -1,3 +1,11 @@
+---
+title: Cancel the run of a virtual processor
+description: Learn about the WHvCancelRunVirtualProcessor function that cancels the call to run a virtual processor.
+author: sethmanheim
+ms.author: sethm
+ms.date: 04/20/2022
+---
+
 # WHvCancelRunVirtualProcessor
 
 ## Syntax
@@ -20,7 +28,7 @@ Handle to the partition object
 
 `VpIndex`
 
-Specifies the index of the virtual processor for that the execution should be stopped
+Specifies the index of the virtual processor for which the execution should be stopped
 
 `Flags`
 

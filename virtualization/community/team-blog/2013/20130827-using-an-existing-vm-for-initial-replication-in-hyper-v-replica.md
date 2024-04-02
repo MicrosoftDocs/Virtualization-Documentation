@@ -1,12 +1,15 @@
 ---
 title:      "Using an existing VM for initial replication in Hyper-V Replica"
-date:       2013-08-27 03:43:00
+author: sethmanheim
+ms.author: sethm
+ms.date: 08/27/2013
 categories: hvr
+description: Reasons for using an existing virtual machine as the initial copy in Hyper-V Replica.
 ---
-Hyper-V Replica provides three methods to do initial replication:
+# Hyper-V Replica provides three methods to do initial replication:
 
   1. Send data over the network (Online IR)
-  2. Send data [using external media](/b/virtualization/archive/2013/06/28/save-network-bandwidth-by-using-out-of-band-initial-replication-method-in-hyper-v-replica.aspx) (OOB IR)
+  2. Send data [using external media](/virtualization/community/team-blog/2013/20130628-save-network-bandwidth-by-using-out-of-band-initial-replication-method-in-hyper-v-replica) (OOB IR)
   3. Use an existing virtual machine as the initial copy
 
 
@@ -17,7 +20,7 @@ Each option for initial replication has a specific scenario for which it excels.
 
 ### Choosing an existing virtual machine
 
-This method of initial replication is rather self-explanatory – it takes an existing VM on the replica site as the baseline to be synced with the primary. However, it’s not enough to pick any virtual machine on the replica site to use as an initial copy. Hyper-V Replica places certain requirements on the VM that can be used in this method of initial replication:
+This method of initial replication is rather self-explanatory – it takes an existing VM on the replica site as the baseline to be synced with the primary. However, it's not enough to pick any virtual machine on the replica site to use as an initial copy. Hyper-V Replica places certain requirements on the VM that can be used in this method of initial replication:
 
   1. It has to have the same virtual machine ID as that of the primary VM
   2. It should have the same disks (and disk properties) as that of the primary VM
@@ -26,7 +29,7 @@ This method of initial replication is rather self-explanatory – it takes an ex
 
 Given the restrictions placed on the existing VM that can act as an initial copy, there are a few clear ways to get such a VM:
 
-  * **Restore the VM from backup**. Historically, the disaster recovery strategy for most companies involved taking backups and restoring the datacenter from these backups. This strategy also implies that there is a mechanism in place to transport the backed-up data to the recovery site. This makes the backed-up copies an excellent start point for Hyper-V Replica ’s disaster recovery process. The data will be older – depending on the backup policies – but it will satisfy the criteria to use this initial replication method. Of course, it is suggested to use the latest backup data so as to keep the delta changes to the minimum.
+  * **Restore the VM from backup**. Historically, the disaster recovery strategy for most companies involved taking backups and restoring the datacenter from these backups. This strategy also implies that there is a mechanism in place to transport the backed-up data to the recovery site. This makes the backed-up copies an excellent start point for Hyper-V Replica 's disaster recovery process. The data will be older – depending on the backup policies – but it will satisfy the criteria to use this initial replication method. Of course, it is suggested to use the latest backup data so as to keep the delta changes to the minimum.
   * **Export the VM from the primary and import on the replica**. Of course, the exported VM needs to be transported to the other site so this option is similar to out-of-band initial replication using external media.
   * **Use an older Replica VM.** When a replication relationship is removed, the Replica VM remains  – and this VM can be used as the initial copy when replication is enabled again for the same VM in the future.
 
@@ -36,7 +39,7 @@ Given the restrictions placed on the existing VM that can act as an initial copy
 
 ### Syncing the primary and Replica VMs
 
-Although there is a complete VM on the replica side, the Replica VM lags behind the primary VM in terms of the freshness of the data. So as a part of the initial replication process the two VMs have to be brought into sync. This process is very similar to [resynchronization](/b/virtualization/archive/2013/05/10/resynchronization-of-virtual-machines-in-hyper-v-replica.aspx) and is very IOPS intensive. Depending on the differences between the primary and Replica VHDs, there could also be significant network traffic to transfer the delta changes from the primary site to the replica site.
+Although there is a complete VM on the replica side, the Replica VM lags behind the primary VM in terms of the freshness of the data. So as a part of the initial replication process the two VMs have to be brought into sync. This process is very similar to [resynchronization](/virtualization/community/team-blog/2013/20130510-resynchronization-of-virtual-machines-in-hyper-v-replica) and is very IOPS intensive. Depending on the differences between the primary and Replica VHDs, there could also be significant network traffic to transfer the delta changes from the primary site to the replica site.
 
  
 
@@ -52,14 +55,13 @@ Thus a replication scenario that involves (1) _large VHDs_ that to be replicated
 
 ### Making this happen with UI and PowerShell
 
-Using this option through the UI is extremely simple – you simply need to select the option with _“ Use an existing virtual machine on the Replica server as the initial copy”_. This option is presented to you during the **Enable Replication** wizard.
+Using this option through the UI is extremely simple – you simply need to select the option with _" Use an existing virtual machine on the Replica server as the initial copy"_. This option is presented to you during the **Enable Replication** wizard.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/8787.image_thumb_3AEF6177.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6761.image_10EA41ED.png)
 
- 
 
 When using PowerShell, there is a sequence of 3 commands that need to be executed:
-    
+
+```markdown
     
     PS C:\> Enable-VMReplication -ComputerName replica.contoso.com -VMName Test-VM -AsReplica
     
@@ -68,6 +70,7 @@ When using PowerShell, there is a sequence of 3 commands that need to be execute
     
     
     PS C:\> Start-VMInitialReplication -ComputerName primary.contoso.com -VMName Test-VM -UseBackup
+```
 
 The **– UseBackup** option in the **Start-VMInitialReplication** commandlet is the one that indicates the use of an existing VM on the replica site for the purposes of initial replication.
 
@@ -79,7 +82,6 @@ As with the other methods of initial replication, you can also schedule when the
 
 If the Replica VM is on a cluster, _ensure that it is made Highly Available (HA) before any further actions are taken_. This is a prerequisite and it enables the VM to be picked up by the Failover Cluster service  – and consequently by the Hyper-V Replica Broker.
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6837.image_thumb_46C240A8.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2843.image_57A6E498.png)
 
  
 
@@ -91,6 +93,7 @@ Cannot perform the requested Hyper-V Replica operation for virtual machine 'Test
 
 Also, the replica server used in the commandlets and the UI will be the name of the Hyper-V Replica Broker instance in the cluster (Note: setting the VM _AsReplica_ has to be done with the actual replica host and not the broker on the replica site).
     
+```markdown
     
     PS C:\> Enable-VMReplication -ComputerName replicahost.contoso.com -VMName Test-VM –AsReplica
     
@@ -99,6 +102,7 @@ Also, the replica server used in the commandlets and the UI will be the name of 
     
     
     PS C:\> Start-VMInitialReplication -ComputerName primary.contoso.com -VMName Test-VM –UseBackup
+```    
 
  
 

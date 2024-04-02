@@ -1,14 +1,13 @@
 ---
-title: Devices in Containers on Windows
-description: What device support exists for containers on Windows
-keywords: docker, containers, devices, hardware
-author: v-susbo
-ms.author: v-susbo
+title: Devices in containers on Windows
+description: Learn about device support for containers on Windows.
+author: sethmanheim
+ms.author: sethm
 ms.date: 10/20/2020
 ms.topic: how-to
 ---
 
-# Devices in Containers on Windows
+# Devices in containers on Windows
 
 By default, Windows containers are given minimal access to host devices--just like Linux containers. There are certain workloads where it is beneficial--or even imperative--to access and communicate with host hardware devices. This guide covers which devices are supported in containers and how to get started.
 
@@ -44,7 +43,7 @@ This means you are **not** assigning the device away from host. Instead, the hos
 
 The following devices (and their device interface class GUIDs) are supported today:
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
+<table>
 <thead>
 <tr valign="top">
 <th><center>Device Type</center></th>

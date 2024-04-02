@@ -3,10 +3,9 @@ title: Windows Server 2008 RC0/Virtualization CTP FAQ
 description: post id 3863
 keywords: virtualization, blog
 author: scooley
+ms.author: scooley
 ms.date: 9/28/2007
 ms.topic: article
-ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: dbee1926-1204-4513-9961-9918d12edea0
 ---
 
@@ -14,9 +13,9 @@ ms.assetid: dbee1926-1204-4513-9961-9918d12edea0
 
 Greeting folks, Jeff Woolsey here from the Virtualization team.
 
-It’s been a busy week at Microsoft and the Windows Server 2008 RC0 release is off to a great start! If you haven’t downloaded it yet, you can find it [here](http://www.microsoft.com/windowsserver2008/audsel.mspx) In addition to all of the new Windows Server 2008 capabilities (Server Core, Read-Only Domain Controllers, IIS 7.0, Network Access Protection, Terminal Services RemoteApp for starters), Windows Server virtualization (aka Viridian) is getting just a wee bit of notice too :-).
+It’s been a busy week at Microsoft and the Windows Server 2008 RC0 release is off to a great start! If you haven’t downloaded it yet, you can find it [here](https://www.microsoft.com/windowsserver2008/audsel.mspx) In addition to all of the new Windows Server 2008 capabilities (Server Core, Read-Only Domain Controllers, IIS 7.0, Network Access Protection, Terminal Services RemoteApp for starters), Windows Server virtualization (aka Viridian) is getting just a wee bit of notice too :-).
 
-In fact, check out what eWeek has to [say](http://www.eweek.com/article2/0,1895,2189866,00.asp).  With so many people trying out Windows Server 2008 RC0 and the Virtualization technical preview, my inbox is overflowing from customers all over the world with overwhelmingly positive feedback and questions. (BTW: Hello to folks I’ve communicated this week from Germany, Japan, South Africa and Brazil… :-)) So, I wanted to answer some of the top questions with my own FAQ.
+In fact, check out what eWeek has to say.  With so many people trying out Windows Server 2008 RC0 and the Virtualization technical preview, my inbox is overflowing from customers all over the world with overwhelmingly positive feedback and questions. (BTW: Hello to folks I’ve communicated this week from Germany, Japan, South Africa and Brazil… :-)) So, I wanted to answer some of the top questions with my own FAQ.
 
 Cheers,  
 Jeff
@@ -25,7 +24,7 @@ Jeff
 
 Q: Where are the Release Notes and the Microsoft Step-by-Step Installation Guide for the Windows Server Virtualization Preview?
 
-A: Here you go!  [Release notes](http://www.microsoft.com/downloads/details.aspx?FamilyId=3ED582F0-F844-40BA-B692-230845AF1149&displaylang=en) and a [Step-by-Step Installation Guide](http://www.microsoft.com/windowsserver2008/virtualization/install.mspx).
+A: Here you go!  [Release notes](https://www.microsoft.com/download/) and a Step-by-Step Installation Guide.
 
 --------------------------------------------------------------------------------------------------------------
 

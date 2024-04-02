@@ -3,10 +3,9 @@ title: Microsoft Virtualization and Virtual Server 2005 R2 SP1
 description: post id 3953
 keywords: virtualization, virtual server, blog
 author: scooley
+ms.author: scooley
 ms.date: 7/16/2007
 ms.topic: article
-ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: b42115d4-035c-44a1-b365-f944471561fa
 ---
 
@@ -14,9 +13,9 @@ ms.assetid: b42115d4-035c-44a1-b365-f944471561fa
 
 In my last post, I reminded everyone about our very successful Virtual PC 2007 release and for this post, I wanted to alert you to the recent release of Virtual Server R2 SP1. While there’s a lot of attention right now on Windows Server Virtualization, let’s not forget that we have a free, solid, production ready technology in Virtual Server that’s even better with the new Virtual Server R2 SP1 release. In fact, our own Microsoft IT uses Virtual Server with over 1200+ virtual machines in **_production environments every day_. Yes, read that again: _over 1200 virtual machines in production environments every day_.**
 
-If you want to know more about Microsoft using Virtual Server in production, check out this interview with Devin Murray [here](http://www.computerworld.com/action/article.do?command=viewArticleBasic&articleId=9020679&pageNumber=1).
+If you want to know more about Microsoft using Virtual Server in production, check out this interview with Devin Murray [here](https://www.computerworld.com/action/article.do?command=viewArticleBasic&articleId=9020679&pageNumber=1).
 
-As for the new release of Virtual Server, we released Virtual Server R2 SP1 on Monday June 11th and you can download it [here](http://www.microsoft.com/technet/prodtechnol/eval/virtualserver/default.mspx)
+As for the new release of Virtual Server, we released Virtual Server R2 SP1 on Monday June 11th and you can download it [here](https://www.microsoft.com/technet/prodtechnol/eval/virtualserver/default.mspx)
 
 Here's a list of some of the new features:
 

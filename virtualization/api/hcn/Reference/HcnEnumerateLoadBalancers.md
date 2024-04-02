@@ -4,8 +4,7 @@ description: HcnEnumerateLoadBalancers
 author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
+ms.service: virtualization
 ms.date: 10/31/2021
 api_name:
 - HcnEnumerateLoadBalancers
@@ -31,7 +30,8 @@ HcnEnumerateLoadBalancers(
     _In_ PCWSTR Query,
     _Outptr_ PWSTR* LoadBalancer,
     _Outptr_opt_ PWSTR* ErrorRecord
-    );```
+    );
+```
 
 ## Parameters
 

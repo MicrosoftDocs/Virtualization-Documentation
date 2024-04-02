@@ -1,7 +1,6 @@
 ---
 title: Advanced network options in Windows
 description: Advanced networking for Windows containers.
-keywords: docker, containers
 author: jmesser81
 ms.author: jgerend
 ms.date: 10/20/2021
@@ -109,7 +108,6 @@ We're working on platform changes to automatically detect/prevent this issue. Cu
 C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters  /v DisabledComponents  /f
 ```
 
-
 #### Linux Containers on Windows
 
 **NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](../quick-start/quick-start-windows-10-linux.md).
@@ -119,8 +117,6 @@ C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Para
 
 Docker for Windows (the Windows driver for the Docker CE engine) on Windows 10 will use an internal vSwitch named 'DockerNAT' to connect Moby Linux VMs to the container host. Developers using Moby Linux VMs on Windows should be aware that their hosts are using the DockerNAT vSwitch rather than the "nat" vSwitch that is created by the HNS service (which is the default switch used for Windows containers).
 
-
-
 #### To use DHCP for IP assignment on a virtual container host enable MACAddressSpoofing
 
 If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machine's network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses. You can enable MACAddressSpoofing with this PowerShell command:
@@ -128,7 +124,6 @@ If the container host is virtualized, and you wish to use DHCP for IP assignment
 PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 If you are running VMware as your hypervisor, you will need to enable promiscuous mode for this to work. Details can be found [here](https://kb.vmware.com/s/article/1004099)
-
 
 #### Creating multiple transparent networks on a single container host
 If you wish to create more than one transparent network you must specify to which (virtual) network adapter the external Hyper-V Virtual Switch should bind. To specify the interface for a network, use the following syntax:
@@ -176,7 +171,6 @@ PS C:\> restart-service hns
 PS C:\> restart-service docker
 ```
 * Another option is to use the '-o com.docker.network.windowsshim.interface' option to bind the transparent network's external vSwitch to a specific network adapter which is not already in use on the container host (i.e. a network adapter other than the one being used by the vSwitch that was created out-of-band). The '-o' option is described further in the [Creating multiple transparent networks on a single container host](advanced.md#creating-multiple-transparent-networks-on-a-single-container-host) section of this document.
-
 
 ## Windows Server 2016 Work-arounds
 

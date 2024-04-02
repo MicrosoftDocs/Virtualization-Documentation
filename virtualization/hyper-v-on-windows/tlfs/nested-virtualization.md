@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-ms.prod: windows-10-hyperv
 ---
 
 # Nested Virtualization
@@ -53,6 +52,14 @@ Support for an enlightened VMCS interface is reported with [CPUID leaf 0x4000000
 The enlightened VMCS structure is versioned to account for future changes. Each enlightened VMCS structure contains a version field, which is reported by the L0 hypervisor.
 
 The only VMCS version currently supported is 1.
+
+### Hypervisor Implementation Considerations
+
+For most VMCS fields, the corresponding enlightened VMCS field is supported for a VM if the VMCS field is supported for the VM, as determined through architectural feature discovery mechanisms. Exceptions are reported in [CPUID leaf 0x4000000A](feature-discovery.md#microsoft-hypervisor-cpuid-leaves).
+
+In cases where architectural feature discovery mechanisms indicate support for a VMCS field for which no enlightened VMCS field is defined, the L1 hypervisor should not enable the feature if it chooses to use enlightened VMCS.
+
+The Hyper-V L0 hypervisor will not indicate support for a VMCS field for which no enlightened VMCS field or exception is defined. If another L0 hypervisor needs a new enlightened VMCS field or exception to be defined, please contact Microsoft.
 
 ## Enlighened VMCB fields (AMD)
 
@@ -210,7 +217,7 @@ The hypervisor supports the following hypercalls to invalidate TLBs:
 | [HvCallFlushGuestPhysicalAddressSpace](hypercalls/HvCallFlushGuestPhysicalAddressSpace.md)      | invalidates cached L2 GPA to GPA mappings within a second level address space.   |
 | [HvCallFlushGuestPhysicalAddressList](hypercalls/HvCallFlushGuestPhysicalAddressList.md)  | invalidates cached GVA / L2 GPA to GPA mappings within a portion of a second level address space.    |
 
-On AMD platforms, all TLB entries are architecturally tagged with an ASID (address space identifier). Invalidation of the ASID causes all TLB entires associated with the ASID to be invalidated. The nested hypervisor can optionally opt into an "enlightened TLB" by setting EnlightnedNptTlb to "1" in [HV_SVM_ENLIGHTENED_VMCB_FIELDS](datatypes/HV_SVM_ENLIGHTENED_VMCB_FIELDS.md). If the nested hypervisor opts into the enlightenment, ASID invalidations just flush TLB entires derived from first level address translation (i.e. the virtual address space). To flush TLB entries derived from the nested page table (NPT) and force the L0 hypervisor to rebuild shadow page tables, the HvCallFlushGuestPhysicalAddressSpace or HvCallFlushGuestPhysicalAddressList hypercalls must be used.
+On AMD platforms, all TLB entries are architecturally tagged with an ASID (address space identifier). Invalidation of the ASID causes all TLB entires associated with the ASID to be invalidated. The nested hypervisor can optionally opt into an "enlightened TLB" by setting EnlightenedNptTlb to "1" in [HV_SVM_ENLIGHTENED_VMCB_FIELDS](datatypes/HV_SVM_ENLIGHTENED_VMCB_FIELDS.md). If the nested hypervisor opts into the enlightenment, ASID invalidations just flush TLB entires derived from first level address translation (i.e. the virtual address space). To flush TLB entries derived from the nested page table (NPT) and force the L0 hypervisor to rebuild shadow page tables, the HvCallFlushGuestPhysicalAddressSpace or HvCallFlushGuestPhysicalAddressList hypercalls must be used.
 
 ## Nested Virtualization Exceptions
 

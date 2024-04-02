@@ -1,8 +1,13 @@
 ---
 title:      "Hypervisor Footprint Debate Part 1 UPDATE&#58; Microsoft Hyper-V Server 2008 & VMware ESXi 3.5"
+description: Comparison, analysis, and debate of the Hypervisor disk footprint Part 1 Update
+author: sethmanheim
+ms.author: sethm
 date:       2009-08-13 17:56:00
+ms.date: 08/13/2009
 categories: esx
 ---
+# Hypervisor Footprint Debate Part 1 Update: Microsoft Hyper-V Server 2008 & VMware ESXi 3.5
 Virtualization Nation,
 
 In my last blog post, I started an in depth analysis tackling VMware’s claims head on that because their disk footprint is smaller and ESX/ESXi are single purpose hypervisors, they are therefore more secure. I read some posts on the blogosphere that had questions about the methodology. Let’s dive in.
@@ -38,7 +43,7 @@ To put it another way,
 
   * **__VMware ESXi 3.5 still had a 4.3x greater patch footprint__**
 
-![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/HypervisorFootprintDebatePart1UPDATEMi.5_8955/image_thumb.png)
+
 
 **Microsoft Hyper-V Server 2008 RTM’d Later Than Windows Server 2008**
 

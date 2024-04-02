@@ -1,3 +1,11 @@
+---
+title: WHvSetVirtualProcessorXsaveState
+description: Describes the virtual processor and provides syntax, parameters, and return value. Parameters include Partition, VpIndex, Buffer, BufferSizeInBytes.
+author: jstarks
+ms.author: jostarks
+ms.date: 06/06/2019
+---
+
 # WHvSetVirtualProcessorXsaveState
 
 ## Syntax

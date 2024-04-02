@@ -3,10 +3,9 @@ title: Virtual Server or Virtual PC?
 description: post id 3943
 keywords: virtualization, virtual server, virtual pc, blog
 author: scooley
+ms.author: scooley
 ms.date: 7/23/2007
 ms.topic: article
-ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 25f3dc96-4913-41bb-9d29-69835e2ded52
 ---
 
@@ -43,8 +42,8 @@ A: Yes, virtual machines with either product are compatible, but when using Virt
 
 If after reading everything above you still don't know which product to use, start with Virtual PC because of its local interface. As a reminder,
 
-Virtual PC 2007 can be downloaded from [here](http://www.microsoft.com/windows/products/winfamily/virtualpc/default.mspx)  
-Virtual Server R2 SP1 can be downloaded from [here](http://www.microsoft.com/technet/prodtechnol/eval/virtualserver/default.mspx)
+
+
 
 Cheers,  
 Jeff

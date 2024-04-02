@@ -3,10 +3,9 @@ title: Windows 10 Hyper-V System Requirements
 description: Windows 10 Hyper-V System Requirements
 keywords: windows 10, hyper-v
 author: scooley
+ms.author: scooley
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 6e5e6b01-7a9d-4123-8cc7-f986e10cd372
 ---
 
@@ -48,7 +47,7 @@ The following items will need to be enabled in the system BIOS:
 
 After checking the operating system and hardware requirements above, verify hardware compatibility in Windows by opening a PowerShell session or a command prompt (cmd.exe) window, typing **systeminfo**, and then checking the Hyper-V Requirements section. If all listed Hyper-V requirements have a value of **Yes**, your system can run the Hyper-V role. If any item returns **No**, check the requirements listed in this document and make adjustments where possible.
 
-![](media/SystemInfo-upd.png)
+![Screenshot of the Administrator Command Prompt screen with a focus on the output for the Hyper V requirements section.](media/SystemInfo-upd.png)
 
 ## Final Check
 
@@ -57,12 +56,11 @@ If all OS, hardware and compatibility requirements are met then you will see **H
 1. Hyper-V platform
 1. Hyper-V Management Tools
 
-![](media/hyper_v_feature_screenshot.png)
+![Screenshot of the Control Panel's Turn Windows features on or off pane with a focus on the Hyper V Management Tools and Hyper V Platform folders.](media/hyper_v_feature_screenshot.png)
 
-> [!NOTE] If you see **Windows Hypervisor Platform** instead of **Hyper-V** in **Control Panel: Turn Windows features on or >off** your system may not be compatible for Hyper-V, then cross check above requirements.
->
+> [!NOTE]
+> If you see **Windows Hypervisor Platform** instead of **Hyper-V** in **Control Panel: Turn Windows features on or >off** your system may not be compatible for Hyper-V, then cross check above requirements.
 >If you run **systeminfo** on an existing Hyper-V host, the Hyper-V Requirements section reads:
->
 >```
 >Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
 >```

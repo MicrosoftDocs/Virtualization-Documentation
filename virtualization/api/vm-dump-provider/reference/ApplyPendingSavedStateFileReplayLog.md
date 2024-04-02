@@ -1,3 +1,10 @@
+---
+title: The ApplyPendingSavedStateFileReplayLog function
+description: The ApplyPendingSavedStateFileReplayLog function opens the given saved state file in read-write exclusive mode so that it applies any pending replay logs to the contents.
+ms.date: 04/18/2022
+author: sethmanheim
+ms.author: sethm
+---
 # ApplyPendingSavedStateFileReplayLog function
 
 Opens the given saved state file in read-write exclusive mode so that it applies any pending replay logs to the contents. This method doesn't loads the saved state file into the library and can't be used to get content data; function LoadSavedStateFile must be used instead.

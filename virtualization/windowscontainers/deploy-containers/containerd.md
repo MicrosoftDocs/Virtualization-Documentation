@@ -1,7 +1,6 @@
 ---
 title: Windows container platform
 description: Learn more about new container building blocks available in Windows.
-keywords: LCOW, linux containers, docker, containers, containerd, cri, runhcs, runc
 author: scooley
 ms.author: jgerend
 ms.date: 11/19/2018
@@ -99,10 +98,9 @@ For a deeper look at the HCS, watch [John Stark’s DockerCon presentation](http
 ## containerd/cri
 
 > [!IMPORTANT]
-> CRI support is only available in Server 2019/Windows 10 1809 and later.  We're also still actively developing containerd for Windows.
-> Dev/test only.
+> CRI support is only available in Server 2019/Windows 10 1809 and later.
 
-While OCI specs defines a single container, [CRI](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto) (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can contain one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
+While OCI specs defines a single container, [CRI](https://github.com/kubernetes/cri-api) (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can contain one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
 
 containerd/cri enables the following compatibility matrix for pods:
 
@@ -116,8 +114,8 @@ containerd/cri enables the following compatibility matrix for pods:
 
 Links to the CRI spec:
 
-* [RunPodSandbox](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L24) - Pod Spec
-* [CreateContainer](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L47) - Workload Spec
+* [RunPodSandbox](https://github.com/kubernetes/kubernetes) - Pod Spec
+* [CreateContainer](https://github.com/kubernetes/kubernetes) - Workload Spec
 
 ![Containerd based container environments](media/containerd-platform.png)
 

@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-ms.prod: windows-10-hyperv
 ---
 
 # HV_REGISTER_NAME
@@ -47,6 +46,8 @@ The following table lists all register names:
 | HvRegisterInterruptState               | 0x00010003      |                                      |
 | HvRegisterPendingEvent0                | 0x00010004      |                                      |
 | HvRegisterPendingEvent1                | 0x00010005      |                                      |
+| HvRegisterPendingEvent2                | 0x00010006      |                                      |
+| HvRegisterPendingEvent3                | 0x00010007      |                                      |
 | HvX64RegisterRax                       | 0x00020000      |                                      |
 | HvX64RegisterRcx                       | 0x00020001      |                                      |
 | HvX64RegisterRdx                       | 0x00020002      |                                      |

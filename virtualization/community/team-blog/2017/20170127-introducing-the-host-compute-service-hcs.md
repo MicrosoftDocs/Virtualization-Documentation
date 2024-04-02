@@ -1,8 +1,15 @@
 ---
-title:      "Introducing the Host Compute Service (HCS)"
-date:       2017-01-27 00:21:18
+title: Introducing the Host Compute Service (HCS)
+description: Blog post that introduces the Host Compute Service container management API and describes its creation and open source projects.
+author: scooley
+ms.author: scooley
+date: 2017-01-27 00:21:18
+ms.date: 03/06/2020
 categories: containers
 ---
+
+# Introducing the Host Compute Service (HCS)
+
 ### Summary
 
 This post introduces a low level container management API in Hyper-V called the Host Compute Service (HCS). It tells the story behind its creation, and links to a few open source projects that make it easier to use.
@@ -16,7 +23,7 @@ Building a great management API for Docker was important for Windows Server Cont
 
 After a bit of thinking, we decided to go with a third option. We created a new management service called the Host Compute Service (HCS), which acts as a layer of abstraction above the low level functionality. The HCS was a stable API Docker could build upon, and it was also easier to use. Making a Windows Server Container with the HCS is just a single API call. Making a Hyper-V Container instead just means adding a flag when calling into the API. Figuring out how those calls translate into actual low-level implementation is something the Hyper-V team has already figured out. 
 
-[![linux-arch](https://msdnshared.blob.core.windows.net/media/2017/01/Linux-Arch-1024x698.png)](https://msdnshared.blob.core.windows.net/media/2017/01/Linux-Arch.png) [![windows-arch](https://msdnshared.blob.core.windows.net/media/2017/01/Windows-Arch2-1024x718.png)](https://msdnshared.blob.core.windows.net/media/2017/01/Windows-Arch2.png)
+<!--[![linux-arch](https://msdnshared.blob.core.windows.net/media/2017/01/Linux-Arch-1024x698.png)](https://msdnshared.blob.core.windows.net/media/2017/01/Linux-Arch.png) [![windows-arch](https://msdnshared.blob.core.windows.net/media/2017/01/Windows-Arch2-1024x718.png)](https://msdnshared.blob.core.windows.net/media/2017/01/Windows-Arch2.png)-->
 
 ### Getting Started with the HCS
 

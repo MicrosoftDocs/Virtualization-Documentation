@@ -1,11 +1,10 @@
 ---
 title: HcsSetComputeSystemCallback
 description: HcsSetComputeSystemCallback
-author: faymeng
-ms.author: qiumeng
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
+ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HcsSetComputeSystemCallback
@@ -20,7 +19,7 @@ topic_type:
 
 ## Description
 
-Registers a callback to receive notifications for the compute system, see [sample code](./AsyncModelSample.md#).
+Registers a callback to receive notifications for the compute system, see sample code.
 
 ## Syntax
 

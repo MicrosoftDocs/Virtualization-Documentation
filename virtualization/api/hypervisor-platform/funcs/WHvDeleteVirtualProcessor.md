@@ -1,3 +1,11 @@
+---
+title: Delete a virtual processor in a partition
+description: Learn about the WHvDeleteVirtualProcessor function that deletes a virtual processor in a partition.
+author: sethmanheim
+ms.author: sethm
+ms.date: 04/20/2022
+---
+
 # WHvDeleteVirtualProcessor
 
 ## Syntax

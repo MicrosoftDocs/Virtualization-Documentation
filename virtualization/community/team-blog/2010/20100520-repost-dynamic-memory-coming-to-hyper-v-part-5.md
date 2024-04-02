@@ -1,8 +1,15 @@
 ---
 title:      "Repost&#58; Dynamic Memory Coming to Hyper-V Part 5…"
+description: In my last blog, we covered some follow-up questions about Page Sharing. Today, we’ll discuss Second Level paging.
+author: scooley
+ms.author: scooley
 date:       2010-05-20 05:52:00
+ms.date: 05/20/2010
 categories: dynamic-memory
+ms.service: virtualization
 ---
+# Repost: Dynamic Memory Coming to Hyper-V Part 5
+
 _=====================================================================_
 
 _Preamble: The point of this series, and the spirit in which it is written, is to take a holistic approach at the issues facing our customers, discuss the complexities with regard to memory management and explain why we ’re taking the approach we are with Hyper-V Dynamic Memory. This isn’t meant to criticize anyone or technology, rather to have an open and transparent discussion about the problem space._
@@ -25,7 +32,7 @@ Modern operating systems employ virtual memory. Virtual memory is a way of exten
 
 **Virtual Memory In Depth**
 
-Let’s dive in deeper. For that, I’m going to reference a TechNet article that discusses the Windows Virtual Memory Manager. If you’d like to read the full article it is here: <https://technet.microsoft.com/library/cc767886.aspx>. A second article I highly recommend on virtual memory is this one from Mark Russinovich: <http://blogs.technet.com/markrussinovich/archive/2008/11/17/3155406.aspx>
+Let’s dive in deeper. For that, I’m going to reference a TechNet article that discusses the Windows Virtual Memory Manager. If you’d like to read the full article it is [here](/previous-versions//cc767886(v=technet.10)). A second article I highly recommend on virtual memory is [this one](https://blogs.technet.com/markrussinovich/archive/2008/11/17/3155406.aspx) from Mark Russinovich:
 
 From the TechNet article:
 
@@ -68,11 +75,9 @@ Ok, now that we’ve discussed how virtual memory and paging works, let’s rela
 
 Today with Hyper-V (V1 & R2), memory is _statically_ assigned to a virtual machine. Meaning you assign memory to a virtual machine and when that virtual machine is turned on, Hyper-V allocates and provides that memory to the virtual machine. That memory is held while the virtual machine is running or paused. When the virtual machine is saved or shut down, that memory is released. Below is a screenshot for assigning memory to a virtual machine today:
 
-[![Memory Assignment Cropped](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/3364.MemoryAssignmentCropped_thumb_1E04BEB0.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2112.MemoryAssignmentCropped_439E61DE.png) 
 
 This memory is 100% backed by physical memory and is never paged. Remember that the guest is actively determining which pages should and shouldn’t be paged as it manages all the memory it’s been allocated by the virtual machine and it knows best how to do so. Here’s a basic picture to illustrate what this looks like in a virtualization environment. There are four virtual machines running and each of the guest kernels are managing their own memory.
 
-[![Guest Only Paging](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5238.image_thumb_21521C8C.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6864.image_54FE9CE9.png)
 
 Ok, now let’s dive into Second Level Paging…
 
@@ -80,7 +85,6 @@ Ok, now let’s dive into Second Level Paging…
 
 Second Level Paging is a technique where the virtualization platform creates a _second_ level of memory abstraction and swap files are created by the virtualization layer to page memory to disk when the system is oversubscribed. With SLP, you now have two tiers of paging to disk one within the guest and one below it at the virtualization layer. Here ’s another picture to illustrate how Second Level Paging fits in. Again, there are four virtual machines running and each of the guest kernels are managing their own memory. However, notice that below them is the Second Level of Paging managed independently by the virtualization platform.
 
-[![Second Level Paging](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5127.image_thumb_11EA80B1.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4188.image_5EDEB8AE.png)
 
 One common argument used in favor of Second Level Paging I’ve heard is this “If Windows and modern OSes all use paging today, why is this bad with virtualization?"
 
@@ -96,7 +100,7 @@ Swapping the guest kernel is an example where virtualization is creating an issu
 
 > _“ …hypervisor swapping is a guaranteed technique to reclaim a specific amount of memory within a specific amount of time. **However, hypervisor swapping may severely penalize guest performance. This occurs when the hypervisor has no knowledge about which guest physical pages should be swapped out, and the swapping may cause unintended interactions with the native memory management policies in the guest operating system. For example, the guest operating system will never page out its kernel pages since those pages are critical to ensure guest kernel performance. The hypervisor, however, cannot identify those guest kernel pages, so it may swap them out**. In addition, the guest operating system reclaims the clean buffer pages by dropping them. Again, since the hypervisor cannot identify the clean guest buffer pages, it will unnecessarily swap them out to the hypervisor swap device in order to reclaim the mapped host physical memory._
 
-> _Understanding Memory Resource Management in VMware ESX Server p. 9-10;_[ _http://www.vmware.com/resources/techresources/10062_](http://www.vmware.com/resources/techresources/10062)
+> _Understanding Memory Resource Management in VMware ESX Server p. 9-10;_[ _here_](https://www.vmware.com/techpapers/2009/understanding-memory-resource-management-in-vmware-10062.html)
 
 Thus, the more you oversubscribe memory, the worse the overall performance because the system has to fall back to using disk and ultimately trade memory performance for disk performance. Speaking of comparing memory to disk performance...
 
@@ -120,7 +124,7 @@ So, if you want to compare disk access to DDR-3 1600 memory access the formula i
 
 
 
-We’ve heard on many occasions that virtualization users have been told that performance of Second Level Paging “isn’t that bad.” I don’t know how anyone can say with a straight face that a performance penalty of greater than six orders of magnitude isn’t that bad. To put 1.6 million times faster in perspective, assume it took you an hour to walk one mile. If you traveled 1.6 million times faster, you could roughly travel to Saturn and back in an hour. ([Saturn is approximately 746 million miles away at its minimum distance to the Earth](http://www.britannica.com/EBchecked/topic/525169/Saturn).)
+We’ve heard on many occasions that virtualization users have been told that performance of Second Level Paging “isn’t that bad.” I don’t know how anyone can say with a straight face that a performance penalty of greater than six orders of magnitude isn’t that bad. To put 1.6 million times faster in perspective, assume it took you an hour to walk one mile. If you traveled 1.6 million times faster, you could roughly travel to Saturn and back in an hour. ([Saturn is approximately 746 million miles away at its minimum distance to the Earth](https://www.britannica.com/place/Saturn-planet)).
 
 **Microsoft & VMware Agree: Avoid Oversubscription**
 

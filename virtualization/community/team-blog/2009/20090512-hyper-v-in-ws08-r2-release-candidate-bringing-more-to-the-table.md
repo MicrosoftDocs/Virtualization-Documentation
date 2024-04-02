@@ -1,9 +1,15 @@
 ---
 title:      "Hyper-V in WS08 R2 Release Candidate&#58; Bringing More to the Table"
+description: You'll want to read Isaac's blog post about the RC milestone of Windows Server 2008 R2.
+author: scooley
+ms.author: scooley
 date:       2009-05-12 01:43:00
+ms.date: 05/12/2009
 categories: high-availability
 ---
-You'll want to read Isaac's blog post about the RC milestone of Windows Server 2008 R2. His post focuses on 64 LP support and processor compatibility mode for live migration. Read the post [here](http://blogs.technet.com/windowsserver/archive/2009/05/11/hyper-v-in-ws08-r2-release-candidate-bringing-more-to-the-table.aspx "Isaac's post on Windows Server blog").
+# Hyper-V in WS08 R2 Release Candidate: Bringing More to the Table
+
+You'll want to read Isaac's blog post about the RC milestone of Windows Server 2008 R2. His post focuses on 64 LP support and processor compatibility mode for live migration. Read the post [here](/virtualization/community/team-blog/2009/20090512-hyper-v-in-ws08-r2-release-candidate-bringing-more-to-the-table "Isaac's post on Windows Server blog").
 
 Here's an excerpt:
 
@@ -14,13 +20,13 @@ Here's an excerpt:
 > Let's take a quick look at the history of logical processor support for Hyper-V:
 > 
 >   * Server 2008 Hyper-V                                         16 LP Support 
->   * Server 2008 Hyper-V +update ([KB95670](http://support.microsoft.com/kb/956710))      24 LP Support 
+>   * Server 2008 Hyper-V +update ([KB95670](https://support.microsoft.com/kb/956710))      24 LP Support 
 >   * Server 2008 **R2** Hyper-V Original POR            32 LP Support 
 >   * Server 2008 **R2** Hyper-V RC/RTM                    **64 LP Support!**
 > 
 
 > 
-> **Processor Compatibility Mode for Live Migration  **
+> **Processor Compatibility Mode for Live Migration**
 > 
 > Live Migration is the killer-feature in Windows Server 2008 R2!  Previous to the RC build of Windows Server 2008 R2, identical CPUs were needed across every node in the cluster in order to perform a live migration.  As we came closer to the RC milestone we got feedback from customers and partners asking, "What if I deploy additional nodes that contain newer processors with features not contained in the original nodes?"  Well, we've solved that problem due to tremendous effort by the Hyper-V development team. 
 > 

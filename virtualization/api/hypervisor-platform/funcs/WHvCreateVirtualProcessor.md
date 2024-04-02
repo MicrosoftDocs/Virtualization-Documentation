@@ -1,3 +1,11 @@
+---
+title: Create a new virtual processor in a partition
+description: Learn about the WHvCreateVirtualProcessor function that creates a new virtual processor in a partition.
+author: sethmanheim
+ms.author: sethm
+ms.date: 04/20/2022
+---
+
 # WHvCreateVirtualProcessor
 
 ## Syntax

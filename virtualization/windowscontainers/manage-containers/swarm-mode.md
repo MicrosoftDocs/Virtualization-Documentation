@@ -1,7 +1,6 @@
 ---
-title: Getting Started with Swarm Mode
-description: Intializing a swarm cluster, creating an overlay network, and attaching a service to the network.
-keywords: docker, containers, swarm, orchestration
+title: Get started with swarm mode
+description: Initialize a swarm cluster, creating an overlay network, and attaching a service to the network.
 author: kallie-b
 ms.author: jgerend
 ms.date: 02/9/2017
@@ -9,7 +8,7 @@ ms.topic: how-to
 ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
 ---
 
-# Getting Started with Swarm Mode
+# Get started with swarm mode
 
 > Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
 
@@ -259,3 +258,4 @@ Hence, if a container host has only one network adapter it is possible to run in
 There are two ways to get around this issue:
 - *Option 1 - delete existing transparent network:* Before initializing a swarm, ensure there is not an existing transparent network on your container host. Delete transparent networks to ensure there is a free virtual network adapter on your host to be used for overlay network creation.
 - *Option 2 - create an additional (virtual) network adapter on your host:* Instead of removing any transparent network that's on your host you can create an additional network adapter on your host to be used for overlay network creation. To do this, simply create a new external network adapter (using PowerShell or Hyper-V Manager); with the new interface in place, when your swarm is initialized the Host Network Service (HNS) will automatically recognize it on your host and use it to bind the external vSwitch for overlay network creation.
+-

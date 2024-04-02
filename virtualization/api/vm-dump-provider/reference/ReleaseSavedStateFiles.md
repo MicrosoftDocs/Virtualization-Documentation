@@ -1,3 +1,11 @@
+---
+title: The ReleaseSavedStateFiles function
+description: Releases the given VmSavedStateDump provider that matches the supplied ID.
+ms.date: 04/19/2022
+author: sethmanheim
+ms.author: sethm
+---
+
 # ReleaseSavedStateFiles function
 
 Releases the given VmSavedStateDump provider that matches the supplied ID. Releasing the provider releases the locks to the saved state files. This means that it won't be available for use on other methods.

@@ -3,16 +3,15 @@ title: Managing VMware
 description: post id 3833
 keywords: virtualization, virtual server, virtual pc, blog
 author: scooley
+ms.author: scooley
 ms.date: 1/14/2008
 ms.topic: article
-ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 
 ---
 
 # Managing VMware
 
-If you haven't already, I recommend reading [Rakesh's post](http://blogs.technet.com/rakeshm/archive/2008/01/11/why-we-decided-to-manage-vmware.aspx) on why the System Center team decided to build out V2 of SCVMM so that customers can manage VMware ESX Server and VI3. Here's an excerpt:
+If you haven't already, I recommend reading [Rakesh's post](https://blogs.technet.com/rakeshm/archive/2008/01/11/why-we-decided-to-manage-vmware.aspx) on why the System Center team decided to build out V2 of SCVMM so that customers can manage VMware ESX Server and VI3. Here's an excerpt:
 
 > **Flexibility in Hypervisors  with a single management solution** - As I said above, we feel very confident that our hypervisor provides the best platform in the vast majority of customer use cases (that's for you to decide of course) but regardless, customers want to use a single management tool in mixed environments. You'll also be able to automate across hypervisors using a single Powershell interface that we provide. VMM will abstract the difference in hypervisor APIs for you. You simply run the "Stop-VM" cmdlet and we make sure that regardless of the hypervisor platform, the VM is stopped. No more code blocks that read "If (VMware)....elseif (VirtualServer)......elseif (Hyper-V)......"
 >  

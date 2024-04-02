@@ -1,8 +1,14 @@
 ---
 title:      "Hyper-V R2 Import/Export – Part 6 - So, what happened to Configuration-only export?"
+description: Configuration-only export is still present in Hyper-V in R2. Users can still utilize this capability via the API.
+author: scooley
+ms.author: scooley
 date:       2009-05-29 10:32:00
+ms.date: 05/29/2009
 categories: uncategorized
 ---
+# Hyper-V R2 Import/Export – Part 6 - So, what happened to Configuration-only export?
+
 There have been multiple customers who have voiced concern that the Configuration-only export feature is gone. It has not. Configuration-only export is still very much present in Hyper-V in R2. It just so happens that we have taken the option out from the UI. The user can still utilize this capability via the API. 
 
 This brings us to the next question: “Why did you take it out of the UI?” The main motivation behind taking it out of the UI is that the user would not be able to easily import such a VM through the UI. Given our import UI, there is no way for the user to specify the locations of the VHD files during import. Ideally, we would have had an import wizard or the like where the user could specify the location of all the VHD files before launching the import process. However, short of that, it is best not to expose any of that functionality via the UI.
@@ -11,7 +17,7 @@ The ability to do a configuration-only export of a VM is available via SCVMM R2,
 
 _**Exporting config-only**_
     
-    
+```
      option explicit 
     
     
@@ -977,3 +983,4 @@ The VM exported above can be imported via the following script. Please note that
     
     
     End Function
+```

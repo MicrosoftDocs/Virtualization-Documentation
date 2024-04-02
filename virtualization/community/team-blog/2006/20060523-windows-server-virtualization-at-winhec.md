@@ -3,18 +3,17 @@ title: Windows Server virtualization at WinHEC
 description: post id 3983
 keywords: virtualization, virtual server, blog
 author: scooley
+ms.author: scooley
 ms.date: 5/23/2006
 ms.topic: article
-ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 61b4a90a-6c30-4591-9400-452935fb6a4e
 ---
 
 # Windows Server virtualization at WinHEC
 
-Hello and welcome to the Microsoft virtual machine team's blog! On Monday the 22nd, as part of the WinHEC conference, we [announced](http://www.microsoft.com/presspass/features/2006/may06/05-22Virtualization.mspx) the next steps in our virtualization strategy and outlined our roadmap of products. As we march towards release, we are starting a team blog to discuss machine virtualization plans at Microsoft in more detail. As the Product Unit Manager for the team, I've been asked to provide the first post for the team and kick off the blog. Welcome!
+Hello and welcome to the Microsoft virtual machine team's blog! On Monday the 22nd, as part of the WinHEC conference, we announced the next steps in our virtualization strategy and outlined our roadmap of products. As we march towards release, we are starting a team blog to discuss machine virtualization plans at Microsoft in more detail. As the Product Unit Manager for the team, I've been asked to provide the first post for the team and kick off the blog. Welcome!
 
-In future posts I plan to talk more about Microsoft's strategy in this space, industry efforts, opportunities for our partners, what the technology is, what it can do for customers, but for the first installment I wanted to focus on the team and the technology they are building. On Monday we announced Windows Server virtualization, which was codenamed "Viridian". This will be the first release of the Windows hypervisor-based design and represents the hard work of a very talented and dedicated group of people. As part of Bill Gates opening keynote at WinHEC we publicly demoed Windows Server virtualization with the hypervisor for the first time. Jeff Woolsey and Mike Sterling did an outstanding job showing just a fraction of the amazing capabilities we have in the works. If you didn't catch the demo this morning, you can watch the webcast [here](http://www.microsoft.com/events/executives/billgates.mspx).
+In future posts I plan to talk more about Microsoft's strategy in this space, industry efforts, opportunities for our partners, what the technology is, what it can do for customers, but for the first installment I wanted to focus on the team and the technology they are building. On Monday we announced Windows Server virtualization, which was codenamed "Viridian". This will be the first release of the Windows hypervisor-based design and represents the hard work of a very talented and dedicated group of people. As part of Bill Gates opening keynote at WinHEC we publicly demoed Windows Server virtualization with the hypervisor for the first time. Jeff Woolsey and Mike Sterling did an outstanding job showing just a fraction of the amazing capabilities we have in the works. If you didn't catch the demo this morning, you can watch the webcast here.
 
 The virtual machine team was formed after the acquisition of Connectix a little over three years ago. Our team develops Virtual PC, Virtual Server and the Windows machine virtualization technology. We have an outstanding group of developers, testers and program managers that work on this effort. Additionally we are supported by a wide range of people across the company, including our product marketing team, PR team, sales and customer support. While all of these functions are critical for the technology's success I'm going to focus on the VM team.
 

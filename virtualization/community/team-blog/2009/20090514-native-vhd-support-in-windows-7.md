@@ -1,8 +1,14 @@
 ---
 title:      "Native VHD Support in Windows 7"
+description: This blog entry describes the support in Windows 7 and Windows Server 2008 R2 for creating and managing Virtual Hard Disk (VHD) files as a native format.
+author: scooley
+ms.author: scooley
 date:       2009-05-14 01:00:00
+ms.date: 05/14/2009
 categories: hyper-v
 ---
+# Native VHD Support in Windows 7
+
 _This blog entry describes the support in Windows 7 and Windows Server 2008 R2 for creating and managing Virtual Hard Disk (VHD) files as a native format, and booting a physical machine from a  VHD file.  Native VHD support helps our enterprise customers and developer community use a common image format and common tools to manage and deploy Windows images that run either in Hyper-V virtual machines or on physical machines._
 
 The Microsoft Virtual Hard Disk file format (VHD) is a publicly available format specification that specifies a virtual hard disk encapsulated in a single file, capable of hosting native file systems and supporting standard disk operations. VHD files are used by Microsoft Windows Server 2008 Hyper-V, Microsoft Virtual Server and Microsoft Virtual PC for virtual disks connected to a virtual machine.   VHDs are useful containers and the VHD file format is also used by Microsoft Data Protection Manager, Windows Server Backup as well as many other Microsoft and Non-Microsoft solutions.  To create a VHD on Windows Server 2008, you install the Hyper-V Server role and use the Hyper-V Manager to create a VHD file, and then install a version of Windows onto a partition in the VHD. 
@@ -27,7 +33,6 @@ In this blog entry we are going to look at the goals for supporting VHDs as a na
 
 Windows 7 simplifies image management by adding support for virtual disks in the disk management tools.  You no longer need to install the Hyper-V Server role and use the Hyper-V Manager console to create VHDs.  The Disk Management console has an action to create a new VHD file, for either a fixed size or dynamically expanding VHD, which is uninitialized.  After creating the VHD file, the Attach VHD action makes the virtual disk available to the system as if you plugged in a hard disk drive. 
 
-[![vhd1](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd1_thumb.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd1_2.jpg)
 
 Figure 1. Creating a VHD using the Disk Management console 
 
@@ -35,7 +40,6 @@ After attaching a new virtual disk, you create a partition and format an NTFS vo
 
 Server administrators often prefer command line tools, and you can do the same VHD operations using the diskpart command.  Diskpart also accepts a script to automate the steps to create and format a VHD. When a VHD containing a file system volume is attached, Windows automatically recognizes the volume and provides an option to explore the contents. 
 
-[![vhd2](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd2_thumb.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd2_2.jpg)
 
 Figure 2.  Using the Diskpart command to create a VHD 
 
@@ -45,13 +49,9 @@ Figure 2.  Using the Diskpart command to create a VHD
 
 With Windows Server 2008 R2, Hyper-V now uses the new native support for VHDs in the core operating system.  We have done extensive testing on a wide range of I/O test scenarios and the native VHD support is incredibly efficient.   Read and write performance for different I/O block sizes, for both sequential and random I/O is comparable with physical disk performance.  The following graphs show some of the preliminary results from performance tests comparing throughput to Fixed and Dynamic VHD files in Windows Server 2008 R2 Beta with Windows Server 2008 Hyper-V.   The “Bare Metal” columns show the maximum I/O throughput to the physical disk device without using a VHD file.   Lower write throughput to dynamic VHDs is due to multiple I/Os required to expand the file as new blocks are written to the virtual disk. 
 
-[![vhd4](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd4_thumb.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd4_2.jpg)
 
- 
 
-[![vhd5](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd5_thumb.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd5_2.jpg)
-
-Operating system support for VHD as a native format provides opportunities for management ISVs to bring added value to their customers without introducing complexity with new image formats.  There are new [Win32 APIs](https://msdn.microsoft.com/library/dd323684\(VS.85\).aspx) for VHD operations that enable image management tools to support the VHD file format in their management framework. 
+Operating system support for VHD as a native format provides opportunities for management ISVs to bring added value to their customers without introducing complexity with new image formats.  There are new Win32 APIs for VHD operations that enable image management tools to support the VHD file format in their management framework. 
 
 **Native VHD Boot**   
   
@@ -63,7 +63,7 @@ Native VHD boot enables IT Administrators to quickly repurpose a machine for dif
 
 Native VHD boot depends on enhancements to the Boot Configuration Data (BCD) to represent the VHD file as a boot device rather than a physical disk partition.  The following image shows an example of a multiple boot configuration with a VHD boot entry.
 
-[![vhd6](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd6_thumb.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd6_2.jpg)
+
 
 Figure 3. Multiple boot configuration with VHD boot entry 
 
@@ -73,7 +73,7 @@ The Windows 7 boot manager and loader can now read the files required to start t
 
 To put a Windows 7 or Windows Server 2008 R2 operating system image in the VHD file, you have to _apply_ an image to the partition in the VHD file. Running Setup from the install DVD and selecting a partition in a VHD file for installation is **_not_** supported. Here are two ways you can apply a  WIM image to a VHD: 
 
-  1. Use the [Install-WindowsImage](http://code.msdn.microsoft.com/InstallWindowsImage) Powershell script from the MSDN Code Gallery.  
+  1. Use the Install-WindowsImage Powershell script from the MSDN Code Gallery.  
 
   2. Or use the Imagex deployment tool from the Windows Automated Installation Kit (WAIK).
 
@@ -81,9 +81,9 @@ To put a Windows 7 or Windows Server 2008 R2 operating system image in the VHD f
 
 The Install-WindowsImage Powershell script uses the wimgapi.dll in Windows 7 to apply a WIM to a VHD. Use the script if you are not familiar with the WAIK and Imagex.exe tool, or do not have the WAIK available.
 
-See the document _[Using Install-WindowsImage](http://code.msdn.microsoft.com/InstallWindowsImage/Release/ProjectReleases.aspx?ReleaseId=2662)_ , on the Install-WindowsImage site for step-by-step instructions on how to create a VHD and apply a WIM image for VHD boot.
+See the document _Using Install-WindowsImage_ , on the Install-WindowsImage site for step-by-step instructions on how to create a VHD and apply a WIM image for VHD boot.
 
-IT professionals will be interested in using the WAIK deployment tools to customize and capture a reference Windows image and deploy the image in VHD format to either physical or virtual machines. The [basic deployment steps](https://technet.microsoft.com/library/dd349348.aspx) for the IT Administrator to prepare a custom Windows image includes the following:
+IT professionals will be interested in using the WAIK deployment tools to customize and capture a reference Windows image and deploy the image in VHD format to either physical or virtual machines. The [basic deployment steps](/previous-versions/windows/it-pro/windows-7/dd349348(v=ws.10)) for the IT Administrator to prepare a custom Windows image includes the following:
 
   * Install Windows to a partition on a physical machine first as a reference.
   * Customize the reference image settings and installing the applications you want.

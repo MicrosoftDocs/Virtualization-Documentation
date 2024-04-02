@@ -1,10 +1,9 @@
 ---
 title: Virtualized container time zone
 description: Learn how to configure the time zone in a container.
-keywords: containers, timezone, virtualization
 author: brasmith-ms
 ms.author: brasmith
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/15/2021
 ---
 
@@ -52,8 +51,8 @@ Using the latest Windows Server 2019 [Server Core](https://hub.docker.com/_/micr
     ```powershell
     PS C:\> Get-TimeZone
     ```
-            
-    ```output    
+
+    ```output
     Id                         : Pacific Standard Time
     DisplayName                : (UTC-08:00) Pacific Time (US & Canada)
     StandardName               : Pacific Standard Time
@@ -72,8 +71,8 @@ Using the latest Windows Server 2019 [Server Core](https://hub.docker.com/_/micr
     Samoa Standard Time
     PS C:\> Get-TimeZone
     ```
-            
-    ```output 
+
+    ```output
     Id                         : Samoa Standard Time
     DisplayName                : (UTC+13:00) Samoa
     StandardName               : Samoa Standard Time
@@ -91,7 +90,7 @@ Using the latest Windows Server 2019 [Server Core](https://hub.docker.com/_/micr
     Central Asia Standard Time
     PS C:\> Get-TimeZone
     ```
-                
+
     ```output
     Id                         : Central Asia Standard Time
     DisplayName                : (UTC+06:00) Astana

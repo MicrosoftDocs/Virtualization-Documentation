@@ -1,7 +1,6 @@
 ---
-title: Windows Container Orchestration Overview
+title: Windows container orchestration overview
 description: Learn about Windows container orchestrators.
-keywords: docker, containers
 author: Heidilohr
 ms.author: helohr
 ms.date: 09/22/2021
@@ -26,12 +25,10 @@ Orchestrators perform the following tasks:
 
 ## Orchestrator types
 
-Azure offers the following container orchestrators: 
+Azure offers the following container orchestrators:
 
 [Azure Kubernetes Service (AKS)](/azure/aks/) makes it simple to create, configure, and manage a cluster of virtual machines preconfigured to run containerized applications. This enables you to use your existing skills and draw upon a large and growing body of community expertise to deploy and manage container-based applications on Microsoft Azure. By using AKS, you can take advantage of the enterprise-grade features of Azure while still maintaining application portability through Kubernetes and the Docker image format.
 
-[AKS on Azure Stack HCI](//azure-stack/aks-hci/) is an on-premises implementation of the popular AKS orchestrator, which automates running containerized applications at scale. Azure Kubernetes Service is generally available on Azure Stack HCI and on Windows Server 2019 Datacenter, making it quicker to get started hosting Linux and Windows containers in your datacenter.
+[AKS on Azure Stack HCI](/azure-stack/aks-hci/overview) is an on-premises implementation of the popular AKS orchestrator, which automates running containerized applications at scale. Azure Kubernetes Service is generally available on Azure Stack HCI and on Windows Server 2019 Datacenter, making it quicker to get started hosting Linux and Windows containers in your datacenter.
 
 [Azure Service Fabric](/azure/service-fabric/) is a distributed systems platform that makes it easy to package, deploy, and manage scalable and reliable microservices and containers. Service Fabric addresses the significant challenges in developing and managing cloud native applications. Developers and administrators can avoid complex infrastructure problems and focus on implementing mission-critical, demanding workloads that are scalable, reliable, and manageable. Service Fabric represents the next-generation platform for building and managing these enterprise-class, tier-1, cloud-scale applications running in containers.
-
-

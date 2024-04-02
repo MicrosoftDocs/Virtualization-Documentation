@@ -1,9 +1,15 @@
 ---
 title:      "Announcing the availability of the Beta version of Linux Integration Services for Hyper-V with SMP support"
+author: sethmanheim
+ms.author: sethm
+description: Announcing the availability of the Beta version of Linux Integration Services for Hyper-V with SMP support
+ms.date: 03/31/2010
 date:       2010-03-31 02:00:00
 categories: hyper-v-linux-novell-red-hat
 ---
-[Windows Server 2008 R2 Hyper-V](http://www.microsoft.com/virtualization/en/us/products-server.aspx) and [Microsoft Hyper-V Server 2008 R2](http://www.microsoft.com/hyper-v-server/en/us/default.aspx) provide robust virtualization for [customers](http://www.microsoft.com/virtualization/en/us/case-studies-featured.aspx) who have appreciated the capabilities that this solution provides. Virtualization decouples the operating system from the underlying hardware, and this decoupling creates a flexible and dynamic IT infrastructure. Customers who have a heterogeneous operating system environment desire their virtualization platform to provide support for all operating systems that they have in their datacenters. We have supported Linux as a guest operating system on our virtualization platform from the days of Virtual Server and continue to enhance our support in that regard. In July of last year, we submitted our Linux Integration Services for Hyper-V to the Linux community so that they can be included in the Linux kernel.  We have seen great support from the community, having received over 200 patches. As part of our continuing efforts to support Linux as a guest on Hyper-V, we are announcing the availability of the beta version of Linux Integration Services for Hyper-V (version 2.1). In addition to the existing features (networking, storage, and fastpath boot), the 2.1 release adds the following:
+# Announcing the availability of the Beta version of Linux Integration Services for Hyper-V with SMP support
+
+[Windows Server 2008 R2 Hyper-V](https://www.microsoft.com/download/details.aspx?id=12601) and [Microsoft Hyper-V Server 2008 R2](https://www.microsoft.com/en-us/download/details.aspx?id=20196) provide robust virtualization for customers who have appreciated the capabilities that this solution provides. Virtualization decouples the operating system from the underlying hardware, and this decoupling creates a flexible and dynamic IT infrastructure. Customers who have a heterogeneous operating system environment desire their virtualization platform to provide support for all operating systems that they have in their datacenters. We have supported Linux as a guest operating system on our virtualization platform from the days of Virtual Server and continue to enhance our support in that regard. In July of last year, we submitted our Linux Integration Services for Hyper-V to the Linux community so that they can be included in the Linux kernel.  We have seen great support from the community, having received over 200 patches. As part of our continuing efforts to support Linux as a guest on Hyper-V, we are announcing the availability of the beta version of Linux Integration Services for Hyper-V (version 2.1). In addition to the existing features (networking, storage, and fastpath boot), the 2.1 release adds the following:
 
  
 
@@ -21,11 +27,11 @@ o   You will be able to shut down a Linux virtual machine gracefully from the 
 
  
 
-This version of the integration services for Hyper-V can be downloaded from [here](https://connect.microsoft.com/InvitationUse.aspx?ProgramID=1863&InvitationID=LNIS-T47Q-B7MP&SiteID=495), and supports Novell SUSE Linux Enterprise Server 10 SP3, SUSE Linux Enterprise Server 11, and Red Hat Enterprise Linux 5.2 / 5.3 / 5.4.
+This version of the integration services for Hyper-V can be downloaded from here, and supports Novell SUSE Linux Enterprise Server 10 SP3, SUSE Linux Enterprise Server 11, and Red Hat Enterprise Linux 5.2 / 5.3 / 5.4.
 
  
 
-To offer our customers the most flexibility when interacting with Hyper-V, the part of the code which communicates with Hyper-V is licensed under a dual license ([BSD](http://opensource.org/licenses/bsd-license.php) and [GPLv2](http://opensource.org/licenses/gpl-2.0.php)), while the part that communicates and interacts directly with the Linux kernel is under GPLv2. 
+To offer our customers the most flexibility when interacting with Hyper-V, the part of the code which communicates with Hyper-V is licensed under a dual license ([BSD](https://opensource.org/license/bsd-1-clause/) and [GPLv2](https://opensource.org/license/gpl-2-0/)), while the part that communicates and interacts directly with the Linux kernel is under GPLv2. 
 
  
 

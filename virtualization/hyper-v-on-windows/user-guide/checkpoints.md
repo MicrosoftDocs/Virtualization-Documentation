@@ -3,10 +3,9 @@ title: Using checkpoints
 description: Using checkpoints
 keywords: windows 10, hyper-v
 author: scooley
+ms.author: scooley
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: d9c398c4-ee72-45c6-9ce8-4f06569dae6c
 ---
 
@@ -36,7 +35,7 @@ Production checkpoints are selected by default however this can be changed using
 
 <br />
 
-![](media/checkpoint_upd.png)
+![Screenshot of the options for Checkpoints in the Management section of the Hyper V Manager.](media/checkpoint_upd.png)
 
 **Using PowerShell**
 
@@ -203,7 +202,7 @@ This exercise walks through creating and applying a standard checkpoint versus a
 
 <br />
 
-![](media/std_checkpoint_upd.png) 
+![Screenshot of the created checkpoint in the Hyper V Manager](media/std_checkpoint_upd.png) 
 
 **Apply the Standard Checkpoint with Hyper-V Manager**
 
@@ -215,7 +214,7 @@ Now that a checkpoint exists, make a modification to the virtual machine and the
 
 <br />
 
-![](media/apply_standard_upd.png) 
+![Screenshot of the dialog that asks for confirmation to apply the selected checkpoint.](media/apply_standard_upd.png) 
 
 Once the checkpoint has been applied, notice that not only is the text file present, but the system is in the exact state that it was when the checkpoint was created. In this case Notepad is open and the text file loaded.
 
@@ -232,7 +231,7 @@ Let’s now examine production checkpoints. This process is almost identical to 
 
 <br />
 
-![](media/production_Checkpoin_upd.png) 
+![Screenshot of the dialog that confirms the checkpoint was created.](media/production_Checkpoin_upd.png) 
 
 **Apply the Production Checkpoint with Hyper-V Manager**
 

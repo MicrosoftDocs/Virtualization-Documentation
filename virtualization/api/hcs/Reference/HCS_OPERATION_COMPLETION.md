@@ -1,11 +1,10 @@
 ---
-title: HCS_OPERATION_TYPE
-description: HCS_OPERATION_TYPE
-author: faymeng
-ms.author: qiumeng
+title: HCS_OPERATION_COMPLETION
+description: About HCS_OPERATION_COMPLETION
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
+ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HCS_OPERATION_TYPE
@@ -16,7 +15,7 @@ api_type:
 topic_type: 
 - apiref
 ---
-# HCS_OPERATION_TYPE
+# About HCS_OPERATION_COMPLETION
 
 ## Description
 

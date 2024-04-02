@@ -1,15 +1,21 @@
 ---
 title:      "Dress up your office wall with the Hyper-V component architecture poster"
+description: The poster is a great visual tool to help in the understanding of the key features and components of the Hyper-V in Windows Server 2008 R2.
+author: scooley
+ms.author: scooley
 date:       2010-05-28 11:32:18
+ms.date: 05/28/2010
 categories: hyper-v
 ---
+# Dress up your office wall with the Hyper-V component architecture poster
+
 Hi, this is Bryon Surace again.  I’m a senior program manager on the Windows virtualization team at Microsoft. 
 
  
 
-I wanted to draw your attention to the new [Hyper-V Component Architecture Poster](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=5567b22a-8c47-4840-a88d-23146fd93151).   
+I wanted to draw your attention to the new [Hyper-V Component Architecture Poster](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh849639(v=ws.11)).   
 
-[](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=5567b22a-8c47-4840-a88d-23146fd93151)
+[Hyper-V Component Architecture Poster](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh849639(v=ws.11))
 
 The poster is a great visual tool to help in the understanding of the key features and components of the Hyper-V in Windows Server 2008 R2.  It highlights key Hyper-V components including:
 

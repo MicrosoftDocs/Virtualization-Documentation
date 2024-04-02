@@ -1,9 +1,15 @@
 ---
 title:      "Guest post&#58; Hyper-V gives every Windows shop a free pass into “innovation”"
+description: A guest post by Matt Lavallee, the Director of Technology at MLS Property Information Network, Inc., based in Massachusetts.
+author: sethmanheim
+ms.author: sethm
 date:       2009-06-22 14:39:00
+ms.date: 06/22/2009
 categories: guest-blog-post
 ---
-Hi, my name is Matt Lavallee and I am the Director of Technology at MLS Property Information Network, Inc., based in Massachusetts.  Although you may not recognize the company name, we are one of the 700+ multiple listing service (MLS) companies that provide data warehousing for the Real Estate industry in the U.S.  As my company took the early step to [virtualizing our environment on Hyper-V](http://www.microsoft.com/casestudies/Case_Study_Detail.aspx?CaseStudyID=4000003046) last year, Microsoft asked me to share my opinion on the results of [its recent survey on the state of IT](http://www.microsoft.com/infrastructure/resources/itprosurvey.mspx) infrastructure investments, conducted by Harris Interactive. 
+# Guest Post: Hyper-V gives every Windows shop a free pass into “innovation”
+
+Hi, my name is Matt Lavallee and I am the Director of Technology at MLS Property Information Network, Inc., based in Massachusetts.  Although you may not recognize the company name, we are one of the 700+ multiple listing service (MLS) companies that provide data warehousing for the Real Estate industry in the U.S.  As my company took the early step to virtualizing our environment on Hyper-V last year, Microsoft asked me to share my opinion on the results of its recent survey on the state of IT infrastructure investments, conducted by Harris Interactive. 
 
 One point that stands out on the survey — and should surprise no one — is the shift to belt-tightening in IT:  84% of US respondents cited improving business efficiency (51%) and reducing IT costs (33%) as their priorities in light of the economic downturn.  However, I personally disagree that this new mindset is a direct reaction to the economy or that the decreased allocation of IT budget to innovation (29% in the US) are necessarily bad things.
 

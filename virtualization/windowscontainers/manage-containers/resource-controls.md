@@ -1,7 +1,6 @@
 ---
 title: Implementing resource controls
-description: Details regarding resource controls for Windows containers
-keywords: docker, containers, cpu, memory, disk, resources
+description: Details regarding resource controls for Windows containers.
 author: taylorb-microsoft
 ms.author: jgerend
 ms.date: 08/12/2020
@@ -28,7 +27,7 @@ For each resource this section provides a mapping between the Docker command lin
 |-----|------|
 | Docker interface | [--memory](https://docs.docker.com/engine/admin/resource_constraints/#memory) |
 | HCS interface | [MemoryMaximumInMB](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Shared Kernel | [JOB_OBJECT_LIMIT_JOB_MEMORY](/windows/desktop/api/winnt/ns-winnt-_jobobject_basic_limit_information) |
+| Shared Kernel | [JOB_OBJECT_LIMIT_JOB_MEMORY](/windows/win32/api/winnt/ns-winnt-jobobject_basic_limit_information) |
 | Hyper-V isolation | Virtual machine memory |
 
 >[!NOTE]
@@ -40,7 +39,7 @@ For each resource this section provides a mapping between the Docker command lin
 |---|---|
 | Docker interface | [--cpus](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
 | HCS interface | [ProcessorCount](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Shared Kernel | Simulated with [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information)* |
+| Shared Kernel | Simulated with [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](/windows/win32/api/winnt/ns-winnt-jobobject_cpu_rate_control_information)* |
 | Hyper-V isolation | Number of virtual processors exposed |
 
 ### CPU (percent)
@@ -49,7 +48,7 @@ For each resource this section provides a mapping between the Docker command lin
 |---|---|
 | Docker interface | [--cpu-percent](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
 | HCS interface | [ProcessorMaximum](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Shared Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information) |
+| Shared Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](/windows/win32/api/winnt/ns-winnt-jobobject_cpu_rate_control_information) |
 | Hyper-V isolation | Hypervisor limits on virtual processors |
 
 ### CPU (shares)
@@ -58,14 +57,14 @@ For each resource this section provides a mapping between the Docker command lin
 |---|---|
 | Docker interface | [--cpu-shares](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
 | HCS interface | [ProcessorWeight](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Shared Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED](/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information) |
+| Shared Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED](/windows/win32/api/winnt/ns-winnt-jobobject_cpu_rate_control_information) |
 | Hyper-V isolation | Hypervisor virtual processors weights |
 
 ### Storage (image)
 
 | Resource | Location |
 |---|---|
-| Docker interface | [--io-maxbandwidth/--io-maxiops](https://docs.docker.com/edge/engine/reference/commandline/run/#usage) |
+| Docker interface | [--io-maxbandwidth/--io-maxiops](https://docs.docker.com/engine/reference/commandline/cli/) |
 | HCS interface | [StorageIOPSMaximum and StorageBandwidthMaximum](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Shared Kernel | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
 | Hyper-V isolation | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
@@ -74,7 +73,7 @@ For each resource this section provides a mapping between the Docker command lin
 
 | Resource | Location |
 |---|---|
-| Docker interface | [--storage-opt size=](https://docs.docker.com/edge/engine/reference/commandline/run/#set-storage-driver-options-per-container) |
+| Docker interface | [--storage-opt size=](https://docs.docker.com/compose/compose-file/05-services/#storage_opt) |
 | HCS interface | [StorageSandboxSize](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Shared Kernel | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
 | Hyper-V isolation | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
@@ -87,4 +86,4 @@ Windows containers run some system process in each container typically those whi
 
 ### CPU Shares (without Hyper-V isolation)
 
-When using CPU shares the underlying implementation (when not using Hyper-V isolation) configures the [JOBOBJECT_CPU_RATE_CONTROL_INFORMATION](/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information), specifically setting the control flag to JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED and providing an appropriate Weight.  The valid weight ranges of the job object are 1 – 9 with a default of 5 which is lower fidelity than the host compute services values of 1 – 10000.  As examples a share weight of 7500 would result in a weight of 7 or a share weight of 2500 would result in a value of 2.
+When using CPU shares the underlying implementation (when not using Hyper-V isolation) configures the [JOBOBJECT_CPU_RATE_CONTROL_INFORMATION](/windows/win32/api/winnt/ns-winnt-jobobject_cpu_rate_control_information), specifically setting the control flag to JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED and providing an appropriate Weight.  The valid weight ranges of the job object are 1 – 9 with a default of 5 which is lower fidelity than the host compute services values of 1 – 10000.  As examples a share weight of 7500 would result in a weight of 7 or a share weight of 2500 would result in a value of 2.

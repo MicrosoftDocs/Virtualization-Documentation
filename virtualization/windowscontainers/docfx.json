@@ -1,4 +1,4 @@
-﻿{
+{
   "build": {
     "content": [
       {
@@ -30,6 +30,7 @@
     "externalReference": [],
 
     "globalMetadata": {
+      "uhfHeaderId": "MSDocsHeader-Windows",
       "breadcrumb_path": "/virtualization/toc.json",
       "extendBreadcrumb": true,
       "feedback_system": "GitHub",
@@ -37,16 +38,20 @@
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
     "fileMetadata": {
+      "ms.subservice": {
+        "**/*.md": "windows-containers"
+      },
+      "ms.service": {
+        "**/*.md": "windows-server",
+        "index.yml": "windows-server",
+        "**/faq.yml": "windows-server"
+      },
       "ms.topic": {
         "**/*.md": "article"
       },
       "ms.prod": {
-         "**/*.md": "windows-server",
-        "index.yml": "windows-server",
-        "**/faq.yml": "windows-server"
       },
       "ms.technology": {
-         "**/*.md": "windows-containers"
       }
     },
     "template": [],

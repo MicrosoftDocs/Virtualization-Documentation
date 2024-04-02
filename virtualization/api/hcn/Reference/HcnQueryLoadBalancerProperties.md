@@ -4,8 +4,7 @@ description: HcnQueryLoadBalancerProperties
 author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
+ms.service: virtualization
 ms.date: 10/31/2021
 api_name:
 - HcnQueryLoadBalancerProperties

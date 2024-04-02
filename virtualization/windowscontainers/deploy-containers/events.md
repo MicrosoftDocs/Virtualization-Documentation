@@ -1,11 +1,10 @@
 ---
 title: Windows Server containers events
-description: Recent events for Windows Server containers
-keywords: windows containers, containers, events
-author: v-susbo
-ms.author: v-susbo
+description: Recent events for Windows Server containers.
+author: sethmanheim
+ms.author: sethm
 ms.date: 02/11/2021
-ms.topic: reference
+ms.topic: conceptual
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Windows containers events and slideshows
@@ -31,9 +30,9 @@ This page contains links to videos, slideshows, blog posts, and other informatio
 
 [Microsoft Ignite 2019: Why you should care about containers and how to get started](https://myignite.microsoft.com/archives/IG19-MLS1038) Understand when containers can be beneficial, which is key to a successful implementation. Learn from the containers team how you can get started with this technology and some tips and tricks that will help you in your containerization journey.
 
-[Microsoft Ignite 2019: Modernize your IT environment and applications with Windows Containers](https://myignite.microsoft.com/archives/IG19-BRK2147) Provides an overview of Windows containers with a pivot to showcase how to modernize your IT and apps with containers. It includes a demo on how to get started on Windows Server/Windows 10 with Docker for Windows. 
+[Microsoft Ignite 2019: Modernize your IT environment and applications with Windows Containers](https://myignite.microsoft.com/archives/IG19-BRK2147) Provides an overview of Windows containers with a pivot to showcase how to modernize your IT and apps with containers. It includes a demo on how to get started on Windows Server/Windows 10 with Docker for Windows.
 
-[Microsoft Build 2019: Windows Server apps with containers](https://aka.ms/windowscontainers/build19) This slideshow discusses when containers make sense to use, the different Windows operating system base images, and some examples of containerized apps.  
+[Microsoft Build 2019: Windows Server apps with containers](https://aka.ms/windowscontainers/build19) This slideshow discusses when containers make sense to use, the different Windows operating system base images, and some examples of containerized apps.
 
 [Microsoft Ignite 2019: Windows container and the Azure Kubernetes Service](https://azure.microsoft.com/resources/videos/ignite-2019-windows-container-and-the-azure-kubernetes-service/) View this video to learn how to leverage Windows containers and Azure Kubernetes Service.
 
@@ -53,7 +52,7 @@ This page contains links to videos, slideshows, blog posts, and other informatio
 
 [Windows Containers: What, Why and How](https://channel9.msdn.com/Events/Build/2015/2-704) Discover what the new Windows Server container model is, why it transforms the development process and how to create, use and manage them and integrate with Docker technologies.
 
-[MIcrosoft Ignite 2018: From Ops to DevOps with Windows Server containers and Windows Server 2019](https://www.youtube.com/watch?v=67DkETTsVsM&feature=youtu.be) Learn about containerization strategy for building, managing, or deploying apps on Windows Server with containers. 
+[MIcrosoft Ignite 2018: From Ops to DevOps with Windows Server containers and Windows Server 2019](https://www.youtube.com/watch?v=67DkETTsVsM&feature=youtu.be) Learn about containerization strategy for building, managing, or deploying apps on Windows Server with containers.
 
 ---
 <!-- stop tab view -->

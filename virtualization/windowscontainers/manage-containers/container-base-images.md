@@ -1,9 +1,8 @@
 ---
-title: Windows Container Base Images
-description: An overview of the Windows container base images and when to use them.
-keywords: docker, containers, hashes
-author: v-susbo
-ms.author: v-susbo
+title: Windows container base images
+description: Overview of the Windows container base images and when to use them.
+author: sethmanheim
+ms.author: sethm
 ms.date: 09/01/2021
 ms.topic: conceptual
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
@@ -106,7 +105,7 @@ All Windows container base images are discoverable through [Docker Hub](https://
 docker pull mcr.microsoft.com/windows/servercore:ltsc2022
 ```
 
-The MCR does not have its own catalog experience and is meant to support existing catalogs, such as Docker Hub. Thanks to Azure’s global footprint and coupled with Azure CDN, the MCR delivers an image pull experience that is consistent and fast. Azure customers, running their workloads in Azure, benefit from in-network performance enhancements as well as tight integration with the MCR (the source for Microsoft container images), Azure Marketplace, and the expanding number of services in Azure that offer containers as the deployment package format.
+The MCR does not have its own catalog experience and is meant to support existing catalogs, such as Docker Hub. Thanks to Azure's global footprint and coupled with Azure CDN, the MCR delivers an image pull experience that is consistent and fast. Azure customers, running their workloads in Azure, benefit from in-network performance enhancements as well as tight integration with the MCR (the source for Microsoft container images), Azure Marketplace, and the expanding number of services in Azure that offer containers as the deployment package format.
 
 ## Choosing a base image
 
@@ -130,14 +129,18 @@ How do you choose the right base image to build upon? For most users, `Windows S
 > [!TIP]
 > Many Windows users want to containerize applications that have a dependency on .NET. In addition to the four base images described here, Microsoft publishes several Windows container images that come pre-configured with popular Microsoft frameworks, such as a the [.NET framework](https://hub.docker.com/_/microsoft-dotnet-framework) image and the [ASP .NET](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet/) image.
 
+## Windows vs Windows Server
+
+The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and has no limits for IIS connections. To use the latest Windows Server image, you'll need a Windows Server 2022 installation. The Windows image is not available for Windows Server 2022.
+
 ## Base images for Windows Insiders
 
 Microsoft provides "insider" versions of each container base image. These insider container images carry the latest and greatest feature development in our container images. When you're running a host that is an insider version of Windows (either Windows Insider or Windows Server Insider), it is preferable to use these images. The following insider images are available on Docker Hub:
 
 - [mcr.microsoft.com/windows/servercore/insider](https://hub.docker.com/_/microsoft-windows-servercore-insider)
 - [mcr.microsoft.com/windows/nanoserver/insider](https://hub.docker.com/_/microsoft-windows-nanoserver-insider)
-- [mcr.microsoft.com/windows/insider](https://hub.docker.com/_/microsoft-windows-insider)
 - [mcr.microsoft.com/windows/server/insider:10.0.20344.1](https://hub.docker.com/_/microsoft-windows-server-insider/)
+- [mcr.microsoft.com/windows/insider](https://hub.docker.com/_/microsoft-windows-insider)
 
 Read [Use Containers with the Windows Insider Program](../deploy-containers/insider-overview.md) to learn more.
 
@@ -145,8 +148,4 @@ Read [Use Containers with the Windows Insider Program](../deploy-containers/insi
 
 `Windows Server Core` and `Nanoserver` are the most common base images to target. The key difference between these images is that Nanoserver has a significantly smaller API surface. PowerShell, WMI, and the Windows servicing stack are absent from the Nanoserver image.
 
-Nanoserver was built to provide just enough API surface to run apps that have a dependency on .NET core or other modern open source frameworks. As a tradeoff to the smaller API surface, the Nanoserver image has a significantly smaller on-disk footprint than the rest of the Windows base images. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/main/src/sdk/2.1/nanoserver-1809/amd64/Dockerfile).
-
-## Windows vs Windows Server
-
-The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and has no limits for IIS connections. To use the latest Windows Server image, you’ll need a Windows Server 2022 installation. The Windows image is not available for Windows Server 2022.
+Nanoserver was built to provide just enough API surface to run apps that have a dependency on .NET core or other modern open source frameworks. As a tradeoff to the smaller API surface, the Nanoserver image has a significantly smaller on-disk footprint than the rest of the Windows base images. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker).

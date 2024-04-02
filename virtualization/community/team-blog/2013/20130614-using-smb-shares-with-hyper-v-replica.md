@@ -1,31 +1,37 @@
 ---
 title:      "Using SMB shares with Hyper-V Replica"
+author: sethmanheim
+ms.author: sethm
+description: Using SMB shares with Hyper-V Replica
+ms.date: 06/14/2013
 date:       2013-06-14 05:48:00
 categories: hvr
 ---
-SMB is getting a lot of attention with Windows Server 2012, and we’ve had questions from a few customers regarding the inter-play between SMB shares and Hyper-V Replica. In this post we’ll share our experience around setting up and using various configurations involving SMB shares and Hyper-V Replica. The issue we were expecting to run into is the apparent lack of authorization to use the SMB share, when using remote management.
+# Using SMB shares with Hyper-V Replica
+
+SMB is getting a lot of attention with Windows Server 2012, and we've had questions from a few customers regarding the inter-play between SMB shares and Hyper-V Replica. In this post we'll share our experience around setting up and using various configurations involving SMB shares and Hyper-V Replica. The issue we were expecting to run into is the apparent lack of authorization to use the SMB share, when using remote management.
 
 In all the scenarios that are investigated, we will start from a remote management node ( _mgmtnode.contoso.com_ ). We will try to set up the scenario from this management node, and work through the errors encountered. In order to visualize what this means, all the scenarios will look roughly like this:
 
-[![001 base architecture](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2313.001-base-architecture_thumb_62A79642.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6661.001-base-architecture_654DC142.png)
+<!-- [![001 base architecture](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2313.001-base-architecture_thumb_62A79642.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6661.001-base-architecture_654DC142.png) -->
 
 ## Scenario #1: Single Replica server with SMB share
 
 #### The building blocks
 
   * A single Hyper-V server ( _aashish-server.contoso.com_ ) on the Replica site
-  * A single server ( _aashish-server3.contoso.com_ ) hosting an SMB share [\\\aashish-server3\Replica-Site](file://\\\\aashish-server3\\Replica-Site) that will be used to store the Replica VMs.
+  * A single server ( _aashish-server3.contoso.com_ ) hosting an SMB share <!--\\\aashish-server3\Replica-Site--> that will be used to store the Replica VMs.
   * A single remote management server ( _mgmtnode.contoso.com_ )
 
 
 
 #### Setting up the infrastructure
 
-To start with, we will try using the Hyper-V Manager UI. On the management node ( _mgmtnode.contoso.com_ ), open the Hyper-V Manager UI and add the server _aashish-server_ on the left-side pane using _“Connect to Server…”_. Now enable _aashish-server_ as a Replica server using the Hyper-V Settings on the right-side pane. As expected, we run into an error:
+To start with, we will try using the Hyper-V Manager UI. On the management node ( _mgmtnode.contoso.com_ ), open the Hyper-V Manager UI and add the server _aashish-server_ on the left-side pane using _"Connect to Server…"_. Now enable _aashish-server_ as a Replica server using the Hyper-V Settings on the right-side pane. As expected, we run into an error:
 
-[![002 single server UI failure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6076.002-single-server-UI-failure_thumb_7A880E7A.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2870.002-single-server-UI-failure_3F9E4B00.png)
+<!--[![002 single server UI failure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6076.002-single-server-UI-failure_thumb_7A880E7A.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2870.002-single-server-UI-failure_3F9E4B00.png) -->
 
-The error encountered is _“Failed to add authorization entry. Unable to open specified location to store Replica files ‘\\\aashish-server3\Replica-Site\’. Error: 0x80070005 (General access denied error).”_ , and it is not a very helpful error message. Hopefully this blog can help alleviate that situation.
+The error encountered is _"Failed to add authorization entry. Unable to open specified location to store Replica files '\\\aashish-server3\Replica-Site\'. Error: 0x80070005 (General access denied error)."_ , and it is not a very helpful error message. Hopefully this blog can help alleviate that situation.
 
 #### Fixing the error
 
@@ -36,7 +42,7 @@ While the standard answer to fixing this error will be to setup constrained dele
     1. No domain controller access is possible. 
     2. No Remote access is possible.
     3. The Windows Server UI is not present on any node other than the management node.
-  3. Set up constrained delegation in your domain controller. This option has been explored extensively by [others](http://blogs.msdn.com/b/taylorb/archive/2012/03/20/enabling-hyper-v-remote-management-configuring-constrained-delegation-for-smb-and-highly-available-smb.aspx) and there is ample material on this available [online](https://technet.microsoft.com/library/jj134187.aspx).
+  3. Set up constrained delegation in your domain controller. This option has been explored extensively by others and there is ample material on this available [online](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/jj134187(v=ws.11)).
 
 
 
@@ -49,18 +55,17 @@ For all practical purposes this is like the single Replica server scenario discu
 #### The building blocks
 
   * A failover cluster ( _AAR-130612_ ) on the Replica site having the _.contoso.com_ domain. This consists of two servers ( _aashish-s1_ , _aashish-s2_ ), and a Replica Broker ( _AARBrk-130612_ ). The broker can be present on either node, but in this example we will assume that it resides on _aashish-s2_. 
-  * A single server ( _aashish-server3.contoso.com_ ) hosting an SMB share [\\\aashish-server3\Replica-Site](file://aashish-server3/Replica-Site) that will be used to store the Replica VMs.
+  * A single server ( _aashish-server3.contoso.com_ ) hosting an SMB share <!--[\\\aashish-server3\Replica-Site]--> that will be used to store the Replica VMs.
   * A single remote management server ( _mgmtnode.contoso.com_ )
 
 
-
-[![003 cluster](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4705.003-cluster_thumb_72958D7A.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0574.003-cluster_753BB87A.png)
+<!-- [![003 cluster](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4705.003-cluster_thumb_72958D7A.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/0574.003-cluster_753BB87A.png) -->
 
 #### Setting up the infrastructure
 
 As with the non-clustered scenarios, you will run into the _General access denied error_ when you use the Failover Cluster UI to change the replication settings. 
 
-[![004 replicabroker failure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4174.004-replicabroker-failure_thumb_2E7740D2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5287.004-replicabroker-failure_1AC7C68D.png)
+<!-- [![004 replicabroker failure](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4174.004-replicabroker-failure_thumb_2E7740D2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/5287.004-replicabroker-failure_1AC7C68D.png) -->
 
 Trying this through PowerShell will give you a similar error:
 

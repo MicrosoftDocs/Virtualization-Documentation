@@ -1,11 +1,10 @@
 ---
 title: HcsRevokeVmGroupAccess
 description: HcsRevokeVmGroupAccess
-author: faymeng
-ms.author: qiumeng
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
+ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HcsRevokeVmGroupAccess
@@ -45,8 +44,8 @@ The function returns [HRESULT](./HCSHResult.md).
 
 |Parameter|Description|
 |---|---|
-| **Minimum supported client** | Windows 10, version 1809 |
-| **Minimum supported server** | Windows Server 2019 |
+| **Minimum supported client** | Windows 10, version 2004 |
+| **Minimum supported server** | Windows Server 2022 |
 | **Target Platform** | Windows |
 | **Header** | ComputeCore.h |
 | **Library** | ComputeCore.lib |

@@ -1,0 +1,2511 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Schema Open API",
+        "version": "2.4"
+    },
+    "paths": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Attachment": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "type": "string",
+                    "$ref": "#/definitions/AttachmentType"
+                },
+                "Path": {
+                    "type": "string"
+                },
+                "CachingMode": {
+                    "type": "string",
+                    "$ref": "#/definitions/CachingMode"
+                },
+                "ReadOnly": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "BasicInformation": {
+            "type": "object",
+            "properties": {
+                "SupportedSchemaVersions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Version"
+                    }
+                }
+            }
+        },
+        "Battery": {
+            "type": "object",
+            "properties": {}
+        },
+        "Chipset": {
+            "type": "object",
+            "properties": {
+                "Uefi": {
+                    "$ref": "#/definitions/Uefi"
+                },
+                "IsNumLockDisabled": {
+                    "type": "boolean"
+                },
+                "BaseBoardSerialNumber": {
+                    "type": "string"
+                },
+                "ChassisSerialNumber": {
+                    "type": "string"
+                },
+                "ChassisAssetTag": {
+                    "type": "string"
+                },
+                "UseUtc": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "CimMount": {
+            "type": "object",
+            "properties": {}
+        },
+        "CloseHandle": {
+            "type": "object",
+            "properties": {
+                "Handle": {
+                    "type": "string",
+                    "$ref": "#/definitions/StdHandle"
+                }
+            }
+        },
+        "CombinedLayers": {
+            "type": "object",
+            "description": "This class is used by a modify request to add or remove a combined layers structure in the guest. For windows, the GCS applies a filter in ContainerRootPath using the specified layers as the parent content. Ignores property ScratchPath since the container path is already the scratch path. For linux, the GCS unions the specified layers and ScratchPath together, placing the resulting union filesystem at ContainerRootPath.",
+            "properties": {
+                "Layers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Layer"
+                    }
+                },
+                "ScratchPath": {
+                    "type": "string"
+                },
+                "ContainerRootPath": {
+                    "type": "string"
+                }
+            }
+        },
+        "ComPort": {
+            "type": "object",
+            "description": "ComPort specifies the named pipe that will be used for the port, with empty string indicating a disconnected port.",
+            "properties": {
+                "NamedPipe": {
+                    "type": "string"
+                },
+                "OptimizeForDebugger": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "ComputeSystem": {
+            "type": "object",
+            "properties": {
+                "Owner": {
+                    "type": "string"
+                },
+                "SchemaVersion": {
+                    "$ref": "#/definitions/Version"
+                },
+                "HostingSystemId": {
+                    "type": "string"
+                },
+                "HostedSystem": {
+                    "type": "object"
+                },
+                "Container": {
+                    "$ref": "#/definitions/Container"
+                },
+                "VirtualMachine": {
+                    "$ref": "#/definitions/VirtualMachine"
+                },
+                "ShouldTerminateOnLastHandleClosed": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "ConsoleSize": {
+            "type": "object",
+            "properties": {
+                "Height": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "Width": {
+                    "type": "integer",
+                    "format": "uint16"
+                }
+            }
+        },
+        "Container": {
+            "type": "object",
+            "properties": {
+                "GuestOs": {
+                    "$ref": "#/definitions/GuestOs"
+                },
+                "Storage": {
+                    "$ref": "#/definitions/Storage"
+                },
+                "MappedDirectories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MappedDirectory"
+                    }
+                },
+                "MappedPipes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MappedPipe"
+                    }
+                },
+                "Memory": {
+                    "$ref": "#/definitions/Memory"
+                },
+                "Processor": {
+                    "$ref": "#/definitions/Processor"
+                },
+                "Networking": {
+                    "$ref": "#/definitions/Networking"
+                },
+                "HvSocket": {
+                    "$ref": "#/definitions/HvSocket"
+                },
+                "ContainerCredentialGuard": {
+                    "$ref": "#/definitions/ContainerCredentialGuardState"
+                },
+                "RegistryChanges": {
+                    "$ref": "#/definitions/RegistryChanges"
+                },
+                "AssignedDevices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Device"
+                    }
+                }
+            }
+        },
+        "ContainerCredentialGuardAddInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string"
+                },
+                "CredentialSpec": {
+                    "type": "string"
+                },
+                "Transport": {
+                    "type": "string",
+                    "$ref": "#/definitions/ContainerCredentialGuardTransport"
+                }
+            }
+        },
+        "ContainerCredentialGuardHvSocketServiceConfig": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "ServiceConfig": {
+                    "$ref": "#/definitions/HvSocketServiceConfig"
+                }
+            }
+        },
+        "ContainerCredentialGuardInstance": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string"
+                },
+                "CredentialGuard": {
+                    "$ref": "#/definitions/ContainerCredentialGuardState"
+                },
+                "HvSocketConfig": {
+                    "$ref": "#/definitions/ContainerCredentialGuardHvSocketServiceConfig"
+                }
+            }
+        },
+        "ContainerCredentialGuardOperationRequest": {
+            "type": "object",
+            "properties": {
+                "Operation": {
+                    "type": "string",
+                    "$ref": "#/definitions/ContainerCredentialGuardModifyOperation"
+                },
+                "OperationDetails": {
+                    "type": "object"
+                }
+            }
+        },
+        "ContainerCredentialGuardRemoveInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string"
+                }
+            }
+        },
+        "ContainerCredentialGuardState": {
+            "type": "object",
+            "properties": {
+                "Cookie": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Authentication cookie for calls to a Container Credential Guard instance."
+                },
+                "RpcEndpoint": {
+                    "type": "string",
+                    "description": "Name of the RPC endpoint of the Container Credential Guard instance."
+                },
+                "Transport": {
+                    "type": "string",
+                    "$ref": "#/definitions/ContainerCredentialGuardTransport"
+                },
+                "CredentialSpec": {
+                    "type": "string",
+                    "description": "Credential spec used for the configured Container Credential Guard instance."
+                }
+            }
+        },
+        "ContainerCredentialGuardSystemInfo": {
+            "type": "object",
+            "properties": {
+                "Instances": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ContainerCredentialGuardInstance"
+                    }
+                }
+            }
+        },
+        "CpuGroup": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                }
+            }
+        },
+        "CrashOptions": {
+            "type": "object",
+            "properties": {}
+        },
+        "CrashReport": {
+            "type": "object",
+            "description": "crash information reported through CrashReport notifications",
+            "properties": {
+                "SystemId": {
+                    "type": "string"
+                },
+                "ActivityId": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "WindowsCrashInfo": {
+                    "$ref": "#/definitions/WindowsCrashReport"
+                },
+                "CrashParameters": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "uint64"
+                    }
+                },
+                "CrashLog": {
+                    "type": "string"
+                }
+            }
+        },
+        "Device": {
+            "type": "object",
+            "properties": {
+                "InterfaceClassGuid": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$",
+                    "description": "The interface class guid of the device interfaces to assign to the container. Only used when Type is ClassGuid."
+                }
+            }
+        },
+        "Device_2": {
+            "type": "object",
+            "properties": {
+                "Version": {
+                    "$ref": "#/definitions/Version"
+                },
+                "Type": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "States": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "Devices": {
+            "type": "object",
+            "properties": {
+                "ComPorts": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/ComPort"
+                    }
+                },
+                "Scsi": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Scsi"
+                    }
+                },
+                "VirtualPMem": {
+                    "$ref": "#/definitions/VirtualPMemController"
+                },
+                "NetworkAdapters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/NetworkAdapter"
+                    }
+                },
+                "VideoMonitor": {
+                    "$ref": "#/definitions/VideoMonitor"
+                },
+                "Keyboard": {
+                    "$ref": "#/definitions/Keyboard"
+                },
+                "Mouse": {
+                    "$ref": "#/definitions/Mouse"
+                },
+                "HvSocket": {
+                    "$ref": "#/definitions/HvSocket_2"
+                },
+                "EnhancedModeVideo": {
+                    "$ref": "#/definitions/EnhancedModeVideo"
+                },
+                "GuestCrashReporting": {
+                    "$ref": "#/definitions/GuestCrashReporting"
+                },
+                "VirtualSmb": {
+                    "$ref": "#/definitions/VirtualSmb"
+                },
+                "Plan9": {
+                    "$ref": "#/definitions/Plan9"
+                },
+                "Battery": {
+                    "$ref": "#/definitions/Battery"
+                },
+                "FlexibleIov": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/FlexibleIoDevice"
+                    }
+                },
+                "SharedMemory": {
+                    "$ref": "#/definitions/SharedMemoryConfiguration"
+                },
+                "KernelIntegration": {
+                    "$ref": "#/definitions/KernelIntegration"
+                }
+            }
+        },
+        "EnhancedModeVideo": {
+            "type": "object",
+            "properties": {
+                "ConnectionOptions": {
+                    "$ref": "#/definitions/RdpConnectionOptions"
+                }
+            }
+        },
+        "ErrorEvent": {
+            "type": "object",
+            "description": "Error descriptor that provides the info of an error object",
+            "properties": {
+                "Message": {
+                    "type": "string",
+                    "description": "Fully formated error message"
+                },
+                "StackTrace": {
+                    "type": "string",
+                    "description": "Stack trace in string form"
+                },
+                "Provider": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$",
+                    "description": "Event definition"
+                },
+                "EventId": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "Flags": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "Source": {
+                    "type": "string"
+                },
+                "Data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EventData"
+                    }
+                }
+            }
+        },
+        "EventData": {
+            "type": "object",
+            "description": "Event data element",
+            "properties": {
+                "Type": {
+                    "type": "string",
+                    "$ref": "#/definitions/EventDataType"
+                },
+                "Value": {
+                    "type": "string"
+                }
+            }
+        },
+        "ExportLayerOptions": {
+            "type": "object",
+            "properties": {
+                "IsWritableLayer": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "FilteredPropertyQuery": {
+            "type": "object",
+            "description": "FilteredPropertyQuery - Structures used to perform a filtered property query. PropertyType - Specifies which property to query. Filter - Additional filter to query. The following table describes the relationship between property type and its filter. Memory - HostMemoryQueryRequest Other - N/A",
+            "properties": {
+                "PropertyType": {
+                    "type": "string",
+                    "$ref": "#/definitions/PropertyType"
+                },
+                "Filter": {
+                    "type": "object"
+                }
+            }
+        },
+        "FlexibleIoDevice": {
+            "type": "object",
+            "properties": {
+                "EmulatorId": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "HostingModel": {
+                    "type": "string",
+                    "$ref": "#/definitions/FlexibleIoDeviceHostingModel"
+                },
+                "Configuration": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "GpuConfiguration": {
+            "type": "object",
+            "properties": {
+                "AssignmentMode": {
+                    "type": "string",
+                    "$ref": "#/definitions/GpuAssignmentMode"
+                },
+                "AssignmentRequest": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "integer",
+                        "format": "uint16"
+                    },
+                    "description": "This only applies to List mode, and is ignored in other modes. In GPU-P, string is GPU device interface, and unit16 is partition id. HCS simply assigns the partition with the input id. In GPU-PV, string is GPU device interface, and unit16 is 0xffff. HCS needs to find an available partition to assign."
+                },
+                "AllowVendorExtension": {
+                    "type": "boolean",
+                    "description": "Whether we allow vendor extension."
+                }
+            }
+        },
+        "GuestConnection": {
+            "type": "object",
+            "properties": {
+                "UseVsock": {
+                    "type": "boolean",
+                    "description": "Use Vsock rather than Hyper-V sockets to communicate with the guest service."
+                },
+                "UseConnectedSuspend": {
+                    "type": "boolean",
+                    "description": "Don't disconnect the guest connection when pausing the virtual machine."
+                }
+            }
+        },
+        "GuestConnectionInfo": {
+            "type": "object",
+            "description": "Information about the guest.",
+            "properties": {
+                "SupportedSchemaVersions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Version"
+                    },
+                    "description": "Each schema version x.y stands for the range of versions a.b where a==x and b<=y. This list comes from the SupportedSchemaVersions field in GcsCapabilities."
+                },
+                "ProtocolVersion": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "GuestDefinedCapabilities": {
+                    "type": "object"
+                }
+            }
+        },
+        "GuestCrashReporting": {
+            "type": "object",
+            "properties": {
+                "WindowsCrashSettings": {
+                    "$ref": "#/definitions/WindowsCrashReporting"
+                }
+            }
+        },
+        "GuestModifySettingRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceType": {
+                    "type": "string",
+                    "$ref": "#/definitions/ModifyResourceType"
+                },
+                "RequestType": {
+                    "type": "string",
+                    "$ref": "#/definitions/ModifyRequestType"
+                },
+                "Settings": {
+                    "type": "object"
+                }
+            }
+        },
+        "GuestOs": {
+            "type": "object",
+            "properties": {
+                "HostName": {
+                    "type": "string"
+                }
+            }
+        },
+        "GuestState": {
+            "type": "object",
+            "properties": {
+                "GuestStateFilePath": {
+                    "type": "string",
+                    "description": "The path to an existing file uses for persistent guest state storage. An empty string indicates the system should initialize new transient, in-memory guest state."
+                },
+                "RuntimeStateFilePath": {
+                    "type": "string",
+                    "description": "The path to an existing file for persistent runtime state storage. An empty string indicates the system should initialize new transient, in-memory runtime state."
+                },
+                "ForceTransientState": {
+                    "type": "boolean",
+                    "description": "If true, the guest state and runtime state files will be used as templates to populate transient, in-memory state instead of using the files as persistent backing store."
+                }
+            }
+        },
+        "Heartbeat": {
+            "type": "object",
+            "properties": {}
+        },
+        "HostedSystem": {
+            "type": "object",
+            "properties": {
+                "SchemaVersion": {
+                    "$ref": "#/definitions/Version"
+                },
+                "Container": {
+                    "$ref": "#/definitions/Container"
+                }
+            }
+        },
+        "HvSocket": {
+            "type": "object",
+            "properties": {
+                "Config": {
+                    "$ref": "#/definitions/HvSocketSystemConfig"
+                },
+                "EnablePowerShellDirect": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "HvSocket_2": {
+            "type": "object",
+            "description": "HvSocket configuration for a VM",
+            "properties": {
+                "HvSocketConfig": {
+                    "$ref": "#/definitions/HvSocketSystemConfig"
+                }
+            }
+        },
+        "HvSocketAddress": {
+            "type": "object",
+            "description": "This class defines address settings applied to a VM by the GCS every time a VM starts or restores.",
+            "properties": {
+                "LocalAddress": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "ParentAddress": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                }
+            }
+        },
+        "HvSocketServiceConfig": {
+            "type": "object",
+            "properties": {
+                "BindSecurityDescriptor": {
+                    "type": "string",
+                    "description": "SDDL string that HvSocket will check before allowing a host process to bind to this specific service. If not specified, defaults to the system DefaultBindSecurityDescriptor, defined in HvSocketSystemWpConfig in V1."
+                },
+                "ConnectSecurityDescriptor": {
+                    "type": "string",
+                    "description": "SDDL string that HvSocket will check before allowing a host process to connect to this specific service. If not specified, defaults to the system DefaultConnectSecurityDescriptor, defined in HvSocketSystemWpConfig in V1."
+                },
+                "AllowWildcardBinds": {
+                    "type": "boolean",
+                    "description": "If true, HvSocket will process wildcard binds for this service/system combination. Wildcard binds are secured in the registry at SOFTWARE/Microsoft/Windows NT/CurrentVersion/Virtualization/HvSocket/WildcardDescriptors"
+                }
+            }
+        },
+        "HvSocketSystemConfig": {
+            "type": "object",
+            "description": "This is the HCS Schema version of the HvSocket configuration. The VMWP version is located in Config.Devices.IC in V1.",
+            "properties": {
+                "DefaultBindSecurityDescriptor": {
+                    "type": "string",
+                    "description": "SDDL string that HvSocket will check before allowing a host process to bind to an unlisted service for this specific container/VM (not wildcard binds)."
+                },
+                "DefaultConnectSecurityDescriptor": {
+                    "type": "string",
+                    "description": "SDDL string that HvSocket will check before allowing a host process to connect to an unlisted service in the VM/container."
+                },
+                "ServiceTable": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/HvSocketServiceConfig"
+                    }
+                }
+            }
+        },
+        "IdleProcessorsRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "IntegrationComponentStatus": {
+            "type": "object",
+            "properties": {}
+        },
+        "KernelIntegration": {
+            "type": "object",
+            "properties": {}
+        },
+        "Keyboard": {
+            "type": "object",
+            "properties": {}
+        },
+        "Layer": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "Path": {
+                    "type": "string"
+                },
+                "PathType": {
+                    "type": "string",
+                    "$ref": "#/definitions/PathType"
+                },
+                "Cache": {
+                    "type": "string",
+                    "$ref": "#/definitions/CacheMode"
+                }
+            }
+        },
+        "LayerData": {
+            "type": "object",
+            "properties": {
+                "SchemaVersion": {
+                    "$ref": "#/definitions/Version"
+                },
+                "Layers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Layer"
+                    }
+                }
+            }
+        },
+        "LinuxKernelDirect": {
+            "type": "object",
+            "properties": {}
+        },
+        "MappedDirectory": {
+            "type": "object",
+            "properties": {
+                "HostPath": {
+                    "type": "string"
+                },
+                "HostPathType": {
+                    "type": "string",
+                    "$ref": "#/definitions/PathType"
+                },
+                "ContainerPath": {
+                    "type": "string"
+                },
+                "ReadOnly": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "MappedPipe": {
+            "type": "object",
+            "properties": {
+                "ContainerPipeName": {
+                    "type": "string"
+                },
+                "HostPath": {
+                    "type": "string"
+                },
+                "HostPathType": {
+                    "type": "string",
+                    "$ref": "#/definitions/MappedPipePathType"
+                }
+            }
+        },
+        "MappedVirtualDisk": {
+            "type": "object",
+            "properties": {
+                "ContainerPath": {
+                    "type": "string"
+                },
+                "Lun": {
+                    "type": "integer",
+                    "format": "uint8"
+                }
+            }
+        },
+        "Memory": {
+            "type": "object",
+            "properties": {
+                "SizeInMB": {
+                    "type": "integer",
+                    "format": "uint64"
+                }
+            }
+        },
+        "Memory_2": {
+            "type": "object",
+            "properties": {
+                "SizeInMB": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "AllowOvercommit": {
+                    "type": "boolean",
+                    "description": "If enabled, then the VM's memory is backed by the Windows pagefile rather than physically backed, statically allocated memory."
+                },
+                "EnableHotHint": {
+                    "type": "boolean",
+                    "description": "If enabled, then the memory hot hint feature is exposed to the VM, allowing it to prefetch pages into its working set. (if supported by the guest operating system)."
+                },
+                "EnableColdHint": {
+                    "type": "boolean",
+                    "description": "If enabled, then the memory cold hint feature is exposed to the VM, allowing it to trim zeroed pages from its working set (if supported by the guest operating system)."
+                },
+                "EnableDeferredCommit": {
+                    "type": "boolean",
+                    "description": "If enabled, then commit is not charged for each backing page until first access."
+                }
+            }
+        },
+        "MemoryInformationForVm": {
+            "type": "object",
+            "properties": {
+                "VirtualNodeCount": {
+                    "type": "integer",
+                    "format": "uint8"
+                },
+                "VirtualMachineMemory": {
+                    "$ref": "#/definitions/VmMemory"
+                },
+                "VirtualNodes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/VirtualNodeInfo"
+                    }
+                }
+            }
+        },
+        "MemoryStats": {
+            "type": "object",
+            "description": "Memory runtime statistics",
+            "properties": {
+                "MemoryUsageCommitBytes": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "MemoryUsageCommitPeakBytes": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "MemoryUsagePrivateWorkingSetBytes": {
+                    "type": "integer",
+                    "format": "uint64"
+                }
+            }
+        },
+        "ModificationRequest": {
+            "type": "object",
+            "description": "Structure used for service level modification request. Right now, we support modification of a single property type in a call.",
+            "properties": {
+                "PropertyType": {
+                    "type": "string",
+                    "$ref": "#/definitions/PropertyType"
+                },
+                "Settings": {
+                    "type": "object"
+                }
+            }
+        },
+        "ModifySettingRequest": {
+            "type": "object",
+            "properties": {
+                "ResourcePath": {
+                    "type": "string"
+                },
+                "RequestType": {
+                    "type": "string",
+                    "$ref": "#/definitions/ModifyRequestType"
+                },
+                "Settings": {
+                    "type": "object"
+                },
+                "GuestRequest": {
+                    "type": "object"
+                }
+            }
+        },
+        "Mouse": {
+            "type": "object",
+            "properties": {}
+        },
+        "NetworkAdapter": {
+            "type": "object",
+            "properties": {
+                "EndpointId": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "MacAddress": {
+                    "type": "string",
+                    "format": "mac-address"
+                }
+            }
+        },
+        "Networking": {
+            "type": "object",
+            "properties": {
+                "AllowUnqualifiedDnsQuery": {
+                    "type": "boolean"
+                },
+                "DnsSearchList": {
+                    "type": "string"
+                },
+                "NetworkSharedContainerName": {
+                    "type": "string"
+                },
+                "Namespace": {
+                    "type": "string",
+                    "description": "Guid in windows; string in linux"
+                },
+                "NetworkAdapters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                    }
+                }
+            }
+        },
+        "NetworkModifySettingRequest": {
+            "type": "object",
+            "properties": {
+                "RequestType": {
+                    "type": "string",
+                    "$ref": "#/definitions/NetworkModifyRequestType"
+                },
+                "AdapterId": {
+                    "type": "string"
+                },
+                "Settings": {
+                    "type": "object"
+                }
+            }
+        },
+        "Nvram": {
+            "type": "object",
+            "properties": {
+                "Vendors": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/NvramVendor"
+                    }
+                },
+                "LastUpdateTime": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "NvramVariable": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "Timestamp": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "Data": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "uint8"
+                    }
+                }
+            }
+        },
+        "NvramVendor": {
+            "type": "object",
+            "properties": {
+                "Variables": {
+                    "type": "CaseInsensitiveStringMap<Schema.VirtualMachines.Resources.GuestState.NvramVariable>"
+                }
+            }
+        },
+        "OsLayerOptions": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "type": "string",
+                    "$ref": "#/definitions/OsLayerType"
+                },
+                "DisableCiCacheOptimization": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "PauseNotification": {
+            "type": "object",
+            "description": "Notification data that is indicated to components running in the Virtual Machine.",
+            "properties": {
+                "Reason": {
+                    "type": "string",
+                    "$ref": "#/definitions/PauseReason"
+                }
+            }
+        },
+        "PauseOptions": {
+            "type": "object",
+            "description": "Options for HcsPauseComputeSystem",
+            "properties": {
+                "SuspensionLevel": {
+                    "type": "string",
+                    "$ref": "#/definitions/PauseSuspensionLevel"
+                },
+                "HostedNotification": {
+                    "$ref": "#/definitions/PauseNotification"
+                }
+            }
+        },
+        "Plan9": {
+            "type": "object",
+            "properties": {
+                "Shares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Plan9Share"
+                    }
+                }
+            }
+        },
+        "Plan9Share": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "AccessName": {
+                    "type": "string",
+                    "description": "The name by which the guest operation system can access this share, via the aname parameter in the Plan9 protocol."
+                },
+                "Path": {
+                    "type": "string"
+                },
+                "Port": {
+                    "type": "integer",
+                    "format": "uint32"
+                }
+            }
+        },
+        "ProcessDetails": {
+            "type": "object",
+            "description": "Information about a process running in a container",
+            "properties": {
+                "ProcessId": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "ImageName": {
+                    "type": "string"
+                },
+                "CreateTimestamp": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "UserTime100ns": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "KernelTime100ns": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "MemoryCommitBytes": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "MemoryWorkingSetPrivateBytes": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "MemoryWorkingSetSharedBytes": {
+                    "type": "integer",
+                    "format": "uint64"
+                }
+            }
+        },
+        "ProcessModifyRequest": {
+            "type": "object",
+            "description": "Passed to HcsRpc_ModifyProcess",
+            "properties": {
+                "Operation": {
+                    "type": "string",
+                    "$ref": "#/definitions/ModifyOperation"
+                },
+                "ConsoleSize": {
+                    "$ref": "#/definitions/ConsoleSize"
+                },
+                "CloseHandle": {
+                    "$ref": "#/definitions/CloseHandle"
+                }
+            }
+        },
+        "Processor": {
+            "type": "object",
+            "description": "Specifies CPU limits for a container. Count, Maximum and Weight are all mutually exclusive.",
+            "properties": {
+                "Count": {
+                    "type": "integer",
+                    "format": "uint32",
+                    "description": "Optional property that represents the fraction of the configured processor count in a container in relation to the processors available in the host. The fraction ultimately determines the portion of processor cycles that the threads in a container can use during each scheduling interval, as the number of cycles per 10,000 cycles."
+                },
+                "Weight": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Optional property that limits the share of processor time given to the container relative to other workloads on the processor. The processor weight is a value between 0 and 10000."
+                },
+                "Maximum": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Optional property that determines the portion of processor cycles that the threads in a container can use during each scheduling interval, as the number of cycles per 10,000 cycles. Set processor maximum to a percentage times 100."
+                }
+            }
+        },
+        "Processor_2": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "Limit": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "Weight": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "ExposeVirtualizationExtensions": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "ProcessorStats": {
+            "type": "object",
+            "description": "CPU runtime statistics",
+            "properties": {
+                "TotalRuntime100ns": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "RuntimeUser100ns": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "RuntimeKernel100ns": {
+                    "type": "integer",
+                    "format": "uint64"
+                }
+            }
+        },
+        "ProcessParameters": {
+            "type": "object",
+            "properties": {
+                "ApplicationName": {
+                    "type": "string"
+                },
+                "CommandLine": {
+                    "type": "string"
+                },
+                "CommandArgs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "optional alternative to CommandLine, currently only supported by Linux GCS"
+                },
+                "User": {
+                    "type": "string"
+                },
+                "WorkingDirectory": {
+                    "type": "string"
+                },
+                "Environment": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "RestrictedToken": {
+                    "type": "boolean",
+                    "description": "if set, will run as low-privilege process"
+                },
+                "EmulateConsole": {
+                    "type": "boolean",
+                    "description": "if set, ignore StdErrPipe"
+                },
+                "CreateStdInPipe": {
+                    "type": "boolean"
+                },
+                "CreateStdOutPipe": {
+                    "type": "boolean"
+                },
+                "CreateStdErrPipe": {
+                    "type": "boolean"
+                },
+                "ConsoleSize": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "uint16"
+                    },
+                    "description": "height then width"
+                },
+                "UseExistingLogin": {
+                    "type": "boolean",
+                    "description": "if set, find an existing session for the user and create the process in it"
+                },
+                "UseLegacyConsole": {
+                    "type": "boolean",
+                    "description": "if set, use the legacy console instead of conhost"
+                }
+            }
+        },
+        "ProcessStatus": {
+            "type": "object",
+            "description": "Status of a process running in a container",
+            "properties": {
+                "ProcessId": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "Exited": {
+                    "type": "boolean"
+                },
+                "ExitCode": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "LastWaitResult": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "Properties": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string"
+                },
+                "SystemType": {
+                    "type": "string",
+                    "$ref": "#/definitions/SystemType"
+                },
+                "RuntimeOsType": {
+                    "type": "string",
+                    "$ref": "#/definitions/OsType"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Owner": {
+                    "type": "string"
+                },
+                "RuntimeId": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "RuntimeTemplateId": {
+                    "type": "string"
+                },
+                "State": {
+                    "type": "string",
+                    "$ref": "#/definitions/State"
+                },
+                "Stopped": {
+                    "type": "boolean"
+                },
+                "ExitType": {
+                    "type": "string",
+                    "$ref": "#/definitions/NotificationType"
+                },
+                "Memory": {
+                    "$ref": "#/definitions/MemoryInformationForVm"
+                },
+                "Statistics": {
+                    "$ref": "#/definitions/Statistics"
+                },
+                "ProcessList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProcessDetails"
+                    }
+                },
+                "TerminateOnLastHandleClosed": {
+                    "type": "boolean"
+                },
+                "HostingSystemId": {
+                    "type": "string"
+                },
+                "SharedMemoryRegionInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SharedMemoryRegionInfo"
+                    }
+                },
+                "GuestConnectionInfo": {
+                    "$ref": "#/definitions/GuestConnectionInfo"
+                }
+            }
+        },
+        "PropertyQuery": {
+            "type": "object",
+            "properties": {
+                "PropertyTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "$ref": "#/definitions/PropertyType"
+                    }
+                },
+                "FilteredQueries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FilteredPropertyQuery"
+                    }
+                }
+            }
+        },
+        "PropertyQuery_2": {
+            "type": "object",
+            "description": "By default the basic properties will be returned. This query provides a way to request specific properties.",
+            "properties": {
+                "PropertyTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "$ref": "#/definitions/PropertyType_2"
+                    }
+                }
+            }
+        },
+        "QoSCapabilities": {
+            "type": "object",
+            "properties": {
+                "ProcessorQoSSupported": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "RdpConnectionOptions": {
+            "type": "object",
+            "properties": {
+                "AccessSids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "NamedPipe": {
+                    "type": "string"
+                }
+            }
+        },
+        "RegistryChanges": {
+            "type": "object",
+            "properties": {
+                "AddValues": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistryValue"
+                    }
+                },
+                "DeleteKeys": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistryKey"
+                    }
+                }
+            }
+        },
+        "RegistryFlushState": {
+            "type": "object",
+            "description": "Represents the flush state of the registry hive for a windows container's job object.",
+            "properties": {
+                "Enabled": {
+                    "type": "boolean",
+                    "description": "Determines whether the flush state of the registry hive is enabled or not. When not enabled, flushes are ignored and changes to the registry are not preserved."
+                }
+            }
+        },
+        "RegistryKey": {
+            "type": "object",
+            "properties": {
+                "Hive": {
+                    "type": "string",
+                    "$ref": "#/definitions/RegistryHive"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Volatile": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "RegistryValue": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/definitions/RegistryKey"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string",
+                    "$ref": "#/definitions/RegistryValueType"
+                },
+                "StringValue": {
+                    "type": "string",
+                    "description": "One and only one value type must be set."
+                },
+                "BinaryValue": {
+                    "type": "string",
+                    "format": "byte"
+                },
+                "DWordValue": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "QWordValue": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "CustomType": {
+                    "type": "integer",
+                    "format": "uint32",
+                    "description": "Only used if RegistryValueType is CustomType The data is in BinaryValue"
+                }
+            }
+        },
+        "RestoreState": {
+            "type": "object",
+            "properties": {
+                "SaveStateFilePath": {
+                    "type": "string",
+                    "description": "The path to the save state file to restore the system from."
+                },
+                "TemplateSystemId": {
+                    "type": "string",
+                    "description": "The ID of the template system to clone this new system off of. An empty string indicates the system should not be cloned from a template."
+                }
+            }
+        },
+        "ResultError": {
+            "type": "object",
+            "description": "Extended error information returned by the HCS",
+            "properties": {
+                "Error": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "ErrorMessage": {
+                    "type": "string"
+                },
+                "ErrorEvents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ErrorEvent"
+                    }
+                }
+            }
+        },
+        "Rs4NetworkModifySettingRequest": {
+            "type": "object",
+            "description": "This class is only necessary because JSON marshaling complains when we have two fields identical except for capitalization in the same class. Remove this once we stop supporting RS4.",
+            "properties": {
+                "RequestType": {
+                    "type": "string",
+                    "$ref": "#/definitions/NetworkModifyRequestType"
+                },
+                "AdapterInstanceID": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "Settings": {
+                    "type": "object"
+                }
+            }
+        },
+        "RuntimeState": {
+            "type": "object",
+            "properties": {
+                "Version": {
+                    "$ref": "#/definitions/Version"
+                },
+                "Devices": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Device_2"
+                    }
+                }
+            }
+        },
+        "SaveOptions": {
+            "type": "object",
+            "properties": {
+                "SaveType": {
+                    "type": "string",
+                    "$ref": "#/definitions/SaveType"
+                },
+                "SaveStateFilePath": {
+                    "type": "string",
+                    "description": "The path to the file that will container the saved state."
+                }
+            }
+        },
+        "Scsi": {
+            "type": "object",
+            "properties": {
+                "Attachments": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Attachment"
+                    },
+                    "description": "Map of attachments, where the key is the integer LUN number on the controller."
+                }
+            }
+        },
+        "ServiceProperties": {
+            "type": "object",
+            "description": "The service properties will be returned as an array corresponding to the requested property types.",
+            "properties": {
+                "Properties": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "Services": {
+            "type": "object",
+            "properties": {}
+        },
+        "SharedMemoryConfiguration": {
+            "type": "object",
+            "properties": {
+                "Regions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SharedMemoryRegion"
+                    }
+                }
+            }
+        },
+        "SharedMemoryRegion": {
+            "type": "object",
+            "properties": {
+                "SectionName": {
+                    "type": "string"
+                },
+                "StartOffset": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "Length": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "AllowGuestWrite": {
+                    "type": "boolean"
+                },
+                "HiddenFromGuest": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SharedMemoryRegionInfo": {
+            "type": "object",
+            "properties": {
+                "SectionName": {
+                    "type": "string"
+                },
+                "GuestPhysicalAddress": {
+                    "type": "integer",
+                    "format": "uint64"
+                }
+            }
+        },
+        "SignalProcessOptions": {
+            "type": "object",
+            "properties": {
+                "Signal": {
+                    "type": "string",
+                    "$ref": "#/definitions/ProcessSignal"
+                }
+            }
+        },
+        "Statistics": {
+            "type": "object",
+            "description": "Runtime statistics for a container",
+            "properties": {
+                "Timestamp": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ContainerStartTime": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "Uptime100ns": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "Processor": {
+                    "$ref": "#/definitions/ProcessorStats"
+                },
+                "Memory": {
+                    "$ref": "#/definitions/MemoryStats"
+                },
+                "Storage": {
+                    "$ref": "#/definitions/StorageStats"
+                }
+            }
+        },
+        "Storage": {
+            "type": "object",
+            "properties": {
+                "Layers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Layer"
+                    },
+                    "description": "List of layers that describe the parent hierarchy for a container's storage. These layers combined together, presented as a disposable and/or committable working storage, are used by the container to record all changes done to the parent layers."
+                },
+                "Path": {
+                    "type": "string",
+                    "description": "Path that points to the scratch space of a container, where parent layers are combined together to present a new disposable and/or committable layer with the changes done during its runtime."
+                },
+                "QoS": {
+                    "$ref": "#/definitions/StorageQoS"
+                }
+            }
+        },
+        "StorageQoS": {
+            "type": "object",
+            "properties": {
+                "IopsMaximum": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "BandwidthMaximum": {
+                    "type": "integer",
+                    "format": "uint64"
+                }
+            }
+        },
+        "StorageStats": {
+            "type": "object",
+            "description": "Storage runtime statistics",
+            "properties": {
+                "ReadCountNormalized": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "ReadSizeBytes": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "WriteCountNormalized": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "WriteSizeBytes": {
+                    "type": "integer",
+                    "format": "uint64"
+                }
+            }
+        },
+        "SystemExitStatus": {
+            "type": "object",
+            "description": "Document provided in the EventData parameter of an HcsEventSystemExited event.",
+            "properties": {
+                "Status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Exit status (HRESULT) for the system."
+                }
+            }
+        },
+        "SystemQuery": {
+            "type": "object",
+            "properties": {
+                "Ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "Names": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "Types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "$ref": "#/definitions/SystemType"
+                    }
+                },
+                "Owners": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "SystemTime": {
+            "type": "object",
+            "properties": {
+                "Year": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "Month": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "DayOfWeek": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "Day": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "Hour": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "Minute": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "Second": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "Milliseconds": {
+                    "type": "integer",
+                    "format": "uint16"
+                }
+            }
+        },
+        "TimeZoneInformation": {
+            "type": "object",
+            "properties": {
+                "Bias": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "StandardName": {
+                    "type": "string"
+                },
+                "StandardDate": {
+                    "$ref": "#/definitions/SystemTime"
+                },
+                "StandardBias": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "DaylightName": {
+                    "type": "string"
+                },
+                "DaylightDate": {
+                    "$ref": "#/definitions/SystemTime"
+                },
+                "DaylightBias": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "Topology": {
+            "type": "object",
+            "properties": {
+                "Memory": {
+                    "$ref": "#/definitions/Memory_2"
+                },
+                "Processor": {
+                    "$ref": "#/definitions/Processor_2"
+                }
+            }
+        },
+        "Uefi": {
+            "type": "object",
+            "properties": {
+                "EnableDebugger": {
+                    "type": "boolean"
+                },
+                "SecureBootTemplateId": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "BootThis": {
+                    "$ref": "#/definitions/UefiBootEntry"
+                },
+                "Console": {
+                    "type": "string",
+                    "$ref": "#/definitions/SerialConsole"
+                }
+            }
+        },
+        "UefiBootEntry": {
+            "type": "object",
+            "properties": {
+                "DeviceType": {
+                    "type": "string",
+                    "$ref": "#/definitions/UefiBootDevice"
+                },
+                "DevicePath": {
+                    "type": "string"
+                },
+                "DiskNumber": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "OptionalData": {
+                    "type": "string"
+                },
+                "VmbFsRootPath": {
+                    "type": "string"
+                }
+            }
+        },
+        "Version": {
+            "type": "object",
+            "properties": {
+                "Major": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "Minor": {
+                    "type": "integer",
+                    "format": "uint32"
+                }
+            }
+        },
+        "VideoMonitor": {
+            "type": "object",
+            "properties": {
+                "HorizontalResolution": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "VerticalResolution": {
+                    "type": "integer",
+                    "format": "uint16"
+                },
+                "ConnectionOptions": {
+                    "$ref": "#/definitions/RdpConnectionOptions"
+                }
+            }
+        },
+        "VirtioSerial": {
+            "type": "object",
+            "properties": {}
+        },
+        "VirtioSerialPort": {
+            "type": "object",
+            "properties": {}
+        },
+        "VirtualMachine": {
+            "type": "object",
+            "properties": {
+                "StopOnReset": {
+                    "type": "boolean"
+                },
+                "Chipset": {
+                    "$ref": "#/definitions/Chipset"
+                },
+                "ComputeTopology": {
+                    "$ref": "#/definitions/Topology"
+                },
+                "Devices": {
+                    "$ref": "#/definitions/Devices"
+                },
+                "GuestState": {
+                    "$ref": "#/definitions/GuestState"
+                },
+                "RestoreState": {
+                    "$ref": "#/definitions/RestoreState"
+                },
+                "RegistryChanges": {
+                    "$ref": "#/definitions/RegistryChanges"
+                },
+                "StorageQoS": {
+                    "$ref": "#/definitions/StorageQoS"
+                },
+                "GuestConnection": {
+                    "$ref": "#/definitions/GuestConnection"
+                }
+            }
+        },
+        "VirtualNodeInfo": {
+            "type": "object",
+            "properties": {
+                "VirtualNodeIndex": {
+                    "type": "integer",
+                    "format": "uint8"
+                },
+                "PhysicalNodeNumber": {
+                    "type": "integer",
+                    "format": "uint8"
+                },
+                "VirtualProcessorCount": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "MemoryUsageInPages": {
+                    "type": "integer",
+                    "format": "uint64"
+                }
+            }
+        },
+        "VirtualPciDevice": {
+            "type": "object",
+            "properties": {}
+        },
+        "VirtualPciFunction": {
+            "type": "object",
+            "properties": {}
+        },
+        "VirtualPMemController": {
+            "type": "object",
+            "properties": {
+                "Devices": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/VirtualPMemDevice"
+                    }
+                },
+                "MaximumCount": {
+                    "type": "integer",
+                    "format": "uint8",
+                    "description": "/ This field indicates how many empty devices to add to the controller. / If non-zero, additional VirtualPMemDevice objects with no HostPath and / no Mappings will be added to the Devices map to get up to the MaximumCount. / These devices will be configured with either the MaximumSizeBytes field if non-zero, / or with the default maximum, 512 Mb."
+                },
+                "MaximumSizeBytes": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "Backing": {
+                    "type": "string",
+                    "$ref": "#/definitions/VirtualPMemBackingType"
+                }
+            }
+        },
+        "VirtualPMemDevice": {
+            "type": "object",
+            "properties": {
+                "HostPath": {
+                    "type": "string"
+                },
+                "ReadOnly": {
+                    "type": "boolean"
+                },
+                "ImageFormat": {
+                    "type": "string",
+                    "$ref": "#/definitions/VirtualPMemImageFormat"
+                }
+            }
+        },
+        "VirtualPMemMapping": {
+            "type": "object",
+            "properties": {}
+        },
+        "VirtualSmb": {
+            "type": "object",
+            "properties": {
+                "Shares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/VirtualSmbShare"
+                    }
+                },
+                "DirectFileMappingInMB": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "VirtualSmbShare": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Path": {
+                    "type": "string"
+                },
+                "AllowedFiles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "Options": {
+                    "$ref": "#/definitions/VirtualSmbShareOptions"
+                }
+            }
+        },
+        "VirtualSmbShareOptions": {
+            "type": "object",
+            "properties": {
+                "ReadOnly": {
+                    "type": "boolean"
+                },
+                "ShareRead": {
+                    "type": "boolean",
+                    "description": "convert exclusive access to shared read access"
+                },
+                "CacheIo": {
+                    "type": "boolean",
+                    "description": "all opens will use cached I/O"
+                },
+                "NoOplocks": {
+                    "type": "boolean",
+                    "description": "disable oplock support"
+                },
+                "TakeBackupPrivilege": {
+                    "type": "boolean",
+                    "description": "Acquire the backup privilege when attempting to open"
+                },
+                "UseShareRootIdentity": {
+                    "type": "boolean",
+                    "description": "Use the identity of the share root when opening"
+                },
+                "NoDirectmap": {
+                    "type": "boolean",
+                    "description": "disable Direct Mapping"
+                },
+                "NoLocks": {
+                    "type": "boolean",
+                    "description": "disable Byterange locks"
+                },
+                "NoDirnotify": {
+                    "type": "boolean",
+                    "description": "disable Directory CHange Notifications"
+                },
+                "VmSharedMemory": {
+                    "type": "boolean",
+                    "description": "share is use for VM shared memory"
+                },
+                "RestrictFileAccess": {
+                    "type": "boolean",
+                    "description": "allow access only to the files specified in AllowedFiles"
+                },
+                "ForceLevelIIOplocks": {
+                    "type": "boolean",
+                    "description": "disable all oplocks except Level II"
+                },
+                "ReparseBaseLayer": {
+                    "type": "boolean",
+                    "description": "Allow the host to reparse this base layer"
+                },
+                "PseudoOplocks": {
+                    "type": "boolean",
+                    "description": "Enable pseudo-oplocks"
+                },
+                "NonCacheIo": {
+                    "type": "boolean",
+                    "description": "All opens will use non-cached IO"
+                },
+                "PseudoDirnotify": {
+                    "type": "boolean",
+                    "description": "Enable pseudo directory change notifications"
+                },
+                "SingleFileMapping": {
+                    "type": "boolean",
+                    "description": "Block directory enumeration, renames, and deletes."
+                }
+            }
+        },
+        "VmMemory": {
+            "type": "object",
+            "properties": {
+                "AvailableMemory": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "AvailableMemoryBuffer": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "ReservedMemory": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "AssignedMemory": {
+                    "type": "integer",
+                    "format": "uint64"
+                },
+                "SlpActive": {
+                    "type": "boolean"
+                },
+                "BalancingEnabled": {
+                    "type": "boolean"
+                },
+                "DmOperationInProgress": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "WindowsCrashReport": {
+            "type": "object",
+            "description": "Windows specific crash information",
+            "properties": {
+                "DumpFile": {
+                    "type": "string"
+                },
+                "OsMajorVersion": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "OsMinorVersion": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "OsBuildNumber": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "OsServicePackMajorVersion": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "OsServicePackMinorVersion": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "OsSuiteMask": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "OsProductType": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "Status": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "FinalPhase": {
+                    "type": "string",
+                    "$ref": "#/definitions/WindowsCrashPhase"
+                }
+            }
+        },
+        "WindowsCrashReporting": {
+            "type": "object",
+            "properties": {
+                "DumpFileName": {
+                    "type": "string"
+                },
+                "MaxDumpSize": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "AttachmentType": {
+            "type": "string",
+            "enum": [
+                "VirtualDisk",
+                "Iso",
+                "PassThru"
+            ]
+        },
+        "CacheMode": {
+            "type": "string",
+            "enum": [
+                "",
+                "Disabled",
+                "Enabled",
+                "Private",
+                "PrivateAllowSharing"
+            ]
+        },
+        "CachingMode": {
+            "type": "string",
+            "enum": [
+                "Uncached",
+                "Cached",
+                "ReadOnlyCached"
+            ]
+        },
+        "ContainerCredentialGuardModifyOperation": {
+            "type": "string",
+            "enum": [
+                "AddInstance",
+                "RemoveInstance"
+            ]
+        },
+        "ContainerCredentialGuardTransport": {
+            "type": "string",
+            "enum": [
+                "LRPC",
+                "HvSocket"
+            ]
+        },
+        "EventDataType": {
+            "type": "string",
+            "description": "Data types for event data elements, based on EVT_VARIANT_TYPE",
+            "enum": [
+                "Empty",
+                "String",
+                "AnsiString",
+                "SByte",
+                "Byte",
+                "Int16",
+                "UInt16",
+                "Int32",
+                "UInt32",
+                "Int64",
+                "UInt64",
+                "Single",
+                "Double",
+                "Boolean",
+                "Binary",
+                "Guid"
+            ]
+        },
+        "FlexibleIoDeviceHostingModel": {
+            "type": "string",
+            "enum": [
+                "Internal",
+                "External"
+            ]
+        },
+        "GpuAssignmentMode": {
+            "type": "string",
+            "enum": [
+                "Disabled",
+                "Default",
+                "List",
+                "Mirror"
+            ]
+        },
+        "MappedPipePathType": {
+            "type": "string",
+            "enum": [
+                "AbsolutePath",
+                "VirtualSmbPipeName"
+            ]
+        },
+        "ModifyOperation": {
+            "type": "string",
+            "enum": [
+                "ConsoleSize",
+                "CloseHandle"
+            ]
+        },
+        "ModifyRequestType": {
+            "type": "string",
+            "enum": [
+                "Add",
+                "Remove",
+                "Update"
+            ]
+        },
+        "ModifyResourceType": {
+            "type": "string",
+            "enum": [
+                "Memory",
+                "MappedDirectory",
+                "MappedPipe",
+                "MappedVirtualDisk",
+                "CombinedLayers",
+                "NetworkNamespace"
+            ]
+        },
+        "NetworkModifyRequestType": {
+            "type": "string",
+            "enum": [
+                "PreAdd",
+                "Add",
+                "Remove"
+            ]
+        },
+        "NotificationType": {
+            "type": "string",
+            "description": "Notification type generated by ComputeSystems",
+            "enum": [
+                "None",
+                "GracefulExit",
+                "ForcedExit",
+                "UnexpectedExit",
+                "Unknown"
+            ]
+        },
+        "OsLayerType": {
+            "type": "string",
+            "enum": [
+                "Container",
+                "Vm"
+            ]
+        },
+        "OsType": {
+            "type": "string",
+            "enum": [
+                "",
+                "Windows",
+                "Linux"
+            ]
+        },
+        "PathType": {
+            "type": "string",
+            "enum": [
+                "AbsolutePath",
+                "VirtualSmbShareName"
+            ]
+        },
+        "PauseReason": {
+            "type": "string",
+            "description": "Pause reason that is indicated to components running in the Virtual Machine.",
+            "enum": [
+                "None",
+                "Save",
+                "Template"
+            ]
+        },
+        "PauseSuspensionLevel": {
+            "type": "string",
+            "enum": [
+                "Suspend",
+                "MemoryLow",
+                "MemoryMedium",
+                "MemoryHigh"
+            ]
+        },
+        "ProcessSignal": {
+            "type": "string",
+            "enum": [
+                "CtrlC",
+                "CtrlBreak",
+                "CtrlClose",
+                "CtrlLogOff",
+                "CtrlShutdown"
+            ]
+        },
+        "PropertyType": {
+            "type": "string",
+            "description": "Service property types",
+            "enum": [
+                "Basic",
+                "Memory",
+                "CpuGroup",
+                "ProcessorTopology",
+                "CacheAllocation",
+                "CacheMonitoring",
+                "ContainerCredentialGuard",
+                "QoSCapabilities",
+                "MemoryBwAllocation",
+                "Undefined"
+            ]
+        },
+        "PropertyType_2": {
+            "type": "string",
+            "description": "Compute system property types. The properties will be returned as a Schema.Responses.System.Properties instance.",
+            "enum": [
+                "Memory",
+                "GuestMemory",
+                "Statistics",
+                "ProcessList",
+                "TerminateOnLastHandleClosed",
+                "SharedMemoryRegion",
+                "GuestConnection"
+            ]
+        },
+        "RegistryHive": {
+            "type": "string",
+            "enum": [
+                "System",
+                "Software",
+                "Security",
+                "Sam"
+            ]
+        },
+        "RegistryValueType": {
+            "type": "string",
+            "enum": [
+                "None",
+                "String",
+                "ExpandedString",
+                "MultiString",
+                "Binary",
+                "DWord",
+                "QWord",
+                "CustomType"
+            ]
+        },
+        "SaveType": {
+            "type": "string",
+            "enum": [
+                "ToFile",
+                "AsTemplate"
+            ]
+        },
+        "SerialConsole": {
+            "type": "string",
+            "enum": [
+                "Default",
+                "Disabled",
+                "ComPort1",
+                "ComPort2"
+            ]
+        },
+        "State": {
+            "type": "string",
+            "description": "Compute system state which is exposed to external clients",
+            "enum": [
+                "Created",
+                "Running",
+                "Paused",
+                "Stopped",
+                "SavedAsTemplate",
+                "Unknown"
+            ]
+        },
+        "StdHandle": {
+            "type": "string",
+            "enum": [
+                "StdIn",
+                "StdOut",
+                "StdErr",
+                "All"
+            ]
+        },
+        "SystemType": {
+            "type": "string",
+            "enum": [
+                "Container",
+                "VirtualMachine",
+                "Host"
+            ]
+        },
+        "UefiBootDevice": {
+            "type": "string",
+            "enum": [
+                "ScsiDrive",
+                "VmbFs",
+                "Network",
+                "File"
+            ]
+        },
+        "VirtualPMemBackingType": {
+            "type": "string",
+            "enum": [
+                "Virtual",
+                "Physical"
+            ]
+        },
+        "VirtualPMemImageFormat": {
+            "type": "string",
+            "enum": [
+                "Vhdx",
+                "Vhd1"
+            ]
+        },
+        "WindowsCrashPhase": {
+            "type": "string",
+            "enum": [
+                "Inactive",
+                "CrashValues",
+                "Starting",
+                "Started",
+                "Writing",
+                "Complete"
+            ]
+        }
+    }
+}

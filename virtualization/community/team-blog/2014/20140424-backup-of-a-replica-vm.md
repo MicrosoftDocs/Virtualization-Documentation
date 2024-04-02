@@ -1,11 +1,15 @@
 ---
 title:      "Backup of a Replica VM"
+author: sethmanheim
+ms.author: sethm
+ms.date: 04/24/2014
 date:       2014-04-24 04:21:00
 categories: hvr
+description: This blog discusses reasons to backup a Replica VM.
 ---
-This blog post covers the scenarios and motivations that drive the backup of a Replica VM, and product guidance to administrators. 
+# Backup of a Replica VM
 
-### 
+This blog post covers the scenarios and motivations that drive the backup of a Replica VM, and product guidance to administrators. 
 
 ## Why backup a Replica VM?
 
@@ -63,8 +67,8 @@ These are largely treated as transient error states and the _backup product is e
 
   1. The changes introduced in Windows Server 2012 R2 would benefit customers using any backup product to take backup of Replica VMs. 
   2. A robust retry mechanism would need to be built to deal with Replica VM failure. 
-  3. For specific details on how Data Protection Manager (DPM) deals with the backup of Replica VMs, refer to [this blog post](http://blogs.technet.com/b/dpm/archive/2014/04/25/backing-up-of-replica-vms-using-dpm.aspx).
+  3. For specific details on how Data Protection Manager (DPM) deals with the backup of Replica VMs, refer to [this blog post](https://blogs.technet.com/b/dpm/archive/2014/04/25/backing-up-of-replica-vms-using-dpm.aspx).
 
  
 
-_Update 25-Apr-2014:   The DPM-specific details on this post have been moved to the [DPM blog](http://blogs.technet.com/b/dpm/archive/2014/04/25/backing-up-of-replica-vms-using-dpm.aspx). _
+_Update 25-Apr-2014:   The DPM-specific details on this post have been moved to the [DPM blog](https://blogs.technet.com/b/dpm/archive/2014/04/25/backing-up-of-replica-vms-using-dpm.aspx). _

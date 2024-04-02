@@ -1,9 +1,11 @@
 ---
-title: Persistent Storage in Containers
-description: How Windows containers can persistent storage
-keywords: containers, volume, storage, mount, bindmount
+title: Persistent storage in containers
+description: How Windows containers can use persistent storage.
 author: cwilhit
+ms.author: lizross
 ms.topic: conceptual
+ms.date: 08/16/2021
+
 ---
 
 # Persistent Storage in Containers
@@ -20,6 +22,9 @@ Docker has a great overview of how to [use volumes](https://docs.docker.com/engi
 ## Bind Mounts
 
 [Bind mounts](https://docs.docker.com/engine/admin/volumes/bind-mounts/) allow a container to share a directory with the host. This is useful if you want a place to store files on the local machine that are available if you restart a container, or want to share it with multiple containers. If you want the container to run on multiple machines with access to the same files, then a named volume or SMB mount should be used instead.
+
+> [!NOTE]
+> Bind mounting directly on cluster shared volumes (CSV) is not supported, virtual machines acting as a container host can run on a CSV volume.
 
 ### Permissions
 
@@ -73,7 +78,7 @@ This SMB global mapping support is SMB client-side feature which can work on top
 - 3rd party implementation of SMB protocol (ex: NAS appliances)
 
 > [!NOTE]
-> SMB global mapping does not support DFS, DFSN, DFSR shares in Windows Server version 1709.
+> SMB global mapping does not support DFS Namespaces (DFSN) folders. For example, if you map a DFSN root share with `New-SmbGlobalMapping -LocalPath Z: -RemotePath \\contoso.com\share1'`, reading that root's folder targets will return error "The network location cannot be reached."
 
 ## Named Volumes
 

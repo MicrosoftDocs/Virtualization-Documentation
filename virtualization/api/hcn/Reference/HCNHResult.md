@@ -4,8 +4,7 @@ description: HCN Error Code
 author: Keith-Mange
 ms.author: kemange
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
+ms.service: virtualization
 ms.date: 10/31/2021
 api_name:
 - HCN Error Code
@@ -18,7 +17,7 @@ topic_type:
 ---
 # HCN Error Code
 
-Most of the the HCN functions use `HRESULT` return codes. These return codes can be found in the [Winerror.h](https://docs.microsoft.com/en-us/windows/win32/api/winerror/) header file. The following table shows HCN specific error codes:
+Most of the the HCN functions use `HRESULT` return codes. These return codes can be found in the [Winerror.h](/windows/win32/api/winerror/) header file. The following table shows HCN specific error codes:
 
 
 

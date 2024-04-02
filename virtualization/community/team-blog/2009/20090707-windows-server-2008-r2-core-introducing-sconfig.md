@@ -1,51 +1,26 @@
 ---
 title:      "Windows Server 2008 R2 Core&#58; Introducing SCONFIG."
-date:       2009-07-07 09:27:00
+author: sethmanheim
+ms.author: sethm
+description: Windows Server 2008 R1 Core Deployment
+ms.date: 07/07/2009
 categories: hyper-v
 ---
+# Windows Server 2008 R1: Core Deployment
+
 Virtualization Nation, 
 
-It's been very busy in the world of Windows Server. With the launch of Windows Server 2008 R2 Release Candidate, Tech Ed and the announcement of several new [Hyper-V R2 capabilities such as 64 logical processor support and processor compatibility](http://blogs.technet.com/virtualization/archive/2009/05/12/tech-ed-windows-server-2008-r2-hyper-v-news.aspx), it's been pretty non-stop. In fact, it's been so busy, that we haven't even had a chance to introduce one more really cool new feature in Windows Server 2008 R2, but first, some background. 
+It's been very busy in the world of Windows Server. With the launch of Windows Server 2008 R2 Release Candidate, Tech Ed and the announcement of several new [Hyper-V R2 capabilities such as 64 logical processor support and processor compatibility](https://techcommunity.microsoft.com/t5/virtualization/tech-ed-windows-server-2008-r2-hyper-v-news/ba-p/381610), it's been pretty non-stop. In fact, it's been so busy, that we haven't even had a chance to introduce one more really cool new feature in Windows Server 2008 R2, but first, some background. 
 
 **Windows Server 2008 R1: Core Deployment**
 
 In Windows Server 2008, we introduced the ability to deploy Windows Server in a core deployment. Server Core is a minimal server installation option which provides a low-maintenance server environment with limited functionality. Just to be clear, Server Core isn't a SKU. You don't buy "Server Core" it's simply a deployment option presented during Windows Server Setup. For example, here's a screen shot during Windows Server Setup, notice that there are options for **Full Installations** and **Server Core Installations**. 
 
-[![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2CoreIntroducingSCONFI_E632/image9_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2CoreIntroducingSCONFI_E632/image9.png)
+
 
 The benefits are smaller attack surface, a reduction in patches and reduction of server reboots. If you compare the number of reboots between running a server running Windows Server 2008 core deployment versus Windows Server 2008 a full installation, there's a substantial reduction in the number of reboots which, in turn, helps reduce management costs. 
 
 While customers like the idea of core installations, the fact that a server core deployment is a command-line interface (CLI) only (no GUI, no Start Menu, etc) with a very differently deployment mechanism introduces a challenging learning curve for those considering core deployments. For those of you who've never seen a Windows Server 2008 server core deployment it looks like this: 
-
-[![Server Core](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2CoreIntroducingSCONFI_E632/image_thumb.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2CoreIntroducingSCONFI_E632/image_2.png)
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
 
  
 
@@ -54,7 +29,7 @@ Pretty spartan.
 As you can see, there's no Start Menu. It's all command-line all the time. For enterprise customers, this isn't a big deal because very often they deploy Windows Server in an automated fashion. However, for small and mid-sized customers a command-line only interface can make some of the most rudimentary tasks a challenge. For example, here are the commands to rename your computer and then join a domain via a Windows Server 2008 core deployment. 
 
   1. **Rename your computer** : netdom renamecomputer %computername% /newname:<new_computername>
-  2. **Domain join** : netdom join %computername% /domain:<domain> /userd:<username> /passwordd:*
+  2. **Domain join** : netdom join %computername% /domain: \<domain\> /userd: \<username\> /passwordd:*
 
 
 
@@ -62,7 +37,7 @@ Not the easiest thing to remember. We knew we could do better.
 
 **Improving Usability**
 
-While Windows Server 2008 R1 was in development, a few of us were quietly working on the [Hyper-V Server 2008 standalone SKU](http://www.microsoft.com/hyper-v-server/en/us/default.aspx) which also uses a CLI. We spent time working on improving the server configuration experience with an easy to use CLI called HVCONFIG. Within hours of our first private releases of Hyper-V Server 2008 to testers, we received email asking/begging/pleading/cajoling/offering bribes for a similar tool for Windows Server as well. 
+While Windows Server 2008 R1 was in development, a few of us were quietly working on the Hyper-V Server 2008 standalone SKU which also uses a CLI. We spent time working on improving the server configuration experience with an easy to use CLI called HVCONFIG. Within hours of our first private releases of Hyper-V Server 2008 to testers, we received email asking/begging/pleading/cajoling/offering bribes for a similar tool for Windows Server as well. 
 
 Happy to oblige. 
 
@@ -94,9 +69,7 @@ All you have to do is type **sconfig** at the command line.
 
  
 
-[![Type sconfig](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2CoreIntroducingSCONFI_E632/clip_image001_thumb.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2CoreIntroducingSCONFI_E632/clip_image001_2.jpg)
 
-[![sconfig](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2CoreIntroducingSCONFI_E632/clip_image002_thumb.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/WindowsServer2008R2CoreIntroducingSCONFI_E632/clip_image002_2.jpg) 
 
 **Great! Now What?**
 

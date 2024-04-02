@@ -1,11 +1,10 @@
 ---
 title: HcsCreateEmptyRuntimetStateFile
 description: HcsCreateEmptyRuntimetStateFile
-author: faymeng
-ms.author: qiumeng
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
+ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HcsCreateEmptyRuntimetStateFile

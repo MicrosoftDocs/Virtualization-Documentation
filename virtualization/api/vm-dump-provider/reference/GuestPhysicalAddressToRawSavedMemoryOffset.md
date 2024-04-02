@@ -1,3 +1,11 @@
+---
+title: The GuestPhysicalAddressToRawSavedMemoryOffset function
+description: Translates the given guest physical address to a raw saved memory offset.
+ms.date: 04/19/2022
+author: sethmanheim
+ms.author: sethm
+---
+
 # GuestPhysicalAddressToRawSavedMemoryOffset function
 
 Translates the given guest physical address to a raw saved memory offset. This is specially useful if callers need to read a memory range directly from all of the guest's saved memory starting in the saved memory address equivalent to the supplied guest physical address. Translation from raw saved memory offset to physical address is not supported.

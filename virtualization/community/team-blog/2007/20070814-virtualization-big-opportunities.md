@@ -3,10 +3,9 @@ title: Big Opportunities
 description: post id 3893
 keywords: virtualization, virtual server, system center, scvmm, blog
 author: scooley
+ms.author: scooley
 ms.date: 8/14/2007
 ms.topic: article
-ms.prod: virtualization
-ms.service: virtualization
 ms.assetid: 0509eadd-897e-4475-8ea3-a0cc74d9790d
 ---
 
@@ -31,12 +30,12 @@ And remember, as you're following the increased news coverage and buzz around vi
 
 **Resource Links:**
 
-* Find out and evaluate a host of partner solutions through pre-configured Virtual Hard Disks (VHDs) [link](http://www.microsoft.com/windowsserversystem/virtualization/default.mspx)
+* Find out and evaluate a host of partner solutions through pre-configured Virtual Hard Disks (VHDs) [link](https://www.microsoft.com/windowsserversystem/virtualization/default.mspx)
 
-* Virtual Server 2005 R2 SP1 is the server virtualization technology engineered for the Windows Server platform. Familiarize yourself with the product, and download Virtual Server 2005 R2 for free [link](http://www.microsoft.com/windowsserversystem/virtualserver)
+* Virtual Server 2005 R2 SP1 is the server virtualization technology engineered for the Windows Server platform. Familiarize yourself with the product, and download Virtual Server 2005 R2 for free [link](https://www.microsoft.com/windowsserversystem/virtualserver)
 
-* System Center Virtual Machine Manager provides centralized administration of virtual machine infrastructure and enables increased physical server utilization and rapid provisioning of new virtual machines by the administrator and authorized end users. Download beta 2 [link](http://www.microsoft.com/systemcenter/scvmm/default.mspx)
+* System Center Virtual Machine Manager provides centralized administration of virtual machine infrastructure and enables increased physical server utilization and rapid provisioning of new virtual machines by the administrator and authorized end users. Download beta 2 [link](https://www.microsoft.com/systemcenter/scvmm/default.mspx)
 
-* Microsoft SoftGrid Application Virtualization is the only virtualization solution on the market to deliver applications that are never installed, yet securely follow users anywhere, on demand [link](http://www.microsoft.com/systemcenter/softgrid/default.mspx)
+* Microsoft SoftGrid Application Virtualization is the only virtualization solution on the market to deliver applications that are never installed, yet securely follow users anywhere, on demand [link](https://www.microsoft.com/systemcenter/softgrid/default.mspx)
 
 [Original post](https://blogs.technet.microsoft.com/virtualization/2007/08/14/virtualization-big-opportunities/)

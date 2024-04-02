@@ -1,3 +1,11 @@
+---
+title: The LoadSavedStateFile function
+description: Loads the given saved state file and creates an instance of VmSavedStateDump. This instance can be referenced on the other methods with the returned UINT64 Id.
+ms.date: 04/19/2022
+author: sethmanheim
+ms.author: sethm
+---
+
 # LoadSavedStateFile function
 
 Loads the given saved state file and creates an instance of VmSavedStateDump. This instance can be referenced on the other methods with the returned UINT64 Id.

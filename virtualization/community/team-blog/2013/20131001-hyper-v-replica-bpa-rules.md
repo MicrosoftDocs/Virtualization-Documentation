@@ -1,33 +1,40 @@
 ---
 title:      "Hyper-V Replica BPA Rules"
-date:       2013-10-01 05:26:00
+author: sethmanheim
+ms.author: sethm
+ms.date: 10/01/2013
 categories: hvr
+description: Rules for using the Best Practices Analyzer (BPA).
 ---
-A frequent question from our customers is on whether there are standard “best practices” when deploying Hyper-V Replica (or any Windows Server role for that matter). These questions come in many avatars - Does the Product Group have any configuration gotchas based on internal testing, is my server properly configured, should I change any replication configuration etc.
+# Rules for Using the Best Practices Analyzer (BPA)
 
-**Best Practices Analyzer (BPA)** is a powerful inbox tool which scans the server for any potential ‘best practice’ violations. The report describes the problem and also provides recommendation to fix the issue. You can use the BPA both from UI as well as PowerShell.
+A frequent question from our customers is on whether there are standard "best practices" when deploying Hyper-V Replica (or any Windows Server role for that matter). These questions come in many avatars - Does the Product Group have any configuration gotchas based on internal testing, is my server properly configured, should I change any replication configuration etc.
+
+**Best Practices Analyzer (BPA)** is a powerful inbox tool which scans the server for any potential 'best practice' violations. The report describes the problem and also provides recommendation to fix the issue. You can use the BPA both from UI as well as PowerShell.
 
 From the Server Manager Dashboard, click on **Hyper-V,** scroll down to the **Best Practices Analyzer** option, click on **Tasks** , followed by **Start BPA Run**
 
-[![BPA_3](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2313.BPA_3_thumb_7E7DF293.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1057.BPA_3_2D411A85.png)
+<!-- [![BPA_3](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/2313.BPA_3_thumb_7E7DF293.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/1057.BPA_3_2D411A85.png) -->
 
 Once the scan is complete, you can filter the issues based on Warning or Errors, Excluded Results, Compliant Results.
 
 The same can be done through PowerShell by executing the following cmdlets
-    
-    
-    Invoke-BpaModel -ModelId Microsoft/Windows/Hyper-V
+
+```markdown
+Invoke-BpaModel -ModelId Microsoft/Windows/Hyper-V
     
     
      
     
     
-    Get-BpaResult -ModelId Microsoft/Windows/Hyper-V
+Get-BpaResult -ModelId Microsoft/Windows/Hyper-V
+```
 
 To filter non-compliant rules, issue the following cmdlet
     
-    
-    Get-BpaResult -ModelId Microsoft/Windows/Hyper-V -Filter Noncompliant
+```markdown
+Get-BpaResult -ModelId Microsoft/Windows/Hyper-V -Filter Noncompliant
+```
 
 In a Windows Server 2012 server, the following rules constitute the Hyper-V BPA. The Hyper-V Replica specific rules are between rules 37-54. 
 

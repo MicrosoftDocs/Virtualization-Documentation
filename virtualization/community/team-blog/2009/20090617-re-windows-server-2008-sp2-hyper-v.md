@@ -1,13 +1,19 @@
 ---
 title:      "Re&#58; Windows Server 2008 SP2 Hyper-V"
+description: It’s been 3 weeks since the release of Windows Server 2008 Service Pack 2 (SP2) and we’re seeing great adoption.
+author: scooley
+ms.author: scooley
 date:       2009-06-17 12:51:00
+ms.date: 06/17/2009
 categories: hyper-v
 ---
+# Re: Windows Server 2008 SP2 Hyper-V
+
 Hi Isaac Roybal here. I’m a technical product manager on the Windows Server team covering Hyper-V.
 
  
 
-It’s been 3 weeks since the release of [Windows Server 2008 Service Pack 2](http://blogs.technet.com/windowsserver/archive/2009/05/26/windows-server-2008-and-windows-vista-sp2-available-for-download.aspx) (SP2) and we’re seeing great adoption. From a Hyper-V point of view, we’re excited because the final Hyper-V release is an integrated feature in SP2 making it easier and faster to deploy Hyper-V. If you recall, when Windows Server 2008 was released, Hyper-V Beta was included. This meant to get the final Hyper-V release, you needed to go to Windows Update, download and go through the update process.
+It’s been 3 weeks since the release of [Windows Server 2008 Service Pack 2](https://cloudblogs.microsoft.com/windowsserver/2009/05/26/windows-server-2008-and-windows-vista-sp2-available-for-download/) (SP2) and we’re seeing great adoption. From a Hyper-V point of view, we’re excited because the final Hyper-V release is an integrated feature in SP2 making it easier and faster to deploy Hyper-V. If you recall, when Windows Server 2008 was released, Hyper-V Beta was included. This meant to get the final Hyper-V release, you needed to go to Windows Update, download and go through the update process.
 
  
 
@@ -55,6 +61,6 @@ Yes, your assertion is correct. Follow these steps when upgrading a cluster to S
 
  
 
-For more info see [KB 174799 ](http://support.microsoft.com/kb/174799) which outlines how to install SPs on a cluster and [Microsoft's Failover and Network Load Balancing Clustering Team Blog](http://blogs.msdn.com/clustering/archive/2009/06/12/9731520.aspx) which explains a rolling upgrade of a cluster. 
+For more info see [KB 174799](https://support.microsoft.com/kb/174799) which outlines how to install SPs on a cluster and [Microsoft's Failover and Network Load Balancing Clustering Team Blog](https://blogs.msdn.com/clustering/archive/2009/06/12/9731520.aspx) which explains a rolling upgrade of a cluster. 
 
  

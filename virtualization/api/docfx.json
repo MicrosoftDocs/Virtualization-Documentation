@@ -28,6 +28,7 @@
     "overwrite": [],
     "externalReference": [], 
     "globalMetadata": {
+      "uhfHeaderId": "MSDocsHeader-Windows",
       "breadcrumb_path": "/virtualization/api/breadcrumbs/toc.json",
       "extendBreadcrumb": true, 
       "feedback_system": "GitHub", 
@@ -35,11 +36,13 @@
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
     "fileMetadata": {
+      "ms.service": {
+        "**/*.md": "windows"
+      },
       "ms.topic": {
         "**/*.md": "reference"
       },
       "ms.prod": {
-        "**/*.md": "windows"
       }
     },
     "template": [],

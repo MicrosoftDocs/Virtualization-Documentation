@@ -3,10 +3,9 @@ title: Working with Hyper-V and Windows PowerShell
 description: Working with Hyper-V and Windows PowerShell
 keywords: windows 10, hyper-v
 author: scooley
+ms.author: scooley
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 6d1ae036-0841-4ba5-b7e0-733aad31e9a7
 ---
 
@@ -24,7 +23,7 @@ Get-Command -Module hyper-v | Out-GridView
 ```
   You get something like this:
 
-  ![](./media/command_grid.png)
+  ![Screenshot of the Out Grid View showing the Command Type, Name, Version, and Source fields.](./media/command_grid.png)
 
 3. To learn more about a particular PowerShell command use `Get-Help`. For instance running the following command returns information about the `Get-VM` Hyper-V command.
 
@@ -33,7 +32,7 @@ Get-Command -Module hyper-v | Out-GridView
   ```
  The output shows you how to structure the command, what the required and optional parameters are, and the aliases that you can use.
 
- ![](./media/get_help.png)
+ ![Screenshot of the Administrator Windows Power Shell screen, showing the output of how to structure commands.](./media/get_help.png)
 
 
 ### Return a list of virtual machines
@@ -47,9 +46,9 @@ Use the `Get-VM` command to return a list of virtual machines.
  ```
  This displays something like this:
 
- ![](./media/get_vm.png)
+ ![Screenshot of the Administrator Windows Power Shell screen showing the output after entering Get V M.](./media/get_vm.png)
 
-2. To return a list of only powered on virtual machines add a filter to the `Get-VM` command. A filter can be added by using the `Where-Object` command. For more information on filtering see the [Using the Where-Object](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-powershell-1.0/ee177028(v=technet.10)>) documentation.
+2. To return a list of only powered on virtual machines add a filter to the `Get-VM` command. A filter can be added by using the `Where-Object` command. For more information on filtering see the [Using the Where-Object](/previous-versions/windows/it-pro/windows-powershell-1.0/ee177028(v=technet.10)) documentation.
 
  ```powershell
  Get-VM | where {$_.State -eq 'Running'}
@@ -91,7 +90,7 @@ To create a checkpoint using PowerShell, select the virtual machine using the `G
 The following example shows how to create a new virtual machine in the PowerShell Integrated Scripting Environment (ISE). This is a simple example and could be expanded on to include additional PowerShell features and more advanced VM deployments.
 
 1. To open the PowerShell ISE click on start, type **PowerShell ISE**.
-2. Run the following code to create a virtual machine. See the [New-VM](https://docs.microsoft.com/powershell/module/hyper-v/new-vm?view=win10-ps) documentation for detailed information on the `New-VM` command.
+2. Run the following code to create a virtual machine. See the [New-VM](/powershell/module/hyper-v/new-vm) documentation for detailed information on the `New-VM` command.
 
  ```powershell
   $VMName = "VMNAME"
@@ -112,5 +111,5 @@ The following example shows how to create a new virtual machine in the PowerShel
 
 ## Wrap up and References
 
-This document has shown some simple steps to explorer the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the [Hyper-V Cmdlets in Windows PowerShell reference](https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps).  
+This document has shown some simple steps to explorer the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the [Hyper-V Cmdlets in Windows PowerShell reference](/powershell/module/hyper-v/index).  
  

@@ -1,11 +1,10 @@
 ---
 title: HcsCreateOperation
 description: HcsCreateOperation
-author: faymeng
-ms.author: qiumeng
+author: sethmanheim
+ms.author: sethm
 ms.topic: reference
-ms.prod: virtualization
-ms.technology: virtualization
+ms.service: virtualization
 ms.date: 06/09/2021
 api_name:
 - HcsCreateOperation
@@ -48,7 +47,7 @@ Returns the `HCS_OPERATION` handle to the newly created operation on success, `N
 
 ## Remarks
 
-Refer to the [async model sample code](./AsyncModelSample.md) for details on how to use HCS operations.
+Refer to the async model sample code for details on how to use HCS operations.
 
 ## Requirements
 

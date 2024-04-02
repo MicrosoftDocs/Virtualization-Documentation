@@ -1,9 +1,15 @@
 ---
 title:      "Check out the New Microsoft Server and Cloud Platform Website!"
+author: sethmanheim
+ms.author: sethm
+description: Check out the New Microsoft Server and Cloud Platform Website!
+ms.date: 08/25/2011
 date:       2011-08-25 13:11:42
 categories: cloud-computing
 ---
-We’re pleased to announce the launch of the new [Microsoft Server and Cloud Platform website](http://bit.ly/omgt2U)   
+# Check out the New Microsoft Server and Cloud Platform Website!
+
+We're pleased to announce the launch of the new [Microsoft Server and Cloud Platform website](http://bit.ly/omgt2U)   
 ([http://www.microsoft.com/server-cloud](http://bit.ly/omgt2U)).  
 
 The new site is a comprehensive source for information relating to our private cloud  
