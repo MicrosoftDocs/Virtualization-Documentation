@@ -494,6 +494,11 @@
       "source_path": "virtualization/windowscontainers/quick-start/Using-Insider-Container-Images.md",
       "redirect_url": "/virtualization/windowscontainers/deploy-containers/insider-overview",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/about/whats-new-ws2022-containers.md",
+      "redirect_url": "/windows-server/get-started/whats-new-in-windows-server-2022",
+      "redirect_document_id": false
     }
   ]
 }
