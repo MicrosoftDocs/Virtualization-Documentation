@@ -18,4 +18,4 @@ _Specifically our promise is to ensure that:_
 
 
 
-To read more about how the Azure Site Recovery architecture delivers on these key goals, check out our new blog post, [Azure Site Recovery: Our Commitment to Keeping Your Data Secure](https://aka.ms/virtualization_azure_blog_security_blog) on the Microsoft Azure blog.
+To read more about how the Azure Site Recovery architecture delivers on these key goals, check out our new blog post on the [Microsoft Azure blog](https://azure.microsoft.com/blog/).

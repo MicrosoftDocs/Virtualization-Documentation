@@ -11,4 +11,5 @@ ms.assetid: 59950aac-d13b-499c-83b3-5f48f72cdd24
 
 # Virtualization Team Blog
 
-Information and announcements from Program Managers, Product Managers, Developers and Testers in the Microsoft Virtualization team.
+> [!IMPORTANT]
+> This section has been retired.

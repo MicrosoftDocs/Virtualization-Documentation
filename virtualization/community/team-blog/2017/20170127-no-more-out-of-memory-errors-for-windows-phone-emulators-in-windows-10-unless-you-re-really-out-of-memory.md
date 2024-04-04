@@ -14,7 +14,7 @@ For those of you who run emulators in Visual Studio, you may be familiar with an
 
 ### So, What is the root memory reserve and why is it there?
 
-Root memory reserve is the memory Hyper-V sets aside to make sure there will always be enough available for the host to run well. We change Hyper-V host memory management periodically based on feedback and new technology (things like dynamic memory and changes in clustering). The root memory reserve is only one piece of that equation and even calculating that piece has several factors. ********Modifying it is not supported** ****** but there is still a registry key available for times when the default isn’t appropriate for one reason or another. [KB2962295](https://support2.microsoft.com/kb/2962295) basically describes measuring, monitoring, and modifying the root reserve. 
+Root memory reserve is the memory Hyper-V sets aside to make sure there will always be enough available for the host to run well. We change Hyper-V host memory management periodically based on feedback and new technology (things like dynamic memory and changes in clustering). The root memory reserve is only one piece of that equation and even calculating that piece has several factors. ********Modifying it is not supported** ****** but there is still a registry key available for times when the default isn’t appropriate for one reason or another.
 
 ### Why you don't need root memory reserve any more.
 
