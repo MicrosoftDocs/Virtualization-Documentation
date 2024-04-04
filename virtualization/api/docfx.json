@@ -36,11 +36,13 @@
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
     "fileMetadata": {
+      "ms.service": {
+        "**/*.md": "windows"
+      },
       "ms.topic": {
         "**/*.md": "reference"
       },
       "ms.prod": {
-        "**/*.md": "windows"
       }
     },
     "template": [],

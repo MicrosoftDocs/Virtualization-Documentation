@@ -72,10 +72,11 @@
 ### [Manage Azure Container Instance](WAC-tooling/WAC-ACI.md)
 
 # Concepts
-## Windows Container Essentials
+## Windows Containers
 ### [Container base Images](manage-containers/container-base-images.md)
 ### [Base image servicing lifecycles](deploy-containers/base-image-lifecycle.md)
 ### [Isolation modes](manage-containers/hyperv-container.md)
+### [Portability](deploy-containers/portability.md)
 ### [Version compatibility](deploy-containers/version-compatibility.md)
 ### [Update containers](deploy-containers/update-containers.md)
 ### [Upgrade Windows containers](deploy-containers/upgrade-windows-containers.md)
