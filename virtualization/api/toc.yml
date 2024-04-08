@@ -4,16 +4,16 @@
   href: /windows/win32/hyperv_v2/windows-virtualization-portal
 - name: Host Compute System API
   expanded: true
-  items: 
+  items:
     - name: Overview
       href: ./hcs/overview.md
     - name: API Reference
       expanded: true
-      items: 
+      items:
         - name: Overview
           href: ./hcs/Reference/APIOverview.md
         - name: Data Types
-          items: 
+          items:
             - name: HCS Error Code
               href: ./hcs/Reference/HCSHResult.md
             - name: HCS_OPERATION_TYPE
@@ -27,16 +27,16 @@
             - name: HCS_PROCESS_INFORMATION
               href: ./hcs/Reference/HCS_PROCESS_INFORMATION.md
         - name: Callback Function Types
-          items: 
+          items:
             - name: HCS_OPERATION_COMPLETION
               href: ./hcs/Reference/HCS_OPERATION_COMPLETION.md
             - name: HCS_EVENT_CALLBACK
               href: ./hcs/Reference/HCS_EVENT_CALLBACK.md
         - name: Functions
           expanded: true
-          items: 
+          items:
             - name: Operation
-              items: 
+              items:
                 - name: HcsCreateOperation
                   href: ./hcs/Reference/HcsCreateOperation.md
                 - name: HcsCloseOperation
@@ -66,7 +66,7 @@
                 - name: HcsCancelOperation
                   href: ./hcs/Reference/HcsCancelOperation.md
             - name: Compute System
-              items: 
+              items:
                 - name: HcsCreateComputeSystem
                   href: ./hcs/Reference/HcsCreateComputeSystem.md
                 - name: HcsOpenComputeSystem
@@ -96,7 +96,7 @@
                 - name: HcsEnumerateComputeSystems
                   href: ./hcs/Reference/HcsEnumerateComputeSystems.md
             - name: Device Virtualization
-              items: 
+              items:
                 - name: Device Virtualization
                   href: hcs/Reference/hdv/DeviceVirtualization.md
                 - name: HdvCreateDeviceInstance
@@ -156,7 +156,7 @@
                 - name: HdvWriteGuestMemory
                   href: hcs/Reference/hdv/HdvWriteGuestMemory.md
             - name: Process Execution
-              items: 
+              items:
                 - name: HcsCreateProcess
                   href: ./hcs/Reference/HcsCreateProcess.md
                 - name: HcsOpenProcess
@@ -176,7 +176,7 @@
                 - name: HcsSetProcessCallback
                   href: ./hcs/Reference/HcsSetProcessCallback.md
             - name: Host Service
-              items: 
+              items:
                 - name: HcsGetServiceProperties
                   href: ./hcs/Reference/HcsGetServiceProperties.md
                 - name: HcsModifyServiceSettings
@@ -184,7 +184,7 @@
                 - name: HcsSubmitWerReport
                   href: ./hcs/Reference/HcsSubmitWerReport.md
             - name: Virtual Machine Utilities
-              items: 
+              items:
                 - name: HcsCreateEmptyGuestStateFile
                   href: ./hcs/Reference/HcsCreateEmptyGuestStateFile.md
                 - name: HcsCreateEmptyRuntimeStateFile
@@ -198,7 +198,7 @@
                 - name: HcsRevokeVmGroupAccess
                   href: ./hcs/Reference/HcsRevokeVmGroupAccess.md
             - name: Containers Storage Utilities
-              items: 
+              items:
                 - name: HcsImportLayer
                   href: ./hcs/Reference/HcsImportLayer.md
                 - name: HcsExportLayer
@@ -222,7 +222,7 @@
                 - name: HcsGetLayerVhdMountPath
                   href: ./hcs/Reference/HcsGetLayerVhdMountPath.md
     - name: JSON Schema
-      items: 
+      items:
         - name: Schema Overview
           href: ./hcs/SchemaOverview.md
         - name: JSON Schema Reference
@@ -230,7 +230,7 @@
         - name: Schema in Different Languages
           href: ./hcs/SchemaSample.md
     - name: Samples
-      items: 
+      items:
         - name: Quick Start
           href: ./hcs/Reference/Tutorial.md
         - name: Operation Completion
@@ -245,13 +245,13 @@
           href: ./hcs/Reference/UtilityFunctionSample.md
 - name: Host Compute Network API
   expanded: true
-  items: 
+  items:
     - name: Overview
       href: /windows-server/networking/technologies/hcn/hcn-top
       expanded: true
-      items: 
+      items:
         - name: Data Types
-          items: 
+          items:
             - name: HCN Error Codes
               href: ./hcn/Reference/HCNHResult.md
             - name: HCN\_NOTIFICATIONS
@@ -282,9 +282,9 @@
               href: ./hcn/Reference/HCN_PORT_RANGE_ENTRY.md
         - name: Functions
           expanded: true
-          items: 
+          items:
             - name: Networks
-              items: 
+              items:
                 - name: HcnEnumerateNetworks
                   href: ./hcn/Reference/HcnEnumerateNetworks.md
                 - name: HcnCreateNetwork
@@ -300,7 +300,7 @@
                 - name: HcnCloseNetwork
                   href: ./hcn/Reference/HcnCloseNetwork.md
             - name: Namespaces
-              items: 
+              items:
                 - name: HcnEnumerateNamespaces
                   href: ./hcn/Reference/HcnEnumerateNamespaces.md
                 - name: HcnCreateNamespace
@@ -316,7 +316,7 @@
                 - name: HcnCloseNamespace
                   href: ./hcn/Reference/HcnCloseNamespace.md
             - name: Endpoints
-              items: 
+              items:
                 - name: HcnEnumerateEndpoints
                   href: ./hcn/Reference/HcnEnumerateEndpoints.md
                 - name: HcnCreateEndpoint
@@ -332,7 +332,7 @@
                 - name: HcnCloseEndpoint
                   href: ./hcn/Reference/HcnCloseEndpoint.md
             - name: LoadBalancers
-              items: 
+              items:
                 - name: HcnEnumerateLoadBalancers
                   href: ./hcn/Reference/HcnEnumerateLoadBalancers.md
                 - name: HcnCreateLoadBalancer
@@ -348,13 +348,13 @@
                 - name: HcnCloseLoadBalancer
                   href: ./hcn/Reference/HcnCloseLoadBalancer.md
             - name: Services
-              items: 
+              items:
                 - name: HcnRegisterServiceCallback
                   href: ./hcn/Reference/HcnRegisterServiceCallback.md
                 - name: HcnUnregisterServiceCallback
                   href: ./hcn/Reference/HcnUnregisterServiceCallback.md
             - name: Guest Network Services
-              items: 
+              items:
                 - name: HcnRegisterGuestNetworkServiceCallback
                   href: ./hcn/Reference/HcnRegisterGuestNetworkServiceCallback.md
                 - name: HcnUnregisterGuestNetworkServiceCallback
@@ -368,7 +368,7 @@
                 - name: HcnDeleteGuestNetworkService
                   href: ./hcn/Reference/HcnDeleteGuestNetworkService.md
             - name: Port Reservations
-              items: 
+              items:
                 - name: HcnReserveGuestNetworkServicePort
                   href: ./hcn/Reference/HcnReserveGuestNetworkServicePort.md
                 - name: HcnReserveGuestNetworkServicePortRange
@@ -381,12 +381,14 @@
                   href: ./hcn/Reference/HcnFreeGuestNetworkPortReservations.md
     - name: JSON Schema
       expanded: true
-      items: 
+      items:
         - name: JSON Schema Reference
           href: ./hcn/HNS_Schema.md
 - name: Windows Hypervisor Platform API
   href: ./hypervisor-platform/hypervisor-platform.md
-  items: 
+  items:
+    - name: Windows Hypervisor Platform Samples
+      href: ./hypervisor-platform/whp-samples.md
     - name: WHvCancelRunVirtualProcessor
       href: ./hypervisor-platform/funcs/WHvCancelRunVirtualProcessor.md
     - name: WHvCreatePartition
@@ -403,7 +405,7 @@
       href: ./hypervisor-platform/funcs/WHvGetPartitionCounters.md
     - name: WHvGetPartitionProperty
       href: ./hypervisor-platform/funcs/WHvGetPartitionProperty.md
-      items: 
+      items:
         - name: Data Types
           href: ./hypervisor-platform/funcs/WHvPartitionPropertyDataTypes.md
     - name: WHvGetVirtualProcessorCounters
@@ -412,7 +414,7 @@
       href: ./hypervisor-platform/funcs/WHvGetVirtualProcessorInterruptControllerState.md
     - name: WHvGetVirtualProcessorRegisters
       href: ./hypervisor-platform/funcs/WHvGetVirtualProcessorRegisters.md
-      items: 
+      items:
         - name: Data Types
           href: ./hypervisor-platform/funcs/WHvVirtualProcessorDataTypes.md
     - name: WHvGetVirtualProcessorXSaveState
@@ -427,7 +429,7 @@
       href: ./hypervisor-platform/funcs/WHvResumePartitionTime.md
     - name: WHvRunVirtualProcessor
       href: ./hypervisor-platform/funcs/WHvRunVirtualProcessor.md
-      items: 
+      items:
         - name: Exit Contexts
           href: ./hypervisor-platform/funcs/WHvExitContextDataTypes.md
         - name: Memory Access
@@ -448,7 +450,7 @@
           href: ./hypervisor-platform/funcs/ExecutionCancelled.md
     - name: WHvSetPartitionProperty
       href: ./hypervisor-platform/funcs/WHvSetPartitionProperty.md
-      items: 
+      items:
         - name: Data Types
           href: ./hypervisor-platform/funcs/WHvPartitionPropertyDataTypes.md
     - name: WHvSetupPartition
@@ -457,7 +459,7 @@
       href: ./hypervisor-platform/funcs/WHvSetVirtualProcessorInterruptControllerState.md
     - name: WHvSetVirtualProcessorRegisters
       href: ./hypervisor-platform/funcs/WHvSetVirtualProcessorRegisters.md
-      items: 
+      items:
         - name: Data Types
           href: ./hypervisor-platform/funcs/WHvVirtualProcessorDataTypes.md
     - name: WHvSetVirtualProcessorXSaveState
@@ -470,20 +472,20 @@
       href: ./hypervisor-platform/funcs/WHvUnmapGpaRange.md
 - name: Virtualization Related Tools
   expanded: true
-  items: 
+  items:
     - name: Virtual Hard Disk Interface
       href: /windows/win32/api/virtdisk/
     - name: Hypervisor Instruction Emulator API
       href: ./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md
-      items: 
+      items:
         - name: Instruction Emulation
-          items: 
+          items:
             - name: I/O Port Access
               href: ./hypervisor-instruction-emulator/funcs/IOPortAccessIE.md
             - name: MMIO Access
               href: ./hypervisor-instruction-emulator/funcs/MMIOAccessIE.md
         - name: Emulator Structures
-          items: 
+          items:
             - name: WHV_EMULATOR_CALLBACKS
               href: ./hypervisor-instruction-emulator/funcs/WhvEmulatorCallbacks.md
             - name: WHV_EMULATOR_IO_ACCESS_INFO
@@ -493,7 +495,7 @@
             - name: WHV_EMULATOR_STATUS
               href: ./hypervisor-instruction-emulator/funcs/WhvEmulatorStatus.md
         - name: API Methods
-          items: 
+          items:
             - name: WHvEmulatorCreateEmulator
               href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorCreateEmulator.md
             - name: WHvEmulatorDestoryEmulator
@@ -503,7 +505,7 @@
             - name: WHvEmulatorTryMmioEmulation
               href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorTryEmulation.md
         - name: Callback Functions
-          items: 
+          items:
             - name: WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK
               href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorGetVirtualProcessorRegistersCallback.md
             - name: WHV_EMULATOR_IO_PORT_CALLBACK
@@ -515,7 +517,7 @@
             - name: WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK
               href: ./hypervisor-instruction-emulator/funcs/WHvEmulatorTranslateGVAPageCallback.md
     - name: VM Saved State Dump Provider API
-      items: 
+      items:
         - name: Overview
           href: ./vm-dump-provider/index.md
         - name: Reference
