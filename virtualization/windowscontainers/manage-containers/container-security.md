@@ -56,7 +56,7 @@ RUN net user username ‘<password>’ /ADD
 USER username
 ```
 
-## Windows Services
+## Windows services
 
 Microsoft Windows services, formerly known as NT services, enable you to create long-running executable applications that run in their own Windows sessions. These services can be automatically started when the operating system starts, can be paused and restarted, and do not show any user interface. You can also run services in the security context of a specific user account that is different from the logged-on user or the default computer account. 
 
