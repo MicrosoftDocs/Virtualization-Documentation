@@ -77,14 +77,14 @@
     }
   ],
   "notification_subscribers": [
-    "benarm@microsoft.com"
+    "wscontent@microsoft.com"
   ],
   "sync_notification_subscribers": [],
   "branches_to_filter": [
     "live-sync-work"
   ],
   "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/Virtualization-Documentation",
-  "git_repository_branch_open_to_public_contributors": "live",
+  "git_repository_branch_open_to_public_contributors": "main",
   "skip_source_output_uploading": false,
   "need_preview_pull_request": true,
   "contribution_branch_mappings": {},
