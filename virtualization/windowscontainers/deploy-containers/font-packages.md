@@ -19,7 +19,7 @@ When we removed the fonts from the Server Core base container image, we also rem
 > There are a few ways to acquire up-to-date install media, but the simplest is just to take a Windows Server 2019 or 2022 VM and let Windows Update bring it up to date.
 > You will also need an ISO of the original Windows Server 2019 or 2022 RTM media. This can be acquired via a [Visual Studio Subscription](https://my.visualstudio.com/Download) or [Volume License Service Center](https://www.microsoft.com/licensing/servicecenter/).
 
-To prepare your environment, you need a [properly configured](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server) Windows container host and share the %windir%\WinSxS directory. documentation page. You’ll also need to share the %windir%\WinSxS directory. For this example, we created a local user with a randomly-generated password (represented as <password>):
+To prepare your environment, you need a [properly configured](./quick-start/set-up-environment.md) Windows container host and share the %windir%\WinSxS directory. documentation page. You’ll also need to share the %windir%\WinSxS directory. For this example, we created a local user with a randomly-generated password - represented as <password>:
 
 For Command Prompt:
 
