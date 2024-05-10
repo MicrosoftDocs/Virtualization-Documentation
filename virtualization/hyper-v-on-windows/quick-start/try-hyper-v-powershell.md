@@ -111,5 +111,5 @@ The following example shows how to create a new virtual machine in the PowerShel
 
 ## Wrap up and References
 
-This document has shown some simple steps to explorer the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the [Hyper-V Cmdlets in Windows PowerShell reference](/powershell/module/hyper-v/index).  
+This document has shown some simple steps to explore the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the [Hyper-V Cmdlets in Windows PowerShell reference](/powershell/module/hyper-v/index).  
  
