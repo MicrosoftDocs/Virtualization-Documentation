@@ -102,7 +102,7 @@ foreach ($pcidev in $pcidevs) {
     # aren't assignable.
     #
     $doubleslashDevId = "*" + $pcidev.PNPDeviceID.Replace("\","\\") + "*"
-    $irqAssignments = Get-CimInstance -query "select * from Win32_PnPAllocatedResource" | Where-Object {$_.__RELPATH -like "*Win32_IRQResource*"} | Where-Object {$_.Dependent -like $doubleslashDevId}
+    $irqAssignments = Get-WmiObject -query "select * from Win32_PnPAllocatedResource" | Where-Object {$_.__RELPATH -like "*Win32_IRQResource*"} | Where-Object {$_.Dependent -like $doubleslashDevId}
 
     #$irqAssignments | Format-Table -Property __RELPATH
 
@@ -130,13 +130,13 @@ foreach ($pcidev in $pcidevs) {
     # not strictly an issue devices, but very useful when you want to set MMIO gap sizes
     #
 
-    $mmioAssignments = Get-CimInstance -query "select * from Win32_PnPAllocatedResource" | Where-Object {$_.__RELPATH -like "*Win32_DeviceMemoryAddress*"} | Where-Object {$_.Dependent -like $doubleslashDevId}
+    $mmioAssignments = Get-WmiObject -query "select * from Win32_PnPAllocatedResource" | Where-Object {$_.__RELPATH -like "*Win32_DeviceMemoryAddress*"} | Where-Object {$_.Dependent -like $doubleslashDevId}
     $mmioTotal = 0
     foreach ($mem in $mmioAssignments) 
     {
         $baseAdd =$mem.Antecedent.SubString($mem.Antecedent.IndexOf("""")+1)
         $baseAdd=$baseAdd.SubString(0,$baseAdd.IndexOf(""""))
-        $mmioRange = Get-CimInstance -query "select * from Win32_DeviceMemoryAddress" | Where-Object{$_.StartingAddress -like $baseAdd}
+        $mmioRange = Get-WmiObject -query "select * from Win32_DeviceMemoryAddress" | Where-Object{$_.StartingAddress -like $baseAdd}
         $mmioTotal = $mmioTotal + $mmioRange.EndingAddress - $mmioRange.StartingAddress
     }
     if ($mmioTotal -eq 0)
