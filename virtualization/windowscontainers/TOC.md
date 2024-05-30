@@ -62,6 +62,7 @@
 ### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
 ## [Use containers with the Windows Insider program](deploy-containers/insider-overview.md)
 ## [Containerize apps with printer services](deploy-containers/print-spooler.md)
+## [Add optional font packages to Windows containers](deploy-containers/font-packages.md)
 ## Manage containers with Windows Admin Center
 ### [Containers extension overview](WAC-tooling/WAC-extension.md)
 ### [Manage container images](WAC-tooling/WAC-Manage.md)
