@@ -149,4 +149,4 @@ Microsoft hopes to remove this limitation in a future version of Windows, but th
 
 ## Issues when adding fonts?
 
-If you have issues when enabling fonts on Server Core container images, let us know in the issues section of our [GitHub repo](https://github.com/microsoft/Windows-Containers/).
+If you encounter issues when enabling fonts on Server Core container images, let us know in the Issues section of our [GitHub repo](https://github.com/microsoft/Windows-Containers/issues).
