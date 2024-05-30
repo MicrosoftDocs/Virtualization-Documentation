@@ -45,7 +45,7 @@ powershell Mount-DiskImage -ImagePath %imagePath%
 set driveLetter=<drive letter of the mounted ISO>
 set repairMountDir=%SystemDrive%\repair
 mkdir repairMountDir
-dism /mount-image /imagefile:"%driveLetter%\sources\install.wim" /index:1 /mountdir: %repairMountDir%
+dism /mount-image /imagefile:"%driveLetter%\sources\install.wim" /index:1 /mountdir:%repairMountDir%
 net share RTM=%repairMountDir% /grant:ShareUser,READ
 ```
 
@@ -58,7 +58,7 @@ Mount-DiskImage -ImagePath $imagePath
 $driveLetter = <drive letter of mounted ISO>
 $repairMountDir = "${env:systemdrive}\repair"
 mkdir $repairMountDir
-dism /mount-image /imagefile:"$driveLetter\sources\install.wim" /index:1 /mountdir: $repairMountDir
+dism /mount-image /imagefile:"$driveLetter\sources\install.wim" /index:1 /mountdir:$repairMountDir
 net share RTM=$repairMountDir /grant:ShareUser,READ
 ```
 
