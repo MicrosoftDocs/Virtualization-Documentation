@@ -14,81 +14,81 @@ ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 
 Windows offers four container base images that users can build from. Each base image is a different type of the Windows or Windows Server operating system, has a different on-disk footprint, and has a different set of the Windows API set.
 
-<ul class="columns is-multiline has-margin-left-none has-margin-bottom-none has-padding-top-medium">
-    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+<ul>
+    <li>
         <a class="is-undecorated is-full-height is-block"
-            href="https://hub.docker.com/_/microsoft-windows-servercore" data-linktype="external">
+            href="https://hub.docker.com/_/microsoft-windows-servercore">
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
-                    <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo" data-linktype="relative-path">
+                    <div>
+                        <div>
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo">
                         </div>
                     </div>
-                <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
-                    <div class="has-padding-bottom-none">
-                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Windows Server Core</h3>
+                <div>
+                    <div>
+                        <h3>Windows Server Core</h3>
                     </div>
-                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                    <div>
                         <p>Supports traditional .NET framework applications.</p>
                     </div>
                 </div>
-            </article>
+            </a>
         </a>
     </li>
-    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+    <li>
         <a class="is-undecorated is-full-height is-block"
-            href="https://hub.docker.com/_/microsoft-windows-nanoserver" data-linktype="external">
+            href="https://hub.docker.com/_/microsoft-windows-nanoserver">
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
-                    <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo." data-linktype="relative-path">
+                    <div>
+                        <div>
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo.">
                         </div>
                     </div>
-                <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
-                    <div class="has-padding-bottom-none">
-                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Nano Server</h3>
+                <div>
+                    <div>
+                        <h3>Nano Server</h3>
                     </div>
-                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                    <div>
                         <p>Built for .NET Core applications.</p>
                     </div>
                 </div>
             </article>
         </a>
     </li>
-    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+    <li>
         <a class="is-undecorated is-full-height is-block"
-            href="https://hub.docker.com/_/microsoft-windows" data-linktype="external">
+            href="https://hub.docker.com/_/microsoft-windows">
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
-                    <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo." data-linktype="relative-path">
+                    <div>
+                        <div>
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo.">
                         </div>
                     </div>
-                <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
-                    <div class="has-padding-bottom-none">
-                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Windows</h3>
+                <div>
+                    <div>
+                        <h3>Windows</h3>
                     </div>
-                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                    <div>
                         <p>Provides the full Windows API set.</p>
                     </div>
                 </div>
             </article>
         </a>
     </li>
-    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+    <li>
         <a class="is-undecorated is-full-height is-block"
-            href="https://hub.docker.com/_/microsoft-windows-server/" data-linktype="external">
+            href="https://hub.docker.com/_/microsoft-windows-server/">
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
-                    <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo." data-linktype="relative-path">
+                    <div>
+                        <div>
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo.">
                         </div>
                     </div>
-                <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
-                    <div class="has-padding-bottom-none">
-                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Windows Server</h3>
+                <div>
+                    <div>
+                        <h3>Windows Server</h3>
                     </div>
-                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                    <div>
                         <p>Provides the full Windows API set.</p>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ Windows offers four container base images that users can build from. Each base i
 
 ## Image discovery
 
-All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/_/microsoft-windows-base-os-images). The Windows container base images themselves are served from [mcr.microsoft.com](https://azure.microsoft.com/services/container-registry/), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
+All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/_/microsoft-windows-base-os-images). The Windows container base images themselves are served from [mcr.microsoft.com](mcr.microsoft.com), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
 
 ```code
 docker pull mcr.microsoft.com/windows/servercore:ltsc2022
