@@ -31,9 +31,7 @@
       "uhfHeaderId": "MSDocsHeader-Windows",
       "breadcrumb_path": "/virtualization/toc.json",
       "extendBreadcrumb": true, 
-      "feedback_system": "GitHub", 
-      "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
-      "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
+      "feedback_system": "Standard"
     },
     "fileMetadata": {
       "ms.service": {
