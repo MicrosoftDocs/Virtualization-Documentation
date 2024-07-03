@@ -98,16 +98,6 @@ You can install Docker on Windows 10 or 11 Professional and Enterprise editions 
 
    ![Docker system tray menu showing the "Switch to Windows containers" command](./media/docker-for-win-switch.png)
 
-### Windows Admin Center
-
-You can use Windows Admin Center to properly set up a Windows Server machine as a container host. To get started, ensure you have the latest Containers extension installed on your Windows Admin Center instance. For more information on how to install and configure extensions, check out the Windows Admin Center [documentation](/windows-server/manage/windows-admin-center/overview). With the Containers extension installed, target the Windows Server machine you want to configure and select the Containers option:
-
-![Install Docker](./media/WAC-InstallDocker.png)
-
-Click the **Install** button. Windows Admin Center will start the configuration of Windows Server and Docker in the background. After the process is complete, you can refresh the page and see the other functionalities of the Containers extension.
-
-![Container images](./media/WAC-Images.png)
-
 ### Windows Server
 To run a Windows container you must have a supported container runtime available on your machine. The runtimes currently supported on Windows are [containerd](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd), [Moby](https://mobyproject.org/), and the [Mirantis Container Runtime](https://info.mirantis.com/docker-engine-support).
 
