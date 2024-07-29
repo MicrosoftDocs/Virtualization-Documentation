@@ -58,7 +58,7 @@ To enable the Hyper-V role using DISM:
 
   ![Console window showing Hyper-V being enabled.](media/dism_upd.png)
 
-For more information about DISM, see the [DISM Technical Reference](/windows-hardware/manufacture/desktop/dism-reference--deployment-image-servicing-and-management?view=windows-11).
+For more information about DISM, see the [DISM Technical Reference](/windows-hardware/manufacture/desktop/dism-reference--deployment-image-servicing-and-management).
 
 ## Enable the Hyper-V role through Settings
 
