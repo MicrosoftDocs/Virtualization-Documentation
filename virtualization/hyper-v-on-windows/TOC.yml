@@ -3,7 +3,7 @@
 - name: Install Hyper-V
   href: quick-start/enable-hyper-v.md
 - name: Make a Virtual Machine
-  href: quick-start/quick-create-virtual-machine.md
+  href: quick-start/create-virtual-machine.md
 - name: Manage Virtual Machines with Hyper-V
   items:
   - name: Hyper-V and PowerShell

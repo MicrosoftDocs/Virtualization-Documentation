@@ -11,9 +11,9 @@ ms.assetid: ae4a18ed-996b-4104-90c5-539c90798e4c
 
 # Supported Windows guests
 
-This article lists the operating system combinations supported in Hyper-V on Windows.  It also serves as an introduction to integration services and other factors in support.
+This article lists the operating system combinations supported in Hyper-V on Windows. It also serves as an introduction to integration services and other factors in support.
 
-Microsoft has tested these host/guest combinations.  Issues with these combinations may receive attention from Product Support Services.
+Microsoft has tested these host/guest combinations. Issues with these combinations may receive attention from Product Support Services.
 
 Microsoft provides support in the following manner:
 
@@ -23,12 +23,13 @@ Microsoft provides support in the following manner:
 
 * For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
 
-In order to be supported, all operating systems (guest and host) must be up to date.  Check Windows Update for critical updates.
+In order to be supported, all operating systems (guest and host) must be up to date. Check Windows Update for critical updates.
 
 ## Supported guest operating systems
 
 | Guest operating system | Maximum number of virtual processors | Notes |
 |:-----|:-----|:-----|
+| Windows 11 | 32 | |
 | Windows 10 | 32 |Enhanced Session Mode does not work on Windows 10 Home edition |
 | Windows 8.1 | 32 | |
 | Windows 8 | 32 ||

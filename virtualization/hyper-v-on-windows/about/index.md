@@ -1,15 +1,15 @@
 ---
-title: Introduction to Hyper-V on Windows 10
-description: Introduction to Hyper-V, virtualization, and related technologies.
-keywords: windows 10, hyper-v
+title: Introduction to Hyper-V on Windows
+description: Introduction to Hyper-V, virtualization, and related technologies on Windows.
+keywords: windows 10, hyper-v, windows 11
 author: scooley
 ms.author: scooley
-ms.date: 06/25/2018
+ms.date: 07/26/2024
 ms.topic: article
 ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
 ---
 
-# Introduction to Hyper-V on Windows 10
+# Introduction to Hyper-V on Windows 11
 
 Whether you are a software developer, an IT professional, or a technology enthusiast, many of you need to run multiple operating systems. Hyper-V lets you run multiple operating systems as virtual machines on Windows.
 
@@ -29,9 +29,12 @@ Virtualization allows you to:
 
 ## System requirements
 
-Hyper-V is available on 64-bit versions of Windows 10 Pro, Enterprise, and Education. It is not available on the Home edition.
+Hyper-V requires:
 
-> Upgrade from Windows 10 Home edition to Windows 10 Pro by opening **Settings** > **Update and Security** > **Activation**. Here you can visit the store and purchase an upgrade.
+- A processor with second level address translation (SLAT) capabilities.
+- Windows 11 Pro or Windows Enterprise.
+
+> Upgrade to Windows Pro by opening **Settings** > **Update and Security** > **Activation**. Here you can visit the store and purchase an upgrade.
 
 Most computers run Hyper-V, however each virtual machine runs a completely separate operating system.  You can generally run one or more virtual machines on a computer with 4GB of RAM, though you'll need more resources for additional virtual machines or to install and run resource intense software like games, video editing, or engineering design software.
 
@@ -57,7 +60,7 @@ Hyper-V features only available on Windows Server:
 * SR-IOV networking
 * Shared .VHDX
 
-Hyper-V features only available on Windows 10:
+Hyper-V features only available on Windows:
 
 * Quick Create and the VM Gallery
 * Default network (NAT switch)
@@ -72,4 +75,4 @@ In addition, if you have Hyper-V enabled, those latency-sensitive, high-precisio
 
 ## Next step
 
-[Install Hyper-V on Windows 10](../quick-start/enable-hyper-v.md)
+[Install Hyper-V on Windows](../quick-start/enable-hyper-v.md)
