@@ -27,7 +27,7 @@ Production checkpoints are selected by default however this can be changed using
 
 ## Changing the Checkpoint Type
 
-### [Hyper-V manager](#tab/hyper-v manager)
+### [Hyper-V manager](#tab/hyper-v-manager)
 
 1. Open Hyper-V Manager.
 
@@ -67,7 +67,7 @@ Set-VM -Name <vmname> -CheckpointType ProductionOnly
 
 Creates a checkpoint of the type configured for the virtual machine. See the [Configuring Checkpoint Type](checkpoints.md#changing-the-checkpoint-type) section earlier in this document for instructions on how to change this type.
 
-### [Hyper-V manager](#tab/hyper-v manager)
+### [Hyper-V manager](#tab/hyper-v-manager)
 
 To create a checkpoint:
 
@@ -97,7 +97,7 @@ Get-VMCheckpoint -VMName <VMName>
 
 If you want to revert your virtual machine to a previous point-in-time, you can apply an existing checkpoint.
 
-### [Hyper-V manager](#tab/hyper-v manager)
+### [Hyper-V manager](#tab/hyper-v-manager)
 
 1. In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
 
@@ -139,7 +139,7 @@ virtual_machine_name (MM/DD/YYY -hh:mm:ss AM\PM)
 
 Names are limited to 100 characters, and the name can't be blank.
 
-### [Hyper-V manager](#tab/hyper-v manager)**
+### [Hyper-V manager](#tab/hyper-v-manager)**
 
 1. In **Hyper-V Manager**, select the virtual machine.
 
@@ -165,7 +165,7 @@ Behind the scenes, checkpoints are stored as .avhdx files in the same location a
 
 You should not delete the .avhdx files directly.
 
-### [Hyper-V manager](#tab/hyper-v manager)
+### [Hyper-V manager](#tab/hyper-v-manager)
 
 To cleanly delete a checkpoint:
 
