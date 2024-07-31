@@ -1,10 +1,10 @@
 ---
 title: Using checkpoints
 description: Using checkpoints
-keywords: windows 11, hyper-v
+keywords: windows 10, windows 11, hyper-v
 author: scooley
 ms.author: scooley
-ms.date: 05/02/2016
+ms.date: 07/31/2024
 ms.topic: article
 ms.assetid: d9c398c4-ee72-45c6-9ce8-4f06569dae6c
 ---
@@ -13,61 +13,71 @@ ms.assetid: d9c398c4-ee72-45c6-9ce8-4f06569dae6c
 
 One of the great benefits to virtualization is the ability to easily save the state of a virtual machine. In Hyper-V this is done through the use of virtual machine checkpoints. You may want to create a virtual machine checkpoint before making software configuration changes, applying a software update, or installing new software. If a system change were to cause an issue, the virtual machine can be reverted to the state at which it was when then checkpoint was taken.
 
-Windows 11 Hyper-V includes two types of checkpoints:
+Windows 10 and 11 Hyper-V includes two types of checkpoints:
 
-* **Standard Checkpoints**: takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistency issues with systems that replicate data between different nodes such as Active Directory.  Hyper-V only offered standard checkpoints (formerly called snapshots) prior to Windows 11.
+* **Standard Checkpoints**: takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistency issues with systems that replicate data between different nodes such as Active Directory.  Hyper-V only offered standard checkpoints (formerly called snapshots) prior to Windows 10.
 
 * **Production Checkpoints**: uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data-consistent backup of the virtual machine. No snapshot of the virtual machine memory state is taken.
 
 Production checkpoints are selected by default however this can be changed using either Hyper-V manager or PowerShell.
 
-> **Note:** The Hyper-V PowerShell module has several aliases so that checkpoint and snapshot can be used interchangeably.  
-  This document uses checkpoint, however be aware that you may see similar commands using the term snapshot.
+> [!NOTE]
+> The Hyper-V PowerShell module has several aliases so that **checkpoint** and **snapshot** can be used interchangeably.  
+> This document uses **checkpoint**, however be aware that you may see similar commands using the term **snapshot**.
 
 ## Changing the Checkpoint Type
 
-**Using Hyper-V Manager**
+### [Hyper-V manager](#tab/hyper-v manager)
 
 1. Open Hyper-V Manager.
-2. Right click on a virtual machine and select **settings**.
-3. Under Management select **Checkpoints**.
-4. Select the desired checkpoint type.
 
-<br />
+1. Right-click on a virtual machine and select **settings**.
 
-![Screenshot of the options for Checkpoints in the Management section of the Hyper V Manager.](media/checkpoint_upd.png)
+1. Under Management select **Checkpoints**.
 
-**Using PowerShell**
+1. Select the desired checkpoint type.
 
-The following commands can be run to change the checkpoint with PowerShell. 
+    ![Screenshot of the options for Checkpoints in the Management section of the Hyper V Manager.](media/checkpoint_upd.png)
+
+### [PowerShell](#tab/powershell)
+
+The following commands can be run to change the checkpoint with PowerShell.
 
 Set to Standard Checkpoint:
+
 ```powershell
 Set-VM -Name <vmname> -CheckpointType Standard
 ```
 
 Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is being created:
+
 ```powershell
 Set-VM -Name <vmname> -CheckpointType Production
 ```
 
-Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is not being created. 
+Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is not being created.
+
 ```powershell
 Set-VM -Name <vmname> -CheckpointType ProductionOnly
 ```
+
+---
 
 ## Creating checkpoints
 
 Creates a checkpoint of the type configured for the virtual machine. See the [Configuring Checkpoint Type](checkpoints.md#changing-the-checkpoint-type) section earlier in this document for instructions on how to change this type.
 
-**Using Hyper-V Manager**
+### [Hyper-V manager](#tab/hyper-v manager)
 
-To create a checkpoint:  
+To create a checkpoint:
+
 1. In Hyper-V Manager, select the virtual machine.
-2. Right-click the name of the virtual machine, and then click **Checkpoint**.
-3. When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**.
 
-**Using PowerShell**
+1. Right-click the name of the virtual machine, and then click **Checkpoint**.
+
+1. When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**.
+
+### [PowerShell](#tab/powershell)
 
 Create a checkpoint using the **CheckPoint-VM** command.  
 
@@ -81,11 +91,13 @@ When the checkpoint process has completed, view a list of checkpoints for a virt
 Get-VMCheckpoint -VMName <VMName>
 ```
 
+---
+
 ## Applying checkpoints
 
 If you want to revert your virtual machine to a previous point-in-time, you can apply an existing checkpoint.
 
-### Using Hyper-V Manager
+### [Hyper-V manager](#tab/hyper-v manager)
 
 1. In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
 
@@ -99,7 +111,7 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
   
   Select either Apply option to create apply the checkpoint.
 
-### Using PowerShell
+### [PowerShell](#tab/powershell)
 
 1. To see a list of checkpoints for a virtual machine use the **Get-VMCheckpoint** command.
 
@@ -113,6 +125,8 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
     Restore-VMCheckpoint -Name <checkpoint name> -VMName <VMName> -Confirm:$false
     ```
 
+---
+
 ## Renaming checkpoints
 
 Many checkpoints are created at a specific point.  Giving them an identifiable name makes it easier to remember details about the system state when the checkpoint was created.
@@ -125,7 +139,7 @@ virtual_machine_name (MM/DD/YYY -hh:mm:ss AM\PM)
 
 Names are limited to 100 characters, and the name can't be blank.
 
-### Using Hyper-V Manager**
+### [Hyper-V manager](#tab/hyper-v manager)**
 
 1. In **Hyper-V Manager**, select the virtual machine.
 
@@ -135,11 +149,13 @@ Names are limited to 100 characters, and the name can't be blank.
 
 1. Select **ENTER** when you are done.
 
-### Using PowerShell
+### [PowerShell](#tab/powershell)
 
 ``` powershell
 Rename-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> -NewName <new checkpoint name>
 ```
+
+---
 
 ## Deleting checkpoints
 
@@ -149,7 +165,7 @@ Behind the scenes, checkpoints are stored as .avhdx files in the same location a
 
 You should not delete the .avhdx files directly.
 
-### Using Hyper-V Manager
+### [Hyper-V manager](#tab/hyper-v manager)
 
 To cleanly delete a checkpoint:
 
@@ -159,21 +175,25 @@ To cleanly delete a checkpoint:
 
 1. You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then select **Delete**.
 
-### Using PowerShell
+### [PowerShell](#tab/powershell)
 
 ```powershell
 Remove-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name>
 ```
 
+---
+
 ## Exporting checkpoints
 
 Export bundles the checkpoint as a virtual machine so the checkpoint can be moved to a new location. Once imported, the checkpoint is restored as a virtual machine. Exported checkpoints can be used for backup.
 
-### Using PowerShell
+### [PowerShell](#tab/powershell)
 
 ``` powershell
 Export-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> -Path <path for export>
 ```
+
+---
 
 ## Enable or disable checkpoints
 

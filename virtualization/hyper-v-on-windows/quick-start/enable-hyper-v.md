@@ -1,7 +1,7 @@
 ---
 title: Enable Hyper-V on Windows
-description: Install Hyper-V on Windows 11.
-keywords: windows 11, hyper-v
+description: Install Hyper-V on Windows 10 or Windows 11 either using the Windows control panel, PowerShell or DISM.
+keywords: windows 10, windows 11, hyper-v
 author: scooley
 ms.author: scooley
 ms.date: 07/29/2024
@@ -9,24 +9,24 @@ ms.topic: article
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
 ---
 
-# Install Hyper-V on Windows 11
+# Install Hyper-V on Windows
 
-Enable Hyper-V to create virtual machines on Windows 11. Hyper-V can be enabled in many ways including using the Windows 11 control panel, PowerShell or using the Deployment Imaging Servicing and Management tool (DISM). This documents walks through each option.
+Enable Hyper-V to create virtual machines on Windows. Hyper-V can be enabled in many ways including using the Windows control panel, PowerShell or using the Deployment Imaging Servicing and Management tool (DISM). This document walks through each option.
 
-> **Note:**  Hyper-V is built into Windows as an optional feature -- there's no Hyper-V download.
+>[!NOTE]
+> Hyper-V is built into Windows as an optional feature -- there's no Hyper-V download.
 
 ## Check requirements
 
-* Windows 11 Enterprise, or Pro
+* Windows 10 (Pro or Enterprise), or Windows 11 (Pro or Enterprise)
 * 64-bit Processor with Second Level Address Translation (SLAT).
 * CPU support for VM Monitor Mode Extension (VT-c on Intel CPUs).
 * Minimum of 4 GB memory.
 
-The Hyper-V role **can't** be installed on Windows 11 Home.
+>[!NOTE]
+> The Hyper-V role **can't** be installed on Windows 10 Home or Windows 11 Home.
 
-Upgrade from Windows 11 Home edition to Windows 11 Pro by opening up **Settings** > **Update and Security** > **Activation**.
-
-For more information and troubleshooting, see [Windows 11 Hyper-V System Requirements](../reference/hyper-v-requirements.md).
+For more information and troubleshooting, see [Windows Hyper-V System Requirements](/virtualization/hyper-v-on-windows/reference/hyper-v-requirements).
 
 ## Enable Hyper-V using PowerShell
 

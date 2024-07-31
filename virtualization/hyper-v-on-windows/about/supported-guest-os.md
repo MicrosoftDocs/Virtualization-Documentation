@@ -23,7 +23,7 @@ Microsoft provides support in the following manner:
 
 * For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
 
-In order to be supported, all operating systems (guest and host) must be up to date. Check Windows Update for critical updates.
+In order to be supported, all operating systems (guest and host) must be up-to-date. Check Windows Update for critical updates.
 
 ## Supported guest operating systems
 

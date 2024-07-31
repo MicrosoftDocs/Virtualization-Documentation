@@ -1,7 +1,7 @@
 ---
 title: Working with Hyper-V and Windows PowerShell
 description: Learn about working with Hyper-V and how to automate tasks using Windows PowerShell.
-keywords: windows 10, hyper-v
+keywords: windows 10, windows 11, hyper-v
 author: scooley
 ms.author: scooley
 ms.date: 07/29/2024
@@ -51,7 +51,7 @@ Use the `Get-VM` command to return a list of virtual machines.
 
      ![Screenshot of the Administrator Windows Power Shell screen showing the output after entering Get V M.](./media/get_vm.png)
 
-1. To return a list of only powered on virtual machines add a filter to the `Get-VM` command. A filter can be added by using the `Where-Object` command. For more information on filtering see the [Using the Where-Object](/previous-versions/windows/it-pro/windows-powershell-1.0/ee177028(v=technet.10)) documentation.
+1. To return a list of only powered on virtual machines add a filter to the `Get-VM` command. A filter can be added by using the `Where-Object` command. For more information on filtering, see [Using the Where-Object](/previous-versions/windows/it-pro/windows-powershell-1.0/ee177028(v=technet.10)) documentation.
 
      ```powershell
      Get-VM | where {$_.State -eq 'Running'}

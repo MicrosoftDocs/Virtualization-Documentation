@@ -52,7 +52,7 @@ If search doesn't find Hyper-V Manager, Hyper-V or the Hyper-V management tools 
 
 The following steps can be used to create a virtual switch with an external connection using PowerShell.
 
-1. Use **Get-NetAdapter** to return a list of network adapters connected to the Windows 10 system.
+1. Use **Get-NetAdapter** to return a list of network adapters connected to the Windows system.
 
     ```powershell
     PS C:\> Get-NetAdapter
@@ -87,11 +87,11 @@ This has a few useful properties:
 1. NAT allows multiple virtual machines to host applications that require identical (internal) communication ports by mapping these to unique external ports.
 1. NAT uses an internal switch -- creating an internal switch doesn't cause you to use network connection and tends to interfere less with a computer's networking.
 
-To set up a NAT network and connect it to a virtual machine, follow the [NAT networking user guide](../user-guide/setup-nat-network.md).
+To set up a NAT network and connect it to a virtual machine, follow the [NAT networking user guide](/virtualization/hyper-v-on-windows/user-guide/setup-nat-network).
 
 ### The two switch approach
 
-If you’re running Windows 11 Hyper-V on a laptop and frequently switch between wireless networking and a wired network, you may want to create a virtual switch for both the ethernet and wireless network cards. Depending on how the laptop connects to the network, you can change your virtual machines between these switches. Virtual machines don't switch between wired and wireless automatically.
+If you’re running Windows Hyper-V on a laptop and frequently switch between wireless networking and a wired network, you may want to create a virtual switch for both the ethernet and wireless network cards. Depending on how the laptop connects to the network, you can change your virtual machines between these switches. Virtual machines don't switch between wired and wireless automatically.
 
 >[!IMPORTANT]
 >The two switch approach doesn't support External vSwitch over wireless card and should be used for testing purposes only.
