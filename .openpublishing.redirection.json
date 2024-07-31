@@ -509,6 +509,11 @@
       "source_path": "virtualization/hyper-v-on-windows/reference/server-only-features.md",
       "redirect_url": "/virtualization/hyper-v-on-windows/reference/hyper-v-requirements",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/create-pre-release-vm.md",
+      "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/create-virtual-machine",
+      "redirect_document_id": false
     }
   ]
 }

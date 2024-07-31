@@ -14,8 +14,6 @@
     href: user-guide/checkpoints.md
   - name: Connect with PowerShell Direct
     href: user-guide/powershell-direct.md
-  - name: Create pre-release VMs
-    href: user-guide/create-pre-release-vm.md
 - name: Manage the Hyper-V Hosts
   items:
   - name: What is Nested Virtualization?
