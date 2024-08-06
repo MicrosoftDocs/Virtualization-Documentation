@@ -62,15 +62,15 @@ For more information about DISM, see the [DISM Technical Reference](/windows-har
 
 ## Enable the Hyper-V role through Settings
 
-1. Right-click on the Windows button and select ‘Apps and Features’.
+1. Navigate to the Control Panel.
 
-1. Select **Programs and Features** on the right under related settings.
+1. Select **Programs**, then **Programs and Features**.
 
 1. Select **Turn Windows Features on or off**.
 
 1. Select **Hyper-V** and then select **OK**.
 
-![Windows programs and features dialogue box](media/enable_role_upd.png)
+![Windows programs and features dialogue box](media/enable-hyper-v.png)
 
 When the installation completes you're prompted to restart your computer.
 

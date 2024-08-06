@@ -1,7 +1,7 @@
 ---
 title: Share devices with Windows virtual machines
-description: Walks you through sharing devices with Hyper-V virtual machines (USB, audio, microphone, and mounted drives)
-keywords: windows 10, windows 11 hyper-v
+description: Walks you through sharing devices with Hyper-V virtual machines (USB, audio, microphone, and mounted drives).
+keywords: windows 10, windows 11, hyper-v
 author: scooley
 ms.author: scooley
 ms.date: 10/20/2017
@@ -68,7 +68,7 @@ By default, virtual machines using enhanced session mode will share clipboard an
 
 To share devices with your virtual machine or to change those default settings:
 
-1. Show more options
+1. When connecting to Show more options
 
       ![Screenshot of the connection pop up with the Show Options drop down emphasized.](media/esm-show-options.png)
 

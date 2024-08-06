@@ -15,12 +15,12 @@ Starting in Windows 10 Anniversary Update, anyone can make applications that com
 
 This document walks through creating a simple program built on Hyper-V sockets.
 
-**Supported Host OS**
+## Supported Host OS
 
 * Windows 10 and later
 * Windows Server 2016 and later
 
-**Supported Guest OS**
+## Supported Guest OS
 
 * Windows 10 and later
 * Windows Server 2016 and later
@@ -34,7 +34,7 @@ This document walks through creating a simple program built on Hyper-V sockets.
 > CONFIG_HYPERV_VSOCKETS=y
 > ```
 
-**Capabilities and Limitations**
+## Capabilities and Limitations
 
 * Supports kernel mode or user mode actions
 * Data stream only
@@ -46,9 +46,9 @@ This document walks through creating a simple program built on Hyper-V sockets.
 
 Requirements:
 
-* C/C++ compiler.  If you don't have one, checkout [Visual Studio Community](https://aka.ms/vs)
-* [Windows 10 SDK](https://developer.microsoft.com/windows/downloads/windows-10-sdk) -- pre-installed in Visual Studio 2015 with Update 3 and later.
-* A computer running one of the host operating systems above with at least one vitual machine. -- this is for testing your application.
+* C/C++ compiler. If you don't have one, checkout [Visual Studio Community](https://aka.ms/vs)
+* [Windows SDK](https://developer.microsoft.com/windows/downloads/windows-sdk) -- pre-installed in Visual Studio 2015 with Update 3 and later.
+* A computer running one of the host operating systems specified with at least one vitual machine. -- this is for testing your application.
 
 > **Note:** The API for Hyper-V sockets became publicly available in Windows 10 Anniversary Update. Applications that use HVSocket will run on any Windows 10 host and guest but can only be developed with a Windows SDK later than build 14290.
 
@@ -58,8 +58,8 @@ In order to use Hyper-V sockets, the application must be registered with the Hyp
 
 By registering the service in the registry, you get:
 
-*  WMI management for enable, disable, and listing available services
-*  Permission to communicate with virtual machines directly
+* WMI management for enable, disable, and listing available services
+* Permission to communicate with virtual machines directly
 
 The following PowerShell will register a new application named "HV Socket Demo".  This must be run as administrator.  Manual instructions below.
 
@@ -81,7 +81,8 @@ $service.PSChildName | clip.exe
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
 ```
-In this registry location, you'll see several GUIDs.  Those are our in-box services.
+
+In this registry location, you'll see several GUIDs. Those are our in-box services.
 
 Information in the registry per service:
 
@@ -90,9 +91,9 @@ Information in the registry per service:
 
 To register your own service, create a new registry key using your own GUID and friendly name.
 
-The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
+The friendly name will be associated with your new application. It'll appear in performance counters and other places where a GUID isn't appropriate.
 
-The registry entry will look like this:
+The registry entry looks like this:
 
 ```output
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
@@ -205,7 +206,9 @@ struct sockaddr_vm {
 ```
 
 In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDs:
+
 * VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.
+
   ```PowerShell
   (Get-VM -Name $VMName).Id
   ```
@@ -248,6 +251,7 @@ Accept()
 | HVSOCKET_CONNECTED_SUSPEND | ULONG | When this socket option is set to a non-zero value sockets do not disconnect when the virtual machine is paused.  |
 
 ## Useful links
+
 [Complete WinSock API](/windows/desktop/WinSock/winsock-functions)
 
 [Hyper-V Integration Services reference](../reference/integration-services.md)
