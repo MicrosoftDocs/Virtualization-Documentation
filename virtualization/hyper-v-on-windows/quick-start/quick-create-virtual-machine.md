@@ -70,10 +70,6 @@ That's it!  Quick Create will take care of the rest.
 
 Congratulations, you have a new virtual machine.  Now you're ready to install the operating system.
 
-Your virtual machine should look something like this:
-
-![Virtual machine start screen](media/OSDeploy_upd.png)
-
 > **Note:** Unless you're running a volume-licensed version of Windows, you need a separate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
 
 ## Before Windows 10 Creators Update (Windows 10 version 1607 and earlier)

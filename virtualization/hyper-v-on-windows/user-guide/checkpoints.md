@@ -139,7 +139,7 @@ virtual_machine_name (MM/DD/YYY -hh:mm:ss AM\PM)
 
 Names are limited to 100 characters, and the name can't be blank.
 
-### [Hyper-V manager](#tab/hyper-v-manager)**
+### [Hyper-V manager](#tab/hyper-v-manager)
 
 1. In **Hyper-V Manager**, select the virtual machine.
 

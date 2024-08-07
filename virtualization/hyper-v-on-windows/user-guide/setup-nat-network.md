@@ -2,8 +2,8 @@
 title: Set up a NAT network
 description: Set up a NAT network.
 keywords: windows 10, windows 11, hyper-v
-author: jmesser81
-ms.author: jamesser
+author: meaghanlewis
+ms.author: mosagie
 ms.date: 05/02/2016
 ms.topic: article
 ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
