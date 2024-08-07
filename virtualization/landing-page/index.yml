@@ -50,7 +50,7 @@ conceptualContent:
     # Card
     - title: Run virtual machines on Windows
       links:
-        - url: /virtualization/hyper-v-on-windows/quick-start/quick-create-virtual-machine
+        - url: /virtualization/hyper-v-on-windows/quick-start/create-virtual-machine
           itemType: quickstart
           text: Create a virtual machine
         - url: /virtualization/hyper-v-on-windows/reference/hyper-v-requirements
