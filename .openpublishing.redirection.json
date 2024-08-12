@@ -504,6 +504,16 @@
       "source_path": "virtualization/windowscontainers/about/whats-new-ws2022-containers.md",
       "redirect_url": "/windows-server/get-started/whats-new-in-windows-server-2022",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/server-only-features.md",
+      "redirect_url": "/virtualization/hyper-v-on-windows/reference/hyper-v-requirements",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/create-pre-release-vm.md",
+      "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/create-virtual-machine",
+      "redirect_document_id": false
     }
   ]
 }

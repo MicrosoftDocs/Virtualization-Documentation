@@ -7,7 +7,8 @@ metadata:
   title: Containers on Windows documentation
   description: documentation for running containers on Windows.
   ms.topic: landing-page # Required
-  author: cwilhit
+  author: meaghanlewis
+  ms.author: mosagie
   ms.date: 07/06/2020
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
@@ -25,7 +26,7 @@ landingContent:
           - text: Try Windows containers in AKS on Azure Stack HCI!
             url: /azure-stack/aks-hci/deploy-windows-application
           - text: Check out our container images on Docker Hub
-            url: https://hub.docker.com/_/microsoft-windows-base-os-images
+            url: https://hub.docker.com/r/microsoft/windows
           - text: Read the Containers blog
             url: https://techcommunity.microsoft.com/t5/Containers/bg-p/Containers
 

@@ -1,9 +1,9 @@
 ---
 title: Set up a NAT network
-description: Set up a NAT network
-keywords: windows 10, hyper-v
-author: jmesser81
-ms.author: jamesser
+description: Set up a NAT network.
+keywords: windows 10, windows 11, hyper-v
+author: meaghanlewis
+ms.author: mosagie
 ms.date: 05/02/2016
 ms.topic: article
 ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
@@ -11,20 +11,24 @@ ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
 
 # Set up a NAT network
 
-Windows 10 Hyper-V allows native network address translation (NAT) for a virtual network.
+Windows 10 and Windows 11 Hyper-V allows native network address translation (NAT) for a virtual network.
 
 This guide will walk you through:
+
 * creating a NAT network
 * connecting an existing virtual machine to your new network
 * confirming that the virtual machine is connected correctly
 
 Requirements:
-* Windows 10 Anniversary Update or later
-* Hyper-V is enabled (instructions [here](../quick-start/enable-hyper-v.md))
 
-> **Note:**  Currently, you are limited to one NAT network per host. For additional details on the Windows NAT (WinNAT) implementation, capabilities, and limitations, please reference the [WinNAT capabilities and limitations blog](https://techcommunity.microsoft.com/t5/Virtualization/Windows-NAT-WinNAT-Capabilities-and-limitations/ba-p/382303)
+* Windows 10 Anniversary Update or later
+* Hyper-V is enabled. Follow the instructions to [Enable Hyper-V](../quick-start/enable-hyper-v.md)
+
+> [!NOTE]
+> Currently, you're limited to one NAT network per host. For additional details on the Windows NAT (WinNAT) implementation, capabilities, and limitations, please reference the [WinNAT capabilities and limitations blog](https://techcommunity.microsoft.com/t5/Virtualization/Windows-NAT-WinNAT-Capabilities-and-limitations/ba-p/382303)
 
 ## NAT Overview
+
 NAT gives a virtual machine access to network resources using the host computer's IP address and a port through an internal Hyper-V Virtual Switch.
 
 Network Address Translation (NAT) is a networking mode designed to conserve IP addresses by mapping an external IP address and port to a much larger set of internal IP addresses.  Basically, a NAT uses a flow table to route traffic from an external (host) IP Address and port number to the correct internal IP address associated with an endpoint on the network (virtual machine, computer, container, etc.)
@@ -33,19 +37,19 @@ Additionally, NAT allows multiple virtual machines to host applications that req
 
 For all of these reasons, NAT networking is very common for container technology (see [Container Networking](/virtualization/windowscontainers/container-networking/architecture)).
 
-
 ## Create a NAT virtual network
+
 Let's walk through setting up a new NAT network.
 
 1. Open a PowerShell console as Administrator.  
 
-2. Create an internal switch.
+1. Create an internal switch.
 
     ```powershell
     New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal
     ```
 
-3. Find the interface index of the virtual switch you just created.
+1. Find the interface index of the virtual switch you just created.
 
     You can find the interface index by running `Get-NetAdapter`
 
@@ -64,15 +68,16 @@ Let's walk through setting up a new NAT network.
 
     The internal switch will have a name like `vEthernet (SwitchName)` and an Interface Description of `Hyper-V Virtual Ethernet Adapter`. Take note of its `ifIndex` to use in the next step.
 
-4. Configure the NAT gateway using [New-NetIPAddress](/powershell/module/nettcpip/New-NetIPAddress).  
+1. Configure the NAT gateway using [New-NetIPAddress](/powershell/module/nettcpip/New-NetIPAddress).  
 
     Here is the generic command:
+
     ```powershell
     New-NetIPAddress -IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>
     ```
 
-    In order to configure the gateway, you'll need a bit of information about your network:  
-    * **IPAddress** -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP. 
+    In order to configure the gateway, you'll need a bit of information about your network:
+    * **IPAddress** -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP.
       The generic form will be a.b.c.1 (e.g. 172.16.0.1).  While the final position doesn’t have to be .1, it usually is (based on prefix length). This IP address is in the range of addresses used by the guest virtual machines. For example if the guest VMs use IP range 172.16.0.0, then you can use an IP address 172.16.0.100 as the NAT Gateway. 
 
       A common gateway IP is 192.168.0.1  
@@ -92,7 +97,7 @@ Let's walk through setting up a new NAT network.
     New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
     ```
 
-5. Configure the NAT network using [New-NetNat](/powershell/module/netnat/New-NetNat).  
+1. Configure the NAT network using [New-NetNat](/powershell/module/netnat/New-NetNat).  
 
     Here is the generic command:
 
@@ -115,7 +120,7 @@ Let's walk through setting up a new NAT network.
     New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24
     ```
 
-Congratulations!  You now have a virtual NAT network!  To add a virtual machine, to the NAT network follow [these instructions](#connect-a-virtual-machine).
+Congratulations! You now have a virtual NAT network!  To add a virtual machine, to the NAT network follow [these instructions](#connect-a-virtual-machine).
 
 ## Connect a virtual machine
 
@@ -123,16 +128,17 @@ To connect a virtual machine to your new NAT network, connect the internal switc
 
 Since WinNAT by itself does not allocate and assign IP addresses to an endpoint (e.g. VM), you will need to do this manually from within the VM itself - i.e. set IP address within range of NAT internal prefix, set default gateway IP address, set DNS server information. The only caveat to this is when the endpoint is attached to a container. In this case, the Host Network Service (HNS) allocates and uses the Host Compute Service (HCS) to assign the IP address, gateway IP, and DNS info to the container directly.
 
-
 ## Configuration Example: Attaching VMs and Containers to a NAT network
 
 _If you need to attach multiple VMs and containers to a single NAT, you will need to ensure that the NAT internal subnet prefix is large enough to encompass the IP ranges being assigned by different applications or services (e.g. Docker for Windows and Windows Container – HNS). This will require either application-level assignment of IPs and network configuration or manual configuration which must be done by an admin and guaranteed not to re-use existing IP assignments on the same host._
 
 ### Docker for Windows (Linux VM) and Windows Containers
+
 The solution below will allow both Docker for Windows (Linux VM running Linux containers) and Windows Containers to share the same WinNAT instance using separate internal vSwitches. Connectivity between both Linux and Windows containers will work.
 
-User has connected VMs to a NAT network through an internal vSwitch named “VMNAT” and now wants to install Windows Container feature with docker engine
-```
+User has connected VMs to a NAT network through an internal vSwitch named “VMNAT” and now wants to install Windows Container feature with docker engine:
+
+```output
 PS C:\> Get-NetNat “VMNAT”| Remove-NetNat (this will remove the NAT but keep the internal vSwitch).
 Install Windows Container Feature
 DO NOT START Docker Service (daemon)
@@ -142,10 +148,12 @@ PS C:\> Get-NetNat | Remove-NetNAT (again, this will remove the NAT but keep the
 PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared prefix>
 PS C:\> Start-Service docker
 ```
+
 Docker/HNS will assign IPs to Windows containers and Admin will assign IPs to VMs from the difference set of the two.
 
-User has installed Windows Container feature with docker engine running and now wants to connect VMs to the NAT network
-```
+User has installed Windows Container feature with docker engine running and now wants to connect VMs to the NAT network:
+
+```output
 PS C:\> Stop-Service docker
 PS C:\> Get-ContainerNetwork | Remove-ContainerNetwork -force
 PS C:\> Get-NetNat | Remove-NetNat (this will remove the NAT but keep the internal vSwitch)
@@ -156,6 +164,7 @@ PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared pre
 PS C:\> New-VirtualSwitch -Type internal (attach VMs to this new vSwitch)
 PS C:\> Start-Service docker
 ```
+
 Docker/HNS will assign IPs to Windows containers and Admin will assign IPs to VMs from the difference set of the two.
 
 In the end, you should have two internal VM switches and one NetNat shared between them.
@@ -191,32 +200,38 @@ Some scenarios require multiple applications or services to use the same NAT. In
 
 In the end, you should have two internal vSwitches – one named DockerNAT and the other named nat. You will only have one NAT network (10.0.0.0/17) confirmed by running Get-NetNat. IP addresses for Windows containers will be assigned by the Windows Host Network Service (HNS) from the 10.0.76.0/24 subnet. Based on the existing MobyLinux.ps1 script, IP addresses for Docker 4 Windows will be assigned from the 10.0.75.0/24 subnet.
 
-
 ## Troubleshooting
 
-### Multiple NAT networks are not supported  
+### Multiple NAT networks are not supported
+
 This guide assumes that there are no other NATs on the host. However, applications or services will require the use of a NAT and may create one as part of setup. Since Windows (WinNAT) only supports one internal NAT subnet prefix, trying to create multiple NATs will place the system into an unknown state.
 
 To see if this may be the problem, make sure you only have one NAT:
+
 ```powershell
 Get-NetNat
 ```
 
-If a NAT already exists, delete it
+If a NAT already exists, delete it:
+
 ```powershell
 Get-NetNat | Remove-NetNat
 ```
-Make sure you only have one “internal” vmSwitch for the application or feature (e.g. Windows containers). Record the name of the vSwitch
+
+Make sure you only have one “internal” vmSwitch for the application or feature (e.g. Windows containers). Record the name of the vSwitch:
+
 ```powershell
 Get-VMSwitch
 ```
 
-Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually _x_._y_._z_.1) from the old NAT still assigned to an adapter
+Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually _x_._y_._z_.1) from the old NAT still assigned to an adapter:
+
 ```powershell
 Get-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)"
 ```
 
-If an old private IP address is in use, please delete it
+If an old private IP address is in use, please delete it:
+
 ```powershell
 Remove-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)" -IPAddress <IPAddress>
 ```
@@ -252,4 +267,5 @@ Start-Service docker
 See this [setup guide for multiple applications using the same NAT](#multiple-applications-using-the-same-nat) to rebuild your NAT environment, if necessary. 
 
 ## References
+
 Read more about [NAT networks](https://en.wikipedia.org/wiki/Network_address_translation)

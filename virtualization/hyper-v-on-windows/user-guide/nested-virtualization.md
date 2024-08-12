@@ -4,7 +4,7 @@ description: Learn about Nested Virtualization in Hyper-V, including what it is,
 author: robinharwood
 ms.author: wscontent
 ms.topic: concept-article
-ms.date: 07/13/2023
+ms.date: 07/31/2024
 #CustomerIntent: As a virtualization admin, I was to understand what Nested Virtualization is, so that I apply it to my own environment.
 ---
 
@@ -71,7 +71,7 @@ Microsoft offers Hyper-V isolation for containers. This isolation mode offers en
 
 When a Hyper-V isolated container is run in a Hyper-V VM, it's running nested. Using a Hyper-V VM opens many useful scenarios but also increases latency, as there are two levels of hypervisors running above the physical host.
 
-Running Hyper-V isolated containers nested on Hyper-V is supported.
+Running Hyper-V isolated containers nested on Hyper-V is supported. One level of nested virtualization is supported in production, which allows for isolated container deployments.
 
 To learn more about Nested Hyper-V Containers, see [Performance tuning Windows Server Containers](/windows-server/administration/performance-tuning/role/windows-server-container/).
 
