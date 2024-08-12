@@ -3,7 +3,7 @@
 - name: Install Hyper-V
   href: quick-start/enable-hyper-v.md
 - name: Make a Virtual Machine
-  href: quick-start/quick-create-virtual-machine.md
+  href: quick-start/create-virtual-machine.md
 - name: Manage Virtual Machines with Hyper-V
   items:
   - name: Hyper-V and PowerShell
@@ -14,8 +14,6 @@
     href: user-guide/checkpoints.md
   - name: Connect with PowerShell Direct
     href: user-guide/powershell-direct.md
-  - name: Create pre-release VMs
-    href: user-guide/create-pre-release-vm.md
 - name: Manage the Hyper-V Hosts
   items:
   - name: What is Nested Virtualization?
@@ -39,7 +37,7 @@
   - name: Supported Guest Operating Systems
     href: about/supported-guest-os.md
   - name: Hyper-V PowerShell
-    href: /powershell/module/hyper-v/index?view=win10-ps&preserve-view=true
+    href: /powershell/module/hyper-v
   - name: Hyper-V Integration Services
     href: reference/integration-services.md
   - name: Hyper-V Architecture
