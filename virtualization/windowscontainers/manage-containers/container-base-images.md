@@ -77,7 +77,7 @@ Windows offers four container base images that users can build from. Each base i
     </li>
     <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
         <a class="is-undecorated is-full-height is-block"
-            href="https://hub.docker.com/_/microsoft-windows-server/" data-linktype="external">
+            href="https://hub.docker.com/r/microsoft/windows-server/" data-linktype="external">
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
@@ -99,7 +99,7 @@ Windows offers four container base images that users can build from. Each base i
 
 ## Image discovery
 
-All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/r/microsoft/windows-layer-storage). The Windows container base images themselves are served from [mcr.microsoft.com](https://azure.microsoft.com/services/container-registry/), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
+All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/r/microsoft/windows). The Windows container base images themselves are served from [mcr.microsoft.com](https://azure.microsoft.com/services/container-registry/), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
 
 ```code
 docker pull mcr.microsoft.com/windows/servercore:ltsc2022
@@ -137,10 +137,10 @@ The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Window
 
 Microsoft provides "insider" versions of each container base image. These insider container images carry the latest and greatest feature development in our container images. When you're running a host that is an insider version of Windows (either Windows Insider or Windows Server Insider), it is preferable to use these images. The following insider images are available on Docker Hub:
 
-- [mcr.microsoft.com/windows/servercore/insider](https://hub.docker.com/_/microsoft-windows-servercore-insider)
-- [mcr.microsoft.com/windows/nanoserver/insider](https://hub.docker.com/_/microsoft-windows-nanoserver-insider)
-- [mcr.microsoft.com/windows/server/insider:10.0.20344.1](https://hub.docker.com/_/microsoft-windows-server-insider/)
-- [mcr.microsoft.com/windows/insider](https://hub.docker.com/_/microsoft-windows-insider)
+- [mcr.microsoft.com/windows/servercore/insider](https://hub.docker.com/r/microsoft/windows-servercore-insider)
+- [mcr.microsoft.com/windows/nanoserver/insider](https://hub.docker.com/r/microsoft/windows-nanoserver-insider)
+- [mcr.microsoft.com/windows/server/insider:10.0.20344.1](https://hub.docker.com/r/microsoft/windows-server-insider/)
+- [mcr.microsoft.com/windows/insider](https://hub.docker.com/r/microsoft/windows-insider)
 
 Read [Use Containers with the Windows Insider Program](../deploy-containers/insider-overview.md) to learn more.
 
