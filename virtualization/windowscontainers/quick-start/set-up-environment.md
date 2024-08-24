@@ -152,6 +152,18 @@ This script does install the [Windows CNI plugins](https://github.com/microsoft/
 - [Instructions for installing nerdctl on Windows.](https://github.com/containerd/nerdctl#install)
 - [More advanced community installer for containerd](https://github.com/lippertmarkus/containerd-installer)
 
+# [Stevedore](#tab/stevedore)
+
+[Stevedore](https://github.com/slonopotamus/stevedore) is a community effort to provide an easy way to install upstream Docker Engine and accompanied tools like Docker Compose.
+
+Stevedore supports multiple installation ways:
+
+* If you have [Chocolatey package manager](https://chocolatey.org) configured, run `choco install stevedore` from elevated Command shell to install Stevedore.
+* Or, you can use [WinGet](https://winget.run) to install Stevedore by running `winget install stevedore`.
+* Or, you can [download MSI installer](https://github.com/slonopotamus/stevedore/releases).
+
+Please consult [Stevedore documentation](https://github.com/slonopotamus/stevedore#stevedore) for more information.
+
 ---
 <!-- stop tab view -->
 
