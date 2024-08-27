@@ -22,6 +22,11 @@ Abstract:
 #include <wil/resource.h>
 
 // Sample code
+// NOTE: This sample requires build 27686.1000.arm64fre.rs_prerelease.240809-2254.
+// The follwoing properties and registers were added in that build:
+//
+// * WHvPartitionPropertyCodeArm64IcParameters
+// * WHvArm64RegisterGicrBaseGpa
 namespace WHvSample {
 
     using unique_whv_partition =
@@ -44,6 +49,11 @@ namespace WHvSample {
         WHV_PARTITION_PROPERTY property{};
         property.ProcessorCount = processorCount;
         THROW_IF_FAILED(WHvSetPartitionProperty(partition.get(), WHvPartitionPropertyCodeProcessorCount, &property, sizeof(property)));
+        property.Arm64IcParameters.EmulationMode = WHvArm64IcEmulationModeGicV3;
+        property.Arm64IcParameters.GicV3Parameters.GicdBaseAddress = 0xffff0000;
+        property.Arm64IcParameters.GicV3Parameters.GitsTranslaterBaseAddress = 0xeff68000;
+        property.Arm64IcParameters.GicV3Parameters.GicLpiIntIdBits = 1;
+        THROW_IF_FAILED(WHvSetPartitionProperty(partition.get(), WHvPartitionPropertyCodeArm64IcParameters, &property, sizeof(property)));
 
         // Setup the partition and create the virtual processor.
         THROW_IF_FAILED(WHvSetupPartition(partition.get()));
@@ -70,8 +80,11 @@ namespace WHvSample {
         THROW_IF_FAILED(WHvMapGpaRange(partition.get(), codeRegion.get(), codeStart, codeSize, GpaRangeFlags));
 
         // Set the virtual processor register state to execute in the code region.
-        WHV_REGISTER_NAME initialNames[] = { WHvArm64RegisterPc };
-        WHV_REGISTER_VALUE initialValues[_countof(initialNames)] = { codeStart };
+        WHV_REGISTER_NAME initialNames[] = { WHvArm64RegisterGicrBaseGpa, WHvArm64RegisterPc };
+        const WHV_GUEST_PHYSICAL_ADDRESS gicrBaseGpa = 0xeffee000;
+        WHV_REGISTER_VALUE initialValues[_countof(initialNames)] = {};
+        initialValues[0].Reg64 = gicrBaseGpa;
+        initialValues[1].Reg64 = codeStart;
 
         THROW_IF_FAILED(WHvSetVirtualProcessorRegisters(partition.get(), processorIndex, initialNames, _countof(initialNames), initialValues));
 
