@@ -17,7 +17,7 @@ You can find the x64 sample on our [Github repo here](https://github.com/Microso
 ## ARM64
 
 > [!NOTE]
-> Experimental support for WHP on ARM64 is available starting with Windows build 26085. Use the latest builds from Windows Insider Canary channel to get updates and fixes.
+> Experimental support for WHP on ARM64 is available starting with Windows build 26085. Use the latest builds from the Windows Insider Canary channel to get updates and fixes.
 >
 > The ARM64 APIs are subject to change.
 
