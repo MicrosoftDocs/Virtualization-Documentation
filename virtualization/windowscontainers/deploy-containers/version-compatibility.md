@@ -155,7 +155,7 @@ There are three ways you can resolve this error:
 ## Choose which container OS version to use
 
 >[!NOTE]
->As of April 16, 2019, the "latest" tag is no longer published or maintained for the [Windows base OS container images](https://hub.docker.com/_/microsoft-windows-base-os-images). Please declare a specific tag when pulling or referencing images from these repos.
+>As of April 16, 2019, the "latest" tag is no longer published or maintained for the [Windows Server](https://hub.docker.com/r/microsoft/windows-server), [Windows Server Core](https://hub.docker.com/r/microsoft/windows-servercore), and [Nano Server](https://hub.docker.com/r/microsoft/windows-nanoserver) base OS container images. You must declare a specific tag when pulling or referencing images from these repos.
 
 You must know which version you need to use for your container. For example, if you want Windows Server version 1809 as your container OS and want to have the latest patches for it, you should use the tag `1809` when specifying which version of the base OS container images you want, like so:
 

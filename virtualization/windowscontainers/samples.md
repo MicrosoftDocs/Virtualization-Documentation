@@ -26,7 +26,11 @@ The Windows base images used for the container samples are Windows Server 2022, 
 
 ## Container solutions
 
-Use the category tabs below to learn how to leverage Windows containers using the latest Windows Server base images in your app development. The provided samples fit into six categories and are updated to reflect recent version changes, as well as [Windows Server 2022 images](https://hub.docker.com/_/microsoft-windows-base-os-images).
+Use the category tabs below to learn how to leverage Windows containers using the latest Windows Server base images in your app development. The provided samples fit into six categories and are updated to reflect recent version changes, as well as the following Windows Server base OS container image on Docker Hub:
+
+- [Windows Server](https://hub.docker.com/r/microsoft/windows-server)
+- [Windows Server Core](https://hub.docker.com/r/microsoft/windows-servercore)
+- [Nano Server](https://hub.docker.com/r/microsoft/windows-nanoserver)
 
 > [!NOTE]
 > You can also [use step-by-step deployment guides](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/main/windows-container-samples) to help you deploy an example solution. Each guide may also refer to a companion code sample.
