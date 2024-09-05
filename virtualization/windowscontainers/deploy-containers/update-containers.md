@@ -35,7 +35,11 @@ For each release, the respective container image also gets published with two ad
 
 These examples both pull the Windows Server 2019 Server Core container image with the February 18 security release update.
 
-For a complete list of Windows Server Base OS container images, versions, and their respective tags, see this [Windows Base OS container images](https://hub.docker.com/_/microsoft-windows-base-os-images) on Docker Hub.
+For a complete list of Windows Server Base OS container images, versions, and their respective tags, see the following resources on Docker Hub:
+
+- [Windows Server](https://hub.docker.com/r/microsoft/windows-server)
+- [Windows Server Core](https://hub.docker.com/r/microsoft/windows-servercore)
+- [Nano Server](https://hub.docker.com/r/microsoft/windows-nanoserver)
 
 Monthly serviced Windows Server images released on Azure Marketplace by Microsoft also come with preinstalled Base OS container images. Find our more at our [Windows Server Azure Marketplace pricing page](https://azuremarketplace.microsoft.com/marketplace/apps/microsoftwindowsserver.windowsserver?tab=PlansAndPrice). We usually update these images about five working days after the "B" release.
 
