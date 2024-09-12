@@ -58,7 +58,10 @@ The Host Networking Service (HNS) and the Host Compute Service (HCS) work togeth
 
 The following networking options are currently **NOT** supported on Windows:
 
-- From Windows Server 2022 onwards, Windows containers attached to l2bridge networks support the IPv6 stack. However, Windows containers attached to NAT and overlay networks do not support communicating over the IPv6 stack.
+- From Windows Server 2022 onwards, Windows containers have the following support for IPv6 networking:
+  - Containers attached to l2bridge networks support the IPv6 stack.
+  - Containers attached to transparent networks support communication using IPv6 with self assigned IP addresses, but do not have support for HNS provided IP address assignment and other network services such as Load Balancing and ACLs.
+- Windows containers attached to NAT and overlay networks do not support communicating over the IPv6 stack.
 - Encrypted container communication via IPsec.
 - [Host mode](https://docs.docker.com/ee/ucp/interlock/config/host-mode-networking/) networking.
 - Networking on virtualized Azure infrastructure via the transparent network driver.
