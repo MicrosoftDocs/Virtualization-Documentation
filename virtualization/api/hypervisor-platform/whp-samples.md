@@ -12,7 +12,7 @@ We've provided two samples written in C++ to demonstrate usage of Windows Hyperv
 
 ## x64
 
-You can find the x64 sample on our [Github repo here](https://github.com/MicrosoftDocs/Virtualization-Documentation/blob/live/virtualization/api/hypervisor-platform/samples/WinHvSampleAmd64.cpp).
+You can find the x64 sample on our [Github repo here](https://github.com/MicrosoftDocs/Virtualization-Documentation/blob/main/virtualization/api/hypervisor-platform/samples/WinHvSampleAmd64.cpp).
 
 ## ARM64
 
@@ -21,4 +21,4 @@ You can find the x64 sample on our [Github repo here](https://github.com/Microso
 >
 > The ARM64 APIs are subject to change.
 
-You can find the ARM64 sample on our [Github repo here](https://github.com/MicrosoftDocs/Virtualization-Documentation/blob/live/virtualization/api/hypervisor-platform/samples/WinHvSampleArm64.cpp).
+You can find the ARM64 sample on our [Github repo here](https://github.com/MicrosoftDocs/Virtualization-Documentation/blob/main/virtualization/api/hypervisor-platform/samples/WinHvSampleArm64.cpp).
