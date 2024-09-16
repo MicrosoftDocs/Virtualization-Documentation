@@ -40,7 +40,7 @@ If search doesn't find Hyper-V Manager, Hyper-V or the Hyper-V management tools 
 
 1. Select the physical network card to be paired with the new virtual switch. This is the network card that is physically connected to the network.  
 
-    ![Screenshot of the Virtual Switch Properties section of the Virtual Switch Manager pane.](media/newSwitch_upd.png)
+    ![Screenshot of the Virtual Switch Properties section of the Virtual Switch Manager pane.](media/new-switch-upd.png)
 
 1. Select **Apply** to create the virtual switch. At this point you'll most likely see the following message. Select **Yes** to continue.
 
