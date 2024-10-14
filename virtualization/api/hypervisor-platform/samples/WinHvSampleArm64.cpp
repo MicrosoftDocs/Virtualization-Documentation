@@ -22,11 +22,10 @@ Abstract:
 #include <wil/resource.h>
 
 // Sample code
-// NOTE: This sample requires build 27686.1000.arm64fre.rs_prerelease.240809-2254.
-// The follwoing properties and registers were added in that build:
+// NOTE: This sample requires build 27723.1000.arm64fre.rs_prerelease.241004-1602.
+// The following properties and registers were added in that build:
 //
-// * WHvPartitionPropertyCodeArm64IcParameters
-// * WHvArm64RegisterGicrBaseGpa
+// * GicPpiOverflowInterruptFromCntv
 namespace WHvSample {
 
     using unique_whv_partition =
@@ -53,6 +52,7 @@ namespace WHvSample {
         property.Arm64IcParameters.GicV3Parameters.GicdBaseAddress = 0xffff0000;
         property.Arm64IcParameters.GicV3Parameters.GitsTranslaterBaseAddress = 0xeff68000;
         property.Arm64IcParameters.GicV3Parameters.GicLpiIntIdBits = 1;
+        property.Arm64IcParameters.GicV3Parameters.GicPpiOverflowInterruptFromCntv = 0x1B;
         THROW_IF_FAILED(WHvSetPartitionProperty(partition.get(), WHvPartitionPropertyCodeArm64IcParameters, &property, sizeof(property)));
 
         // Setup the partition and create the virtual processor.
