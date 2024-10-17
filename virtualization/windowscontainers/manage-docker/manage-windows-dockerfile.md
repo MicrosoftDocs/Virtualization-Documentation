@@ -2,7 +2,7 @@
 title: Dockerfile and Windows containers
 description: Create Dockerfiles for Windows containers.
 author: vrapolinario
-ms.author: viniap
+ms.author: roharwoo
 ms.date: 03/20/2023
 ms.topic: how-to
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1

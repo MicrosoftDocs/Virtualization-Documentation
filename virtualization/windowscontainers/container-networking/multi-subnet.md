@@ -2,7 +2,7 @@
 title: Multiple subnet support for worker nodes in Windows containers with Calico for Windows
 description: Learn about using multiple subnets with Windows containers using Calico.
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.date: 08/10/2021
 ms.topic: conceptual
 ---

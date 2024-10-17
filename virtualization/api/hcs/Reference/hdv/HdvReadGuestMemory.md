@@ -2,7 +2,7 @@
 title: HdvReadGuestMemory
 description: HdvReadGuestMemory
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.date: 06/09/2021
 api_name:

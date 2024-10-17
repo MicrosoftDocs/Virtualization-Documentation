@@ -3,7 +3,7 @@ title: Hyper-V on Windows
 description: Learn more about getting started with Hyper-V on Windows.
 keywords: windows 10, hyper-v
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 07/30/2024
 ms.topic: article
 ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866

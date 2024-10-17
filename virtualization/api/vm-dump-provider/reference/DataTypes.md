@@ -3,7 +3,7 @@ title: VM Dump Provider Data Types
 description: Learn about VM Dump Provider Data Types.
 ms.date: 04/18/2022
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ---
 # VM Dump Provider Data Types
 **Note: These APIs are publicly available as of Windows 1803 (10.0.17134.48). You can build your project against these APIs, but the DLL for linking is missing from the SDK. You should use the latest SDK and associated DLL released with Windows Insider to run your application**

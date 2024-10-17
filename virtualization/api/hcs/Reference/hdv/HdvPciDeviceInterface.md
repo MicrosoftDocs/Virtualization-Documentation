@@ -2,7 +2,7 @@
 title: HDV_DEVICE_TYPE Structure
 description: HDV_DEVICE_TYPE Structure
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.date: 06/09/2021
 api_name:

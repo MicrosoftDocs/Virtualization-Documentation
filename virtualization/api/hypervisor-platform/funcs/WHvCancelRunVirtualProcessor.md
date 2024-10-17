@@ -2,7 +2,7 @@
 title: Cancel the run of a virtual processor
 description: Learn about the WHvCancelRunVirtualProcessor function that cancels the call to run a virtual processor.
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.date: 04/20/2022
 ---
 

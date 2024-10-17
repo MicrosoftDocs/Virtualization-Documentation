@@ -2,7 +2,7 @@
 title: Windows Server containers events
 description: Recent events for Windows Server containers.
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.date: 02/11/2021
 ms.topic: conceptual
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f

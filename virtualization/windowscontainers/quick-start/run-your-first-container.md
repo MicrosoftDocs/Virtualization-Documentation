@@ -2,7 +2,7 @@
 title: Run your first Windows container
 description: Learn how to run Windows containers.
 author: vrapolinario
-ms.author: viniap
+ms.author: roharwoo
 ms.date: 03/31/2023
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
