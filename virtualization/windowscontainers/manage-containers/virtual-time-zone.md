@@ -2,7 +2,7 @@
 title: Virtualized container time zone
 description: Learn how to configure the time zone in a container.
 author: brasmith-ms
-ms.author: brasmith
+ms.author: roharwoo
 ms.topic: how-to
 ms.date: 06/15/2021
 ---

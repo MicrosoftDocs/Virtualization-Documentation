@@ -2,7 +2,7 @@
 title: HCS_OPERATION_COMPLETION
 description: About HCS_OPERATION_COMPLETION
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.service: virtualization
 ms.date: 06/09/2021

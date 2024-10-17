@@ -2,7 +2,7 @@
 title: WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK method
 description: Learn about the WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK method. 
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.date: 04/19/2022
 ---
 

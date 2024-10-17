@@ -2,7 +2,7 @@
 title: Prepare Windows operating system containers
 description: Set up Windows or Windows Server for containers, then run your first container image.
 author: brasmith-ms
-ms.author: brasmith
+ms.author: roharwoo
 ms.date: 03/31/2023
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f

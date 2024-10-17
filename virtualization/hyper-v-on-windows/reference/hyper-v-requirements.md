@@ -3,7 +3,7 @@ title: Windows 11 Hyper-V System Requirements
 description: Learn about the system requirements for Windows 11 Hyper-V.
 keywords: windows 11, hyper-v
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 07/29/2024
 ms.topic: article
 ms.assetid: 6e5e6b01-7a9d-4123-8cc7-f986e10cd372

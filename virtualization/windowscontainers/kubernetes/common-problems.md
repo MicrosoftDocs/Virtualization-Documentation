@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting Kubernetes
 author: daschott
-ms.author: daschott
+ms.author: roharwoo
 ms.date: 08/13/2020
 ms.topic: troubleshooting
 description: Solutions for common issues when deploying Kubernetes and joining Windows nodes.

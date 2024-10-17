@@ -3,7 +3,7 @@ title: Introduction to Hyper-V on Windows
 description: Introduction to Hyper-V, virtualization, and related technologies on Windows.
 keywords: windows 10, hyper-v, windows 11
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 07/26/2024
 ms.topic: article
 ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8

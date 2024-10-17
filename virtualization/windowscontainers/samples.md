@@ -4,7 +4,7 @@ description: Learn about popular projects and code samples using Windows contain
 author: sijuman
 ms.date: 04/12/2023
 ms.topic: overview
-ms.author: sijuman
+ms.author: roharwoo
 ms.assetid: 5c6f6350-f8d6-4426-b53d-9fb09c2bf267
 ---
 

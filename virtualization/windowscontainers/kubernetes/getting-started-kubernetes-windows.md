@@ -1,7 +1,7 @@
 ---
 title: Kubernetes on Windows
 author: daschott
-ms.author: daschott
+ms.author: roharwoo
 ms.date: 08/13/2020
 ms.topic: overview
 description: Getting started with Kubernetes on Windows.

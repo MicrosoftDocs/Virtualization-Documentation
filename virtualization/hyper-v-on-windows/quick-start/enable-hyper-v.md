@@ -3,7 +3,7 @@ title: Enable Hyper-V on Windows
 description: Install Hyper-V on Windows 10 or Windows 11 either using the Windows control panel, PowerShell or DISM.
 keywords: windows 10, windows 11, hyper-v
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 07/29/2024
 ms.topic: article
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86

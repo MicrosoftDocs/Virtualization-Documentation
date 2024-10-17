@@ -2,7 +2,7 @@
 title: Hyper-V Backup Approaches
 description: Provides and describes the approaches for utilizing Hyper-V to create backup virtual machines.
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 07/29/2024
 ms.topic: article
 ---
