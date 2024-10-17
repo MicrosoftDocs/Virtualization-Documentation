@@ -2,7 +2,7 @@
 title: Manage Azure Container Instances on Windows Admin Center
 description: Learn to manage Azure Container Instances on Windows Admin Center.
 author: vrapolinario
-ms.author: viniap
+ms.author: roharwoo
 ms.date: 04/12/2023
 ms.topic: overview
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f

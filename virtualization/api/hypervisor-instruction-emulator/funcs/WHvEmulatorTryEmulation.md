@@ -2,7 +2,7 @@
 title: WHvEmulatorTryIoEmulation and WHvEmulatorTryMmioEmulation methods
 description: Learn about the WHvEmulatorTryIoEmulation and WHvEmulatorTryMmioEmulation methods. 
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.date: 04/19/2022
 ---
 

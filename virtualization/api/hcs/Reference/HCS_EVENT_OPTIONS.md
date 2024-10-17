@@ -2,7 +2,7 @@
 title: HCS_EVENT_OPTIONS
 description: HCS_EVENT_OPTIONS
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.service: virtualization
 ms.date: 06/09/2021

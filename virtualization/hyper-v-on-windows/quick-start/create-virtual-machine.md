@@ -3,7 +3,7 @@ title: Create a virtual machine with Hyper-V on Windows 11
 description: Create a Virtual Machine with Hyper-V and install an operating system on Windows 11.
 keywords: windows 10, windows 11, hyper-v
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 07/29/2024
 ms.topic: article
 ms.assetid: 66723f33-b12c-49d1-82cf-71ba9d6087e9

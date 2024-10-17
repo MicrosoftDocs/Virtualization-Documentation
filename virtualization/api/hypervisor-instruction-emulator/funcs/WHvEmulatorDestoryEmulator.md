@@ -2,7 +2,7 @@
 title: WHvEmulatorDestoryEmulator method
 description: Learn about the WHvEmulatorDestoryEmulator method. 
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.date: 04/19/2022
 ---
 

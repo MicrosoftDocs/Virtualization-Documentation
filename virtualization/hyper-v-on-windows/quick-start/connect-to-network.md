@@ -3,7 +3,7 @@ title: Create a Virtual Network
 description: Learn how to create a Virtual Switch 
 keywords: windows 10, hyper-v, networking
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 07/29/2024
 ms.topic: article
 ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09

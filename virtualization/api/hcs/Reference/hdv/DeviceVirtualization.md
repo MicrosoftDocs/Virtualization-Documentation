@@ -2,7 +2,7 @@
 title: Device Virtualization
 description: Device Virtualization
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.date: 06/12/2023
 api_name:

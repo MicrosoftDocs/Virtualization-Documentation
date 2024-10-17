@@ -2,7 +2,7 @@
 title: Containerize a .NET Core app
 description: Learn how to build a sample .NET Core app with containers.
 author: vrapolinario
-ms.author: viniap
+ms.author: roharwoo
 ms.date: 03/31/2023
 ms.topic: how-to
 ---

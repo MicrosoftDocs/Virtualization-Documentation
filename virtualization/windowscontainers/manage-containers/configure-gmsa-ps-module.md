@@ -2,7 +2,7 @@
 title: Configure gMSA on AKS with the PowerShell module
 description: Configure gMSA on Azure Kubernetes service for Windows containers.
 author: vrapolinario
-ms.author: viniap
+ms.author: roharwoo
 ms.date: 03/23/2022
 ms.topic: how-to
 

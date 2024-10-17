@@ -3,7 +3,7 @@ title: Create a Virtual Machine with Hyper-V on Windows 10 Creators Update
 description: Create a new virtual machine with Hyper-V on Windows 10 Creators Update
 keywords: windows 10, hyper-v, virtual machine
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 04/07/2018
 ms.topic: article
 ms.assetid: f1e75efa-8745-4389-b8dc-91ca931fe5ae

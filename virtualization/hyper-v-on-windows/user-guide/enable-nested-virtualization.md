@@ -3,7 +3,7 @@ title: Run Hyper-V in a Virtual Machine with Nested Virtualization
 description: Learn about how to use nested virtualization to run Hyper-V in a virtual machine to emulate configurations that normally require multiple hosts.
 keywords: windows 10, windows 11, hyper-v
 author: johncslack
-ms.author: wscontent
+ms.author: roharwoo
 ms.date: 07/14/2023
 ms.topic: article
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
