@@ -10,7 +10,7 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 # Kubernetes on Windows
 
 > [!TIP]
-> Curious to find out which Kubernetes features are supported on Windows today? Please see [officially supported features](https://kubernetes.io/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#supported-functionality-and-limitations) and the [Kubernetes on Windows roadmap](https://github.com/orgs/kubernetes/projects/8) for more details.
+> Curious to find out which Kubernetes features are supported on Windows today? Please see [officially supported features](https://kubernetes.io/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#supported-functionality-and-limitations) for more details.
 
 This page serves as an overview for getting started with Kubernetes on Windows.
 
