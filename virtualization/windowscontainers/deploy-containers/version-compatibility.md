@@ -21,6 +21,16 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 ## Windows Server host OS compatibility
 
 <!-- start tab view -->
+# [Windows Server 2025](#tab/windows-server-2025)
+
+|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server 2025|&#10004;|&#10004;|
+|Windows Server 2022|&#10004;|&#10004;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
+
+<!-- start tab view -->
 # [Windows Server 2022](#tab/windows-server-2022)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
@@ -56,9 +66,13 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10004;|&#10004;(preview)|
+|Windows Server 2025|&#10004; (*)|&#10004;(*)|
+|Windows Server 2022|&#10004;|&#10004;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
+
+>[!NOTE]
+>(*) Supported from Windows 11 24H2 (`Build 2600`) onwards.
 
 # [Windows 10](#tab/windows-10)
 
