@@ -4,7 +4,7 @@ description: Version compatibility for containers built from different versions 
 author: brasmith-ms
 ms.author: roharwoo
 ms.topic: conceptual
-ms.date: 03/20/2023
+ms.date: 12/02/2024
 ---
 # Windows container version compatibility
 
@@ -25,35 +25,35 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2025|&#10004;|&#10004;|
-|Windows Server 2022|&#10004;|&#10004;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
+|Windows Server 2025|✅|✅|
+|Windows Server 2022|✅|✅|
+|Windows Server 2019|✅|❌|
+|Windows Server 2016|✅|❌|
 
 <!-- start tab view -->
 # [Windows Server 2022](#tab/windows-server-2022)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10004;|&#10004;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
+|Windows Server 2022|✅|✅|
+|Windows Server 2019|✅|❌|
+|Windows Server 2016|✅|❌|
 
 # [Windows Server 2019](#tab/windows-server-2019)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10060;|&#10060;|
-|Windows Server 2019|&#10004;|&#10004;|
-|Windows Server 2016|&#10004;|&#10060;|
+|Windows Server 2022|❌|❌|
+|Windows Server 2019|✅|✅|
+|Windows Server 2016|✅|❌|
 
 # [Windows Server 2016](#tab/windows-server-2016)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10060;|&#10060;|
-|Windows Server 2019|&#10060;|&#10060;|
-|Windows Server 2016|&#10004;|&#10004;|
+|Windows Server 2022|❌|❌|
+|Windows Server 2019|❌|❌|
+|Windows Server 2016|✅|✅|
 
 ---
 <!-- stop tab view -->
@@ -66,21 +66,20 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2025|&#10004; (*)|&#10004;(*)|
-|Windows Server 2022|&#10004;|&#10004;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
+|Windows Server 2025|✅<sup>1</sup>|✅<sup>1</sup>|
+|Windows Server 2022|✅|✅|
+|Windows Server 2019|✅|❌|
+|Windows Server 2016|✅|❌|
 
->[!NOTE]
->(*) Supported from Windows 11 24H2 (`Build 2600`) onwards.
+1. Supported from Windows 11 24H2 (`Build 2600`) onwards.
 
 # [Windows 10](#tab/windows-10)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10060;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
+|Windows Server 2022|❌|❌|
+|Windows Server 2019|✅|❌|
+|Windows Server 2016|✅|❌|
 
 ---
 <!-- stop tab view -->
