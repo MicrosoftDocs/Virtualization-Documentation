@@ -1,14 +1,14 @@
 ---
 title: Windows container version compatibility
 description: Version compatibility for containers built from different versions of Windows Server and Windows.
-author: brasmith-ms
+author: robinharwood
 ms.author: roharwoo
 ms.topic: conceptual
 ms.date: 12/02/2024
 ---
 # Windows container version compatibility
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were the first Windows releases that could build and run Windows Server containers. Containers built using these versions can run on newer releases, but there are a few things you need to know before you start.
 
