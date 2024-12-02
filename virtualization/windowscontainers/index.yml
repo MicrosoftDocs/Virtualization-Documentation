@@ -111,8 +111,6 @@ landingContent:
     linkLists:
       - linkListType: reference
         links:
-          - text: Windows containers roadmap
-            url: https://github.com/microsoft/Windows-Containers/projects/1
           - text: Samples
             url: ./samples.md
           - text: Troubleshooting
