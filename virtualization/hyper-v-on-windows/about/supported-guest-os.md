@@ -2,11 +2,10 @@
 title: Supported Windows guests 
 description: Supported Windows guests.
 keywords: windows 10, hyper-v
-author: scooley
+author: robinharwood
 ms.author: roharwoo
-ms.date: 05/02/2016
-ms.topic: article
-ms.assetid: ae4a18ed-996b-4104-90c5-539c90798e4c
+ms.date: 12/03/2024
+ms.topic: conceptual
 ---
 
 # Supported Windows guests
@@ -29,8 +28,10 @@ In order to be supported, all operating systems (guest and host) must be up-to-d
 
 | Guest operating system | Maximum number of virtual processors | Notes |
 |:-----|:-----|:-----|
-| Windows 11 | 32 | |
-| Windows 10 | 32 |Enhanced Session Mode does not work on Windows 10 Home edition |
+| Windows Server 2025 | 2048 | Theoretical limit  |
+| Windows Server 2022 | 2048 | Theoretical limit  |
+| Windows 11 | 2048 | |
+| Windows 10 | 1280 |Enhanced Session Mode does not work on Windows 10 Home edition |
 | Windows 8.1 | 32 | |
 | Windows 8 | 32 ||
 | Windows 7 with Service Pack 1 (SP 1) | 4 | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). |
