@@ -1,0 +1,119 @@
+### YamlMime:Landing
+
+title: Containers on Windows documentation
+summary: Windows containers allow users to package applications with their dependencies and leverage operating system-level virtualization to provide fast, fully isolated environments on a single system. Learn how to use Windows containers with our quick start guides, deployment guides, and samples.
+
+metadata:
+  title: Containers on Windows documentation
+  description: documentation for running containers on Windows.
+  ms.topic: landing-page # Required
+  author: meaghanlewis
+  ms.author: mosagie
+  ms.date: 07/06/2020
+
+# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
+
+landingContent:
+# Cards and links should be based on top customer tasks or top subjects
+# Start card title with a verb
+  # Card
+  - title: Featured content
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Try Windows containers in AKS!
+            url: /azure/aks/windows-container-cli
+          - text: Try Windows containers in AKS on Azure Stack HCI!
+            url: /azure-stack/aks-hci/deploy-windows-application
+          - text: Check out our container images on Docker Hub
+            url: https://hub.docker.com/r/microsoft/windows
+          - text: Read the Containers blog
+            url: https://techcommunity.microsoft.com/t5/Containers/bg-p/Containers
+
+  # Card
+  - title: Overview
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: About Windows containers
+            url: ./about/index.md
+          - text: What's new for Windows containers in Windows Server 2022
+            url: ./about/whats-new-ws2022-containers.md
+          - text: System requirements
+            url: ./deploy-containers/system-requirements.md
+          - text: FAQ
+            url: ./about/faq.yml
+
+  # Card
+  - title: Get Started
+    linkLists:
+      - linkListType: get-started
+        links:
+          - text: Set up your environment
+            url: ./quick-start/set-up-environment.md
+          - text: Run your first container
+            url: ./quick-start/run-your-first-container.md
+          - text: Containerize a sample app
+            url: ./quick-start/building-sample-app.md
+          - text: Lift and shift to containers
+            url: ./quick-start/lift-shift-to-containers.md
+
+  # Card
+  - title: Tutorials
+    linkLists:
+      - linkListType: tutorial
+        links:
+          - text: Building a Windows container
+            url: ./manage-docker/manage-windows-dockerfile.md
+          - text: Run on Azure Kubernetes Service on Azure Stack HCI 
+            url: /azure-stack/aks-hci/create-kubernetes-cluster
+          - text: Run on AKS
+            url: /azure/aks/windows-container-cli
+          - text: Run on Service Fabric
+            url: /azure/service-fabric/service-fabric-quickstart-containers
+          - text: Run on Azure App Service
+            url: /azure/app-service/app-service-web-get-started-windows-container
+          - text: Configure the Containers extension on Windows Admin Center
+            url: ./WAC-tooling/WAC-extension.md
+
+  # Card
+  - title: Concepts
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Docker
+            url: ./manage-docker/configure-docker-daemon.md
+          - text: Container orchestration
+            url: ./about/overview-container-orchestrators.md
+          - text: Windows container essentials
+            url: ./manage-containers/container-base-images.md
+          - text: Secure Windows containers
+            url: ./manage-containers/container-security.md
+          - text: Group Managed Service Accounts
+            url: ./manage-containers/manage-serviceaccounts.md
+
+  # Card
+  - title: Reference
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: Events
+            url: ./deploy-containers/events.md
+          - text: Version compatibility
+            url: ./deploy-containers/version-compatibility.md
+          - text: Image servicing lifecycles
+            url: ./deploy-containers/base-image-lifecycle.md
+          - text: Container OS image EULA
+            url: ./images-eula.md
+
+  # Card
+  - title: Resources
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: Samples
+            url: ./samples.md
+          - text: Troubleshooting
+            url: ./troubleshooting.md
+          - text: Community videos and blogs
+            url: ./communitylinks.md
