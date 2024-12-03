@@ -135,7 +135,9 @@
 ## [Windows Server containers roadmap](https://github.com/Azure/AKS/projects/1?card_filter_query=label%3A+windows)
 ## Licensing and support
 ### [Pricing and licensing](https://www.microsoft.com/windows-server/pricing)
-### [Windows base OS images](https://hub.docker.com/_/microsoft-windows-base-os-images)
+### [Windows Server](https://hub.docker.com/r/microsoft/windows-server)
+### [Windows Server Core](https://hub.docker.com/r/microsoft/windows-servercore)
+### [Nano Server](https://hub.docker.com/r/microsoft/windows-nanoserver)
 ### [File bugs](https://github.com/microsoft/Windows-Containers/issues)
 ## [Troubleshooting](troubleshooting.md)
 ## [Container forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)

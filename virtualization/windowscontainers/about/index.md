@@ -16,8 +16,6 @@ Containers are a technology for packaging and running Windows and Linux applicat
 
 ![Graphic showing how containers can run in the cloud or on-premises, supporting monolithic apps or microservices written in nearly any language.](media/about-3-box.png)
 
-To view a roadmap of planned and currently available features, see the [Windows Server containers roadmap](https://github.com/microsoft/Windows-Containers/projects/1). Also, see [Events](../deploy-containers/events.md) to view recent video presentations and blog posts for Windows Containers.
-
 ## The Microsoft container ecosystem
 
 Microsoft provides a number of tools and platforms to help you develop and deploy apps in containers:
