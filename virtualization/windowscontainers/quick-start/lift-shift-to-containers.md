@@ -257,7 +257,7 @@ When validating if the application to be containerized works on Windows containe
 |---|---|---|---|
 |.NET Framework versions 2.X and 3.X|.NET Framework 4.x|.NET Framework 3.5|Windows Server Core|
 |.NET Framework 4.x versions|.NET Framework 4.x|Build your .NET Framework container image with Server or Windows images|Windows Server Core|
-|.NET 6 or 7|.NET 6 or 7 respectively|Build your .NET container image with Windows or Server base images|Windows Nano Server or Server Core|
+|.NET 6 or later|Matching .NET container image, for example .NET 9 for .NET 9|Build your .NET container image with Windows or Server base images|Windows Nano Server or Server Core|
 
 ### Other supporting components
 
