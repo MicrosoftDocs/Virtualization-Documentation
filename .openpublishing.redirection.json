@@ -519,6 +519,11 @@
       "source_path": "virtualization/hyper-v-on-windows/index.md",
       "redirect_url": "/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/about/index.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows",
+      "redirect_document_id": false
     }
   ]
 }
