@@ -2,8 +2,8 @@
   href: /windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/toc.json
 - name: Install Hyper-V
   href: quick-start/enable-hyper-v.md
-- name: Make a Virtual Machine
-  href: quick-start/create-virtual-machine.md
+- name: Create a virtual machine
+  href: /windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/toc.json
 - name: Manage Virtual Machines with Hyper-V
   items:
   - name: Hyper-V and PowerShell
@@ -35,7 +35,7 @@
   - name: Hyper-V Requirements
     href: reference/hyper-v-requirements.md
   - name: Supported Guest Operating Systems
-    href: /windows-server/virtualization/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows
+    href: /windows-server/virtualization/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/toc.json
   - name: Hyper-V PowerShell
     href: /powershell/module/hyper-v
   - name: Hyper-V Integration Services
