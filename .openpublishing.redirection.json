@@ -526,7 +526,7 @@
       "redirect_document_id": false
     },
     { 
-      "source_path": "virtualization/hyper-v-on-windows/supported-guest-os.md",
+      "source_path": "virtualization/hyper-v-on-windows/about/supported-guest-os.md",
       "redirect_url": "/windows-server/virtualization/hyper-v/supported-guest-os?pivots=windows",
       "redirect_document_id": false
     }, 
