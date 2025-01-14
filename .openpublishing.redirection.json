@@ -539,6 +539,11 @@
       "source_path": "virtualization/hyper-v-on-windows/quick-start/create-virtual-machine.md",
       "redirect_url": "/windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v",
       "redirect_document_id": false
-    } 
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/hyper-v-requirements.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/System-requirements-for-Hyper-V-on-Windows",
+      "redirect_document_id": false
+    }
   ]
 }
