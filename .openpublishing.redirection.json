@@ -549,6 +549,11 @@
       "source_path": "virtualization/hyper-v-on-windows/quick-start/enable-hyper-v.md",
       "redirect_url": "/windows-server/virtualization/hyper-v/get-started/install-the-hyper-v-role-on-windows-server",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/connect-to-network.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines",
+      "redirect_document_id": false
     }
   ]
 }

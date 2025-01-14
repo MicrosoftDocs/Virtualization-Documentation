@@ -25,7 +25,7 @@
   - name: Set up a NAT network
     href: user-guide/setup-nat-network.md
   - name: Create a virtual switch
-    href: quick-start/connect-to-network.md
+    href: /windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/toc.json
   - name: Build an integration Service
     href: user-guide/make-integration-service.md
   - name: Port Hyper-V WMI
