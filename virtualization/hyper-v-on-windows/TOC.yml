@@ -1,7 +1,7 @@
 - name: Introduction to Hyper-V
   href: /windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/toc.json
 - name: Install Hyper-V
-  href: windows-server/virtualization/hyper-v/get-started/install-Hyper-V?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/toc.json
+  href: windows-server/virtualization/hyper-v/get-started/install-the-hyper-v-role-on-windows-server?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/toc.json
 - name: Create a virtual machine
   href: /windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/toc.json
 - name: Manage Virtual Machines with Hyper-V

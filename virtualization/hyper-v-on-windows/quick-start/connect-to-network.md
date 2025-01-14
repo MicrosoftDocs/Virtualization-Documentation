@@ -22,7 +22,7 @@ This exercise walks through creating an external virtual switch. Once completed,
 ## Create a Virtual Switch with Hyper-V Manager
 
 1. Open Hyper-V Manager. A quick way to do this is to select the Windows button or key then type "Hyper-V Manager".  
-If search doesn't find Hyper-V Manager, Hyper-V or the Hyper-V management tools are not enabled. See the instructions to [enable Hyper-V](enable-hyper-v.md).
+If search doesn't find Hyper-V Manager, Hyper-V or the Hyper-V management tools are not enabled. See the instructions to [enable Hyper-V](/windows-server/virtualization/hyper-v/get-started/install-the-hyper-v-role-on-windows-server).
 
 1. Select the server in the left pane, or select "Connect to Server..." in the right pane.
 

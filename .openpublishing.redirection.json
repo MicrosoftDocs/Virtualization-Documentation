@@ -544,6 +544,11 @@
       "source_path": "virtualization/hyper-v-on-windows/reference/hyper-v-requirements.md",
       "redirect_url": "/windows-server/virtualization/hyper-v/System-requirements-for-Hyper-V-on-Windows",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/enable-hyper-v.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/install-the-hyper-v-role-on-windows-server",
+      "redirect_document_id": false
     }
   ]
 }
