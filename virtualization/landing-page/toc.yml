@@ -1,7 +1,7 @@
 
 - name: Virtualization
   tocHref: /virtualization/
-  topicHref: /windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows&toc=/virtualization/landing-page/toc.json&bc=/virtualization/toc.json
+  topicHref: /windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows&toc=/virtualization/hyper-v-on-windows/landing-page/toc.json&bc=/virtualization/hyper-v-on-windows/toc.json
   items:
   - name: Hyper-V on Windows
     tocHref: /virtualization/hyper-v-on-windows/
