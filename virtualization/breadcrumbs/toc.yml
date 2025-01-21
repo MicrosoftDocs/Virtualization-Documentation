@@ -4,12 +4,12 @@ items:
   items:
     - name: Virtualization
       tocHref: /virtualization/
-      topicHref: /virtualization/index
+      topicHref: /virtualization/
       items:
         - name: Hyper-V on Windows
           tocHref: /virtualization/hyper-v-on-windows/
-          topicHref: /virtualization/hyper-v-on-windows/index
+          topicHref: /virtualization/hyper-v-on-windows/
 
 - name: Hyper-V on Windows
   tocHref: /windows-server/
-  topicHref: /virtualization/hyper-v-on-windows/index
+  topicHref: /virtualization/hyper-v-on-windows/

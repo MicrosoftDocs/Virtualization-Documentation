@@ -30,7 +30,7 @@
     "globalMetadata": {
       "uhfHeaderId": "MSDocsHeader-Windows",
       "breadcrumb_path": "/virtualization/breadcrumbs/toc.json",
-      "extendBreadcrumb": true, 
+      "extendBreadcrumb": false, 
       "feedback_system": "Standard"
     },
     "fileMetadata": {
