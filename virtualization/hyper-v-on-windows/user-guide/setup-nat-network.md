@@ -31,7 +31,7 @@ Requirements:
 
 NAT gives a virtual machine access to network resources using the host computer's IP address and a port through an internal Hyper-V Virtual Switch.
 
-Network Address Translation (NAT) is a networking mode designed to conserve IP addresses by mapping an external IP address and port to a much larger set of internal IP addresses.  Basically, a NAT uses a flow table to route traffic from an external (host) IP Address and port number to the correct internal IP address associated with an endpoint on the network (virtual machine, computer, container, etc.)
+Network Address Translation (NAT) is a networking mode designed to conserve IP addresses by mapping an external IP address and port to a much larger set of internal IP addresses.  Basically, a NAT uses a flow table to route traffic from an external (host) IP Address and port number to the correct internal IP address associated with an endpoint on the network (virtual machine, computer, container, etc.).
 
 Also, NAT allows multiple virtual machines to host applications that require identical (internal) communication ports by mapping these to unique external ports.
 
@@ -119,7 +119,7 @@ Congratulations! You now have a virtual NAT network!
 
 ## Connect a virtual machine
 
-To connect a virtual machine to your new NAT network, connect the internal switch you created in the first step of the [NAT Network Setup](#create-a-nat-virtual-network) section to your virtual machine using the VM Settings menu.
+To connect a virtual machine to your new NAT network, connect the internal switch you created in the first step of this article to your virtual machine using the VM Settings menu.
 
 Since WinNAT by itself does not allocate and assign IP addresses to an endpoint (e.g. VM), you'll need to do this manually from within the VM itself - i.e. set IP address within range of NAT internal prefix, set default gateway IP address, set DNS server information. The only caveat to this is when the endpoint is attached to a container. In this case, the Host Network Service (HNS) allocates and uses the Host Compute Service (HCS) to assign the IP address, gateway IP, and DNS info to the container directly.
 
@@ -220,7 +220,7 @@ In the end, you have two internal vSwitches – one named **DockerNAT** and the 
 
 ### Multiple NAT networks are not supported
 
-This guide assumes that there are no other NATs on the host. However, applications or services will require the use of a NAT and may create one as part of setup. Since Windows (WinNAT) only supports one internal NAT subnet prefix, trying to create multiple NATs places the system into an unknown state.
+This guide assumes that there are no other NATs on the host. However, applications or services require the use of a NAT and may create one as part of setup. Since Windows (WinNAT) only supports one internal NAT subnet prefix, trying to create multiple NATs places the system into an unknown state.
 
 To see if this may be the problem, make sure you only have one NAT:
 
@@ -252,8 +252,8 @@ If an old private IP address is in use, please delete it:
 Remove-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)" -IPAddress <IPAddress>
 ```
 
-**Removing Multiple NATs**  
-We have seen reports of multiple NAT networks created inadvertently. If you see multiple NAT networks, after running docker network ls or Get-ContainerNetwork, please perform the following from an elevated PowerShell:
+**Removing Multiple NATs**
+We've seen reports of multiple NAT networks created inadvertently. If you see multiple NAT networks, after running docker network ls or Get-ContainerNetwork, perform the following from an elevated PowerShell:
 
 ```powershell
 $keys = Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
@@ -279,5 +279,3 @@ Get-NetNat | Remove-NetNat
 Set-Service docker -StartupType Automatic
 Start-Service docker 
 ```
-
-See this [setup guide for multiple applications using the same NAT](#multiple-applications-using-the-same-nat) to rebuild your NAT environment, if necessary.
