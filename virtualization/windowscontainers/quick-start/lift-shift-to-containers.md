@@ -3,7 +3,7 @@ title: Lift and shift to containers
 description: Learn how to migrate existing applications to containers.
 author: vrapolinario
 ms.author: mosagie
-ms.date: 01/21/2025
+ms.date: 01/22/2025
 ms.topic: conceptual
 ---
 
@@ -11,7 +11,7 @@ ms.topic: conceptual
 
 > Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
-Windows containers provide a great mechanism for modernizing traditional or legacy applications.  Although you may hear this approach referred to as "lift and shift to containers," the lift-and-shift metaphor originates from shifting workloads from physical to virtual machines and has been used lately when referring to moving workloads as is to the cloud (whether private or public). Today this term is more appropriately applied to migrating virtual machines (VMs).  But containers are not VMs and thinking of them as VMs can lead to confusion over how an application can be containerized, or whether it even can – or should – be containerized.
+Windows containers provide a great mechanism for modernizing traditional or legacy applications. Although you may hear this approach referred to as "lift and shift to containers", the lift-and-shift metaphor originates from shifting workloads from physical to virtual machines, and is used when referring to moving workloads to the cloud. Today, this term is more appropriately applied to migrating virtual machines (VMs). But containers are not VMs, and thinking of them as VMs can lead to confusion over how an application is containerized, or whether it can, or should, be containerized.
 
 This topic provides practical guidance on moving traditional applications to Windows containers. It's aimed at helping you prioritize which applications should be containerized, by explaining special considerations up-front.
 
@@ -25,10 +25,10 @@ Windows containers are a specific implementation of container technology. They p
 
 You can read more about this topic in [Containers vs. virtual machines](../about/containers-vs-vm.md). But a few good points that help you remember the container vs. VM distinction are:
 
-- Containers aren't a solution equivalent to desktop application virtualization.  They support only server-side applications that don't require an interactive session. Because they run on specialized container images, they support only those applications that don't need a graphical front end.
-- Containers are ephemeral by nature. This means that, by default, there's no mechanism to save the state of a container instance.  If an instance fails, another instance will take its place.
+- Containers aren't a solution equivalent to desktop application virtualization. They support only server-side applications that don't require an interactive session. Because they run on specialized container images, they support only those applications that don't need a graphical front end.
+- Containers are ephemeral by nature. This means that, by default, there's no mechanism to save the state of a container instance. If an instance fails, another instance will take its place.
 
-The container technology began on Linux, with Docker emerging as the standard. Microsoft has worked closely with Docker to ensure the container functionality is as much the same on Windows as is reasonably possible. Inherent differences between Linux and Windows may surface in ways that appear to be limitations of Windows containers when in fact they're just the Linux versus Windows differences. On the other hand, Windows containers provide some unique implementations, such as Hyper-V isolation, which will be covered later. This topic will help you understand those differences and how to accommodate them.
+The container technology began on Linux, with Docker emerging as the standard. Microsoft has worked closely with Docker to ensure the container functionality is as much the same on Windows as is reasonably possible. Inherent differences between Linux and Windows may surface in ways that appear to be limitations of Windows containers when in fact they're just the Linux versus Windows differences. On the other hand, Windows containers provide some unique implementations, such as Hyper-V isolation, which will be covered later. This topic helps you understand those differences and how to accommodate them.
 
 ### Benefits of using containers
 
@@ -38,16 +38,17 @@ Containers provide a lightweight method of creating and dynamically stopping the
 
 Finally, one of the most important benefits of using containers is the agility you gain for app development, since you can have different versions of an app running on the same host with no clash of resources.
 
-You can find a much more complete list of benefits for using containers for existing applications on the Microsoft [.NET documentation page](/dotnet/architecture/modernize-with-azure-containers/modernize-existing-apps-to-cloud-optimized/deploy-existing-net-apps-as-windows-containers).
+You can find a more complete list of benefits for using containers for existing applications on the Microsoft [.NET documentation page](/dotnet/architecture/modernize-with-azure-containers/modernize-existing-apps-to-cloud-optimized/deploy-existing-net-apps-as-windows-containers).
 
 ### Important concept of level of isolation
 
 Windows containers provide isolation from the Windows OS, isolation that is advantageous when you're building, testing, and promoting an app to production. But the way the isolation is achieved is important to understand when you're thinking about containerizing an application.
 
-Windows containers offer two distinct modes of runtime isolation: process and Hyper-V. Containers under both modes are created and managed identically, and function identically. So, what are the differences and why should you care?
-In process isolation, multiple containers run concurrently on a single host with isolation provided through namespace, resource control, and other features.  Containers in process isolation mode share the same kernel with the host as well as each other. This is roughly the same as the way Linux containers run.
+Windows containers offer two distinct modes of runtime isolation: **process** and **Hyper-V**. Containers under both modes are created and managed identically, and function identically. So, what are the differences and why should you care?
 
-In Hyper-V isolation, multiple containers also run concurrently on a single host, but the containers run inside of highly optimized virtual machines, with each effectively getting its own kernel. The presence of this virtual machine – effectively a "utility" VM – provides hardware-level isolation between each container, as well as the container host.
+In **process isolation**, multiple containers run concurrently on a single host with isolation provided through namespace, resource control, and other features. Containers in process isolation mode share the same kernel with the host and each other. This is roughly the same as the way Linux containers run.
+
+In **Hyper-V isolation**, multiple containers also run concurrently on a single host, but the containers run inside of highly optimized virtual machines, with each effectively getting its own kernel. The presence of this virtual machine – effectively a "utility" VM – provides hardware-level isolation between each container, and the container host.
 
 In a way, Hyper-V isolation mode is almost like a hybrid of a VM and container, providing an extra layer of security that's particularly helpful if your app needs multitenancy. But the possible trade-offs of using Hyper-V isolation mode include:
 
@@ -61,13 +62,13 @@ You can read more about how the two isolation modes are implemented in the topic
 
 The ability to run multiple containers on a single or multiple hosts without concern for OS management gives you great flexibility, helping you move toward a microservice-based architecture. One trade-off for that flexibility, though, is that an environment based upon containers and microservices can quickly mushroom into many moving parts – too many to keep track of. Fortunately, managing load balancing, high availability, container scheduling, resource management, and much more, is the role of a container orchestrator.
 
-Orchestrators are perhaps misnamed; they're more like the conductors of an orchestra in that they coordinate the activity of multiple containers to keep the music playing.  In a sense, they handle the scheduling and resource allocation for containers in a way similar to the functioning of an OS. So, as you move to containerize your applications, you will need to choose among the orchestrators that support Windows containers. Some of the most common ones are Kubernetes and Docker Swarm.
+Orchestrators are perhaps misnamed; they're more like the conductors of an orchestra in that they coordinate the activity of multiple containers to keep the music playing. In a sense, they handle the scheduling and resource allocation for containers in a way similar to the functioning of an OS. So, as you move to containerize your applications, you'll need to choose among the orchestrators that support Windows containers. Some of the most common ones are Kubernetes and Docker Swarm.
 
 ## What can't be moved to Windows containers
 
 When you consider whether an app can be containerized or not, it's probably easiest to start with the list of factors that completely rule out Windows containers as an option.
 
-The following table summarizes the types of apps that can't be moved to Windows containers, and why not. The reasons are more fully explained in the subsections after the table.  Understanding the reasons for these limitations can give you a clearer idea of what containers really are, including how they differ from VMs. This will in turn help you better assess the capabilities of Windows containers that you can leverage with the existing apps you can containerize.
+The following table summarizes the types of apps that can't be moved to Windows containers, and why not. The reasons are more fully explained in the subsections after the table.  Understanding the reasons for these limitations can give you a clearer idea of what containers really are, including how they differ from VMs. This will, in turn, help you better assess the capabilities of Windows containers that you can leverage with the existing apps you can containerize.
 
 >Note: The list below is not a complete list. Instead, it is a compilation of apps Microsoft has seen customers try to containerize.
 
@@ -96,11 +97,11 @@ It's a different matter if an app needs GUI APIs. The APIs are supported even th
 
 Because the whole purpose of Remote Desktop Protocol (RDP) is to establish an interactive, visual session, the GUI limitation just described also applies. An application using RDP can't be containerized as-is.
 
-However, a good alternative is a remote management tool such as Windows Admin Center. You can use Windows Admin Center to manage Windows containers hosts, and the containers themselves, without the need to RDP into them.  You can also open a remote PowerShell session to the host and/or containers to manage them.
+However, a good alternative is a remote management tool such as Windows Admin Center. You can use Windows Admin Center to manage Windows containers hosts, and the containers themselves, without the need to RDP into them. You can also open a remote PowerShell session to the host and/or containers to manage them.
 
 ### Stateful applications
 
-Applications that need to preserve state data can be containerized only if you isolate the data needed from one session to the next and store it in persistent storage. This might require some "rearchitecting" which may or may not be trivial but proceeding with it will eliminate this barrier to containerization.
+Applications that need to preserve state data can be containerized only if you isolate the data needed from one session to the next and store it in persistent storage. This might require some "rearchitecting", which may or may not be trivial, but proceeding with it will eliminate this barrier to containerization.
 
 An example of state is a web application that store images or music files to a local folder.  In a traditional Windows environment, a file is saved to disk at the moment the write operation concludes, so if the instance (a VM in this case) fails, you simply bring it back up and the file will still be there. By contrast, if a container instance performing a write operation fails, the new container instance won't include that file. For this reason, you should consider using persistent storage so all container instances can store state data or files to a centralized, durable location. This type of rearchitecting does not require you to change the code of the application, just the type of storage used by the Windows instance. For more information, check out the Windows container [documentation on storage](../manage-containers/persistent-storage.md).
 
@@ -114,17 +115,17 @@ First, the performance needed for a database might require the entire hardware r
 
 ### Infrastructure Roles on Windows Server
 
-Windows Server infrastructure roles primarily handle functions closer to the operating system (for example, AD, DHCP, and File Server). As such they are not available to running containers. Therefore, applications needing these roles will always be difficult to containerize.
+Windows Server infrastructure roles primarily handle functions closer to the operating system (for example, AD, DHCP, and File Server). As such they aren't available to running containers. Therefore, applications needing these roles will always be difficult to containerize.
 
-There are some gray areas. For example, some features such as DNS may work on Windows containers even though they're not really intended to be used in containers. Other infrastructure roles are simply removed from the base container image and cannot be installed, such as Active Directory, DHCP, and others.
+There are some gray areas. For example, some features such as DNS may work on Windows containers even though they're not really intended to be used in containers. Other infrastructure roles are simply removed from the base container image and can't be installed, such as Active Directory, DHCP, and others.
 
 ### Active Directory (AD)
 
-Active Directory was released more than twenty years ago along Windows 2000 Server. It uses a mechanism in which each device or user is represented by an object stored in its database. This relationship is tightly coupled, and objects are kept in the database even if the actual user or device is no longer in play. That approach for Active Directory directly contradicts the ephemeral nature of containers, which are expected to be either short-lived or deleted when turned off. Maintaining this one-to-one relationship with Active Directory is not ideal for those scenarios.
+Active Directory was released more than twenty years ago along Windows 2000 Server. It uses a mechanism in which each device or user is represented by an object stored in its database. This relationship is tightly coupled, and objects are kept in the database even if the actual user or device is no longer in play. That approach for Active Directory directly contradicts the ephemeral nature of containers, which are expected to be either short-lived or deleted when turned off. Maintaining this one-to-one relationship with Active Directory isn't ideal for those scenarios.
 
-For that reason, Windows containers cannot be domain-joined. As an effect of that, you cannot run Active Directory Domain Services as an infrastructure role on Windows containers. You can run the PowerShell module for managing Domain Controllers remotely inside a Windows container.
+For that reason, Windows containers cannot be domain-joined. As an effect of that, you can't run Active Directory Domain Services as an infrastructure role on Windows containers. You can run the PowerShell module for managing Domain Controllers remotely inside a Windows container.
 
-For applications running on Windows containers that are Active Directory dependent, you can use Group Managed Service Accounts (gMSA), which will be explained further.
+For applications running on Windows containers that are Active Directory dependent, use Group Managed Service Accounts (gMSA), which will be explained further.
 
 ### Apps using .NET Framework version 2.0 or older
 
@@ -144,8 +145,8 @@ Now that we've considered the hard limitations on containerizing apps, it's easi
 |---|---|---|
 |Console applications | With no GUI limitations, console apps are ideal candidates for containers. | Use the appropriate base container image depending on the application's needs.|
 |Windows services | Because these are background processes not requiring any direct user interaction | Use the appropriate base container image depending on the application's needs. You need to create a foreground process to keep any containerized background process running. See the section on Background services below.|
-|Windows Communication Foundation (WCF) services | Because they're service-oriented apps that can also run in the background | Use the appropriate base container image depending on the application's needs. You may need to create a foreground process to keep any containerized background process running. See the section on Background services below.|
-|Web apps | Web applications are in essence background services listening on a specific port and are therefore great candidates for containerization, as they can leverage the scalability offered by containers | Use the appropriate base container image depending on the application's needs.|
+|Windows Communication Foundation (WCF) services | Because they're service-oriented apps that also run in the background | Use the appropriate base container image depending on the application's needs. You may need to create a foreground process to keep any containerized background process running. See the section on Background services below.|
+|Web apps | Web applications are in essence background services listening on a specific port and are therefore great candidates for containerization, as they leverage the scalability offered by containers | Use the appropriate base container image depending on the application's needs.|
 
 >Note: even these ideal candidates for containerization may rely upon core Windows features and components that will need to be handled differently in Windows containers. The next section, which goes into more details on such practical considerations, will better prepare you for leveraging the functionality of Windows containers.
 
@@ -163,20 +164,20 @@ The following table presents a quick summary of the components/features of appli
 |Microsoft Distributed Transaction Coordinator (MSDTC) | Name resolution between MSDTC and the container requires special consideration.|
 |IIS | IIS is the same as in a VM, but there are important considerations when running it in a container environment, such as certificate management, database connection strings, and more.|
 |Scheduled tasks | Windows containers can run scheduled tasks, just like any Windows instance. However, you might need to run a foreground task to keep the container instance running. Depending on the application, you might want to consider an event driven approach.|
-|Background services | Since containers run as ephemeral processes, you'll need additional handling to keep the container running|
-|.NET Framework and .NET (formerly .Net Core) | Make sure to use the right image to ensure compatibility, as explained in the subsection below|
+|Background services | Since containers run as ephemeral processes, you'll need additional handling to keep the container runnin.g|
+|.NET Framework and .NET (formerly .Net Core) | Make sure to use the right image to ensure compatibility, as explained in the subsection below.|
 
 Other supporting components
 
 |Component requiring special handling | Reason | Alternative approach|
 |---|---|---|
-|Event logging/monitoring | Because the way Windows writes events and logs is inherently different from Linux stdout | Use the new Log Monitor tool to normalize the data and combine from both Linux and Windows|
-|Windows containers security | While many security practices remain the same, containers require additional security measures | Employ a purpose-built registry and image scanning tool – more details later|
-|Backup of Windows containers | Containers should not have data or state in it | Backup any persistent storage used by containers, as well as container images|
+|Event logging/monitoring | Because the way Windows writes events and logs is inherently different from Linux stdout | Use the new Log Monitor tool to normalize the data and combine from both Linux and Windows.|
+|Windows containers security | While many security practices remain the same, containers require additional security measures. | Employ a purpose-built registry and image scanning tool – more details later.|
+|Backup of Windows containers | Containers should not have data or state in it | Backup any persistent storage used by containers, as well as container images.|
 
 ### Windows components/features
 
-Now let's dive into the details of applications and components that can be containerized, but do require additional handling.
+Now let's dive into the details of applications and components that can be containerized, but require additional handling.
 
 #### MSMQ
 
@@ -220,8 +221,8 @@ docker run -d --security-opt "credentialspec=file://contoso_webapp01.json" --hos
 
 IIS works the same on a Windows container as in a VM. However, there are some aspects of running an IIS instance that should be considered when running on a container environment:
 
-- Persistent storage for local data: Folders on which the app writes/reads files to/from are a great example of something you would keep in a VM for an IIS instance. With containers, you don't want any data being written directly into the container. Containers use a "scratch space" for local storage and when a new container comes up for the same application, it has no access to that area from a previous container. For that reason, you should use persistent storage for data that needs to be accessible to the web application, so any container instance can have access to that storage.
-- Certificates: Although you can have local certificates on container instances, you should avoid doing so, because if a certificate needs to be updated, you have to rebuild your container image. Alternatively, you can use a container orchestrator with Ingress control. Ingress controllers can apply network policies and also handle the certificate management for the website being hosted behind it. The upside is you decouple the certificate lifecycle management from the website management.
+- Persistent storage for local data: Folders on which the app writes/reads files to/from are a great example of something you would keep in a VM for an IIS instance. With containers, you don't want any data being written directly into the container. Containers use a "scratch space" for local storage and when a new container comes up for the same application, it has no access to that area from a previous container. For that reason, use persistent storage for data that needs to be accessible to the web application, so that any container instance can have access to that storage.
+- Certificates: Although you can have local certificates on container instances, avoid doing so, because if a certificate needs to be updated, you have to rebuild your container image. Alternatively, you can use a container orchestrator with Ingress control. Ingress controllers can apply network policies and also handle the certificate management for the website being hosted behind it. The upside is you decouple the certificate lifecycle management from the website management.
 - Database connection strings: For traditional IIS deployment, you can pass the DB connection string as part of your application deployment. While Windows containers allow you to follow that model, you might want to consider decoupling the DB connection string from the container to a centralized configuration provided by the container orchestrator, from which the application can read. This allows you to manage and update the DB connection string independently from the application. If the DB changes (for cases of Lift and Shift to the cloud, for example) you can easily change the connection string without rebuilding your container image. This approach also allows you to keep secrets (such as username and password for connecting to the DB) on a secret store.
 - Horizontal auto-scale: When load increases, compute systems tend to slow down the perceived performance while trying to process the simultaneous requests. There are generally two ways to avoid performance impact, – vertical or horizontal scale. Vertical scale increases the resources available for the existing compute instances (more CPU, Memory, etc.). Horizontal scale increases the number of instances supporting the requests (more physical hosts, or VMs, or containers). For web tiers such as IIS, horizontal scale tends to be more efficient than vertical, but on-premises environments might encounter resource limitations and load balancing issues. With cloud environments, horizontal scale is much easier as resources are readily available (for an additional cost) and the cloud provider typically designs its load balancing mechanism with horizontal scale in mind. Windows containers can leverage horizontal scale for IIS, but the ephemeral aspect of containers plays an important role. It's imperative that your containers have the same configuration and that no state or data is stored to allow for scaling up or down the number of instances supporting your web application.
 

@@ -3,7 +3,7 @@ title: Run your first Windows container
 description: Learn how to run Windows containers.
 author: vrapolinario
 ms.author: mosagie
-ms.date: 01/21/2025
+ms.date: 01/22/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
@@ -28,7 +28,7 @@ All containers are created from container images. Microsoft offers several start
    > [!TIP]
    > If you see an error message that says `no matching manifest for linux/amd64 in the manifest list entries`, make sure Docker isn't configured to run Linux containers. To switch to Windows containers in Docker, right-click the Docker icon, and select **Switch to Windows containers**. To use the command line to switch between containers, run `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon`.
 
-2. After the image is finished downloading—read the [EULA](../images-eula.md) while you wait—verify its existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images.
+2. After the image is finished downloading, read the [EULA](../images-eula.md) while you wait, and verify its existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images.
 
    Here's an example of the output showing the Nano Server image.
 
@@ -47,14 +47,14 @@ For this simple example, a ‘Hello World’ container image will be created and
    docker run -it mcr.microsoft.com/windows/nanoserver:ltsc2022 cmd.exe
    ```
 
-2. After the container is started, the command prompt window changes context to the container. Inside the container, we'll create a simple ‘Hello World’ text file and then exit the container by entering the following commands:
+2. After the container starts, the command prompt window changes context to the container. Inside the container, we'll create a simple ‘Hello World’ text file and then exit the container by entering the following commands:
 
    ```cmd
    echo "Hello World!" > Hello.txt
    exit
    ```
 
-3. Get the container ID for the container you just exited by running the [docker ps](https://docs.docker.com/engine/reference/commandline/ps/) command:
+3. Get the container ID for the container you just exited by running the [docker ps](https://docs.docker.com/reference/cli/docker/container/ls/) command:
 
    ```console
    docker ps -a
@@ -66,7 +66,7 @@ For this simple example, a ‘Hello World’ container image will be created and
    docker commit <containerid> helloworld
    ```
 
-   When completed, you now have a custom image that contains the hello world script. This can be seen with the [docker images](https://docs.docker.com/engine/reference/commandline/images/) command.
+   You now have a custom image that contains the hello world script. This can be seen with the [docker images](https://docs.docker.com/engine/reference/commandline/images/) command.
 
    ```console
    docker images
@@ -90,7 +90,7 @@ For this simple example, a ‘Hello World’ container image will be created and
 
 ## Run a Windows container using Windows Admin Center
 
-You can use Windows Admin Center to run your containers locally. Specifically, you use the the Containers extension of your Windows Admin Center instance to run the containers. First, open the container host you want to manage, and in the Tools pane, select the **Containers** extension. Then, select the **Images** tab inside the Container extension under **Container Host**.
+Use Windows Admin Center to run your containers locally. Specifically, use the Containers extension of your Windows Admin Center instance to run the containers. First, open the container host you want to manage, and in the Tools pane, select the **Containers** extension. Then, select the **Images** tab inside the Container extension under **Container Host**.
 
 ![Images tab inside the Container extension](./media/WAC-Images.png)
 
@@ -98,15 +98,15 @@ If your host doesn't have a base container image, select the **Pull** option to 
 
 ![Pull Container Image settings window](./media/WAC-Pull.png)
 
-In the **Pull Container Image** settings, provide the image URL and the tag. If you aren't certain which image to pull, Windows Admin Center provides a list of common images from Microsoft. You can also provide the credentials to pull an image from a private repository. Once you fill out the necessary information, click **Pull**. Windows Admin Center will start the pull process on the container host. After the download is complete, you should see the new image on the **Images** tab.
+In the **Pull Container Image** settings, provide the image URL and the tag. If you aren't certain which image to pull, Windows Admin Center provides a list of common images from Microsoft. You can also provide the credentials to pull an image from a private repository. Once you fill out the necessary information, select **Pull**. Windows Admin Center starts the pull process on the container host. After the download is complete, you see the new image on the **Images** tab.
 
-Select the image you want to run, and click **Run**.
+Select the image you want to run, and select **Run**.
 
 ![Run image settings window](./media/WAC-RunContainers.png)
 
 On the **Run** menu, set up the configuration for the container, such as the container name, the isolation type, which ports to publish, and memory and CPU allocation. Additionally, you can append Docker run commands that are not in the UI, such as -v for persistent volume. For more information on available Docker run parameters, review the [documentation](https://docs.docker.com/engine/reference/commandline/run/).
 
-Once you have finished the configuration for the container, click **Run**. You can see the status of the running containers on the **Containers** tab:
+Once you finish the configuration for the container, click **Run**. You can see the status of the running containers on the **Containers** tab:
 
 ![Containers tab that displays the running containers](./media/WAC-Containers.png)
 
