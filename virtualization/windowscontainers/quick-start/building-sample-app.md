@@ -2,13 +2,13 @@
 title: Containerize a .NET Core app
 description: Learn how to build a sample .NET Core app with containers.
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 03/31/2023
+ms.author: mosagie
+ms.date: 01/21/2025
 ms.topic: how-to
 ---
 # Containerize a .NET Core App
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 This topic describes how to package an existing sample .NET app for deployment as a Windows container, after setting up your environment as described in [Get started: Prep Windows for containers](set-up-environment.md), and running your first container as described in [Run your first Windows container](run-your-first-container.md).
 

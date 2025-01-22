@@ -2,14 +2,14 @@
 title: Prepare Windows operating system containers
 description: Set up Windows or Windows Server for containers, then run your first container image.
 author: brasmith-ms
-ms.author: roharwoo
-ms.date: 03/31/2023
+ms.author: mosagie
+ms.date: 01/21/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Get started: Prep Windows for containers
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016, Windows 10 and 11
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016, Windows 10 and 11
 
 This tutorial describes how to:
 
@@ -44,7 +44,7 @@ Windows Server Containers use Hyper-V isolation by default on Windows 10 and 11 
 
 For development environments, to run Windows Server Containers you will need a physical server or virtual machine running Windows Server.
 
-For testing, you can download a copy of [Windows Server 2022 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2022 ) or a [Windows Server Insider Preview](https://insider.windows.com/for-business-getting-started-server/).
+For testing, you can download a copy of [Windows Server 2025 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2025) or a [Windows Server Insider Preview](https://insider.windows.com/for-business-getting-started-server/).
 
 #### Container-Ready Azure VMs
 
@@ -114,7 +114,7 @@ To run a Windows container you must have a supported container runtime available
 This section will detail the process of installing each on your specific copy of Windows, including a set of powershell scripts which make it easy to install each runtime in just a few steps.
 
 <!-- start tab view -->
-# [Docker CE / Moby](#tab/dockerce)
+#### [Docker CE / Moby](#tab/dockerce)
 
 Docker Community Edition (CE) provides a standard runtime environment for containers with a common API and command-line interface (CLI). It is managed by the open source community as part of the [Moby Project](https://mobyproject.org/).
 
@@ -127,19 +127,20 @@ Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/
 
 For more configuration details, see [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md).
 
-# [Mirantis Container Runtime](#tab/mirantiscontainerruntime)
+#### [Mirantis Container Runtime](#tab/mirantiscontainerruntime)
 
 The Mirantis Container Runtime, formally known as Docker EE, provides the same functionality as Docker CE plus extra features built specifically for enterprise deployments. To install this runtime please head over to the Mirantis website for instructions on how to install: [https://www.mirantis.com/docker-engine-enterprise-support/](https://www.mirantis.com/docker-engine-enterprise-support/).
 
 Please head over to the [Mirantis site](https://www.mirantis.com/software/container-runtime/) for more information.
 
-# [Containerd](#tab/containerd)
+#### [Containerd](#tab/containerd)
 
 [Containerd](https://github.com/containerd/containerd) is an industry-standard container runtime with an emphasis on simplicity, robustness and portability. It is available as a daemon for Linux and Windows, which can manage the complete container lifecycle of its host systemW: image transfer and storage, container execution and supervision, low-level storage and network attachments, etc.
 
 [nerdctl](https://github.com/containerd/nerdctl) is a Docker-compatible CLI for containerd.
 
 We have created [an installation script](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-ContainerdRuntime/install-containerd-runtime.ps1) which installs both for you at the same time alongside container related OS features.
+
 ```powershell
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-ContainerdRuntime/install-containerd-runtime.ps1" -o install-containerd-runtime.ps1
 .\install-containerd-runtime.ps1

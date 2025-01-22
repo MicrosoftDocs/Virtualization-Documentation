@@ -2,14 +2,14 @@
 title: Lift and shift to containers
 description: Learn how to migrate existing applications to containers.
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 03/31/2023
+ms.author: mosagie
+ms.date: 01/21/2025
 ms.topic: conceptual
 ---
 
 # Using Windows Containers to "Containerize" Existing Applications
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Windows containers provide a great mechanism for modernizing traditional or legacy applications.  Although you may hear this approach referred to as "lift and shift to containers," the lift-and-shift metaphor originates from shifting workloads from physical to virtual machines and has been used lately when referring to moving workloads as is to the cloud (whether private or public). Today this term is more appropriately applied to migrating virtual machines (VMs).  But containers are not VMs and thinking of them as VMs can lead to confusion over how an application can be containerized, or whether it even can – or should – be containerized.
 

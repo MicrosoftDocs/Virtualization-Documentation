@@ -9,7 +9,7 @@ metadata:
   ms.topic: landing-page # Required
   author: meaghanlewis
   ms.author: mosagie
-  ms.date: 07/06/2020
+  ms.date: 01/21/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
 
@@ -28,7 +28,7 @@ landingContent:
           - text: Check out our container images on Docker Hub
             url: https://hub.docker.com/r/microsoft/windows
           - text: Read the Containers blog
-            url: https://techcommunity.microsoft.com/t5/Containers/bg-p/Containers
+            url: https://techcommunity.microsoft.com/category/windows-server/blog/containers
 
   # Card
   - title: Overview
@@ -37,8 +37,6 @@ landingContent:
         links:
           - text: About Windows containers
             url: ./about/index.md
-          - text: What's new for Windows containers in Windows Server 2022
-            url: ./about/whats-new-ws2022-containers.md
           - text: System requirements
             url: ./deploy-containers/system-requirements.md
           - text: FAQ

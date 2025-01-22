@@ -2,22 +2,22 @@
 title: Set up Linux containers on Windows 10
 description: Linux container deployment quickstart.
 author: taylorb-microsoft
-ms.author: jgerend
-ms.date: 08/16/2019
+ms.author: mosagie
+ms.date: 01/21/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 
-# Get started: Set up Linux Containers on Windows 10
+# Get started: Set up Linux Containers on Windows
 
-The exercise will walk through creating and running Linux containers on Windows 10.
+The exercise will walk through creating and running Linux containers on Windows.
 
 In this quick start you will accomplish:
 
 1. Installing Docker Desktop
 2. Running a simple Linux container
 
-This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left-hand side of this page.
+This quick start is specific to Windows 10 and Windows 11. Additional quick start documentation can be found in the table of contents on the left-hand side of this page.
 
 ## Prerequisites
 

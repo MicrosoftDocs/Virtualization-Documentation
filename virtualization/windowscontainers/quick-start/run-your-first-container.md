@@ -2,14 +2,14 @@
 title: Run your first Windows container
 description: Learn how to run Windows containers.
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 03/31/2023
+ms.author: mosagie
+ms.date: 01/21/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 # Get started: Run your first Windows container
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 This topic describes how to run your first Windows container, after setting up your environment as described in [Get started: Prep Windows for containers](./set-up-environment.md). To run a container, you first download (in containers, also referenced as a pull operation) a base image, which provides a foundational layer of operating system services to your container. Then you create and run a container image, which is based upon the base image. For details, read on.
 
@@ -22,6 +22,7 @@ All containers are created from container images. Microsoft offers several start
    ```console
    docker pull mcr.microsoft.com/windows/nanoserver:ltsc2022
    ```
+
    If Docker fails to start when trying to pull the image, the Docker daemon may be unreachable. To resolve this issue, try restarting the Docker service.
 
    > [!TIP]
@@ -45,6 +46,7 @@ For this simple example, a ‘Hello World’ container image will be created and
    ```console
    docker run -it mcr.microsoft.com/windows/nanoserver:ltsc2022 cmd.exe
    ```
+
 2. After the container is started, the command prompt window changes context to the container. Inside the container, we'll create a simple ‘Hello World’ text file and then exit the container by entering the following commands:
 
    ```cmd
@@ -83,6 +85,7 @@ For this simple example, a ‘Hello World’ container image will be created and
    ```console
    docker run --rm helloworld cmd.exe /s /c type Hello.txt
    ```
+
    The result is that Docker created a container from the 'HelloWorld' image, Docker started an instance of cmd.exe in the container, and the cmd.exe read our file and output the contents to the shell. As the final step, Docker stopped and removed the container.
 
 ## Run a Windows container using Windows Admin Center
