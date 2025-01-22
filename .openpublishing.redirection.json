@@ -524,6 +524,11 @@
       "source_path": "virtualization/windowscontainers/deploy-containers/linux-containers.md",
       "redirect_url": "/virtualization/windowscontainers/deploy-containers/set-up-linux-containers",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainders/about/docker-overview.md",
+      "redirect_url": "/virtualization/windowscontainers/manage-docker/configure-docker-daemon",
+      "redirect_document_id": false
     }
   ]
 }

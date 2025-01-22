@@ -57,9 +57,7 @@
 #### [MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft)
 ### Other
 #### [DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx)
-## Use Linux containers on Windows
-### [Linux containers on Windows 10](deploy-containers/linux-containers.md)
-### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
+## [Run your first Linux container](deploy-containers/set-up-linux-containers.md)
 ## [Use containers with the Windows Insider program](deploy-containers/insider-overview.md)
 ## [Containerize apps with printer services](deploy-containers/print-spooler.md)
 ## [Add optional font packages to Windows containers](deploy-containers/font-packages.md)
@@ -82,13 +80,10 @@
 ### [Upgrade Windows containers](deploy-containers/upgrade-windows-containers.md)
 ### [Resource controls](manage-containers/resource-controls.md)
 ### [Container time zones](manage-containers/virtual-time-zone.md)
+### [Windows container orchestration overview](about/overview-container-orchestrators.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ### [Remote management of a Windows Docker host](management/manage_remotehost.md)
-## Container orchestration
-### [Windows Container orchestration overview](about/overview-container-orchestrators.md)
-### [Azure Kubernetes Service (AKS)](/azure/aks)
-### [AKS on Azure Stack HCI](/azure-stack/aks-hci/overview)
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
 #### [Troubleshooting](kubernetes/common-problems.md)

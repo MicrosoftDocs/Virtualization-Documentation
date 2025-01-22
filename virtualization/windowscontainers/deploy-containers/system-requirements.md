@@ -2,14 +2,14 @@
 title: Windows container requirements
 description: Learn about Windows container requirements.
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 03/31/2023
+ms.author: mosagie
+ms.date: 01/22/2025
 ms.topic: conceptual
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
 ---
 # Windows container requirements
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016; Azure Stack HCI, versions 21H2 and 20H2
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016; Azure Stack HCI, versions 21H2 and 20H2, Windows 10, Windows 11
 
 This guide lists the requirements for a Windows container host.
 
@@ -35,13 +35,6 @@ You can configure restrictions on available memory for containers through [resou
 > [!NOTE]
 > These values don't take into account resource sharing between containers or requirements from the application running in the container. For example, a host with 512 MB of free memory can run multiple Server Core containers under Hyper-V isolation because those containers share resources.
 
-#### Windows Server 2016
-
-| Base image  | Windows Server container | Hyper-V isolation    |
-| ----------- | ------------------------ | -------------------- |
-| Nano Server | 40 MB                     | 130 MB + 1 GB Pagefile |
-| Server Core | 50 MB                     | 325 MB + 1 GB Pagefile |
-
 ## See also
 
-[Support policy for Windows containers and Docker in on-premises scenarios](https://support.microsoft.com/help/4489234/support-policy-for-windows-containers-and-docker-on-premises)
+[Support policy for Windows containers and Docker in on-premises scenarios](/troubleshoot/windows-server/containers/support-for-windows-containers-docker-on-premises-scenarios)

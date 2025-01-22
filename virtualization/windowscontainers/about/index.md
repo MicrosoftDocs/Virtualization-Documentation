@@ -2,15 +2,15 @@
 title: About Windows containers
 description: Overview of how Microsoft, Windows, and Azure help you develop and deploy apps in containers, including using Docker and Azure Kubernetes Service.
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 03/20/2023
+ms.author: mosagie
+ms.date: 01/22/2025
 ms.topic: overview
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 
 # Windows and containers
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Containers are a technology for packaging and running Windows and Linux applications across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for apps that need to rapidly adapt to changing demand. The lightweight nature of containers also make them a useful tool for increasing the density and utilization of your infrastructure.
 
@@ -20,14 +20,14 @@ Containers are a technology for packaging and running Windows and Linux applicat
 
 Microsoft provides a number of tools and platforms to help you develop and deploy apps in containers:
 
-- <strong>Run Windows-based or Linux-based containers on Windows 10</strong> for development and testing using [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), which makes use of containers functionality built-in to Windows. You can also [run containers natively on Windows Server](../quick-start/set-up-environment.md#windows-server-1).
-- <strong>Develop, test, publish, and deploy Windows-based containers</strong> using the [powerful container support in Visual Studio](/visualstudio/containers/overview) and [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker), which include support for Docker, Docker Compose, Kubernetes, Helm, and other useful technologies.
-- <strong>Publish your apps as container images</strong> to the public DockerHub for others to use, or to a private [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) for your org's own development and deployment, pushing and pulling directly from within Visual Studio and Visual Studio Code.
-- <strong>Deploy containers at scale on Azure</strong> or other clouds:
+- **Run Windows-based or Linux-based containers on Windows 10** for development and testing using [Docker Desktop](https://docs.docker.com/desktop/), which makes use of containers functionality built-in to Windows. You can also [run containers natively on Windows Server](../quick-start/set-up-environment.md#windows-server-1).
+- **Develop, test, publish, and deploy Windows-based containers** using the [powerful container support in Visual Studio](/visualstudio/containers/overview) and [Visual Studio Code](https://code.visualstudio.com/docs/containers/overview), which include support for Docker, Docker Compose, Kubernetes, Helm, and other useful technologies.
+- **Publish your apps as container images** to the public DockerHub for others to use, or to a private [Azure Container Registry](https://azure.microsoft.com/products/container-registry/) for your org's own development and deployment, pushing and pulling directly from within Visual Studio and Visual Studio Code.
+- **Deploy containers at scale on Azure** or other clouds:
 
   - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes).
   - Azure Kubernetes Service deploys containers to Azure virtual machines and manages them at scale, whether that's dozens of containers, hundreds, or even thousands. The Azure virtual machines run either a customized Windows Server image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
-- <strong>Deploy containers on-premises</strong> by using [AKS on Azure Stack HCI](/azure-stack/aks-hci/), [Azure Stack with the AKS Engine](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview), or [Azure Stack with OpenShift](/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server (see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md)), and we're working on support for running [Windows containers on RedHat OpenShift Container Platform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821) as well.
+- **Deploy containers on-premises** by using [AKS on Azure Stack HCI](/azure-stack/aks-hci/), [Azure Stack with the AKS Engine](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview), or [Azure Stack with OpenShift](/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server (see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md)), and we're working on support for running [Windows containers on RedHat OpenShift Container Platform](https://techcommunity.microsoft.com/blog/networkingblog/managing-windows-containers-with-red-hat-openshift-container-platform-3-11/339821) as well.
 
 ## How containers work
 
@@ -35,7 +35,7 @@ A container is an isolated, lightweight package for running an application on th
 
 ![Architectural diagram showing how containers run on top of the kernel](media/container-diagram.svg)
 
-While a container shares the host operating system's kernel, the container doesn't get unfettered access to it. Instead, the container gets an isolated–and in some cases virtualized–view of the system. For example, a container can access a virtualized version of the file system and registry, but any changes affect only the container and are discarded when it stops. To save data, the container can mount persistent storage such as an [Azure Disk](https://azure.microsoft.com/services/storage/disks/) or a file share (including [Azure Files](https://azure.microsoft.com/services/storage/files/)).
+While a container shares the host operating system's kernel, the container doesn't get unfettered access to it. Instead, the container gets an isolated–and in some cases virtualized–view of the system. For example, a container can access a virtualized version of the file system and registry, but any changes affect only the container and are discarded when it stops. To save data, the container can mount persistent storage such as an [Azure Disk](https://azure.microsoft.com/products/storage/disks/) or a file share like [Azure Files](https://azure.microsoft.com/products/storage/files/).
 
 A container builds on top of the kernel, but the kernel doesn't provide all of the APIs and services an app needs to run–most of these are provided by system files (libraries) that run above the kernel in user mode. Because a container is isolated from the host's user mode environment, the container needs its own copy of these user mode system files, which are packaged into something known as a base image. The base image serves as the foundational layer upon which your container is built, providing it with operating system services not provided by the kernel. But we'll talk more about container images later.
 
@@ -55,12 +55,12 @@ All containers are created from container images. A container image is a bundle 
 
 Microsoft offers several images (called base images) that you can use as a starting point to build your own container image:
 
-* <strong>Windows</strong> - contains the full set of Windows APIs and system services (minus server roles).
-* <strong>Windows Server</strong> - contains the full set of Windows APIs and system services.
-* <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs–namely the full .NET framework. It also includes most but not all server roles (for example Fax Server is not included).
-* <strong>Nano Server</strong> - the smallest Windows Server image and includes support for the .NET Core APIs and some server roles.
+- **Windows** - contains the full set of Windows APIs and system services (minus server roles).
+- **Windows Server** - contains the full set of Windows APIs and system services.
+- **Windows Server Core** - a smaller image that contains a subset of the Windows Server APIs–namely the full .NET framework. It also includes most but not all server roles (for example Fax Server is not included).
+- **Nano Server** - the smallest Windows Server image and includes support for the .NET Core APIs and some server roles.
 
-As mentioned earlier, container images are composed of a series of layers. Each layer contains a set of files that, when overlaid together, represent your container image. Because of the layered nature of containers, you don't have to always target a base image to build a Windows container. Instead, you could target another image that already carries the framework you want. For example, the .NET team publishes a [.NET core image](https://hub.docker.com/r/microsoft/dotnet) that carries the .NET core runtime. It saves users from needing to duplicate the process of installing .NET core–instead they can reuse the layers of this container image. The .NET core image itself is built based upon Nano Server.
+Container images are composed of a series of layers. Each layer contains a set of files that, when overlaid together, represent your container image. Because of the layered nature of containers, you don't have to always target a base image to build a Windows container. Instead, you could target another image that already carries the framework you want. For example, the .NET team publishes a [.NET core image](https://hub.docker.com/r/microsoft/dotnet) that carries the .NET core runtime. It saves users from needing to duplicate the process of installing .NET core–instead they can reuse the layers of this container image. The .NET core image itself is built based upon Nano Server.
 
 For more details, see [Container Base Images](../manage-containers/container-base-images.md).
 
@@ -97,6 +97,7 @@ Orchestrators help you grow containerized apps at scale, providing functionality
 - Cluster node affinity
 
 There are many different orchestrators that you can use with Windows containers; here are the options Microsoft provides:
+
 - [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) - use a managed Azure Kubernetes service
 - [Azure Kubernetes Service (AKS) on Azure Stack HCI](/azure-stack/aks-hci/overview) - use Azure Kubernetes Service on-premises
 
@@ -114,7 +115,7 @@ To view resources for using Windows Server containers:
 
 - For current issues and planned feature upgrades, see the [Windows containers GitHub repository](https://github.com/microsoft/Windows-Containers).
 
-- Check out our blog: [Windows Containers Blog](https://techcommunity.microsoft.com/t5/containers/bg-p/Containers).
+- Check out our blog: [Windows Containers Blog](https://techcommunity.microsoft.com/category/windows-server/blog/containers).
 
-- To contact the Windows Server containers team, send email to [Windows Containers Customers](mailto:win-containers@microsoft.com).
+- To contact the Windows Server containers team, send email to the [Windows Containers Customers group](mailto:win-containers@microsoft.com).
   
