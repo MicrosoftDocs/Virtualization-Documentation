@@ -1,14 +1,11 @@
 items:
-- name: Learn
-  href: /
+- name: Virtualization
+  tocHref: /virtualization/
+  topicHref: /virtualization/
   items:
-    - name: Virtualization
-      tocHref: /virtualization/
-      topicHref: /virtualization/
-      items:
-        - name: Hyper-V on Windows
-          tocHref: /virtualization/hyper-v-on-windows/
-          topicHref: /virtualization/hyper-v-on-windows/
+  - name: Hyper-V on Windows
+    tocHref: /virtualization/hyper-v-on-windows/
+    topicHref: /virtualization/hyper-v-on-windows/
 
 - name: Hyper-V on Windows
   tocHref: /windows-server/
