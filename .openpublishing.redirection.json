@@ -518,12 +518,12 @@
     {
       "source_path": "virtualization/windowscontainers/quick-start/quick-start-windows-10-linux.md",
       "redirect_url": "/virtualization/windowscontainers/deploy-containers/set-up-linux-containers",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path": "virtualization/windowscontainers/deploy-containers/linux-containers.md",
       "redirect_url": "/virtualization/windowscontainers/deploy-containers/set-up-linux-containers",
-      "redirect_document_id": true
+      "redirect_document_id": false
     }
   ]
 }
