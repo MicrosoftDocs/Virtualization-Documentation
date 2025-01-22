@@ -3,7 +3,7 @@ title: Set up Linux containers on Windows
 description: Linux container deployment quickstart.
 author: taylorb-microsoft
 ms.author: mosagie
-ms.date: 01/21/2025
+ms.date: 01/22/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
@@ -56,4 +56,4 @@ busybox                latest              59788edf1f3e        4 weeks ago      
 ## Next Steps
 
 > [!div class="nextstepaction"]
-> [Learn how to build a sample app](./building-sample-app.md)
+> [Learn how to build a sample app](/virtualization/windowscontainers/quick-start/building-sample-app)
