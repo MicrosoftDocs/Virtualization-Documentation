@@ -87,7 +87,6 @@
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
 #### [Troubleshooting](kubernetes/common-problems.md)
-#### [Compile Kubernetes binaries](kubernetes/compiling-kubernetes-binaries.md)
 ### Service Fabric
 #### [Service Fabric and Containers](/azure/service-fabric/service-fabric-containers-overview)
 #### [Resource Governance](/azure/service-fabric/service-fabric-resource-governance)
