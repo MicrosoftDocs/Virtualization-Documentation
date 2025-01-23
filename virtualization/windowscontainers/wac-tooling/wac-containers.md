@@ -2,11 +2,12 @@
 title: Run containers on Windows Admin Center
 description: Run a container on Windows Admin Center.
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 04/12/2023
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
+
 # Run new containers using Windows Admin Center
 
 Windows Admin Center helps you run containers locally on your container host.

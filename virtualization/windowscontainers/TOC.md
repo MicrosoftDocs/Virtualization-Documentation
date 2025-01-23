@@ -83,7 +83,7 @@
 ### [Windows container orchestration overview](about/overview-container-orchestrators.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
-### [Remote management of a Windows Docker host](manage-docker/manage_remote-host.md)
+### [Remote management of a Windows Docker host](manage-docker/manage-remote-host.md)
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
 #### [Troubleshooting](kubernetes/common-problems.md)
@@ -130,5 +130,3 @@
 ### [Nano Server](https://hub.docker.com/r/microsoft/windows-nanoserver)
 ### [File bugs](https://github.com/microsoft/Windows-Containers/issues)
 ## [Troubleshooting](troubleshooting.md)
-## [Container forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
-## [Community videos and blogs](communitylinks.md)
