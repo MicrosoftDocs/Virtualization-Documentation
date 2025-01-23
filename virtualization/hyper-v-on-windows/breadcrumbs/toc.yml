@@ -10,5 +10,5 @@ items:
 # create mapping between different repos
 
 - name: Hyper-V on Windows                          # Original docset name
-  tocHref: /windows-server/hyper-v/                 # Destination docset route
+  tocHref: /windows-server/virtualization/hyper-v/  # Destination docset route
   topicHref: /virtualization/hyper-v-on-windows/    # Original docset route
