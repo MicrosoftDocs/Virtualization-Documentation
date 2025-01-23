@@ -120,7 +120,6 @@
 ### [GPU acceleration](deploy-containers/gpu-acceleration.md)
 
 # Reference
-## [Events](deploy-containers/events.md)
 ## [Anti-virus optimization](/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Container platform tools](deploy-containers/containerd.md)
 ## [Container OS image EULA](./images-eula.md)

@@ -2,8 +2,8 @@
 title: GPU acceleration in Windows containers
 description: Learn about the level of GPU acceleration in Windows containers.
 author: sethmanheim
-ms.author: roharwoo
-ms.date: 12/29/2020
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ---
 
@@ -16,12 +16,12 @@ GPUs are already a common tool for many popular workloads, from traditional rend
 > [!NOTE]
 > This feature is available in Docker Desktop, version 2.1 and Docker Engine - Enterprise, version 19.03 or later.
 
-## Requirements
+## Prerequisites
 
 For this feature to work, your environment must meet the following requirements:
 
 - The container host must be running Windows Server 2019 or Windows 10, version 1809 or newer.
-- The container base image must be [mcr.microsoft.com/windows:1809](https://hub.docker.com/_/microsoft-windows) or newer. Windows Server Core and Nano Server container images are not currently supported.
+- The container base image must be [mcr.microsoft.com/windows:1809](https://hub.docker.com/r/microsoft/windows) or newer. Windows Server Core and Nano Server container images are not currently supported.
 - The container host must be running Docker Engine 19.03 or newer.
 - The container host must have a GPU running display drivers version WDDM 2.5 or newer.
 
