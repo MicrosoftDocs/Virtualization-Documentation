@@ -83,7 +83,7 @@
 ### [Windows container orchestration overview](about/overview-container-orchestrators.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
-### [Remote management of a Windows Docker host](management/manage_remotehost.md)
+### [Remote management of a Windows Docker host](manage-docker/manage_remote-host.md)
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
 #### [Troubleshooting](kubernetes/common-problems.md)

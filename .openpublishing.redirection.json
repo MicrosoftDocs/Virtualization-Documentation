@@ -544,6 +544,11 @@
       "source_path": "virtualization/windowscontainers/manage-containers/known-issues.md",
       "redirect_url": "/virtualization/windowscontainers",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/management/manage_remotehost.md",
+      "redirect_url": "/virtualization/windowscontainers/manage-docker/manage_remote-host",
+      "redirect_document_id": false
     }
   ]
 }
