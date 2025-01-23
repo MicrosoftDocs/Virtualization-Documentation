@@ -29,8 +29,8 @@
     "externalReference": [],
     "globalMetadata": {
       "uhfHeaderId": "MSDocsHeader-Windows",
-      "breadcrumb_path": "/virtualization/toc.json",
-      "extendBreadcrumb": true, 
+      "breadcrumb_path": "/virtualization/hyper-v-on-windows/breadcrumbs/toc.json",
+      "extendBreadcrumb": false, 
       "feedback_system": "Standard"
     },
     "fileMetadata": {
