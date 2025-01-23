@@ -31,7 +31,7 @@ Improvements to gMSA when using a non-domain-joined container host include:
 
 To address the limitations of the initial implementation of gMSA for Windows containers, new gMSA support for non-domain-joined container hosts uses a portable user identity instead of a host computer account to retrieve gMSA credentials. Therefore, manually joining Windows worker nodes to a domain is no longer necessary, although it's still supported. The user identity/credentials are stored in a secret store accessible to the container host (for example, as a Kubernetes secret) where authenticated users can retrieve it.
 
-![Diagram of group Managed Service Accounts version two](../media/gmsa-v2.png)
+![Diagram of group Managed Service Accounts version two](media/gmsa-v2.png)
 
 gMSA support for non-domain-joined container hosts provides the flexibility of creating containers with gMSA without joining the host node to the domain. Starting in Windows Server 2019, ccg.exe is supported which enables a plug-in mechanism to retrieve gMSA credentials from Active Directory. You can use that identity to start the container. For more information on this plug-in mechanism, see the [ICcgDomainAuthCredentials interface](/windows/win32/api/ccgplugins/nn-ccgplugins-iccgdomainauthcredentials).
 
@@ -47,7 +47,7 @@ View the diagram below to follow the steps of the Container Credential Guard pro
 5. The container authenticates to the domain controller using the gMSA password to get a Kerberos Ticket-Granting Ticket (TGT).
 6. Applications running as Network Service or Local System in the container can now authenticate and access domain resources, such as the gMSA.
 
-   ![Diagram of the ccg.exe process](../media/credential-guard.png)
+   ![Diagram of the ccg.exe process](media/credential-guard.png)
 
 ## Prerequisites
 

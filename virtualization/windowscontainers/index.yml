@@ -95,8 +95,6 @@ landingContent:
     linkLists:
       - linkListType: reference
         links:
-          - text: Events
-            url: ./deploy-containers/events.md
           - text: Version compatibility
             url: ./deploy-containers/version-compatibility.md
           - text: Image servicing lifecycles
@@ -113,5 +111,3 @@ landingContent:
             url: ./samples.md
           - text: Troubleshooting
             url: ./troubleshooting.md
-          - text: Community videos and blogs
-            url: ./communitylinks.md

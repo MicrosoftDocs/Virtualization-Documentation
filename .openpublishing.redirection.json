@@ -554,6 +554,11 @@
       "source_path": "virtualization/windowscontainers/communitylinks.md",
       "redirect_url": "/virtualization/windowscontainers",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/licensing.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
     }
   ]
 }
