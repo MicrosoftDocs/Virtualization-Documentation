@@ -539,6 +539,11 @@
       "source_path": "virtualization/windowscontainers/kubernetes/compiling-kubernetes-binaries.md",
       "redirect_url": "/virtualization/windowscontainers/kubernetes/getting-started-kubernetes-windows",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/manage-containers/known-issues.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
     }
   ]
 }

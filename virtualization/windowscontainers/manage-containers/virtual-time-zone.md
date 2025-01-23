@@ -1,15 +1,15 @@
 ---
 title: Virtualized container time zone
 description: Learn how to configure the time zone in a container.
-author: brasmith-ms
-ms.author: roharwoo
+author: meaghanlewis
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
-ms.date: 06/15/2021
 ---
 
 # Virtualized time zone
 
-> Applies to: Windows Server 2022
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, 
 
 Windows containers support the ability to maintain a virtualized time zone configuration separate from the host. All of the configurations traditionally used for the host time zone have been virtualized and are instanced for each container. With this feature, Windows containers offer the following behaviors:
 
@@ -26,6 +26,7 @@ The following table shows the supported build for each SKU:
 | Windows Server 2019 | 10.0.17763.1935 or higher |
 | 20H2 SAC | 10.0.19042.985 or higher |
 | Windows Server 2022 | All versions |
+| Windows Server 2025 | All versions |
 
 ## How do I configure the container's time zone?
 
@@ -38,7 +39,7 @@ First, you need **both host and guest** versions containing this feature, which 
 
 ## Example using Windows Server 2019
 
-Using the latest Windows Server 2019 [Server Core](https://hub.docker.com/_/microsoft-windows-servercore) base image, the following is an example for setting a virtualized time zone.
+Using the Windows Server 2019 [Server Core](https://hub.docker.com/r/microsoft/windows-servercore) base image, the following is an example for setting a virtualized time zone.
 
 1. After starting the container, set the time zone to the host's time zone (in this example, it's Pacific Standard Time) as shown below:
 

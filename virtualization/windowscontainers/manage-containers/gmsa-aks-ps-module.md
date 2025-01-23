@@ -2,10 +2,9 @@
 title: Use gMSA on Azure Kubernetes service in Windows containers
 description: Learn how to use gMSA on Azure Kubernetes service in Windows containers.
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 04/09/2022
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
-
 ---
 
 # gMSA on Azure Kubernetes Service
@@ -17,14 +16,15 @@ Group Managed Service Accounts (gMSA) can be used on Azure Kubernetes Service (A
 In order to deploy gMSA on AKS, you will need the following:
 
 - An AKS cluster with Windows nodes up and running. If you don't have an AKS cluster ready, checkout the [Azure Kubernetes Service documentation](/azure/aks/windows-container-cli).
-    - Your cluster must be authorized for the gMSA on AKS. For more information, see [Enable Group Managed Service Accounts (GMSA) for your Windows Server nodes on your Azure Kubernetes Service (AKS) cluster](/azure/aks/use-group-managed-service-accounts).
+  - Your cluster must be authorized for the gMSA on AKS. For more information, see [Enable Group Managed Service Accounts (GMSA) for your Windows Server nodes on your Azure Kubernetes Service (AKS) cluster](/azure/aks/use-group-managed-service-accounts).
 - An Active Directory environment properly configured for gMSA. Details on how to configure your domain will provided below.
-    - Your Windows nodes on AKS must be able to connect to your Active Directory Domain Controllers.
+  - Your Windows nodes on AKS must be able to connect to your Active Directory Domain Controllers.
 - Active Directory domain credentials with delegated authorization to setup the gMSA and a standard domain user. This task can be delegated to authorized people (if needed).
 
 ## Install the gMSA on AKS PowerShell Module
 
 To get started, download the PowerShell Module from the PowerShell gallery:
+
    ```powershell
    Install-Module -Name AksGMSA -Repository PSGallery -Force
    ```
@@ -64,6 +64,7 @@ To start, run the following:
    ```powershell
    $params = Get-AksGMSAParameters
    ```
+
 After running the command, provide the necessary inputs until the command finishes. From now on, you can simply copy and paste the commands as shown in this page.
 
 ## Connect to your AKS cluster
@@ -76,7 +77,7 @@ While using the gMSA on AKS PowerShell module, you will be connecting to the AKS
     -Name $params["aks-cluster-name"]
    ```
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Configure gMSA on AKS with PowerShell module](./configure-gmsa-ps-module.md)

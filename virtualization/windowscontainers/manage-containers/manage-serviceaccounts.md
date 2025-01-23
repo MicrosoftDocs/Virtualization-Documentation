@@ -1,15 +1,15 @@
 ---
 title: Create gMSAs for Windows containers
 description: How to create group Managed Service Accounts (gMSAs) for Windows containers.
-author: rpsqrd
-ms.author: jgerend
-ms.date: 08/16/2021
+author: meaghanlewis
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 # Create gMSAs for Windows containers
 
-> Applies to: Windows Server 2022, Windows Server 2019
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019
 
 Windows-based networks commonly use Active Directory (AD) to facilitate authentication and authorization between users, computers, and other network resources. Enterprise application developers often design their apps to be AD-integrated and run on domain-joined servers to take advantage of Integrated Windows Authentication, which makes it easy for users and other services to automatically and transparently sign in to the application with their identities. This article explains how to start using Active Directory group managed service accounts with Windows containers.
 

@@ -122,9 +122,6 @@
 ## [Anti-virus optimization](/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Container platform tools](deploy-containers/containerd.md)
 ## [Container OS image EULA](./images-eula.md)
-
-# Resources
-## [Known Issues](manage-containers/known-issues.md)
 ## [Windows Server containers roadmap](https://github.com/Azure/AKS/projects/1?card_filter_query=label%3A+windows)
 ## Licensing and support
 ### [Pricing and licensing](https://www.microsoft.com/windows-server/pricing)
