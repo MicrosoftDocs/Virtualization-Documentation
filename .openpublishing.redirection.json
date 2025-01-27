@@ -516,6 +516,46 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "virtualization/hyper-v-on-windows/index.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/about/index.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows",
+      "redirect_document_id": false
+    },
+    { 
+      "source_path": "virtualization/hyper-v-on-windows/about/supported-guest-os.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/supported-guest-os?pivots=windows",
+      "redirect_document_id": false
+    }, 
+    { 
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/quick-create-virtual-machine.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v",
+      "redirect_document_id": false
+    },
+    { 
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/create-virtual-machine.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/hyper-v-requirements.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/System-requirements-for-Hyper-V-on-Windows",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/enable-hyper-v.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/install-the-hyper-v-role-on-windows-server",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/connect-to-network.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "virtualization/windowscontainers/quick-start/quick-start-windows-10-linux.md",
       "redirect_url": "/virtualization/windowscontainers/deploy-containers/set-up-linux-containers",
       "redirect_document_id": false
