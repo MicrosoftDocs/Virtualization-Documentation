@@ -1,9 +1,9 @@
 - name: Introduction to Hyper-V
-  href: /windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/hyper-v-on-windows/breadcrumbs/toc.json
+  href: /windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows&context=/virtualization/hyper-v-on-windows/context/context
 - name: Install Hyper-V
-  href: /windows-server/virtualization/hyper-v/get-started/Install-Hyper-V?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/hyper-v-on-windows/breadcrumbs/toc.json
+  href: /windows-server/virtualization/hyper-v/get-started/Install-Hyper-V?pivots=windows&context=/virtualization/hyper-v-on-windows/context/context
 - name: Create a virtual machine
-  href: /windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v?toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/hyper-v-on-windows/breadcrumbs/toc.json
+  href: /windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v?context=/virtualization/hyper-v-on-windows/context/context
 - name: Manage Virtual Machines with Hyper-V
   items:
   - name: Hyper-V and PowerShell
@@ -25,7 +25,7 @@
   - name: Set up a NAT network
     href: user-guide/setup-nat-network.md
   - name: Create a virtual switch
-    href: /windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=//virtualization/hyper-v-on-windows/breadcrumbs/toc.json
+    href: /windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines?pivots=windows&context=/virtualization/hyper-v-on-windows/context/context
   - name: Build an integration Service
     href: user-guide/make-integration-service.md
   - name: Port Hyper-V WMI
@@ -33,9 +33,9 @@
 - name: Reference
   items:
   - name: Hyper-V requirements
-    href: /windows-server/virtualization/hyper-v/System-requirements-for-Hyper-V-on-Windows?pivots=windows&toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/hyper-v-on-windows/breadcrumbs/toc.json
+    href: /windows-server/virtualization/hyper-v/System-requirements-for-Hyper-V-on-Windows?pivots=windows&context=/virtualization/hyper-v-on-windows/context/context
   - name: Supported Guest Operating Systems
-    href: /windows-server/virtualization/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows?toc=/virtualization/hyper-v-on-windows/toc.json&bc=/virtualization/hyper-v-on-windows/breadcrumbs/toc.json
+    href: /windows-server/virtualization/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows?context=/virtualization/hyper-v-on-windows/context/context
   - name: Hyper-V PowerShell
     href: /powershell/module/hyper-v
   - name: Hyper-V Integration Services
