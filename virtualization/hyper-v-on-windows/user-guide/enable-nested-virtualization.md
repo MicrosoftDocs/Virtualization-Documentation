@@ -43,7 +43,7 @@ To learn more about Nested Virtualization and supported scenarios, see [What is 
 
 1. Start the virtual machine.
 
-1. Install Hyper-V within the virtual machine, just like you would for a physical server. For more information on installing Hyper-V, see, [Install Hyper-V](../quick-start/enable-hyper-v.md).
+1. Install Hyper-V within the virtual machine, just like you would for a physical server. For more information on installing Hyper-V, see, [Install Hyper-V](/windows-server/virtualization/hyper-v/get-started/install-hyper-v).
 
 >[!NOTE]
 > When using Windows Server 2019 as the first level VM, the number of vCPUs should be 225 or less.

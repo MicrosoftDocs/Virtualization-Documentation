@@ -1,15 +1,15 @@
 ---
 title: Troubleshoot gMSAs for Windows containers
 description: How to troubleshoot group Managed Service Accounts (gMSAs) for Windows containers.
-author: rpsqrd
-ms.author: jgerend
-ms.date: 10/03/2019
+author: meaghanlewis
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: troubleshooting
 
 ---
 # Troubleshoot gMSAs for Windows containers
 
-> Applies to: Windows Server 2022, Windows Server 2019
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019
 
 ## Known issues
 

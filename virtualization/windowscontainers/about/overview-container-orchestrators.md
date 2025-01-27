@@ -2,13 +2,13 @@
 title: Windows container orchestration overview
 description: Learn about Windows container orchestrators.
 author: Heidilohr
-ms.author: helohr
-ms.date: 09/22/2021
+ms.author: mosagie
+ms.date: 01/22/2025
 ms.topic: overview
 ---
-# Windows Container Orchestration Overview
+# Windows container orchestration Overview
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Because of their small size and application orientation, containers are perfect for agile delivery environments and microservice-based architectures. However, an environment that uses containers and microservices can have hundreds or thousands of components to keep track of. You might be able to manually manage a few dozen virtual machines or physical servers, but there's no way to properly manage a production-scale container environment without automation. This task should fall to your orchestrator, which is a process that automates and manages a large number of containers and how they interact with each other.
 

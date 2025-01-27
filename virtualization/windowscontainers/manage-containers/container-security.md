@@ -1,15 +1,15 @@
 ---
 title: Secure Windows containers
 description: Learn how to define the security boundaries of Windows containers.
-author: brasmith
-ms.author: roharwoo
-ms.date: 03/23/2020
+author: meaghanlewis
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: conceptual
 ms.assetid:
 ---
 # Secure Windows containers
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Containers lend their reduced image size to the fact that they can rely on the host to provide limited access to various resources. If the container knows that the host will be able to provide the functionality needed to perform a specific set of actions, then the container does not need to include the relevant software in its base image. The extent of resource sharing that occurs, however, can have a significant impact on both the performance and security of the container. If too many resources are shared, then the application may as well just run as a process on the host. If the resources are shared too little, then the container becomes indistinguishable from a VM. Both configurations are applicable to many scenarios, but most people using containers generally opt for something in the middle.
 

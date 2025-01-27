@@ -2,11 +2,12 @@
 title: Optimize Windows Dockerfiles
 description: Optimize Dockerfiles for Windows containers.
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 03/20/2023
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
 ---
+
 # Optimize Windows Dockerfiles
 
 There are many ways to optimize both the Docker build process and the resulting Docker images. This article explains how the Docker build process works and how to optimally create images for Windows containers.

@@ -2,8 +2,8 @@
 title: Add optional font packages to Windows containers
 description: Learn how to add optional font packages to Windows container images
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 05/07/2024
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ---
 
