@@ -1,15 +1,14 @@
 ---
 title: Update Windows Server containers
 description: Learn how Windows can run build and run containers across multiple versions.
-author: heidilohr
-ms.author: helohr
-manager: lizross
+author: meaghanlewis
+ms.author: mosagie
 ms.topic: conceptual
-ms.date: 10/20/2021
+ms.date: 01/23/2025
 ---
 # Update Windows Server containers
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to:  Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 As part of servicing Windows Server each month, we publish updated Windows Server Base OS container images on a regular basis. With these updates, you can automate building updated container images or manually update them by pulling the latest version. Windows Server containers don't have a servicing stack like Windows Server. You can't get updates within a container like you do with Windows Server. Therefore, every month we rebuild the Windows Server Base OS container images with the updates and publish the updated container images.
 
@@ -19,21 +18,9 @@ Other container images, such as .NET or IIS, will be rebuilt based on the update
 
 We update Windows Server Base OS container images in alignment with the Windows servicing cadence. Updated container images are published the second Tuesday of each month, which we sometimes refer to as our "B" release, with a prefix number based on the release month. For example, we call our February update "2B" and our March update "3B." This monthly update event is the only regular release that include new security fixes.
 
-The server hosting these containers, called the container host or just the "host", can be serviced during additional update events other than "B" releases. To learn more about the Windows update servicing cadence, see our [Windows update servicing cadence](https://techcommunity.microsoft.com/t5/windows-it-pro-blog/windows-10-update-servicing-cadence/ba-p/222376) blog post.
-
-New Windows Server Base OS container images go live shortly after 10:00am PST on the second Tuesday of each month in the Microsoft Container Registry (MCR), and the featured tags target the most recent B release. Some examples include:
-
-- ltsc2019 [(LTSC)](/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc):  docker pull mcr.microsoft.com/windows/servercore:ltsc2019
-- 1909 [(SAC)](/windows-server/get-started-19/servicing-channels-19#semi-annual-channel): docker pull mcr.microsoft.com/windows/servercore:1909
+The server hosting these containers, called the container host or just the "host", can be serviced during additional update events other than "B" releases. To learn more about the Windows update servicing cadence, see our [Windows monthly updates explained](https://techcommunity.microsoft.com/blog/windows-itpro-blog/windows-monthly-updates-explained/3773544) blog post.
 
 If you're more familiar with Docker Hub than MCR, [this blog post](https://azure.microsoft.com/blog/microsoft-syndicates-container-catalog/) will give you a more detailed explanation.
-
-For each release, the respective container image also gets published with two additional tags for the revision number and the KB article number for targeting specific container image revisions. For example:
-
-- docker pull mcr.microsoft.com/windows/servercore:10.0.17763.1040
-- docker pull mcr.microsoft.com/windows/servercore:1809-KB4546852
-
-These examples both pull the Windows Server 2019 Server Core container image with the February 18 security release update.
 
 For a complete list of Windows Server Base OS container images, versions, and their respective tags, see the following resources on Docker Hub:
 
@@ -72,17 +59,6 @@ Let's use the March 2020 monthly security update release as an example to show y
 | 1B or earlier | 3B | No |
 | 1B or earlier | 2B | No |
 | 1B or earlier | 1B or earlier | Yes |
-
-For reference, the following table lists the version numbers for Base OS container images with 1B, 2B, and 3B monthly security update releases across different major OS releases from Windows Server 2016 to the latest Windows Server, version 1909 release.
-
-| Windows Server version (floating tag) | Update version for 1/14/20 release (1B)| Update version for 2/18/20 release (2B) | Update version for 3/10/20 release (3B) |
-|---|---|---|---|
-| Windows Server 2016 (ltsc2016) | 10.0.14393.3443 (KB4534271) | 10.0.14393.3506 (KB4546850) | 10.0.14393.3568 (KB4551573) |
-| Windows Server, version 1803 (1803) | 10.0.17134.1246 (KB4534293) | 10.0.17134.1305 (KB4546851)  | This version has reached end of support. For more information, see [Base image servicing lifecycles](base-image-lifecycle.md).|
-| Windows Server, version 1809 (1809)| 10.0.17763.973 (KB4534273) | 10.0.17763.1040 (KB4546852) | 10.0.17763.1098 (KB4538461) |
-| Windows Server 2019 (ltsc2019) | 10.0.17763.973 (KB4534273) | 10.0.17763.1040 (KB4546852) | 10.0.17763.1098 (KB4538461) |
-| Windows Server, version 1903 (1903) |10.0.18362.592 (KB4528760) | 10.0.18362.658 (KB4546853) | 10.0.18362.719 (KB4540673) |
-| Windows Server, version 1909 (1909) | 10.0.18363.592 (KB4528760) | 10.0.18363.658 (KB4546853) | 10.0.18363.719 (KB4540673) |
 
 ## Troubleshoot host and container image mismatches
 

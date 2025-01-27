@@ -2,9 +2,9 @@
 title: Portability for containers in Windows Server
 description: Discover the benefits of container portability in Windows Server (Annual Channel) and how it streamlines your workflow.
 ms.topic: conceptual
-author: gswashington
-ms.author: roharwoo
-ms.date: 02/26/2024
+author: meaghanlewis
+ms.author: mosagie
+ms.date: 01/23/2025
 
 ---
 
@@ -45,4 +45,4 @@ Azure Kubernetes Service currently supports Windows Server 2019 and later hosts.
 
 ## Related content
 
-- [What is Windows Server Annual Channel for Containers](https://techcommunity.microsoft.com/t5/windows-server-news-and-best/windows-server-annual-channel-for-containers/ba-p/3866248)
+- [What is Windows Server Annual Channel for Containers](https://techcommunity.microsoft.com/blog/windowsservernewsandbestpractices/windows-server-annual-channel-for-containers/3866248)

@@ -2,8 +2,8 @@
 title: Windows container base images
 description: Overview of the Windows container base images and when to use them.
 author: sethmanheim
-ms.author: roharwoo
-ms.date: 12/02/2024
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: conceptual
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 ---
@@ -127,7 +127,7 @@ How do you choose the right base image to build upon? For most users, `Windows S
 - **Do you need GPU acceleration support for your container workloads?** If yes, you should consider using the `Windows Server` image to include hardware acceleration for your Windows containers workloads.
 
 > [!TIP]
-> Many Windows users want to containerize applications that have a dependency on .NET. In addition to the four base images described here, Microsoft publishes several Windows container images that come pre-configured with popular Microsoft frameworks, such as a the [.NET framework](https://hub.docker.com/_/microsoft-dotnet-framework) image and the [ASP .NET](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet/) image.
+> Many Windows users want to containerize applications that have a dependency on .NET. In addition to the four base images described here, Microsoft publishes several Windows container images that come pre-configured with popular Microsoft frameworks, such as a the [.NET framework](https://hub.docker.com/r/microsoft/dotnet-framework) image and the [ASP .NET](https://hub.docker.com/r/microsoft/dotnet-framework-aspnet) image.
 
 ## Windows vs Windows Server
 

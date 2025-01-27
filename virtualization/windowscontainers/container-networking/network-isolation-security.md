@@ -2,8 +2,8 @@
 title: Network isolation and security
 description: Network isolation and security within Windows containers.
 author: daschott
-ms.author: roharwoo
-ms.date: 10/20/2021
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: conceptual
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
@@ -31,9 +31,9 @@ Depending on which container and network driver is used, port ACLs are enforced 
 
 The following values use the Windows hosts' firewall (enlightened with network namespaces) as well as VFP:
 
-* Default Outbound: ALLOW ALL
-* Default Inbound: ALLOW ALL (TCP, UDP, ICMP, IGMP) unsolicited network traffic
-  * DENY ALL other network traffic not from these protocols
+- Default Outbound: ALLOW ALL
+- Default Inbound: ALLOW ALL (TCP, UDP, ICMP, IGMP) unsolicited network traffic
+  - DENY ALL other network traffic not from these protocols
 
 > [!NOTE]
 > Prior to Windows Server version 1709 and Windows 10 Fall Creators Update, the default inbound rule was DENY all. Users running these older releases can create inbound ALLOW rules with ``docker run -p`` (port forwarding).
@@ -42,13 +42,13 @@ The following values use the Windows hosts' firewall (enlightened with network n
 
 Containers running in Hyper-V isolation have their own isolated kernel, and therefore, run their own instance of Windows Firewall with the following configuration:
 
-* Default ALLOW ALL in both Windows Firewall (running in the utility VM) and VFP.
+- Default ALLOW ALL in both Windows Firewall (running in the utility VM) and VFP.
 
 ![Hyper-V isolation with firewall](media/windows-firewall-containers.png)
 
 ### Kubernetes pods
 
-In a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/), an infrastructure container is first created to which an endpoint is attached. Containers that belong to the same pod, including infrastructure and worker containers, share a common network namespace (such as the same IP and port space).
+In a [Kubernetes pod](https://kubernetes.io/docs/concepts/workloads/pods/), an infrastructure container is first created to which an endpoint is attached. Containers that belong to the same pod, including infrastructure and worker containers, share a common network namespace (such as the same IP and port space).
 
 ![Kubernetes pods networking](media/pod-network-compartment.png)
 

@@ -1,16 +1,16 @@
 ---
 title: Run a container with a gMSA
 description: How to run a Windows container with a group Managed Service Account (gMSA).
-author: rpsqrd
-ms.author: roharwoo
-ms.date: 09/10/2019
+author: meaghanlewis
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 
 # Run a container with a gMSA
 
-> Applies to: Windows Server 2022, Windows Server 2019
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019
 
 To run a container with a Group Managed Service Account (gMSA), provide the credential spec file to the `--security-opt` parameter of [docker run](https://docs.docker.com/engine/reference/run):
 
@@ -86,7 +86,7 @@ Mode                LastWriteTime         Length Name
 d----l        2/27/2019   8:09 PM                contoso.com
 ```
 
-## Next steps
+## Related content
 
 In addition to running containers, you can also use gMSAs to:
 

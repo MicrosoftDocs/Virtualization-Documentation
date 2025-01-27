@@ -2,11 +2,12 @@
 title: Manage Azure Container Instances on Windows Admin Center
 description: Learn to manage Azure Container Instances on Windows Admin Center.
 author: vrapolinario
-ms.author: roharwoo
-ms.date: 04/12/2023
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: overview
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
+
 # Manage Azure Container Instances using Windows Admin Center
 
 This topic describes how to manage Azure Container Instances (ACI) using Windows Admin Center. Azure Container Instances is a solution for any scenario that can operate in isolated containers, without orchestration.

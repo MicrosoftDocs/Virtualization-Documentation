@@ -57,9 +57,7 @@
 #### [MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft)
 ### Other
 #### [DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx)
-## Use Linux containers on Windows
-### [Linux containers on Windows 10](deploy-containers/linux-containers.md)
-### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
+## [Run your first Linux container](deploy-containers/set-up-linux-containers.md)
 ## [Use containers with the Windows Insider program](deploy-containers/insider-overview.md)
 ## [Containerize apps with printer services](deploy-containers/print-spooler.md)
 ## [Add optional font packages to Windows containers](deploy-containers/font-packages.md)
@@ -82,17 +80,13 @@
 ### [Upgrade Windows containers](deploy-containers/upgrade-windows-containers.md)
 ### [Resource controls](manage-containers/resource-controls.md)
 ### [Container time zones](manage-containers/virtual-time-zone.md)
+### [Windows container orchestration overview](about/overview-container-orchestrators.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
-### [Remote management of a Windows Docker host](management/manage_remotehost.md)
-## Container orchestration
-### [Windows Container orchestration overview](about/overview-container-orchestrators.md)
-### [Azure Kubernetes Service (AKS)](/azure/aks)
-### [AKS on Azure Stack HCI](/azure-stack/aks-hci/overview)
+### [Remote management of a Windows Docker host](manage-docker/manage-remote-host.md)
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
 #### [Troubleshooting](kubernetes/common-problems.md)
-#### [Compile Kubernetes binaries](kubernetes/compiling-kubernetes-binaries.md)
 ### Service Fabric
 #### [Service Fabric and Containers](/azure/service-fabric/service-fabric-containers-overview)
 #### [Resource Governance](/azure/service-fabric/service-fabric-resource-governance)
@@ -125,13 +119,9 @@
 ### [GPU acceleration](deploy-containers/gpu-acceleration.md)
 
 # Reference
-## [Events](deploy-containers/events.md)
 ## [Anti-virus optimization](/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Container platform tools](deploy-containers/containerd.md)
 ## [Container OS image EULA](./images-eula.md)
-
-# Resources
-## [Known Issues](manage-containers/known-issues.md)
 ## [Windows Server containers roadmap](https://github.com/Azure/AKS/projects/1?card_filter_query=label%3A+windows)
 ## Licensing and support
 ### [Pricing and licensing](https://www.microsoft.com/windows-server/pricing)
@@ -140,5 +130,3 @@
 ### [Nano Server](https://hub.docker.com/r/microsoft/windows-nanoserver)
 ### [File bugs](https://github.com/microsoft/Windows-Containers/issues)
 ## [Troubleshooting](troubleshooting.md)
-## [Container forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
-## [Community videos and blogs](communitylinks.md)

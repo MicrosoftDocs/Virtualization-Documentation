@@ -554,6 +554,50 @@
       "source_path": "virtualization/hyper-v-on-windows/quick-start/connect-to-network.md",
       "redirect_url": "/windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines",
       "redirect_document_id": false
+    },
+      "source_path": "virtualization/windowscontainers/quick-start/quick-start-windows-10-linux.md",
+      "redirect_url": "/virtualization/windowscontainers/deploy-containers/set-up-linux-containers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/deploy-containers/linux-containers.md",
+      "redirect_url": "/virtualization/windowscontainers/deploy-containers/set-up-linux-containers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/about/docker-overview.md",
+      "redirect_url": "/virtualization/windowscontainers/manage-docker/configure-docker-daemon",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/deploy-containers/events.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/kubernetes/compiling-kubernetes-binaries.md",
+      "redirect_url": "/virtualization/windowscontainers/kubernetes/getting-started-kubernetes-windows",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/manage-containers/known-issues.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/management/manage_remotehost.md",
+      "redirect_url": "/virtualization/windowscontainers/manage-docker/manage_remote-host",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/communitylinks.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/licensing.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
     }
   ]
 }

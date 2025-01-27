@@ -2,9 +2,9 @@
 title: Windows container version compatibility
 description: Version compatibility for containers built from different versions of Windows Server and Windows.
 author: robinharwood
-ms.author: roharwoo
+ms.author: mosagie
 ms.topic: conceptual
-ms.date: 12/02/2024
+ms.date: 01/23/2025
 ---
 # Windows container version compatibility
 

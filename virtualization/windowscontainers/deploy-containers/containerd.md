@@ -2,8 +2,8 @@
 title: Windows container platform
 description: Learn more about new container building blocks available in Windows.
 author: scooley
-ms.author: jgerend
-ms.date: 11/19/2018
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: conceptual
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
 ---
@@ -12,7 +12,7 @@ ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
 The Windows container platform is expanding! Docker was the first piece of the container journey, now we are building other container platform tools.
 
 * [containerd/cri](https://github.com/containerd/cri) - new in Windows Server 2019/Windows 10 1809.
-* [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs) - a Windows container host counterpart to runc.
+* [runhcs](https://github.com/Microsoft/hcsshim/tree/main/cmd/runhcs) - a Windows container host counterpart to runc.
 * [hcs](/virtualization/api/) - the Host Compute Service + handy shims to make it easier to use.
   * [hcsshim](https://github.com/microsoft/hcsshim)
   * [dotnet-computevirtualization](https://github.com/microsoft/dotnet-computevirtualization)
@@ -98,25 +98,8 @@ For a deeper look at the HCS, watch [John Stark’s DockerCon presentation](http
 ## containerd/cri
 
 > [!IMPORTANT]
-> CRI support is only available in Server 2019/Windows 10 1809 and later.
+> CRI support is only available in Windows Server 2019/Windows 10 1809 and later.
 
-While OCI specs defines a single container, [CRI](https://github.com/kubernetes/cri-api) (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can contain one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
-
-containerd/cri enables the following compatibility matrix for pods:
-
-| Host OS | Container OS | Isolation | Pod Support? |
-|:-------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:---------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| <ul><li>Windows Server 2019/1809</ul></li><ul><li>Windows 10 1809</ul></li> | Linux | `hyperv` | Yes—Supports true multi-container pods. |
-|  | Windows Server 2019/1809 | `process`* or `hyperv` | Yes—Supports true multi-container pods if each workload container OS matches the utility VM OS. |
-|  | Windows Server 2016,</br>Windows Server 1709,</br>Windows Server 1803 | `hyperv` | Partial—Supports pod sandboxes that can support a single process-isolated container per utility VM if the Container OS matches the utility VM OS. |
-
-\*Windows 10 hosts only support Hyper-V isolation
-
-Links to the CRI spec:
-
-* [RunPodSandbox](https://github.com/kubernetes/kubernetes) - Pod Spec
-* [CreateContainer](https://github.com/kubernetes/kubernetes) - Workload Spec
-
-![Containerd based container environments](media/containerd-platform.png)
+While OCI specs defines a single container, [CRI](https://github.com/kubernetes/cri-api) (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod. Pods can contain one or more container workloads. Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
 
 While runHCS and containerd both can manage on any Windows system Server 2016 or later, supporting Pods (groups of containers) required breaking changes to container tools in Windows.  CRI support is available on Windows Server 2019/Windows 10 1809 and later.
