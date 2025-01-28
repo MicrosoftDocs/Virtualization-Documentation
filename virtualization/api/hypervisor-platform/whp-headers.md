@@ -2,7 +2,7 @@
 title: Windows Hypervisor Platform Headers
 description: Windows Hypervisor Platform Headers with a MIT License.
 ms.date: 01/27/2025
-author: stehuf
+author: stehufntdev
 ms.author: stehuf
 ---
 
