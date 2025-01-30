@@ -387,6 +387,8 @@
 - name: Windows Hypervisor Platform API
   href: ./hypervisor-platform/hypervisor-platform.md
   items:
+    - name: Windows Hypervisor Platform Headers
+      href: ./hypervisor-platform/whp-headers.md
     - name: Windows Hypervisor Platform Samples
       href: ./hypervisor-platform/whp-samples.md
     - name: WHvCancelRunVirtualProcessor
