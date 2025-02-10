@@ -187,6 +187,18 @@ Remove-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name>
 
 Export bundles the checkpoint as a virtual machine so the checkpoint can be moved to a new location. Once imported, the checkpoint is restored as a virtual machine. Exported checkpoints can be used for backup.
 
+### [Hyper-V manager](#tab/hyper-v-manager)
+
+To export a checkpoint:
+
+1. In **Hyper-V Manager**, select the virtual machine.
+
+1. In the **Checkpoints** section, right-click the checkpoint that you want to export and select **Export**.
+
+1. Enter the location where you want to save the exported checkpoint, and then select **Export**.
+
+The export process can take some time, depending on the size of the checkpoint. Check the status in the **Status** column in the **Hyper-V Manager** for the VM.
+
 ### [PowerShell](#tab/powershell)
 
 ``` powershell
