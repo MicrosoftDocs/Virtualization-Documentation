@@ -37,8 +37,6 @@
 
 #include <WinHvPlatformDefs.h>
 
-#if defined(_AMD64_)
-
 typedef union WHV_EMULATOR_STATUS
 {
     struct
@@ -128,8 +126,6 @@ typedef struct WHV_EMULATOR_CALLBACKS
 
 typedef VOID* WHV_EMULATOR_HANDLE;
 
-#endif
-
 //
 // Public callable functions
 //
@@ -137,6 +133,44 @@ typedef VOID* WHV_EMULATOR_HANDLE;
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+HRESULT
+WINAPI
+WHvEmulatorCreateEmulator(
+    _In_ const WHV_EMULATOR_CALLBACKS* Callbacks,
+    _Out_ WHV_EMULATOR_HANDLE* Emulator
+    );
+
+
+HRESULT
+WINAPI
+WHvEmulatorDestroyEmulator(
+    _In_ WHV_EMULATOR_HANDLE Emulator
+    );
+
+
+
+HRESULT
+WINAPI
+WHvEmulatorTryIoEmulation(
+    _In_ WHV_EMULATOR_HANDLE Emulator,
+    _In_ VOID* Context,
+    _In_ const WHV_VP_EXIT_CONTEXT* VpContext,
+    _In_ const WHV_X64_IO_PORT_ACCESS_CONTEXT* IoInstructionContext,
+    _Out_ WHV_EMULATOR_STATUS* EmulatorReturnStatus
+    );
+
+
+HRESULT
+WINAPI
+WHvEmulatorTryMmioEmulation(
+    _In_ WHV_EMULATOR_HANDLE Emulator,
+    _In_ VOID* Context,
+    _In_ const WHV_VP_EXIT_CONTEXT* VpContext,
+    _In_ const WHV_MEMORY_ACCESS_CONTEXT* MmioInstructionContext,
+    _Out_ WHV_EMULATOR_STATUS* EmulatorReturnStatus
+    );
+
 
 #ifdef __cplusplus
 }
@@ -147,8 +181,11 @@ extern "C" {
 
 #endif // _WINHVEMUAPI_H_
 
+
 #ifndef ext_ms_win_hyperv_hvemulation_l1_1_0_query_routines
 #define ext_ms_win_hyperv_hvemulation_l1_1_0_query_routines
+
+
 
 //
 //Private Extension API Query Routines
@@ -158,13 +195,32 @@ extern "C" {
 extern "C" {
 #endif
 
-#if defined(_AMD64_)
+BOOLEAN
+__stdcall
+IsWHvEmulatorCreateEmulatorPresent(
+    VOID
+    );
 
-#endif
+BOOLEAN
+__stdcall
+IsWHvEmulatorDestroyEmulatorPresent(
+    VOID
+    );
+
+BOOLEAN
+__stdcall
+IsWHvEmulatorTryIoEmulationPresent(
+    VOID
+    );
+
+BOOLEAN
+__stdcall
+IsWHvEmulatorTryMmioEmulationPresent(
+    VOID
+    );
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif // endof guard
-
