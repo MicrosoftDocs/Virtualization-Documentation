@@ -79,7 +79,7 @@ First, a virtual NAT switch must be created in the host virtual machine (the "mi
 
 ```powershell
 New-VMSwitch -Name VmNAT -SwitchType Internal
-New-NetNat –Name LocalNAT –InternalIPInterfaceAddressPrefix “192.168.100.0/24”
+New-NetNat -Name LocalNAT -InternalIPInterfaceAddressPrefix “192.168.100.0/24”
 ```
 
 Next, assign an IP address to the net adapter:
