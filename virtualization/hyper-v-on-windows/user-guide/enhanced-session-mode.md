@@ -1,39 +1,37 @@
 ---
 title: Share devices with Windows virtual machines
-description: Walks you through sharing devices with Hyper-V virtual machines (USB, audio, microphone, and mounted drives).
+description: See how to share devices with Hyper-V virtual machines. Find out how to give a virtual machine access to USB devices, audio, microphones, and mounted drives.
 keywords: windows 10, windows 11, hyper-v
 author: scooley
 ms.author: roharwoo
-ms.date: 10/20/2017
+ms.date: 03/04/2025
 ms.topic: article
 ms.assetid: d1aeb9cb-b18f-43cb-a568-46b33346a188
 ---
 
 # Share devices with your virtual machine
 
-In enhanced session mode, you can connect to Hyper-V virtual machines (VMs) by using remote desktop protocol (RDP). Not only does this capability improve your general VM viewing experience, using RDP also provides a way for the VM and your computer to share devices. This functionality is only available for Windows VMs.
+When you use enhanced session mode in the Virtual Machine Connection tool (VMConnect), you can connect to Hyper-V virtual machines (VMs) by using remote desktop protocol (RDP). Not only does this capability improve your general VM viewing experience, using RDP also provides a way for the VM and your computer to share devices. This functionality is only available for Windows VMs.
 
-Because RDP is turned on by default in Windows 10, you probably already use RDP to connect to your Windows VMs. This article highlights some of the benefits and hidden options in the connection settings dialog.
+Using RDP in enhanced session mode offers many benefits:
 
-RDP/Enhanced Session mode does the following:
-
-- Makes VMs resizable and high DPI aware.
-- Improves VM integration
+- Makes VMs resizable and high-DPI aware.
+- Improves VM integration:
   - Shared clipboard
-  - File sharing via drag drop and copy paste
-- Allows device sharing
-  - Microphone/Speakers
+  - File sharing via dragging or copying and pasting
+- Makes device sharing possible:
+  - Microphone and speakers
   - USB devices
-  - Data disks (including C:)
+  - Data disks, including drive C
   - Printers
 
-This article shows you how to see your session type, enter enhanced session mode, and configure your session settings.
+Because RDP is turned on by default in Windows 10, you probably already use RDP to connect to your Windows VMs. This article highlights some of the benefits and hidden options in the connection settings dialog. It shows you how to see your session type, enter enhanced session mode, and configure your session settings.
 
-## Check session type
+## Check the session type
 
-You can check your connection type by using the enhanced session mode icon in the top of the Virtual Machine Connection tool (VMConnect). You can also use this button to switch between basic session mode and enhanced session mode.
+You can check your connection type by using the enhanced session mode icon in the top of VMConnect. You can also use this button to switch between basic session mode and enhanced session mode.
 
-![Screenshot of the Enhanced Session mode icon emphasized in the VM Connect tool bar.](media/esm-button-location.png)
+:::image type="content" source="media/esm-button-location.png" alt-text="Screenshot of VMConnect. On the tool bar, an icon is highlighted that indicates whether enhanced session mode is turned on.":::
 
 | Icon | Connection state |
 |:-----|:---------|
@@ -45,7 +43,7 @@ You can check your connection type by using the enhanced session mode icon in th
 
 Enhanced session mode requires Remote Desktop to be turned on in the VM. In the Settings app or Start menu, search for **Remote Desktop settings**. Turn on the **Enable Remote Desktop** toggle.
 
-![Enable Remote Desktop](media/remote-desktop-settings.png)
+:::image type="content" source="media/remote-desktop-settings.png" alt-text="Screenshot of the Remote Desktop page in the Settings app. The Enable Remote Desktop toggle is in the on position.":::
 
 Windows 10, version 2004, and later versions require an extra setting. This requirement applies to Windows 11. If the background of the VMConnect window doesn't contain a sign-in prompt, you need to make one more change:
 
@@ -57,15 +55,15 @@ Windows 10, version 2004, and later versions require an extra setting. This requ
 
    | Windows 11 | Windows 10 |
    |:----|:----|
-   |[ ![Disable Require Windows Hello sign-in Win 11](media/sign-in-options-win11.png) ](media/sign-in-options-win11.png#lightbox)|[ ![Disable Require Windows Hello sign-in](media/sign-in-options.png) ](media/sign-in-options.png#lightbox) |
+   |:::image type="content" source="media/sign-in-options-win11.png" alt-text="Screenshot of the Sign-in options page in VMConnect in Windows 11. The toggle for requiring Windows Hello sign-in is highlighted." lightbox="media/sign-in-options-win11.png":::|:::image type="content" source="media/sign-in-options.png" alt-text="Screenshot of the Sign-in options page in Settings in Windows 10. The toggle for requiring Windows Hello sign-in is highlighted." lightbox="media/sign-in-options.png":::|
 
 1. Sign out of the VM or reboot it before you close the VMConnect window.
 
 ## Share drives and devices
 
-You can find the device sharing capabilities of enhanced session mode in the Display configuration window that opens when you connect to a VM:
+You can find the device sharing capabilities of enhanced session mode in the connection dialog that opens when you connect to a VM:
 
-![Screenshot of the connection pop up with a Display configuration of 1366 by 768 pixels.](media/esm-default-view.png)
+:::image type="content" source="media/esm-default-view.png" alt-text="Screenshot of the connection dialog. Below the size, which is set to 1366 by 768 pixels, a Show Options button is visible.":::
 
 In enhanced session mode, VMs have access to the clipboard and printers by default. The VMs are also configured by default to transfer audio to your computer's speakers.
 
@@ -75,11 +73,11 @@ To share devices with your VM or to change the default settings:
 
 1. Select **Show Options**.
 
-   ![Screenshot of the connection pop up with the Show Options drop down emphasized.](media/esm-show-options.png)
+   :::image type="content" source="media/esm-show-options.png" alt-text="Screenshot of the connection dialog. The Show Options button is highlighted.":::
 
 1. Select **Local Resources**, and then adjust the settings.
 
-   ![Screenshot of the connection pop up with the Local Resources tab emphasized.](media/esm-local-resources.png)
+   :::image type="content" source="media/esm-local-resources.png" alt-text="Screenshot of the connection dialog. The Local Resources tab is highlighted.":::
 
 ### Share storage and USB devices
 
@@ -89,11 +87,11 @@ To share other devices with a VM, such as USB devices or drive C, take the follo
 
 1. Under **Local devices and resources**, select **More**.
 
-   ![Screenshot of the More button emphasized in the Local devices and resources section.](media/esm-more-devices.png)
+   :::image type="content" source="media/esm-more-devices.png" alt-text="Screenshot of the Local Resources tab of the connection dialog. Under local devices and resources, the More button is highlighted.":::
 
 1. Select the devices that you want to share with the VM. The system drive, which is drive C on Windows, is especially helpful for file sharing.
 
-   ![Screenshot of Smart cards selected in the Local Resources dialog.](media/esm-drives-usb.png)
+   :::image type="content" source="media/esm-drives-usb.png" alt-text="Screenshot of the Local Resources page. In a list of devices, the line for Smart cards is selected.":::
 
 ### Share audio devices (speakers and microphones)
 
@@ -103,11 +101,11 @@ To change these settings, or to add microphone pass-through so that you can reco
 
 1. Select **Settings** to configure remote audio settings.
 
-   ![Screenshot of the Settings button emphasized in the Remote audio section.](media/esm-audio.png)
+   :::image type="content" source="media/esm-audio.png" alt-text="Screenshot of the Local Resources tab of the connection dialog. Under Remote audio, the Settings button is highlighted.":::
 
 1. Configure audio and microphone settings.
 
-   ![Screenshot of Remote audio playback set to Play on this computer and disabling Remote audio recording.](media/esm-audio-settings.png)
+   :::image type="content" source="media/esm-audio-settings.png" alt-text="Screenshot of the Audio settings page. Remote audio is set to play on this computer, and remote audio recording is turned off.":::
 
    If your VM is running locally, the **play on this computer** and **play on remote computer** options yield the same results.
 
