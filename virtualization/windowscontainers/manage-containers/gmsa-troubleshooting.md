@@ -21,12 +21,6 @@ When the hostname doesn't match the gMSA name, inbound NTLM authentication reque
 
 This limitation was fixed in Windows Server 2019, where the container will now always use its gMSA name on the network regardless of the assigned hostname.
 
-### Using a gMSA with more than one container simultaneously leads to intermittent failures on Windows Server 2016 and Windows 10, versions 1709 and 1803
-
-Because all containers are required to use the same hostname, a second issue affects versions of Windows prior to Windows Server 2019 and Windows 10, version 1809. When multiple containers are assigned the same identity and hostname, a race condition may occur when two containers talk to the same domain controller simultaneously. When another container talks to the same domain controller, it will cancel communication with any prior containers using the same identity. This can lead to intermittent authentication failures and can sometimes be observed as a trust failure when you run `nltest /sc_verify:contoso.com` inside the container.
-
-We changed the behavior in Windows Server 2019 to separate the container identity from the machine name, allowing multiple containers to use the same gMSA simultaneously. Therefore, in Windows Server 2019, you can run multiple containers with the same identity, whether on the same or multiple hosts.
-
 ### You can't use gMSAs with Hyper-V isolated containers on Windows 10 versions 1703, 1709, and 1803
 
 Container initialization will hang or fail when you try to use a gMSA with a Hyper-V isolated container on Windows 10 and Windows Server versions 1703, 1709, and 1803.
