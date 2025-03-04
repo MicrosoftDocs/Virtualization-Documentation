@@ -16,7 +16,7 @@ When you use enhanced session mode in the Virtual Machine Connection tool (VMCon
 
 Using RDP in enhanced session mode offers many benefits:
 
-- Makes VMs resizable and high-DPI aware.
+- Makes VMs resizable and high-DPI aware
 - Improves VM integration:
   - Shared clipboard
   - File sharing via dragging or copying and pasting
@@ -30,9 +30,9 @@ Because RDP is turned on by default in Windows 10, you probably already use RDP 
 
 ## Check the session type
 
-You can check your connection type by using the enhanced session mode icon in the top of VMConnect. You can also use this button to switch between basic session mode and enhanced session mode.
+You can check your connection type by using the enhanced session mode icon on the VMConnect toolbar. You can also use this button to switch between basic session mode and enhanced session mode.
 
-:::image type="content" source="media/esm-button-location.png" alt-text="Screenshot of VMConnect. On the tool bar, an icon is highlighted that indicates whether enhanced session mode is turned on.":::
+:::image type="content" source="media/esm-button-location.png" alt-text="Screenshot of VMConnect. On the toolbar, an icon is highlighted that indicates whether enhanced session mode is turned on.":::
 
 | Icon | Connection state |
 |:-----|:---------|
@@ -40,7 +40,7 @@ You can check your connection type by using the enhanced session mode icon in th
 |:::image type="icon" source="media/esm-connect.png" lightbox="media/esm-connect.png":::| You're currently running in basic session mode, but enhanced session mode is available. Selecting this icon reconnects you to your VM in enhanced session mode. |
 |:::image type="icon" source="media/esm-stop.png" lightbox="media/esm-stop.png":::| You're currently running in basic session mode.  Enhanced session mode isn't available for this VM. |
 
-## Configure VM for Remote Desktop
+## Configure a VM for Remote Desktop
 
 Enhanced session mode requires Remote Desktop to be turned on in the VM. In the Settings app or Start menu, search for **Remote Desktop settings**. Turn on the **Enable Remote Desktop** toggle.
 
@@ -48,7 +48,7 @@ Enhanced session mode requires Remote Desktop to be turned on in the VM. In the 
 
 Windows 10, version 2004, and later versions require an extra setting. This requirement applies to Windows 11. If the background of the VMConnect window doesn't contain a sign-in prompt, you need to make one more change:
 
-1. Sign in to the VM by using basic session mode.
+1. Sign in to the VM in basic session mode.
 
 1. In the Settings app or Start menu, search for **Sign-in options**.
 
@@ -108,11 +108,11 @@ To change these settings, or to add microphone pass-through so that you can reco
 
    :::image type="content" source="media/esm-audio-settings.png" alt-text="Screenshot of the Audio settings page. Remote audio is set to play on this computer, and remote audio recording is turned off.":::
 
-   If your VM is running locally, the **play on this computer** and **play on remote computer** options yield the same results.
+   If your VM is running locally, the **Play on this computer** and **Play on remote computer** options yield the same results.
 
 ## Reopen the connection settings
 
-If you don't see the **Display configuration** dialog or the **Show Options** button, try opening VMConnect independently from either the Windows menu or the command line as an administrator.
+If you don't see the connection dialog or the **Show Options** button, try opening VMConnect independently from either the Windows menu or the command line as an administrator.
 
 ```PowerShell
 vmconnect.exe
