@@ -84,8 +84,6 @@ Orchestrators are a critical piece of infrastructure when setting up a container
 
 Container orchestrators were built to help manage containers at scale and in production. Orchestrators provide functionality for:
 
-Orchestrators help you grow containerized apps at scale, providing functionality for:
-
 - Deploying at scale
 - Workload scheduling
 - Health monitoring
