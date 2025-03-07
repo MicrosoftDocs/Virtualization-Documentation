@@ -26,7 +26,7 @@ Using RDP in enhanced session mode offers many benefits:
   - Data disks, including drive C
   - Printers
 
-Because RDP is turned on by default in Windows 10, you probably already use RDP to connect to your Windows VMs. This article highlights some of the benefits and hidden options in the connection settings dialog. It shows you how to see your session type, enter enhanced session mode, and configure your session settings.
+Because RDP is turned on by default in Windows, you probably already use RDP to connect to your Windows VMs. This article highlights some of the benefits and hidden options in the connection settings dialog. It shows you how to see your session type, enter enhanced session mode, and configure your session settings.
 
 ## Check the session type
 
