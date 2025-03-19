@@ -11,7 +11,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 # Get started: Prep Windows for containers
 
-In this quickstart, you see various approaches to building a container-ready environment on Windows and Windows Server. You also install a container runtime.
+In this quickstart, you see various approaches for building a container-ready environment on Windows and Windows Server. You also install a container runtime.
 
 Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Before you can use a container, you need to set up an appropriate runtime.
 
