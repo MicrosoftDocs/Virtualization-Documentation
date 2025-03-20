@@ -50,16 +50,16 @@ For many applications and orchestration paradigms, you need to build and deploy 
 
 Azure continues to offer a complete and fully managed end-to-end experience through Azure Kubernetes Service (AKS) both in the cloud and on-premises. AKS and Azure Kubernetes Service on Azure Stack HCI are fully managed services with lower management overhead than custom deployments. Support for the container runtime is included within the AKS and Azure Kubernetes Service on Azure Stack HCI services under your Azure subscription.
 
-- [Getting Started with Windows on AKS](/azure/aks/learn/quick-windows-container-deploy-cli)
-- [Getting Started with Windows on AKS-HCI](/azure/aks/aksarc/kubernetes-walkthrough-powershell)
+- [Deploy a Windows Server container on an Azure Kubernetes Service (AKS) cluster using Azure CLI](/azure/aks/learn/quick-windows-container-deploy-cli)
+- [Set up an Azure Kubernetes Service host on Azure Local and Windows Server and deploy a workload cluster using PowerShell](/azure/aks/aksarc/kubernetes-walkthrough-powershell)
 
-Azure VM Image Builder and custom script extensions are also options for making the experience of constructing your container-ready Azure VMs as smooth as possible. When you compare these options, keep in mind the following three points. It's up to your organization to decide which aspect to optimize.
+Other options also exist for making the experience of constructing your container-ready Azure VMs as smooth as possible. Two examples are Azure VM Image Builder and custom script extensions. When you compare options, keep the following points in mind. It's up to your organization to decide which aspect to optimize.
 
 - How complex is it to implement?
 - What is the cost?
 - How does it impact my workload in production?
 
-The following subsections discuss the pros and cons of each option and show you how to get started.
+The following subsections discuss the pros and cons of VM Image Builder and custom script extensions, and show you how to get started.
 
 #### VM Image Builder
 
@@ -93,7 +93,7 @@ To install Docker on Windows 10 or Windows 11 Professional and Enterprise editio
    - Run the following command in a PowerShell prompt:
 
      ```console
-     & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
+     & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
      ```
 
    - Use the Docker item in the Windows system tray, as shown in the following screenshot:
@@ -110,9 +110,11 @@ To use Windows Admin Center to set up a Windows Server machine as a container ho
 
 1. On the side panel, under **Tools**, select **Containers**.
 
-1. Select **Install**. Windows Admin Center starts the configuration of Windows Server and Docker in the background.
+1. Select **Install**.
 
    :::image type="content" source="media/WAC-InstallDocker.png" alt-text="Screenshot of Windows Admin Center. A Containers extension page shows an Install button and a message about installing Docker.":::
+
+   Windows Admin Center starts the configuration of Windows Server and Docker in the background.
 
 1. After the process is complete, refresh the page to see other functionality of the Containers extension.
 
@@ -159,7 +161,7 @@ The *install-containerd-runtime.ps1* script also installs [Windows Container Net
 
 For more information, see the following resources:
 
-- [Instructions for installing containerd on Windows.](https://github.com/containerd/containerd/blob/main/docs/getting-started.md#installing-containerd-on-windows)
+- [Instructions for installing containerd on Windows](https://github.com/containerd/containerd/blob/main/docs/getting-started.md#installing-containerd-on-windows)
 - [Instructions for installing and configuring containerd](https://www.jamessturtevant.com/posts/Windows-Containers-on-Windows-10-without-Docker-using-Containerd/#setting-up-network)
 - [Instructions for installing nerdctl on Windows](https://github.com/containerd/nerdctl#install)
 - [A more advanced community installer for containerd](https://github.com/lippertmarkus/containerd-installer)
@@ -170,7 +172,7 @@ For more information, see the following resources:
 ## Next steps
 
 > [!NOTE]
-> For more guidance from the Windows Containers product team, see the [Windows Containers](https://github.com/microsoft/Windows-Containers) repository on GitHub.
+> For guidance from the Windows Containers product team, see the [Windows Containers](https://github.com/microsoft/Windows-Containers) repository on GitHub.
 
 Now that your environment is configured correctly, see how to run a container.
 
