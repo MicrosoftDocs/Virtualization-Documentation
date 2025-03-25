@@ -25,7 +25,8 @@ The environment you need for this quickstart depends on your operating system (O
 
 To run containers on Windows 10 or Windows 11, you need the following environment:
 
-- One physical computer system running Windows 10 or Windows 11 Professional or Enterprise with Anniversary Update (version 1607) or later
+- One physical computer system running Windows 11 or Windows 10 with Anniversary Update (version 1607) or later
+- Professional or Enterprise edition
 - [Hyper-V](/windows-server/virtualization/hyper-v/System-requirements-for-Hyper-V-on-Windows) enabled
 
 Windows Server containers use Hyper-V isolation by default on Windows 10 and Windows 11 to provide developers with the same kernel version and configuration that's used in production. For more information about Hyper-V isolation, see [Isolation Modes](../manage-containers/hyperv-container.md).
@@ -46,7 +47,7 @@ On Windows 10 and Windows 11 Professional and Enterprise editions, you can use D
 
 ### Windows Server
 
-For many applications and orchestration paradigms, you need to build and deploy your own custom VMs. With the [transition of support](https://techcommunity.microsoft.com/blog/containers/updates-to-the-windows-container-runtime-support/2788799) for the Windows container runtime to Mirantis, the container runtime is no longer provided as part of a marketplace VM offering. The remainder of this guide shows you how to build a VM for Azure with the container runtime installed and ready to go.
+For many applications and orchestration patterns, you need to build and deploy your own custom VMs. With the [transition of support](https://techcommunity.microsoft.com/blog/containers/updates-to-the-windows-container-runtime-support/2788799) for the Windows container runtime to Mirantis, the container runtime is no longer provided as part of a marketplace VM offering. The remainder of this guide shows you how to build a VM for Azure with the container runtime installed and ready to go.
 
 Azure continues to offer a complete and fully managed end-to-end experience through Azure Kubernetes Service (AKS) both in the cloud and on-premises. AKS and Azure Kubernetes Service on Azure Stack HCI are fully managed services with lower management overhead than custom deployments. Support for the container runtime is included within the AKS and Azure Kubernetes Service on Azure Stack HCI services under your Azure subscription.
 
@@ -74,7 +75,7 @@ For a detailed, step-by-step procedure for building your own Windows Server VM i
 
 #### Custom script extensions
 
-Custom script extensions are quicker to implement than a VM Image Builder solution. The only cost associated with extensions is the nominal price of storing the script in Azure or GitHub. However, the script can only run after a VM is provisioned. As a result, your budget must include extra time to prep the VM at scale-out time.
+Custom script extensions are quicker to implement than a VM Image Builder solution. The only cost associated with extensions is the price of storing the script in Azure or GitHub. However, the script can only run after a VM is provisioned. As a result, your budget must include extra time to prep the VM at scale-out time.
 
 Using the scripts offered in this guide, configure your VM scale sets to install the container runtime of your choice after provisioning. To use a custom script extension to automate the process of installing apps on Azure VMs, see [Tutorial: Install applications in Virtual Machine Scale Sets with the Azure CLI](/azure/virtual-machine-scale-sets/tutorial-install-apps-cli).
 
