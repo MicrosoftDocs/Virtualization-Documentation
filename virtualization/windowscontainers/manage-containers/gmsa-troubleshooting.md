@@ -27,6 +27,12 @@ Container initialization will hang or fail when you try to use a gMSA with a Hyp
 
 This bug was fixed in Windows Server 2019 and Windows 10, version 1809. You can also run Hyper-V isolated containers with gMSAs on Windows Server 2016 and Windows 10, version 1607.
 
+### Using a gMSA with more than one container simultaneously leads to intermittent failures on Windows Server 2019 and above if the hostname parameter is specified
+
+All containers use the gMSA account when multiple containers are assigned the same identity. With the `--hostname` parameter, the gmsa account name is specified, and a race condition may occur when two containers talk to the same domain controller simultaneously. When another container talks to the same domain controller, it'll cancel communication with any prior containers using the same identity.
+
+This can lead to intermittent authentication failures, and can sometimes be observed as a trust failure when you run `nltest /sc_verify:contoso.com` inside the container. To avoid this issue in the docker container, if the `--hostname` parameter is specified, then it must be always unique when running the container simultaneously with the gmsa account. For example, if the gmsa account is "webapp01.contoso.com", and if two containers are running simultaneously, then both containers can have `--hostname` parameter with values "webapp01" , "webapp02" respectively.
+
 ## General troubleshooting guidance
 
 If you're encountering errors when running a container with a gMSA, the following instructions may help you identify the root cause.
