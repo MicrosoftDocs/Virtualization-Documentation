@@ -12,7 +12,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 > Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
-This article shows you how to run your first Windows container, after you set up your environment as described in [Get started: Prep Windows for containers](./set-up-environment.md). Running a container involves two steps:
+This article shows you how to run your first Windows container, after you set up your environment as described in [Get started: Prep Windows for containers](./set-up-environment.md). Running a container involves two general steps:
 
 - Downloading a base image. With containers, the process of downloading a base image is known as a *pull operation*. The base image provides a foundational layer of operating system services to your container.
 - Creating and running a container image that's based upon the base image.
