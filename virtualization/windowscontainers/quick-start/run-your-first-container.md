@@ -115,7 +115,7 @@ You can use Windows Admin Center to run your containers locally. Specifically, y
 
 1. In the main pane, under **Container host**, select **Images**.
 
-   :::image type="content" source="media/WAC-Images.png" alt-text="Screenshot of Windows Admin Center. In the Containers extension, the Image tab lists information about images, such as the repository and image ID." lightbox="media/WAC-Images.png":::
+   :::image type="content" source="media/WAC-Images.png" alt-text="Screenshot of Windows Admin Center. In the Containers extension, the Images tab lists information about images, such as the repository and image ID." lightbox="media/WAC-Images.png":::
 
 ### Pull a container image
 
