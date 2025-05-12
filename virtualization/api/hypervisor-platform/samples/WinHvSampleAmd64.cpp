@@ -34,6 +34,14 @@ using unique_whv_partition =
 
 const SIZE_T PageSize = 0x1000;
 
+/// Sample demonstrating detection of WHP support.
+void Initialize(void)
+{
+    WHV_CAPABILITY capability;
+    THROW_IF_FAILED(WHvGetCapability(WHvCapabilityCodeHypervisorPresent, &capability, sizeof(capability), nullptr));
+    THROW_HR_IF(HRESULT_FROM_WIN32(ERROR_HV_NOT_PRESENT), !capability.HypervisorPresent);
+}
+
 // Allocating a region from VirtualAlloc will implicitly reserve a region of the allocation
 // granularity. This class demonstrates how to reserve and map an entire region up front and then
 // commit as needed to reduce wasted virtual address space.
@@ -397,6 +405,9 @@ try
 {
     UNREFERENCED_PARAMETER(argc);
     UNREFERENCED_PARAMETER(argv);
+
+    printf("Initializing...:\n");
+    WHvSample::Initialize();
 
     // Execute the real mode sample
     printf("Real mode:\n");
