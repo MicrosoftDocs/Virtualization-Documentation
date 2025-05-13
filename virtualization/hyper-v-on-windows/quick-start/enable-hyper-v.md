@@ -61,19 +61,21 @@ To enable the Hyper-V role using DISM:
 
 For more information about DISM, see the [DISM Technical Reference](/previous-versions/windows/it-pro/windows-8.1-and-8/hh824821(v=win.10)).
 
-## Enable the Hyper-V role through Settings
+## Enable the Hyper-V role through Windows Features
 
-1. Right click on the Windows button and select ‘Apps and Features’.
+1. Right click on the Windows button and click **Run**.
 
-2. Select **Programs and Features** on the right under related settings. 
+![Open run prompt via Windows start context menu](media/contextmenu-run.png)
 
-3. Select **Turn Windows Features on or off**.
+2. Type `optionalfeatures` in the run diaglog and click **OK**.
 
-4. Select **Hyper-V** and click **OK**.
+![Opening Windows Features via Run](media/run-optionalfeatures.png)
 
-![Windows programs and features dialogue box](media/enable_role_upd.png)
+4. Check **Hyper-V** and click **OK**.
 
-When the installation has completed you are prompted to restart your computer.
+![Windows programs and features dialogue box](media/windowsfeatures-hyperv.png)
+
+Once the installation has completed you will be prompted to restart the computer.
 
 ## Make virtual machines
 
