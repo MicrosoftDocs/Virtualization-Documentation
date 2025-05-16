@@ -20,7 +20,7 @@ This guide will walk you through:
 
 Requirements:
 * Windows 10 Anniversary Update or later
-* Hyper-V is enabled (instructions [here](../quick-start/enable-hyper-v.md))
+* Hyper-V is enabled (for more information, see [Enable Hyper-V](../quick-start/enable-hyper-v#enable-hyper-v-using-powershell)
 
 > **Note:**  Currently, you are limited to one NAT network per host. For additional details on the Windows NAT (WinNAT) implementation, capabilities, and limitations, please reference the [WinNAT capabilities and limitations blog](https://techcommunity.microsoft.com/t5/Virtualization/Windows-NAT-WinNAT-Capabilities-and-limitations/ba-p/382303)
 
