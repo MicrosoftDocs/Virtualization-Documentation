@@ -220,7 +220,7 @@ Once the checkpoint has been applied, notice that not only is the text file pres
 
 ### Production checkpoint
 
-Let’s now examine production checkpoints. This process is almost identical to working with a standard checkpoint, however will have slightly different results. Before beginning make sure you have a virtual machine and that you have changes the checkpoint type to Production checkpoints.
+Let’s now examine production checkpoints. This process is almost identical to working with a standard checkpoint, however will have slightly different results. Before beginning make sure you have a virtual machine and that you have changed the checkpoint type to Production checkpoints.
 
 **Modify the virtual machine and Create a Production Checkpoint**
 
