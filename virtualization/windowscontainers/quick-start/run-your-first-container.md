@@ -59,6 +59,8 @@ For this simple example, a ‘Hello World’ container image will be created and
    ```
 
 4. Create a new ‘HelloWorld’ image that includes the changes in the first container you ran. To do so, run the [docker commit](https://docs.docker.com/engine/reference/commandline/commit/) command, replacing `<containerid>` with the ID of your container:
+   > [!TIP]
+   > You will need to stop your container first before committing, since committing a running container is not currently supported. Run `docker container stop <containerid>`.
 
    ```console
    docker commit <containerid> helloworld
