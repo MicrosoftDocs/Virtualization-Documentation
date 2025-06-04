@@ -37,7 +37,7 @@ $devprop_PciDevice_BaseClass_DisplayCtlr                             =   3
 
 Write-Host "Executing SurveyDDA.ps1, revision 1"
 
-write-host "Generating a list of PCI Express endpoint devices"
+Write-Host "Generating a list of PCI Express endpoint devices"
 $pnpdevs = Get-PnpDevice -PresentOnly
 $pcidevs = $pnpdevs | Where-Object {$_.InstanceId -like "PCI*"}
 
@@ -48,13 +48,13 @@ foreach ($pcidev in $pcidevs) {
 
     $rmrr =  ($pcidev | Get-PnpDeviceProperty $devpkey_PciDevice_RequiresReservedMemoryRegion).Data
     if ($rmrr -ne 0) {
-        write-host -ForegroundColor Red -BackgroundColor Black "BIOS requires that this device remain attached to BIOS-owned memory.  Not assignable."
+        Write-Host -ForegroundColor Red -BackgroundColor Black "BIOS requires that this device remain attached to BIOS-owned memory.  Not assignable."
         continue
     }
 
     $acsUp =  ($pcidev | Get-PnpDeviceProperty $devpkey_PciDevice_AcsCompatibleUpHierarchy).Data
     if ($acsUp -eq $devprop_PciDevice_AcsCompatibleUpHierarchy_NotSupported) {
-        write-host -ForegroundColor Red -BackgroundColor Black "Traffic from this device may be redirected to other devices in the system.  Not assignable."
+        Write-Host -ForegroundColor Red -BackgroundColor Black "Traffic from this device may be redirected to other devices in the system.  Not assignable."
         continue
     }
 
@@ -83,7 +83,7 @@ foreach ($pcidev in $pcidevs) {
         }
     }
 
-    $locationpath = ($pcidev | get-pnpdeviceproperty DEVPKEY_Device_LocationPaths).data[0]
+    $locationpath = ($pcidev | Get-PnpDeviceProperty DEVPKEY_Device_LocationPaths).data[0]
 
     #
     # If the device is disabled, we can't check the resources, report a warning and continue on.
@@ -102,9 +102,7 @@ foreach ($pcidev in $pcidevs) {
     # aren't assignable.
     #
     $doubleslashDevId = "*" + $pcidev.PNPDeviceID.Replace("\","\\") + "*"
-    $irqAssignments = gwmi -query "select * from Win32_PnPAllocatedResource" | Where-Object {$_.__RELPATH -like "*Win32_IRQResource*"} | Where-Object {$_.Dependent -like $doubleslashDevId}
-
-    #$irqAssignments | Format-Table -Property __RELPATH
+    $irqAssignments = Get-CimInstance -Query "select * from Win32_PnPAllocatedResource" | Where-Object {$_.__RELPATH -like "*Win32_IRQResource*"} | Where-Object {$_.Dependent -like $doubleslashDevId}
 
     if ($irqAssignments.length -eq 0) {
         Write-Host -ForegroundColor Green -BackgroundColor Black "    And it has no interrupts at all -- assignment can work."
@@ -115,8 +113,6 @@ foreach ($pcidev in $pcidevs) {
         #
         $msiAssignments = $irqAssignments | Where-Object {$_.Antecedent -like "*IRQNumber=42949*"}
     
-        #$msiAssignments | Format-Table -Property __RELPATH
-
         if ($msiAssignments.length -eq 0) {
             Write-Host -ForegroundColor Red -BackgroundColor Black "All of the interrupts are line-based, no assignment can work."
             continue
@@ -130,13 +126,13 @@ foreach ($pcidev in $pcidevs) {
     # not strictly an issue devices, but very useful when you want to set MMIO gap sizes
     #
 
-    $mmioAssignments = gwmi -query "select * from Win32_PnPAllocatedResource" | Where-Object {$_.__RELPATH -like "*Win32_DeviceMemoryAddress*"} | Where-Object {$_.Dependent -like $doubleslashDevId}
+    $mmioAssignments = Get-CimInstance -Query "select * from Win32_PnPAllocatedResource" | Where-Object {$_.__RELPATH -like "*Win32_DeviceMemoryAddress*"} | Where-Object {$_.Dependent -like $doubleslashDevId}
     $mmioTotal = 0
     foreach ($mem in $mmioAssignments) 
     {
         $baseAdd =$mem.Antecedent.SubString($mem.Antecedent.IndexOf("""")+1)
         $baseAdd=$baseAdd.SubString(0,$baseAdd.IndexOf(""""))
-        $mmioRange = gwmi -query "select * from Win32_DeviceMemoryAddress" | Where-Object{$_.StartingAddress -like $baseAdd}
+        $mmioRange = Get-CimInstance -Query "select * from Win32_DeviceMemoryAddress" | Where-Object{$_.StartingAddress -like $baseAdd}
         $mmioTotal = $mmioTotal + $mmioRange.EndingAddress - $mmioRange.StartingAddress
     }
     if ($mmioTotal -eq 0)
@@ -164,7 +160,7 @@ foreach ($pcidev in $pcidevs) {
 #
 if ((Get-VMHost).IovSupport -eq $false) {
     Write-Host ""
-    write-host "Unfortunately, this machine doesn't support using them in a VM."
+    Write-Host "Unfortunately, this machine doesn't support using them in a VM."
     Write-Host ""
     (Get-VMHost).IovSupportReasons
 }
