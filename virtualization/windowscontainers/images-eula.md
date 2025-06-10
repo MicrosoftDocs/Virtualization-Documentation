@@ -2,8 +2,8 @@
 title: Microsoft software EULA for Windows containers
 description: License agreement for Windows container base images.
 author: cwilhit
-ms.author: scooley
-ms.date: 08/11/2020
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: reference
 ---
 # MICROSOFT SOFTWARE SUPPLEMENTAL LICENSE FOR WINDOWS CONTAINER BASE IMAGE

@@ -2,7 +2,7 @@
 title: Host Compute System API Reference
 description: Host Compute System API Reference
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.service: virtualization
 ms.date: 06/09/2021

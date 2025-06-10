@@ -1,9 +1,9 @@
 ---
 title: Port Hyper-V WMIv1 to WMIv2
-description: Learn how to port Hyper-V WMIv1 to WMIv2
+description: Learn how to port Hyper-V WMIv1 to WMIv2.
 keywords: windows 10, hyper-v, WMIv1, WMIv2, WMI, Msvm_VirtualSystemGlobalSettingData, root\virtualization 
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 04/13/2017
 ms.topic: article
 ms.assetid: b13a3594-d168-448b-b0a1-7d77153759a8
@@ -14,6 +14,7 @@ ms.assetid: b13a3594-d168-448b-b0a1-7d77153759a8
 Windows Management Instrumentation (WMI) is the management interface underlying Hyper-V Manager and Hyper-V's PowerShell cmdlets.  While most people use our PowerShell cmdlets or Hyper-V manager,  sometimes developers needed WMI directly.  
 
 There have been two Hyper-V WMI namespaces (or versions of the Hyper-V WMI API).
+
 * The WMI v1 namespace (root\virtualization) which was introduced in Windows Server 2008 and last available in Windows Server 2012
 * The WMI v2 namespace (root\virtualization\v2) which was introduced in Windows Server 2012
 

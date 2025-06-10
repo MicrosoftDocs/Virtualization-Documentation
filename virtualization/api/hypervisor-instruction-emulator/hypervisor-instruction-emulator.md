@@ -2,7 +2,7 @@
 title: Windows Hypervisor Platform Instruction Emulator API Definitions and Support DLLs
 description: Learn about the Windows Hypervisor Platform Instruction Emulator API Definitions and Support DLLs. 
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.date: 04/19/2022
 ---
 

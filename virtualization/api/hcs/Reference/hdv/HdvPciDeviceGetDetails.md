@@ -2,7 +2,7 @@
 title: HDV_PCI_DEVICE_GET_DETAILS
 description: HDV_PCI_DEVICE_GET_DETAILS
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.date: 06/09/2021
 api_name:

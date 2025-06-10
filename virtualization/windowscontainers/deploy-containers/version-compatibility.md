@@ -1,14 +1,14 @@
 ---
 title: Windows container version compatibility
 description: Version compatibility for containers built from different versions of Windows Server and Windows.
-author: brasmith-ms
-ms.author: brasmith
+author: robinharwood
+ms.author: mosagie
 ms.topic: conceptual
-ms.date: 03/20/2023
+ms.date: 01/23/2025
 ---
 # Windows container version compatibility
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were the first Windows releases that could build and run Windows Server containers. Containers built using these versions can run on newer releases, but there are a few things you need to know before you start.
 
@@ -21,29 +21,39 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 ## Windows Server host OS compatibility
 
 <!-- start tab view -->
+# [Windows Server 2025](#tab/windows-server-2025)
+
+|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server 2025|✅|✅|
+|Windows Server 2022|✅|✅|
+|Windows Server 2019|✅|❌|
+|Windows Server 2016|✅|❌|
+
+<!-- start tab view -->
 # [Windows Server 2022](#tab/windows-server-2022)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10004;|&#10004;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
+|Windows Server 2022|✅|✅|
+|Windows Server 2019|✅|❌|
+|Windows Server 2016|✅|❌|
 
 # [Windows Server 2019](#tab/windows-server-2019)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10060;|&#10060;|
-|Windows Server 2019|&#10004;|&#10004;|
-|Windows Server 2016|&#10004;|&#10060;|
+|Windows Server 2022|❌|❌|
+|Windows Server 2019|✅|✅|
+|Windows Server 2016|✅|❌|
 
 # [Windows Server 2016](#tab/windows-server-2016)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10060;|&#10060;|
-|Windows Server 2019|&#10060;|&#10060;|
-|Windows Server 2016|&#10004;|&#10004;|
+|Windows Server 2022|❌|❌|
+|Windows Server 2019|❌|❌|
+|Windows Server 2016|✅|✅|
 
 ---
 <!-- stop tab view -->
@@ -56,17 +66,20 @@ For any other scenario where there is a mismatch in host/guest Windows versionin
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10004;|&#10004;(preview)|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
+|Windows Server 2025|✅<sup>1</sup>|✅<sup>1</sup>|
+|Windows Server 2022|✅|✅|
+|Windows Server 2019|✅|❌|
+|Windows Server 2016|✅|❌|
+
+1. Supported from Windows 11 24H2 (`Build 2600`) onwards.
 
 # [Windows 10](#tab/windows-10)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server 2022|&#10060;|&#10060;|
-|Windows Server 2019|&#10004;|&#10060;|
-|Windows Server 2016|&#10004;|&#10060;|
+|Windows Server 2022|❌|❌|
+|Windows Server 2019|✅|❌|
+|Windows Server 2016|✅|❌|
 
 ---
 <!-- stop tab view -->
@@ -155,7 +168,7 @@ There are three ways you can resolve this error:
 ## Choose which container OS version to use
 
 >[!NOTE]
->As of April 16, 2019, the "latest" tag is no longer published or maintained for the [Windows base OS container images](https://hub.docker.com/_/microsoft-windows-base-os-images). Please declare a specific tag when pulling or referencing images from these repos.
+>As of April 16, 2019, the "latest" tag is no longer published or maintained for the [Windows Server](https://hub.docker.com/r/microsoft/windows-server), [Windows Server Core](https://hub.docker.com/r/microsoft/windows-servercore), and [Nano Server](https://hub.docker.com/r/microsoft/windows-nanoserver) base OS container images. You must declare a specific tag when pulling or referencing images from these repos.
 
 You must know which version you need to use for your container. For example, if you want Windows Server version 1809 as your container OS and want to have the latest patches for it, you should use the tag `1809` when specifying which version of the base OS container images you want, like so:
 

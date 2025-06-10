@@ -2,7 +2,7 @@
 title: CPUID access call
 description: Learn about context data for an exit caused by CPUID call.
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.date: 04/20/2022
 ---
 

@@ -2,14 +2,14 @@
 title: Multiple subnet support for worker nodes in Windows containers with Calico for Windows
 description: Learn about using multiple subnets with Windows containers using Calico.
 author: sethmanheim
-ms.author: sethm
-ms.date: 08/10/2021
+ms.author: mosagie
+ms.date: 01/22/2025
 ms.topic: conceptual
 ---
 
 # Multiple subnet support in Host Networking Service
 
-> Applies to: Windows Server 2022
+> Applies to: Windows Server 2025, Windows Server 2022
 
 Using multiple subnets per network is now supported in Host Networking Service (HNS) for Windows containers. Previously, HNS restricted Kubernetes container endpoint configurations to use only the prefix length of the underlying subnet. HNS has been enhanced so you can use more restrictive subnets, such as subnets with a longer prefix length, as well as multiple subnets per Windows worker node. The first Container Networking Interface (CNI) that can this functionality is Calico for Windows. Calico Network Policies is an open-source network and network security solution founded by [Tigera](https://www.tigera.io/).
 
@@ -45,7 +45,7 @@ There are several Calico connectivity and policy requirements to enable multiple
   - Access control list (ACL) egress and ingress policies must apply.
   - Both the egress policy of the sending pod and the ingress policy of the receiving pod must allow the traffic.
   - All Calico-programmed ACL rules should be able to view pod IPs.
- - Hosts and pods must be able to reach each other, and to reach pods on other hosts over routes learned over the Border Gateway Protocol (BGP).
+- Hosts and pods must be able to reach each other, and to reach pods on other hosts over routes learned over the Border Gateway Protocol (BGP).
 
 ### Multiple IP blocks per host requirements
 

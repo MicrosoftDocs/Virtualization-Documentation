@@ -2,11 +2,12 @@
 title: Manage Azure Container Registry on Windows Admin Center
 description: Learn about Azure Container Registry on Windows Admin Center.
 author: vrapolinario
-ms.author: viniap
-ms.date: 04/12/2023
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
+
 # Manage Azure Container Registry using Windows Admin Center
 
 This topic describes how to manage Azure Container Registry (ACR) using Windows Admin Center. Azure Container Registry allows you to build, store, and manage container images and artifacts in a private registry for all types of container deployments.

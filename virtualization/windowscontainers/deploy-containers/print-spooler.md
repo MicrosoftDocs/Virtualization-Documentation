@@ -2,8 +2,8 @@
 title: Print spooler in Windows containers
 description: Learn about current working behavior for the print spooler service in Windows containers.
 author: vrapolinario
-ms.author: viniap
-ms.date: 04/12/2023
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ---
 
@@ -16,8 +16,8 @@ Applications with a dependency on printing services can be containerized success
 
 ## Setup
 
-* The host should be Windows Server 2019 or Windows 10 Pro/Enterprise October 2018 update or newer.
-* The [mcr.microsoft.com/windows](https://mcr.microsoft.com/product/windows/about) or the [mcr.microsoft.com/windows/server](https://mcr.microsoft.com/product/windows/server/about) images should be the targeted base image. Other Windows container base images (such as Nano Server and Windows Server Core) do not carry the Printing Server Role.
+- The host should be Windows Server 2019 or Windows 10 Pro/Enterprise October 2018 update or newer.
+- Use the [base image for Windows containers](https://mcr.microsoft.com/artifact/mar/windows/about) or the [base image for Windows Server containers](https://mcr.microsoft.com/artifact/mar/windows/server/about). Other Windows container base images (such as Nano Server and Windows Server Core) do not carry the Printing Server Role.
 
 ### Hyper-V Isolation
 
@@ -49,7 +49,7 @@ Fax                                            Local        Microsoft Shared Fax
 PS C:\>
 ```
 
-### Process Isolation
+### Process isolation
 
 Due to the shared kernel nature of process-isolated containers, current behavior limits the user to running only **one instance** of the printer spooler service across the host and all its container children. If the host has the printer spooler running, you must stop the service on the host before attemping to launch the printer service in the guest.
 

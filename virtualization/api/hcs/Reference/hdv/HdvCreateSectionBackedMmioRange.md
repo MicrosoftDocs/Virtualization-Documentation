@@ -2,7 +2,7 @@
 title: HdvCreateSectionBackedMmioRange
 description: HdvCreateSectionBackedMmioRange
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.date: 02/05/2024
 api_name:

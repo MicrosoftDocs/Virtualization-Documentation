@@ -2,7 +2,7 @@
 title: HDV_PCI_BAR_SELECTOR Enumeration
 description: HDV_PCI_BAR_SELECTOR Enumeration
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.date: 06/09/2021
 api_name:

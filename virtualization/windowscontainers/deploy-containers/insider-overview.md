@@ -2,8 +2,8 @@
 title: Use containers with Windows Insider Program
 description: Learn how to get started using Windows containers with the Windows Insider Program.
 author: cwilhit
-ms.author: lizross
-ms.date: 12/29/2020
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ---
 

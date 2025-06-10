@@ -2,7 +2,7 @@
 title: Hyper-v Architecture
 description: Describes the Hyper-V architecture and its role in virtualization and provides an overview and glossary of the architecture.
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 09/14/2020
 ms.topic: article
 ---
@@ -23,6 +23,7 @@ The following diagram provides a high-level overview of the architecture of a Hy
 ![Diagram of the Hyper V High Level Architecture, showing the four partitions and Hypervisor sections.](./media/hv_architecture.png)
 
 ## Glossary
+
 * **APIC** – Advanced Programmable Interrupt Controller – A device which allows priority levels to be assigned to its interrupt outputs.
 * **Child Partition** – Partition that hosts a guest operating system - All access to physical memory and devices by a child partition is provided via the Virtual Machine Bus (VMBus) or the hypervisor.
 * **Hypercall** – Interface for communication with the hypervisor - The hypercall interface accommodates access to the optimizations provided by the hypervisor.

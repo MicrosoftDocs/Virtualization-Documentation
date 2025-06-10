@@ -2,8 +2,8 @@
 title: Devices in containers on Windows
 description: Learn about device support for containers on Windows.
 author: sethmanheim
-ms.author: sethm
-ms.date: 10/20/2020
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
 ---
 
@@ -11,15 +11,16 @@ ms.topic: how-to
 
 By default, Windows containers are given minimal access to host devices--just like Linux containers. There are certain workloads where it is beneficial--or even imperative--to access and communicate with host hardware devices. This guide covers which devices are supported in containers and how to get started.
 
-## Requirements
+## Prerequisites
 
 For this feature to work, your environment must meet the following requirements:
+
 - The container host must be running Windows Server 2019 or Windows 10, version 1809 or newer.
 - Your container base image version must be 1809 or later.
 - Your containers must be Windows containers running in process-isolated mode.
 - The container host must be running Docker Engine 19.03 or newer.
 
-## Run a Container with a Device
+## Run a container with a device
 
 To start a container with a device, use the following command:
 
@@ -39,7 +40,7 @@ In Windows, all devices declare a list of interface classes that they implement.
 
 This means you are **not** assigning the device away from host. Instead, the host is sharing it with the container. Likewise, because you are specifying a class GUID, _all_ devices that implement that GUID will be shared with the container.
 
-## What Devices are Supported
+## What devices are supported
 
 The following devices (and their device interface class GUIDs) are supported today:
 
@@ -77,10 +78,10 @@ The following devices (and their device interface class GUIDs) are supported tod
 > [!IMPORTANT]
 > Device support is driver-dependent. Attempting to pass class GUIDs not defined in the table above may result in undefined behavior.
 
-## Hyper-V-isolated Windows Container Support
+## Hyper-V-isolated Windows container support
 
 Device assignment and device sharing for workloads in Hyper-V-isolated Windows containers is not currently supported.
 
-## Hyper-V-isolated Linux Container Support
+## Hyper-V-isolated Linux container support
 
 Device assignment and device sharing for workloads in Hyper-V-isolated Linux containers is not currently supported.

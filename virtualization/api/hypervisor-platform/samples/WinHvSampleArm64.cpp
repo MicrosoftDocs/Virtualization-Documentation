@@ -22,6 +22,10 @@ Abstract:
 #include <wil/resource.h>
 
 // Sample code
+// NOTE: This sample requires build 27723.1000.arm64fre.rs_prerelease.241004-1602.
+// The following properties and registers were added in that build:
+//
+// * GicPpiOverflowInterruptFromCntv
 namespace WHvSample {
 
     using unique_whv_partition =

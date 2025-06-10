@@ -2,10 +2,9 @@
 title: Validate gMSA on AKS with the PowerShell module
 description: Validate gMSA on Azure Kubernetes service for Windows containers.
 author: vrapolinario
-ms.author: viniap
-ms.date: 03/14/2024
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: how-to
-
 ---
 
 # Validate gMSA on AKS with the PowerShell module
@@ -41,7 +40,9 @@ The logs will be copied from each Windows hosts to the local directory `$params[
 # Needs computer restart
 Install-WindowsFeature -Name Containers
  ```
+
 - The CCGEvents.man logging manifest file is registered via:
+
  ```powershell
 wevtutil im CCGEvents.man
  ```
@@ -72,6 +73,6 @@ The gMSA on AKS PowerShell module allows you to validate which node pools have a
     -VaultResourceGroupNames $params["aks-cluster-rg-name"]
    ```
 
-## Module feedback
+## Share feedback
 
 For feedback, questions, and suggestions on the gMSA on AKS PowerShell module, please visit the [Windows Containers repo on GitHub](https://github.com/microsoft/Windows-Containers/issues).

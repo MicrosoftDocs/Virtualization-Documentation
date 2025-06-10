@@ -2,13 +2,13 @@
 title: Containerize a .NET Core app
 description: Learn how to build a sample .NET Core app with containers.
 author: vrapolinario
-ms.author: viniap
-ms.date: 03/31/2023
+ms.author: mosagie
+ms.date: 01/22/2025
 ms.topic: how-to
 ---
 # Containerize a .NET Core App
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 This topic describes how to package an existing sample .NET app for deployment as a Windows container, after setting up your environment as described in [Get started: Prep Windows for containers](set-up-environment.md), and running your first container as described in [Run your first Windows container](run-your-first-container.md).
 
@@ -16,7 +16,7 @@ You'll also need the Git source control system installed on your computer. To in
 
 ## Clone the sample code from GitHub
 
-All container sample source code is kept under the [Virtualization-Documentation](https://github.com/MicrosoftDocs/Virtualization-Documentation) git repository (known informally as a repo) in a folder called `windows-container-samples`.
+All container sample source code is kept under the [Virtualization-Documentation](https://github.com/MicrosoftDocs/Virtualization-Documentation) git repository in a folder called `windows-container-samples`.
 
 1. Open a PowerShell session and change directories to the folder in which you want to store this repository. (Other command prompt window types work as well, but our example commands use PowerShell.)
 2. Clone the repo to your current working directory:
@@ -64,7 +64,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
 WORKDIR /app
 ```
 
-The first group of lines declares from which base image we will use to build our container on top of. If the local system does not have this image already, then docker will automatically try and fetch it. The `mcr.microsoft.com/dotnet/core/sdk:2.1` comes packaged with the .NET core 2.1 SDK installed, so it's up to the task of building ASP .NET core projects targeting version 2.1. The next instruction  changes the working directory in our container to be `/app`, so all commands following this one execute under this context.
+The first group of lines declares from which base image we'll use to build our container on top of. If the local system doesn't have this image already, then docker will automatically try and fetch it. The `mcr.microsoft.com/dotnet/core/sdk:2.1` comes packaged with the .NET core 2.1 SDK installed, so it's up to the task of building ASP .NET core projects targeting version 2.1. The next instruction changes the working directory in our container to be `/app`, so all commands following this one execute under this context.
 
 ```Dockerfile
 COPY *.csproj ./
@@ -78,7 +78,7 @@ COPY . ./
 RUN dotnet publish -c Release -o out
 ```
 
-Once .NET has pulled all the dependencies into the `build-env` container, the next instruction copies all project source files into the container. We then tell .NET to publish our application with a release configuration and specify the output path in the .
+Once .NET has pulled all the dependencies into the `build-env` container, the next instruction copies all project source files into the container. We then tell .NET to publish our application with a release configuration and specify the output path.
 
 The compilation should succeed. Now we must build the final image.
 
@@ -94,7 +94,7 @@ ENTRYPOINT ["dotnet", "asp-net-getting-started.dll"]
 
 Since our application is ASP.NET, we specify an image with this runtime included. We then copy over all files from the output directory of our temporary container into our final container. We configure our container to run with our new app as its entrypoint when the container starts
 
-We have written the dockerfile to perform a _multi-stage build_. When the dockerfile is executed, it will use the temporary container, `build-env`, with the .NET core 2.1 SDK to build the sample app and then copy the outputted binaries into another container containing only the .NET core 2.1 runtime so that we minimized the size of the final container.
+We have written the dockerfile to perform a _multi-stage build_. When the dockerfile is executed, it uses the temporary container, `build-env`, with the .NET core 2.1 SDK to build the sample app and then copy the outputted binaries into another container containing only the .NET core 2.1 runtime so that we minimized the size of the final container.
 
 ## Build and run the app
 
@@ -119,7 +119,7 @@ With the Dockerfile written, we can point Docker at our Dockerfile and tell it t
    * `--name myapp` tells Docker to give this container a convenient name to query by (instead of having to look up the container ID assigned at runtime by Docker).
    * `my-asp-app` is the image we want Docker to run. This is the container image produced as the culmination of the `docker build` process.
 
-3. Open a web browser and navigate to `http://localhost:5000` to see your containerized application, as shown in this screenshot:
+3. Open a web browser and navigate to `http://localhost:5000` to see your containerized application.
 
    >![ASP.NET Core webpage, running from the localhost in a container](media/SampleAppScreenshot.png)
 
@@ -138,7 +138,7 @@ With the Dockerfile written, we can point Docker at our Dockerfile and tell it t
 
    To see more app samples and their associated dockerfiles, see [additional container samples](../samples.md).
 
-2. Once you've published your app to the container registry, the next step would be to deploy the app to a Kubernetes cluster that you create with Azure Kubernetes Service.
+2. Once you've published your app to the container registry, the next step is to deploy the app to a Kubernetes cluster that you create with Azure Kubernetes Service.
 
    > [!div class="nextstepaction"]
    > [Create a Kubernetes cluster](/azure/aks/windows-container-cli)

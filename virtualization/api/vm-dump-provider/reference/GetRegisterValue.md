@@ -3,7 +3,7 @@ title: The GetRegisterValue function
 description: Queries for a specific register value for a given VP in a VmSavedStateDump.
 ms.date: 04/19/2022
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ---
 
 # GetRegisterValue function

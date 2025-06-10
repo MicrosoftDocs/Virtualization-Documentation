@@ -3,7 +3,7 @@ title: Make your own integration services
 description: Windows 10 integration services.
 keywords: windows 10, hyper-v, HVSocket, AF_HYPERV
 author: scooley
-ms.author: scooley
+ms.author: roharwoo
 ms.date: 04/07/2017
 ms.topic: article
 ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
@@ -15,21 +15,27 @@ Starting in Windows 10 Anniversary Update, anyone can make applications that com
 
 This document walks through creating a simple program built on Hyper-V sockets.
 
-**Supported Host OS**
+## Supported Host OS
+
 * Windows 10 and later
 * Windows Server 2016 and later
 
-**Supported Guest OS**
+## Supported Guest OS
+
 * Windows 10 and later
 * Windows Server 2016 and later
-* Linux guests with Linux Integration Services (see [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows))
-> **Note:** A supported Linux guest must have kernel support for:
+* Linux guests with Linux Integration Services. See [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows)
+
+> [!NOTE]
+> A supported Linux guest must have kernel support for:
+>
 > ```bash
 > CONFIG_VSOCKET=y
 > CONFIG_HYPERV_VSOCKETS=y
 > ```
 
-**Capabilities and Limitations**
+## Capabilities and Limitations
+
 * Supports kernel mode or user mode actions
 * Data stream only
 * No block memory (not the best for backup/video)
@@ -39,22 +45,25 @@ This document walks through creating a simple program built on Hyper-V sockets.
 ## Getting started
 
 Requirements:
-* C/C++ compiler.  If you don't have one, checkout [Visual Studio Community](https://aka.ms/vs)
-* [Windows 10 SDK](https://developer.microsoft.com/windows/downloads/windows-10-sdk) -- pre-installed in Visual Studio 2015 with Update 3 and later.
-* A computer running one of the host operating systems above with at least one vitual machine. -- this is for testing your application.
+
+* C/C++ compiler. If you don't have one, checkout [Visual Studio Community](https://aka.ms/vs)
+* [Windows SDK](https://developer.microsoft.com/windows/downloads/windows-sdk) -- pre-installed in Visual Studio 2015 with Update 3 and later.
+* A computer running one of the host operating systems specified with at least one vitual machine. -- this is for testing your application.
 
 > **Note:** The API for Hyper-V sockets became publicly available in Windows 10 Anniversary Update. Applications that use HVSocket will run on any Windows 10 host and guest but can only be developed with a Windows SDK later than build 14290.
 
 ## Register a new application
+
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
 
 By registering the service in the registry, you get:
-*  WMI management for enable, disable, and listing available services
-*  Permission to communicate with virtual machines directly
+
+* WMI management for enable, disable, and listing available services
+* Permission to communicate with virtual machines directly
 
 The following PowerShell will register a new application named "HV Socket Demo".  This must be run as administrator.  Manual instructions below.
 
-``` PowerShell
+```powershell
 $friendlyName = "HV Socket Demo"
 
 # Create a new random GUID.  Add it to the services list
@@ -67,23 +76,26 @@ $service.SetValue("ElementName", $friendlyName)
 $service.PSChildName | clip.exe
 ```
 
-
 **Registry location and information:**
+
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
 ```
-In this registry location, you'll see several GUIDs.  Those are our in-box services.
+
+In this registry location, you'll see several GUIDs. Those are our in-box services.
 
 Information in the registry per service:
+
 * `Service GUID`
     * `ElementName (REG_SZ)` -- this is the service's friendly name
 
 To register your own service, create a new registry key using your own GUID and friendly name.
 
-The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
+The friendly name will be associated with your new application. It'll appear in performance counters and other places where a GUID isn't appropriate.
 
-The registry entry will look like this:
-```
+The registry entry looks like this:
+
+```output
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
     999E53D4-3D5C-4C3E-8779-BED06EC056E1\
         ElementName    REG_SZ    VM Session Service
@@ -91,7 +103,9 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
         ElementName    REG_SZ    Your Service Friendly Name
 ```
 
-> **Note:** The Service GUID for a Linux guest uses the VSOCK protocol which addresses via a `svm_cid` and `svm_port` rather than a guids. To bridge this inconsistency with Windows the well-known GUID is used as the service template on the host which translates to a port in the guest. To customize your Service GUID simply change the first "00000000" to the port number desired. Ex: "00000ac9" is port 2761.
+> [!NOTE]
+> The Service GUID for a Linux guest uses the VSOCK protocol which addresses via a `svm_cid` and `svm_port` rather than a guids. To bridge this inconsistency with Windows the well-known GUID is used as the service template on the host which translates to a port in the guest. To customize your Service GUID simply change the first "00000000" to the port number desired. Ex: "00000ac9" is port 2761.
+>
 > ```C++
 > // Hyper-V Socket Linux guest VSOCK template GUID
 > struct __declspec(uuid("00000000-facb-11e6-bd58-64006a7986d3")) VSockTemplate{};
@@ -102,8 +116,8 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 >   */
 > ```
 >
-
 > **Tip:**  To generate a GUID in PowerShell and copy it to the clipboard, run:
+>
 >``` PowerShell
 >(New-Guid).Guid | clip.exe
 >```
@@ -127,12 +141,13 @@ int socket(int domain, int type, int protocol);
 ```
 
 For a Hyper-V socket:
+
 * Address family - `AF_HYPERV` (Windows) or `AF_VSOCK` (Linux guest)
 * type - `SOCK_STREAM`
 * protocol - `HV_PROTOCOL_RAW` (Windows) or `0` (Linux guest)
 
-
 Here is an example declaration/instantiation:
+
 ``` C
 // Windows
 SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
@@ -191,7 +206,9 @@ struct sockaddr_vm {
 ```
 
 In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDs:
+
 * VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.
+
   ```PowerShell
   (Get-VM -Name $VMName).Id
   ```
@@ -209,7 +226,6 @@ There is also a set of VMID wildcards available when a connection isn't to a spe
 | HV_GUID_CHILDREN | 90db8b89-0d35-4f79-8ce9-49ea0ac8b7cd | Wildcard address for children. Listeners should bind to this VmId to accept connection from its children. |
 | HV_GUID_LOOPBACK | e0e16197-dd56-4a10-9195-5ee7a155a838 | Loopback address. Using this VmId connects to the same partition as the connector. |
 | HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector.* |
-
 
 \* `HV_GUID_PARENT`
 The parent of a virtual machine is its host.  The parent of a container is the container's host.
@@ -235,6 +251,7 @@ Accept()
 | HVSOCKET_CONNECTED_SUSPEND | ULONG | When this socket option is set to a non-zero value sockets do not disconnect when the virtual machine is paused.  |
 
 ## Useful links
+
 [Complete WinSock API](/windows/desktop/WinSock/winsock-functions)
 
 [Hyper-V Integration Services reference](../reference/integration-services.md)

@@ -2,7 +2,7 @@
 title: HcsGetProcessProperties
 description: HcsGetProcessProperties
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.service: virtualization
 ms.date: 06/09/2021

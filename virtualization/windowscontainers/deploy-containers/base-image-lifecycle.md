@@ -2,16 +2,16 @@
 title: Base image servicing lifecycles
 description: Information about the Windows container base image lifecycle.
 author: sethmanheim
-ms.author: sethm
-ms.date: 2/18/2022
+ms.author: mosagie
+ms.date: 01/23/2025
 ms.topic: reference
 ---
 # Base image servicing lifecycles
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 > [!Note]
-> Microsoft has delayed the scheduled end of support and servicing dates for a number of products to help people and organizations focus their attention on retaining business continuity. See [Lifecycle changes to end of support and servicing dates](https://support.microsoft.com/help/4557164/lifecycle-changes-to-end-of-support-and-servicing-dates) entry from April 14, 2020 for more information.
+> Microsoft has delayed the scheduled end of support and servicing dates for a number of products to help people and organizations focus their attention on retaining business continuity. See [Lifecycle changes to end of support and servicing dates](/lifecycle/announcements/lifecycle-changes-eos-servicing-dates) for more information.
 
 Windows container base images are based on either Long-Term Servicing Channel releases or Semi-Annual Channel releases of Windows Server. This article explains how long support will last for different versions of base images from both channels.
 
@@ -36,4 +36,8 @@ The following table lists each type of base image, its servicing channel, and ho
 |Server Core                      |Long-Term        |2016   |14393   |10/15/2016  |01/11/2022                 |01/11/2027           |
 |Nano Server                      |Semi-Annual      |1607   |14393   |10/15/2016  |10/09/2018                 |N/A                  |
 
-For servicing requirements and other additional information, see the [Windows Lifecycle FAQ](https://support.microsoft.com/help/18581/lifecycle-faq-windows-products), [Windows Server release information](/windows-server/get-started/windows-server-release-info), and the [Windows base OS images Docker hub repo](https://hub.docker.com/_/microsoft-windows-base-os-images).
+For servicing requirements and other additional information, see the [Windows Lifecycle FAQ](/lifecycle/faq/windows), [Windows Server release information](/windows-server/get-started/windows-server-release-info), and the following Windows Server base OS images on the Docker Hub repo:
+
+- [Windows Server](https://hub.docker.com/r/microsoft/windows-server)
+- [Windows Server Core](https://hub.docker.com/r/microsoft/windows-servercore)
+- [Nano Server](https://hub.docker.com/r/microsoft/windows-nanoserver)
