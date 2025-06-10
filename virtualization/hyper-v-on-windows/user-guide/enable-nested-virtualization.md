@@ -1,17 +1,17 @@
 ---
 title: Run Hyper-V in a Virtual Machine with Nested Virtualization
-description: Learn about how to use nested virtualization to run Hyper-V in a virtual machine to emulate configurations that normally require multiple hosts.
+description: Learn how to use nested virtualization to run Hyper-V in a virtual machine and emulate configurations that normally require multiple hosts.
 keywords: windows 10, windows 11, hyper-v
-author: johncslack
+author: robinharwood
 ms.author: roharwoo
-ms.date: 07/14/2023
+ms.date: 06/10/2025
 ms.topic: article
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 ---
 
 # Run Hyper-V in a Virtual Machine with Nested Virtualization
 
-Nested Virtualization is a feature that allows you to run Hyper-V inside of a Hyper-V virtual machine (VM). Nested Virtualization is helpful for running a Visual Studio phone emulator in a virtual machine, or testing configurations that ordinarily require several hosts.
+Nested virtualization enables you to run Hyper-V inside a virtual machine, allowing you to emulate complex environments without needing multiple physical hosts. This article explains how to configure and use nested virtualization on supported Windows platforms, including prerequisites, setup steps, and networking options. Use this article to test scenarios, run emulators, or develop solutions that require multiple layers of virtualization.
 
 To learn more about Nested Virtualization and supported scenarios, see [What is Nested Virtualization for Hyper-V?](nested-virtualization.md).
 
@@ -28,10 +28,12 @@ To learn more about Nested Virtualization and supported scenarios, see [What is 
 - VM configuration version 9.3 or higher.
 
 >[!NOTE]
-> The guest can be any Windows supported guest operating system. Newer Windows operating systems may support enlightenments that improve performance.
+> The guest can be any Windows supported guest operating system. Some newer versions of Windows can use extra CPU features that improve performance.
 > To enable Nested Virtualization in an Azure VM, make sure to set Security Type as **"Standard"**.
 
-## Configure Nested Virtualization
+## Enable Nested Virtualization
+
+To enable nested virtualization, follow these steps:
 
 1. Create a virtual machine. See the prerequisites for the required OS and VM versions.
 
@@ -46,7 +48,7 @@ To learn more about Nested Virtualization and supported scenarios, see [What is 
 1. Install Hyper-V within the virtual machine, just like you would for a physical server. For more information on installing Hyper-V, see, [Install Hyper-V](/windows-server/virtualization/hyper-v/get-started/install-hyper-v).
 
 >[!NOTE]
-> When using Windows Server 2019 as the first level VM, the number of vCPUs should be 225 or less.
+> With Windows Server 2019 and earlier as the first level VM, the number of vCPUs should be 225 or less. To learn more about virtual machine limits, see [Maximums for virtual machines](/windows-server/virtualization/hyper-v/plan/plan-hyper-v-scalability-in-windows-server#maximums-for-virtual-machines).
 
 ## Disable Nested Virtualization
 
@@ -88,7 +90,7 @@ Next, assign an IP address to the net adapter:
 Get-NetAdapter "vEthernet (VmNat)" | New-NetIPAddress -IPAddress 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
 ```
 
-Each nested virtual machine must have an IP address and gateway assigned to it. The gateway IP must point to the NAT adapter from the previous step. You may also want to assign a DNS server:
+Each nested virtual machine must have an IP address and gateway assigned to it. The gateway IP must point to the NAT adapter from the previous step. You might also want to assign a DNS server:
 
 ```powershell
 Get-NetAdapter "vEthernet (VmNat)" | New-NetIPAddress -IPAddress 192.168.100.2 -DefaultGateway 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
