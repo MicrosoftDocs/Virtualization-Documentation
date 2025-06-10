@@ -33,6 +33,16 @@ namespace WHvSample {
 
     const SIZE_T PageSize = 0x1000;
 
+    /// Sample demonstrating detection of WHP support.
+    void Initialize(void)
+    {
+        WHV_CAPABILITY capability;
+        THROW_IF_FAILED(WHvGetCapability(WHvCapabilityCodeHypervisorPresent, &capability, sizeof(capability), nullptr));
+        THROW_HR_IF(HRESULT_FROM_WIN32(ERROR_HV_NOT_PRESENT), !capability.HypervisorPresent);
+        THROW_IF_FAILED(WHvGetCapability(WHvCapabilityCodeFeatures, &capability, sizeof(capability), nullptr));
+        THROW_HR_IF(E_NOINTERFACE, !capability.Features.Arm64Support);
+    }
+
     /// Sample demonstrating executing code on a virtual processor. A partition
     /// with a single virtual processor is created and configured to execute a code sequence that loads
     /// registers x0, x1, x2, and x3 with the byte values of 'W', 'H', 'v', '!' followed by a branch to
@@ -53,6 +63,7 @@ namespace WHvSample {
         property.Arm64IcParameters.GicV3Parameters.GitsTranslaterBaseAddress = 0xeff68000;
         property.Arm64IcParameters.GicV3Parameters.GicLpiIntIdBits = 1;
         property.Arm64IcParameters.GicV3Parameters.GicPpiOverflowInterruptFromCntv = 0x1B;
+        property.Arm64IcParameters.GicV3Parameters.GicPpiPerformanceMonitorsInterrupt = 0x17;
         THROW_IF_FAILED(WHvSetPartitionProperty(partition.get(), WHvPartitionPropertyCodeArm64IcParameters, &property, sizeof(property)));
 
         // Setup the partition and create the virtual processor.
@@ -97,7 +108,7 @@ namespace WHvSample {
                 printf("Memory access exit detected\n");
 
                 // Display the contents of the registers set by the code sequence.
-                WHV_REGISTER_NAME names[] = { WHvArm64RegisterX0, WHvArm64RegisterX1, WHvArm64RegisterX2, WHvArm64RegisterX3 };
+                WHV_REGISTER_NAME names[] = {WHvArm64RegisterX0, WHvArm64RegisterX1, WHvArm64RegisterX2, WHvArm64RegisterX3};
                 WHV_REGISTER_VALUE values[_countof(names)] = {};
                 THROW_IF_FAILED(WHvGetVirtualProcessorRegisters(partition.get(), processorIndex, names, _countof(names), values));
                 std::string message;
@@ -117,11 +128,14 @@ namespace WHvSample {
 } // namespace WHvSample
 
 // Entry point for sample
-int __cdecl wmain(int argc, wchar_t** argv)
+int __cdecl wmain(int argc, wchar_t **argv)
 try
 {
     UNREFERENCED_PARAMETER(argc);
     UNREFERENCED_PARAMETER(argv);
+
+    printf("Initializing...:\n");
+    WHvSample::Initialize();
 
     // Execute the sample
     printf("Running sample:\n");
