@@ -11,7 +11,7 @@
     topicHref: /virtualization/windowscontainers/index
   - name: Community
     tocHref: /virtualization/community/
-    topicHref: /virtualization/community/index
+    topicHref: /answers/tags/220/windows-server
   - name: Api
     tocHref: /virtualization/api/
     topicHref: /virtualization/api/index
