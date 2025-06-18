@@ -4,7 +4,7 @@ description: Learn how to migrate existing applications to containers.
 author: vrapolinario
 ms.author: mosagie
 ms.date: 01/22/2025
-ms.topic: conceptual
+ms.topic: how-to
 ---
 
 # Using Windows Containers to "Containerize" Existing Applications

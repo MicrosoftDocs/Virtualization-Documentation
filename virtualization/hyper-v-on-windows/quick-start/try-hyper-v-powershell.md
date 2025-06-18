@@ -5,7 +5,7 @@ keywords: windows 10, windows 11, hyper-v
 author: scooley
 ms.author: roharwoo
 ms.date: 07/29/2024
-ms.topic: article
+ms.topic: how-to
 ms.assetid: 6d1ae036-0841-4ba5-b7e0-733aad31e9a7
 ---
 

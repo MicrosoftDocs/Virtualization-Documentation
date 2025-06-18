@@ -4,7 +4,7 @@ description: Learn about using multiple subnets with Windows containers using Ca
 author: sethmanheim
 ms.author: mosagie
 ms.date: 01/22/2025
-ms.topic: conceptual
+ms.topic: article
 ---
 
 # Multiple subnet support in Host Networking Service

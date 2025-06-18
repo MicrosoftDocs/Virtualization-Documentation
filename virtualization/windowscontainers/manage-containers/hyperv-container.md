@@ -4,7 +4,7 @@ description: Explanation of how Hyper-V isolation differs from process isolated 
 author: meaghanlewis
 ms.author: mosagie
 ms.date: 01/23/2025
-ms.topic: conceptual
+ms.topic: article
 ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
 ---
 
