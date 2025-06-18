@@ -13,7 +13,7 @@ Hyper-V allows you to backup virtual machines (VMs), from the host operating sys
 
 You can do a VM backup or a data-only backup:
 
-- **VM backup**: This approach backs up the entire virtual machine, including the configuration and all data. It's useful when you want to restore the entire VM to a previous state. Each virtual machine backup (full or incremental) must copy over all associated virtual machine configuration and virtual machine state files including virtual machine configuration (`.VMCX`), virtual machine guest state (`.VMGS`), and virtual machine runtime state (`.VMRS`) files. If you don't copy over all these files, the virtual machine state isn't be fully captured.
+- **VM backup**: This approach backs up the entire virtual machine, including the configuration and all data. It's useful when you want to restore the entire VM to a previous state. Each virtual machine backup (full or incremental) must copy over all associated virtual machine configuration and virtual machine state files including virtual machine configuration (`.VMCX`), virtual machine guest state (`.VMGS`), and virtual machine runtime state (`.VMRS`) files. If you don't copy over all these files, the virtual machine state isn't fully captured.
 
 - **Data-only backup**: This approach backs up only the data stored on the virtual hard disks of the virtual machine. To restore a data-only backup, you create a new virtual machine and restore the data to it.
 
