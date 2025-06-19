@@ -4,7 +4,7 @@ description: Overview of the Windows container base images and when to use them.
 author: sethmanheim
 ms.author: mosagie
 ms.date: 01/23/2025
-ms.topic: article
+ms.topic: concept-article
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 ---
 

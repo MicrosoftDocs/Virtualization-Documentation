@@ -4,7 +4,7 @@ description: Learn more about new container building blocks available in Windows
 author: scooley
 ms.author: mosagie
 ms.date: 01/23/2025
-ms.topic: article
+ms.topic: concept-article
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
 ---
 # Container platform tools on Windows

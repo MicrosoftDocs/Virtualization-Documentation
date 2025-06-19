@@ -4,7 +4,7 @@ description: How Windows containers can use persistent storage.
 author: meaghanlewis
 ms.author: mosagie
 ms.date: 01/23/2025
-ms.topic: article
+ms.topic: how-to
 
 ---
 
