@@ -5,7 +5,7 @@ keywords: windows 10, hyper-v, HVSocket, AF_HYPERV
 author: scooley
 ms.author: roharwoo
 ms.date: 04/07/2017
-ms.topic: article
+ms.topic: how-to
 ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
 ---
 

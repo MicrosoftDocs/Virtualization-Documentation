@@ -3,7 +3,7 @@ title: Update Windows Server containers
 description: Learn how Windows can run build and run containers across multiple versions.
 author: meaghanlewis
 ms.author: mosagie
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/23/2025
 ---
 # Update Windows Server containers

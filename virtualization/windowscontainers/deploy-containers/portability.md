@@ -1,7 +1,7 @@
 ---
 title: Portability for containers in Windows Server
 description: Discover the benefits of container portability in Windows Server (Annual Channel) and how it streamlines your workflow.
-ms.topic: conceptual
+ms.topic: concept-article
 author: meaghanlewis
 ms.author: mosagie
 ms.date: 01/23/2025

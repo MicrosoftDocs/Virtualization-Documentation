@@ -5,7 +5,7 @@ keywords: windows 10, hyper-v
 author: scooley
 ms.author: roharwoo
 ms.date: 05/02/2016
-ms.topic: article
+ms.topic: troubleshooting-general
 ms.assetid: f0ec8eb4-ffc4-4bf1-9a19-7a8c3975b359
 ---
 
