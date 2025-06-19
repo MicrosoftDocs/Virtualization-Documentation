@@ -5,7 +5,7 @@ keywords: windows 10, hyper-v, quick create, virtual machine, gallery
 author: scooley
 ms.author: roharwoo
 ms.date: 05/04/2018
-ms.topic: article
+ms.topic: how-to
 ms.assetid: d9238389-7028-4015-8140-27253b156f37
 ---
 # Create a custom virtual machine gallery

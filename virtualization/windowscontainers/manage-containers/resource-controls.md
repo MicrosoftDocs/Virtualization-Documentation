@@ -4,7 +4,7 @@ description: Details regarding resource controls for Windows containers.
 author: meaghanlewis
 ms.author: mosagie
 ms.date: 01/23/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.assetid: 8ccd4192-4a58-42a5-8f74-2574d10de98e
 ---
 # Implementing resource controls for Windows containers
