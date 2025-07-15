@@ -19,7 +19,8 @@ Windows Server Annual Channel for Containers is an operating system to specifica
 For Server Core images, customers can also use the Long-Term Servicing Channel that typically releases a new major version of Windows Server every two to three years. Long-Term Servicing Channel releases receive five years of mainstream support and five years of extended support. This channel works with systems that require a longer servicing option and functional stability.
 
 > [!NOTE]
-> Microsoft might change the end of support and servicing dates for several products. Always referred to [Lifecycle changes to end of support and servicing dates](/lifecycle/announcements/lifecycle-changes-eos-servicing-dates), which takes precedent over this article.
+> Microsoft might change the end of support and servicing dates for several products. Always refer to [Lifecycle changes to end of support and servicing dates](/lifecycle/announcements/lifecycle-changes-eos-servicing-dates), which takes precedent over this article.
+
 
 The following table lists each type of base image, its servicing channel, and when supports ends.
 
