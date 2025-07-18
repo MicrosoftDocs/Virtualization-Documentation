@@ -14,7 +14,7 @@ The following diagram provides a high-level overview of the third-party architec
 
 ![Diagram of a high-level overview of the third-party architecture. Shows relationship between root partition and guest partition.](./../media/windows-hypervisor-platform-architecture.png)
 
-The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through WinHvPlatform.h. WinHvApi.dll exports a set of C-style Windows API functions which return HRESULT error codes.
+The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through [WinHvPlatform.h](headers/WinHvPlatform.h). WinHvPlatform.dll exports a set of C-style Windows API functions which return HRESULT error codes.
 
 ## Platform Capabilities
 
