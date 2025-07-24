@@ -1,5 +1,5 @@
 # Description:
-This builds another layer on top of the [iis](../iis/readme.md) sample, which installs Internet Information Server on a Windows Server Core container. It adds a self-signed certificate and enables HTTPS for the default site.
+This builds another layer on top of the [iis](../iis/README.md) sample, which installs Internet Information Server on a Windows Server Core container. It adds a self-signed certificate and enables HTTPS for the default site.
 
 # Environment:
 
@@ -8,7 +8,7 @@ Windows Server Core Base OS Image
 # Usage:
 
 **Docker Build**
-1. First, build the "iis" image (see [iis/readme.md](../iis/readme.md))
+1. First, build the "iis" image (see [iis/readme.md](../iis/README.md))
 2. Next, build this image: 
 ```
 docker build -t iis-contoso-https .
