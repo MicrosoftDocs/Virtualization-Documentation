@@ -6,6 +6,7 @@ ms.author: mosagie
 ms.date: 04/23/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
+ms.custom: sfi-image-nochange
 # customer intent: As a developer, I want to see how to run Windows containers so that I can take advantage of the benefits that containers offer, such as isolation, portability, and versatility.
 ---
 # Get started: Run your first Windows container
