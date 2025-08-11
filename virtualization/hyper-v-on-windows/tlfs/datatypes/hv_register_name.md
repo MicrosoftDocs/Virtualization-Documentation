@@ -195,6 +195,7 @@ The following table lists all register names:
 | HvRegisterVpAssistPage                 | 0x00090013      |                                      |
 | HvRegisterReferenceTsc                 | 0x00090017      |                                      |
 | HvRegisterReferenceTscSequence         | 0x0009001A      |                                      |
+| HvX64RegisterSevAvicGpa                | 0x00090043      | See  [HV_X64_REGISTER_SEV_GPA_PAGE](./hv_x64_register_sev_gpa_page.md) |
 | HvRegisterSint0                        | 0x000A0000      |                                      |
 | HvRegisterSint1                        | 0x000A0001      |                                      |
 | HvRegisterSint2                        | 0x000A0002      |                                      |
