@@ -5,7 +5,7 @@ keywords: windows 10, hyper-v, WMIv1, WMIv2, WMI, Msvm_VirtualSystemGlobalSettin
 author: scooley
 ms.author: roharwoo
 ms.date: 04/13/2017
-ms.topic: article
+ms.topic: concept-article
 ms.assetid: b13a3594-d168-448b-b0a1-7d77153759a8
 ---
 
