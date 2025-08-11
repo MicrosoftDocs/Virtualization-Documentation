@@ -4,7 +4,7 @@ description: Describes the Hyper-V architecture and its role in virtualization a
 author: scooley
 ms.author: roharwoo
 ms.date: 09/14/2020
-ms.topic: article
+ms.topic: concept-article
 ---
 # Hyper-V Architecture
 
