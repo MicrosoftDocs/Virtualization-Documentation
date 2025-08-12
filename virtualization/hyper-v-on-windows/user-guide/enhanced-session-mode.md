@@ -7,6 +7,7 @@ ms.author: roharwoo
 ms.date: 03/04/2025
 ms.topic: how-to
 ms.assetid: d1aeb9cb-b18f-43cb-a568-46b33346a188
+ms.custom: sfi-image-nochange
 # customer intent: As a developer, I want to see how to share devices with Hyper-V virtual machines so that I can give my virtual machines access to USB devices, audio, microphones, and mounted drives.
 ---
 
