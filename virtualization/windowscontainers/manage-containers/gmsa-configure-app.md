@@ -6,6 +6,7 @@ ms.author: mosagie
 ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
+ms.custom: sfi-ropc-nochange
 ---
 # Configure your app to use a gMSA
 
