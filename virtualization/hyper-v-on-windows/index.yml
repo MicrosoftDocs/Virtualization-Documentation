@@ -1,0 +1,91 @@
+### YamlMime:Landing
+
+title: Hyper-V specification and APIs documentation # < 60 chars
+summary: Documentation for the top level functional specification and APIs for Hyper-V for developers. # < 160 chars
+
+metadata:
+  title: Hyper-V Specification and APIs Documentation # Required; page title displayed in search results. Include the brand. < 60 chars.
+  description: Documentation for the top level functional specification and APIs for Hyper-V for developers. # Required; article description that is displayed in search results. < 160 chars.
+  ms.topic: landing-page # Required
+  author: dknappettmsft #Required; your GitHub user alias, with correct capitalization.
+  ms.author: daknappe #Required; microsoft alias of author; optional team alias.
+  ms.service: windows-server
+  ms.subservice: hyper-v
+  ms.date: 08/14/2025
+
+# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
+
+landingContent:
+# Cards and links should be based on top customer tasks or top subjects
+# Start card title with a verb
+  # Card
+  - title: Hyper-V top level functional specification
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Top level functional specification overview
+            url: tlfs/tlfs.md
+      - linkListType: reference
+        links:
+          - text: Data types
+            url: tlfs/datatypes/overview.md
+          - text: Feature discovery
+            url: tlfs/feature-discovery.md
+          - text: Hypercalls
+            url: tlfs/hypercall-interface.md
+          - text: Partitions
+            url: tlfs/partition-properties.md
+          - text: Virtual processor
+            url: tlfs/vp-properties.md
+      - linkListType: reference
+        links:
+          - text: Virtual Memory Management Unit
+            url: tlfs/virtual-mmu.md
+          - text: Virtual Interrupt Controller
+            url: tlfs/virtual-interrupts.md
+          - text: Inter-Partition Communication
+            url: tlfs/inter-partition-communication.md
+          - text: Timers
+            url: tlfs/timers.md
+          - text: Virtual Secure Mode
+            url: tlfs/vsm.md
+          - text: Nested virtualization
+            url: tlfs/nested-virtualization.md
+          
+
+  # Card
+  - title: Hyper-V APIs
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: API overview
+            url: /virtualization/api/index
+      - linkListType: reference
+        links:
+          - text: Hyper-V WMI provider
+            url: /windows/win32/hyperv_v2/windows-virtualization-portal
+          - text: Management reference
+            url: /windows/win32/hyperv_v2/hyper-v-management
+          - text: Host Compute System API
+            url: /virtualization/api/hcs/overview
+          - text: Host Compute Network API
+            url: /windows-server/networking/technologies/hcn/hcn-top?toc=/virtualization/api/toc.json
+          - text: Windows Hypervisor Platform API Definitions
+            url: /virtualization/api/hypervisor-platform/hypervisor-platform
+          - text: Virtual hard disk interface
+            url: /windows/win32/api/virtdisk/
+          - text: Hypervisor Instruction Emulator API
+            url: /virtualization/api/hypervisor-instruction-emulator/hypervisor-instruction-emulator
+          - text: VM Saved Dump Provider API
+            url: /virtualization/api/vm-dump-provider
+
+
+  # Card
+  - title: Hyper-V product documentation
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Hyper-V documentation
+            url: /windows-server/virtualization/hyper-v/overview
+          - text: Overview
+            url: /windows-server/virtualization/hyper-v/overview
