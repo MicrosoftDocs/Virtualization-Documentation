@@ -516,11 +516,6 @@
       "redirect_document_id": false
     },
     {
-      "source_path": "virtualization/hyper-v-on-windows/index.md",
-      "redirect_url": "/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows",
-      "redirect_document_id": false
-    },
-    {
       "source_path": "virtualization/hyper-v-on-windows/about/index.md",
       "redirect_url": "/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows",
       "redirect_document_id": false
@@ -598,6 +593,86 @@
     {
       "source_path": "virtualization/windowscontainers/licensing.md",
       "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/enhanced-session-mode.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/enhanced-session-mode",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/try-hyper-v-powershell.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/powershell",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/checkpoints.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/checkpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/powershell-direct.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/powershell-direct",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/nested-virtualization.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/nested-virtualization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/enable-nested-virtualization.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/enable-nested-virtualization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/custom-gallery.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/custom-vm-gallery",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/setup-nat-network.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/setup-nat-network",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/troubleshooting.md",
+      "redirect_url": "/troubleshoot/windows-server/virtualization/virtualization-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/make-integration-service.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/make-integration-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/refactor-wmiv1-to-wmiv2.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/refactor-wmi-v1-to-wmi-v2",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/hyper-v-architecture.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/architecture",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/integration-services.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/integration-services",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/HyperVBackupApproaches.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/backup-approaches",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/CVE-2017-5715-and-hyper-v-hosts.md",
+      "redirect_url": "https://support.microsoft.com/kb/4072698",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/CVE-2017-5715-and-hyper-v-vms.md",
+      "redirect_url": "https://support.microsoft.com/kb/4072698",
       "redirect_document_id": false
     }
   ]
