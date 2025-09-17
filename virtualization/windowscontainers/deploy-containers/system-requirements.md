@@ -2,7 +2,7 @@
 title: Windows container requirements
 description: Learn about Windows container requirements.
 author: vrapolinario
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/22/2025
 ms.topic: concept-article
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed

@@ -2,7 +2,7 @@
 title: GPU acceleration in Windows containers
 description: Learn about the level of GPU acceleration in Windows containers.
 author: sethmanheim
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: how-to
 ---

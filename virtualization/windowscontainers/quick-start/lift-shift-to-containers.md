@@ -2,7 +2,7 @@
 title: Lift and shift to containers
 description: Learn how to migrate existing applications to containers.
 author: vrapolinario
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/22/2025
 ms.topic: how-to
 ---

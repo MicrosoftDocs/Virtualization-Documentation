@@ -2,7 +2,7 @@
 title: Devices in containers on Windows
 description: Learn about device support for containers on Windows.
 author: sethmanheim
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: how-to
 ---

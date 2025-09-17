@@ -2,7 +2,7 @@
 title: Prepare Windows operating system containers
 description: Compare approaches for building a container-ready environment on Windows and Windows Server. See how to install a container runtime on these systems.
 author: brasmith-ms
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 03/19/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
