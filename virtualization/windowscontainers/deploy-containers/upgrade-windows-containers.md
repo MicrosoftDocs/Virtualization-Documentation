@@ -2,7 +2,7 @@
 title: Upgrade a Windows container to a new build version
 description: Learn about concepts for upgrading a Windows container to a newer build version.
 author: sethmanheim
-ms.author: mosagie
+ms.author: roharwoo
 ms.topic: how-to
 ms.date: 01/23/2025
 ---

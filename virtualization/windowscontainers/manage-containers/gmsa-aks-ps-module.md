@@ -2,7 +2,7 @@
 title: Use gMSA on Azure Kubernetes service in Windows containers
 description: Learn how to use gMSA on Azure Kubernetes service in Windows containers.
 author: vrapolinario
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: how-to
 ---

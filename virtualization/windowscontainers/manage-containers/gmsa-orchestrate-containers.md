@@ -1,8 +1,8 @@
 ---
 title: Orchestrate containers with a gMSA
 description: How to orchestrate Windows containers with a group Managed Service Account (gMSA).
-author: meaghanlewis
-ms.author: mosagie
+author: robinharwood
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c

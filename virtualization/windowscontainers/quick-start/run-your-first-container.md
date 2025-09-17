@@ -2,7 +2,7 @@
 title: Run Your First Windows Container
 description: See how to run a Windows container from a command line and by using Windows Admin Center. Find out how to pull an image, create a new image, and run an image.
 author: vrapolinario
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 04/23/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f

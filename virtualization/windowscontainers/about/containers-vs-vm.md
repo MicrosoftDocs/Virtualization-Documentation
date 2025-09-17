@@ -2,7 +2,7 @@
 title: Containers vs. virtual machines
 description: Overview of the key similarities and differences between containers and virtual machines, and when you might want to use each.
 author: vrapolinario
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/22/2025
 ms.topic: concept-article
 ---

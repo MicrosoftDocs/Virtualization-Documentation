@@ -2,7 +2,7 @@
 title: Set up Linux containers on Windows
 description: Linux container deployment quickstart.
 author: taylorb-microsoft
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/22/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f

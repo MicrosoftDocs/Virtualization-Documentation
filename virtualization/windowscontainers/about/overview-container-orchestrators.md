@@ -2,7 +2,7 @@
 title: Windows container orchestration overview
 description: Learn about Windows container orchestrators.
 author: Heidilohr
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/22/2025
 ms.topic: overview
 ---
