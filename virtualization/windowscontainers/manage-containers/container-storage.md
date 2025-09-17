@@ -2,7 +2,7 @@
 title: Container storage overview
 description: How Windows Server containers can use host and other storage types.
 author: cwilhit
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: overview
 ---

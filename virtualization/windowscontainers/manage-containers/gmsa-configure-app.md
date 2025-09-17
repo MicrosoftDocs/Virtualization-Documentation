@@ -1,8 +1,8 @@
 ---
 title: Configure your app to use a group Managed Service Account
 description: How to configure apps to use group Managed Service Accounts (gMSAs) for Windows containers.
-author: meaghanlewis
-ms.author: mosagie
+author: robinharwood
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c

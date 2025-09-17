@@ -1,7 +1,7 @@
 ---
 title: Kubernetes on Windows
-author: meaghanlewis
-ms.author: mosagie
+author: robinharwood
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: overview
 description: Getting started with Kubernetes on Windows.

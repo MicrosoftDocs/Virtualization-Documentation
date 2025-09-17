@@ -2,7 +2,7 @@
 title: About Windows containers
 description: Overview of how Microsoft, Windows, and Azure help you develop and deploy apps in containers, including using Docker and Azure Kubernetes Service.
 author: vrapolinario
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/22/2025
 ms.topic: overview
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448

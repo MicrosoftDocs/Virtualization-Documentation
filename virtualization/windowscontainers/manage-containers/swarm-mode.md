@@ -1,8 +1,8 @@
 ---
 title: Get started with swarm mode
 description: Initialize a swarm cluster, creating an overlay network, and attaching a service to the network.
-author: meaghanlewis
-ms.author: mosagie
+author: robinharwood
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
