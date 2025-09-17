@@ -2,7 +2,7 @@
 title: Optimize Windows Dockerfiles
 description: Optimize Dockerfiles for Windows containers.
 author: vrapolinario
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031

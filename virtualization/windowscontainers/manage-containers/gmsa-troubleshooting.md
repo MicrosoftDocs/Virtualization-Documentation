@@ -1,8 +1,8 @@
 ---
 title: Troubleshoot gMSAs for Windows containers
 description: How to troubleshoot group Managed Service Accounts (gMSAs) for Windows containers.
-author: meaghanlewis
-ms.author: mosagie
+author: robinharwood
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: troubleshooting
 

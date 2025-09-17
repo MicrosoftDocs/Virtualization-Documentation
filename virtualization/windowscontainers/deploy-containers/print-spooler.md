@@ -2,7 +2,7 @@
 title: Print spooler in Windows containers
 description: Learn about current working behavior for the print spooler service in Windows containers.
 author: vrapolinario
-ms.author: mosagie
+ms.author: roharwoo
 ms.date: 01/23/2025
 ms.topic: how-to
 ---
