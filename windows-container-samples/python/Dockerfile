@@ -12,6 +12,4 @@ RUN powershell.exe -Command \
     Start-Process c:\python-3.10.0.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
     Remove-Item c:\python-3.10.0.exe -Force
 
-RUN echo print("Hello World!") > c:\hello.py
-
-CMD ["py", "c:/hello.py"]
+CMD ["py", "-m" ,"__hello__"]
