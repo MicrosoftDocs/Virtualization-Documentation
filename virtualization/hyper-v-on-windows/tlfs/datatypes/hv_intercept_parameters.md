@@ -1,3 +1,13 @@
+---
+title: HV_INTERCEPT_PARAMETERS
+description: HV_INTERCEPT_PARAMETERS
+keywords: hyper-v
+author: hvdev
+ms.author: hvdev
+ms.date: 11/07/2025
+ms.topic: reference
+---
+
 # HV_INTERCEPT_PARAMETERS
 
 ## Overview

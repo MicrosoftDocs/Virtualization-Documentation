@@ -1,3 +1,13 @@
+---
+title: HV_MAP_GPA_FLAGS
+description: HV_MAP_GPA_FLAGS
+keywords: hyper-v
+author: hvdev
+ms.author: hvdev
+ms.date: 11/07/2025
+ms.topic: reference
+---
+
 # HV_MAP_GPA_FLAGS
 
 ## Overview

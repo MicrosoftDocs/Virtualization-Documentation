@@ -1,3 +1,13 @@
+---
+title: HV_PARTITION_PROCESSOR_FEATURES
+description: HV_PARTITION_PROCESSOR_FEATURES
+keywords: hyper-v
+author: hvdev
+ms.author: hvdev
+ms.date: 11/07/2025
+ms.topic: reference
+---
+
 # hv_partition_processor_features
 
 ## Overview

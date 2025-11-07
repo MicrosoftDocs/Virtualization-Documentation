@@ -1,3 +1,13 @@
+---
+title: HV_PARTITION_PROPERTY_CODE
+description: HV_PARTITION_PROPERTY_CODE
+keywords: hyper-v
+author: hvdev
+ms.author: hvdev
+ms.date: 11/07/2025
+ms.topic: reference
+---
+
 # HV_PARTITION_PROPERTY_CODE
 
 The HV_PARTITION_PROPERTY_CODE enumeration defines the  property selectors used with the partition property hypercalls.

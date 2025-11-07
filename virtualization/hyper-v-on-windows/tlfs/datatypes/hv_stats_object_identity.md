@@ -1,3 +1,13 @@
+---
+title: HV_STATS_OBJECT_IDENTITY
+description: HV_STATS_OBJECT_IDENTITY
+keywords: hyper-v
+author: hvdev
+ms.author: hvdev
+ms.date: 11/07/2025
+ms.topic: reference
+---
+
 # HV_STATS_OBJECT_IDENTITY
 
 Identifies a specific object for statistics collection.

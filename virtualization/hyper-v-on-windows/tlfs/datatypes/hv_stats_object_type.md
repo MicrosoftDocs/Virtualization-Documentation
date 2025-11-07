@@ -1,3 +1,13 @@
+---
+title: HV_STATS_OBJECT_TYPE
+description: HV_STATS_OBJECT_TYPE
+keywords: hyper-v
+author: hvdev
+ms.author: hvdev
+ms.date: 11/07/2025
+ms.topic: reference
+---
+
 # HV_STATS_OBJECT_TYPE
 
 Defines the types of objects for which statistics can be collected.
