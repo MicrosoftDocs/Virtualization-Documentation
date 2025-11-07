@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HV_VIRTUALIZATION_FAULT_INFORMATION
@@ -24,7 +25,7 @@ typedef union
         UINT32 Code;
         UINT64 Parameter1;
     };
-} HV_VIRTUALIZATION_FAULT_INFORMATION, *PHV_VIRTUALIZATION_FAULT_INFORMATION;
+} HV_VIRTUALIZATION_FAULT_INFORMATION;
  ```
 
 ## See also

@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # Virtual Secure Mode
@@ -312,7 +313,7 @@ This field can be set with bit 0 of the VTL return input. If it is set to 0, the
 
 The hypervisor provides mechanisms to assist with VTL calls and returns via the [hypercall page](hypercall-interface.md#establishing-the-hypercall-interface). This page abstracts the specific code sequence required to switch VTLs.
 
-The code sequences to execute VTL calls and returns may be accessed by executing specific instructions in the hypercall page. The call/return chunks are located at an offset in the hypercall page determined by the HvRegisterVsmCodePageOffset virtual register. This is a read-only and partition-wide register, with a separate instance per-VTL.
+The code sequences to execute VTL calls and returns may be accessed by executing specific instructions in the hypercall page. The call/return chunks are located at an offset in the hypercall page determined by the HvRegisterVsmCodePageOffsets virtual register. This is a read-only and partition-wide register, with a separate instance per-VTL.
 
 A VTL can execute a VTL call/return using the CALL instruction. A CALL to the correct location in the hypercall page will initiate a VTL call/return.
 
@@ -385,7 +386,7 @@ Apart from the traditional three memory protections (read, write, execute), MBEC
 | Read                       | Controls whether read access is allowed to a memory page            |
 | Write                      | Controls whether write access allowed to a memory page              |
 | User Mode Execute (UMX)    | Controls whether instruction fetches generated in user-mode are allowed for a memory page. NOTE: If MBEC is disabled, this setting is ignored. |
-| Kernel Mode Execute (UMX)  | Controls whether instruction fetches generated in kernel-mode are allowed for a memory page. NOTE: If MBEC is disabled, this setting controls both user-mode and kernel-mode execute accesses. |
+| Kernel Mode Execute (KMX)  | Controls whether instruction fetches generated in kernel-mode are allowed for a memory page. NOTE: If MBEC is disabled, this setting controls both user-mode and kernel-mode execute accesses. |
 
 Memory marked with the “User-Mode Execute” protections would only be executable when the virtual processor is running in user-mode. Likewise, “Kernel-Mode Execute” memory would only be executable when the virtual processor is running in kernel-mode.
 
@@ -402,7 +403,7 @@ Any user-mode code that accesses descriptor tables must be in GPA pages marked a
 To make use of Mode-based execution control, it must be enabled at two levels:
 
 1. When the VTL is enabled for a partition, MBEC must be enabled using HvCallEnablePartitionVtl
-2. MBEC must be configured on a per-VP and per-VTL basis, using HvRegisterVsmVpSecureVtlConfig.
+2. MBEC must be configured on a per-VP and per-VTL basis, using HvRegisterVsmVpSecureConfigVtlX.
 
 #### MBEC Interaction with Supervisor Mode Execution Prevention (SMEP)
 

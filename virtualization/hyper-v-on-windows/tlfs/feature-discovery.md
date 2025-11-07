@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # Feature and Interface Discovery
@@ -560,7 +561,7 @@ Indicates which hardware-specific features have been detected and are currently 
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 14    | Physical destination mode required                                                    |
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 15    | Reserved                                                                              |
+|           | 15    | Use VMFUNC for alias map switch.                                                      |
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 16    | Support for hardware memory zeroing is present.                                       |
 +           +-------+---------------------------------------------------------------------------------------+
@@ -649,7 +650,7 @@ Indicates which hardware-specific features have been detected and are currently 
         </tr>
         <tr>
             <td>15</td>
-            <td>Reserved</td>
+            <td>Use VMFUNC for alias map switch.</td>
         </tr>
         <tr>
             <td>16</td>
@@ -858,7 +859,7 @@ Indicates which nested virtualization optimizations are available to a nested hy
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 17    | Indicates support for direct virtual flush hypercalls                                 |
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 18    | Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls (on Intel platforms)
+|           | 18    | Indicates support for the HvCallFlushGuestPhysicalAddressSpace and HvCallFlushGuestPhysicalAddressList hypercalls (on Intel platforms)
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 19    | Indicates support for using an enlightened MSR bitmap.                                |
 +           +-------+---------------------------------------------------------------------------------------+
@@ -866,7 +867,7 @@ Indicates which nested virtualization optimizations are available to a nested hy
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 21    | Indicates support for non-zero value of the 0x00002802 (GuestIa32DebugCtl) field in the VMCS.
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 22    | Indicates support for the enlightened TLB on AMD platforms. ASID flushes do not affect TLB entries derived from the NPT. Hypercalls must be used to invalidate NPT TLB entries. Also indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls.
+|           | 22    | Indicates support for the enlightened TLB on AMD platforms. ASID flushes do not affect TLB entries derived from the NPT. Hypercalls must be used to invalidate NPT TLB entries. Also indicates support for the HvCallFlushGuestPhysicalAddressSpace and HvCallFlushGuestPhysicalAddressList hypercalls.
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 31-23 | Reserved                                                                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
@@ -909,7 +910,7 @@ Indicates which nested virtualization optimizations are available to a nested hy
         </tr>
         <tr>
             <td>18</td>
-            <td>Indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls (on Intel platforms).</td>
+            <td>Indicates support for the HvCallFlushGuestPhysicalAddressSpace and HvCallFlushGuestPhysicalAddressList hypercalls (on x64 platforms).</td>
         </tr>
         <tr>
             <td>19</td>
@@ -925,7 +926,7 @@ Indicates which nested virtualization optimizations are available to a nested hy
         </tr>
         <tr>
             <td>22</td>
-            <td>Indicates support for the enlightened TLB on AMD platforms. ASID flushes do not affect TLB entries derived from the NPT. Hypercalls must be used to invalidate NPT TLB entries. Also indicates support for the HvFlushGuestPhysicalAddressSpace and HvFlushGuestPhysicalAddressList hypercalls.</td>
+            <td>Indicates support for the enlightened TLB on AMD platforms. ASID flushes do not affect TLB entries derived from the NPT. Hypercalls must be used to invalidate NPT TLB entries. Also indicates support for the HvCallFlushGuestPhysicalAddressSpace and HvCallFlushGuestPhysicalAddressList hypercalls.</td>
         </tr>
         <tr>
             <td>31-21</td>

@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # Hypercall Interface
@@ -50,17 +51,17 @@ The guest must avoid the examination and/or manipulation of any input or output 
 
 ## Legal Hypercall Environments
 
-Hypercalls can be invoked only from the most privileged guest processor mode. On x64 platfoms, this means protected mode with a current privilege level (CPL) of zero. Although real-mode code runs with an effective CPL of zero, hypercalls are not allowed in real mode. An attempt to invoke a hypercall within an illegal processor mode will generate a #UD (undefined operation) exception.
+Hypercalls can be invoked only from the most privileged guest processor mode. On x64 platforms, this means protected mode with a current privilege level (CPL) of zero. Although real-mode code runs with an effective CPL of zero, hypercalls are not allowed in real mode. An attempt to invoke a hypercall within an illegal processor mode will generate a #UD (undefined operation) exception on x64, and undefined instruction exception on ARM64.
 
 All hypercalls should be invoked through the architecturally-defined hypercall interface (see below). An attempt to invoke a hypercall by any other means (for example, copying the code from the hypercall code page to an alternate location and executing it from there) might result in an undefined operation (#UD) exception. The hypervisor is not guaranteed to deliver this exception.
 
 ## Alignment Requirements
 
-Callers must specify the 64-bit guest physical address (GPA) of the input and/or output parameters. GPA pointers must by 8-byte aligned. If the hypercall involves no input or output parameters, the hypervisor ignores the corresponding GPA pointer.
+Callers must specify the 64-bit guest physical address (GPA) of the input and/or output parameters. GPA pointers must be 8-byte aligned. If the hypercall involves no input or output parameters, the hypervisor ignores the corresponding GPA pointer.
 
 The input and output parameter lists cannot overlap or cross page boundaries. Hypercall input and output pages are expected to be GPA pages and not “overlay” pages. If the virtual processor writes the input parameters to an overlay page and specifies a GPA within this page, hypervisor access to the input parameter list is undefined.
 
-The hypervisor will validate that the calling partition can read from the input page before executing the requested hypercall. This validation consists of two checks: the specified GPA is mapped and the GPA is marked readable. If either of these tests fails, the hypervisor generates a memory intercept message. For hypercalls that have output parameters, the hypervisor will validate that the partition can be write to the output page. This validation consists of two checks: the specified GPA is mapped and the GPA is marked writable.
+The hypervisor will validate that the calling partition can read from the input page before executing the requested hypercall. This validation consists of two checks: the specified GPA is mapped and the GPA is marked readable. If either of these tests fails, the hypervisor generates a memory intercept message. For hypercalls that have output parameters, the hypervisor will validate that the partition can write to the output page. This validation consists of two checks: the specified GPA is mapped and the GPA is marked writable.
 
 ## Hypercall Inputs
 
@@ -80,7 +81,9 @@ Callers specify a hypercall by a 64-bit value called a hypercall input value. It
 
 For rep hypercalls, the rep count field indicates the total number of reps. The rep start index indicates the particular repetition relative to the start of the list (zero indicates that the first element in the list is to be processed). Therefore, the rep count value must always be greater than the rep start index.
 
-Register mapping for hypercall inputs when the Fast flag is zero:
+### Hypercall Register Conventions (x86/x64)
+
+On x86/x64, register mapping for hypercall inputs when the Fast flag is zero are as follows:
 
 | x64     | x86     | Information Provided                                        |
 |---------|---------|-------------------------------------------------------------|
@@ -90,7 +93,7 @@ Register mapping for hypercall inputs when the Fast flag is zero:
 
 The hypercall input value is passed in registers along with a GPA that points to the input and output parameters.
 
-On x64, the register mappings depend on whether the caller is running in 32-bit (x86) or 64-bit (x64) mode. The hypervisor determines the caller’s mode based on the value of EFER.LMA and CS.L. If both of these flags are set, the caller is assumed to be a 64-bit caller.
+The register mappings depend on whether the caller is running in 32-bit (x86) or 64-bit (x64) mode. The hypervisor determines the caller’s mode based on the value of EFER.LMA and CS.L. If both of these flags are set, the caller is assumed to be a 64-bit caller.
 
 Register mapping for hypercall inputs when the Fast flag is one:
 
@@ -101,6 +104,43 @@ Register mapping for hypercall inputs when the Fast flag is one:
 | R8      | EDI:ESI | Output Parameter                                            |
 
 The hypercall input value is passed in registers along with the input parameters.
+
+### Hypercall Register Conventions (ARM64 SMCCC)
+
+On ARM64, hypercalls are executed using the "HVC #0" instruction. The calls adhere to the ARM64 SMCCC (SMC Calling Convention).
+
+Register mapping for hypercall inputs are as follows:
+
+| Register | Information Provided                                         |
+|----------|--------------------------------------------------------------|
+| X0       | SMCCC Function Identifier                                    |
+| X1       | Hypercall Input Value                                        |
+| X2       | Input Parameter                                              |
+| X3       | Output Parameter                                             |
+
+The SMCCC Function Identifier in X0 follows this format:
+
+| Bits  | Field                | Value | Description                                       |
+|-------|----------------------|-------|---------------------------------------------------|
+| 31    | Yielding Call        | 0     | Always 0                                          |
+| 30    | Calling Convention   | 1     | 1 for HVC64 calling conventions                   |
+| 29:24 | Service Call Type    | 6     | 6 for Vendor Specific Hypervisor Service Calls    |
+| 23:16 | Reserved             | 0     | Reserved, must be zero (Res0)                     |
+| 15:0  | Function Number      | 1     | 1 indicates HV call code is defined in X1         |
+
+The complete Function Identifier format: `0x46000001`
+
+### Hypercall Register Conventions (ARM64 HVC #1)
+
+For historical reasons, the ARM64 hypervisor interface also supports a different calling convention. The hypercalls are executed with the "HVC #1" instruction. We recommend using the SMCCC calling convention for new code.
+
+Register mapping for hypercall inputs are as follows:
+
+| Register | Information Provided                                         |
+|----------|--------------------------------------------------------------|
+| X0       | Hypercall Input Value                                        |
+| X1       | Input Parameter                                              |
+| X2       | Output Parameter                                             |
 
 ### Variable Sized Hypercall Input Headers
 
@@ -113,7 +153,7 @@ Since the fixed header size is implicit, instead of supplying the total header s
 ```
 Variable Header Bytes = {Total Header Bytes - sizeof(Fixed Header)} rounded up to nearest multiple of 8
 
-Variable HeaderSize = Variable Header Bytes / 8
+Variable Header Size = Variable Header Bytes / 8
 ```
 
 It is illegal to specify a non-zero variable header size for a hypercall that is not explicitly documented as accepting variable sized input headers. In such a case the hypercall will result in a return code of `HV_STATUS_INVALID_HYPERCALL_INPUT`.
@@ -122,9 +162,9 @@ It is possible that for a given invocation of a hypercall that does accept varia
 
 In all other regards, hypercalls accepting variable sized input headers are otherwise similar to fixed size input header hypercalls with regards to calling conventions. It is also possible for a variable sized header hypercall to additionally support rep semantics. In such a case the rep elements lie after the header in the usual fashion, except that the header's total size includes both the fixed and variable portions. All other rules remain the same, e.g. the first rep element must be 8 byte aligned.
 
-### XMM Fast Hypercall Input
+### XMM Fast Hypercall Input (x86/x64)
 
-On x64 platforms, the hypervisor supports the use of XMM fast hypercalls, which allows some hypercalls to take advantage of the improved performance of the fast hypercall interface even though they require more than two input parameters. The XMM fast hypercall interface uses six XMM registers to allow the caller to pass an input parameter block up to 112 bytes in size.
+On x86/x64 platforms, the hypervisor supports the use of XMM fast hypercalls, which allows some hypercalls to take advantage of the improved performance of the fast hypercall interface even though they require more than two input parameters. The XMM fast hypercall interface uses six XMM registers to allow the caller to pass an input parameter block up to 112 bytes in size.
 
 Availability of the XMM fast hypercall interface is indicated via the “Hypervisor Feature Identification” CPUID Leaf (0x40000003):
 
@@ -148,6 +188,33 @@ Note that there is a separate flag to indicate support for XMM fast output. Any 
 
 The hypercall input value is passed in registers along with the input parameters. The register mappings depend on whether the caller is running in 32-bit (x86) or 64-bit (x64) mode. The hypervisor determines the caller’s mode based on the value of EFER.LMA and CS.L. If both of these flags are set, the caller is assumed to be a 64-bit caller. If the input parameter block is smaller than 112 bytes, any extra bytes in the registers are ignored.
 
+### Register Fast Call Input (ARM64 SMCCC)
+
+On ARM64 platforms, the hypervisor supports the use of register fast hypercalls, which allows some hypercalls to take advantage of the improved performance of the fast hypercall interface even though they require more than two input parameters. The register fast hypercall interface uses 15 general purpose registers to allow the caller to pass an input parameter block up to 120 bytes in size.
+
+#### Register Mapping (Input Only)
+
+| Register | Information Provided                                         |
+|----------|--------------------------------------------------------------|
+| X0       | SMCCC Function Identifier                                    |
+| X1       | Hypercall Input Value                                        |
+| X2 - X17 | Input Parameter Block                                        |
+
+If the input parameter block is smaller than 120 bytes, any extra bytes in the registers are ignored.
+
+### Register Fast Call Input (ARM64 HVC #1)
+
+The register fast hypercall interface uses sixteen general purpose registers to allow the caller to pass an input parameter block up to 128 bytes in size.
+
+#### Register Mapping (Input Only)
+
+| Register | Information Provided                                         |
+|----------|--------------------------------------------------------------|
+| X0       | Hypercall Input Value                                        |
+| X1 - X17 | Input Parameter Block                                        |
+
+If the input parameter block is smaller than 128 bytes, any extra bytes in the registers are ignored.
+
 ## Hypercall Outputs
 
 All hypercalls return a 64-bit value called a hypercall result value. It is formatted as follows:
@@ -161,13 +228,21 @@ All hypercalls return a 64-bit value called a hypercall result value. It is form
 
 For rep hypercalls, the reps complete field is the total number of reps complete and not relative to the rep start index. For example, if the caller specified a rep start index of 5, and a rep count of 10, the reps complete field would indicate 10 upon successful completion.
 
-The hypercall result value is passed back in registers. The register mapping depends on whether the caller is running in 32-bit (x86) or 64-bit (x64) mode (see above). The register mapping for hypercall outputs is as follows:
+The hypercall result value is passed back in registers.
+
+On x64, the register mapping depends on whether the caller is running in 32-bit (x86) or 64-bit (x64) mode (see above). The register mapping for hypercall outputs is as follows:
 
 | x64     | x86     | Information Provided                                        |
 |---------|---------|-------------------------------------------------------------|
 | RAX     | EDX:EAX | Hypercall Result Value                                      |
 
-### XMM Fast Hypercall Output
+On ARM64, the register mapping for hypercall outputs is as follows:
+
+| Register | Information Provided                                         |
+|----------|--------------------------------------------------------------|
+| X0       | Hypercall Result Value                                       |
+
+### XMM Fast Hypercall Output (x86/x64)
 
 Similar to how the hypervisor supports XMM fast hypercall inputs, the same registers can be shared to return output. This is only supported on x64 platforms.
 
@@ -194,7 +269,35 @@ Registers that are not being used to pass input parameters can be used to return
 
 For example, if the input parameter block is 20 bytes in size, the hypervisor would ignore the following 12 bytes. The remaining 80 bytes would contain hypercall output (if applicable).
 
-## Volatile Registers
+### Register Fast Call Output (ARM64 SMCCC)
+
+On ARM64 platforms, similar to how the hypervisor supports register fast hypercall inputs, the same registers can be shared to return output.
+
+#### Register Mapping (Input and Output)
+
+Registers that are not being used to pass input parameters can be used to return output. In other words, if the input parameter block is smaller than 120 bytes (rounded up to the nearest 8 byte aligned chunk), the remaining registers will return hypercall output.
+
+| Register | Information Provided                                         |
+|----------|--------------------------------------------------------------|
+| X2 - X17 | Input or Output Block                                        |
+
+For example, if the input parameter block is 20 bytes in size, the hypervisor would ignore the following 4 bytes. The remaining 96 bytes would contain hypercall output (if applicable).
+
+### Register Fast Call Output (ARM64 HVC #1)
+
+Similar to the SMCCC versions, the HVC #1 interface uses the same registers to return output.
+
+#### Register Mapping (Input and Output)
+
+Registers that are not being used to pass input parameters can be used to return output. In other words, if the input parameter block is smaller than 128 bytes (rounded up to the nearest 8 byte aligned chunk), the remaining registers will return hypercall output.
+
+| Register | Information Provided                                         |
+|----------|--------------------------------------------------------------|
+| X1 - X17 | Input or Output Block                                        |
+
+For example, if the input parameter block is 20 bytes in size, the hypervisor would ignore the following 4 bytes. The remaining 104 bytes would contain hypercall output (if applicable).
+
+## Volatile Registers (x86/x64)
 
 Hypercalls will only modify the specified register values under the following conditions:
 
@@ -203,9 +306,27 @@ Hypercalls will only modify the specified register values under the following co
 1. [HvCallSetVpRegisters](./hypercalls/HvCallSetVpRegisters.md) can modify any registers that are supported with that hypercall.
 1. RDX, R8, and XMM0 through XMM5, when used for fast hypercall input, remain unmodified. However, registers used for fast hypercall output can be modified, including RDX, R8, and XMM0 through XMM5. Hyper-V will only modify these registers for fast hypercall output, which is limited to x64.
 
+## Volatile Registers (ARM64 SMCCC)
+
+Hypercalls will only modify the specified register values under the following conditions:
+
+1. X0 is always overwritten with the hypercall result value and output parameters, if any.
+1. Rep hypercalls will modify X1 with the new rep start index.
+1. [HvCallSetVpRegisters](./hypercalls/HvCallSetVpRegisters.md) can modify any registers that are supported with that hypercall.
+1. X2 - X17, when used for fast hypercall input, remain unmodified. However, registers used for fast hypercall output can be modified, including X2 - X17. Hyper-V will only modify these registers for fast hypercall output.
+
+## Volatile Registers (ARM64 HVC #1)
+
+Hypercalls will only modify the specified register values under the following conditions:
+
+1. X0 is always overwritten with the hypercall result value and output parameters, if any.
+1. Rep hypercalls will modify X0 with the new rep start index.
+1. [HvCallSetVpRegisters](./hypercalls/HvCallSetVpRegisters.md) can modify any registers that are supported with that hypercall.
+1. X1 - X17, when used for fast hypercall input, remain unmodified. However, registers used for fast hypercall output can be modified, including X1 - X17. Hyper-V will only modify these registers for fast hypercall output.
+
 ## Hypercall Restrictions
 
-Hypercalls may have restrictions associated with them for them to perform their intended function. If all restrictions are not met, the hypercall will terminate with an appropriate error. The following restrictions will be listed, if any apply:
+Hypercalls may have associated restrictions that must be satisfied for them to perform their intended function. If all restrictions are not met, the hypercall will terminate with an appropriate error. The following restrictions will be listed, if any apply:
 
 - The calling partition must possess a particular privilege
 - The partition being acted upon must be in a particular state (e.g. “Active”)
@@ -234,24 +355,34 @@ Several result codes are common to all hypercalls and are therefore not document
 |                                    | The rep start index is not less than the rep count.                                   |
 |                                    | A reserved bit in the specified hypercall input value is non-zero.                    |
 | `HV_STATUS_INVALID_ALIGNMENT`      | The specified input or output GPA pointer is not aligned to 8 bytes.                  |
-|                                    | The specified input or output parameter lists spans pages.                            |
+|                                    | The specified input or output parameter lists span pages.                             |
 |                                    | The input or output GPA pointer is not within the bounds of the GPA space.            |
 
 The return code `HV_STATUS_SUCCESS` indicates that no error condition was detected.
 
 ## Reporting the Guest OS Identity
 
-The guest OS running within the partition must identify itself to the hypervisor by writing its signature and version to an MSR (`HV_X64_MSR_GUEST_OS_ID`) before it can invoke hypercalls. This MSR is partition-wide and is shared among all virtual processors.
+The Guest OS running within the partition must identify itself to the hypervisor by writing its signature and version to an MSR (`HV_X64_MSR_GUEST_OS_ID`/`HvRegisterGuestOsId`) before it can invoke hypercalls. This MSR is partition-wide and is shared among all virtual processors.
 
-This register’s value is initially zero. A non-zero value must be written to the Guest OS ID MSR before the hypercall code page can be enabled (see [Establishing the Hypercall Interface](#establishing-the-hypercall-interface)). If this register is subsequently zeroed, the hypercall code page will be disabled.
+This register’s value is initially zero.
+
+On x86/x64, a non-zero value must be written to the Guest OS ID MSR before the hypercall code page can be enabled (see [Establishing the Hypercall Interface](#establishing-the-hypercall-interface)). If this register is subsequently zeroed, the hypercall code page will be disabled.
+
+On ARM64, a non-zero value must be written to the Guest OS ID MSR before hypercall codes can be invoked. The exception is the [HvCallSetVpRegisters](hypercalls/HvCallGetVpRegisters.md)/[HvCallGetVpRegisters](hypercalls/HvCallGetVpRegisters.md) hypercalls. Please see their respective documentation for more information.
 
  ```c
 #define HV_X64_MSR_GUEST_OS_ID 0x40000000
  ```
 
+ ```c
+#define HvRegisterGuestOsId 0x00090002
+ ```
+
+On ARM64, only HvRegisterGuestOsId is supported, which must be written using the [HvCallSetVpRegisters](hypercalls/HvCallGetVpRegisters.md) hypercall on the boot processor.
+
 ### Guest OS Identity for proprietary Operating Systems
 
-The following is the recommended encoding for this MSR. Some fields may not apply for some guest OSs.
+The following is the recommended encoding for this MSR. Some fields may not apply for some Guest OSs.
 
 | Bits      | Field           | Description                                                                 |
 |-----------|-----------------|-----------------------------------------------------------------------------|
@@ -260,24 +391,25 @@ The following is the recommended encoding for this MSR. Some fields may not appl
 | 31:24     | Minor Version   | Indicates the minor version of the OS                                       |
 | 39:32     | Major Version   | Indicates the major version of the OS                                       |
 | 47:40     | OS ID           | Indicates the OS variant. Encoding is unique to the vendor. Microsoft operating systems are encoded as follows: 0=Undefined, 1=MS-DOS®, 2=Windows® 3.x, 3=Windows® 9x, 4=Windows® NT (and derivatives), 5=Windows® CE
-| 62:48     | Vendor ID       | Indicates the guest OS vendor. A value of 0 is reserved. See list of vendors below.
-| 63        | OS Type         | Indicates the OS types. A value of 0 indicates a proprietary, closed source OS. A value of 1 indicates an open source OS.
+| 62:48     | Vendor ID       | Indicates the Guest OS vendor. A value of 0 is reserved. See list of vendors below.
+| 63        | OS Type         | Indicates the OS type. A value of 0 represents a proprietary (closed source) OS. A value of 1 represents an open source OS.
 
 Vendor values are allocated by Microsoft. To request a new vendor, please file an issue on the GitHub virtualization documentation repository (<https://aka.ms/VirtualizationDocumentationIssuesTLFS>).
 
-| Vendor    | Value                                                                                |
-|-----------|--------------------------------------------------------------------------------------|
-| Microsoft | 0x0001                                                                               |
-| HPE       | 0x0002                                                                               |
-| LANCOM    | 0x0200                                                                               |
+| Vendor     | Value                                                                                |
+|------------|--------------------------------------------------------------------------------------|
+| Microsoft  | 0x0001                                                                               |
+| HPE        | 0x0002                                                                               |
+| BlackBerry | 0x0003                                                                               |
+| LANCOM     | 0x0200                                                                               |
 
 ### Guest OS Identity MSR for Open Source Operating Systems
 
-The following encoding is offered as guidance for open source operating system vendors intending to conform to this specification. It is suggested that open source operating systems adapt the following convention.
+The following encoding is offered as guidance for open source operating system vendors intending to conform to this specification. It is suggested that open source operating systems adopt the following convention.
 
 | Bits      | Field           | Description                                                                 |
 |-----------|-----------------|-----------------------------------------------------------------------------|
-| 15:0      | Build Number    | Additional Information                                                      |
+| 15:0      | Build Number    | Distribution-specific information (e.g., build number).                     |
 | 47:16     | Version         | Upstream kernel version information.                                        |
 | 55:48     | OS ID           | Additional vendor information                                               |
 | 62:56     | OS Type         | OS type (e.g., Linux, FreeBSD, etc.). See list of known OS types below      |
@@ -292,9 +424,9 @@ OS Type values are allocated by Microsoft. To request a new OS Type, please file
 | Xen       | 0x3                                                                                  |
 | Illumos   | 0x4                                                                                  |
 
-## Establishing the Hypercall Interface
+## Establishing the Hypercall Interface (x86/x64)
 
-Hypercalls are invoked by using a special opcode. Because this opcode differs among virtualization implementations, it is necessary for the hypervisor to abstract this difference. This is done through a special hypercall page. This page is provided by the hypervisor and appears within the guest’s GPA space. The guest is required to specify the location of the page by programming the Guest Hypercall MSR.
+On x86/x64, Hypercalls are invoked by using a special opcode. Because this opcode differs among virtualization implementations, it is necessary for the hypervisor to abstract this difference. This is done through a special hypercall page. This page is provided by the hypervisor and appears within the guest’s GPA space. The guest is required to specify the location of the page by programming the Guest Hypercall MSR.
 
  ```c
 #define HV_X64_MSR_HYPERCALL 0x40000001
@@ -311,7 +443,7 @@ The hypercall page can be placed anywhere within the guest’s GPA space, but mu
 
 This MSR is a partition-wide MSR. In other words, it is shared by all virtual processors in the partition. If one virtual processor successfully writes to the MSR, another virtual processor will read the same value.
 
-Before the hypercall page is enabled, the guest OS must report its identity by writing its version signature to a separate MSR (HV_X64_MSR_GUEST_OS_ID). If no guest OS identity has been specified, attempts to enable the hypercall will fail. The enable bit will remain zero even if a one is written to it. Furthermore, if the guest OS identity is cleared to zero after the hypercall page has been enabled, it will become disabled.
+Before the hypercall page is enabled, the Guest OS must report its identity by writing its version signature to a separate MSR (HV_X64_MSR_GUEST_OS_ID). If no Guest OS identity has been specified, attempts to enable the hypercall will fail. The enable bit will remain zero even when writing a one to it. Furthermore, if the Guest OS identity is cleared to zero after the hypercall page has been enabled, it will become disabled.
 
 The hypercall page appears as an “overlay” to the GPA space; that is, it covers whatever else is mapped to the GPA range. Its contents are readable and executable by the guest. Attempts to write to the hypercall page will result in a protection (#GP) exception. After the hypercall page has been enabled, invoking a hypercall simply involves a call to the start of the page.
 
@@ -327,6 +459,10 @@ The following is a detailed list of the steps involved in establishing the hyper
 8. The guest creates an executable VA mapping to the hypercall page GPA.
 9. The guest consults CPUID leaf 0x40000003 to determine which hypervisor facilities are available to it.
 After the interface has been established, the guest can initiate a hypercall. To do so, it populates the registers per the hypercall protocol and issues a CALL to the beginning of the hypercall page. The guest should assume the hypercall page performs the equivalent of a near return (0xC3) to return to the caller. As such, the hypercall must be invoked with a valid stack.
+
+## Establishing the Hypercall Interface (ARM64)
+
+Because ARM64 natively supports the HVC instruction, the hypervisor does not need additional configuration to enable hypercalls.
 
 ## Extended Hypercall Interface
 
