@@ -364,9 +364,9 @@ The return code `HV_STATUS_SUCCESS` indicates that no error condition was detect
 
 The Guest OS running within the partition must identify itself to the hypervisor by writing its signature and version to an MSR (`HV_X64_MSR_GUEST_OS_ID`/`HvRegisterGuestOsId`) before it can invoke hypercalls. This MSR is partition-wide and is shared among all virtual processors.
 
-This register’s value is initially zero.
+This register's value is initially zero.
 
-On x86/x64, a non-zero value must be written to the Guest OS ID MSR before the hypercall code page can be enabled (see [Establishing the Hypercall Interface](#establishing-the-hypercall-interface)). If this register is subsequently zeroed, the hypercall code page will be disabled.
+On x86/x64, a non-zero value must be written to the Guest OS ID MSR before the hypercall code page can be enabled (see [Establishing the Hypercall Interface (x86/x64)](#establishing-the-hypercall-interface-x86x64)). If this register is subsequently zeroed, the hypercall code page will be disabled.
 
 On ARM64, a non-zero value must be written to the Guest OS ID MSR before hypercall codes can be invoked. The exception is the [HvCallSetVpRegisters](hypercalls/HvCallGetVpRegisters.md)/[HvCallGetVpRegisters](hypercalls/HvCallGetVpRegisters.md) hypercalls. Please see their respective documentation for more information.
 

@@ -311,7 +311,7 @@ This field can be set with bit 0 of the VTL return input. If it is set to 0, the
 
 ## Hypercall Page Assist
 
-The hypervisor provides mechanisms to assist with VTL calls and returns via the [hypercall page](hypercall-interface.md#establishing-the-hypercall-interface). This page abstracts the specific code sequence required to switch VTLs.
+The hypervisor provides mechanisms to assist with VTL calls and returns via the [hypercall page](hypercall-interface.md#establishing-the-hypercall-interface-x86x64). This page abstracts the specific code sequence required to switch VTLs.
 
 The code sequences to execute VTL calls and returns may be accessed by executing specific instructions in the hypercall page. The call/return chunks are located at an offset in the hypercall page determined by the HvRegisterVsmCodePageOffsets virtual register. This is a read-only and partition-wide register, with a separate instance per-VTL.
 
