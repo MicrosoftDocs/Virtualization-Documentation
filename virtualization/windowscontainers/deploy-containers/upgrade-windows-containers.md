@@ -2,14 +2,14 @@
 title: Upgrade a Windows container to a new build version
 description: Learn about concepts for upgrading a Windows container to a newer build version.
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: how-to
-ms.date: 09/01/2021
+ms.date: 01/23/2025
 ---
 
 # Upgrade containers to a new version of the Windows operating system
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 This topic describes how to upgrade Windows containers to a new Windows or Windows Server operating system version. There are two steps for upgrading containers:
 
@@ -38,7 +38,7 @@ After you have pulled the new Windows OS version on the container host, follow t
 
 1. Select the [container base image](../manage-containers/container-base-images.md) you want to upgrade to.
 
-2. Open a PowerShell session as an administrator and, depending on the OS version you chose, run the [docker pull](https://docs.docker.com/engine/reference/commandline/pull/) command to pull an image:
+2. Open a PowerShell session as an administrator and, depending on the OS version you chose, run the [docker pull](https://docs.docker.com/reference/cli/docker/image/pull/) command to pull an image:
 
    ```powershell
    PS C:\> docker pull mcr.microsoft.com/windows/servercore:ltsc2022
@@ -46,7 +46,7 @@ After you have pulled the new Windows OS version on the container host, follow t
 
    This example pulls the Server Core version 20H2 base image.
 
-3. When the image is finished downloading, you can verify that the new image has been pulled by running the [docker images](https://docs.docker.com/engine/reference/commandline/images/) command to return a list of pulled images:
+3. When the image is finished downloading, you can verify that the new image has been pulled by running the [docker images](https://docs.docker.com/reference/cli/docker/image/ls/) command to return a list of pulled images:
 
    ```powershell
    docker images
@@ -57,7 +57,7 @@ After you have pulled the new Windows OS version on the container host, follow t
 Next, you want to create and start new container instances using the new base image you pulled. To automate this process, edit the Dockerfile to redirect it to the new image.
 
 > [!NOTE]
-> If you want to upgrade the image for any container that's currently running, you'll need to stop the containers using [docker stop](https://docs.docker.com/engine/reference/commandline/stop/) and then run [docker rm](https://docs.docker.com/engine/reference/commandline/rm/) to remove the containers.
+> If you want to upgrade the image for any container that's currently running, you'll need to stop the containers using [docker stop](https://docs.docker.com/reference/cli/docker/container/stop/) and then run [docker rm](https://docs.docker.com/reference/cli/docker/container/rm/) to remove the containers.
 
 Open the Dockerfile in a text editor and make the updates. In the following example, the Dockerfile is updated to Server Core 20H2 with the IIS application.
 
@@ -78,13 +78,13 @@ ENTRYPOINT ["ServiceMonitor.exe", "w3svc"]
 
 Once the Dockerfile is updated, you need to build and run the app image.
 
-1. Use [docker build](https://docs.docker.com/engine/reference/commandline/build/) to build your image as shown below:
+1. Use [docker build](https://docs.docker.com/reference/cli/docker/buildx/build/) to build your image as shown below:
 
    ```powershell
    docker build -t iss .
    ```
 
-2. To run the newly built container, run the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command:
+2. To run the newly built container, run the [docker run](https://docs.docker.com/reference/cli/docker/container/run/) command:
 
    ```powershell
    docker run -d -p 8080:80 --name iss-app iss
@@ -94,13 +94,13 @@ Once the Dockerfile is updated, you need to build and run the app image.
 
 To allow other hosts to reuse the new image, you should tag and then push the container image to your registry.
 
-1. Use [docker tag](https://docs.docker.com/engine/reference/commandline/tag/) to tag the image as follows:
+1. Use [docker tag](https://docs.docker.com/reference/cli/docker/image/tag/) to tag the image as follows:
 
    ```powershell
    docker tag mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2022 <login-server>/iss
    ```
 
-2. Use [docker push](https://docs.docker.com/engine/reference/commandline/push/) to push the image to the container registry as follows:
+2. Use [docker push](https://docs.docker.com/reference/cli/docker/image/push/) to push the image to the container registry as follows:
 
    ```powershell
    docker push <login-server> iss

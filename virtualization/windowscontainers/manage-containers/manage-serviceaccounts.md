@@ -1,15 +1,15 @@
 ---
 title: Create gMSAs for Windows containers
 description: How to create group Managed Service Accounts (gMSAs) for Windows containers.
-author: rpsqrd
-ms.author: jgerend
-ms.date: 08/16/2021
+author: robinharwood
+ms.author: roharwoo
+ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 # Create gMSAs for Windows containers
 
-> Applies to: Windows Server 2022, Windows Server 2019
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019
 
 Windows-based networks commonly use Active Directory (AD) to facilitate authentication and authorization between users, computers, and other network resources. Enterprise application developers often design their apps to be AD-integrated and run on domain-joined servers to take advantage of Integrated Windows Authentication, which makes it easy for users and other services to automatically and transparently sign in to the application with their identities. This article explains how to start using Active Directory group managed service accounts with Windows containers.
 
@@ -31,7 +31,7 @@ Improvements to gMSA when using a non-domain-joined container host include:
 
 To address the limitations of the initial implementation of gMSA for Windows containers, new gMSA support for non-domain-joined container hosts uses a portable user identity instead of a host computer account to retrieve gMSA credentials. Therefore, manually joining Windows worker nodes to a domain is no longer necessary, although it's still supported. The user identity/credentials are stored in a secret store accessible to the container host (for example, as a Kubernetes secret) where authenticated users can retrieve it.
 
-![Diagram of group Managed Service Accounts version two](../media/gmsa-v2.png)
+![Diagram of group Managed Service Accounts version two](media/gmsa-v2.png)
 
 gMSA support for non-domain-joined container hosts provides the flexibility of creating containers with gMSA without joining the host node to the domain. Starting in Windows Server 2019, ccg.exe is supported which enables a plug-in mechanism to retrieve gMSA credentials from Active Directory. You can use that identity to start the container. For more information on this plug-in mechanism, see the [ICcgDomainAuthCredentials interface](/windows/win32/api/ccgplugins/nn-ccgplugins-iccgdomainauthcredentials).
 
@@ -47,7 +47,7 @@ View the diagram below to follow the steps of the Container Credential Guard pro
 5. The container authenticates to the domain controller using the gMSA password to get a Kerberos Ticket-Granting Ticket (TGT).
 6. Applications running as Network Service or Local System in the container can now authenticate and access domain resources, such as the gMSA.
 
-   ![Diagram of the ccg.exe process](../media/credential-guard.png)
+   ![Diagram of the ccg.exe process](media/credential-guard.png)
 
 ## Prerequisites
 

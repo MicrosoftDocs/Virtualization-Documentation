@@ -1,16 +1,16 @@
 ---
 title: Orchestrate containers with a gMSA
 description: How to orchestrate Windows containers with a group Managed Service Account (gMSA).
-author: rpsqrd
-ms.author: jgerend
-ms.date: 09/10/2019
+author: robinharwood
+ms.author: roharwoo
+ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 
 # Orchestrate containers with a gMSA
 
-> Applies to: Windows Server 2022, Windows Server 2019
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019
 
 In production environments, you'll often use a container orchestrator such as the hosted Kubernetes service, Azure Kubernetes Service (AKS), to deploy and manage your apps and cluster services. Each orchestrator has its own management paradigms and is responsible for accepting credential specs to give to the Windows container platform.
 
@@ -44,7 +44,7 @@ docker service create --credential-spec "file://contoso_webapp01.json" --hostnam
 
 See the [Docker Swarm example](https://docs.docker.com/engine/reference/commandline/service_create/#provide-credential-specs-for-managed-service-accounts-windows-only) for more information about how to use credential specs with Docker services.
 
-## Next steps
+## Related content
 
 In addition to orchestrating containers, you can also use gMSAs to:
 

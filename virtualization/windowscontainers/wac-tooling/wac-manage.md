@@ -2,10 +2,11 @@
 title: Manage container images on Windows Admin Center
 description: Manage container images on Windows Admin Center.
 author: vrapolinario
-ms.author: viniap
-ms.date: 04/12/2023
+ms.author: roharwoo
+ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
+ms.custom: sfi-image-nochange
 ---
 # Manage Container images on Windows Admin Center
 

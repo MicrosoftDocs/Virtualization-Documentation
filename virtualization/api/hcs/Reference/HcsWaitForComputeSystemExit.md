@@ -2,7 +2,7 @@
 title: HcsWaitForComputeSystemExit
 description: HcsWaitForComputeSystemExit
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.topic: reference
 ms.service: virtualization
 ms.date: 12/21/2021

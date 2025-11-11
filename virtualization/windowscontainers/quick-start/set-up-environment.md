@@ -1,156 +1,171 @@
 ---
 title: Prepare Windows operating system containers
-description: Set up Windows or Windows Server for containers, then run your first container image.
+description: Compare approaches for building a container-ready environment on Windows and Windows Server. See how to install a container runtime on these systems.
 author: brasmith-ms
-ms.author: brasmith
-ms.date: 03/31/2023
+ms.author: roharwoo
+ms.date: 03/19/2025
 ms.topic: quickstart
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
+# customer intent: As a developer, I want to see how to build a container-ready environment on Windows and Windows Server so that I can run container apps on these systems.
 ---
+
 # Get started: Prep Windows for containers
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016, Windows 10 and 11
+In this quickstart, you see various approaches for building a container-ready environment on Windows and Windows Server. You also install a container runtime.
 
-This tutorial describes how to:
+Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Before you can use a container, you need to set up an appropriate runtime.
 
-- [Get started: Prep Windows for containers](#get-started-prep-windows-for-containers)
-  - [Prerequisites](#prerequisites)
-    - [Windows 10 and 11](#windows-10-and-11)
-    - [Windows Server](#windows-server)
-      - [Container-Ready Azure VMs](#container-ready-azure-vms)
-        - [Azure Image Builder](#azure-image-builder)
-        - [Custom Script Extensions](#custom-script-extensions)
-  - [Install the Container Runtime](#install-the-container-runtime)
-    - [Windows 10 and 11](#windows-10-and-11-1)
-    - [Windows Admin Center](#windows-admin-center)
-    - [Windows Server](#windows-server-1)
-  - [Next steps](#next-steps)
+This quickstart applies to Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016, Windows 11, and Windows 10.
 
 ## Prerequisites
 
-### Windows 10 and 11
+The environment you need for this quickstart depends on your operating system (OS).
 
-To run containers on Windows 10 or 11, you need the following:
+### Windows 10 and Windows 11
 
-- One physical computer system running Windows 10 or 11 Professional or Enterprise with Anniversary Update (version 1607) or later.
-- [Hyper-V](/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) should be enabled.
+To run containers on Windows 10 or Windows 11, you need the following environment:
 
-> [!NOTE]
-> Starting with the Windows 10 October Update 2018, Microsoft no longer disallows users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for development or test purposes. See the [FAQ](../about/faq.yml) to learn more.
+- One physical computer system running Windows 11 or Windows 10 with Anniversary Update (version 1607) or later
+- Professional or Enterprise edition
+- [Hyper-V](/windows-server/virtualization/hyper-v/System-requirements-for-Hyper-V-on-Windows) enabled
 
-Windows Server Containers use Hyper-V isolation by default on Windows 10 and 11 to provide developers with the same kernel version and configuration that will be used in production. To learn more about Hyper-V isolation, see [Isolation Modes](../manage-containers/hyperv-container.md).
+Windows Server containers use Hyper-V isolation by default on Windows 10 and Windows 11 to provide developers with the same kernel version and configuration that's used in production. For more information about Hyper-V isolation, see [Isolation Modes](../manage-containers/hyperv-container.md).
 
 ### Windows Server
 
-For development environments, to run Windows Server Containers you will need a physical server or virtual machine running Windows Server.
+To run Windows Server containers in development environments, you need a physical server or virtual machine (VM) running Windows Server.
 
-For testing, you can download a copy of [Windows Server 2022 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2022 ) or a [Windows Server Insider Preview](https://insider.windows.com/for-business-getting-started-server/).
+For testing, you can download a copy of [Windows Server 2025 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2025) or a [Windows Server Insider Program preview](https://www.microsoft.com/windowsinsider/for-business-getting-started-server).
 
-#### Container-Ready Azure VMs
+## Select an approach
 
-For many applications and orchestration paradigms it is necessary to build and deploy your own custom VMs. With the [transition of support](https://techcommunity.microsoft.com/t5/containers/updates-to-the-windows-container-runtime-support/ba-p/2788799) for the Windows Container Runtime to Mirantis, the container runtime is no longer provided with a marketplace VM offering. The remainder of this guide details how you can build a VM for Azure with the container runtime installed and ready to go.
+The approach you take to construct a container-ready environment depends on your OS. It also depends on other factors, such as the complexity and cost of implementation.
 
-Azure will continue to offer a complete and fully managed end-to-end experience through the Azure Kubernetes Service both in the cloud and on-premises. AKS and AKS-HCI are fully managed services with lower management overhead than what you are used to with custom deployments. Support for the container runtime is included within the AKS and AKS-HCI services under your Azure subscription.
+### Windows 10 and Windows 11
 
-- [Getting Started with Windows on AKS](/azure/aks/windows-container-cli)
-- [Getting Started with Windows on AKS-HCI](/azure-stack/aks-hci/kubernetes-walkthrough-powershell)
+On Windows 10 and Windows 11 Professional and Enterprise editions, you can use Docker Desktop to run containerized apps. Docker Desktop provides a way for you to manage containers, apps, and images.
 
-There are three things to keep in mind when considering the following options. It is up to your organization to decide which aspect you want to optimize around:
+### Windows Server
 
-1. How complex is it to implement?
-2. What is the cost?
-3. How does it impact my workload in production?
+For many applications and orchestration patterns, you need to build and deploy your own custom VMs. With the [transition of support](https://techcommunity.microsoft.com/blog/containers/updates-to-the-windows-container-runtime-support/2788799) for the Windows container runtime to Mirantis, the container runtime is no longer provided as part of a marketplace VM offering. The remainder of this guide shows you how to build a VM for Azure with the container runtime installed and ready to go.
 
-Each of these methods are provided as an option to make the experience of constructing your container-ready Azure VMs as smooth as possible. The following subsections will detail the pros and cons of each option alongside how to get started.
+Azure continues to offer a complete and fully managed end-to-end experience through Azure Kubernetes Service (AKS) both in the cloud and on-premises. AKS and Azure Kubernetes Service on Azure Stack HCI are fully managed services with lower management overhead than custom deployments. Support for the container runtime is included within the AKS and Azure Kubernetes Service on Azure Stack HCI services under your Azure subscription.
 
-##### Azure Image Builder
+- [Deploy a Windows Server container on an Azure Kubernetes Service (AKS) cluster using Azure CLI](/azure/aks/learn/quick-windows-container-deploy-cli)
+- [Set up an Azure Kubernetes Service host on Azure Local and Windows Server and deploy a workload cluster using PowerShell](/azure/aks/aksarc/kubernetes-walkthrough-powershell)
 
-The benefit to using Image Builder is that the configuration is done during a build time and would not have any effect on
-your workload at runtime; when the VM scale set instantiates a new VM from your custom image, the image will have already
-been prepped so no time must be spent here and it will be immediately ready to run containers.
+Other options also exist for making the experience of constructing your container-ready Azure VMs as smooth as possible. Two examples are Azure VM Image Builder and custom script extensions. When you compare options, keep the following points in mind. It's up to your organization to decide which aspect to optimize.
 
-Azure image builder, however, can be more complex to implement and there are more steps involved than with script extensions. Additionally, while the Image Builder service is free, you must manage for the compute, storage, and networking usage associated with the build process (additional details [here](/azure/virtual-machines/image-builder-overview#costs))
+- How complex is it to implement?
+- What is the cost?
+- How does it impact my workload in production?
 
-To get started with building your own Windows Server VM image, we have [created a guide which details the process step-by step](/azure/virtual-machines/windows/image-builder). The powershell scripts mentioned below can be utilized alongside this guide to install your container runtime of choice.
+The following subsections discuss the pros and cons of VM Image Builder and custom script extensions, and show you how to get started.
+
+#### VM Image Builder
+
+The benefit to using VM Image Builder is that the configuration is done during a build time and doesn't have any effect on your workload at runtime. When the VM scale set instantiates a new VM from your custom image, the image is already prepped, and it's ready to run containers.
+
+VM Image Builder, however, can be more complex to implement than script extensions, and there are more steps involved. Also, the VM Image Builder service is free, but you must pay for the compute, storage, and networking usage that's associated with the build process. For more information, see [Costs](/azure/virtual-machines/image-builder-overview#costs).
+
+For a detailed, step-by-step procedure for building your own Windows Server VM image, see [Create a Windows VM by using Azure VM Image Builder](/azure/virtual-machines/windows/image-builder). To install your container runtime of choice, use the PowerShell scripts in this guide.
 
 > [!TIP]
-> Make sure to cache the container images you plan to use locally on the VM! This will help improve the container start time after deployment. The [scripts below](#windows-server-1) will help you do this.
+> Make sure to cache the container images you plan to use locally on the VM. This practice helps improve the container start time after deployment. For scripts that help with this task, see [Windows Server](#windows-server-2), later in this quickstart.
 
-##### Custom Script Extensions
+#### Custom script extensions
 
-Custom Script Extensions are quicker to implement and the cost is only in the nominal price to store the script in Azure or GitHub. However, the script may only execute after a VM has been provisioned, so you must budget for additional time being spent to properly prep the VM at scale-out time.
+Custom script extensions are quicker to implement than a VM Image Builder solution. The only cost associated with extensions is the price of storing the script in Azure or GitHub. However, the script can only run after a VM is provisioned. As a result, your budget must include extra time to prep the VM at scale-out time.
 
-Using the scripts offered below you can configure your VM scale sets to install the container runtime of your choice upon provisioning. [Follow our guide](/azure/virtual-machine-scale-sets/tutorial-install-apps-cli) learn how to set a custom script extension.
+Using the scripts offered in this guide, configure your VM scale sets to install the container runtime of your choice after provisioning. To use a custom script extension to automate the process of installing apps on Azure VMs, see [Tutorial: Install applications in Virtual Machine Scale Sets with the Azure CLI](/azure/virtual-machine-scale-sets/tutorial-install-apps-cli).
 
-## Install the Container Runtime
+## Install the container runtime
 
-### Windows 10 and 11
+The procedure you use to install a container runtime depends on your OS.
 
-You can install Docker on Windows 10 or 11 Professional and Enterprise editions by using the following steps.
+### Windows 10 and Windows 11
 
-1. Download and install [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) and create a Docker account if you don't already have one. You can create a free Docker account for personal or small business users, however, for larger businesses, there is a monthly fee. For more details, see the [Docker documentation](https://docs.docker.com/docker-for-windows/install).
+To install Docker on Windows 10 or Windows 11 Professional and Enterprise editions, take the following steps:
 
-2. During installation, set the default container type to Windows containers. To switch after installation completes, you can use either the Docker item in the Windows system tray (as shown below), or the following command in a PowerShell prompt:
+1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop), and create a Docker account if you don't already have one. You can create a free Docker account for personal or small business users. However, for larger businesses, there's a monthly fee. For detailed information, see the [Docker documentation](https://docs.docker.com/desktop/setup/install/windows-install).
 
-   ```console
-   & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
-   ```
+1. During installation, set the default container type to Windows containers. To switch the type after the installation finishes, take one of the following steps:
 
-   ![Docker system tray menu showing the "Switch to Windows containers" command](./media/docker-for-win-switch.png)
+   - Run the following command in a PowerShell prompt:
+
+     ```console
+     & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
+     ```
+
+   - Use the Docker item in the Windows system tray, as shown in the following screenshot:
+
+     :::image type="content" source="media/docker-for-win-switch.png" alt-text="Screenshot of the Docker system tray menu. The Switch to Windows containers command is selected.":::
 
 ### Windows Admin Center
 
-You can use Windows Admin Center to properly set up a Windows Server machine as a container host. To get started, ensure you have the latest Containers extension installed on your Windows Admin Center instance. For more information on how to install and configure extensions, check out the Windows Admin Center [documentation](/windows-server/manage/windows-admin-center/overview). With the Containers extension installed, target the Windows Server machine you want to configure and select the Containers option:
+To use Windows Admin Center to set up a Windows Server machine as a container host, take the following steps:
 
-![Install Docker](./media/WAC-InstallDocker.png)
+1. In Windows Admin Center, ensure that you have the latest Containers extension installed. For more information about installing and configuring extensions, see the [Windows Admin Center documentation](/windows-server/manage/windows-admin-center/overview).
 
-Click the **Install** button. Windows Admin Center will start the configuration of Windows Server and Docker in the background. After the process is complete, you can refresh the page and see the other functionalities of the Containers extension.
+1. Open the Windows Server machine that you want to configure.
 
-![Container images](./media/WAC-Images.png)
+1. On the side panel, under **Tools**, select **Containers**.
+
+1. Select **Install**.
+
+   :::image type="content" source="media/WAC-InstallDocker.png" alt-text="Screenshot of Windows Admin Center. A Containers extension page shows an Install button and a message about installing Docker.":::
+
+   Windows Admin Center starts the configuration of Windows Server and Docker in the background.
+
+1. After the process is complete, refresh the page to see other functionality of the Containers extension.
+
+   :::image type="content" source="media/WAC-Images.png" alt-text="Screenshot of Windows Admin Center. In the Containers extension, a table lists information about images, such as the repository and image ID." lightbox="media/WAC-Images.png":::
 
 ### Windows Server
-To run a Windows container you must have a supported container runtime available on your machine. The runtimes currently supported on Windows are [containerd](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd), [Moby](https://mobyproject.org/), and the [Mirantis Container Runtime](https://info.mirantis.com/docker-engine-support).
 
-This section will detail the process of installing each on your specific copy of Windows, including a set of powershell scripts which make it easy to install each runtime in just a few steps.
+To run a Windows container, you must have a supported container runtime available on your machine. The runtimes currently supported on Windows are [Moby](https://mobyproject.org), the [Mirantis Container Runtime](https://www.mirantis.com/software/mirantis-container-runtime), and [containerd](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd).
+
+This section shows you how to install each runtime on a VM that runs Windows Server. For the Moby and containerd runtimes, you can use PowerShell scripts to complete the installation in a few steps.
 
 <!-- start tab view -->
-# [Docker CE / Moby](#tab/dockerce)
+#### [Docker CE / Moby](#tab/dockerce)
 
-Docker Community Edition (CE) provides a standard runtime environment for containers with a common API and command-line interface (CLI). It is managed by the open source community as part of the [Moby Project](https://mobyproject.org/).
+Docker Community Edition (Docker CE) provides a standard runtime environment for containers. The environment offers a common API and command-line interface. The framework and components of Docker CE are managed by the open-source community as part of the [Moby Project](https://mobyproject.org/).
 
-To get started with Docker on Windows Server we have created [a powershell script](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1) which configures your environment to enable container-related OS features and install the Docker runtime.
+To get started with Docker on Windows Server, use the following command to run the [install-docker-ce.ps1](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1) PowerShell script. This script configures your environment to enable container-related OS features. The script also installs the Docker runtime.
 
 ```powershell
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1" -o install-docker-ce.ps1
 .\install-docker-ce.ps1
 ```
 
-For more configuration details, see [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md).
+For detailed information about configuring Docker Engine, see [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md).
 
-# [Mirantis Container Runtime](#tab/mirantiscontainerruntime)
+#### [Mirantis Container Runtime](#tab/mirantiscontainerruntime)
 
-The Mirantis Container Runtime, formally known as Docker EE, provides the same functionality as Docker CE plus extra features built specifically for enterprise deployments. To install this runtime please head over to the Mirantis website for instructions on how to install: [https://www.mirantis.com/docker-engine-enterprise-support/](https://www.mirantis.com/docker-engine-enterprise-support/).
+The Mirantis Container Runtime, formally known as Docker Enterprise Edition (Docker EE), provides the same functionality as Docker CE plus extra features built specifically for enterprise deployments. For instructions for installing this runtime, see [Mirantis Container Runtime](https://www.mirantis.com/software/mirantis-container-runtime/).
 
-Please head over to the [Mirantis site](https://www.mirantis.com/software/container-runtime/) for more information.
+#### [containerd](#tab/containerd)
 
-# [Containerd](#tab/containerd)
+The [containerd](https://github.com/containerd/containerd) back end is an industry-standard container runtime with an emphasis on simplicity, robustness, and portability. It's available as a daemon for Linux and Windows, and it can manage the complete container lifecycle of its host system. This runtime offers functionality for image transfer and storage, container execution and supervision, low-level storage and network attachments, and other container management tasks.
 
-[Containerd](https://github.com/containerd/containerd) is an industry-standard container runtime with an emphasis on simplicity, robustness and portability. It is available as a daemon for Linux and Windows, which can manage the complete container lifecycle of its host systemW: image transfer and storage, container execution and supervision, low-level storage and network attachments, etc.
+The [nerdctl](https://github.com/containerd/nerdctl) tool is a Docker-compatible command-line interface for containerd.
 
-[nerdctl](https://github.com/containerd/nerdctl) is a Docker-compatible CLI for containerd.
+Use the following command to run the [install-containerd-runtime.ps1](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-ContainerdRuntime/install-containerd-runtime.ps1) PowerShell script. This script installs containerd, nerdctl, and container-related OS features.
 
-We have created [an installation script](https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-ContainerdRuntime/install-containerd-runtime.ps1) which installs both for you at the same time alongside container related OS features.
 ```powershell
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-ContainerdRuntime/install-containerd-runtime.ps1" -o install-containerd-runtime.ps1
 .\install-containerd-runtime.ps1
 ```
 
-This script does install the [Windows CNI plugins](https://github.com/microsoft/windows-container-networking) as well, however, you will need to configure ctr/nerdctl to use the CNI configuration that best suits you.
+The *install-containerd-runtime.ps1* script also installs [Windows Container Network Interface (CNI) plug-ins](https://github.com/microsoft/windows-container-networking). But you need to configure the ctr and nerdctl command-line interface tools to use the CNI configuration that best suits you.
 
-- [Instructions for installing containerd on Windows.](https://github.com/containerd/containerd/blob/main/docs/getting-started.md#installing-containerd-on-windows)
-- [Instructions on how to install and configure containerd](https://www.jamessturtevant.com/posts/Windows-Containers-on-Windows-10-without-Docker-using-Containerd/#setting-up-network)
-- [Instructions for installing nerdctl on Windows.](https://github.com/containerd/nerdctl#install)
-- [More advanced community installer for containerd](https://github.com/lippertmarkus/containerd-installer)
+For more information, see the following resources:
+
+- [Instructions for installing containerd on Windows](https://github.com/containerd/containerd/blob/main/docs/getting-started.md#installing-containerd-on-windows)
+- [Instructions for installing and configuring containerd](https://www.jamessturtevant.com/posts/Windows-Containers-on-Windows-10-without-Docker-using-Containerd/#setting-up-network)
+- [Instructions for installing nerdctl on Windows](https://github.com/containerd/nerdctl#install)
+- [A more advanced community installer for containerd](https://github.com/lippertmarkus/containerd-installer)
 
 ---
 <!-- stop tab view -->
@@ -158,9 +173,9 @@ This script does install the [Windows CNI plugins](https://github.com/microsoft/
 ## Next steps
 
 > [!NOTE]
-> If you have read this guide and would like additional guidance from the Windows Containers product team, you can reach us at [github/Windows-Containers](https://github.com/microsoft/Windows-Containers) where you will find information about getting time on the product team’s calendar to chat.
+> For guidance from the Windows Containers product team, see the [Windows Containers](https://github.com/microsoft/Windows-Containers) repository on GitHub.
 
-Now that your environment has been configured correctly, follow the link to learn how to run a container.
+Now that your environment is configured correctly, see how to run a container.
 
 > [!div class="nextstepaction"]
 > [Run your first container](./run-your-first-container.md)

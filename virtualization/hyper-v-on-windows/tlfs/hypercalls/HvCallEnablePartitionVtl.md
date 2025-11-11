@@ -16,7 +16,6 @@ The HvCallEnablePartitionVtl hypercall enables a virtual trust level for a speci
 ## Interface
 
  ```c
-
 typedef union
 {
     UINT8 AsUINT8;

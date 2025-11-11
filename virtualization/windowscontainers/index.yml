@@ -7,8 +7,9 @@ metadata:
   title: Containers on Windows documentation
   description: documentation for running containers on Windows.
   ms.topic: landing-page # Required
-  author: cwilhit
-  ms.date: 07/06/2020
+  author: meaghanlewis
+  ms.author: mosagie
+  ms.date: 01/21/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
 
@@ -25,9 +26,9 @@ landingContent:
           - text: Try Windows containers in AKS on Azure Stack HCI!
             url: /azure-stack/aks-hci/deploy-windows-application
           - text: Check out our container images on Docker Hub
-            url: https://hub.docker.com/_/microsoft-windows-base-os-images
+            url: https://hub.docker.com/r/microsoft/windows
           - text: Read the Containers blog
-            url: https://techcommunity.microsoft.com/t5/Containers/bg-p/Containers
+            url: https://techcommunity.microsoft.com/category/windows-server/blog/containers
 
   # Card
   - title: Overview
@@ -36,8 +37,6 @@ landingContent:
         links:
           - text: About Windows containers
             url: ./about/index.md
-          - text: What's new for Windows containers in Windows Server 2022
-            url: ./about/whats-new-ws2022-containers.md
           - text: System requirements
             url: ./deploy-containers/system-requirements.md
           - text: FAQ
@@ -96,8 +95,6 @@ landingContent:
     linkLists:
       - linkListType: reference
         links:
-          - text: Events
-            url: ./deploy-containers/events.md
           - text: Version compatibility
             url: ./deploy-containers/version-compatibility.md
           - text: Image servicing lifecycles
@@ -110,11 +107,7 @@ landingContent:
     linkLists:
       - linkListType: reference
         links:
-          - text: Windows containers roadmap
-            url: https://github.com/microsoft/Windows-Containers/projects/1
           - text: Samples
             url: ./samples.md
           - text: Troubleshooting
             url: ./troubleshooting.md
-          - text: Community videos and blogs
-            url: ./communitylinks.md

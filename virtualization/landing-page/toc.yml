@@ -1,17 +1,17 @@
 
 - name: Virtualization
   tocHref: /virtualization/
-  topicHref: /virtualization/index
+  topicHref: /windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows&toc=/virtualization/toc.json&bc=/virtualization/breadcrumbs/toc.json
   items:
-  - name: Hyper-V on Windows 10
+  - name: Hyper-V on Windows
     tocHref: /virtualization/hyper-v-on-windows/
-    topicHref: /virtualization/hyper-v-on-windows/index
+    topicHref: /virtualization/hyper-v-on-windows
   - name: Containers on Windows
     tocHref: /virtualization/windowscontainers/
     topicHref: /virtualization/windowscontainers/index
   - name: Community
     tocHref: /virtualization/community/
-    topicHref: /virtualization/community/index
+    topicHref: /answers/tags/220/windows-server
   - name: Api
     tocHref: /virtualization/api/
-    topicHref: /virtualization/api/index    
+    topicHref: /virtualization/api/index

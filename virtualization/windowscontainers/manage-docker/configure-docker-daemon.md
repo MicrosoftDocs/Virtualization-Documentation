@@ -2,8 +2,8 @@
 title: Configure Docker in Windows
 description: Configure Docker in Windows.
 author: PatrickLang
-ms.author: jgerend
-ms.date: 05/03/2019
+ms.author: roharwoo
+ms.date: 01/23/2025
 ms.topic: overview
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 ---

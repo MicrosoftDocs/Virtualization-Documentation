@@ -2,8 +2,8 @@
 title: Container storage overview
 description: How Windows Server containers can use host and other storage types.
 author: cwilhit
-ms.author: jgerend
-ms.date: 09/25/2019
+ms.author: roharwoo
+ms.date: 01/23/2025
 ms.topic: overview
 ---
 
@@ -28,15 +28,15 @@ In a default installation, layers are stored in `C:\ProgramData\docker` and spli
 
 You should not modify any files in the layer directories - they're carefully managed using commands such as:
 
-- [docker images](https://docs.docker.com/engine/reference/commandline/images/)
-- [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/)
-- [docker pull](https://docs.docker.com/engine/reference/commandline/pull/)
-- [docker load](https://docs.docker.com/engine/reference/commandline/load/)
-- [docker save](https://docs.docker.com/engine/reference/commandline/save/)
+- [docker images](https://docs.docker.com/reference/cli/docker/image/ls/)
+- [docker rmi](https://docs.docker.com/reference/cli/docker/image/rm/)
+- [docker pull](https://docs.docker.com/reference/cli/docker/image/pull/)
+- [docker load](https://docs.docker.com/reference/cli/docker/image/load/)
+- [docker save](https://docs.docker.com/reference/cli/docker/image/save/)
 
 ### Supported operations in layer storage
 
-Running containers can use most NTFS operations with the exception of transactions. This includes setting ACLs, and all ACLs are checked inside the container. If you want to run processes as multiple users inside a container, you can create users in your `Dockerfile` with `RUN net user /create ...`, set file ACLs, then configure processes to run with that user using the [Dockerfile USER directive](https://docs.docker.com/engine/reference/builder/#user).
+Running containers can use most NTFS operations with the exception of transactions. This includes setting ACLs, and all ACLs are checked inside the container. If you want to run processes as multiple users inside a container, you can create users in your `Dockerfile` with `RUN net user /create ...`, set file ACLs, then configure processes to run with that user using the [Dockerfile USER directive](https://docs.docker.com/reference/dockerfile/#user).
 
 ## Persistent Storage
 

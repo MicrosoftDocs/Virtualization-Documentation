@@ -3,7 +3,7 @@ title: The ApplyPendingSavedStateFileReplayLog function
 description: The ApplyPendingSavedStateFileReplayLog function opens the given saved state file in read-write exclusive mode so that it applies any pending replay logs to the contents.
 ms.date: 04/18/2022
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ---
 # ApplyPendingSavedStateFileReplayLog function
 

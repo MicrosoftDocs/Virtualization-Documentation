@@ -2,15 +2,15 @@
 title: Windows container base images
 description: Overview of the Windows container base images and when to use them.
 author: sethmanheim
-ms.author: sethm
-ms.date: 09/01/2021
-ms.topic: conceptual
+ms.author: roharwoo
+ms.date: 01/23/2025
+ms.topic: concept-article
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 ---
 
 # Container Base Images
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
 Windows offers four container base images that users can build from. Each base image is a different type of the Windows or Windows Server operating system, has a different on-disk footprint, and has a different set of the Windows API set.
 
@@ -77,7 +77,7 @@ Windows offers four container base images that users can build from. Each base i
     </li>
     <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
         <a class="is-undecorated is-full-height is-block"
-            href="https://hub.docker.com/_/microsoft-windows-server/" data-linktype="external">
+            href="https://hub.docker.com/r/microsoft/windows-server/" data-linktype="external">
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
@@ -99,10 +99,10 @@ Windows offers four container base images that users can build from. Each base i
 
 ## Image discovery
 
-All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/_/microsoft-windows-base-os-images). The Windows container base images themselves are served from [mcr.microsoft.com](https://azure.microsoft.com/services/container-registry/), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
+All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/r/microsoft/windows). The Windows container base images themselves are served from [mcr.microsoft.com](https://azure.microsoft.com/services/container-registry/), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
 
 ```code
-docker pull mcr.microsoft.com/windows/servercore:ltsc2022
+docker pull mcr.microsoft.com/windows/servercore:ltsc2025
 ```
 
 The MCR does not have its own catalog experience and is meant to support existing catalogs, such as Docker Hub. Thanks to Azure's global footprint and coupled with Azure CDN, the MCR delivers an image pull experience that is consistent and fast. Azure customers, running their workloads in Azure, benefit from in-network performance enhancements as well as tight integration with the MCR (the source for Microsoft container images), Azure Marketplace, and the expanding number of services in Azure that offer containers as the deployment package format.
@@ -127,20 +127,20 @@ How do you choose the right base image to build upon? For most users, `Windows S
 - **Do you need GPU acceleration support for your container workloads?** If yes, you should consider using the `Windows Server` image to include hardware acceleration for your Windows containers workloads.
 
 > [!TIP]
-> Many Windows users want to containerize applications that have a dependency on .NET. In addition to the four base images described here, Microsoft publishes several Windows container images that come pre-configured with popular Microsoft frameworks, such as a the [.NET framework](https://hub.docker.com/_/microsoft-dotnet-framework) image and the [ASP .NET](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet/) image.
+> Many Windows users want to containerize applications that have a dependency on .NET. In addition to the four base images described here, Microsoft publishes several Windows container images that come pre-configured with popular Microsoft frameworks, such as a the [.NET framework](https://hub.docker.com/r/microsoft/dotnet-framework) image and the [ASP .NET](https://hub.docker.com/r/microsoft/dotnet-framework-aspnet) image.
 
 ## Windows vs Windows Server
 
-The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and has no limits for IIS connections. To use the latest Windows Server image, you'll need a Windows Server 2022 installation. The Windows image is not available for Windows Server 2022.
+The `Windows Server` image (3.1 GB) is slightly smaller in size from the `Windows` image (3.4 GB). The Windows Server image also inherits all the performance and reliability improvements from the Server Core image, has GPU support, and has no limits for IIS connections. To use the latest Windows Server image, you'll need a Windows Server 2025 installation. The Windows image is not available for Windows Server 2025.
 
 ## Base images for Windows Insiders
 
 Microsoft provides "insider" versions of each container base image. These insider container images carry the latest and greatest feature development in our container images. When you're running a host that is an insider version of Windows (either Windows Insider or Windows Server Insider), it is preferable to use these images. The following insider images are available on Docker Hub:
 
-- [mcr.microsoft.com/windows/servercore/insider](https://hub.docker.com/_/microsoft-windows-servercore-insider)
-- [mcr.microsoft.com/windows/nanoserver/insider](https://hub.docker.com/_/microsoft-windows-nanoserver-insider)
-- [mcr.microsoft.com/windows/server/insider:10.0.20344.1](https://hub.docker.com/_/microsoft-windows-server-insider/)
-- [mcr.microsoft.com/windows/insider](https://hub.docker.com/_/microsoft-windows-insider)
+- [mcr.microsoft.com/windows/servercore/insider](https://hub.docker.com/r/microsoft/windows-servercore-insider)
+- [mcr.microsoft.com/windows/nanoserver/insider](https://hub.docker.com/r/microsoft/windows-nanoserver-insider)
+- [mcr.microsoft.com/windows/server/insider:10.0.20344.1](https://hub.docker.com/r/microsoft/windows-server-insider/)
+- [mcr.microsoft.com/windows/insider](https://hub.docker.com/r/microsoft/windows-insider)
 
 Read [Use Containers with the Windows Insider Program](../deploy-containers/insider-overview.md) to learn more.
 

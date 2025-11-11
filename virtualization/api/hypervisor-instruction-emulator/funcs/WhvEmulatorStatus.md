@@ -2,7 +2,7 @@
 title: WHV_EMULATOR_STATUS method
 description: Learn about the WHV_EMULATOR_STATUS method. 
 author: sethmanheim
-ms.author: sethm
+ms.author: roharwoo
 ms.date: 04/19/2022
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: Persistent storage in containers
 description: How Windows containers can use persistent storage.
-author: cwilhit
-ms.author: lizross
-ms.topic: conceptual
-ms.date: 08/16/2021
+author: robinharwood
+ms.author: roharwoo
+ms.date: 01/23/2025
+ms.topic: how-to
 
 ---
 
@@ -56,6 +56,7 @@ On Windows Server version 1709 and later, feature called "SMB Global Mapping" ma
 #### Configuration Steps
 
 1. On the container host, globally map the remote SMB share:
+
     ```
     $creds = Get-Credential
     New-SmbGlobalMapping -RemotePath \\contosofileserver\share1 -Credential $creds -LocalPath G:

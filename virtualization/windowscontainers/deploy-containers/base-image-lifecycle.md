@@ -1,39 +1,38 @@
 ---
 title: Base image servicing lifecycles
 description: Information about the Windows container base image lifecycle.
-author: sethmanheim
-ms.author: sethm
-ms.date: 2/18/2022
+author: robinharwood
+ms.author: roharwoo
+ms.date: 07/15/2025
 ms.topic: reference
 ---
 # Base image servicing lifecycles
 
-> Applies to: Windows Server 2022, Windows Server 2019, Windows Server 2016
+> Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
-> [!Note]
-> Microsoft has delayed the scheduled end of support and servicing dates for a number of products to help people and organizations focus their attention on retaining business continuity. See [Lifecycle changes to end of support and servicing dates](https://support.microsoft.com/help/4557164/lifecycle-changes-to-end-of-support-and-servicing-dates) entry from April 14, 2020 for more information.
+Windows container base images are based on either Long-Term Servicing Channel releases or Annual Channel releases of Windows Server. This article explains how long support lasts for different versions of base images from both channels.
 
-Windows container base images are based on either Long-Term Servicing Channel releases or Semi-Annual Channel releases of Windows Server. This article explains how long support will last for different versions of base images from both channels.
+Beginning September 2023 Windows Server has two primary release channels available, the Long-Term Servicing Channel and the Annual Channel. The Long-Term Servicing Channel (LTSC) provides a longer term option focuses on providing a traditional lifecycle of quality and security updates, whereas the Annual Channel (AC) provides more frequent releases. For more a more detailed comparison, see [Windows Server servicing channels](/windows-server/get-started/servicing-channels-comparison).
 
-The Semi-Annual Channel is a twice-per-year feature update release with eighteen-month servicing timelines for each release. This lets customers take advantage of new operating system capabilities at a faster pace, both in applications (particularly those built on containers and microservices) and in the software-defined hybrid data center. For more information, see the [Windows Server Semi-Annual Channel overview](/windows-server/get-started/semi-annual-channel-overview).
+Windows Server Annual Channel for Containers is an operating system to specifically host Windows Server containers. Windows Server Annual Channel for Containers introduces container image portability, meaning you can move to the latest Annual Channel release without having to rebuild your container images. To learn more about portability, see [Portability with Windows Server Annual Channel for Containers](https://techcommunity.microsoft.com/t5/containers/portability-with-windows-server-annual-channel-for-containers/ba-p/3885911).
 
-For Server Core images, customers can also use the Long-Term Servicing Channel that releases a new major version of Windows Server every two to three years. Long-Term Servicing Channel releases receive five years of mainstream support and five years of extended support. This channel works with systems that require a longer servicing option and functional stability.
+For Server Core images, customers can also use the Long-Term Servicing Channel that typically releases a new major version of Windows Server every two to three years. Long-Term Servicing Channel releases receive five years of mainstream support and five years of extended support. This channel works with systems that require a longer servicing option and functional stability.
 
-The following table lists each type of base image, its servicing channel, and how long its support will last.
+> [!NOTE]
+> Microsoft might change the end of support and servicing dates for several products. Always refer to [Lifecycle changes to end of support and servicing dates](/lifecycle/announcements/lifecycle-changes-eos-servicing-dates), which takes precedent over this article.
 
-|Base image                       |Servicing channel|Version|OS build|Availability|Mainstream support end date|Extended support date|
-|---------------------------------|-----------------|-------|--------|------------|---------------------------|---------------------|
-|Server Core, Nano Server, Datacenter Container |Long-Term      |2022   | 20348   |08/18/2021  |10/13/2026                 |10/14/2031                  |
-|Server Core, Nano Server, Windows|Semi-Annual      |20H2   |19042   |10/20/2020  |08/09/2022                 |N/A                  |
-|Server Core, Nano Server, Windows|Semi-Annual      |2004   |19041   |05/27/2020  |12/14/2021                 |N/A                  |
-|Server Core, Nano Server, Windows|Semi-Annual      |1909   |18363   |11/12/2019  |05/11/2021                |N/A                  |
-|Server Core, Nano Server, Windows|Semi-Annual      |1903   |18362   |05/21/2019  |12/08/2020                 |N/A                  |
-|Server Core                      |Long-Term, Semi-Annual        |2019, 1809   |17763   |11/13/2018  |01/09/2024                 |01/09/2029           |
-|Nano Server                      |Semi-Annual      |1809   |17763   |11/13/2018  |01/09/2024                 |01/09/2029                 |
-|Windows             |Semi-Annual      |1809   |17763   |11/13/2018  |01/09/2024    |01/09/2029         |
-|Server Core, Nano Server         |Semi-Annual      |1803   |17134   |04/30/2018  |11/12/2019                 |N/A                  |
-|Server Core, Nano Server         |Semi-Annual      |1709   |16299   |10/17/2017  |04/09/2019                 |N/A                  |
-|Server Core                      |Long-Term        |2016   |14393   |10/15/2016  |01/11/2022                 |01/11/2027           |
-|Nano Server                      |Semi-Annual      |1607   |14393   |10/15/2016  |10/09/2018                 |N/A                  |
 
-For servicing requirements and other additional information, see the [Windows Lifecycle FAQ](https://support.microsoft.com/help/18581/lifecycle-faq-windows-products), [Windows Server release information](/windows-server/get-started/windows-server-release-info), and the [Windows base OS images Docker hub repo](https://hub.docker.com/_/microsoft-windows-base-os-images).
+The following table lists each type of base image, its servicing channel, and when supports ends.
+
+| Base image | Servicing channel | Version | OS build | Availability | Mainstream support end date | Extended support date |
+|--|--|--|--|--|--|--|
+| Server Core, Nano Server, Datacenter Container | Long-Term | 2025 | 26100 | 11/01/2024 | 10/09/2029 | 10/10/2034 |
+| Server Core, Nano Server, Datacenter Container | Long-Term | 2022 | 20348 | 08/18/2021 | 10/13/2026 | 10/14/2031 |
+| Server Core, Nano Server, Datacenter Container | Long-Term | 2019 | 17763 | 11/13/2018 | 01/09/2024 | 01/09/2029 |
+| Server Core | Long-Term | 2016 | 14393 | 10/15/2016 | 01/11/2022 | 01/11/2027 |
+
+For servicing requirements and other additional information, see the [Windows Lifecycle FAQ](/lifecycle/faq/windows), [Windows Server release information](/windows-server/get-started/windows-server-release-info), and the following Windows Server base OS images on the Docker Hub repo:
+
+- [Windows Server](https://hub.docker.com/r/microsoft/windows-server)
+- [Windows Server Core](https://hub.docker.com/r/microsoft/windows-servercore)
+- [Nano Server](https://hub.docker.com/r/microsoft/windows-nanoserver)

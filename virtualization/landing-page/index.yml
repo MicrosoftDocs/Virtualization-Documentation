@@ -9,6 +9,7 @@ metadata:
   title: Virtualization documentation # Required; page title displayed in search results. Include the brand. < 60 chars.
   description: Find info about virtualization on Windows and Windows Server, including how to run virtual machines (VMs) and containers. # Required; article description that is displayed in search results. < 160 chars.
   ms.topic: hub-page # Required
+  ms.author: roharwoo
   author: scooley #Required; your GitHub user alias, with correct capitalization.
   ms.service: virtualization
   ms.date: 03/31/2017 #Required; mm/dd/yyyy format.
@@ -49,7 +50,7 @@ conceptualContent:
     # Card
     - title: Run virtual machines on Windows
       links:
-        - url: /virtualization/hyper-v-on-windows/quick-start/quick-create-virtual-machine
+        - url: /virtualization/hyper-v-on-windows/quick-start/create-virtual-machine
           itemType: quickstart
           text: Create a virtual machine
         - url: /virtualization/hyper-v-on-windows/reference/hyper-v-requirements

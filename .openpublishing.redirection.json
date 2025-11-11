@@ -504,6 +504,176 @@
       "source_path": "virtualization/windowscontainers/about/whats-new-ws2022-containers.md",
       "redirect_url": "/windows-server/get-started/whats-new-in-windows-server-2022",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/server-only-features.md",
+      "redirect_url": "/virtualization/hyper-v-on-windows/reference/hyper-v-requirements",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/create-pre-release-vm.md",
+      "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/create-virtual-machine",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/about/index.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows",
+      "redirect_document_id": false
+    },
+    { 
+      "source_path": "virtualization/hyper-v-on-windows/about/supported-guest-os.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/supported-guest-os?pivots=windows",
+      "redirect_document_id": false
+    }, 
+    { 
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/quick-create-virtual-machine.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v",
+      "redirect_document_id": false
+    },
+    { 
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/create-virtual-machine.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/hyper-v-requirements.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/System-requirements-for-Hyper-V-on-Windows",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/enable-hyper-v.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/install-the-hyper-v-role-on-windows-server",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/connect-to-network.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/quick-start/quick-start-windows-10-linux.md",
+      "redirect_url": "/virtualization/windowscontainers/deploy-containers/set-up-linux-containers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/deploy-containers/linux-containers.md",
+      "redirect_url": "/virtualization/windowscontainers/deploy-containers/set-up-linux-containers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/about/docker-overview.md",
+      "redirect_url": "/virtualization/windowscontainers/manage-docker/configure-docker-daemon",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/deploy-containers/events.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/kubernetes/compiling-kubernetes-binaries.md",
+      "redirect_url": "/virtualization/windowscontainers/kubernetes/getting-started-kubernetes-windows",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/manage-containers/known-issues.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/management/manage_remotehost.md",
+      "redirect_url": "/virtualization/windowscontainers/manage-docker/manage_remote-host",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/communitylinks.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/windowscontainers/licensing.md",
+      "redirect_url": "/virtualization/windowscontainers",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/enhanced-session-mode.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/enhanced-session-mode",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/quick-start/try-hyper-v-powershell.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/powershell",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/checkpoints.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/checkpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/powershell-direct.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/powershell-direct",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/nested-virtualization.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/nested-virtualization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/enable-nested-virtualization.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/enable-nested-virtualization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/custom-gallery.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/custom-vm-gallery",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/setup-nat-network.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/setup-nat-network",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/troubleshooting.md",
+      "redirect_url": "/troubleshoot/windows-server/virtualization/virtualization-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/make-integration-service.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/make-integration-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/user-guide/refactor-wmiv1-to-wmiv2.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/refactor-wmi-v1-to-wmi-v2",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/hyper-v-architecture.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/architecture",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/integration-services.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/integration-services",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/reference/HyperVBackupApproaches.md",
+      "redirect_url": "/windows-server/virtualization/hyper-v/backup-approaches",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/CVE-2017-5715-and-hyper-v-hosts.md",
+      "redirect_url": "https://support.microsoft.com/kb/4072698",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "virtualization/hyper-v-on-windows/CVE-2017-5715-and-hyper-v-vms.md",
+      "redirect_url": "https://support.microsoft.com/kb/4072698",
+      "redirect_document_id": false
     }
   ]
 }

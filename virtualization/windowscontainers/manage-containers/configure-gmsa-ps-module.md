@@ -2,10 +2,9 @@
 title: Configure gMSA on AKS with the PowerShell module
 description: Configure gMSA on Azure Kubernetes service for Windows containers.
 author: vrapolinario
-ms.author: viniap
-ms.date: 03/23/2022
+ms.author: roharwoo
+ms.date: 01/23/2025
 ms.topic: how-to
-
 ---
 
 # Configure gMSA on Azure Kubernetes Service with the PowerShell module
@@ -23,6 +22,7 @@ Your AKS cluster might or might not be already configured for gMSA. To validate 
     -AksGMSADomainDnsServer $params["domain-dns-server"] `
     -AksGMSARootDomainName $params["domain-fqdn"]
    ```
+
 After configuring your cluster, you can configure the remaining infrastructure necessary for gMSA to work.
 
 ## Configure your Active Directory environment
@@ -133,9 +133,10 @@ Azure Key Vault (AKV) will be used to store the credential used by the Windows n
     -DomainUser "$($params["domain-fqdn"])\$($params["gmsa-domain-user-name"])" `
     -DomainUserPassword $params["gmsa-domain-user-password"]
    ```
+
 At this stage, the configuration of gMSA on AKS is completed. You can now deploy your workload on your Windows nodes.
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Validate gMSA on AKS with PowerShell module](./validate-gmsa-ps-module.md)

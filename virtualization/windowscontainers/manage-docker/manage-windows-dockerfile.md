@@ -2,11 +2,12 @@
 title: Dockerfile and Windows containers
 description: Create Dockerfiles for Windows containers.
 author: vrapolinario
-ms.author: viniap
-ms.date: 03/20/2023
+ms.author: roharwoo
+ms.date: 01/23/2025
 ms.topic: how-to
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
 ---
+
 # Dockerfile on Windows
 
 The Docker engine includes tools that automate container image creation. While you can create container images manually by running the `docker commit` command, adopting an automated image creation process has many benefits, including:
@@ -25,7 +26,7 @@ This topic will show you how to use Dockerfiles with Windows containers, underst
 
 This document will discuss the concept of container images and container image layers. If you want to learn more about images and image layering, see [container base images](../manage-containers/container-base-images.md).
 
-For a complete look at Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
+For a complete look at Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/reference/dockerfile/).
 
 ## Basic Syntax
 
@@ -53,7 +54,7 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-For additional examples of Dockerfiles for Windows, see the [Dockerfile for Windows repository](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
+For additional examples of Dockerfiles for Windows, see the [Dockerfile for Windows repository](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/main/windows-container-samples).
 
 ## Instructions
 
