@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # Timers
@@ -155,7 +156,7 @@ Synthetic timers are configured by using model-specific registers (MSRs) associa
 | 0x400000B4       | HV_X64_MSR_STIMER2_CONFIG       | Configuration register for synthetic timer 2.                  |
 | 0x400000B5       | HV_X64_MSR_STIMER2_COUNT        | Expiration time or period for synthetic timer 2.               |
 | 0x400000B6       | HV_X64_MSR_STIMER3_CONFIG       | Configuration register for synthetic timer 3.                  |
-| 0x400000B7       | HV_X64_MSR_STIMER4_COUNT        | Expiration time or period for synthetic timer 3.               |
+| 0x400000B7       | HV_X64_MSR_STIMER3_COUNT        | Expiration time or period for synthetic timer 3.               |
 
 #### Synthetic Timer Configuration Register
 
@@ -171,7 +172,7 @@ Synthetic timers are configured by using model-specific registers (MSRs) associa
 | 1             | Periodic - Set if timer is periodic  | Read / Write                                               |
 | 0             | Enabled - set if timer is enabled    | Read / Write                                               |
 
-When a virtual processor is created and reset, the value of all HV_X64_MSR_STIMERx_CONFIG (synthetic timer configuration) registers is set to 0x0000000000000000. Thus, all synthetic timers are disabled by default.
+When a virtual processor is created and reset, the value of all synthetic timer configuration registers (HV_X64_MSR_STIMER0_CONFIG through HV_X64_MSR_STIMER3_CONFIG) is set to 0x0000000000000000. Thus, all synthetic timers are disabled by default.
 
 If AutoEnable is set, then writing a non-zero value to the corresponding count register will cause Enable to be set and activate the counter. Otherwise, Enable should be set after writing the corresponding count register in order to activate the counter. For information about the Count register, see the following section.
 
