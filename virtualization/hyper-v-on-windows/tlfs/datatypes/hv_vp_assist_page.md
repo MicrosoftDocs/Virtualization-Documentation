@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HV_VP_ASSIST_PAGE
@@ -46,7 +47,7 @@ typedef union
 
     UINT8 ReservedZBytePadding[HV_PAGE_SIZE];
 
-} HV_VP_ASSIST_PAGE, *PHV_VP_ASSIST_PAGE;
+} HV_VP_ASSIST_PAGE;
  ```
 
 ## See also

@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HV_REGISTER_VALUE
@@ -33,5 +34,5 @@ typedef union
     HV_X64_PENDING_INTERRUPTION_REGISTER PendingInterruption;
     HV_X64_MSR_NPIEP_CONFIG_CONTENTS NpiepConfig;
     HV_X64_PENDING_EXCEPTION_EVENT PendingExceptionEvent;
-} HV_REGISTER_VALUE, *PHV_REGISTER_VALUE;
+} HV_REGISTER_VALUE;
  ```
