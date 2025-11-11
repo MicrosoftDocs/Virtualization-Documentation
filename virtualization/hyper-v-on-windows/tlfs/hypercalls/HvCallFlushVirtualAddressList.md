@@ -1,14 +1,15 @@
 ---
-title: HvFlushVirtualAddressList
-description: HvFlushVirtualAddressList hypercall
+title: HvCallFlushVirtualAddressList
+description: HvCallFlushVirtualAddressList hypercall
 keywords: hyper-v
 author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
-# HvFlushVirtualAddressList
+# HvCallFlushVirtualAddressList
 
 The HvCallFlushVirtualAddressList hypercall invalidates portions of the virtual TLB that belong to a specified address space.
 
@@ -20,8 +21,8 @@ HvCallFlushVirtualAddressList(
     _In_ HV_ADDRESS_SPACE_ID AddressSpace,
     _In_ HV_FLUSH_FLAGS Flags,
     _In_ UINT64 ProcessorMask,
-    _Inout_ PUINT32 GvaCount,
-    _In_reads_(GvaCount) PCHV_GVA GvaRangeList
+    _Inout_ UINT32* GvaCount,
+    _In_reads_(*GvaCount) const HV_GVA* GvaRangeList
     );
  ```
 

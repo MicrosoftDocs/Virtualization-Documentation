@@ -1,9 +1,33 @@
 - name: Overview
   href: overview.md
+- name: HvCallAssertVirtualInterrupt
+  href: HvCallAssertVirtualInterrupt.md
+- name: HvCallCheckForIoIntercept
+  href: HvCallCheckForIoIntercept.md
+- name: HvCallConnectPort
+  href: HvCallConnectPort.md
+- name: HvCallCreatePartition
+  href: HvCallCreatePartition.md
+- name: HvCallCreatePort
+  href: HvCallCreatePort.md
+- name: HvCallCreateVp
+  href: HvCallCreateVp.md
+- name: HvCallDeletePartition
+  href: HvCallDeletePartition.md
+- name: HvCallDeletePort
+  href: HvCallDeletePort.md
+- name: HvCallDeleteVp
+  href: HvCallDeleteVp.md
+- name: HvCallDepositMemory
+  href: HvCallDepositMemory.md
+- name: HvCallDisconnectPort
+  href: HvCallDisconnectPort.md
 - name: HvCallEnablePartitionVtl
   href: HvCallEnablePartitionVtl.md
 - name: HvCallEnableVpVtl
   href: HvCallEnableVpVtl.md
+- name: HvCallFinalizePartition
+  href: HvCallFinalizePartition.md
 - name: HvCallFlushGuestPhysicalAddressList
   href: HvCallFlushGuestPhysicalAddressList.md
 - name: HvCallFlushGuestPhysicalAddressSpace
@@ -16,33 +40,83 @@
   href: HvCallFlushVirtualAddressSpace.md
 - name: HvCallFlushVirtualAddressSpaceEx
   href: HvCallFlushVirtualAddressSpaceEx.md
+- name: HvCallGetMemoryBalance
+  href: HvCallGetMemoryBalance.md
+- name: HvCallGetNextChildPartition
+  href: HvCallGetNextChildPartition.md
+- name: HvCallGetPartitionProperty
+  href: HvCallGetPartitionProperty.md
+- name: HvCallGetVpCpuidValues
+  href: HvCallGetVpCpuidValues.md
 - name: HvCallGetVpIndexFromApicId
   href: HvCallGetVpIndexFromApicId.md
 - name: HvCallGetVpRegisters
   href: HvCallGetVpRegisters.md
+- name: HvCallGetVpSetFromMda
+  href: HvCallGetVpSetFromMda.md
+- name: HvCallInitializePartition
+  href: HvCallInitializePartition.md
+- name: HvCallInstallIntercept
+  href: HvCallInstallIntercept.md
+- name: HvCallInstallInterceptEx
+  href: HvCallInstallInterceptEx.md
+- name: HvCallMapGpaPages
+  href: HvCallMapGpaPages.md
+- name: HvCallMapSparseGpaPages
+  href: HvCallMapSparseGpaPages.md
+- name: HvCallMapStatsPage2
+  href: HvCallMapStatsPage2.md
+- name: HvCallMapVpStatePage
+  href: HvCallMapVpStatePage.md
+- name: HvCallModifySparseGpaPages
+  href: HvCallModifySparseGpaPages.md
 - name: HvCallModifyVtlProtectionMask
   href: HvCallModifyVtlProtectionMask.md
 - name: HvCallNotifyLongSpinWait
   href: HvCallNotifyLongSpinWait.md
 - name: HvCallPostMessage
   href: HvCallPostMessage.md
+- name: HvCallPostMessageDirect
+  href: HvCallPostMessageDirect.md
+- name: HvCallRegisterInterceptResult
+  href: HvCallRegisterInterceptResult.md
 - name: HvCallRetargetDeviceInterrupt
   href: HvCallRetargetDeviceInterrupt.md
 - name: HvCallSendSyntheticClusterIpi
   href: HvCallSendSyntheticClusterIpi.md
 - name: HvCallSendSyntheticClusterIpiEx
   href: HvCallSendSyntheticClusterIpiEx.md
+- name: HvCallSetPartitionProperty
+  href: HvCallSetPartitionProperty.md
+- name: HvCallSetPartitionPropertyEx
+  href: HvCallSetPartitionPropertyEx.md
+- name: HvCallSetVirtualInterruptTarget
+  href: HvCallSetVirtualInterruptTarget.md
 - name: HvCallSetVpRegisters
   href: HvCallSetVpRegisters.md
 - name: HvCallSignalEvent
   href: HvCallSignalEvent.md
+- name: HvCallSignalEventDirect
+  href: HvCallSignalEventDirect.md
 - name: HvCallStartVirtualProcessor
   href: HvCallStartVirtualProcessor.md
+- name: HvCallTranslateVirtualAddress
+  href: HvCallTranslateVirtualAddress.md
+- name: HvCallTranslateVirtualAddressEx
+  href: HvCallTranslateVirtualAddressEx.md
+- name: HvCallUnmapGpaPages
+  href: HvCallUnmapGpaPages.md
+- name: HvCallUnmapVpStatePage
+  href: HvCallUnmapVpStatePage.md
+- name: HvCallUnregisterInterceptResult
+  href: HvCallUnregisterInterceptResult.md
 - name: HvCallVtlCall
   href: HvCallVtlCall.md
 - name: HvCallVtlReturn
   href: HvCallVtlReturn.md
-- name: HvExtCallQueryCapabilities
-  href: HvExtCallQueryCapabilities.md
+- name: HvCallWithdrawMemory
+  href: HvCallWithdrawMemory.md
 - name: HvExtCallGetBootZeroedMemory
   href: HvExtCallGetBootZeroedMemory.md
+- name: HvExtCallQueryCapabilities
+  href: HvExtCallQueryCapabilities.md

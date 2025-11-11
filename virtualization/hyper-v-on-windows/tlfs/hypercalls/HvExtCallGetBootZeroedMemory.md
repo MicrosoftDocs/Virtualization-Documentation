@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 11/16/2022
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HvExtCallGetBootZeroedMemory
@@ -21,7 +22,7 @@ Ranges can include memory that don’t exist and can overlap. The hypervisor sho
  ```c
 HV_STATUS
 HvExtCallGetBootZeroedMemory(
-    _Out_ PUINT64 RangeCount,
+    _Out_ UINT64* RangeCount,
     _Out_ HV_EXT_OUTPUT_BOOT_ZEROED_MEMORY_RANGE Ranges[]
     );
  ```

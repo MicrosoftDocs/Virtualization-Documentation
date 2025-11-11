@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HV_CRASH_CTL_REG_CONTENTS
@@ -20,10 +21,11 @@ typedef union
     UINT64 AsUINT64;
     struct
     {
-        UINT64 Reserved : 62;         // Reserved bits
-        UINT64 CrashMessage : 1;      // P3 is the PA of the message
-                                      // P4 is the length in bytes
-        UINT64 CrashNotify : 1;       // Log contents of crash parameter
+        UINT64 Reserved      : 58; // Reserved bits
+        UINT64 PreOSId       : 3;  // Crash occurred in the preOS environment
+        UINT64 NoCrashDump   : 1;  // Crash dump will not be captured
+        UINT64 CrashMessage  : 1;  // P3 is the PA of the message, P4 is the length in bytes
+        UINT64 CrashNotify   : 1;  // Log contents of crash parameter system registers
     };
 } HV_CRASH_CTL_REG_CONTENTS;
  ```

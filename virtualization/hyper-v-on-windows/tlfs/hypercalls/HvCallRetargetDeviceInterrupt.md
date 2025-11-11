@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallRetargetDeviceInterrupt
@@ -32,7 +33,7 @@ HvRetargetDeviceInterrupt(
 
 | Name                    | Offset     | Size     | Information Provided                      |
 |-------------------------|------------|----------|-------------------------------------------|
-| `PartitionId`           | 0          | 8        | Partition Id (can be HV_PARTITION_SELF)   |
+| `PartitionId`           | 0          | 8        | Partition Id (can be HV_PARTITION_ID_SELF)   |
 | `DeviceId`              | 8          | 6        | Supplies the unique (within a guest) logical device ID that is assigned by the host.   |
 | RsvdZ                   | 32         | 8        | Reserved                                  |
 | `InterruptEntry`        | 16         | 16       | Supplies the MSI address and data that identifies the interrupt. |
@@ -41,5 +42,4 @@ HvRetargetDeviceInterrupt(
 ## See also
 
 [HV_INTERRUPT_ENTRY](../datatypes/HV_INTERRUPT_ENTRY.md)
-
 [HV_DEVICE_INTERRUPT_TARGET](../datatypes/HV_DEVICE_INTERRUPT_TARGET.md)

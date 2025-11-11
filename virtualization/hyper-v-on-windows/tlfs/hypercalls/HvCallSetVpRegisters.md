@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallSetVpRegisters
@@ -20,9 +21,9 @@ HvCallSetVpRegisters(
     _In_ HV_PARTITION_ID PartitionId,
     _In_ HV_VP_INDEX VpIndex,
     _In_ HV_INPUT_VTL InputVtl,
-    _Inout_ PUINT32 RegisterCount,
-    _In_reads(RegisterCount) PCHV_REGISTER_NAME RegisterNameList,
-    _In_reads(RegisterCount) PCHV_REGISTER_VALUE RegisterValueList
+    _Inout_ UINT32* RegisterCount,
+    _In_reads_(*RegisterCount) const HV_REGISTER_NAME* RegisterNameList,
+    _In_reads_(*RegisterCount) const HV_REGISTER_VALUE* RegisterValueList
     );
  ```
 
@@ -59,8 +60,29 @@ Side-effects of modifying a register are not performed. This includes generation
 | RsvdZ                   | 4          | 12       |                                           |
 | `RegisterValue`         | 16         | 16       | Specifies the new value for the specified register. |
 
+## Early Register List (ARM64)
+
+On ARM64, certain registers can be set using this hypercall before the Guest OS ID register (`HvRegisterGuestOsId`) is set to a non-zero value. This allows early initialization of critical system registers during the boot process.
+
+The following registers are permitted to be set before Guest OS identification:
+
+| Register Name | Description |
+|---------------|-------------|
+| `HvRegisterGuestOsId` | Guest operating system identification register |
+| `HvArm64RegisterSyntheticVbarEl1` | Synthetic Vector Base Address Register for EL1 |
+| `HvRegisterGuestCrashCtl` | Guest crash control register |
+| `HvRegisterGuestCrashP0` | Guest crash parameter 0 |
+| `HvRegisterGuestCrashP1` | Guest crash parameter 1 |
+| `HvRegisterGuestCrashP2` | Guest crash parameter 2 |
+| `HvRegisterGuestCrashP3` | Guest crash parameter 3 |
+| `HvRegisterGuestCrashP4` | Guest crash parameter 4 |
+
+All other registers require the Guest OS ID to be established (non-zero) before they can be modified through this hypercall.
+
+**Note:** Setting `HvRegisterGuestOsId` to a non-zero value is typically the first step in the hypervisor initialization sequence, as it identifies the guest operating system to the hypervisor and enables access to the full register set.
+
 ## See also
 
-[HV_REGISTER_NAME](../datatypes/HV_REGISTER_NAME.md)
+[HV_REGISTER_NAME](../datatypes/hv_register_name.md)
 
-[HV_REGISTER_VALUE](../datatypes/HV_REGISTER_VALUE.md)
+[HV_REGISTER_VALUE](../datatypes/hv_register_value.md)
