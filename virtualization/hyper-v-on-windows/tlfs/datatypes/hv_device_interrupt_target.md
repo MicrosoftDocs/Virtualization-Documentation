@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HV_DEVICE_INTERRUPT_TARGET
@@ -13,6 +14,7 @@ ms.topic: reference
 ## Syntax
 
  ```c
+
 #define HV_DEVICE_INTERRUPT_TARGET_MULTICAST 1
 #define HV_DEVICE_INTERRUPT_TARGET_PROCESSOR_SET 2
 

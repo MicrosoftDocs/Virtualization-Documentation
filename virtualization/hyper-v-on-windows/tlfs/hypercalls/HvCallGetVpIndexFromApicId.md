@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallGetVpIndexFromApicId
@@ -19,9 +20,9 @@ HV_STATUS
 HvCallGetVpIndexFromApicId(
     _In_ HV_PARTITION_ID PartitionId,
     _In_ HV_VTL TargetVtl,
-    _Inout_ PUINT32 ApicIdCoount,
-    _In_reads_(ApicIdCount) PHV_APIC_ID ApicIdList,
-    _Out_writes(ApicIdCount) PHV_VP_INDEX VpIndexList
+    _Inout_ UINT32* ApicIdCoount,
+    _In_reads_(ApicIdCount) HV_APIC_ID* ApicIdList,
+    _Out_writes(ApicIdCount) HV_VP_INDEX* VpIndexList
     );
 
  ```

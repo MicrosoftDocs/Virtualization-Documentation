@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallFlushGuestPhysicalAddressList
@@ -19,7 +20,7 @@ HV_STATUS
 HvCallFlushGuestPhysicalAddressList(
     _In_ HV_SPA AddressSpace,
     _In_ UINT64 Flags,
-    _In_reads_(RangeCount) PHV_GPA_PAGE_RANGE GpaRangeList
+    _In_ HV_GPA_PAGE_RANGE* GpaRangeList // Reads RepCount elements
     );
  ```
 
