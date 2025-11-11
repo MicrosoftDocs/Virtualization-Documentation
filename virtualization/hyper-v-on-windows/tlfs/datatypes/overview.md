@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # Data Types
@@ -59,7 +60,6 @@ typedef UINT64 HV_SPA_PAGE_NUMBER;
 typedef UINT64 HV_GPA_PAGE_NUMBER;
 typedef UINT64 HV_GVA_PAGE_NUMBER;
 typedef UINT32 HV_SPA_PAGE_OFFSET
-typedef HV_GPA_PAGE_NUMBER *PHV_GPA_PAGE_NUMBER;
  ```
 
 To convert an `HV_SPA` to an `HV_SPA_PAGE_NUMBER`, simply divide by `HV_PAGE_SIZE`.

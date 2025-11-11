@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HV_VMX_ENLIGHTENED_VMCS
@@ -187,7 +188,7 @@ typedef struct
     UINT32 Rsvd5;
     UINT64 VmId;
     UINT64 PartitionAssistPage;
-    UINT64 Rsvd6[4];
+    UINT64 Rsvd5[4];
 
     UINT64 GuestBndcfgs;
     UINT64 GuestPerfGlobalCtrl;
@@ -195,7 +196,7 @@ typedef struct
     UINT64 GuestSsp;
     UINT64 GuestInterruptSspTableAddr;
     UINT64 GuestLbrCtl;
-    UINT64 Rsvd7[2];
+    UINT64 Rsvd6[2];
 
     UINT64 XssExitingBitmap;
     UINT64 EnclsExitingBitmap;
@@ -204,7 +205,7 @@ typedef struct
     UINT64 HostSCet;
     UINT64 HostSsp;
     UINT64 HostInterruptSspTableAddr;
-    UINT64 Rsvd8;
+    UINT64 TertiaryProcessorControls;
 } HV_VMX_ENLIGHTENED_VMCS;
  ```
 
@@ -326,6 +327,7 @@ The following table maps the Intel physical VMCS encoding to its corresponding e
 | 0x00006C18     | HostSCet                    | 8      | HOST_GRP1                     |
 | 0x00006C1A     | HostSsp                     | 8      | HOST_GRP1                     |
 | 0x00006C1C     | HostInterruptSspTableAddr   | 8      | HOST_GRP1                     |
+| 0x00002034     | TertiaryProcessorControls   | 8      | CONTROL_GRP1                  |
 | 0x00002400     | ExitEptFaultGpa             | 8      | NONE (Read only)              |
 | 0x00004400     | ExitInstructionError        | 4      | NONE (Read only)              |
 | 0x00004402     | ExitReason                  | 4      | NONE (Read only)              |
