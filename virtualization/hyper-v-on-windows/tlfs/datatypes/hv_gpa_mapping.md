@@ -6,7 +6,7 @@ author: hvdev
 ms.author: hvdev
 ms.date: 08/28/2025
 ms.topic: reference
-ms.prod: windows-10-hyperv
+
 ---
 
 # HV_GPA_MAPPING

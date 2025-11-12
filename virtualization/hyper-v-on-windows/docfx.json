@@ -35,7 +35,25 @@
     },
     "fileMetadata": {
       "ms.service": {
-        "**/*.md": "windows-10-hyperv"
+        "**/*.md": "windows-server"
+      },
+      "ms.subservice": {
+        "**/*.md": "hyper-v"
+      },
+      "ms.topic": {
+        "virtualization/api/hcn/**/*.md": "reference"
+      },
+      "ms.topic": {
+        "virtualization/api/hcs/**/*.md": "reference"
+      },
+      "ms.topic": {
+        "virtualization/api/hypervisor-instruction-emulator/**/*.md": "reference"
+      },
+      "ms.topic": {
+        "virtualization/api/hypervisor-platform/**/*.md": "reference"
+      },
+      "ms.topic": {
+        "tlfs/**/*.md": "reference"
       },
       "breadcrumb_path": {
         "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/breadcrumb/toc.yml",
@@ -43,8 +61,6 @@
       },
       "ms.topic": {
         "**/*.md": "article"
-      },
-      "ms.prod": {
       },
       "extendBreadcrumb": {
         "tlfs/hypercalls/**/*.md": false,
