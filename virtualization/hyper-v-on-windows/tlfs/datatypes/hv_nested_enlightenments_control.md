@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HV_NESTED_ENLIGHTENMENTS_CONTROL
@@ -35,8 +36,8 @@ typedef struct
             UINT32 InterPartitionCommunication:1;
             UINT32 Reserved:31;
         };
-     } HypercallControls;
-} HV_NESTED_ENLIGHTENMENTS_CONTROL, *PHV_NESTED_ENLIGHTENMENTS_CONTROL;
+    } HypercallControls;
+} HV_NESTED_ENLIGHTENMENTS_CONTROL;
  ```
 
 ## See also

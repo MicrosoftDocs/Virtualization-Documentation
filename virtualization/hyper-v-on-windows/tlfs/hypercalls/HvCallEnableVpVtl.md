@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallEnableVpVtl
@@ -16,7 +17,7 @@ HvCallEnableVpVtl enables a VTL to run on a VP. This hypercall should be used in
 
  ```c
 HV_STATUS
-HvEnableVpVtl(
+HvCallEnableVpVtl(
     _In_ HV_PARTITION_ID TargetPartitionId,
     _In_ HV_VP_INDEX VpIndex,
     _In_ HV_VTL TargetVtl,
@@ -46,4 +47,7 @@ This hypercall will fail if called to enable a VTL that is already enabled for a
 
 ## See also
 
-[HV_INITIAL_VP_CONTEXT](../datatypes/HV_INITIAL_VP_CONTEXT.md)
+* [HV_PARTITION_ID](../datatypes/hv_partition_id.md)
+* [HV_VP_INDEX](../datatypes/hv_vp_index.md)
+* [HV_VTL](../datatypes/hv_vtl.md)
+* [HV_INITIAL_VP_CONTEXT](../datatypes/HV_INITIAL_VP_CONTEXT.md)

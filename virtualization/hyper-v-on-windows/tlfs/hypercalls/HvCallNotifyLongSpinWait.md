@@ -6,6 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallNotifyLongSpinWait
@@ -16,7 +17,7 @@ The HvCallNotifyLongSpinWait hypercall is used by a guest OS to notify the hyper
 
  ```c
 HV_STATUS
-HvNotifyLongSpinWait(
+HvCallNotifyLongSpinWait(
     _In_ UINT64 SpinCount
     );
  ```
