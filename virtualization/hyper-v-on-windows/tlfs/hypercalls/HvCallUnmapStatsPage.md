@@ -6,7 +6,7 @@ author: hvdev
 ms.author: hvdev
 ms.date: 11/01/2025
 ms.topic: reference
-ms.prod: windows-10-hyperv
+
 ---
 
 # HvCallUnmapStatsPage
