@@ -52,7 +52,7 @@ Allow unencrypted connetions, by adding
 }
 ```
 
-to `c"\programdata\docker\config\daemon.json` and then restart the service.
+to `c:\programdata\docker\config\daemon.json` and then restart the service.
 
 Connect to the remote host with a command line like:
 
