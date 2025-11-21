@@ -204,7 +204,7 @@ void LongMode(void)
     const UINT64 gdtNullEntryIndex = 0;
     // GDT CS entry - page granularity, long, present, type code, execute\read\accessed
     const UINT16 csAttributes = 0xa09b;
-    const UINT64 gdtCsEntryValue = ((UINT64)csAttributes << 20);
+    const UINT64 gdtCsEntryValue = ((UINT64)csAttributes << 40);
     const UINT64 gdtCsEntryIndex = 1;
 
     uint64_t *gdtPage = static_cast<uint64_t *>(addressSpace.CommitRange(gdtSize, PAGE_READWRITE));
