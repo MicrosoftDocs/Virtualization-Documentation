@@ -65,6 +65,10 @@
       "extendBreadcrumb": {
         "tlfs/hypercalls/**/*.md": false,
         "tlfs/datatypes/**/*.md": false              
+      },
+      "ms.update-cycle": {
+        "**/*.md": "1095-days",
+        "**/*.yml": "1095-days"
       }
     },
     "template": [],

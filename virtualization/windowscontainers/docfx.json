@@ -50,6 +50,10 @@
       "ms.prod": {
       },
       "ms.technology": {
+      },
+      "ms.update-cycle": {
+        "**/*.md": "1095-days",
+        "**/*.yml": "1095-days"
       }
     },
     "template": [],
