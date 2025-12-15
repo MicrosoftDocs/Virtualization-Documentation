@@ -1,3 +1,13 @@
+---
+title: HV_TRANSLATE_GVA_CONTROL_FLAGS
+description: HV_TRANSLATE_GVA_CONTROL_FLAGS
+keywords: hyper-v
+author: hvdev
+ms.author: hvdev
+ms.date: 11/07/2025
+ms.topic: reference
+---
+
 # HV_TRANSLATE_GVA_CONTROL_FLAGS
 
 The HV_TRANSLATE_GVA_CONTROL_FLAGS type defines the control flags used to specify how guest virtual address translation should be performed.

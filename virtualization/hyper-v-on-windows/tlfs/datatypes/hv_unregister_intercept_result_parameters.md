@@ -1,3 +1,13 @@
+---
+title: HV_UNREGISTER_INTERCEPT_RESULT_PARAMETERS
+description: HV_UNREGISTER_INTERCEPT_RESULT_PARAMETERS
+keywords: hyper-v
+author: hvdev
+ms.author: hvdev
+ms.date: 11/07/2025
+ms.topic: reference
+---
+
 # HV_UNREGISTER_INTERCEPT_RESULT_PARAMETERS
 
 ## Overview

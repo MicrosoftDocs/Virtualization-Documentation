@@ -1,4 +1,13 @@
-````markdown
+---
+title: HV_UNMAP_GPA_FLAGS
+description: HV_UNMAP_GPA_FLAGS
+keywords: hyper-v
+author: hvdev
+ms.author: hvdev
+ms.date: 11/07/2025
+ms.topic: reference
+---
+
 # HV_UNMAP_GPA_FLAGS
 
 ## Overview
@@ -23,4 +32,4 @@ typedef UINT32 HV_UNMAP_GPA_FLAGS;
 ## See Also
 * [HvCallUnmapGpaPages](../hypercalls/HvCallUnmapGpaPages.md)
 * [HvCallMapGpaPages](../hypercalls/HvCallMapGpaPages.md)
-````
+
