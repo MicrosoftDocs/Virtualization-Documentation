@@ -6,7 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # Timers
@@ -26,15 +26,27 @@ The hypervisor maintains a per-partition reference time counter. It has the char
 
 The reference counter continues to count up as long as at least one virtual processor is not explicitly suspended.
 
-### Partition Reference Counter MSR
+### Partition Reference Counter Register
 
-A partition’s reference counter can be accessed through a partition-wide MSR.
+#### On x64 Platforms
+
+On x64 platforms, a partition's reference counter can be accessed through a partition-wide MSR.
 
 | MSR address      | Register Name              | Description                                                                 |
 |------------------|----------------------------|-----------------------------------------------------------------------------|
 | 0x40000020       | HV_X64_MSR_TIME_REF_COUNT  | Time reference count (partition-wide)                                       |
 
-When a partition is created, the value of the TIME_REF_COUNT MSR is set to 0x0000000000000000. This value cannot be modified by a virtual processor. Any attempt to write to it results in a #GP fault.
+#### On ARM64 Platforms
+
+On ARM64 platforms, a partition's reference counter is accessed via the HvRegisterTimeRefCount synthetic register using the HvCallGetVpRegisters and HvCallSetVpRegisters hypercalls.
+
+| Register Name              | Description                                                                 |
+|----------------------------|-----------------------------------------------------------------------------|
+| HvRegisterTimeRefCount     | Time reference count (partition-wide)                                       |
+
+#### Register Behavior
+
+When a partition is created, the value of the reference counter register is set to 0x0000000000000000. This value cannot be modified by a virtual processor. On x64 platforms, any attempt to write to the MSR results in a #GP fault. On ARM64 platforms, attempts to write via HvCallSetVpRegisters return HV_STATUS_INVALID_PARAMETER.
 
 ### Partition Reference Time Enlightenment
 
@@ -61,13 +73,27 @@ typedef struct
 } HV_REFERENCE_TSC_PAGE;
  ```
 
-#### Reference Time Stamp Counter (TSC) Page MSR
+#### Reference Time Stamp Counter (TSC) Page Register
 
-A guest wishing to access its reference TSC page must use the following model-specific register (MSR). A partition which possesses the AccessPartitionReferenceTsc privilege may access the MSR.
+A guest wishing to access its reference TSC page must use a synthetic register. A partition which possesses the AccessPartitionReferenceTsc privilege may access the register.
+
+##### On x64 Platforms
+
+On x64 platforms, the reference TSC page is accessed via an MSR.
 
 | MSR address      | Register Name              | Description                                                                 |
 |------------------|----------------------------|-----------------------------------------------------------------------------|
 | 0x40000021       | HV_X64_MSR_REFERENCE_TSC   | Reference TSC page                                                          |
+
+##### On ARM64 Platforms
+
+On ARM64 platforms, the reference TSC page is accessed via the HvRegisterReferenceTsc synthetic register using the HvCallGetVpRegisters and HvCallSetVpRegisters hypercalls.
+
+| Register Name              | Description                                                                 |
+|----------------------------|-----------------------------------------------------------------------------|
+| HvRegisterReferenceTsc     | Reference TSC page                                                          |
+
+##### Register Layout
 
 | Bits          | Description                         | Attributes                                                  |
 |---------------|-------------------------------------|-------------------------------------------------------------|
@@ -143,9 +169,13 @@ Synthetic and virtualized timers generate interrupts at or near their designated
 
 “Direct” synthetic timers assert an interrupt upon timer expiration instead of sending a message to a SynIc synthetic interrupt source. A synthetic timer is set to “direct” mode by setting the “DirectMode” field of the synthetic timer configuration MSRs. The “ApicVector” field controls the interrupt vector that is asserted upon timer expiration.
 
-### Synthetic Timer MSRs
+### Synthetic Timer Registers
 
-Synthetic timers are configured by using model-specific registers (MSRs) associated with each virtual processor. Each of the four synthetic timers has an associated pair of MSRs.
+Synthetic timers are configured by using synthetic registers associated with each virtual processor. Each of the four synthetic timers has an associated pair of registers (configuration and count).
+
+#### On x64 Platforms
+
+On x64 platforms, synthetic timers are accessed via MSRs using the RDMSR and WRMSR instructions.
 
 | MSR address      | Register Name                   | Description                                                    |
 |------------------|---------------------------------|----------------------------------------------------------------|
@@ -158,7 +188,26 @@ Synthetic timers are configured by using model-specific registers (MSRs) associa
 | 0x400000B6       | HV_X64_MSR_STIMER3_CONFIG       | Configuration register for synthetic timer 3.                  |
 | 0x400000B7       | HV_X64_MSR_STIMER3_COUNT        | Expiration time or period for synthetic timer 3.               |
 
-#### Synthetic Timer Configuration Register
+#### On ARM64 Platforms
+
+On ARM64 platforms, synthetic timers are accessed via synthetic registers using the HvCallGetVpRegisters and HvCallSetVpRegisters hypercalls.
+
+| Register Name                   | Description                                                    |
+|---------------------------------|----------------------------------------------------------------|
+| HvRegisterStimer0Config         | Configuration register for synthetic timer 0.                  |
+| HvRegisterStimer0Count          | Expiration time or period for synthetic timer 0.               |
+| HvRegisterStimer1Config         | Configuration register for synthetic timer 1.                  |
+| HvRegisterStimer1Count          | Expiration time or period for synthetic timer 1.               |
+| HvRegisterStimer2Config         | Configuration register for synthetic timer 2.                  |
+| HvRegisterStimer2Count          | Expiration time or period for synthetic timer 2.               |
+| HvRegisterStimer3Config         | Configuration register for synthetic timer 3.                  |
+| HvRegisterStimer3Count          | Expiration time or period for synthetic timer 3.               |
+
+> **Note:** On ARM64, synthetic timers are optional because the ARM Generic Timer (GIT) can be used directly without incurring virtualization overhead. Guest operating systems should prefer using the architectural generic timer for better performance.
+
+#### Register Layout
+
+##### Synthetic Timer Configuration Register
 
 | Bits          | Description                         | Attributes                                                  |
 |---------------|-------------------------------------|-------------------------------------------------------------|
@@ -172,7 +221,7 @@ Synthetic timers are configured by using model-specific registers (MSRs) associa
 | 1             | Periodic - Set if timer is periodic  | Read / Write                                               |
 | 0             | Enabled - set if timer is enabled    | Read / Write                                               |
 
-When a virtual processor is created and reset, the value of all synthetic timer configuration registers (HV_X64_MSR_STIMER0_CONFIG through HV_X64_MSR_STIMER3_CONFIG) is set to 0x0000000000000000. Thus, all synthetic timers are disabled by default.
+When a virtual processor is created and reset, the value of all synthetic timer configuration registers (HV_X64_MSR_STIMER0_CONFIG through HV_X64_MSR_STIMER3_CONFIG) are set to 0x0000000000000000. Thus, all synthetic timers are disabled by default.
 
 If AutoEnable is set, then writing a non-zero value to the corresponding count register will cause Enable to be set and activate the counter. Otherwise, Enable should be set after writing the corresponding count register in order to activate the counter. For information about the Count register, see the following section.
 
@@ -184,7 +233,7 @@ It is not permitted to set the SINTx field to zero for an enabled timer (that is
 
 Writing the configuration register of a timer that is already enabled may result in undefined behavior. For example, merely changing a timer from one-shot to periodic may not produce what is intended. Timers should always be disabled prior to changing any other properties.
 
-#### Synthetic Timer Count Register
+##### Synthetic Timer Count Register
 
 | Bits          | Description                                                             | Attributes              |
 |---------------|-------------------------------------------------------------------------|-------------------------|
@@ -202,18 +251,26 @@ For periodic timers, the count represents the period of the timer. The first per
 
 Timer expiration messages are sent when a timer event fires. Refer to the [HV_TIMER_MESSAGE_PAYLOAD](datatypes/HV_TIMER_MESSAGE_PAYLOAD.md) for the definition of the message payload.
 
-### Synthetic Time-Unhalted Timer MSRs
+### Synthetic Time-Unhalted Timer Registers
 
-Synthetic Time-Unhalted Timer MSRs are available if a partition has the AccessSyntheticTimerRegs privilege and EDX bit 23 in the Hypervisor Feature Identification CPUID leaf 0x40000003 is set. Guest software may program the synthetic time-unhalted timer to generate a periodic interrupt after executing for a specified amount of time in 100ns units. When the interrupt fires, the SyntheticTimeUnhaltedTimerExpired field in the VP Assist Page will be set to TRUE. Guest software may reset this field to FALSE. Unlike architectural performance counters, the synthetic timer is never reset by the hypervisor and runs continuously between interrupts. Vectors ==2 send an NMI, other vectors send a fixed interrupt.
+Synthetic Time-Unhalted Timer registers are available on x64 platforms if a partition has the AccessSyntheticTimerRegs privilege. Availability is indicated by EDX bit 23 in the Hypervisor Feature Identification CPUID leaf 0x40000003. This feature is not available on ARM64 platforms.
+
+Guest software may program the synthetic time-unhalted timer to generate a periodic interrupt after executing for a specified amount of time in 100ns units. When the interrupt fires, the SyntheticTimeUnhaltedTimerExpired field in the VP Assist Page will be set to TRUE. Guest software may reset this field to FALSE. Unlike architectural performance counters, the synthetic timer is never reset by the hypervisor and runs continuously between interrupts. If the Vector field is set to 2 (the x64 NMI vector), the timer delivers a Non-Maskable Interrupt; otherwise, it delivers a fixed interrupt using the specified vector.
 
 Unlike regular synthetic timers that accumulate time when the guest has halted (ie: gone idle), the Synthetic Time-Unhalted Timer accumulates time only while the guest is not halted.
 
+#### On x64 Platforms
+
+On x64 platforms, the synthetic time-unhalted timer is accessed via MSRs using the RDMSR and WRMSR instructions.
+
 | MSR address      | Register Name                          | Description                                             |
 |------------------|----------------------------------------|---------------------------------------------------------|
-| 0x40000114       | HV_X64_MSR_STIME_UNHALTED_TIMER_CONFIG | Synthetic Time-Unhalted Timer Configuration MSR         |
-| 0x40000115       | HV_X64_MSR_STIME_UNHALTED_TIMER_COUNT  | Synthetic Time-Unhalted Timer Count MSR                 |
+| 0x40000114       | HV_X64_MSR_STIME_UNHALTED_TIMER_CONFIG | Synthetic Time-Unhalted Timer Configuration             |
+| 0x40000115       | HV_X64_MSR_STIME_UNHALTED_TIMER_COUNT  | Synthetic Time-Unhalted Timer Count                     |
 
-#### Synthetic Time-Unhalted Timer Configuration MSR
+#### Register Layout
+
+##### Synthetic Time-Unhalted Timer Configuration Register
 
 | Bits          | Description                         | Attributes                                                  |
 |---------------|-------------------------------------|-------------------------------------------------------------|
@@ -221,7 +278,9 @@ Unlike regular synthetic timers that accumulate time when the guest has halted (
 | 8             | Enabled                             | Read / Write                                                |
 | 7:0           | Vector                              | Read / Write                                                |
 
-#### Synthetic Time-Unhalted Timer Count MSR
+The Vector field must be either 2 (to deliver an NMI) or a value ≥ 16 (to deliver a fixed interrupt). Other values are invalid.
+
+##### Synthetic Time-Unhalted Timer Count Register
 
 | Bits          | Description                                                             | Attributes              |
 |---------------|-------------------------------------------------------------------------|-------------------------|

@@ -120,6 +120,10 @@
   href: hv_vp_vtl_control.md
 - name: HV_VTL
   href: hv_vtl.md
+- name: HV_ARM64_INTERRUPT_STATE_REGISTER
+  href: hv_arm64_interrupt_state_register.md
+- name: HV_ARM64_PENDING_INTERRUPTION_REGISTER
+  href: hv_arm64_pending_interruption_register.md
 - name: HV_X64_FP_CONTROL_STATUS_REGISTER
   href: hv_x64_fp_control_status_register.md
 - name: HV_X64_FP_REGISTER
@@ -133,4 +137,4 @@
 - name: HV_X64_XMM_CONTROL_STATUS_REGISTER
   href: hv_x64_xmm_control_status_register.md
 - name: HV_X64_REGISTER_SEV_GPA_PAGE
-  href: HV_X64_REGISTER_SEV_GPA_PAGE.md
+href: HV_X64_REGISTER_SEV_GPA_PAGE.md

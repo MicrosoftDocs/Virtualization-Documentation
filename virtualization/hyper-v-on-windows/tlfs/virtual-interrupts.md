@@ -6,12 +6,25 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # Virtual Interrupt Controller
 
-The hypervisor virtualizes interrupt delivery to virtual processors. This is done through the use of a synthetic interrupt controller (SynIC) which is an extension of a virtualized local APIC; that is, each virtual processor has a local APIC instance with the SynIC extensions. These extensions provide a simple inter-partition communication mechanism which is described in the following chapter.
+The hypervisor virtualizes interrupt delivery to virtual processors.
+
+## Architecture-Specific Virtual Interrupt Controllers
+
+### On x64 Platforms
+
+On x64 platforms, interrupt virtualization is done through the use of a synthetic interrupt controller (SynIC) which is an extension of a virtualized local APIC; that is, each virtual processor has a local APIC instance with the SynIC extensions. These extensions provide a simple inter-partition communication mechanism which is described in the [Inter-Partition Communication](inter-partition-communication.md) chapter.
+
+### On ARM64 Platforms
+
+On ARM64 platforms, the hypervisor exposes a virtual ARM Generic Interrupt Controller (GIC) that conforms to the ARM GIC architecture specification. Guest partitions should refer to the ARM GIC Architecture Specification for details on the virtual GIC interface, registers, and interrupt handling mechanisms.
+
+## Interrupt Categories
+
 Interrupts delivered to a partition fall into two categories: external and internal. External interrupts originate from other partitions or devices, and internal interrupts originate from within the partition itself.
 
 External interrupts are generated in the following situations:
@@ -27,9 +40,9 @@ Internal interrupts are generated in the following situations:
 - A virtual processor accesses the APIC interrupt command register (ICR).
 - A synthetic timer expires.
 
-## Local APIC
+## Local APIC (x64 Only)
 
-The SynIC is a superset of a local APIC. The interface to this APIC is given by a set of 32-bit memory mapped registers. This local APIC (including the behavior of the memory mapped registers) is generally compatible with the local APIC on P4/Xeon systems as described in Intel’s and AMD's documentation.
+On x64 platforms, the SynIC is a superset of a local APIC. The interface to this APIC is given by a set of 32-bit memory mapped registers. This local APIC (including the behavior of the memory mapped registers) is generally compatible with the local APIC on P4/Xeon systems as described in Intel's and AMD's documentation.
 
 The hypervisor’s local APIC virtualization may deviate from physical APIC operation in the following minor ways:
 
@@ -42,9 +55,11 @@ The hypervisor’s local APIC virtualization may deviate from physical APIC oper
 
 The remaining parts of this section describe only those aspects of SynIC functionality that are extensions of the local APIC.
 
-### Local APIC MSR Accesses
+### Local APIC MSR Accesses (x64 Only)
 
-The hypervisor provides accelerated MSR access to high usage memory mapped APIC registers. These are the TPR, EOI, and the ICR registers. The ICR low and ICR high registers are combined into one MSR. For performance reasons, the guest operating system should follow the hypervisor recommendation for the usage of the APIC MSRs.
+On x64 platforms, the hypervisor provides accelerated MSR access to high usage memory mapped APIC registers. These are the TPR, EOI, and the ICR registers. The ICR low and ICR high registers are combined into one MSR. For performance reasons, the guest operating system should follow the hypervisor recommendation for the usage of the APIC MSRs.
+
+These MSRs are not available on ARM64 platforms, where interrupt controller operations are performed through the virtual GIC interface.
 
 | MSR address      | Register Name       | Description                                                                 |
 |------------------|---------------------|-----------------------------------------------------------------------------|
@@ -77,30 +92,32 @@ This MSR is intended to accelerate access to the TPR in 32-bit mode guest partit
 
 ### Synthetic Cluster IPI
 
-A hypervisor supports hypercalls which allow to send virtual fixed interrupts to an arbitrary set of virtual processors.
+The hypervisor supports hypercalls which allow sending virtual fixed interrupts to an arbitrary set of virtual processors.
 
 | Hypercall                                                                           | Description                                     |
 |-------------------------------------------------------------------------------------|-------------------------------------------------|
 | [HvCallSendSyntheticClusterIpi](hypercalls/HvCallSendSyntheticClusterIpi.md)      | Sends a virtual fixed interrupt to the specified virtual processor set. |
 | [HvCallSendSyntheticClusterIpiEx](hypercalls/HvCallSendSyntheticClusterIpiEx.md)  | Similar to HvCallSendSyntheticClusterIpi, takes a sparse VP set as input.    |
 
-### EOI Assist
+### EOI Assist (x64 Only)
 
-One field in the [Virtual Processor Assist Page](vp-properties.md#virtual-processor-assist-page) is the EOI Assist field. The EOI Assist field resides at offset 0 of the overlay page and is 32-bits in size. The format of the EOI assist field is as follows:
+On x64 platforms, one field in the [Virtual Processor Assist Page](vp-properties.md#virtual-processor-assist-page) is the EOI Assist field. The EOI Assist field resides at offset 0 of the overlay page and is 32-bits in size. The format of the EOI assist field is as follows:
+
+This enlightenment is not available on ARM64 platforms, where EOI operations are performed through the virtual GIC interface.
 
 | Bits          | Description                         | Attributes                                                  |
 |---------------|-------------------------------------|-------------------------------------------------------------|
 | 31:1          | RsvdZ                               | Read / Write                                                |
 | 0             | No EOI Required                     | Read / Write                                                |
 
-The guest OS performs an EOI by atomically writing zero to the EOI Assist field of the virtual VP assist page and checking whether the “No EOI required” field was previously zero. If it was, the OS must write to the HV_X64_APIC_EOI MSR thereby triggering an intercept into the hypervisor. The following code is recommended to perform an EOI:
+The guest OS performs an EOI by atomically writing zero to the EOI Assist field of the virtual VP assist page and checking whether the “No EOI required” field was previously zero. If it was, the OS must write to the HV_X64_MSR_EOI MSR thereby triggering an intercept into the hypervisor. The following code is recommended to perform an EOI:
 
 ```
 lea rcx, [VirtualApicAssistVa]
 btr [rcx], 0
 jc NoEoiRequired
 
-mov ecx, HV_X64_APIC_EOI
+mov ecx, HV_X64_MSR_EOI
 wrmsr
 
 NoEoiRequired:

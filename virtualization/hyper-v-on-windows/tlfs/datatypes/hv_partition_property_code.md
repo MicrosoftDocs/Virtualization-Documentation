@@ -1,13 +1,3 @@
----
-title: HV_PARTITION_PROPERTY_CODE
-description: HV_PARTITION_PROPERTY_CODE
-keywords: hyper-v
-author: hvdev
-ms.author: hvdev
-ms.date: 11/07/2025
-ms.topic: reference
----
-
 # HV_PARTITION_PROPERTY_CODE
 
 The HV_PARTITION_PROPERTY_CODE enumeration defines the  property selectors used with the partition property hypercalls.
@@ -78,6 +68,18 @@ typedef enum {
     HvPartitionVpPropertySchedulingAffinitySet              = 0x10001000,
 } HV_PARTITION_PROPERTY_CODE;
 ```
+
+## Architecture Notes
+
+The following properties are x64-specific:
+- `HvPartitionPropertyProcessorXsaveFeatures` - XSAVE is an x64 feature
+- `HvPartitionPropertyXsaveStates` - XSAVE states
+- `HvPartitionPropertyMaxXsaveDataSize` - XSAVE data size
+- `HvPartitionPropertySevVmgexitOffloads` - AMD SEV-specific
+
+The following properties are ARM64-specific:
+- `HvPartitionPropertyGicdBaseAddress` - GIC Distributor base address
+- `HvPartitionPropertyGitsTranslaterBaseAddress` - GIC ITS Translater base address
 
 ## Overview
 Extended property codes require the *Ex* hypercall variants when their value representation exceeds 64 bits or is banked / variable sized.

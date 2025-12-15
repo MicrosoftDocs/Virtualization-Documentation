@@ -6,10 +6,12 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # HV_X64_MSR_NPIEP_CONFIG_CONTENTS
+
+Architecture: x64 only.
 
 ## Syntax
 

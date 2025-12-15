@@ -6,7 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # HV_VP_VTL_CONTROL
@@ -31,7 +31,10 @@ typedef enum
     HvVtlEntryVtlCall = 1,
 
     // Indicates entry due to an interrupt targeted to the VTL.
-    HvVtlEntryInterrupt = 2
+    HvVtlEntryInterrupt = 2,
+
+    // Indicates an entry due to an intercept delivered via the intercept page.
+    HvVtlEntryIntercept = 3,
 } HV_VTL_ENTRY_REASON;
 
 typedef struct
@@ -54,6 +57,7 @@ typedef struct
     UINT8 ReservedZ00;
     UINT16 ReservedZ01;
 
+#if defined(_AMD64_)
     // A guest updates the VtlReturn* fields to provide the register values
     // to restore on VTL return. The specific register values that are
     // restored will vary based on whether the VTL is 32-bit or 64-bit.
@@ -73,8 +77,21 @@ typedef struct
             UINT32 ReservedZ1;
         };
     };
+#else
+    // Return control registers not needed on ARM64.
+    UINT64 ReservedZ2;
+    UINT64 ReservedZ3;
+#endif
 } HV_VP_VTL_CONTROL;
  ```
+
+### x64 Architecture
+
+On x64, the VtlReturn fields allow the guest to specify register values to restore on VTL return. The 64-bit variant uses `VtlReturnX64Rax` and `VtlReturnX64Rcx`, while the 32-bit variant uses `VtlReturnX86Eax`, `VtlReturnX86Ecx`, and `VtlReturnX86Edx`.
+
+### ARM64 Architecture
+
+On ARM64, the return control registers are not needed. The corresponding space is reserved.
 
 ## See also
 

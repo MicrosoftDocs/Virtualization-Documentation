@@ -6,7 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # Virtual Processors
@@ -27,23 +27,35 @@ typedef UINT32 HV_VP_INDEX;
 #define HV_VP_INDEX_SELF ((HV_VP_INDEX)-2)
  ```
 
-A virtual processor’s ID can be retrieved by the guest through a hypervisor-defined MSR (model-specific register) HV_X64_MSR_VP_INDEX.
+### On x64 Platforms
+
+On x64 platforms, a virtual processor's ID can be retrieved by the guest through a hypervisor-defined MSR (model-specific register) HV_X64_MSR_VP_INDEX using RDMSR.
 
 ```c
 #define HV_X64_MSR_VP_INDEX 0x40000002
  ```
 
-## Virtual Processor Idle Sleep State
+### On ARM64 Platforms
 
-Virtual processors may be placed in a virtual idle processor power state, or processor sleep state. This enhanced virtual idle state allows a virtual processor that is placed into a low power idle state to be woken with the arrival of an interrupt even when the interrupt is masked on the virtual processor. In other words, the virtual idle state allows the operating system in the guest partition to take advantage of processor power saving techniques in the OS that would otherwise be unavailable when running in a guest partition.
+On ARM64 platforms, a virtual processor's ID can be retrieved via the HvRegisterVpIndex synthetic register using the HvCallGetVpRegisters hypercall. This is a read-only register.
+
+## Virtual Processor Idle Sleep State (x64 Only)
+
+On x64 platforms, virtual processors may be placed in a virtual idle processor power state, or processor sleep state. This enhanced virtual idle state allows a virtual processor that is placed into a low power idle state to be woken with the arrival of an interrupt even when the interrupt is masked on the virtual processor. In other words, the virtual idle state allows the operating system in the guest partition to take advantage of processor power saving techniques in the OS that would otherwise be unavailable when running in a guest partition.
 
 A partition which possesses the AccessGuestIdleMsr privilege may trigger entry into the virtual processor idle sleep state through a read to the hypervisor-defined MSR `HV_X64_MSR_GUEST_IDLE`. The virtual processor will be woken when an interrupt arrives, regardless of whether the interrupt is enabled on the virtual processor or not.
+
+This feature is not available on ARM64 platforms.
 
 ## Virtual Processor Assist Page
 
 The hypervisor provides a page per virtual processor which is overlaid on the guest GPA space. This page can be used for bi-directional communication between a guest VP and the hypervisor. The guest OS has read/write access to this virtual VP assist page.
 
-A guest specifies the location of the overlay page (in GPA space) by writing to the Virtual VP Assist MSR (0x40000073). The format of the Virtual VP Assist Page MSR is as follows:
+The structure of the VP assist page is defined in [HV_VP_ASSIST_PAGE](datatypes/HV_VP_ASSIST_PAGE.md). Some fields within this structure are architecture-specific.
+
+### On x64 Platforms
+
+On x64 platforms, a guest specifies the location of the overlay page (in GPA space) by writing to the Virtual VP Assist MSR (0x40000073) using WRMSR. The format of the Virtual VP Assist Page MSR is as follows:
 
 | Bits      | Field           | Description                                                                 |
 |-----------|-----------------|-----------------------------------------------------------------------------|
@@ -51,15 +63,29 @@ A guest specifies the location of the overlay page (in GPA space) by writing to 
 | 11:1      | RsvdP           | Reserved                                                                    |
 | 63:12     | Page PFN        | Virtual VP Assist Page PFN                                                  |
 
+### On ARM64 Platforms
+
+On ARM64 platforms, a guest specifies the location of the overlay page (in GPA space) by writing to the HvRegisterVpAssistPage synthetic register using the HvCallSetVpRegisters hypercall. The register format is identical to the x64 MSR format.
+
 ## Virtual Processor Run Time Register
 
-The hypervisor’s scheduler internally tracks how much time each virtual processor consumes in executing code. The time tracked is a combination of the time the virtual processor consumes running guest code, and the time the associated logical processor spends running hypervisor code on behalf of that guest. This cumulative time is accessible through the 64-bit read-only HV_X64_MSR_VP_RUNTIME hypervisor MSR. The time quantity is measured in 100ns units.
+The hypervisor's scheduler internally tracks how much time each virtual processor consumes in executing code. The time tracked is a combination of the time the virtual processor consumes running guest code, and the time the associated logical processor spends running hypervisor code on behalf of that guest. This cumulative time is accessible through a read-only register. The time quantity is measured in 100ns units.
 
-## Non-Privileged Instruction Execution Prevention (NPIEP)
+### On x64 Platforms
 
-Non-Privileged Instruction Execution (NPIEP) is a feature that limits the use of certain instructions by user-mode code. Specifically, when enabled, this feature can block the execution of the SIDT, SGDT, SLDT, and STR instructions. Execution of these instructions results in a #GP fault.
+On x64 platforms, the VP runtime is accessed via the 64-bit read-only HV_X64_MSR_VP_RUNTIME hypervisor MSR using RDMSR.
+
+### On ARM64 Platforms
+
+On ARM64 platforms, the VP runtime is accessed via the HvRegisterVpRuntime synthetic register using the HvCallGetVpRegisters hypercall. This is a read-only register.
+
+## Non-Privileged Instruction Execution Prevention (NPIEP) (x64 Only)
+
+On x64 platforms, Non-Privileged Instruction Execution Prevention (NPIEP) is a feature that limits the use of certain instructions by user-mode code. Specifically, when enabled, this feature can block the execution of the SIDT, SGDT, SLDT, and STR instructions. Execution of these instructions results in a #GP fault.
 
 This feature must be configured on a per-VP basis using [HV_X64_MSR_NPIEP_CONFIG_CONTENTS](datatypes/HV_X64_MSR_NPIEP_CONFIG_CONTENTS.md).
+
+This feature is not available on ARM64 platforms.
 
 ## Guest Spinlocks
 

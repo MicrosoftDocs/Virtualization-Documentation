@@ -6,12 +6,19 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # HV_CRASH_CTL_REG_CONTENTS
 
-The following data structure is used to define the contents of the guest crash enlightenment control register (HV_X64_MSR_CRASH_CTL).
+The following data structure is used to define the contents of the guest crash enlightenment control register.
+
+## Access
+
+| Architecture | Access Method |
+|--------------|---------------|
+| x64 | MSR `HV_X64_MSR_CRASH_CTL` (0x40000105) |
+| ARM64 | Register `HvSyntheticMsrCrashCtl` via HvCallGetVpRegisters/HvCallSetVpRegisters |
 
 ## Syntax
 

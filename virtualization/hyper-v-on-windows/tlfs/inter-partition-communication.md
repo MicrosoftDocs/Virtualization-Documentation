@@ -6,7 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # Inter-Partition Communication
@@ -127,9 +127,11 @@ A port is allocated from the receiver’s memory pool and specifies which virtua
 
 Connections are allocated from the sender’s memory pool. When a connection is created, it must be associated with a valid port. This binding creates a simple, one-way communication channel. If a port is subsequently deleted, its connection, while it remains, becomes useless.
 
-## SynIC MSRs
+## SynIC Registers
 
-In addition to the memory-mapped registers defined for a local APIC, the following model-specific registers (MSRs) are defined in the SynIC. Each virtual processor has its own copy of these registers, so they can be programmed independently.
+Each virtual processor has its own copy of these registers, so they can be programmed independently.
+
+On x64 platforms, these registers are accessed as model-specific registers (MSRs) using RDMSR and WRMSR instructions:
 
 | MSR Address             | Register Name         | Function                             |
 |-------------------------|-----------------------|--------------------------------------|
@@ -139,21 +141,48 @@ In addition to the memory-mapped registers defined for a local APIC, the followi
 | 0x40000083              | SIMP                  | Interrupt Message Page               |
 | 0x40000084              | EOM                   | End of message                       |
 | 0x40000090              | SINT0                 | Interrupt source 0 (hypervisor)      |
-| 0x40000090              | SINT1                 | Interrupt source 1                   |
-| 0x40000090              | SINT2                 | Interrupt source 2                   |
-| 0x40000090              | SINT3                 | Interrupt source 3                   |
-| 0x40000090              | SINT4                 | Interrupt source 4                   |
-| 0x40000090              | SINT5                 | Interrupt source 5                   |
-| 0x40000090              | SINT6                 | Interrupt source 6                   |
-| 0x40000090              | SINT7                 | Interrupt source 7                   |
-| 0x40000090              | SINT8                 | Interrupt source 8                   |
-| 0x40000090              | SINT9                 | Interrupt source 9                   |
-| 0x40000090              | SINT10                | Interrupt source 10                  |
-| 0x40000090              | SINT11                | Interrupt source 11                  |
-| 0x40000090              | SINT12                | Interrupt source 12                  |
-| 0x40000090              | SINT13                | Interrupt source 13                  |
-| 0x40000090              | SINT14                | Interrupt source 14                  |
-| 0x40000090              | SINT15                | Interrupt source 15                  |
+| 0x40000091              | SINT1                 | Interrupt source 1                   |
+| 0x40000092              | SINT2                 | Interrupt source 2                   |
+| 0x40000093              | SINT3                 | Interrupt source 3                   |
+| 0x40000094              | SINT4                 | Interrupt source 4                   |
+| 0x40000095              | SINT5                 | Interrupt source 5                   |
+| 0x40000096              | SINT6                 | Interrupt source 6                   |
+| 0x40000097              | SINT7                 | Interrupt source 7                   |
+| 0x40000098              | SINT8                 | Interrupt source 8                   |
+| 0x40000099              | SINT9                 | Interrupt source 9                   |
+| 0x4000009A              | SINT10                | Interrupt source 10                  |
+| 0x4000009B              | SINT11                | Interrupt source 11                  |
+| 0x4000009C              | SINT12                | Interrupt source 12                  |
+| 0x4000009D              | SINT13                | Interrupt source 13                  |
+| 0x4000009E              | SINT14                | Interrupt source 14                  |
+| 0x4000009F              | SINT15                | Interrupt source 15                  |
+
+On ARM64 platforms, these registers are accessed using [HvCallGetVpRegisters](hypercalls/HvCallGetVpRegisters.md) and [HvCallSetVpRegisters](hypercalls/HvCallSetVpRegisters.md) hypercalls with the following register names:
+
+| HvRegister Name         | Function                             |
+|-------------------------|--------------------------------------|
+| HvRegisterScontrol      | SynIC Control                        |
+| HvRegisterSversion      | SynIC Version                        |
+| HvRegisterSifp          | Interrupt Event Flags Page           |
+| HvRegisterSipp          | Interrupt Message Page               |
+| HvRegisterEom           | End of message                       |
+| HvRegisterSirbp         | Interrupt Response Buffer Page       |
+| HvRegisterSint0         | Interrupt source 0 (hypervisor)      |
+| HvRegisterSint1         | Interrupt source 1                   |
+| HvRegisterSint2         | Interrupt source 2                   |
+| HvRegisterSint3         | Interrupt source 3                   |
+| HvRegisterSint4         | Interrupt source 4                   |
+| HvRegisterSint5         | Interrupt source 5                   |
+| HvRegisterSint6         | Interrupt source 6                   |
+| HvRegisterSint7         | Interrupt source 7                   |
+| HvRegisterSint8         | Interrupt source 8                   |
+| HvRegisterSint9         | Interrupt source 9                   |
+| HvRegisterSint10        | Interrupt source 10                  |
+| HvRegisterSint11        | Interrupt source 11                  |
+| HvRegisterSint12        | Interrupt source 12                  |
+| HvRegisterSint13        | Interrupt source 13                  |
+| HvRegisterSint14        | Interrupt source 14                  |
+| HvRegisterSint15        | Interrupt source 15                  |
 
 ### SCONTROL Register
 

@@ -1,13 +1,3 @@
----
-title: HV_INPUT_VTL
-description: HV_INPUT_VTL
-keywords: hyper-v
-author: hvdev
-ms.author: hvdev
-ms.date: 11/07/2025
-ms.topic: reference
----
-
 # HV_INPUT_VTL
 
 Specifies a virtual trust level for input operations.

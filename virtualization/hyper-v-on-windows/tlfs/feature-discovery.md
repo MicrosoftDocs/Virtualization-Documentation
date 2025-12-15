@@ -6,10 +6,10 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
-# Feature and Interface Discovery
+# Feature and Interface Discovery (x64)
 
 Guest software interacts with the hypervisor through a variety of mechanisms. Many of these mirror the traditional mechanisms used by software to interact with the underlying processor. As such, these mechanisms are architecture-specific. On the x64 architecture, the following mechanisms are used:
 
@@ -961,3 +961,248 @@ The hypervisor version information is encoded in leaf `0x40000002`. Two version 
 The main version includes a major and minor version number and a build number. These correspond to Microsoft Windows release numbers. The service version describes changes made to the main version.
 
 Clients are strongly encouraged to check for hypervisor features by using CPUID leaves `0x40000003` through `0x40000005` rather than by comparing against version ranges.
+
+# Feature and Interface Discovery (ARM64)
+
+On the ARM64 architecture, the following mechanisms are used for feature and interface discovery:
+
+- HvRegister queries via [HvCallGetVpRegisters](hypercalls/HvCallGetVpRegisters.md) – Used for static feature and version information.
+- Memory-mapped registers – Used for status and control values.
+
+In addition to these architecture-specific interfaces, the hypervisor provides a simple procedural interface implemented with [hypercalls](hypercall-interface.md).
+
+## Hypervisor Discovery
+
+Before using most hypervisor interfaces, software should first determine whether it's running within a virtualized environment.
+
+On ARM64, guest software can discover the hypervisor using the SMCCC (SMC Calling Convention) standard interface. The discovery is performed using either the HVC or SMC instruction with the function ID `0xC600FF0` in X0 (this corresponds to a 64-bit vendor-specific hypervisor call, VENDOR_HYP_FUNCTION_CODE_UID). The call follows the SMCCC conventions, including an imm16 of 0. The Microsoft hypervisor returns the following values representing GUID `4d32ba58-cd24-4764-8eef-6c7516597024`:
+
+| Register | Value        |
+|----------|--------------|
+| X0       | 0x4d32ba58   |
+| X1       | 0xcd244764   |
+| X2       | 0x8eef6c75   |
+| X3       | 0x16597024   |
+
+Once a hypervisor is detected, guest software can query hypervisor capabilities through synthetic registers using the [HvCallGetVpRegisters](hypercalls/HvCallGetVpRegisters.md) hypercall. Several key registers can be queried before the Guest OS ID register is set, enabling early discovery of hypervisor features during boot.
+
+## Hypervisor Feature Registers
+
+ARM64 platforms query hypervisor information through synthetic registers rather than CPUID instructions. These registers provide equivalent information to their x64 CPUID counterparts and are accessed via [HvCallGetVpRegisters](hypercalls/HvCallGetVpRegisters.md). All feature registers return 128-bit values.
+
+### Hypervisor System Identity - HvRegisterHypervisorVersion
+
+Returns version information encoded in a 128-bit value. The layout is identical to x64 CPUID leaf [0x40000002](#hypervisor-system-identity---0x40000002), with x64 register values packed into the 128-bit result (EAX in bits 31-0, EBX in bits 63-32, ECX in bits 95-64, EDX in bits 127-96).
+
+### Hypervisor Feature Identification - HvRegisterPrivilegesAndFeaturesInfo
+
+Equivalent to x64 CPUID leaf 0x40000003. Indicates which features are available to the partition based upon current partition privileges. Returns a 128-bit value with these fields:
+
+<table>
+    <thead>
+        <tr>
+            <th>Bits</th>
+            <th>Information Provided</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>31-0</td>
+            <td>Corresponds to bits 31-0 of <a href="datatypes/hv_partition_privilege_mask.md">HV_PARTITION_PRIVILEGE_MASK</a></td>
+        </tr>
+        <tr>
+            <td>63-32</td>
+            <td>Corresponds to bits 63-32 of <a href="datatypes/hv_partition_privilege_mask.md">HV_PARTITION_PRIVILEGE_MASK</a></td>
+        </tr>
+        <tr>
+            <td>64</td>
+            <td>Guest debugging support is available.</td>
+        </tr>
+        <tr>
+            <td>65</td>
+            <td>Performance Monitor support is available.</td>
+        </tr>
+        <tr>
+            <td>66</td>
+            <td>Support for physical CPU dynamic partitioning events is available.</td>
+        </tr>
+        <tr>
+            <td>67</td>
+            <td>Support for a virtual guest idle state is available.</td>
+        </tr>
+        <tr>
+            <td>68</td>
+            <td>Support for hypervisor sleep state is available.</td>
+        </tr>
+        <tr>
+            <td>69</td>
+            <td>Support for querying NUMA distances is available.</td>
+        </tr>
+        <tr>
+            <td>70</td>
+            <td>Support for determining timer frequencies is available.</td>
+        </tr>
+        <tr>
+            <td>71</td>
+            <td>Support for injecting synthetic machine checks is available.</td>
+        </tr>
+        <tr>
+            <td>72</td>
+            <td>Support for guest crash registers is available.</td>
+        </tr>
+        <tr>
+            <td>73</td>
+            <td>Reserved.</td>
+        </tr>
+        <tr>
+            <td>74</td>
+            <td>DisableHypervisorAvailable.</td>
+        </tr>
+        <tr>
+            <td>75</td>
+            <td>Reserved.</td>
+        </tr>
+        <tr>
+            <td>76</td>
+            <td>SintPollingModeAvailable.</td>
+        </tr>
+        <tr>
+            <td>77</td>
+            <td>Use direct synthetic timers.</td>
+        </tr>
+        <tr>
+            <td>127-78</td>
+            <td>Reserved.</td>
+        </tr>
+    </tbody>
+</table>
+
+### Implementation Recommendations - HvRegisterFeaturesInfo
+
+Equivalent to x64 CPUID leaf 0x40000004. Indicates which behaviors the hypervisor recommends the OS implement for optimal performance. Returns a 128-bit value.
+
+<table>
+    <thead>
+        <tr>
+            <th>Bits</th>
+            <th>Information Provided</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>UseHvRegisterForReset - On ARM64, this is always false (partitions should use PSCI SYSTEM_RESET instead).</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Recommend using relaxed timing for this partition. If used, the VM should disable any watchdog timeouts that rely on the timely delivery of external interrupts.</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Recommend using SyntheticClusterIpi hypercall. On ARM64, this is false for the root partition (which should use ICC_SGI1R_EL1 directly) and true for guest partitions.</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Recommend using the newer ExProcessorMasks interface.</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Indicates that the hypervisor is nested within a Hyper-V partition.</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Indicates the partition should consume the QueryPerformanceCounter bias provided by the root partition.</td>
+        </tr>
+        <tr>
+            <td>20-6</td>
+            <td>Reserved</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>UseHypercallForMmioAccess</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>UseGpaPinningHypercall</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>WakeVps</td>
+        </tr>
+        <tr>
+            <td>25-24</td>
+            <td>Reserved</td>
+        </tr>
+        <tr>
+            <td>26</td>
+            <td>MapPartitionEventLogBuffer</td>
+        </tr>
+        <tr>
+            <td>31-27</td>
+            <td>Reserved</td>
+        </tr>
+        <tr>
+            <td>63-32</td>
+            <td>Recommended number of attempts to retry a spinlock failure before notifying the hypervisor about the failures. 0xFFFFFFFF indicates never notify.</td>
+        </tr>
+        <tr>
+            <td>127-64</td>
+            <td>Reserved</td>
+        </tr>
+    </tbody>
+</table>
+
+### Hypervisor Implementation Limits - HvRegisterImplementationLimitsInfo
+
+Describes the scale limits supported in the current hypervisor implementation. If any value is zero, the hypervisor does not expose the corresponding information. Returns a 128-bit value with a layout identical to x64 CPUID leaf [0x40000005](#hypervisor-implementation-limits---0x40000005), with x64 register values packed into the 128-bit result (EAX in bits 31-0, EBX in bits 63-32, ECX in bits 95-64, EDX in bits 127-96).
+
+### Implementation Hardware Features - HvRegisterHardwareFeaturesInfo
+
+Equivalent to x64 CPUID leaf 0x40000006. Indicates which hardware-specific features have been detected and are currently in use by the hypervisor. Returns a 128-bit value.
+
+<table>
+    <thead>
+        <tr>
+            <th>Bits</th>
+            <th>Information Provided</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>Support for architectural performance counters is detected and in use.</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Support for second level address translation is detected and in use.</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Support for DMA remapping is detected and in use.</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Support for interrupt remapping is detected and in use.</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Indicates that a memory patrol scrubber is present in the hardware.</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>DMA protection is in use.</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Synthetic timers are volatile.</td>
+        </tr>
+        <tr>
+            <td>127-7</td>
+            <td>Reserved</td>
+        </tr>
+    </tbody>
+</table>
+
+## Versioning
+
+The hypervisor version information is encoded in HvRegisterHypervisorVersion. The format matches the x64 equivalent.

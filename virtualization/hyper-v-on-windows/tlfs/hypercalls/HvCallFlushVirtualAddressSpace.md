@@ -6,7 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallFlushVirtualAddressSpace
@@ -26,13 +26,13 @@ HvCallFlushVirtualAddressSpace(
 
 The virtual TLB invalidation operation acts on one or more processors.
 
-If the guest has knowledge about which processors may need to be flushed, it can specify a processor mask. Each bit in the mask corresponds to a virtual processor index. For example, a mask of 0x0000000000000051 indicates that the hypervisor should flush only the TLB of virtual processors 0, 4, and 6. A virtual processor can determine its index by reading from MSR HV_X64_MSR_VP_INDEX.
+If the guest has knowledge about which processors may need to be flushed, it can specify a processor mask. Each bit in the mask corresponds to a virtual processor index. For example, a mask of 0x0000000000000051 indicates that the hypervisor should flush only the TLB of virtual processors 0, 4, and 6. A virtual processor can determine its index by reading the HvRegisterVpIndex synthetic register (via [HvCallGetVpRegisters](HvCallGetVpRegisters.md)) or on x64 from the HV_X64_MSR_VP_INDEX MSR.
 
 The following flags can be used to modify the behavior of the flush:
 
 - HV_FLUSH_ALL_PROCESSORS indicates that the operation should apply to all virtual processors within the partition. If this flag is set, the ProcessorMask parameter is ignored.
 - HV_FLUSH_ALL_VIRTUAL_ADDRESS_SPACES indicates that the operation should apply to all virtual address spaces. If this flag is set, the AddressSpace parameter is ignored.
-- HV_FLUSH_NON_GLOBAL_MAPPINGS_ONLY indicates that the hypervisor is required only to flush page mappings that were not mapped as “global” (that is, the x64 “G” bit was set in the page table entry). Global entries may be (but are not required to be) left unflushed by the hypervisor.
+- HV_FLUSH_NON_GLOBAL_MAPPINGS_ONLY indicates that the hypervisor is required only to flush page mappings that were not mapped as "global" (on x64, the "G" bit in the page table entry; on ARM64, the nG bit). Global entries may be (but are not required to be) left unflushed by the hypervisor.
 
 All other flags are reserved and must be set to zero.
 
@@ -47,6 +47,6 @@ If a target virtual processor’s TLB requires flushing and that virtual process
 
 | Name                    | Offset     | Size     | Information Provided                      |
 |-------------------------|------------|----------|-------------------------------------------|
-| `AddressSpace`          | 0          | 8        | Specifies an address space ID (a CR3 value). |
+| `AddressSpace`          | 0          | 8        | Specifies an address space ID (CR3 on x64, translation table base on ARM64). |
 | `Flags`                 | 8          | 8        | Set of flag bits that modify the operation of the flush. |
 | `ProcessorMask`         | 16         | 8        | Processor mask indicating which processors should be affected by the flush operation. |

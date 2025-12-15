@@ -1,13 +1,3 @@
----
-title: HV_SPA_PAGE_NUMBER
-description: HV_SPA_PAGE_NUMBER
-keywords: hyper-v
-author: hvdev
-ms.author: hvdev
-ms.date: 11/07/2025
-ms.topic: reference
----
-
 # HV_SPA_PAGE_NUMBER
 
 Represents a system physical address page number.

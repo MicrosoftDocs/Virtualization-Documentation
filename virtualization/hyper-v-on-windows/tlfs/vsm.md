@@ -6,7 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # Virtual Secure Mode
@@ -43,7 +43,7 @@ There are multiple facets to achieving isolation between VTLs:
 
 - Memory Access Protections: Each VTL maintains a set of guest physical memory access protections. Software running at a particular VTL can only access memory in accordance with these protections.
 - Virtual Processor State: Virtual processors maintain separate per-VTL state. For example, each VTL defines a set of a private VP registers. Software running at a lower VTL cannot access the higher VTL’s private virtual processor’s register state.
-- Interrupts: Along with a separate processor state, each VTL also has its own interrupt subsystem (local APIC). This allows higher VTLs to process interrupts without risking interference from a lower VTL.
+- Interrupts: Along with a separate processor state, each VTL also has its own interrupt subsystem (local APIC on x64, GIC CPU interface on ARM64). This allows higher VTLs to process interrupts without risking interference from a lower VTL.
 - Overlay Pages: Certain overlay pages are maintained per-VTL such that higher VTLs have reliable access. E.g. there is a separate hypercall overlay page per VTL.
 
 ## VSM Detection and Status
@@ -52,13 +52,23 @@ The VSM capability is advertised to partitions via the AccessVsm partition privi
 
 ### VSM Capability Detection
 
-Guests should use the following model-specific register to access a report on VSM capabilities:
+Guests can access a report on VSM capabilities through a synthetic register.
+
+#### On x64 Platforms
+
+On x64 platforms, this register is accessed via an MSR:
 
 | MSR address      | Register Name                   | Description                                                    |
 |------------------|---------------------------------|----------------------------------------------------------------|
 | 0x000D0006       | HV_X64_REGISTER_VSM_CAPABILITIES| Report on VSM capabilities.                                    |
 
-The format of the Register VSM Capabilities MSR is as follows:
+#### On ARM64 Platforms
+
+On ARM64 platforms, this register is accessed via HvRegisterVsmCapabilities using the HvCallGetVpRegisters hypercall.
+
+#### Register Format
+
+#### On x64 Platforms
 
 | Bits          | Description                         | Attributes                                                  |
 |---------------|-------------------------------------|-------------------------------------------------------------|
@@ -67,11 +77,22 @@ The format of the Register VSM Capabilities MSR is as follows:
 | 46            | DenyLowerVtlStartup                 | Read                                                        |
 | 45:0          | RsvdZ                               | Read                                                        |
 
-Dr6Shared indicates to the guest whether Dr6 is a shared register between the VTLs.
+#### On ARM64 Platforms
 
-MvecVtlMask indicates to the guest the VTLs for which Mbec can be enabled.
+| Bits          | Description                         | Attributes                                                  |
+|---------------|-------------------------------------|-------------------------------------------------------------|
+| 63            | RsvdZ                               | Read                                                        |
+| 62:47         | MbecVtlMask                         | Read                                                        |
+| 46            | DenyLowerVtlStartup                 | Read                                                        |
+| 45:0          | RsvdZ                               | Read                                                        |
 
-DenyLowerVtlStartup indicates to the guest whether a Vtl can deny a VP reset by a lower VTL.
+#### Field Descriptions
+
+Dr6Shared (x64 only): Indicates to the guest whether Dr6 is a shared register between the VTLs.
+
+MbecVtlMask: Indicates to the guest the VTLs for which MBEC can be enabled.
+
+DenyLowerVtlStartup: Indicates to the guest whether a VTL can deny a VP reset by a lower VTL.
 
 ### VSM Status Register
 
@@ -250,9 +271,13 @@ In order to react appropriately to an entry, a higher VTL might need to know the
 
 ### VTL Call
 
-A “VTL call” is when a lower VTL initiates an entry into a higher VTL (for example, to protect a region of memory with the higher VTL) through the [HvCallVtlCall](hypercalls/HvCallVtlCall.md) hypercall.
+A "VTL call" is when a lower VTL initiates an entry into a higher VTL (for example, to protect a region of memory with the higher VTL) through the [HvCallVtlCall](hypercalls/HvCallVtlCall.md) hypercall.
 
-VTL calls preserve the state of shared registers across VTL switches. Private registers are preserved on a per-VTL level. The exception to these restrictions are the registers required by the VTL call sequence. The following registers are required for a VTL call:
+VTL calls preserve the state of shared registers across VTL switches. Private registers are preserved on a per-VTL level. The exception to these restrictions are the registers/instructions required by the VTL call sequence.
+
+#### On x64 Platforms
+
+The following registers are required for a VTL call on x64:
 
 | x64     | x86     | Description                                                 |
 |---------|---------|-------------------------------------------------------------|
@@ -261,15 +286,19 @@ VTL calls preserve the state of shared registers across VTL switches. Private re
 
 All bits in the VTL call control input are currently reserved.
 
+#### On ARM64 Platforms
+
+On ARM64 platforms, a VTL call is initiated using the HVC instruction with immediate value 2. The hypervisor decodes this specific immediate value and processes it as an HvCallVtlCall hypercall. No specific register state is required for the control input on ARM64.
+
 #### VTL Call Restrictions
 
-VTL calls can only be initiated from the most privileged processor mode. For example, on x64 systems a VTL call can only come from CPL0. A VTL call initiated from a processor mode which is anything but the most privileged on the system results in the hypervisor injecting a #UD exception into the virtual processor.
+VTL calls can only be initiated from the most privileged processor mode. For example, on x64 systems a VTL call can only come from CPL0, and on ARM64 systems from EL1. A VTL call initiated from a processor mode which is anything but the most privileged on the system results in the hypervisor injecting an exception into the virtual processor (#UD on x64, undefined instruction exception on ARM64).
 
-A VTL call can only switch into the next highest VTL. In other words, if there are multiple VTLs enabled, a call cannot “skip” a VTL.
-The following actions result in a #UD exception:
+A VTL call can only switch into the next highest VTL. In other words, if there are multiple VTLs enabled, a call cannot "skip" a VTL.
+The following actions result in an exception (#UD on x64, undefined instruction on ARM64):
 
 - A VTL call initiated from a processor mode which is anything but the most privileged on the system (architecture specific).
-- A VTL call from real mode (x86/x64)
+- A VTL call from real mode (x86/x64 only)
 - A VTL call on a virtual processor where the target VTL is disabled (or has not been already enabled).
 - A VTL call with an invalid control input value
 
@@ -279,14 +308,22 @@ A switch to a lower VTL is known as a “return”. Once a VTL has finished proc
 
 ### VTL Return
 
-A “VTL return” is when a higher VTL initiates a switch into a lower VTL through the [HvCallVtlReturn](hypercalls/HvCallVtlReturn.md) hypercall. Similar to a VTL call, private processor state is switched out, and shared state remains in place. If the lower VTL has explicitly called into the higher VTL, the hypervisor increments the higher VTL’s instruction pointer before the return is complete so that it may continue after a VTL call.
+A "VTL return" is when a higher VTL initiates a switch into a lower VTL through the [HvCallVtlReturn](hypercalls/HvCallVtlReturn.md) hypercall. Similar to a VTL call, private processor state is switched out, and shared state remains in place. If the lower VTL has explicitly called into the higher VTL, the hypervisor increments the higher VTL's instruction pointer before the return is complete so that it may continue after a VTL call.
 
-A VTL Return code sequence requires the use of the following registers:
+#### On x64 Platforms
+
+A VTL Return code sequence on x64 requires the use of the following registers:
 
 | x64     | x86     | Description                                                 |
 |---------|---------|-------------------------------------------------------------|
 | RCX     | EDX:EAX | Specifies a VTL return control input to the hypervisor      |
 | RAX     | ECX     | Reserved                                                    |
+
+#### On ARM64 Platforms
+
+On ARM64 platforms, a VTL return is initiated using the HVC instruction with immediate value 3. The hypervisor decodes this specific immediate value and processes it as an HvCallVtlReturn hypercall.
+
+#### VTL Return Control Input
 
 The VTL return control input has the following format:
 
@@ -309,9 +346,9 @@ If this behavior is not necessary, a higher VTL can use a “fast return”. A f
 
 This field can be set with bit 0 of the VTL return input. If it is set to 0, the registers are restored from the HV_VP_VTL_CONTROL structure. If this bit is set to 1, the registers are not restored (a fast return).
 
-## Hypercall Page Assist
+## Hypercall Page Assist (x64 Only)
 
-The hypervisor provides mechanisms to assist with VTL calls and returns via the [hypercall page](hypercall-interface.md#establishing-the-hypercall-interface-x86x64). This page abstracts the specific code sequence required to switch VTLs.
+On x64 platforms, the hypervisor provides mechanisms to assist with VTL calls and returns via the [hypercall page](hypercall-interface.md#establishing-the-hypercall-interface). This page abstracts the specific code sequence required to switch VTLs.
 
 The code sequences to execute VTL calls and returns may be accessed by executing specific instructions in the hypercall page. The call/return chunks are located at an offset in the hypercall page determined by the HvRegisterVsmCodePageOffsets virtual register. This is a read-only and partition-wide register, with a separate instance per-VTL.
 
@@ -330,11 +367,13 @@ typedef union
 } HV_REGISTER_VSM_CODE_PAGE_OFFSETS;
 ```
 
-To summarize, the steps for calling a code sequence using the hypercall page are as follows:
+To summarize, the steps for calling a code sequence using the hypercall page on x64 are as follows:
 
-1. Map the hypercall page into a VTL’s GPA space
+1. Map the hypercall page into a VTL's GPA space
 2. Determine the correct offset for the code sequence (VTL call or return).
 3. Execute the code sequence using CALL.
+
+> **Note:** On ARM64 platforms, VTL calls and returns are performed directly using the HVC instruction with specific immediate values (2 for VTL call, 3 for VTL return) as described in the VTL Call and VTL Return sections. The HvRegisterVsmCodePageOffsets register is not available on ARM64.
 
 ## Memory Access Protections
 
@@ -394,9 +433,11 @@ KMX and UMX can be independently set such that execute permissions are enforced 
 
 MBEC is disabled by default for all VTLs and virtual processors. When MBEC is disabled, the kernel-mode execute bit determines memory access restriction. Thus, if MBEC is disabled, KMX=1 code is executable in both kernel and user-mode.
 
-#### Descriptor Tables
+#### Descriptor Tables (x64 Only)
 
-Any user-mode code that accesses descriptor tables must be in GPA pages marked as KMX=UMX=1. User-mode software accessing descriptor tables from a GPA page marked KMX=0 is unsupported and results in a general protection fault.
+On x64 platforms, any user-mode code that accesses descriptor tables must be in GPA pages marked as KMX=UMX=1. User-mode software accessing descriptor tables from a GPA page marked KMX=0 is unsupported and results in a general protection fault.
+
+ARM64 does not use x86-style descriptor tables; memory access permissions are controlled through translation table entries and the EL-based privilege model.
 
 #### MBEC configuration
 
@@ -405,9 +446,9 @@ To make use of Mode-based execution control, it must be enabled at two levels:
 1. When the VTL is enabled for a partition, MBEC must be enabled using HvCallEnablePartitionVtl
 2. MBEC must be configured on a per-VP and per-VTL basis, using HvRegisterVsmVpSecureConfigVtlX.
 
-#### MBEC Interaction with Supervisor Mode Execution Prevention (SMEP)
+#### MBEC Interaction with Supervisor Mode Execution Prevention (SMEP) (x64 Only)
 
-Supervisor-Mode Execution Prevention (SMEP) is a processor feature supported on some platforms. SMEP can impact the operation of MBEC due to its restriction of supervisor access to memory pages. The hypervisor adheres to the following policies related to SMEP:
+Supervisor-Mode Execution Prevention (SMEP) is a processor feature supported on x64 platforms. SMEP can impact the operation of MBEC due to its restriction of supervisor access to memory pages. The hypervisor adheres to the following policies related to SMEP:
 
 - If SMEP is not available to the guest OS (whether it be because of hardware capabilities or processor compatibility mode), MBEC operates unaffected.
 - If SMEP is available, and is enabled, MBEC operates unaffected.
@@ -417,15 +458,35 @@ Supervisor-Mode Execution Prevention (SMEP) is a processor feature supported on 
 
 Virtual processors maintain separate states for each active VTL. However, some of this state is private to a particular VTL, and the remaining state is shared among all VTLs.
 
+The hypervisor maintains a per-VTL context for each virtual processor, storing all guest-visible processor state that must be isolated between VTLs. Each VTL has its own instance of private state including control registers, exception vectors, system configuration registers, and synthetic hypervisor registers. This per-VTL storage ensures complete isolation of execution context when switching between trust levels.
+
 State which is preserved per VTL (a.k.a. private state) is saved by the hypervisor across VTL transitions. If a VTL switch is initiated, the hypervisor saves the current private state for the active VTL, and then switches to the private state of the target VTL. Shared state remains active regardless of VTL switches.
 
 ### Private State
 
-In general, each VTL has its own control registers, RIP register, RSP register, and MSRs. Below is a list of specific registers and MSRs which are private to each VTL.
+Each VTL maintains its own complete execution context consisting of:
 
-Private MSRs:
+- **Execution State**: Instruction pointer (PC/RIP), stack pointer (SP/RSP), processor flags (PSTATE/RFLAGS)
+- **Control Registers**: Memory management configuration (page tables, translation controls, memory attributes)
+- **Exception Handling**: Exception/interrupt vectors, exception syndrome registers, fault address registers
+- **System Configuration**: Processor feature controls, debug controls, timer configuration
+- **Synthetic Registers**: Hypervisor interface registers specific to each VTL (hypercall page, guest OS ID, reference TSC, synthetic interrupt controller)
+
+This isolation ensures that each VTL has independent control over its execution environment and cannot observe or interfere with the private state of other VTLs.
+
+#### On x64 Platforms
+
+On x64 platforms, each VTL maintains its own execution context through architecture-specific MSRs and registers. The hypervisor preserves these across VTL switches, ensuring complete isolation of the execution environment.
+
+**Private MSRs** control system call mechanisms, memory attributes, processor features, and the hypervisor interface.
+
+**Architectural MSRs:**
 
 - SYSENTER_CS, SYSENTER_ESP, SYSENTER_EIP, STAR, LSTAR, CSTAR, SFMASK, EFER, PAT, KERNEL_GSBASE, FS.BASE, GS.BASE, TSC_AUX
+- Local APIC registers (including CR8/TPR)
+
+**Synthetic MSRs:**
+
 - HV_X64_MSR_HYPERCALL
 - HV_X64_MSR_GUEST_OS_ID
 - HV_X64_MSR_REFERENCE_TSC
@@ -433,7 +494,7 @@ Private MSRs:
 - HV_X64_MSR_EOI
 - HV_X64_MSR_ICR
 - HV_X64_MSR_TPR
-- HV_X64_MSR_APIC_ASSIST_PAGE
+- HV_X64_MSR_VP_ASSIST_PAGE
 - HV_X64_MSR_NPIEP_CONFIG
 - HV_X64_MSR_SIRBP
 - HV_X64_MSR_SCONTROL
@@ -444,24 +505,83 @@ Private MSRs:
 - HV_X64_MSR_SINT0 – HV_X64_MSR_SINT15
 - HV_X64_MSR_STIMER0_CONFIG – HV_X64_MSR_STIMER3_CONFIG
 - HV_X64_MSR_STIMER0_COUNT – HV_X64_MSR_STIMER3_COUNT
-- Local APIC registers (including CR8/TPR)
 
-Private registers:
+**Private registers** control the execution environment, memory management, and exception handling:
 
-- RIP, RSP
-- RFLAGS
-- CR0, CR3, CR4
-- DR7
-- IDTR, GDTR
-- CS, DS, ES, FS, GS, SS, TR, LDTR
-- TSC
-- DR6 (*dependent on processor type. Read HvRegisterVsmCapabilities virtual register to determine shared/private status)
+- **Execution State**: RIP (instruction pointer), RSP (stack pointer), RFLAGS (processor flags)
+- **Memory Management**: CR0 (processor control), CR3 (page table base), CR4 (processor features)
+- **Descriptor Tables**: IDTR (interrupt descriptor table), GDTR (global descriptor table)
+- **Segment Registers**: CS, DS, ES, FS, GS, SS, TR, LDTR
+- **Debug Control**: DR7 (debug control register)
+- **Time Stamp**: TSC (time stamp counter, providing independent time reference per VTL)
+- **Debug Status**: DR6 (debug status register - dependent on processor type; read HvRegisterVsmCapabilities to determine if shared or private)
+
+#### On ARM64 Platforms
+
+On ARM64 platforms, each VTL maintains its own complete system register context. The hypervisor preserves these registers across VTL switches, ensuring complete isolation of the execution and exception environment.
+
+**Execution State** registers control program flow and processor mode:
+
+- PC (program counter), SP_EL0, SP_EL1 (stack pointers)
+- PSTATE (processor state flags), FPCR/FPSR (floating-point control/status)
+- ELR_EL1, SPSR_EL1 (exception link register, saved program status)
+
+**Memory Management and Translation Control** registers configure virtual memory:
+
+- TTBR0_EL1, TTBR1_EL1 (translation table base registers)
+- TCR_EL1 (translation control register)
+- MAIR_EL1 (memory attribute indirection register)
+- SCTLR_EL1 (system control register)
+- CONTEXTIDR_EL1 (context identifier)
+
+**Exception and Interrupt Handling** registers control exception behavior:
+
+- VBAR_EL1 (vector base address register - exception vector table location)
+- ESR_EL1 (exception syndrome register)
+- FAR_EL1 (fault address register)
+- AFSR0_EL1, AFSR1_EL1 (auxiliary fault status registers)
+
+**System Configuration** registers control processor features:
+
+- CPACR_EL1 (coprocessor access control)
+- ACTLR_EL1 (auxiliary control register)
+- AMAIR_EL1 (auxiliary memory attribute indirection register)
+- ZCR_EL1, SMCR_EL1 (SVE/SME configuration if supported)
+
+**Debug and Performance Monitoring** registers are VTL-private. This includes all debug system registers (MDSCR_EL1, DBGBCR_EL1[], DBGBVR_EL1[], DBGWCR_EL1[], DBGWVR_EL1[], etc.) and all performance monitor registers (PMCR_EL0 and related PMU registers)
+
+**Timer Configuration** registers:
+
+- CNTKCTL_EL1 (kernel timer control)
+- CNTV_CTL_EL0, CNTV_CVAL_EL0 (virtual timer control and compare value)
+
+**Thread Identification** registers:
+
+- TPIDR_EL0, TPIDR_EL1, TPIDRRO_EL0 (thread ID registers)
+
+**Synthetic Hypervisor Registers** (accessed via hypercalls, not directly as system registers):
+
+- HvRegisterGuestOsId (guest OS identification)
+- HvRegisterHypercallMsrValue (hypercall interface enablement)
+- HvRegisterReferenceTsc (reference time stamp counter page)
+- HvRegisterVpAssistPage (VP assist page for this VTL)
+- Synthetic interrupt controller registers (SynIC)
+- Synthetic timer registers (Stimer0-3)
+- Local interrupt controller interface (GIC CPU interface)
+
+This comprehensive per-VTL register isolation ensures that each VTL has complete control over its execution environment, memory management, exception handling, and hypervisor interface without interference from other VTLs.
 
 ### Shared State
 
-VTLs share state in order to cut down on the overhead of switching contexts. Sharing state also allows some necessary communication between VTLs. Most general purpose and floating point registers are shared, as are most architectural MSRs. Below is the list of specific MSRs and registers that are shared among all VTLs:
+VTLs share certain processor state to reduce the overhead of VTL transitions and enable efficient communication between trust levels. Shared state includes general-purpose registers used for computation and data passing, floating-point state, and certain system status registers that do not affect security boundaries.
 
-Shared MSRs:
+By sharing general-purpose registers across VTLs, a VTL call can pass parameters directly in registers, and a VTL return can pass results back without requiring memory-based communication. This design significantly improves the performance of cross-VTL calls while maintaining the security isolation provided by private state.
+
+#### On x64 Platforms
+
+On x64 platforms, shared state includes general-purpose registers for computation, system information registers, and certain status registers that do not impact security isolation.
+
+**Shared MSRs** provide system information and configuration that is common across VTLs:
 
 - HV_X64_MSR_TSC_FREQUENCY
 - HV_X64_MSR_VP_INDEX
@@ -474,21 +594,43 @@ Shared MSRs:
 - MCG_CAP
 - MCG_STATUS
 
-Shared registers:
+**Shared registers** enable efficient data passing and computation across VTLs:
 
-- Rax, Rbx, Rcx, Rdx, Rsi, Rdi, Rbp
-- CR2
-- R8 – R15
-- DR0 – DR3
-- X87 floating point state
-- XMM state
-- AVX state
-- XCR0 (XFEM)
-- DR6 (*dependent on processor type. Read HvRegisterVsmCapabilities virtual register to determine shared/private status)
+- **General-Purpose Registers**: Rax, Rbx, Rcx, Rdx, Rsi, Rdi, Rbp, R8-R15 (used for computation and parameter passing during VTL calls)
+- **Exception Information**: CR2 (page fault linear address - shared for exception handling context)
+- **Debug Data**: DR0-DR3 (debug address registers - used for breakpoint addresses)
+- **Floating-Point and Vector State**: 
+  - X87 floating point state (legacy floating-point computation)
+  - XMM state (128-bit SSE vectors)
+  - AVX state (256-bit vectors)
+  - XCR0/XFEM (extended feature enable mask)
+- **Debug Status**: DR6 (debug status register - dependent on processor type; read HvRegisterVsmCapabilities to determine if shared or private)
 
-### Real Mode
+#### On ARM64 Platforms
 
-Real mode is not supported for any VTL greater than 0. VTLs greater than 0 can run in 32-bit or 64-bit mode.
+On ARM64 platforms, shared state includes registers used for computation, data passing, and floating-point operations. This sharing enables efficient VTL calls by allowing parameters and results to be passed directly in registers.
+
+**Shared registers** enable computation and communication across VTLs:
+
+- **General-Purpose Registers**: X0-X17, X19-X28 (used for computation and parameter passing)
+  - X0-X7 typically used for function parameters and return values during VTL calls
+  - X8-X17, X19-X28 available for general computation
+  - Note: X18 (platform register) and PC are private per-VTL for security reasons
+  - Note: X29 (FP/frame pointer), X30 (LR/link register), and SP are private per-VTL
+- **Floating-Point and Vector State**:
+  - Q0-Q31 (128-bit NEON/floating-point registers for vector computation)
+  - Advanced SIMD (NEON) state for vector operations
+  - Note: SVE state (Z0-Z31, P0-P15, FFR) and SME state are VTL-private. The lower 128-bit portion (Q registers) is shared, but the upper bits of Z registers may be corrupted on VTL transitions. Software should not rely on Z register contents being preserved across VTL switches.
+  - Note: SPE (Statistical Profiling Extension) state is shared across VTLs, except for PMBSR_EL1 which is VTL-private
+- **System Information Registers** (read-only or non-security-critical):
+  - System identification and feature registers
+  - Cache and TLB type information
+
+ARM64 follows the same principle as x64: general computation state is shared for efficiency, while control and configuration state that affects security boundaries remains private to each VTL.
+
+### Real Mode (x64 Only)
+
+Real mode is not supported for any VTL greater than 0 on x64 platforms. VTLs greater than 0 can run in 32-bit or 64-bit mode on x64.
 
 ## VTL Interrupt Management
 
@@ -496,15 +638,27 @@ In order to achieve a high level of isolation between Virtual Trust Levels, Virt
 
 Each VTL has its own interrupt controller, which is only active if the virtual processor is running in that particular VTL. If a virtual processor switches VTL states, the interrupt controller active on the processor is also switched.
 
-An interrupt targeted at a VTL which is higher than the active VTL will cause an immediate VTL switch. The higher VTL can then receive the interrupt. If the higher VTL is unable to receive the interrupt because of its TPR/CR8 value, the interrupt is held as “pending” and the VTL does not switch. If there are multiple VTLs with pending interrupts, the highest VTL takes precedence (without notice to the lower VTL).
+On x64 platforms, each VTL has a separate local APIC instance. On ARM64 platforms, each VTL has a separate GIC.
 
-When an interrupt is targeted at a lower VTL, the interrupt is not delivered until the next time the virtual processor transitions into the targeted VTL. INIT and startup IPIs targeted at a lower VTL are dropped on a virtual processor with a higher VTL enabled. Since INIT/SIPI is blocked, the [HvCallStartVirtualProcessor](hypercalls/HvCallStartVirtualProcessor.md) hypercall should be used to start processors.
+An interrupt targeted at a VTL which is higher than the active VTL will cause an immediate VTL switch. The higher VTL can then receive the interrupt. If the higher VTL is unable to receive the interrupt because of its priority mask (TPR/CR8 on x64, GIC priority mask on ARM64), the interrupt is held as "pending" and the VTL does not switch. If there are multiple VTLs with pending interrupts, the highest VTL takes precedence (without notice to the lower VTL).
 
-### RFLAGS.IF
+When an interrupt is targeted at a lower VTL, the interrupt is not delivered until the next time the virtual processor transitions into the targeted VTL.
 
-For the purposes of switching VTLs, RFLAGS.IF does not affect whether a secure interrupt triggers a VTL switch. If RFLAGS.IF is cleared to mask interrupts, interrupts into higher VTLs will still cause a VTL switch to a higher VTL. Only the higher VTL’s TPR/CR8 value is taken into account when deciding whether to immediately interrupt.
+On x64 platforms, INIT and startup IPIs targeted at a lower VTL are dropped on a virtual processor with a higher VTL enabled. Since architectural processor startup mechanisms may be blocked, the [HvCallStartVirtualProcessor](hypercalls/HvCallStartVirtualProcessor.md) hypercall should be used to start processors.
+
+On ARM64 platforms, PSCI interface methods (such as CPU_ON) for bringing processors online are similarly blocked when a higher VTL is enabled. The [HvCallStartVirtualProcessor](hypercalls/HvCallStartVirtualProcessor.md) hypercall provides a consistent cross-platform mechanism to start processors.
+
+### Interrupt Masking and VTL Switches
+
+#### On x64 Platforms
+
+For the purposes of switching VTLs, RFLAGS.IF does not affect whether a secure interrupt triggers a VTL switch. If RFLAGS.IF is cleared to mask interrupts, interrupts into higher VTLs will still cause a VTL switch to a higher VTL. Only the higher VTL's TPR/CR8 value is taken into account when deciding whether to immediately interrupt.
 
 This behavior also affects pending interrupts upon a VTL return. If the RFLAGS.IF bit is cleared to mask interrupts in a given VTL, and the VTL returns (to a lower VTL), the hypervisor will reevaluate any pending interrupts. This will cause an immediate call back to the higher VTL.
+
+#### On ARM64 Platforms
+
+Similarly, the PSTATE interrupt mask bits (DAIF) do not affect whether a secure interrupt triggers a VTL switch. If interrupts are masked via PSTATE, interrupts targeted at higher VTLs will still cause a VTL switch. Only the higher VTL's GIC priority mask is taken into account when deciding whether to immediately deliver the interrupt.
 
 ### Virtual Interrupt Notification Assist
 
@@ -559,9 +713,11 @@ Multiple VTLs can install secure intercepts for the same event in a lower VTL. T
 Once a VTL has been notified of a secure intercept, it must take action such that the lower VTL can continue.
 The higher VTL can handle the intercept in a number of ways, including: injecting an exception, emulating the access, or providing a proxy to the access. In any case, if the private state of the lower VTL VP needs to be modified, [HvCallSetVpRegisters](hypercalls/HvCallSetVpRegisters.md) should be used.
 
-### Secure Register Intercepts
+### Secure Register Intercepts (x64 Only)
 
-A higher VTL can intercept on accesses to certain control registers. This is achieved by setting HvX64RegisterCrInterceptControl using the [HvCallSetVpRegisters](hypercalls/HvCallSetVpRegisters.md) hypercall. Setting the control bit in HvX64RegisterCrInterceptControl will trigger an intercept for every access of the corresponding control register.
+On x64 platforms, a higher VTL can intercept on accesses to certain control registers and MSRs. This is achieved by setting HvX64RegisterCrInterceptControl using the [HvCallSetVpRegisters](hypercalls/HvCallSetVpRegisters.md) hypercall. Setting the control bit in HvX64RegisterCrInterceptControl will trigger an intercept for every access of the corresponding control register.
+
+This feature is specific to x64 as it intercepts x64 control registers (CR0, CR4, XCR0) and x64 MSRs (EFER, LSTAR, STAR, etc.). ARM64 platforms may support similar interception capabilities through different mechanisms.
 
 ```c
 typedef union

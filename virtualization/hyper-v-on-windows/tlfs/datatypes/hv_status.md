@@ -1,13 +1,3 @@
----
-title: HV_STATUS
-description: HV_STATUS
-keywords: hyper-v
-author: hvdev
-ms.author: hvdev
-ms.date: 11/07/2025
-ms.topic: reference
----
-
 # HV_STATUS
 
 Status codes for hypervisor operations.

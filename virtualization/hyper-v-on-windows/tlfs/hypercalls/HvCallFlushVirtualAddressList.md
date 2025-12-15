@@ -6,12 +6,14 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallFlushVirtualAddressList
 
 The HvCallFlushVirtualAddressList hypercall invalidates portions of the virtual TLB that belong to a specified address space.
+
+Architecture: x64 only.
 
 ## Interface
 
@@ -55,7 +57,7 @@ If a target virtual processor’s TLB requires flushing and that virtual process
 
 | Name                    | Offset     | Size     | Information Provided                      |
 |-------------------------|------------|----------|-------------------------------------------|
-| `AddressSpace`          | 0          | 8        | Specifies an address space ID (a CR3 value). |
+| `AddressSpace`          | 0          | 8        | Specifies an address space ID (CR3 value). |
 | `Flags`                 | 8          | 8        | Set of flag bits that modify the operation of the flush. |
 | `ProcessorMask`         | 16         | 8        | Processor mask indicating which processors should be affected by the flush operation. |
 

@@ -10,21 +10,19 @@
     href: hypercall-interface.md
   - name: Hypercall Reference
     href: hypercalls/overview.md
-- name: Inter-Partition Communication
-  href: inter-partition-communication.md
-- name: Nested Virtualization
-  href: nested-virtualization.md
 - name: Partitions
   href: partition-properties.md
-- name: Timers
-  href: timers.md
-- name: Virtual Interrupt Controller
-  href: virtual-interrupts.md
-- name: Virtual MMU
-  href: virtual-mmu.md
 - name: Virtual Processor
   href: vp-properties.md
+- name: Virtual MMU
+  href: virtual-mmu.md
+- name: Virtual Interrupt Controller
+  href: virtual-interrupts.md
+- name: Inter-Partition Communication
+  href: inter-partition-communication.md
+- name: Timers
+  href: timers.md
 - name: Virtual Secure Mode
   href: vsm.md
-- name: Virtualization Host
-  href: virtualization-host.md
+- name: Nested Virtualization
+  href: nested-virtualization.md

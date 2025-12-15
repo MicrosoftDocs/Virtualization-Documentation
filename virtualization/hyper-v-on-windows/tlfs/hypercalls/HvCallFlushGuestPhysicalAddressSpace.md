@@ -6,12 +6,14 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallFlushGuestPhysicalAddressSpace
 
 The HvCallFlushGuestPhysicalAddressSpace hypercall invalidates cached L2 GPA to GPA mappings within a second level address space.
+
+Architecture: x64 only.
 
 ## Interface
 

@@ -6,7 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # Nested Virtualization
@@ -27,6 +27,8 @@ The following terminology is used to define various levels of nested virtualizat
 | **L2 Guest**           | A nested virtual machine, running within the context of a Hyper-V virtual machine. |
 
 Compared to bare-metal, hypervisors can incur a significant performance regression when running in a VM. L1 hypervisors can be optimized to run in a Hyper-V VM by using enlightened interfaces provided by the L0 hypervisor.
+
+This capability is currently only supported on x64.
 
 ## Enlightened VMCS (Intel)
 

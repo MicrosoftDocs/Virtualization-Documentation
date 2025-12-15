@@ -6,7 +6,7 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 09/02/2025
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # HV_MESSAGE_TYPE

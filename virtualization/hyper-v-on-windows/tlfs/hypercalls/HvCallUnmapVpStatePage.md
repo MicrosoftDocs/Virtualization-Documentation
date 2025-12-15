@@ -6,7 +6,7 @@ author: hvdev
 ms.author: hvdev
 ms.date: 08/31/2025
 ms.topic: reference
-
+ms.prod: windows-10-hyperv
 ---
 
 # HvCallUnmapVpStatePage
@@ -36,7 +36,7 @@ HvCallUnmapVpStatePage(
 |-------------------------|------------|----------|-------------------------------------------|
 | PartitionId             | 0          | 8        | Specifies the partition ID               |
 | VpIndex                 | 8          | 4        | Specifies the VP index                   |
-| Type                    | 12         | 2        | State page type ([HV_VP_STATE_PAGE_TYPE](../datatypes/hv_vp_state_page_type.md))        |
+| Type                    | 12         | 2        | State page type ([HV_VP_STATE_PAGE_TYPE](../datatypes/hv_vp_state_page_type.md))  |
 | InputVtl                | 14         | 1        | Specifies the input VTL                  |
 | Reserved0               | 15         | 1        | Reserved                                 |
 

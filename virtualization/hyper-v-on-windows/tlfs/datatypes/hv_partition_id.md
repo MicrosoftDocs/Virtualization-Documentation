@@ -1,13 +1,3 @@
----
-title: HV_PARTITION_ID
-description: HV_PARTITION_ID
-keywords: hyper-v
-author: hvdev
-ms.author: hvdev
-ms.date: 11/07/2025
-ms.topic: reference
----
-
 # HV_PARTITION_ID
 
 The HV_PARTITION_ID data type represents a unique identifier for a partition within the hypervisor. Each partition is assigned a unique partition ID when it is created, which is used to reference the partition in subsequent hypercalls.

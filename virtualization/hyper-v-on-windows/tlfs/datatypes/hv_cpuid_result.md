@@ -1,16 +1,8 @@
----
-title: HV_CPUID_RESULT
-description: HV_CPUID_RESULT
-keywords: hyper-v
-author: hvdev
-ms.author: hvdev
-ms.date: 11/07/2025
-ms.topic: reference
----
-
 # HV_CPUID_RESULT
 
 The HV_CPUID_RESULT data type contains the result of a CPUID instruction execution. This structure holds the register values returned by the CPUID instruction for a specific function and subfunction.
+
+Architecture: x64 only.
 
 ## Syntax
 
