@@ -18,7 +18,7 @@ This capability provides comprehensive partition lifecycle management, memory po
 
 The hypercall interfaces are intended to be used when running non-Windows operating systems.
 
-Windows applications MUST use the [Windows Hypervisor Platform](https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/hypervisor-platform) APIs to implement a Virtualization Host. This guarantees full compatibility with other Windows features, such as Virtualization Based Security.
+Windows applications MUST use the [Windows Hypervisor Platform](https://learn.microsoft.com/virtualization/api/hypervisor-platform/hypervisor-platform) APIs to implement a Virtualization Host. This guarantees full compatibility with other Windows features, such as Virtualization Based Security.
 
 ## Terminology
 

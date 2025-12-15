@@ -365,7 +365,7 @@ The Guest OS running within the partition must identify itself to the hypervisor
 
 This register’s value is initially zero.
 
-On x86/x64, a non-zero value must be written to the Guest OS ID MSR before the hypercall code page can be enabled (see [Establishing the Hypercall Interface](#establishing-the-hypercall-interface)). If this register is subsequently zeroed, the hypercall code page will be disabled.
+On x86/x64, a non-zero value must be written to the Guest OS ID MSR before the hypercall code page can be enabled (see [Establishing the Hypercall Interface (x86/x64)](#establishing-the-hypercall-interface-x86x64)). If this register is subsequently zeroed, the hypercall code page will be disabled.
 
 On ARM64, a non-zero value must be written to the Guest OS ID MSR before hypercall codes can be invoked. The exception is the [HvCallSetVpRegisters](hypercalls/HvCallGetVpRegisters.md)/[HvCallGetVpRegisters](hypercalls/HvCallGetVpRegisters.md) hypercalls. Please see their respective documentation for more information.
 

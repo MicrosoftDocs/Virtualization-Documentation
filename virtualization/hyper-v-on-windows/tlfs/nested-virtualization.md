@@ -239,7 +239,7 @@ The L1 hypervisor exposes a MSR that reports the current processor's underlying 
 
 ### Nested SynIC MSRs
 
-In a nested root partition, the following MSRs allow access to the corresponding [SynIC MSRs](inter-partition-communication.md#synic-msrs) of the base hypervisor.
+In a nested root partition, the following MSRs allow access to the corresponding [SynIC registers](inter-partition-communication.md#synic-registers) of the base hypervisor.
 
 To find the index of the underlying processor, callers should first use HV_X64_MSR_NESTED_VP_INDEX.
 
