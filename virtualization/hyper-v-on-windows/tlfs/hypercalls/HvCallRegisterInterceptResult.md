@@ -6,7 +6,6 @@ author: hvdev
 ms.author: hvdev
 ms.date: 08/31/2025
 ms.topic: reference
-ms.prod: windows-10-hyperv
 ---
 
 # HvCallRegisterInterceptResult

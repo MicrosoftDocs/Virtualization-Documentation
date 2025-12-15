@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 09/01/2025
 ms.topic: reference
-ms.prod: windows-10-hyperv
 ---
 
 # HV_REGISTER_NAME

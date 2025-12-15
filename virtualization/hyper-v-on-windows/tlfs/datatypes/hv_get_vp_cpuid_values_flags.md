@@ -6,7 +6,6 @@ author: hvdev
 ms.author: hvdev
 ms.date: 09/08/2025
 ms.topic: reference
-ms.prod: windows-10-hyperv
 ---
 
 # HV_GET_VP_CPUID_VALUES_FLAGS
