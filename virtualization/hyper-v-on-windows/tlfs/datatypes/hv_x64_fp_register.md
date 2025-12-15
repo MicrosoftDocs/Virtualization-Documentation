@@ -6,12 +6,13 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
 ---
 
 # HV_X64_FP_REGISTER
 
 Floating point registers are encoded as 80-bit values.
+
+Architecture: x64 only.
 
 ## Syntax
 

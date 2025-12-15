@@ -12,6 +12,8 @@ ms.topic: reference
 
 The HV_CPUID_RESULT data type contains the result of a CPUID instruction execution. This structure holds the register values returned by the CPUID instruction for a specific function and subfunction.
 
+Architecture: x64 only.
+
 ## Syntax
 
 ```c

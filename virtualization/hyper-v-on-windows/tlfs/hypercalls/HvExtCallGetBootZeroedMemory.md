@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 11/16/2022
 ms.topic: reference
-
 ---
 
 # HvExtCallGetBootZeroedMemory

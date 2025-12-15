@@ -6,7 +6,6 @@ author: hvdev
 ms.author: hvdev
 ms.date: 09/01/2025
 ms.topic: reference
-
 ---
 
 # HvCallFinalizePartition

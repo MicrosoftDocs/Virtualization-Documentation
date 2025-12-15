@@ -79,6 +79,18 @@ typedef enum {
 } HV_PARTITION_PROPERTY_CODE;
 ```
 
+## Architecture Notes
+
+The following properties are x64-specific:
+- `HvPartitionPropertyProcessorXsaveFeatures` - XSAVE is an x64 feature
+- `HvPartitionPropertyXsaveStates` - XSAVE states
+- `HvPartitionPropertyMaxXsaveDataSize` - XSAVE data size
+- `HvPartitionPropertySevVmgexitOffloads` - AMD SEV-specific
+
+The following properties are ARM64-specific:
+- `HvPartitionPropertyGicdBaseAddress` - GIC Distributor base address
+- `HvPartitionPropertyGitsTranslaterBaseAddress` - GIC ITS Translater base address
+
 ## Overview
 Extended property codes require the *Ex* hypercall variants when their value representation exceeds 64 bits or is banked / variable sized.
 

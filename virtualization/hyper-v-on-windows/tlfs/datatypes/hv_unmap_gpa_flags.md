@@ -32,3 +32,4 @@ typedef UINT32 HV_UNMAP_GPA_FLAGS;
 ## See Also
 * [HvCallUnmapGpaPages](../hypercalls/HvCallUnmapGpaPages.md)
 * [HvCallMapGpaPages](../hypercalls/HvCallMapGpaPages.md)
+

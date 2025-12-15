@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
 ---
 
 # HvCallStartVirtualProcessor
@@ -33,12 +32,23 @@ HvCallStartVirtualProcessor(
 
 ## Input Parameters
 
+### x64 Layout
+
 | Name                    | Offset     | Size     | Information Provided                      |
 |-------------------------|------------|----------|-------------------------------------------|
 | `PartitionId`           | 0          | 8        | Partition                                 |
 | `VpIndex`               | 8          | 4        | VP Index to start. To get the VP index from an APIC ID, use HvCallGetVpIndexFromApicId. |
 | `TargetVtl`             | 12         | 1        | Target VTL                                |
 | `VpContext`             | 16         | 224      | Specifies the initial context in which the VP should start. |
+
+### ARM64 Layout
+
+| Name                    | Offset     | Size     | Information Provided                      |
+|-------------------------|------------|----------|-------------------------------------------|
+| `PartitionId`           | 0          | 8        | Partition                                 |
+| `VpIndex`               | 8          | 4        | VP Index to start. To get the VP index from an MPIDR value, use HvCallGetVpIndexFromApicId. |
+| `TargetVtl`             | 12         | 1        | Target VTL                                |
+| `VpContext`             | 16         | 72       | Specifies the initial context in which the VP should start. |
 
 ## Return Values
 

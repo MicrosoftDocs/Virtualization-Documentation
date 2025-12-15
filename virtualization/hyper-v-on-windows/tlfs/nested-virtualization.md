@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
 ---
 
 # Nested Virtualization
@@ -27,6 +26,8 @@ The following terminology is used to define various levels of nested virtualizat
 | **L2 Guest**           | A nested virtual machine, running within the context of a Hyper-V virtual machine. |
 
 Compared to bare-metal, hypervisors can incur a significant performance regression when running in a VM. L1 hypervisors can be optimized to run in a Hyper-V VM by using enlightened interfaces provided by the L0 hypervisor.
+
+This capability is currently only supported on x64.
 
 ## Enlightened VMCS (Intel)
 
@@ -238,7 +239,7 @@ The L1 hypervisor exposes a MSR that reports the current processor's underlying 
 
 ### Nested SynIC MSRs
 
-In a nested root partition, the following MSRs allow access to the corresponding [SynIC MSRs](inter-partition-communication.md#synic-msrs) of the base hypervisor.
+In a nested root partition, the following MSRs allow access to the corresponding [SynIC registers](inter-partition-communication.md#synic-registers) of the base hypervisor.
 
 To find the index of the underlying processor, callers should first use HV_X64_MSR_NESTED_VP_INDEX.
 

@@ -6,7 +6,6 @@ author: hvdev
 ms.author: hvdev
 ms.date: 08/28/2025
 ms.topic: reference
-
 ---
 
 # HV_PORT_TYPE

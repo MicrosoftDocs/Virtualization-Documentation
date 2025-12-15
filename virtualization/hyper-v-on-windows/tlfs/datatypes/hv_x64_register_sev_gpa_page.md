@@ -12,6 +12,8 @@ ms.topic: reference
 
 The following data structure is used to define the contents of the Secure AVIC control register (HvX64RegisterSevAvicGpa).
 
+Architecture: x64 only (AMD SEV).
+
 ## Syntax
 
  ```c
