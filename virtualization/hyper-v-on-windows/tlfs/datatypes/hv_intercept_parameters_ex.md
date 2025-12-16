@@ -7,7 +7,6 @@ ms.author: hvdev
 ms.date: 11/07/2025
 ms.topic: reference
 ---
-
 # HV_INTERCEPT_PARAMETERS_EX
 
 ## Overview

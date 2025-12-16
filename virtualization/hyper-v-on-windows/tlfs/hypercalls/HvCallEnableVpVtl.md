@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
 ---
 
 # HvCallEnableVpVtl
@@ -38,6 +37,8 @@ This hypercall will fail if called to enable a VTL that is already enabled for a
 
 ## Input Parameters
 
+### x64 Layout
+
 | Name                    | Offset     | Size     | Information Provided                      |
 |-------------------------|------------|----------|-------------------------------------------|
 | `TargetPartitionId`     | 0          | 8        | Supplies the partition ID of the partition this request is for. |
@@ -45,6 +46,16 @@ This hypercall will fail if called to enable a VTL that is already enabled for a
 | `TargetVtl`             | 12         | 1        | Specifies the VTL to be enabled by this hypercall. |
 | RsvdZ                   | 13         | 3        |                                           |
 | `VpVtlContext`          | 16         | 224      | Specifies the initial context in which the VP should start upon the first entry to the target VTL. |
+
+### ARM64 Layout
+
+| Name                    | Offset     | Size     | Information Provided                      |
+|-------------------------|------------|----------|-------------------------------------------|
+| `TargetPartitionId`     | 0          | 8        | Supplies the partition ID of the partition this request is for. |
+| `VpIndex`               | 8          | 4        | Specifies the index of the virtual processor on which to enable the VTL. |
+| `TargetVtl`             | 12         | 1        | Specifies the VTL to be enabled by this hypercall. |
+| RsvdZ                   | 13         | 3        |                                           |
+| `VpVtlContext`          | 16         | 72       | Specifies the initial context in which the VP should start upon the first entry to the target VTL. |
 
 ## See also
 

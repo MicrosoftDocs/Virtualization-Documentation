@@ -6,7 +6,6 @@ author: hvdev
 ms.author: hvdev
 ms.date: 09/08/2025
 ms.topic: reference
-
 ---
 
 # HV_GET_VP_CPUID_VALUES_FLAGS
@@ -14,6 +13,8 @@ ms.topic: reference
 ## Overview
 
 Control flags for `HvCallGetVpCpuidValues` hypercall that specify how CPUID values should be retrieved and processed for the target virtual processor.
+
+Architecture: x64 only.
 
 ## Syntax
 

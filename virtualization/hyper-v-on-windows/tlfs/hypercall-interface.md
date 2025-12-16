@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
 ---
 
 # Hypercall Interface
@@ -115,8 +114,8 @@ Register mapping for hypercall inputs are as follows:
 |----------|--------------------------------------------------------------|
 | X0       | SMCCC Function Identifier                                    |
 | X1       | Hypercall Input Value                                        |
-| X2       | Input Parameter                                              |
-| X3       | Output Parameter                                             |
+| X2       | Input Parameters GPA                                         |
+| X3       | Output Parameters GPA                                        |
 
 The SMCCC Function Identifier in X0 follows this format:
 
@@ -139,8 +138,8 @@ Register mapping for hypercall inputs are as follows:
 | Register | Information Provided                                         |
 |----------|--------------------------------------------------------------|
 | X0       | Hypercall Input Value                                        |
-| X1       | Input Parameter                                              |
-| X2       | Output Parameter                                             |
+| X1       | Input Parameters GPA                                         |
+| X2       | Output Parameters GPA                                        |
 
 ### Variable Sized Hypercall Input Headers
 
@@ -190,7 +189,7 @@ The hypercall input value is passed in registers along with the input parameters
 
 ### Register Fast Call Input (ARM64 SMCCC)
 
-On ARM64 platforms, the hypervisor supports the use of register fast hypercalls, which allows some hypercalls to take advantage of the improved performance of the fast hypercall interface even though they require more than two input parameters. The register fast hypercall interface uses 15 general purpose registers to allow the caller to pass an input parameter block up to 120 bytes in size.
+On ARM64 platforms, the hypervisor supports the use of register fast hypercalls, which allows some hypercalls to take advantage of the improved performance of the fast hypercall interface even though they require more than two input parameters. The register fast hypercall interface uses 16 general purpose registers to allow the caller to pass an input parameter block up to 128 bytes in size.
 
 #### Register Mapping (Input Only)
 
@@ -200,7 +199,7 @@ On ARM64 platforms, the hypervisor supports the use of register fast hypercalls,
 | X1       | Hypercall Input Value                                        |
 | X2 - X17 | Input Parameter Block                                        |
 
-If the input parameter block is smaller than 120 bytes, any extra bytes in the registers are ignored.
+If the input parameter block is smaller than 128 bytes, any extra bytes in the registers are ignored.
 
 ### Register Fast Call Input (ARM64 HVC #1)
 
@@ -275,13 +274,13 @@ On ARM64 platforms, similar to how the hypervisor supports register fast hyperca
 
 #### Register Mapping (Input and Output)
 
-Registers that are not being used to pass input parameters can be used to return output. In other words, if the input parameter block is smaller than 120 bytes (rounded up to the nearest 8 byte aligned chunk), the remaining registers will return hypercall output.
+Registers that are not being used to pass input parameters can be used to return output. In other words, if the input parameter block is smaller than 128 bytes (rounded up to the nearest 8 byte aligned chunk), the remaining registers will return hypercall output.
 
 | Register | Information Provided                                         |
 |----------|--------------------------------------------------------------|
 | X2 - X17 | Input or Output Block                                        |
 
-For example, if the input parameter block is 20 bytes in size, the hypervisor would ignore the following 4 bytes. The remaining 96 bytes would contain hypercall output (if applicable).
+For example, if the input parameter block is 20 bytes in size, the hypervisor would ignore the following 4 bytes. The remaining 104 bytes would contain hypercall output (if applicable).
 
 ### Register Fast Call Output (ARM64 HVC #1)
 
@@ -364,7 +363,7 @@ The return code `HV_STATUS_SUCCESS` indicates that no error condition was detect
 
 The Guest OS running within the partition must identify itself to the hypervisor by writing its signature and version to an MSR (`HV_X64_MSR_GUEST_OS_ID`/`HvRegisterGuestOsId`) before it can invoke hypercalls. This MSR is partition-wide and is shared among all virtual processors.
 
-This register's value is initially zero.
+This register’s value is initially zero.
 
 On x86/x64, a non-zero value must be written to the Guest OS ID MSR before the hypercall code page can be enabled (see [Establishing the Hypercall Interface (x86/x64)](#establishing-the-hypercall-interface-x86x64)). If this register is subsequently zeroed, the hypercall code page will be disabled.
 

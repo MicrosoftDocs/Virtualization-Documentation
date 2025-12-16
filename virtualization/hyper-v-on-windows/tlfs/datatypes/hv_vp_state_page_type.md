@@ -6,7 +6,6 @@ author: hvdev
 ms.author: hvdev
 ms.date: 11/01/2025
 ms.topic: reference
-
 ---
 
 # HV_VP_STATE_PAGE_TYPE
@@ -31,7 +30,7 @@ typedef enum _HV_VP_STATE_PAGE_TYPE
 |-------|------|-------------|
 | 0 | HvVpStatePageRegisters | Register state page containing virtual processor register values |
 | 1 | HvVpStatePageInterceptMessage | Intercept message page for handling VM exits and intercepts |
-| 2 | HvVpVtlStatePageGhcb | Guest Hypervisor Communication Block (GHCB) page for SEV-SNP and VTL communication |
+| 2 | HvVpVtlStatePageGhcb | Guest Hypervisor Communication Block (GHCB) page for SEV-SNP and VTL communication (x64 only - AMD SEV) |
 
 ## See Also
 

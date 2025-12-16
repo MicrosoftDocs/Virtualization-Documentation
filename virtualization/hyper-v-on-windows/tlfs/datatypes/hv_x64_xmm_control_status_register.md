@@ -6,10 +6,11 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
 ---
 
 # HV_X64_XMM_CONTROL_STATUS_REGISTER
+
+Architecture: x64 only.
 
 ## Syntax
 

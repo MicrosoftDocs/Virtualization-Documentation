@@ -6,12 +6,13 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
 ---
 
 # HV_X64_SEGMENT_REGISTER
 
 Segment register state is encoded as follows:
+
+Architecture: x64 only.
 
 ## Syntax
 

@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 09/01/2025
 ms.topic: reference
-
 ---
 
 # HV_REGISTER_NAME
@@ -972,26 +971,6 @@ Deprecated registers are documented for compatibility with older OS releases.
 | HvArm64RegisterCntvTvalEl0 | 0x00058010 | Virtual timer value |
 | HvArm64RegisterCntvTvalElx | 0x00058019 | CntvTvalEl0 or CnthvTvalEl2 depending on EL. |
 | HvArm64RegisterCntvctEl0 | 0x00058011 | Virtual counter |
-
-### GIC System Registers (CPU Interface)
-| Register | Identifier | Comment |
-|----------|------------|---------|
-| Arm64RegisterIccAp1R0El1 | 0x00060000 | Active pri group1 reg0 |
-| Arm64RegisterIccAp1R1El1 | 0x00060001 | Active pri group1 reg1 |
-| Arm64RegisterIccAp1R2El1 | 0x00060002 | Active pri group1 reg2 |
-| Arm64RegisterIccAp1R3El1 | 0x00060003 | Active pri group1 reg3 |
-| Arm64RegisterIccAsgi1REl1 | 0x00060004 | SGI1R write alias |
-| Arm64RegisterIccBpr1El1 | 0x00060005 | Binary point group1 |
-| Arm64RegisterIccCtlrEl1 | 0x00060006 | CPU interface control |
-| Arm64RegisterIccDirEl1 | 0x00060007 | Deactivate interrupt |
-| Arm64RegisterIccEoir1El1 | 0x00060008 | End of interrupt group1 |
-| Arm64RegisterIccHppir1El1 | 0x00060009 | Highest pending group1 |
-| Arm64RegisterIccIar1El1 | 0x0006000A | Interrupt acknowledge g1 |
-| Arm64RegisterIccIgrpen1El1 | 0x0006000B | Group1 enable |
-| Arm64RegisterIccPmrEl1 | 0x0006000C | Priority mask |
-| Arm64RegisterIccRprEl1 | 0x0006000D | Running priority |
-| Arm64RegisterIccSgi1REl1 | 0x0006000E | SGI1R register access |
-| Arm64RegisterIccSreEl1 | 0x0006000F | System reg enable EL1 |
 
 ### GIC Redistributor
 | Register | Identifier | Comment |

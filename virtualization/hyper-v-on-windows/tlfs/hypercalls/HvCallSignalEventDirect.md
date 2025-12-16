@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 11/03/2025
 ms.topic: reference
-
 ---
 
 # HvCallSignalEventDirect

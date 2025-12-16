@@ -6,7 +6,6 @@ author: alexgrest
 ms.author: hvdev
 ms.date: 10/15/2020
 ms.topic: reference
-
 ---
 
 # HvCallFlushVirtualAddressSpaceEx
@@ -15,7 +14,7 @@ The HvCallFlushVirtualAddressSpaceEx hypercall is similar to [HvCallFlushVirtual
 
 The following checks should be used to infer the availability of this hypercall:
 
-- ExProcessorMasks must be indicated via CPUID leaf 0x40000004.
+- UseExProcessorMasks must be indicated (on x64 via CPUID leaf 0x40000004, on ARM64 via HvRegisterFeaturesInfo).
 
 ## Interface
 
@@ -36,7 +35,7 @@ HvCallFlushVirtualAddressSpaceEx(
 
 | Name                    | Offset     | Size     | Information Provided                      |
 |-------------------------|------------|----------|-------------------------------------------|
-| `AddressSpace`          | 0          | 8        | Specifies an address space ID (a CR3 value). |
+| `AddressSpace`          | 0          | 8        | Specifies an address space ID (CR3 on x64, translation table base on ARM64). |
 | `Flags`                 | 8          | 8        | Set of flag bits that modify the operation of the flush. |
 | `ProcessorSet`          | 16         | Variable | Processor set indicating which processors should be affected by the flush operation. |
 

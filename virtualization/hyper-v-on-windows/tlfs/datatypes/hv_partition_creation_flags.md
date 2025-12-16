@@ -6,7 +6,6 @@ author: hvdev
 ms.author: hvdev
 ms.date: 08/31/2025
 ms.topic: reference
-
 ---
 
 # HV_PARTITION_CREATION_FLAGS
@@ -30,6 +29,12 @@ HV_PARTITION_CREATION_FLAGS is a bitmask (UINT64) controlling behavior and initi
 #define HV_PARTITION_CREATION_FLAG_X2APIC_CAPABLE                       (1ULL << 22)
 
 ```
+
+## Architecture Notes
+
+The following flags are x64-specific and are ignored on ARM64:
+- `HV_PARTITION_CREATION_FLAG_LAPIC_ENABLED` - Local APIC is x64-specific
+- `HV_PARTITION_CREATION_FLAG_X2APIC_CAPABLE` - x2APIC is x64-specific
 
 See Also:
 - [`HvCallCreatePartition`](../hypercalls/HvCallCreatePartition.md)
