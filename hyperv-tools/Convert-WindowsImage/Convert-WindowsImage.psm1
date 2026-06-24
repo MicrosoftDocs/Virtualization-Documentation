@@ -1765,7 +1765,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         $newVhd = New-Vhd @NewVhdParam
 
                         Write-Verbose -Message "Mounting $VhdFormat..."
-                        $disk = $newVhd | Mount-VHD -PassThru | Get-Disk
+                        $disk = Receive-Job -Wait -Job ($newVhd | Mount-VHD -PassThru | Get-Disk -AsJob)
                     }
                     Else
                     {
