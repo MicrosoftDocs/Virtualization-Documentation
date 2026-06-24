@@ -42,9 +42,12 @@ $pnpdevs = Get-PnpDevice -PresentOnly
 $pcidevs = $pnpdevs | Where-Object {$_.InstanceId -like "PCI*"}
 
 foreach ($pcidev in $pcidevs) {
+    $locationpath = ($pcidev | get-pnpdeviceproperty DEVPKEY_Device_LocationPaths).data[0]
     Write-Host ""
     Write-Host ""
     Write-Host -ForegroundColor White -BackgroundColor Black $pcidev.FriendlyName
+    Write-Host -ForegroundColor Yellow -BackgroundColor Black $locationpath
+    
 
     $rmrr =  ($pcidev | Get-PnpDeviceProperty $devpkey_PciDevice_RequiresReservedMemoryRegion).Data
     if ($rmrr -ne 0) {
@@ -83,8 +86,6 @@ foreach ($pcidev in $pcidevs) {
         }
     }
 
-    $locationpath = ($pcidev | get-pnpdeviceproperty DEVPKEY_Device_LocationPaths).data[0]
-
     #
     # If the device is disabled, we can't check the resources, report a warning and continue on.
     #
@@ -93,7 +94,6 @@ foreach ($pcidev in $pcidevs) {
     {
         Write-Host -ForegroundColor Yellow -BackgroundColor Black "Device is Disabled, unable to check resource requirements, it may be assignable."
         Write-Host -ForegroundColor Yellow -BackgroundColor Black "Enable the device and rerun this script to confirm."
-        $locationpath
         continue
     }
 
@@ -154,7 +154,6 @@ foreach ($pcidev in $pcidevs) {
     # change even if you add or remove devices from the machine or change the way that
     # the BIOS is configured.
     #
-    $locationpath
 }
 
 #
