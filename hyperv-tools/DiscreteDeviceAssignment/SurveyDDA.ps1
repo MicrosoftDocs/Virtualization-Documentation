@@ -54,8 +54,10 @@ foreach ($pcidev in $pcidevs) {
 
     $acsUp =  ($pcidev | Get-PnpDeviceProperty $devpkey_PciDevice_AcsCompatibleUpHierarchy).Data
     if ($acsUp -eq $devprop_PciDevice_AcsCompatibleUpHierarchy_NotSupported) {
-        write-host -ForegroundColor Red -BackgroundColor Black "Traffic from this device may be redirected to other devices in the system.  Not assignable."
-        continue
+        write-host -ForegroundColor Yellow -BackgroundColor Black "Warning: Traffic from this device may be redirected to other devices in the system."
+        write-host -ForegroundColor Yellow -BackgroundColor Black "It is strongly recommend to assign devices with proper ACS support for system security and reliability."
+        write-host -ForegroundColor Yellow -BackgroundColor Black "While it is possible to assign it to VM with -Force switch when running Dismount-VMHostAssignableDevice,"
+        write-host -ForegroundColor Yellow -BackgroundColor Black "PCIe security will not be enforced so all workloads should be trusted."
     }
 
     $devtype = ($pcidev | Get-PnpDeviceProperty $devpkey_PciDevice_DeviceType).Data
