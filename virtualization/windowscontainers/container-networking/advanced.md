@@ -93,6 +93,9 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnss
 
 See [this article](https://www.microsoft.com/research/project/azure-virtual-filtering-platform/) for more information.
 
+>[!IMPORTANT]
+>vfpctrl.exe is a tool installed with VFP for diagnostic purposes and should be used by Administrators only under the direction of Microsoft Support.  Any other use is unsupported and could result in system instability.
+
 ## Tips & Insights
 
 Here's a list of handy tips and insights, inspired by common questions on Windows container networking that we hear from the community...
