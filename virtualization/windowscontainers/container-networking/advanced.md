@@ -113,7 +113,7 @@ C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Para
 
 #### Linux Containers on Windows
 
-**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side **without the Moby Linux VM**. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](../quick-start/quick-start-windows-10-linux.md).
+**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side **without the Moby Linux VM**. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](../deploy-containers/set-up-linux-containers.md).
 > NOTE: LCOW is deprecating the Moby Linux VM, and it will utilize the default HNS "nat" internal vSwitch.
 
 #### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition))
