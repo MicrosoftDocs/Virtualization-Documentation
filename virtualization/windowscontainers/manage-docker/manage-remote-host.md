@@ -25,7 +25,7 @@ The steps are:
 New-NetFirewallRule -DisplayName 'Docker SSL Inbound' -Profile @('Domain', 'Public', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort 2376
 ```
 
-* Copy the files `ca.pem`, 'cert.pem' and 'key.pem' from your user's docker folder on your machine, e.g. `c:\users\chris\.docker` to you local machine. For example, you can ctrl-c, ctrl-v the files from an RDP session.
+* Copy the files `ca.pem`, `cert.pem` and `key.pem` from your user's docker folder on your machine, e.g. `c:\users\chris\.docker` to you local machine. For example, you can ctrl-c, ctrl-v the files from an RDP session.
 * Confirm that you can connect to the remote Docker Host. Run:
 
 ```powershell
