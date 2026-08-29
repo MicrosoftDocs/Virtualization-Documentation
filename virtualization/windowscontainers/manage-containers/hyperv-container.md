@@ -12,7 +12,7 @@ ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
 
 > Applies to: Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016
 
-Windows containers offer two distinct modes of runtime isolation: `process` and `Hyper-V` isolation. Containers running under both isolation modes are created, managed, and function identically. They also produce and consume the same container images. The difference between the isolation modes is to what degree of isolation is created between the container, the host operating system, and all of the other containers running on that host.
+Windows containers offer two distinct modes of runtime isolation: `process` and `Hyper-V` isolation. Containers running under both isolation modes are created, managed, and function identically. They also produce and consume the same container images. The difference between the isolation modes is the degree of isolation between the container, the host operating system, and all of the other containers running on that host.
 
 ## Process Isolation
 
