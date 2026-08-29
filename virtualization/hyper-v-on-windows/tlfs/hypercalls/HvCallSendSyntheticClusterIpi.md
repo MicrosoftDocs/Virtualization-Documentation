@@ -33,4 +33,4 @@ HvCallSendSyntheticClusterIpi(
 | `Vector`                | 0          | 4        | Specified the vector asserted. Must be between >= 0x10 and <= 0xFF.  |
 | `TargetVtl`             | 4          | 1        | Target VTL                                |
 | Padding                 | 5          | 3        |                                           |
-| `ProcessorMask`         | 8          | 1        | Specifies a mask representing VPs to target|
+| `ProcessorMask`         | 8          | 8        | Specifies a mask representing VPs to target|
