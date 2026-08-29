@@ -13,9 +13,10 @@ This Supplemental License is for the Windows Container Base Image (“Container 
 ## CONTAINER OS IMAGE
 The Container Image may only be used with a validly licensed copy of:
 
-Windows Server Standard or Windows Server Datacenter software (collectively “Server Host Software”), or
-Microsoft Windows Operating System (version 10) software (“Client Host Software”), or
-Windows 10 IoT Enterprise and Windows 10 IoT Core (collectively “IoT Host Software”).
+- Windows Server Standard or Windows Server Datacenter software (collectively “Server Host Software”), or
+- Microsoft Windows Operating System (version 10 and 11) software (“Client Host Software”), or
+- Windows 10 and 11 IoT Enterprise and Windows 10 and 11 IoT Core (collectively “IoT Host Software”).
+
 The Server Host Software, Client Host Software, and IoT Host Software are collectively referred to as the “Host Software” and a license for Host Software is a "Host License".
 
 You may not use the Container Image if you do not have a corresponding version and edition of the Host License. Certain restrictions and additional terms may apply, which are described herein. If licensing terms herein conflict with Host License, then this Supplemental License shall govern with respect to the Container Image. BY ACCEPTING THIS SUPPLEMENTAL LICENSE OR USING THE CONTAINER IMAGE, YOU AGREE TO ALL OF THESE TERMS. IF YOU DO NOT ACCEPT AND COMPLY WITH THESE TERMS, YOU MAY NOT USE THE CONTAINER IMAGE.
