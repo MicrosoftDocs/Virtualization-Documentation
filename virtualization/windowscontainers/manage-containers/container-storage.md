@@ -21,7 +21,7 @@ As described in the [Containers Overview](../about/index.md), container images a
 
 ### Where layers are stored and how to change it
 
-In a default installation, layers are stored in `C:\ProgramData\docker` and split across the "image" and "windowsfilter" directories. You can change where the layers are stored using the `docker-root` configuration, as demonstrated in the [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md) documentation.
+In a default installation, layers are stored in `C:\ProgramData\docker` and split across the "image" and "windowsfilter" directories. You can change where the layers are stored using the `data-root` configuration, as demonstrated in the [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md) documentation.
 
 > [!NOTE]
 > Only NTFS is supported for layer storage. ReFS and cluster shared volumes (CSV) are not supported.
