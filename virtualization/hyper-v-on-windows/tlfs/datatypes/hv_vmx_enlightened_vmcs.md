@@ -143,7 +143,8 @@ typedef struct
     UINT64 EptRoot;
     UINT16 Vpid;
     UINT16 Rsvd2[3];
-    UINT64 Rsvd3[5];
+    UINT64 Rsvd3[4];
+    UINT64 ExitExtendedInstructionInfo;
     UINT64 ExitEptFaultGpa;
     UINT32 ExitInstructionError;
     UINT32 ExitReason;
@@ -338,6 +339,7 @@ The following table maps the Intel physical VMCS encoding to its corresponding e
 | 0x0000440a     | ExitIdtVectoringErrorCode   | 4      | NONE (Read only)              |
 | 0x0000440c     | ExitInstructionLength       | 4      | NONE (Read only)              |
 | 0x0000440e     | ExitInstructionInfo         | 4      | NONE (Read only)              |
+| 0x00002406     | ExitExtendedInstructionInfo | 8      | NONE (Read only)              |
 | 0x00006400     | ExitQualification           | 8      | NONE (Read only)              |
 | 0x00006402     | ExitIoInstructionEcx        | 8      | NONE (Read only)              |
 | 0x00006404     | ExitIoInstructionEsi        | 8      | NONE (Read only)              |

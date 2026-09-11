@@ -1206,6 +1206,106 @@ Equivalent to x64 CPUID leaf 0x40000006. Indicates which hardware-specific featu
     </tbody>
 </table>
 
+### Core Performance Monitoring Unit (PMU) Event Types
+
+A baseline set of Arm architecture Core PMU events is available to guest partitions on all ARM64 platforms. Additional Core PMU events are available on Azure Cobalt 100 and Azure Cobalt 200. Event numbers and names follow the Arm architecture PMU event definitions.
+
+Guest software can identify the platform by reading the `MIDR_EL1` register and comparing the low 32 bits for exact equality against the values in the following table, without masking the implementer, variant, architecture, part, or revision fields. This is the recommended heuristic for determining whether the additional Core PMU event types are available before accessing them.
+
+| Platform | MIDR_EL1 |
+|----------|----------|
+| Azure Cobalt 100 | `0x410FD490` |
+| Azure Cobalt 200 | `0x410FD841` |
+
+In the following table, a checkmark (✓) indicates that the Core PMU event type is supported for guest partitions on the corresponding platform.
+
+| Event Number | Event Name | All ARM64 platforms | Azure Cobalt 100 | Azure Cobalt 200 |
+|--------------|------------|:-------------------:|:----------------:|:----------------:|
+| 0x0000 | SW_INCR | ✓ | ✓ | ✓ |
+| 0x0001 | L1I_CACHE_REFILL |  | ✓ | ✓ |
+| 0x0002 | L1I_TLB_REFILL |  | ✓ | ✓ |
+| 0x0003 | L1D_CACHE_REFILL | ✓ | ✓ | ✓ |
+| 0x0004 | L1D_CACHE | ✓ | ✓ | ✓ |
+| 0x0005 | L1D_TLB_REFILL |  | ✓ | ✓ |
+| 0x0008 | INST_RETIRED | ✓ | ✓ | ✓ |
+| 0x0010 | BR_MIS_PRED | ✓ | ✓ | ✓ |
+| 0x0011 | CPU_CYCLES | ✓ | ✓ | ✓ |
+| 0x0012 | BR_PRED | ✓ | ✓ | ✓ |
+| 0x0013 | MEM_ACCESS |  | ✓ | ✓ |
+| 0x0014 | L1I_CACHE |  | ✓ | ✓ |
+| 0x0016 | L2D_CACHE |  | ✓ | ✓ |
+| 0x0017 | L2D_CACHE_REFILL |  | ✓ | ✓ |
+| 0x001A | MEMORY_ERROR |  | ✓ | ✓ |
+| 0x001B | INST_SPEC | ✓ | ✓ | ✓ |
+| 0x001C | TTBR_WRITE_RETIRED |  | ✓ | ✓ |
+| 0x0020 | L2D_CACHE_ALLOCATE |  | ✓ |  |
+| 0x0021 | BR_RETIRED | ✓ | ✓ | ✓ |
+| 0x0022 | BR_MIS_PRED_RETIRED | ✓ | ✓ | ✓ |
+| 0x0023 | STALL_FRONTEND | ✓ | ✓ | ✓ |
+| 0x0024 | STALL_BACKEND | ✓ | ✓ | ✓ |
+| 0x0025 | L1D_TLB |  | ✓ | ✓ |
+| 0x0026 | L1I_TLB |  | ✓ | ✓ |
+| 0x0029 | L3D_CACHE_ALLOCATE |  | ✓ |  |
+| 0x002D | L2D_TLB_REFILL |  | ✓ | ✓ |
+| 0x002F | L2D_TLB |  | ✓ | ✓ |
+| 0x0031 | REMOTE_ACCESS |  | ✓ | ✓ |
+| 0x0034 | DTLB_WALK |  | ✓ | ✓ |
+| 0x0035 | ITLB_WALK |  | ✓ | ✓ |
+| 0x0036 | LL_CACHE_RD |  | ✓ | ✓ |
+| 0x0037 | LL_CACHE_MISS_RD |  | ✓ | ✓ |
+| 0x0039 | L1D_CACHE_LMISS_RD |  | ✓ | ✓ |
+| 0x003A | OP_RETIRED | ✓ | ✓ | ✓ |
+| 0x003B | OP_SPEC | ✓ | ✓ | ✓ |
+| 0x003C | STALL |  | ✓ | ✓ |
+| 0x003D | STALL_SLOT_BACKEND |  | ✓ | ✓ |
+| 0x003E | STALL_SLOT_FRONTEND |  | ✓ | ✓ |
+| 0x003F | STALL_SLOT |  | ✓ | ✓ |
+| 0x0040 | L1D_CACHE_RD |  | ✓ | ✓ |
+| 0x0041 | L1D_CACHE_WR |  | ✓ | ✓ |
+| 0x0042 | L1D_CACHE_REFILL_RD |  | ✓ | ✓ |
+| 0x0043 | L1D_CACHE_REFILL_WR |  | ✓ | ✓ |
+| 0x0044 | L1D_CACHE_REFILL_INNER |  | ✓ | ✓ |
+| 0x0045 | L1D_CACHE_REFILL_OUTER |  | ✓ | ✓ |
+| 0x0046 | L1D_CACHE_WB_VICTIM |  | ✓ | ✓ |
+| 0x004C | L1D_TLB_REFILL_RD |  | ✓ | ✓ |
+| 0x004D | L1D_TLB_REFILL_WR |  | ✓ | ✓ |
+| 0x004E | L1D_TLB_RD |  | ✓ | ✓ |
+| 0x004F | L1D_TLB_WR |  | ✓ | ✓ |
+| 0x0050 | L2D_CACHE_RD |  | ✓ | ✓ |
+| 0x0051 | L2D_CACHE_WR |  | ✓ | ✓ |
+| 0x0052 | L2D_CACHE_REFILL_RD |  | ✓ | ✓ |
+| 0x0053 | L2D_CACHE_REFILL_WR |  | ✓ | ✓ |
+| 0x0056 | L2D_CACHE_WB_VICTIM |  | ✓ | ✓ |
+| 0x005C | L2D_TLB_REFILL_RD |  | ✓ | ✓ |
+| 0x005D | L2D_TLB_REFILL_WR |  | ✓ | ✓ |
+| 0x005E | L2D_TLB_RD |  | ✓ | ✓ |
+| 0x005F | L2D_TLB_WR |  | ✓ | ✓ |
+| 0x0066 | MEM_ACCESS_RD |  | ✓ | ✓ |
+| 0x0067 | MEM_ACCESS_WR |  | ✓ | ✓ |
+| 0x0068 | UNALIGNED_LD_SPEC |  | ✓ | ✓ |
+| 0x0069 | UNALIGNED_ST_SPEC |  | ✓ | ✓ |
+| 0x0070 | LD_SPEC |  | ✓ | ✓ |
+| 0x0071 | ST_SPEC |  | ✓ | ✓ |
+| 0x0073 | DP_SPEC |  | ✓ | ✓ |
+| 0x0074 | ASE_SPEC |  | ✓ | ✓ |
+| 0x0075 | VFP_SPEC |  | ✓ | ✓ |
+| 0x0077 | CRYPTO_SPEC |  | ✓ | ✓ |
+| 0x0078 | BR_IMMED_SPEC |  | ✓ | ✓ |
+| 0x007A | BR_INDIRECT_SPEC |  | ✓ | ✓ |
+| 0x01B8 | L2D_CACHE_L1HWPRF |  |  | ✓ |
+| 0x01B9 | L2D_CACHE_REFILL_L1HWPRF |  |  | ✓ |
+| 0x4004 | CNT_CYCLES |  | ✓ | ✓ |
+| 0x4005 | STALL_BACKEND_MEM |  | ✓ | ✓ |
+| 0x4006 | L1I_CACHE_LMISS |  | ✓ | ✓ |
+| 0x4009 | L2D_CACHE_LMISS_RD |  | ✓ | ✓ |
+| 0x4020 | LDST_ALIGN_LAT |  | ✓ | ✓ |
+| 0x4021 | LD_ALIGN_LAT |  | ✓ | ✓ |
+| 0x4022 | ST_ALIGN_LAT |  | ✓ | ✓ |
+| 0x4024 | MEM_ACCESS_CHECKED |  | ✓ | ✓ |
+| 0x4025 | MEM_ACCESS_CHECKED_RD |  | ✓ | ✓ |
+| 0x4026 | MEM_ACCESS_CHECKED_WR |  | ✓ | ✓ |
+| 0x8006 | SVE_INST_SPEC |  | ✓ | ✓ |
+
 ### Versioning
 
 The hypervisor version information is encoded in HvRegisterHypervisorVersion. The format matches the x64 equivalent.

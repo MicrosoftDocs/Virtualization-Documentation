@@ -519,6 +519,11 @@ On x64 platforms, each VTL maintains its own execution context through architect
 
 On ARM64 platforms, each VTL maintains its own complete system register context. The hypervisor preserves these registers across VTL switches, ensuring complete isolation of the execution and exception environment.
 
+**General-Purpose Registers**
+
+- X18 (platform register) is the only VTL-private general purpose register.
+
+
 **Execution State** registers control program flow and processor mode:
 
 - PC (program counter), SP_EL0, SP_EL1 (stack pointers)
@@ -598,7 +603,7 @@ On x64 platforms, shared state includes general-purpose registers for computatio
 - **General-Purpose Registers**: Rax, Rbx, Rcx, Rdx, Rsi, Rdi, Rbp, R8-R15 (used for computation and parameter passing during VTL calls)
 - **Exception Information**: CR2 (page fault linear address - shared for exception handling context)
 - **Debug Data**: DR0-DR3 (debug address registers - used for breakpoint addresses)
-- **Floating-Point and Vector State**: 
+- **Floating-Point and Vector State**:
   - X87 floating point state (legacy floating-point computation)
   - XMM state (128-bit SSE vectors)
   - AVX state (256-bit vectors)
@@ -614,8 +619,8 @@ On ARM64 platforms, shared state includes registers used for computation, data p
 - **General-Purpose Registers**: X0-X17, X19-X28 (used for computation and parameter passing)
   - X0-X7 typically used for function parameters and return values during VTL calls
   - X8-X17, X19-X28 available for general computation
-  - Note: X18 (platform register) and PC are private per-VTL for security reasons
-  - Note: X29 (FP/frame pointer), X30 (LR/link register), and SP are private per-VTL
+  - Note: X29 (FP/frame pointer), X30 (LR/link register) are VTL shared.
+  - Note: X18 (platform register) is private per-VTL
 - **Floating-Point and Vector State**:
   - Q0-Q31 (128-bit NEON/floating-point registers for vector computation)
   - Advanced SIMD (NEON) state for vector operations

@@ -649,7 +649,7 @@ Deprecated registers are documented for compatibility with older OS releases.
 | HvArm64RegisterTco | 0x0002100A | Tag check override |
 | HvArm64RegisterUao | 0x0002100B | User access override |
 
-### ID Registers 
+### ID Registers
 | Register | Identifier | Comment |
 |----------|------------|---------|
 | HvArm64RegisterIdMidrEl1 | 0x00022000 | Main ID |
