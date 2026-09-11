@@ -17,7 +17,7 @@ topic_type:
 ---
 # HCS Error Code
 
-Most of the the HCS functions use `HRESULT` return codes. These return codes can be found in the [Winerror.h](/windows/win32/api/winerror/) header file. The following table shows HCS specific error codes:
+Most of the HCS functions use `HRESULT` return codes. These return codes can be found in the [Winerror.h](/windows/win32/api/winerror/) header file. The following table shows HCS specific error codes:
 
 
 
