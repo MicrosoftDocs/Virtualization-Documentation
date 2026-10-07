@@ -398,7 +398,11 @@ Indicates which behaviors the hypervisor recommends the OS implement for optimal
 +           +-------+---------------------------------------------------------------------------------------+
 |           | 18    | NoNonArchitecturalCoreSharing - Indicates that a virtual processor will never share a physical core with another virtual processor, except for virtual processors that are reported as sibling SMT threads. This can be used as an optimization to avoid the performance overhead of STIBP.
 +           +-------+---------------------------------------------------------------------------------------+
-|           | 31-19 | Reserved                                                                              |
+|           | 19    | Reserved                                                                              |
++           +-------+---------------------------------------------------------------------------------------+
+|           | 20    | RestoreTimeOnResume – Indicates that HvCallRestorePartitionTime is available to restore the partition's reference time and TSC when the partition resumes from hibernation.
++           +-------+---------------------------------------------------------------------------------------+
+|           | 31-21 | Reserved                                                                              |
 +-----------+-------+---------------------------------------------------------------------------------------+
 | EBX       |       | Recommended number of attempts to retry a spinlock failure before notifying the hypervisor about the failures. 0xFFFFFFFF indicates never to retry.
 +-----------+-------+---------------------------------------------------------------------------------------+
@@ -419,7 +423,7 @@ Indicates which behaviors the hypervisor recommends the OS implement for optimal
     </thead>
     <tbody>
         <tr>
-            <td rowspan="20">EAX</td>
+            <td rowspan="22">EAX</td>
             <td>0</td>
             <td>Recommend using hypercall for address space switches rather than MOV to CR3 instruction.</td>
         </tr>
@@ -496,7 +500,15 @@ Indicates which behaviors the hypervisor recommends the OS implement for optimal
             <td>NoNonArchitecturalCoreSharing - indicates that core sharing is not possible. This can be used as an optimization to avoid the performance overhead of STIBP.</td>
         </tr>
        <tr>
-            <td>31-19</td>
+            <td>19</td>
+            <td>Reserved</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>RestoreTimeOnResume – Indicates that <a href="hypercalls/HvCallRestorePartitionTime.md">HvCallRestorePartitionTime</a> is available to restore the partition's reference time and TSC when the partition resumes from hibernation. In the root partition, this bit instead indicates that the hypervisor restores the root partition's time on resume. If bit 12 is also set, the root partition should allow hibernation only if this bit is set.</td>
+        </tr>
+        <tr>
+            <td>31-21</td>
             <td>Reserved</td>
         </tr>
         <tr>

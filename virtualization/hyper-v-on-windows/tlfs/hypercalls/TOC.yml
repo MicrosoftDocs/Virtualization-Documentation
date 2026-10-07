@@ -80,6 +80,8 @@
   href: HvCallPostMessageDirect.md
 - name: HvCallRegisterInterceptResult
   href: HvCallRegisterInterceptResult.md
+- name: HvCallRestorePartitionTime
+  href: HvCallRestorePartitionTime.md
 - name: HvCallRetargetDeviceInterrupt
   href: HvCallRetargetDeviceInterrupt.md
 - name: HvCallSendSyntheticClusterIpi
