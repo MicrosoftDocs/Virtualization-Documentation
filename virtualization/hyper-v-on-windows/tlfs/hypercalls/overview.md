@@ -36,6 +36,7 @@ The following table lists supported hypercalls by call code.
 | 0x009A    | Rep     | [HvCallGetVpIndexFromApicId](HvCallGetVpIndexFromApicId.md)                         |
 | 0x00AF    | Simple  | [HvCallFlushGuestPhysicalAddressSpace](HvCallFlushGuestPhysicalAddressSpace.md)     |
 | 0x00B0    | Rep     | [HvCallFlushGuestPhysicalAddressList](HvCallFlushGuestPhysicalAddressList.md)       |
+| 0x0103    | Simple  | [HvCallRestorePartitionTime](HvCallRestorePartitionTime.md)                         |
 
 The following table lists supported extended hypercalls by call code.
 
