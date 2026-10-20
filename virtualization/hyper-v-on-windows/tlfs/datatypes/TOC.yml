@@ -124,8 +124,18 @@
   href: hv_x64_fp_control_status_register.md
 - name: HV_X64_FP_REGISTER
   href: hv_x64_fp_register.md
+- name: HV_X64_MEMORY_ACCESS_INFO
+  href: hv_x64_memory_access_info.md
+- name: HV_X64_MEMORY_INTERCEPT_MESSAGE
+  href: hv_x64_memory_intercept_message.md
+- name: HV_X64_MSR_INTERCEPT_MESSAGE
+  href: hv_x64_msr_intercept_message.md
 - name: HV_X64_MSR_NPIEP_CONFIG_CONTENTS
   href: hv_x64_msr_npiep_config_contents.md
+- name: HV_X64_REGISTER_ACCESS_INFO
+  href: hv_x64_register_access_info.md
+- name: HV_X64_REGISTER_INTERCEPT_MESSAGE
+  href: hv_x64_register_intercept_message.md
 - name: HV_X64_SEGMENT_REGISTER
   href: hv_x64_segment_register.md
 - name: HV_X64_TABLE_REGISTER
