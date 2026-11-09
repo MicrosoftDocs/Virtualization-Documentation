@@ -220,10 +220,10 @@ All hypercalls return a 64-bit value called a hypercall result value. It is form
 
 | Field           | Bits  | Comment                                                                               |
 |-----------------|-------|---------------------------------------------------------------------------------------|
-| Result          | 15-0  | `HV_STATUS` code indicating success or failure                                        |
+| Result          | 15-0  | [`HV_STATUS`](datatypes/hv_status.md) code indicating success or failure               |
 | Rsvd            | 31-16 | Callers should ignore the value in these bits                                         |
 | Reps completed  | 43-32 | Number of reps successfully completed                                                 |
-| RsvdZ           | 63-40 | Callers should ignore the value in these bits                                         |
+| RsvdZ           | 63-44 | Callers should ignore the value in these bits                                         |
 
 For rep hypercalls, the reps complete field is the total number of reps complete and not relative to the rep start index. For example, if the caller specified a rep start index of 5, and a rep count of 10, the reps complete field would indicate 10 upon successful completion.
 

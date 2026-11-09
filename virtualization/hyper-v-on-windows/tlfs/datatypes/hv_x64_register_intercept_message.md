@@ -72,6 +72,7 @@ A register-intercept message does not, by itself, indicate that the intercepted 
 
 ## See also
 
+* [HV_X64_INTERCEPT_MESSAGE_HEADER](hv-x64-intercept-message-header.md)
 * [HV_X64_REGISTER_ACCESS_INFO](hv_x64_register_access_info.md)
 * [HV_REGISTER_NAME](hv_register_name.md)
 * [HV_REGISTER_VALUE](hv_register_value.md)

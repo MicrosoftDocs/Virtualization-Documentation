@@ -124,6 +124,8 @@
   href: hv_x64_fp_control_status_register.md
 - name: HV_X64_FP_REGISTER
   href: hv_x64_fp_register.md
+- name: HV_X64_INTERCEPT_MESSAGE_HEADER
+  href: hv-x64-intercept-message-header.md
 - name: HV_X64_MEMORY_ACCESS_INFO
   href: hv_x64_memory_access_info.md
 - name: HV_X64_MEMORY_INTERCEPT_MESSAGE
@@ -132,6 +134,8 @@
   href: hv_x64_msr_intercept_message.md
 - name: HV_X64_MSR_NPIEP_CONFIG_CONTENTS
   href: hv_x64_msr_npiep_config_contents.md
+- name: HV_X64_PENDING_EVENT
+  href: hv-x64-pending-event.md
 - name: HV_X64_REGISTER_ACCESS_INFO
   href: hv_x64_register_access_info.md
 - name: HV_X64_REGISTER_INTERCEPT_MESSAGE
@@ -140,6 +144,8 @@
   href: hv_x64_segment_register.md
 - name: HV_X64_TABLE_REGISTER
   href: hv_x64_table_register.md
+- name: HV_X64_VP_EXECUTION_STATE
+  href: hv-x64-vp-execution-state.md
 - name: HV_X64_XMM_CONTROL_STATUS_REGISTER
   href: hv_x64_xmm_control_status_register.md
 - name: HV_X64_REGISTER_SEV_GPA_PAGE

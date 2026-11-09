@@ -91,6 +91,7 @@ This field encodes one access type. It is not the access mask specified when ins
 
 ## See also
 
+* [HV_X64_INTERCEPT_MESSAGE_HEADER](hv-x64-intercept-message-header.md)
 * [HV_X64_MEMORY_ACCESS_INFO](hv_x64_memory_access_info.md)
 * [HV_MESSAGE](hv_message.md)
 * [HV_MESSAGE_TYPE](hv_message_type.md)

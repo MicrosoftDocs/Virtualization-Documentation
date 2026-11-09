@@ -56,6 +56,7 @@ The execute access type is not used for this message. MSR-list instructions use 
 
 ## See also
 
+* [HV_X64_INTERCEPT_MESSAGE_HEADER](hv-x64-intercept-message-header.md)
 * [HV_INTERCEPT_PARAMETERS](hv_intercept_parameters.md)
 * [HvCallInstallIntercept](../hypercalls/HvCallInstallIntercept.md)
 * [HV_MESSAGE_TYPE](hv_message_type.md)
