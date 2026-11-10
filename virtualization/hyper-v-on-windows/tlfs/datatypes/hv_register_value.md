@@ -68,8 +68,8 @@ The `HV_REGISTER_NAME` associated with a register access determines the interpre
 | `Segment`, `Table` | x64 segment or descriptor-table register state. |
 | `InterruptState`, `PendingInterruption` | x64 interrupt state. |
 | `NpiepConfig` | x64 Non-Privileged Instruction Execution Prevention (NPIEP) configuration for SGDT, SIDT, SLDT, and STR. |
-| `PendingExceptionEvent` | x64 pending exception state. |
-| `PendingVirtualizationFaultEvent` | x64 pending virtualization-fault state. |
+| `PendingExceptionEvent` | x64 [pending exception event](hv-x64-pending-event.md#hv_x64_pending_exception_event). |
+| `PendingVirtualizationFaultEvent` | x64 [pending virtualization-fault event](hv-x64-pending-event.md#hv_x64_pending_virtualization_fault_event). |
 | `InvEptReg`, `InvVpidReg` | Information for emulated Intel INVEPT and INVVPID instructions. |
 
 ## Usage requirements

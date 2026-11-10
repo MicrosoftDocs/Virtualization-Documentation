@@ -71,25 +71,25 @@ On ARM64 platforms, this register is accessed via HvRegisterVsmCapabilities usin
 
 | Bits          | Description                         | Attributes                                                  |
 |---------------|-------------------------------------|-------------------------------------------------------------|
-| 63            | Dr6Shared                           | Read                                                        |
-| 62:47         | MbecVtlMask                         | Read                                                        |
-| 46            | DenyLowerVtlStartup                 | Read                                                        |
-| 45:0          | RsvdZ                               | Read                                                        |
+| 0             | Dr6Shared                           | Read                                                        |
+| 16:1          | MbecVtlMask                         | Read                                                        |
+| 17            | DenyLowerVtlStartup                 | Read                                                        |
+| 63:18         | Not specified                       | Ignore on read                                              |
 
 #### On ARM64 Platforms
 
 | Bits          | Description                         | Attributes                                                  |
 |---------------|-------------------------------------|-------------------------------------------------------------|
-| 63            | RsvdZ                               | Read                                                        |
-| 62:47         | MbecVtlMask                         | Read                                                        |
-| 46            | DenyLowerVtlStartup                 | Read                                                        |
-| 45:0          | RsvdZ                               | Read                                                        |
+| 0             | Reserved                            | Ignore on read                                              |
+| 16:1          | MbecVtlMask                         | Read                                                        |
+| 17            | DenyLowerVtlStartup                 | Read                                                        |
+| 63:18         | Not specified                       | Ignore on read                                              |
 
 #### Field Descriptions
 
 Dr6Shared (x64 only): Indicates to the guest whether Dr6 is a shared register between the VTLs.
 
-MbecVtlMask: Indicates to the guest the VTLs for which MBEC can be enabled.
+MbecVtlMask: Indicates to the guest the VTLs for which MBEC can be enabled. Bit *n* of the mask corresponds to VTL *n*.
 
 DenyLowerVtlStartup: Indicates to the guest whether a VTL can deny a VP reset by a lower VTL.
 
