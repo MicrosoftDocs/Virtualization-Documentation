@@ -1,5 +1,5 @@
 <#
-    This is PS Module — the new long-term home for Convert-WindowsImage and sister functions.
+    This is PS Module - the new long-term home for Convert-WindowsImage and sister functions.
 
     Copyright (c) Microsoft Corporation.  All rights reserved.
 
@@ -671,7 +671,7 @@ Convert-WindowsImage
         return $parameterDictionary
     }
 
-    Begin 
+    Begin
     {
 
         Set-StrictMode -version 3
@@ -679,7 +679,7 @@ Convert-WindowsImage
         $Module = Import-ModuleEx -Name "Storage"
 
        #region Constants and Pseudo-Constants
-        
+
           # Name of the script, obviously.
             $scriptName             = "Convert-WindowsImage"
 
@@ -734,9 +734,19 @@ Convert-WindowsImage
             {
                 Try
                 {
-                    $hyperVEnabled  =
+                    $OSVersion = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name ProductName).ProductName
+                    If ($OSVersion -like "Windows Server*")
+                    {
+                        $hyperVEnabled =
+                        [bool]( Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V" -Verbose:$False ).State -and
+                        [bool]( Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-Management-PowerShell" -Verbose:$False ).State
+                    }
+                    Else
+                    {
+                        $hyperVEnabled =
                         [bool]( Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-Services" -Verbose:$False ).State -and
                         [bool]( Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-Management-PowerShell" -Verbose:$False ).State
+                    }
                 }
                 Catch
                 {
@@ -2340,7 +2350,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                             $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath -PassThru
                         }
                         Else {
-                            $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath    
+                            $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath
                         }
                     }
 
@@ -2413,7 +2423,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath -PassThru
                     }
                     Else {
-                        $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath    
+                        $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath
                     }
                 }
             }
@@ -2426,7 +2436,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $DismountDiskImage = Dismount-DiskImage -ImagePath $IsoPath -PassThru
                 }
                 Else {
-                    $DismountDiskImage = Dismount-DiskImage -ImagePath $IsoPath    
+                    $DismountDiskImage = Dismount-DiskImage -ImagePath $IsoPath
                 }
             }
 
@@ -2447,7 +2457,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             }
         }
     }
-    End 
+    End
     {
 
         If ($Passthru)
